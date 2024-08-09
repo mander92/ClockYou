@@ -1,10 +1,11 @@
-STEFANO MasterClass BackEnd
--------
-- Repositorio Gitlab HACK A BOSS para compartir código:
-https://students.hackaboss.com/pi/share
-
-- URL vídeo YouTube
+- URL STEFANO MasterClass BackEnd
 https://www.youtube.com/watch?v=bmIbQMTA7co
 
+- URL FIGMA pre PFB
+https://www.youtube.com/watch?v=gf5Fo1-TirA
 
-=======
+- URL Tailwind Stefano pre PFB
+https://www.youtube.com/watch?v=f9UUmN2H_9s&ab_channel=HACKABOSS
+
+- URL MINItwitter Berto 
+https://www.youtube.com/watch?v=a_L9U4y2PkA&t
