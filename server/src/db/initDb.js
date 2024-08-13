@@ -31,7 +31,7 @@ const initDb = async () => {
             CREATE TABLE IF NOT EXISTS company (
                 id CHAR(36) PRIMARY KEY NOT NULL,
                 name VARCHAR(50) NOT NULL,
-                cif VARCHAR(30) NOT NULL,
+                cif VARCHAR(9) NOT NULL,
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
                 modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP
                 
@@ -52,9 +52,6 @@ const initDb = async () => {
         await pool.query(`
             CREATE TABLE IF NOT EXISTS users (
                 id CHAR(36) PRIMARY KEY NOT NULL,
-                particularId CHAR(36),
-                companyId CHAR(36),
-                addressId CHAR(36),
                 email VARCHAR(100) UNIQUE NOT NULL,
                 userName VARCHAR(30) UNIQUE NOT NULL,
                 password VARCHAR(255) NOT NULL,
@@ -65,18 +62,20 @@ const initDb = async () => {
                 active BOOLEAN DEFAULT false,
                 registrationCode CHAR(30),
                 recoverPassCode CHAR(10),
-                createdAt DATETIME DEFAULT CURRENT_TIMESTAMP, 
-                modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,
+                particularId CHAR(36),
+                companyId CHAR(36),
+                addressId CHAR(36),
                 FOREIGN KEY (particularId) REFERENCES particular(id),
                 FOREIGN KEY (companyId) REFERENCES company(id),
-                FOREIGN KEY (addressId) REFERENCES addresses(id)
+                FOREIGN KEY (addressId) REFERENCES addresses(id),
+                createdAt DATETIME DEFAULT CURRENT_TIMESTAMP, 
+                modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP
             )
         `);
 
         await pool.query(`
             CREATE TABLE IF NOT EXISTS services (
                 id CHAR(36) PRIMARY KEY NOT NULL,
-                addressId CHAR(36) NOT NULL,
                 type ENUM ('construccion', 'fontaneria', 'electricidad', 'jardineria') NOT NULL,
                 startDate DATE NOT NULL,
                 endDate DATE,
@@ -85,9 +84,10 @@ const initDb = async () => {
                 description VARCHAR(500),
                 rating INT,
                 status ENUM ('acepted', 'rejected', 'pending', 'completed') DEFAULT 'pending',
+                addressId CHAR(36) NOT NULL,
+                FOREIGN KEY (addressId) REFERENCES addresses(id),
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
-                modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,
-                FOREIGN KEY (addressId) REFERENCES addresses(id)
+                modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP
             )
         `);
 
@@ -97,25 +97,25 @@ const initDb = async () => {
                 employeeId CHAR(36) NOT NULL,
                 clientId CHAR(36) NOT NULL,
                 serviceId CHAR(36) NOT NULL,
-                createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
-                modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,
                 FOREIGN KEY (employeeId) REFERENCES users(id),
                 FOREIGN KEY (clientId) REFERENCES users(id),
-                FOREIGN KEY (serviceId) REFERENCES services(id)
+                FOREIGN KEY (serviceId) REFERENCES services(id),
+                createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+                modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP
             )
         `);
 
         await pool.query(`
             CREATE TABLE IF NOT EXISTS shiftRecords(
                 id CHAR(36) PRIMARY KEY NOT NULL,
-                servicesAssignedId CHAR(36) NOT NULL,
                 startTime DATETIME NOT NULL,
                 endTime DATETIME,
                 latitude DECIMAL(10,8),
                 longitude DECIMAL(11,8),
+                servicesAssignedId CHAR(36) NOT NULL,
+                FOREIGN KEY (servicesAssignedId) REFERENCES servicesAssigned(id),
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
-                modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,
-                FOREIGN KEY (servicesAssignedId) REFERENCES servicesAssigned(id)
+                modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP
             )
         `);
 
