@@ -1,28 +1,28 @@
 import getPool from './getPool.js';
 import {
-    ADMIN_ID,
-    ADMIN_EMAIL,
-    ADMIN_USERNAME,
-    ADMIN_PASSWORD,
-    ADMIN_ROLE,
-    ADMIN_FIRSTNAME,
-    ADMIN_LASTNAME,
-    ADMIN_ACTIVE,
+  ADMIN_ID,
+  ADMIN_EMAIL,
+  ADMIN_USERNAME,
+  ADMIN_PASSWORD,
+  ADMIN_ROLE,
+  ADMIN_FIRSTNAME,
+  ADMIN_LASTNAME,
+  ADMIN_ACTIVE,
 } from '../../env.js';
 
 const initDb = async () => {
-    try {
-        const pool = await getPool();
+  try {
+    const pool = await getPool();
 
-        console.log('Borrando tablas...');
+    console.log('Borrando tablas...');
 
-        await pool.query(
-            'DROP TABLE IF EXISTS shiftRecords, servicesAssigned, services, users'
-        );
+    await pool.query(
+      'DROP TABLE IF EXISTS shiftRecords, servicesAssigned, services, users'
+    );
 
-        console.log('Creando tablas...');
+    console.log('Creando tablas...');
 
-        await pool.query(`
+    await pool.query(`
             CREATE TABLE IF NOT EXISTS users (
                 id CHAR(36) PRIMARY KEY NOT NULL,
                 email VARCHAR(100) UNIQUE NOT NULL,
@@ -44,7 +44,7 @@ const initDb = async () => {
             )
         `);
 
-        await pool.query(`
+    await pool.query(`
             CREATE TABLE IF NOT EXISTS services (
                 id CHAR(36) PRIMARY KEY NOT NULL,
                 price DECIMAL(10,2) NOT NULL,
@@ -60,7 +60,7 @@ const initDb = async () => {
             )
         `);
 
-        await pool.query(`
+    await pool.query(`
             CREATE TABLE IF NOT EXISTS servicesAssigned (
                 id CHAR(36) PRIMARY KEY NOT NULL,
                 userId CHAR(36) NOT NULL,
@@ -74,7 +74,7 @@ const initDb = async () => {
             )
         `);
 
-        await pool.query(`
+    await pool.query(`
             CREATE TABLE IF NOT EXISTS shiftRecords(
                 id CHAR(36) PRIMARY KEY NOT NULL,
                 employeeId CHAR(36) NOT NULL,
@@ -90,25 +90,26 @@ const initDb = async () => {
             )
         `);
 
-        await pool.query(
-            `
+    await pool.query(
+      `
             INSERT INTO users (id, email, userName, password, role, firstName, lastName, active) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
-            [
-                ADMIN_ID,
-                ADMIN_EMAIL,
-                ADMIN_USERNAME,
-                ADMIN_PASSWORD,
-                ADMIN_ROLE,
-                ADMIN_FIRSTNAME,
-                ADMIN_LASTNAME,
-                ADMIN_ACTIVE,
-            ]
-        );
+      [
+        ADMIN_ID,
+        ADMIN_EMAIL,
+        ADMIN_USERNAME,
+        ADMIN_PASSWORD,
+        ADMIN_ROLE,
+        ADMIN_FIRSTNAME,
+        ADMIN_LASTNAME,
+        ADMIN_ACTIVE,
+      ]
+    );
 
-        console.log('¡Tablas creadas!');
-    } catch (err) {
-        console.error('Error creando las tablas', err.message, err);
-    }
+    console.log('¡Tablas creadas!');
+    console.log('¡ADMIN creado!');
+  } catch (err) {
+    console.error('Error creando las tablas', err.message, err);
+  }
 };
 
 initDb();
