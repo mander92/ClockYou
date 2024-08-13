@@ -3,7 +3,7 @@ import { v4 as uuid } from 'uuid';
 
 import getPool from '../../db/getPool.js';
 import generateErrorUtil from '../../utils/generateErrorUtil.js';
-import sendMailUtils from '../../utils/sendMailUtils.js';
+import sendMailUtil from '../../utils/sendMailUtil.js';
 import { PORT } from '../../../env.js';
 
 const insertUserService = async (
@@ -22,7 +22,21 @@ const insertUserService = async (
     );
 
     if (user.length) {
-        throw generateErrorUtil('El email ya se encuentra registrado', 409);
+        generateErrorUtil('El email ya se encuentra registrado', 409);
+    }
+
+    const [name] = await pool.query(
+        `
+            SELECT id FROM users WHERE userName = ?
+        `,
+        [userName]
+    );
+
+    if (name.length) {
+        generateErrorUtil(
+            'El nombre de usuario ya se encuentra registrado',
+            409
+        );
     }
 
     const emailSubject = `Activa tu cuenta de ClockYou`;
@@ -38,7 +52,7 @@ const insertUserService = async (
                 Hecho con ❤ por el equipo de ClockYou.
     `;
 
-    await sendMailUtils(email, emailSubject, emaiBody);
+    await sendMailUtil(email, emailSubject, emaiBody);
 
     const passwordHashed = await bcrypt.hash(password, 10);
 

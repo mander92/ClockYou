@@ -1,50 +1,54 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
+import { SECRET } from '../../../env.js';
+
 import selectUserByEmailService from '../../services/users/selectUserByEmailService.js';
-import generateErrorsUtils from '../../utils/generateErrorsUtils.js';
+import generateErrorUtil from '../../utils/generateErrorUtil.js';
 
 const loginUserController = async (req, res, next) => {
     try {
-        
         const { email, password } = req.body;
 
-        if(!email || !password) throw generateErrorsUtils('El email y el password no pueden estar vacíos', 400);
+        if (!email || !password)
+            generateErrorUtil(
+                'El email y el password no pueden estar vacíos',
+                400
+            );
 
         const user = await selectUserByEmailService(email);
 
         let validPassword;
 
-        if(user){
+        if (user) {
             validPassword = await bcrypt.compare(password, user.password);
         }
-        
-        if(!user || !validPassword){
-            throw generateErrorsUtils('Usuario o contraseña incorrecto.', 401);
+
+        if (!user || !validPassword) {
+            generateErrorUtil('Usuario o contraseña incorrecto.', 401);
         }
 
-        if(!user.active) throw generateErrorsUtils('Usuario pendiente de activacion',403);
+        if (!user.active)
+            generateErrorUtil('Usuario pendiente de activacion', 403);
 
-        //generamos el token
         const tokenInfo = {
             id: user.id,
-            role: user.role
+            role: user.role,
         };
 
-        const token = jwt.sign(tokenInfo, process.env.SECRET,{
-            expiresIn: '3d'
+        const token = jwt.sign(tokenInfo, SECRET, {
+            expiresIn: '1d',
         });
 
         res.send({
             status: 'ok',
-            data:{
-                token
-            }
+            data: {
+                token,
+            },
         });
-        
     } catch (error) {
         next(error);
     }
-}
+};
 
 export default loginUserController;
