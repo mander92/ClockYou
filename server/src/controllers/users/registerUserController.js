@@ -8,10 +8,7 @@ const registerUserController = async (req, res, next) => {
     const { email, password, username } = req.body;
 
     if (!email || !password || !username) {
-      generateErrorUtil(
-        'Ni email, ni password, ni username pueden estar vacíos',
-        400
-      );
+      generateErrorUtil('Ni email, ni password, ni username pueden estar vacíos',400);
     }
 
     const registrationCode = randomstring.generate(30);

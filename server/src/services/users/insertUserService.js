@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import getPool from '../../database/getPool.js';
+import getPool from '../../db/getPool.js';
 import generateErrorUtil from '../../utils/generateErrorUtil.js';
 import sendMailUtils from '../../utils/sendMailUtils.js';
 import { PORT } from '../../../env.js';

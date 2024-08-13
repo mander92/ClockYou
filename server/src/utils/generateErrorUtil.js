@@ -1,7 +1,7 @@
 const generateErrorUtil = (msg, code) => {
-    const err = new Error(msg);
+    const error = new Error(msg);
     error.httpStatus = code;
-    throw err;
+    throw error;
 };
 
 export default generateErrorUtil;
