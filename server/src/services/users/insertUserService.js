@@ -41,7 +41,7 @@ const insertUserService = async (
 
     const emailSubject = `Activa tu cuenta de ClockYou`;
 
-    const emaiBody = `
+    const emailBody = `
                 !!Bienvenid@ ${userName}¡¡
 
                 Gracias por registrarte en ClockYou. Para activar tu cuenta haga click
@@ -52,7 +52,7 @@ const insertUserService = async (
                 Hecho con ❤ por el equipo de ClockYou.
     `;
 
-    await sendMailUtil(email, emailSubject, emaiBody);
+    await sendMailUtil(email, emailSubject, emailBody);
 
     const passwordHashed = await bcrypt.hash(password, 10);
 
