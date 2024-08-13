@@ -10,10 +10,10 @@ const authUser = (req, res, next) => {
             throw generateErrorUtils( 'Se esperaba un token por encabezado', 401);
         }
 
-        let tokeInfo; 
+        let tokenInfo; 
 
         try {
-            tokeInfo = jwt.verify( authorization, process.env.SECRET)
+            tokenInfo = jwt.verify( authorization, process.env.SECRET)
         } catch (error) {
             throw generateErrorUtils( 'Credenciales inválidas', 401);
         };
