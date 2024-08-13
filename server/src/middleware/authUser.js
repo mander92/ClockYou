@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import generateErrorsUtils from '../utils/generateErrorUtil.js'
+import generateErrorUtils from '../utils/generateErrorUtil.js'
 
 const authUser = (req, res, next) => {
     try {
@@ -7,7 +7,7 @@ const authUser = (req, res, next) => {
         const { authorization } = req.headers; 
 
         if(!authorization) {
-            throw generateErrorsUtils( 'Se esperaba un token por encabezado', 401);
+            throw generateErrorUtils( 'Se esperaba un token por encabezado', 401);
         }
 
         let tokeInfo; 
@@ -15,7 +15,7 @@ const authUser = (req, res, next) => {
         try {
             tokeInfo = jwt.verify( authorization, process.env.SECRET)
         } catch (error) {
-            throw generateErrorsUtils( 'Credenciales inválidas', 401);
+            throw generateErrorUtils( 'Credenciales inválidas', 401);
         };
 
         req.userLogged = tokenInfo;
