@@ -7,7 +7,7 @@ const authUser = (req, res, next) => {
         const { authorization } = req.headers; 
 
         if(!authorization) {
-            throw generateErrorUtils( 'Se esperaba un token por encabezado', 401);
+            generateErrorUtils( 'Se esperaba un token por encabezado', 401);
         }
 
         let tokenInfo; 
@@ -15,7 +15,7 @@ const authUser = (req, res, next) => {
         try {
             tokenInfo = jwt.verify( authorization, process.env.SECRET)
         } catch (error) {
-            throw generateErrorUtils( 'Credenciales inválidas', 401);
+            generateErrorUtils( 'Credenciales inválidas', 401);
         };
 
         req.userLogged = tokenInfo;
