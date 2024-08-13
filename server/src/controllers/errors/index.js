@@ -1,4 +1,4 @@
-import { errorController } from './errorController.js';
-import { notFoundController } from './notFoundController.js';
+import errorController from './errorController.js';
+import notFoundErrorController from './notFoundErrorController.js';
 
-export { notFoundController, errorController };
+export { errorController, notFoundErrorController };

@@ -3,7 +3,7 @@ import cors from 'cors';
 import { PORT } from './env.js';
 
 import {
-    notFoundController,
+    notFoundErrorController,
     errorController,
 } from './src/controllers/errors/index.js';
 
@@ -13,7 +13,7 @@ app.use(express.json());
 
 app.use(cors());
 
-app.use(notFoundController);
+app.use(notFoundErrorController);
 
 app.use(errorController);
 
