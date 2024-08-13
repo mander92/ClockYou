@@ -110,3 +110,9 @@ Jardinería, Limpieza, Seguridad, Mantenimiento de Edificios e Instalaciones, Ca
 | servicesAssignedId | VARCHAR(36)   | Identificador del servicio contratado         |
 | createdAt          | DATETIME      | Fecha y hora de creación del registro horario |
 | modifiedAt         | DATETIME      | Fecha y hora de la última modificación        |
+
+## Endpoints del usuario
+
+-   **POST** - `/users/register` - Crea un nuevo usuario pendiente de activar.
+-   **GET** - `/users/validate/:registrationCode` - Valida a un usuario recién registrado.
+-   **POST** - `/users/login` - Logea a un usuario retornando un token.
