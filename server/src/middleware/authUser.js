@@ -1,6 +1,8 @@
 import jwt from 'jsonwebtoken';
 import generateErrorUtil from '../utils/generateErrorUtil.js';
 
+import { SECRET } from '../../env.js';
+
 const authUser = (req, res, next) => {
     try {
         const { authorization } = req.headers;
@@ -12,7 +14,7 @@ const authUser = (req, res, next) => {
         let tokenInfo;
 
         try {
-            tokenInfo = jwt.verify(authorization, process.env.SECRET);
+            tokenInfo = jwt.verify(authorization, SECRET);
         } catch (error) {
             generateErrorUtil('Credenciales inválidas', 401);
         }
