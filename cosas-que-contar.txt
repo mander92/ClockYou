@@ -12,3 +12,8 @@ https://www.youtube.com/watch?v=f9UUmN2H_9s&ab_channel=HACKABOSS
 
 - URL MINItwitter Berto 
 https://www.youtube.com/watch?v=a_L9U4y2PkA&t
+
+======================================================================
+
+- CONFIGURACIÓN del archivo ".gitignore"
+https://www.freecodecamp.org/news/gitignore-file-how-to-ignore-files-and-folders-in-git/
