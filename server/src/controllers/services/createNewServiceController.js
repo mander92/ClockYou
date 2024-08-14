@@ -1,20 +1,24 @@
-import { v4 as uuid } from 'uuid';
-import jwt from 'jsonwebtoken';
-
+import createNewServiceService from "../../services/services/insertServiceService.js";
 import generateErrorUtil from "../../utils/generateErrorUtil.js"
 
-const createNewServiceController = async (req, res) =>{
+const createNewServiceController = async (req, res, next) =>{
     try {
         
-        const { tokenInfo } = req.userLogged;
-        
-        const {type, description, city}  = req.body;
+        const {type, description, citys}  = req.body;
 
+        if( !type || !description || !citys ){
+            generateErrorUtil('Los campos del formularios deben estar rellenos', 401)
+        }
 
+        await createNewServiceService(type, description, citys);
 
+        res.send({
+            status: 'ok',
+            message: 'El servicio ha sido creado correctamente'
+        })
 
     } catch (error) {
-        
+        next(error)
     }
 }
 
