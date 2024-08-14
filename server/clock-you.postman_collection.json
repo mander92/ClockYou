@@ -73,7 +73,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/users/validate/kQlBYTGfoDpuRkHEKknQXqUJCgZp4A",
+							"raw": "http://localhost:8000/users/validate/otmQJTyRFEbJVy4VWkSzoOf9h6HfVH",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -82,7 +82,104 @@
 							"path": [
 								"users",
 								"validate",
-								"kQlBYTGfoDpuRkHEKknQXqUJCgZp4A"
+								"otmQJTyRFEbJVy4VWkSzoOf9h6HfVH"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recoverPassword",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/users/password/recover",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"users",
+								"password",
+								"recover"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editPassword",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"\",\n    \"recoverPassCode\": \"\",\n    \"newPassword\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/users/password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"users",
+								"password"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "services",
+			"item": [
+				{
+					"name": "new",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJmZmI3ZGQ0LTc3OTAtNDZkMC1iN2U2LWUyNjExMjg3MWY1MyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyMzY2MzAxMiwiZXhwIjoxNzI0MjY3ODEyfQ.4sxQy2eHTOjdqP0aY-2xoBWzHvtNiD0HRyZ2uuKg6Qo"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"type\": \"\",\n    \"description\": \"\",\n    \"citys\":\"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/services",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"services"
 							]
 						}
 					},
