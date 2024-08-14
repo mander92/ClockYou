@@ -7,8 +7,7 @@ const createNewServiceController = async (req, res) =>{
     try {
         
         const { tokenInfo } = req.userLogged;
-
-    
+        
         const {type, description, city}  = req.body;
 
 

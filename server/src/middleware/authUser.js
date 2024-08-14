@@ -6,9 +6,8 @@ import { SECRET } from '../../env.js';
 
 const authUser = (req,res,next) => {
     try {
-        
-        const { authorization } = req.headers;
-        
+        const { authorization } = req.headers
+
         if(!authorization) generateErrorUtil('Se esperaba un token por encabezado', 401);
         
         let tokenInfo;

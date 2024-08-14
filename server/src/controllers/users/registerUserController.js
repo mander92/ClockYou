@@ -5,20 +5,20 @@ import insertUserService from '../../services/users/insertUserService.js';
 
 const registerUserController = async (req, res, next) => {
     try {
-        const { email, password, userName, role } = req.body;
+        const { email, password, userName} = req.body;
 
-        console.log(email,password,userName,role)
+        console.log(email,password,userName)
 
-        if (!email || !password || !userName || !role) {
+        if (!email || !password || !userName) {
             generateErrorUtil(
-                'Ni email, ni password, ni username, ni role pueden estar vacíos',
+                'Ni email, ni password, ni username pueden estar vacíos',
                 400
             );
         }
 
         const registrationCode = randomstring.generate(30);
 
-        await insertUserService(email, password, userName, registrationCode , role);
+        await insertUserService(email, password, userName, registrationCode);
 
         res.send({
             status: 'ok',

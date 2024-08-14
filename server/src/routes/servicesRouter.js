@@ -6,8 +6,8 @@ import authUser from '../middleware/authUser.js'
 import serviceExist from '../middleware/serviceExist.js';
 
 
-const routerService = express.Router();
+const router = express.Router();
+router.get('/services')
+router.post('/services', authUser, serviceExist, createNewServiceController);
 
-routerService.post('/services/createnew', authUser, serviceExist, createNewServiceController);
-
-export default routerService;
+export default router;
