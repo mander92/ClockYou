@@ -74,9 +74,19 @@ const initDb = async () => {
         `);
 
         await pool.query(`
+            CREATE TABLE IF NOT EXISTS typeOfServices (
+                id CHAR(36) PRIMARY KEY NOT NULL,
+                type VARCHAR(255),
+                description VARCHAR(500),
+                city VARCHAR(40),
+                createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+                modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP
+            )
+        `);
+
+        await pool.query(`
             CREATE TABLE IF NOT EXISTS services (
                 id CHAR(36) PRIMARY KEY NOT NULL,
-                type ENUM ('construccion', 'fontaneria', 'electricidad', 'jardineria') NOT NULL,
                 startDate DATE NOT NULL,
                 endDate DATE,
                 startTime DATETIME NOT NULL,
@@ -85,7 +95,9 @@ const initDb = async () => {
                 rating INT,
                 status ENUM ('acepted', 'rejected', 'pending', 'completed') DEFAULT 'pending',
                 addressId CHAR(36) NOT NULL,
+                typeOfServicesId CHAR(36) NOT NULL,
                 FOREIGN KEY (addressId) REFERENCES addresses(id),
+                FOREIGN KEY (typeOfServicesId) REFERENCES typeOfServices(id),
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
                 modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP
             )
