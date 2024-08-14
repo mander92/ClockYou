@@ -127,3 +127,9 @@ Jardinería, Limpieza, Seguridad, Mantenimiento de Edificios e Instalaciones, Ca
 -   **POST** - `/users/register` - Crea un nuevo usuario pendiente de activar.
 -   **GET** - `/users/validate/:registrationCode` - Valida a un usuario recién registrado.
 -   **POST** - `/users/login` - Logea a un usuario retornando un token.
+-   **POST** - `/users/password` - Actualiza la contraseña de un usuario mediante un código de recuperación.
+-   **PATCH** - `/users/password/recover` - Envía al usuario un correo de recuperación de contraseña.
+
+## Endpoints de los servicios
+
+-   **POST** - `/services` - Crea una entrada en los servicios ofertados a los clientes.
