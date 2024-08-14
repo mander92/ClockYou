@@ -68,24 +68,35 @@ Jardinería, Limpieza, Seguridad, Mantenimiento de Edificios e Instalaciones, Ca
 | createdAt        | DATETIME     | Fecha y hora de creación del usuario            |
 | modifiedAt       | DATETIME     | Fecha y hora de la última modificación          |
 
+### typeOfService
+
+| Campo       | Tipo         | Descripción                               |
+| ----------- | ------------ | ----------------------------------------- |
+| id          | VARCHAR(36)  | Identificador único del usuario           |
+| type        | VARCHAR(255) | Tipo de servicio                          |
+| description | VARCHAR(500) | Descripción del servicio ofertado         |
+| city        | VARCHAR(40)  | Cuidad del servicio                       |
+| createdAt   | DATETIME     | Fecha y hora de creación del la dirección |
+| modifiedAt  | DATETIME     | Fecha y hora de la última modificación    |
+
 ### services
 
-| Campo       | Tipo         | Descripción                                                                            |
-| ----------- | ------------ | -------------------------------------------------------------------------------------- |
-| id          | VARCHAR(36)  | Identificador único del usuario                                                        |
-| type        | ENUM         | Nombre de servicios fijos ("construccion", "fontaneria", "electricidad", "jardineria") |
-| location    | VARCHAR(255) | Localización del servicio                                                              |
-| startDate   | DATE         | Fecha de inicio del servicio                                                           |
-| endDate     | DATE         | Fecha de fin del servicio                                                              |
-| startTime   | DATETIME     | Hora de inicio del servicio                                                            |
-| description | VARCHAR(500) | Descripción del servicio a contratar                                                   |
-| endTime     | DATETIME     | Hora de fin del servicio                                                               |
-| description | VARCHAR(500) | Descripción del servicio                                                               |
-| rating      | INT          | Valoración del 1 al 5                                                                  |
-| status      | ENUM         | Estado del servicio ("aceptado", "rechazado", "pendiente", "completado")               |
-| addressId   | VARCHAR(36)  | Identificador de la dirección del servicio                                             |
-| createdAt   | DATETIME     | Fecha y hora de creación del servicio                                                  |
-| modifiedAt  | DATETIME     | Fecha y hora de la última modificación                                                 |
+| Campo           | Tipo         | Descripción                                                              |
+| --------------- | ------------ | ------------------------------------------------------------------------ |
+| id              | VARCHAR(36)  | Identificador único del usuario                                          |
+| location        | VARCHAR(255) | Localización del servicio                                                |
+| startDate       | DATE         | Fecha de inicio del servicio                                             |
+| endDate         | DATE         | Fecha de fin del servicio                                                |
+| startTime       | DATETIME     | Hora de inicio del servicio                                              |
+| comments        | VARCHAR(500) | Comentarios adicionales del servicio a contratar                         |
+| endTime         | DATETIME     | Hora de fin del servicio                                                 |
+| description     | VARCHAR(500) | Descripción del servicio                                                 |
+| rating          | INT          | Valoración del 1 al 5                                                    |
+| status          | ENUM         | Estado del servicio ("aceptado", "rechazado", "pendiente", "completado") |
+| addressId       | VARCHAR(36)  | Identificador de la dirección del servicio                               |
+| typeOfServiceId | VARCHAR(36)  | Identificador del tipo de servicio a contratar                           |
+| createdAt       | DATETIME     | Fecha y hora de creación del servicio                                    |
+| modifiedAt      | DATETIME     | Fecha y hora de la última modificación                                   |
 
 ### servicesAssigned
 
