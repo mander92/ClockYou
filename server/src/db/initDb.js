@@ -11,7 +11,7 @@ const initDb = async () => {
         console.log('Borrando tablas...');
 
         await pool.query(
-            'DROP TABLE IF EXISTS shiftRecords, servicesAssigned, services, addresses, company, particular, users'
+            'DROP TABLE IF EXISTS shiftRecords, servicesAssigned, typeOfServices, services, addresses, company, particular, users'
         );
 
         console.log('Creando tablas...');
@@ -76,9 +76,9 @@ const initDb = async () => {
         await pool.query(`
             CREATE TABLE IF NOT EXISTS typeOfServices (
                 id CHAR(36) PRIMARY KEY NOT NULL,
-                type VARCHAR(255),
-                description VARCHAR(500),
-                city VARCHAR(40),
+                type VARCHAR(255) NOT NULL,
+                description VARCHAR(500) NOT NULL,
+                citys VARCHAR(400) NOT NULL,
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
                 modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP
             )
@@ -131,6 +131,17 @@ const initDb = async () => {
             )
         `);
 
+        await pool.query(
+            `
+            INSERT INTO typeOfServices (id, type, description, citys) VALUES (?, ?, ?, ?)`,
+            [
+                uuid(),
+                'Jardinería',
+                'Mantenimiento de jardines, poda y plantaciones',
+                'Coruña, Barcelona, Madrid, Sevilla, Murcia',
+            ]
+        );
+
         const hashedPass = await bcrypt.hash(ADMIN_PASSWORD, 10);
 
         await pool.query(
@@ -140,6 +151,7 @@ const initDb = async () => {
         );
 
         console.log('¡Tablas creadas!');
+        console.log('¡Servicios básicos creados!');
         console.log('¡ADMIN creado!');
     } catch (err) {
         console.error('Error creando las tablas', err.message, err);

@@ -68,14 +68,14 @@ Jardinería, Limpieza, Seguridad, Mantenimiento de Edificios e Instalaciones, Ca
 | createdAt        | DATETIME     | Fecha y hora de creación del usuario            |
 | modifiedAt       | DATETIME     | Fecha y hora de la última modificación          |
 
-### typeOfService
+### typeOfServices
 
 | Campo       | Tipo         | Descripción                               |
 | ----------- | ------------ | ----------------------------------------- |
 | id          | VARCHAR(36)  | Identificador único del usuario           |
 | type        | VARCHAR(255) | Tipo de servicio                          |
 | description | VARCHAR(500) | Descripción del servicio ofertado         |
-| city        | VARCHAR(40)  | Cuidad del servicio                       |
+| citys       | VARCHAR(400) | Cuidades disponibles del servicio         |
 | createdAt   | DATETIME     | Fecha y hora de creación del la dirección |
 | modifiedAt  | DATETIME     | Fecha y hora de la última modificación    |
 
