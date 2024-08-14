@@ -30,21 +30,19 @@ const loginUserController = async (req, res, next) => {
 
         if (!user.active)
             generateErrorUtil('Usuario pendiente de activacion', 403);
-
+        console.log(user)
         const tokenInfo = {
             id: user.id,
             role: user.role,
         };
 
         const token = jwt.sign(tokenInfo, SECRET, {
-            expiresIn: '1d',
+            expiresIn: '7d',
         });
 
         res.send({
             status: 'ok',
-            data: {
-                token,
-            },
+            data: token
         });
     } catch (error) {
         next(error);

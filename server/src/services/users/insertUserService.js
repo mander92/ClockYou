@@ -10,7 +10,8 @@ const insertUserService = async (
     email,
     password,
     userName,
-    registrationCode
+    registrationCode,
+    role
 ) => {
     const pool = await getPool();
 
@@ -58,10 +59,10 @@ const insertUserService = async (
 
     await pool.query(
         `
-            INSERT INTO users (id, email, password, registrationCode, userName)
-            VALUES (?,?,?,?,?)
+            INSERT INTO users (id, email, password, registrationCode, userName, role)
+            VALUES (?,?,?,?,?,?)
         `,
-        [uuid(), email, passwordHashed, registrationCode, userName]
+        [uuid(), email, passwordHashed, registrationCode, userName, role]
     );
 };
 

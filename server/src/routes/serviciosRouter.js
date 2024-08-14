@@ -1,20 +1,13 @@
-import express from express;
+import express from 'express';
 
-import {
-    listServiceController,
-    newServiceController,
-    deleteServiceController,
-} from '../controllers/services/index.js';
+import createNewServiceController from '../controllers/services/createNewServiceController.js';
 
 import authUser from '../middleware/authUser.js'
+import serviceExist from '../middleware/serviceExist.js';
 
 
 const routerService = express.Router();
 
-routerService.post('/services', authUser, newServiceController);
-
-routerService.get('/services', listServiceController);
-
-routerService.delete('/services/:serviceId', deleteServiceController);
+routerService.post('/services/createnew', authUser, serviceExist, createNewServiceController);
 
 export default routerService;
