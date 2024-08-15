@@ -5,18 +5,18 @@ import getPool from './getPool.js';
 import { ADMIN_EMAIL, ADMIN_USERNAME, ADMIN_PASSWORD } from '../../env.js';
 
 const initDb = async () => {
-    try {
-        const pool = await getPool();
+  try {
+    const pool = await getPool();
 
-        console.log('Borrando tablas...');
+    console.log('Borrando tablas...');
 
-        await pool.query(
-            'DROP TABLE IF EXISTS shiftRecords, servicesAssigned, typeOfServices, services, addresses, company, particular, users'
-        );
+    await pool.query(
+      'DROP TABLE IF EXISTS shiftRecords, servicesAssigned, typeOfServices, services, addresses, company, particular, users'
+    );
 
-        console.log('Creando tablas...');
+    console.log('Creando tablas...');
 
-        await pool.query(`
+    await pool.query(`
             CREATE TABLE IF NOT EXISTS particular (
                 id CHAR(36) PRIMARY KEY NOT NULL,
                 firstName VARCHAR(30) NOT NULL,
@@ -27,7 +27,7 @@ const initDb = async () => {
             )
         `);
 
-        await pool.query(`
+    await pool.query(`
             CREATE TABLE IF NOT EXISTS company (
                 id CHAR(36) PRIMARY KEY NOT NULL,
                 name VARCHAR(50) NOT NULL,
@@ -38,7 +38,7 @@ const initDb = async () => {
             )
         `);
 
-        await pool.query(`
+    await pool.query(`
             CREATE TABLE IF NOT EXISTS addresses (
                 id CHAR(36) PRIMARY KEY NOT NULL,
                 address VARCHAR(255),
@@ -49,7 +49,7 @@ const initDb = async () => {
             )
         `);
 
-        await pool.query(`
+    await pool.query(`
             CREATE TABLE IF NOT EXISTS users (
                 id CHAR(36) PRIMARY KEY NOT NULL,
                 email VARCHAR(100) UNIQUE NOT NULL,
@@ -73,7 +73,7 @@ const initDb = async () => {
             )
         `);
 
-        await pool.query(`
+    await pool.query(`
             CREATE TABLE IF NOT EXISTS typeOfServices (
                 id CHAR(36) PRIMARY KEY NOT NULL,
                 type VARCHAR(255) NOT NULL,
@@ -84,7 +84,7 @@ const initDb = async () => {
             )
         `);
 
-        await pool.query(`
+    await pool.query(`
             CREATE TABLE IF NOT EXISTS services (
                 id CHAR(36) PRIMARY KEY NOT NULL,
                 startDate DATE NOT NULL,
@@ -103,7 +103,7 @@ const initDb = async () => {
             )
         `);
 
-        await pool.query(`
+    await pool.query(`
             CREATE TABLE IF NOT EXISTS servicesAssigned (
                 id CHAR(36) PRIMARY KEY NOT NULL,
                 employeeId CHAR(36) NOT NULL,
@@ -117,7 +117,7 @@ const initDb = async () => {
             )
         `);
 
-        await pool.query(`
+    await pool.query(`
             CREATE TABLE IF NOT EXISTS shiftRecords(
                 id CHAR(36) PRIMARY KEY NOT NULL,
                 startTime DATETIME NOT NULL,
@@ -131,66 +131,56 @@ const initDb = async () => {
             )
         `);
 
-        await pool.query(
-            `
+    await pool.query(
+      `
             INSERT INTO typeOfServices (id, type, description, city) VALUES (?, ?, ?, ?)`,
-            [
-                uuid(),
-                'Jardinería',
-                'Mantenimiento de jardines, poda y plantaciones',
-                'Coruña',
-            ]
-        );
+      [
+        uuid(),
+        'Jardinería',
+        'Mantenimiento de jardines, poda y plantaciones',
+        'Coruña',
+      ]
+    );
 
-        await pool.query(
-            `
+    await pool.query(
+      `
             INSERT INTO typeOfServices (id, type, description, city) VALUES (?, ?, ?, ?)`,
-            [
-                uuid(),
-                'Albaliñería',
-                'Servicios de albaliñería básicos',
-                'Barcelona',
-            ]
-        );
+      [uuid(), 'Albaliñería', 'Servicios de albaliñería básicos', 'Barcelona']
+    );
 
-        await pool.query(
-            `
+    await pool.query(
+      `
             INSERT INTO typeOfServices (id, type, description, city) VALUES (?, ?, ?, ?)`,
-            [
-                uuid(),
-                'Clases de kunfoo',
-                'Historias de un profesor chiflado',
-                'Madrid',
-            ]
-        );
+      [uuid(), 'Clases de KUNG-FU', 'Clases de KUNG-FU', 'Madrid']
+    );
 
-        await pool.query(
-            `
+    await pool.query(
+      `
             INSERT INTO typeOfServices (id, type, description, city) VALUES (?, ?, ?, ?)`,
-            [
-                uuid(),
-                'Enderezar plátanos',
-                'Enderazamos plátanos... consultar con Admin',
-                'Sevilla',
-            ]
-        );
+      [
+        uuid(),
+        'Enderezar plátanos',
+        'Enderazamos plátanos... consultar con Admin',
+        'Sevilla',
+      ]
+    );
 
-        const hashedPass = await bcrypt.hash(ADMIN_PASSWORD, 10);
+    const hashedPass = await bcrypt.hash(ADMIN_PASSWORD, 10);
 
-        await pool.query(
-            `
+    await pool.query(
+      `
             INSERT INTO users (id, email, userName, password, role, active) VALUES (?, ?, ?, ?, ?, ?)`,
-            [uuid(), ADMIN_EMAIL, ADMIN_USERNAME, hashedPass, 'admin', 1]
-        );
+      [uuid(), ADMIN_EMAIL, ADMIN_USERNAME, hashedPass, 'admin', 1]
+    );
 
-        console.log('¡Tablas creadas!');
-        console.log('¡Servicios básicos creados!');
-        console.log('¡ADMIN creado!');
-    } catch (err) {
-        console.error('Error creando las tablas', err.message, err);
-    } finally {
-        process.exit();
-    }
+    console.log('¡Tablas creadas!');
+    console.log('¡Servicios básicos creados!');
+    console.log('¡ADMIN creado!');
+  } catch (err) {
+    console.error('Error creando las tablas', err.message, err);
+  } finally {
+    process.exit();
+  }
 };
 
 initDb();
