@@ -78,7 +78,7 @@ const initDb = async () => {
                 id CHAR(36) PRIMARY KEY NOT NULL,
                 type VARCHAR(255) NOT NULL,
                 description VARCHAR(500) NOT NULL,
-                citys VARCHAR(400) NOT NULL,
+                city VARCHAR(50) NOT NULL,
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
                 modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP
             )
@@ -133,12 +133,45 @@ const initDb = async () => {
 
         await pool.query(
             `
-            INSERT INTO typeOfServices (id, type, description, citys) VALUES (?, ?, ?, ?)`,
+            INSERT INTO typeOfServices (id, type, description, city) VALUES (?, ?, ?, ?)`,
             [
                 uuid(),
                 'Jardinería',
                 'Mantenimiento de jardines, poda y plantaciones',
-                'Coruña, Barcelona, Madrid, Sevilla, Murcia',
+                'Coruña',
+            ]
+        );
+
+        await pool.query(
+            `
+            INSERT INTO typeOfServices (id, type, description, city) VALUES (?, ?, ?, ?)`,
+            [
+                uuid(),
+                'Albaliñería',
+                'Servicios de albaliñería básicos',
+                'Barcelona',
+            ]
+        );
+
+        await pool.query(
+            `
+            INSERT INTO typeOfServices (id, type, description, city) VALUES (?, ?, ?, ?)`,
+            [
+                uuid(),
+                'Clases de kunfoo',
+                'Historias de un profesor chiflado',
+                'Madrid',
+            ]
+        );
+
+        await pool.query(
+            `
+            INSERT INTO typeOfServices (id, type, description, city) VALUES (?, ?, ?, ?)`,
+            [
+                uuid(),
+                'Enderezar plátanos',
+                'Enderazamos plátanos... consultar con Admin',
+                'Sevilla',
             ]
         );
 
