@@ -1,11 +1,11 @@
 import express from 'express';
 
 import userRouter from './userRouter.js';
-import serviciosRouter from './servicesRouter.js'
+import typeOfServiceRouter from './typeOfServiceRouter.js'
 
 const router = express.Router();
 
 router.use(userRouter);
-router.use(serviciosRouter);
+router.use(typeOfServiceRouter);
 
 export default router;

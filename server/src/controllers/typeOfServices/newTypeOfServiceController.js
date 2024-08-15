@@ -1,4 +1,4 @@
-import insertTypeOfServiceService from "../../services/services/insertTypeOfServiceService.js";
+import insertTypeOfServiceService from "../../services/typeOfServices/insertTypeOfServiceService.js";
 
 const newTypeOfServiceController = async (req, res, next) =>{
     try {
