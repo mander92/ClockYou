@@ -69,11 +69,23 @@
 				},
 				{
 					"name": "validate",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:8000/users/validate/otmQJTyRFEbJVy4VWkSzoOf9h6HfVH",
+							"raw": "http://localhost:8000/users/validate/VHnSYRyC9EKtT9ID06TYVyMXoYZU7f",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -82,7 +94,7 @@
 							"path": [
 								"users",
 								"validate",
-								"otmQJTyRFEbJVy4VWkSzoOf9h6HfVH"
+								"VHnSYRyC9EKtT9ID06TYVyMXoYZU7f"
 							]
 						}
 					},
@@ -125,7 +137,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"\",\n    \"recoverPassCode\": \"\",\n    \"newPassword\": \"\"\n}",
+							"raw": "{\n    \"email\": \"\",\n    \"recoverPasswordCode\": \"\",\n    \"newPassword\": \"\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -150,7 +162,7 @@
 			]
 		},
 		{
-			"name": "services",
+			"name": "typeOfServices",
 			"item": [
 				{
 					"name": "new",
@@ -159,12 +171,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJmZmI3ZGQ0LTc3OTAtNDZkMC1iN2U2LWUyNjExMjg3MWY1MyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyMzY2MzAxMiwiZXhwIjoxNzI0MjY3ODEyfQ.4sxQy2eHTOjdqP0aY-2xoBWzHvtNiD0HRyZ2uuKg6Qo"
+								"value": "",
+								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"type\": \"\",\n    \"description\": \"\",\n    \"citys\":\"\"\n}",
+							"raw": "{\n    \"type\": \"\",\n    \"description\": \"\",\n    \"city\":\"\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -172,14 +185,51 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/services",
+							"raw": "http://localhost:8000/typeOfServices",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
-								"services"
+								"typeOfServices"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listAll",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"type\": \"\",\n    \"description\": \"\",\n    \"city\":\"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/typeOfServices",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"typeOfServices"
 							]
 						}
 					},
