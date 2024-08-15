@@ -78,7 +78,7 @@ const initDb = async () => {
                 id CHAR(36) PRIMARY KEY NOT NULL,
                 type VARCHAR(255) NOT NULL,
                 description VARCHAR(500) NOT NULL,
-                city VARCHAR(50) NOT NULL,
+                city VARCHAR(30) NOT NULL,
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
                 modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP
             )
