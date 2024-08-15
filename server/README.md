@@ -133,4 +133,4 @@ Jardinería, Limpieza, Seguridad, Mantenimiento de Edificios e Instalaciones, Ca
 ## Endpoints de los servicios
 
 -   **POST** - `/services` - Crea una entrada en los servicios ofertados a los clientes.
--   **GET** - `/typeOfServices` - Lista todos los servicios ofertados a los clientes.
+-   **GET** - `/typeOfServices` - Lista todos los servicios ofertados a los clientes con opciones de búsqueda por filtro.
