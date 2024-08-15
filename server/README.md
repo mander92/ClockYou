@@ -42,7 +42,7 @@ Jardinería, Limpieza, Seguridad, Mantenimiento de Edificios e Instalaciones, Ca
 | id         | VARCHAR(36)  | Identificador único del usuario           |
 | address    | VARCHAR(255) | Nombre de calle de la dirección           |
 | postCode   | VARCHAR(5)   | Código postal de la dirección             |
-| city       | VARCHAR(40)  | Cuidad de la dirección                    |
+| city       | VARCHAR(50)  | Cuidad de la dirección                    |
 | createdAt  | DATETIME     | Fecha y hora de creación del la dirección |
 | modifiedAt | DATETIME     | Fecha y hora de la última modificación    |
 
@@ -75,7 +75,7 @@ Jardinería, Limpieza, Seguridad, Mantenimiento de Edificios e Instalaciones, Ca
 | id          | VARCHAR(36)  | Identificador único del usuario           |
 | type        | VARCHAR(255) | Tipo de servicio                          |
 | description | VARCHAR(500) | Descripción del servicio ofertado         |
-| citys       | VARCHAR(400) | Cuidades disponibles del servicio         |
+| city        | VARCHAR(30)  | Cuidad disponible del servicio            |
 | createdAt   | DATETIME     | Fecha y hora de creación del la dirección |
 | modifiedAt  | DATETIME     | Fecha y hora de la última modificación    |
 
@@ -133,3 +133,4 @@ Jardinería, Limpieza, Seguridad, Mantenimiento de Edificios e Instalaciones, Ca
 ## Endpoints de los servicios
 
 -   **POST** - `/services` - Crea una entrada en los servicios ofertados a los clientes.
+-   **GET** - `/typeOfServices` - Lista todos los servicios ofertados a los clientes.
