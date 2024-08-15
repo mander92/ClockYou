@@ -1,4 +1,4 @@
-import createNewServiceService from "../../services/services/insertServiceService.js";
+import insertServiceService from "../../services/services/insertServiceService.js";
 import generateErrorUtil from "../../utils/generateErrorUtil.js"
 
 const createNewServiceController = async (req, res, next) =>{
@@ -10,7 +10,7 @@ const createNewServiceController = async (req, res, next) =>{
             generateErrorUtil('Los campos del formularios deben estar rellenos', 401)
         }
 
-        await createNewServiceService(type, description, citys);
+        await insertServiceService(type, description, citys);
 
         res.send({
             status: 'ok',

@@ -8,17 +8,17 @@ const serviceExist = async (req, res, next) => {
         const {  type, description, citys }  = req.body;
        
         if(!type || !description || !citys ){
-            generateErrorUtil('El campo de Servicio no puede estar vacio o ciudad', 401);
+            generateErrorUtil('Los campos del Servicio no pueden estar vacio o ciudad', 401);
         }
         
         const pool = await getPool();
 
         const [service] = await pool.query(
             `
-            SELECT id FROM typeOfServices WHERE type = ?
-            `,[type]
+            SELECT id FROM typeOfServices WHERE type = ? AND citys = ?
+            `,[type, citys]
         );
-        
+        console.log(service)
         if(service.length){
             generateErrorUtil('El servicio ya esta creado', 401)
         }

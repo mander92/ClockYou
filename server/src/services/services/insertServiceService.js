@@ -1,7 +1,7 @@
 import { v4 as uuid } from 'uuid';
 import getPool from "../../db/getPool.js"
 
-const createNewServiceService = async (type, description, citys) => {
+const insertServiceService = async (type, description, citys) => {
         const pool = await getPool();
 
         const id = uuid()
@@ -13,4 +13,4 @@ const createNewServiceService = async (type, description, citys) => {
         )
 }
 
-export default createNewServiceService;
+export default insertServiceService;
