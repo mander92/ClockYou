@@ -1,16 +1,16 @@
 import express from 'express';
 
+import authUser from '../middleware/authUser.js';
+
 import {
     listAllTypeOfServicesController,
-    newTypeOfServiceController
-} from '../controllers/typeOfServices/index.js'
-
-import serviceExist from '../middleware/serviceExist.js';
-import authUserAdmin from '../middleware/authUserAdmin.js';
-
+    newTypeOfServiceController,
+} from '../controllers/typeOfServices/index.js';
 
 const router = express.Router();
-router.get('/typeOfServices', listAllTypeOfServicesController)
-router.post('/typeOfServices', authUserAdmin, serviceExist, newTypeOfServiceController);
+
+router.get('/typeOfServices', listAllTypeOfServicesController);
+
+router.post('/typeOfServices', authUser, newTypeOfServiceController);
 
 export default router;
