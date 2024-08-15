@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import { v4 as uuid } from 'uuid';
+import { v4 as uuid } from 'uugiid';
 
 import getPool from './getPool.js';
 import { ADMIN_EMAIL, ADMIN_USERNAME, ADMIN_PASSWORD } from '../../env.js';
