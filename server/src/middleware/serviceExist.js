@@ -5,9 +5,9 @@ import getPool from "../db/getPool.js";
 const serviceExist = async (req, res, next) => {
     try {
         
-        const { type, description, citys }  = req.body;
+        const { type, description, city }  = req.body;
        
-        if(!type || !description || !citys ){
+        if(!type || !description || !city ){
             generateErrorUtil('Los campos no pueden estar vacios', 401);
         }
         
@@ -15,8 +15,8 @@ const serviceExist = async (req, res, next) => {
 
         const [service] = await pool.query(
             `
-            SELECT id FROM typeOfServices WHERE type = ? AND citys = ?
-            `,[type, citys]
+            SELECT id FROM typeOfServices WHERE type = ? AND city = ?
+            `,[type, city]
         );
         
         if(service.length){

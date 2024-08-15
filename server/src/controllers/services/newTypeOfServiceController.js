@@ -3,9 +3,9 @@ import insertTypeOfServiceService from "../../services/services/insertTypeOfServ
 const newTypeOfServiceController = async (req, res, next) =>{
     try {
         
-        const {type, description, citys}  = req.body;
+        const {type, description, city}  = req.body;
 
-        await insertTypeOfServiceService(type, description, citys);
+        await insertTypeOfServiceService(type, description, city);
 
         res.send({
             status: 'ok',
