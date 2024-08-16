@@ -125,13 +125,19 @@ Jardinería, Limpieza, Seguridad, Mantenimiento de Edificios e Instalaciones, Ca
 ## Endpoints del usuario
 
 -   **POST** - `/users/register` - Crea un nuevo usuario pendiente de activar.
--   **GET** - `/users/validate/:registrationCode` - Valida a un usuario recién registrado.
+-   **POST** - `/users/employee/register` - Admin crea un nuevo usuario empleado pendiente de activar.
 -   **POST** - `/users/login` - Logea a un usuario retornando un token.
 -   **POST** - `/users/password` - Actualiza la contraseña de un usuario mediante un código de recuperación.
+-   **GET** - `/users/validate/:registrationCode` - Valida a un usuario recién registrado.
 -   **PATCH** - `/users/password/recover` - Envía al usuario un correo de recuperación de contraseña.
+
+## Endpoints de los tipos de servicios
+
+-   **GET** - `/typeOfServices` - Lista todos los servicios ofertados a los clientes.
+-   **GET** - `/typeOfServices/search` - Lista todos los servicios ofertados a los clientes con filtros de búsqueda.
+-   **POST** - `/typeOfServices` - Admin crea una entrada en los tipos de servicios ofertados a los clientes.
+-   **DELETE** - `/typeOfServices/:serviceId` - Admin elimina una entrada en los servicios ofertados a los clientes.
 
 ## Endpoints de los servicios
 
--   **POST** - `/services` - Crea una entrada en los servicios ofertados a los clientes.
--   **GET** - `/typeOfServices` - Lista todos los servicios ofertados a los clientes con opciones de búsqueda por filtro.
--   **DELETE** - `/typeOfServices/:serviceId` - Elimina una entrada en los servicios ofertados a los clientes.
+-   **POST** - `/services` - El cliente crea una entrada en el servicio.
