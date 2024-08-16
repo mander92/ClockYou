@@ -134,3 +134,4 @@ Jardinería, Limpieza, Seguridad, Mantenimiento de Edificios e Instalaciones, Ca
 
 -   **POST** - `/services` - Crea una entrada en los servicios ofertados a los clientes.
 -   **GET** - `/typeOfServices` - Lista todos los servicios ofertados a los clientes con opciones de búsqueda por filtro.
+-   **DELETE** - `/typeOfServices/:serviceId` - Elimina una entrada en los servicios ofertados a los clientes.

@@ -1,28 +1,25 @@
-import generateErrorUtil from "../../utils/generateErrorUtil.js";
-import deleteTypeOfServiceService from "../../services/typeOfServices/deleteTypeOfServiceService.js";
-
+import generateErrorUtil from '../../utils/generateErrorUtil.js';
+import deleteTypeOfServiceService from '../../services/typeOfServices/deleteTypeOfServiceService.js';
 
 const deleteTypeOfServiceController = async (req, res, next) => {
     try {
-       
-        const { id } = req.params;
+        const { typeId } = req.params;
 
         const isAdmin = req.userLogged.role;
 
-        if( !isAdmin === 'admin'){
+        if (isAdmin === 'admin') {
             generateErrorUtil('No tienes permisos de administrador', 401);
         }
 
-        await deleteTypeOfServiceService(id);
+        await deleteTypeOfServiceService(typeId);
 
-            res.send({
-                staus: 'ok',
-                message: 'Servicio eliminado correctamente'
-            });
-
+        res.send({
+            staus: 'ok',
+            message: 'Servicio eliminado correctamente',
+        });
     } catch (error) {
-        next(error)
+        next(error);
     }
-}
+};
 
-export default deleteTypeOfServiceController
+export default deleteTypeOfServiceController;
