@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "debf3cc3-1ef8-4a2e-b045-63a8bdfb977e",
+		"_postman_id": "7d7e4edc-5057-414c-a7cb-04e21e5b066b",
 		"name": "clock-you",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "35978489"
+		"_exporter_id": "36002595"
 	},
 	"item": [
 		{
@@ -267,6 +267,14 @@
 								}
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "editTypeOfService",
+					"request": {
+						"method": "PUT",
+						"header": []
 					},
 					"response": []
 				}
