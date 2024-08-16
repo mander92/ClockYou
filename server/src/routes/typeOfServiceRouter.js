@@ -9,8 +9,8 @@ import {
 } from '../controllers/typeOfServices/index.js';
 
 const router = express.Router();
-
-router.get('/typeOfServices', listTypeOfServiceController, listAllTypeOfServicesController);
+router.get('/typeOfServices/search', listTypeOfServiceController)
+router.get('/typeOfServices', listAllTypeOfServicesController);
 router.post('/typeOfServices', authUser, newTypeOfServiceController);
 
 

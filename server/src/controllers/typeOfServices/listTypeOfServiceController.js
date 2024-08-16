@@ -1,4 +1,5 @@
 import selectServiceByType from '../../services/typeOfServices/selectServiceByType.js'
+import generateErrorUtil from '../../utils/generateErrorUtil.js';
 
 
 const listTypeOfServiceController = async (req, res, next) => {
@@ -7,7 +8,7 @@ const listTypeOfServiceController = async (req, res, next) => {
         const { type , city } = req.query;
 
         if( !type && !city ){
-           next()
+           generateErrorUtil('Los campos estan vacios', 401);
         }
 
         const service = await selectServiceByType(type, city);
