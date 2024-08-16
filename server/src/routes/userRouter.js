@@ -20,4 +20,10 @@ router.patch('/users/password', changeUserPasswordController);
 
 router.post('/users/password/recover', sendRecoverPassCodeController);
 
+/* get('/users/employee' SOLO ADMIN)
+    get('/users/employee/:id' SOLO ADMIN) 
+    create('/users/employee/register' SOLO ADMIN) 
+
+'users/edit/:id'*/
+
 export default router;

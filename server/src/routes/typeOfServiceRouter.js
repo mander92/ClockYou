@@ -9,9 +9,16 @@ import {
 } from '../controllers/typeOfServices/index.js';
 
 const router = express.Router();
-router.get('/typeOfServices/search', listTypeOfServiceController)
+router.get('/typeOfServices/search', listTypeOfServiceController);
+
 router.get('/typeOfServices', listAllTypeOfServicesController);
+
 router.post('/typeOfServices', authUser, newTypeOfServiceController);
+
+
+
+/*delete servicio '/typeOfServices/delete/:id'*  SOLO ADMIN/
+edit servicio '/typeOfServices/edit/:id'* SOLO ADMIN/*/
 
 
 
