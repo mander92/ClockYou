@@ -5,7 +5,8 @@ import authUser from '../middleware/authUser.js';
 import {
     listAllTypeOfServicesController,
     newTypeOfServiceController,
-    listTypeOfServiceController
+    listTypeOfServiceController,
+    deleteTypeOfServiceController
 } from '../controllers/typeOfServices/index.js';
 
 const router = express.Router();
@@ -15,9 +16,10 @@ router.get('/typeOfServices', listAllTypeOfServicesController);
 
 router.post('/typeOfServices', authUser, newTypeOfServiceController);
 
+router.delete('/typeOfServices/:id', authUser, deleteTypeOfServiceController)
 
 
-/*delete servicio '/typeOfServices/delete/:id'*  SOLO ADMIN/
+/*delete servicio '/typeOfServices/:id'*  SOLO ADMIN/
 edit servicio '/typeOfServices/edit/:id'* SOLO ADMIN/*/
 
 
