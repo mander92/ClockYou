@@ -133,8 +133,7 @@ Jardinería, Limpieza, Seguridad, Mantenimiento de Edificios e Instalaciones, Ca
 
 ## Endpoints de los tipos de servicios
 
--   **GET** - `/typeOfServices` - Lista todos los servicios ofertados a los clientes.
--   **GET** - `/typeOfServices/search` - Lista todos los servicios ofertados a los clientes con filtros de búsqueda.
+-   **GET** - `/typeOfServices` - Lista todos los servicios ofertados a los clientes con opción de filtros de búsqueda.
 -   **POST** - `/typeOfServices` - Admin crea una entrada en los tipos de servicios ofertados a los clientes.
 -   **DELETE** - `/typeOfServices/:serviceId` - Admin elimina una entrada en los servicios ofertados a los clientes.
 
