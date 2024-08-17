@@ -7,8 +7,6 @@ import insertUserService from "../../services/users/insertUserService.js";
 const registerUserController = async (req, res, next) => {
   try {
 
-    console.log(req.body)
-
     const schema = Joi.object().keys({
       email: Joi.string().email(),
       password: Joi.string().min(8).max(50),
