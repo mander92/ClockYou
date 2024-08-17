@@ -18,7 +18,7 @@ const registerUserController = async (req, res, next) => {
     if(validation.error){
       console.log(validation.error.message)
       generateErrorUtil(validation.error.message, 401)
-    }
+    };
 
     const { email, password, userName } = req.body;
 
