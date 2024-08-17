@@ -23,7 +23,6 @@ const registerUserController = async (req, res, next) => {
     const validation = schema.validate(req.body);
 
     if(validation.error){
-      console.log(validation.error.message)
       generateErrorUtil(validation.error.message, 401)
     };
 

@@ -25,7 +25,7 @@ router.post("/users/password/recover", sendRecoverPassCodeController);
 
 router.post("/users/employee/register", authUser, registerUserEmployeeController);
 
-router.put('users/:userId', authUser, editUserController)
+router.put('/users/:userId', authUser, editUserController)
 
 /* 
 
