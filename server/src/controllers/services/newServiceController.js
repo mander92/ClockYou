@@ -8,7 +8,7 @@ const newServiceController = async (req, res, next) => {
 
         const schemaParams = Joi.object().keys({
             typeOfServiceId: Joi.string()
-        })
+        });
 
         const validationParams = schemaParams.validate(req.params);
 
