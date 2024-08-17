@@ -15,26 +15,6 @@ Jardinería, Limpieza, Seguridad, Mantenimiento de Edificios e Instalaciones, Ca
 
 ## Base de datos
 
-### particular
-
-| Campo      | Tipo        | Descripción                            |
-| ---------- | ----------- | -------------------------------------- |
-| id         | VARCHAR(36) | Identificador único del usuario        |
-| firstName  | VARCHAR(30) | Nombre del usuario                     |
-| lastName   | VARCHAR(30) | Apellidos del usuario                  |
-| createdAt  | DATETIME    | Fecha y hora de creación del usuario   |
-| modifiedAt | DATETIME    | Fecha y hora de la última modificación |
-
-### company
-
-| Campo      | Tipo        | Descripción                            |
-| ---------- | ----------- | -------------------------------------- |
-| id         | VARCHAR(36) | Identificador único del usuario        |
-| name       | VARCHAR(50) | Nombre de la empresa del usuario       |
-| cif        | VARCHAR(9)  | CIF de la empresa del usuario          |
-| createdAt  | DATETIME    | Fecha y hora de creación del usuario   |
-| modifiedAt | DATETIME    | Fecha y hora de la última modificación |
-
 ### addresses
 
 | Campo      | Tipo         | Descripción                               |
@@ -48,25 +28,25 @@ Jardinería, Limpieza, Seguridad, Mantenimiento de Edificios e Instalaciones, Ca
 
 ### users
 
-| Campo            | Tipo         | Descripción                                     |
-| ---------------- | ------------ | ----------------------------------------------- |
-| id               | VARCHAR(36)  | Identificador único del usuario                 |
-| email            | VARCHAR(100) | Correo electrónico del usuario                  |
-| username         | VARCHAR(30)  | Nombre de usuario del usuario                   |
-| password         | VARCHAR(100) | Contraseña del usuario (hash)                   |
-| adress           | VARCHAR(255) | Dirección del usuario                           |
-| phone            | VARCHAR(15)  | Teléfono del usuario                            |
-| role             | ENUM         | Rol del usuario ("admin", "employee", "client") |
-| description      | VARCHAR(255) | Descripción del usuario                         |
-| avatar           | VARCHAR(100) | URL del avatar del usuario                      |
-| active           | BOOLEAN      | Indica si el usuario está activo o no           |
-| registrationCode | VARCHAR(30)  | Código de registro del usuario                  |
-| recoverPassCode  | VARCHAR(10)  | Código de recuperación de contraseña            |
-| particularId     | VARCHAR(36)  | Identificador del usuario particular            |
-| companyId        | VARCHAR(36)  | Identificador del usuario empresa               |
-| addressId        | VARCHAR(36)  | Identificador de la dirección del usuario       |
-| createdAt        | DATETIME     | Fecha y hora de creación del usuario            |
-| modifiedAt       | DATETIME     | Fecha y hora de la última modificación          |
+| Campo               | Tipo         | Descripción                                     |
+| ------------------- | ------------ | ----------------------------------------------- |
+| id                  | VARCHAR(36)  | Identificador único del usuario                 |
+| email               | VARCHAR(100) | Correo electrónico del usuario                  |
+| username            | VARCHAR(30)  | Nombre de usuario del usuario                   |
+| password            | VARCHAR(100) | Contraseña del usuario (hash)                   |
+| adress              | VARCHAR(255) | Dirección del usuario                           |
+| phone               | VARCHAR(15)  | Teléfono del usuario                            |
+| role                | ENUM         | Rol del usuario ("admin", "employee", "client") |
+| description         | VARCHAR(255) | Descripción del usuario                         |
+| avatar              | VARCHAR(100) | URL del avatar del usuario                      |
+| active              | BOOLEAN      | Indica si el usuario está activo o no           |
+| registrationCode    | VARCHAR(30)  | Código de registro del usuario                  |
+| recoverPasswordCode | VARCHAR(10)  | Código de recuperación de contraseña            |
+| particularId        | VARCHAR(36)  | Identificador del usuario particular            |
+| companyId           | VARCHAR(36)  | Identificador del usuario empresa               |
+| addressId           | VARCHAR(36)  | Identificador de la dirección del usuario       |
+| createdAt           | DATETIME     | Fecha y hora de creación del usuario            |
+| modifiedAt          | DATETIME     | Fecha y hora de la última modificación          |
 
 ### typeOfServices
 
@@ -125,7 +105,8 @@ Jardinería, Limpieza, Seguridad, Mantenimiento de Edificios e Instalaciones, Ca
 ## Endpoints del usuario
 
 -   **POST** - `/users/register` - Crea un nuevo usuario pendiente de activar.
--   **POST** - `/users/employee/register` - Admin crea un nuevo usuario empleado pendiente de activar.
+-   **POST** - `/users/employee/register` - Admin crea un nuevo usuario empleado.
+-   **POST** - `/users/admin/register` - Admin crea un nuevo usuario administrador.
 -   **POST** - `/users/login` - Logea a un usuario retornando un token.
 -   **POST** - `/users/password` - Actualiza la contraseña de un usuario mediante un código de recuperación.
 -   **GET** - `/users/validate/:registrationCode` - Valida a un usuario recién registrado.

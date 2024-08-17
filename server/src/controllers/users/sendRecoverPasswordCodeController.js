@@ -3,21 +3,19 @@ import Joi from 'joi';
 
 import selectUserByEmailService from '../../services/users/selectUserByEmailService.js';
 import generateErrorUtil from '../../utils/generateErrorUtil.js';
-import updateRecoverPassService from '../../services/users/updateRecoverPassService.js';
+import updateRecoverPasswordService from '../../services/users/updateRecoverPasswordService.js';
 
-const sendRecoverPassCodeController = async (req, res, next) => {
+const sendRecoverPasswordCodeController = async (req, res, next) => {
     try {
-
         const schema = Joi.object().keys({
-            email: Joi.string().email()
-          });
-      
-          const validation = schema.validate(req.body);
-      
-          if(validation.error){
-            console.log(validation.error.message)
-            generateErrorUtil(validation.error.message, 401)
-          }
+            email: Joi.string().email(),
+        });
+
+        const validation = schema.validate(req.body);
+
+        if (validation.error) {
+            generateErrorUtil(validation.error.message, 401);
+        }
 
         const { email } = req.body;
 
@@ -25,9 +23,9 @@ const sendRecoverPassCodeController = async (req, res, next) => {
 
         if (!user) generateErrorUtil('Usuario no encontrado', 404);
 
-        const recoverPassCode = randomstring.generate(10);
+        const recoverPasswordCode = randomstring.generate(10);
 
-        await updateRecoverPassService(email, recoverPassCode);
+        await updateRecoverPasswordService(email, recoverPasswordCode);
 
         res.send({
             status: 'ok',
@@ -38,4 +36,4 @@ const sendRecoverPassCodeController = async (req, res, next) => {
     }
 };
 
-export default sendRecoverPassCodeController;
+export default sendRecoverPasswordCodeController;

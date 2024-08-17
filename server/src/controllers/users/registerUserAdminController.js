@@ -3,7 +3,7 @@ import Joi from 'joi';
 import insertEmployeeService from '../../services/users/insertEmployeeService.js';
 import generateErrorUtil from '../../utils/generateErrorUtil.js';
 
-const registerUserEmployeeController = async (req, res, next) => {
+const registerUserAdminController = async (req, res, next) => {
     try {
         const schema = Joi.object().keys({
             email: Joi.string().email(),
@@ -33,11 +33,11 @@ const registerUserEmployeeController = async (req, res, next) => {
 
         res.send({
             status: 'ok',
-            message: 'Empleado registrado correctamente.',
+            message: 'Administrador registrado correctamente.',
         });
     } catch (error) {
         next(error);
     }
 };
 
-export default registerUserEmployeeController;
+export default registerUserAdminController;

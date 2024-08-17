@@ -1,31 +1,33 @@
 import bcrypt from 'bcrypt';
 import getPool from '../../db/getPool.js';
-import generateErrorUtil from "../../utils/generateErrorUtil.js";
+import generateErrorUtil from '../../utils/generateErrorUtil.js';
 import selectUserByEmailService from './selectUserByEmailService.js';
 
 const updateUserPasswordService = async (
-  email,
-  recoverPassCode,
-  newPassword
+    email,
+    recoverPasswordCode,
+    newPassword
 ) => {
-  const pool = await getPool();
+    const pool = await getPool();
 
-  const user = await selectUserByEmailService(email);
+    const user = await selectUserByEmailService(email);
 
-  if (!user || user.recoverPassCode !== recoverPassCode) {
-    throw generateErrorUtil('Email o código de recuperación incorrecto', 409);
-  }
+    if (!user || user.recoverPasswordCode !== recoverPasswordCode) {
+        throw generateErrorUtil(
+            'Email o código de recuperación incorrecto',
+            409
+        );
+    }
 
-  const hashPassCode = await bcrypt.hash(newPassword, 10);
+    const hashPassword = await bcrypt.hash(newPassword, 10);
 
-  await pool.query(
-    `
+    await pool.query(
+        `
         UPDATE users
-        SET password=?, recoverPassCode=null
-        WHERE recoverPassCode=?`
-        ,
-    [hashPassCode, recoverPassCode]
-  );
+        SET password=?, recoverPasswordCode=null
+        WHERE recoverPasswordCode=?`,
+        [hashPassword, recoverPasswordCode]
+    );
 };
 
 export default updateUserPasswordService;
