@@ -1,8 +1,23 @@
+import Joi from 'joi';
+
 import generateErrorUtil from '../../utils/generateErrorUtil.js';
 import updateTypeOfServiceService from '../../services/typeOfServices/updateTypeOfServiceService.js';
 
 const editTypeOfServiceController = async (req, res, next) => {
   try {
+
+    const schemaBody = Joi.object().keys({
+      type: Joi.string().max(30),
+      description: Joi.string().max(500),
+      city: Joi.string().max(30)
+  });
+
+  const validationBody = schemaBody.validate(req.body);
+
+  if(validationBody.error){
+      generateErrorUtil(validationBody.error.message, 401);
+  };
+
     const { typeId } = req.params;
     const { type, city, description } = req.body;
 
