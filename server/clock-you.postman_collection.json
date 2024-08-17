@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "debf3cc3-1ef8-4a2e-b045-63a8bdfb977e",
+		"_postman_id": "1912155c-b18c-4183-a566-da443cfa63a7",
 		"name": "clock-you",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "35978489"
+		"_exporter_id": "36002595"
 	},
 	"item": [
 		{
@@ -158,6 +158,42 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "registerEmployee",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM1NTU2NmQ4LTc1M2EtNGQ4MC1iOWQyLThkYWZmYWFlMTBiOSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyMzg5MTk5OCwiZXhwIjoxNzI0NDk2Nzk4fQ.VOhkEux_F9mjAVPEfnev4SEbrmfUZbQY1PnI9DSrLnA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"\",\r\n    \"password\": \"secret\",\r\n    \"userName\": \"Pinfloi\",\r\n    \"role\":\"employee\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/users/employee/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"users",
+								"employee",
+								"register"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -292,6 +328,29 @@
 								"typeOfServices",
 								""
 							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateService",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM1NTU2NmQ4LTc1M2EtNGQ4MC1iOWQyLThkYWZmYWFlMTBiOSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyMzg4MDQ0OCwiZXhwIjoxNzI0NDg1MjQ4fQ.FfuyhzphQYomU92rUHjFyifWdsLEsVTqGJAiNZCZ9Vc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\":\"\",\r\n    \"city\":\"\",\r\n    \"description\":\"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						}
 					},
 					"response": []
