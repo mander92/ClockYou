@@ -9,7 +9,7 @@ const registerUserController = async (req, res, next) => {
 
     const schema = Joi.object().keys({
       email: Joi.string().email(),
-      password: Joi.string().min(8).max(50),
+      password: Joi.string().min(6).max(50),
       userName: Joi.string().min(4).max(25)
     });
 
