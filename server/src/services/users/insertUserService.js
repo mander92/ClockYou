@@ -6,10 +6,7 @@ import generateErrorUtil from "../../utils/generateErrorUtil.js";
 import sendMailUtil from "../../utils/sendMailUtil.js";
 import { PORT } from "../../../env.js";
 
-const insertUserService = async (
-  email,
-  password,
-  userName,
+const insertUserService = async (email, password, userName, firstName, lastName, dni, phone, address, postCode, city,
   registrationCode
 ) => {
   const pool = await getPool();
@@ -53,12 +50,20 @@ const insertUserService = async (
 
   const passwordHashed = await bcrypt.hash(password, 10);
 
+  const addressId = uuid()
+
   await pool.query(
     `
-            INSERT INTO users (id, email, password, registrationCode, userName)
-            VALUES (?,?,?,?,?)
+    INSERT INTO addresses(id, address, city, postCode) VALUES(?,?,?,?)
+    `,[addressId, address, city, postCode]
+  )
+
+  await pool.query(
+    `
+            INSERT INTO users(id, email, password, userName, firstName, lastName, dni, phone, addressId,registrationCode )
+            VALUES (?,?,?,?,?,?,?,?,?,?)
         `,
-    [uuid(), email, passwordHashed, registrationCode, userName]
+    [uuid(), email, passwordHashed, userName, firstName, lastName, dni, phone, addressId ,registrationCode]
   );
 };
 

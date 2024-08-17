@@ -10,7 +10,14 @@ const registerUserController = async (req, res, next) => {
     const schema = Joi.object().keys({
       email: Joi.string().email(),
       password: Joi.string().min(6).max(50),
-      userName: Joi.string().min(4).max(25)
+      userName: Joi.string().min(4).max(25),
+      firstName: Joi.string().max(25),
+      lastName: Joi.string().max(40),
+      dni: Joi.string().min(9),
+      phone: Joi.string().max(15),
+      address: Joi.string().max(100),
+      postCode: Joi.number(),
+      city: Joi.string().max(40)
     });
 
     const validation = schema.validate(req.body);
@@ -20,18 +27,11 @@ const registerUserController = async (req, res, next) => {
       generateErrorUtil(validation.error.message, 401)
     };
 
-    const { email, password, userName } = req.body;
-
-    if (!email || !password || !userName) {
-      generateErrorUtil(
-        "Ni email, ni password, ni username pueden estar vacíos",
-        400
-      );
-    }
+    const { email, password, userName, firstName, lastName, dni, phone, address, postCode, city } = req.body;
 
     const registrationCode = randomstring.generate(30);
 
-    await insertUserService(email, password, userName, registrationCode);
+    await insertUserService(email, password, userName, firstName, lastName, dni, phone, address, postCode, city, registrationCode);
 
     res.send({
       status: "ok",

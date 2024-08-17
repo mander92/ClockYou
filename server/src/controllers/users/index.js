@@ -4,6 +4,7 @@ import loginUserController from "./loginUserController.js";
 import changeUserPasswordController from "./changeUserPasswordController.js";
 import sendRecoverPassCodeController from "./sendRecoverPassCodeController.js";
 import registerUserEmployeeController from "./registerUserEmployeeController.js";
+import editUserController from "./editUserController.js";
 
 export {
   registerUserController,
@@ -12,4 +13,5 @@ export {
   changeUserPasswordController,
   sendRecoverPassCodeController,
   registerUserEmployeeController,
+  editUserController
 };

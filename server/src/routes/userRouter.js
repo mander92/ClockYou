@@ -7,6 +7,7 @@ import {
   changeUserPasswordController,
   sendRecoverPassCodeController,
   registerUserEmployeeController,
+  editUserController
 } from "../controllers/users/index.js";
 import authUser from "../middleware/authUser.js";
 
@@ -23,6 +24,8 @@ router.patch("/users/password", changeUserPasswordController);
 router.post("/users/password/recover", sendRecoverPassCodeController);
 
 router.post("/users/employee/register", authUser, registerUserEmployeeController);
+
+router.put('users/:userId', authUser, editUserController)
 
 /* 
 
