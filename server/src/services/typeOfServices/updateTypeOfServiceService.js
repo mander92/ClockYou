@@ -24,9 +24,8 @@ const updateTypeOfServiceService = async (typeId, type, city, description) => {
 
   if (typeCity.length) {
     generateErrorUtil('El servicio que quieres editar ya existe', 409);
+    // SI SE TIENE YA SELECCIONADO EL SERVICIO POR ---ID---, que es que sí porque si no te da error de que "el servicion no existe" (línea 15 en este archivo), no habría que hacer comprobaciones de 'type' y 'city'. Si quieres cambiar las 'description', pero además llegan type y city por body, no te va a dejar actualizar description por el error de línea 26 en este archivo
   }
-
-  // const paramsArray = [type, city, description];
 
   if (type && city && description) {
     await pool.query(
@@ -66,6 +65,8 @@ const updateTypeOfServiceService = async (typeId, type, city, description) => {
   }
 };
 
+// let updateString, paramsString;
+// await pool.query('${updateString}', paramsString);
 // CONSULTAR CON STEFANO!!!!!!!!
 
 export default updateTypeOfServiceService;
