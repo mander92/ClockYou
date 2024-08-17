@@ -1,10 +1,27 @@
 import randomstring from "randomstring";
+import Joi from 'joi';
 
 import generateErrorUtil from "../../utils/generateErrorUtil.js";
 import insertUserService from "../../services/users/insertUserService.js";
 
 const registerUserController = async (req, res, next) => {
   try {
+
+    console.log(req.body)
+
+    const schema = Joi.object().keys({
+      email: Joi.string().email(),
+      password: Joi.string().min(8).max(50),
+      userName: Joi.string().min(4).max(25)
+    });
+
+    const validation = schema.validate(req.body);
+
+    if(validation.error){
+      console.log(validation.error.message)
+      generateErrorUtil(validation.error.message, 401)
+    }
+
     const { email, password, userName } = req.body;
 
     if (!email || !password || !userName) {

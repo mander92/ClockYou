@@ -36,7 +36,6 @@ const insertServiceService = async (
     );
 
     const id = uuid();
-    console.log(id);
     await pool.query(
         `
         INSERT INTO services(id, startDate, endDate, startTime, endTime, description, addressId, typeOfServicesId) VALUES(?, ?, ?, ?, ?, ?, ?, ?)
