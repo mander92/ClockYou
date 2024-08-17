@@ -6,20 +6,20 @@ import deleteTypeOfServiceService from '../../services/typeOfServices/deleteType
 const deleteTypeOfServiceController = async (req, res, next) => {
     try {
         const schema = Joi.object().keys({
-            typeId: Joi.string().min(36)
-        })
+            typeId: Joi.string().min(36),
+        });
 
         const validation = schema.validate(req.params);
 
-        if(validation.error){
+        if (validation.error) {
             generateErrorUtil(validation.error.message, 401);
-        };
+        }
 
         const { typeId } = req.params;
 
         const isAdmin = req.userLogged.role;
 
-        if (isAdmin === 'admin') {
+        if (!isAdmin == 'admin') {
             generateErrorUtil('No tienes permisos de administrador', 401);
         }
 
