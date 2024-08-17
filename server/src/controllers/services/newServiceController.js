@@ -7,7 +7,7 @@ const newServiceController = async (req, res, next) => {
     try {
 
         const schemaParams = Joi.object().keys({
-            typeId: Joi.string().min(36)
+            typeOfServiceId: Joi.string()
         })
 
         const validationParams = schemaParams.validate(req.params);
@@ -27,7 +27,7 @@ const newServiceController = async (req, res, next) => {
             postCode: Joi.string().min(5).max(5),
         });
 
-        const validationBody = schemaBody.validate(req.params);
+        const validationBody = schemaBody.validate(req.body);
 
         if(validationBody.error){
             generateErrorUtil(validationBody.error.message, 401);
