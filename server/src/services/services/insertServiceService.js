@@ -9,6 +9,7 @@ const insertServiceService = async (
     endDate,
     description,
     address,
+    numberOfEmployee,
     city,
     postCode
 ) => {
@@ -38,7 +39,7 @@ const insertServiceService = async (
     const id = uuid();
     await pool.query(
         `
-        INSERT INTO services(id, startDate, endDate, startTime, endTime, description, addressId, typeOfServicesId) VALUES(?, ?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO services(id, startDate, endDate, startTime, endTime, description, numberOfEmployee, addressId, typeOfServicesId) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)
         `,
         [
             id,
@@ -47,6 +48,7 @@ const insertServiceService = async (
             startTime,
             endTime,
             description,
+            numberOfEmployee,
             addressId[0].id,
             typeId[0].id,
         ]

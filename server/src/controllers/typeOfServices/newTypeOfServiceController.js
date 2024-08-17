@@ -9,7 +9,8 @@ const newTypeOfServiceController = async (req, res, next) => {
         const schema = Joi.object().keys({
             type: Joi.string().max(30),
             description: Joi.string().max(500),
-            city: Joi.string().max(30)
+            city: Joi.string().max(30),
+            price: Joi.number().min(1)
         });
 
         const validation = schema.validate(req.body);
@@ -18,7 +19,7 @@ const newTypeOfServiceController = async (req, res, next) => {
             generateErrorUtil(validation.error.message, 401);
         };
 
-        const { type, description, city } = req.body;
+        const { type, description, city, price } = req.body;
 
         const isAdmin = req.userLogged.role;
 
@@ -29,14 +30,7 @@ const newTypeOfServiceController = async (req, res, next) => {
             );
         }
 
-        if (!type || !description || !city) {
-            generateErrorUtil(
-                'Los campos del formulario deben estar rellenados',
-                401
-            );
-        }
-
-        await insertTypeOfServiceService(type, description, city);
+        await insertTypeOfServiceService(type, description, city, price );
 
         res.send({
             status: 'ok',

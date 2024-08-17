@@ -25,6 +25,7 @@ const newServiceController = async (req, res, next) => {
             address: Joi.string().max(255),
             city: Joi.string().max(40),
             postCode: Joi.string().min(5).max(5),
+            numberOfEmployee: Joi.number().min(1).max(99)
         });
 
         const validationBody = schemaBody.validate(req.body);
@@ -42,13 +43,10 @@ const newServiceController = async (req, res, next) => {
             endDate,
             description,
             address,
+            numberOfEmployee,
             city,
             postCode,
         } = req.body;
-
-        if (!startTime || !startDate || !address || !city || !postCode) {
-            generateErrorUtil('Faltan campos', 401);
-        }
 
         const [data] = await insertServiceService(
             typeOfServiceId,
@@ -58,6 +56,7 @@ const newServiceController = async (req, res, next) => {
             endDate,
             description,
             address,
+            numberOfEmployee,
             city,
             postCode
         );

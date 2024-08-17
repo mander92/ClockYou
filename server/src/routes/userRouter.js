@@ -22,16 +22,15 @@ router.patch("/users/password", changeUserPasswordController);
 
 router.post("/users/password/recover", sendRecoverPassCodeController);
 
-router.post(
-  "/users/employee/register",
-  authUser,
-  registerUserEmployeeController
-);
+router.post("/users/employee/register", authUser, registerUserEmployeeController);
 
-/* get('/users/employee' SOLO ADMIN)
-    get('/users/employee/:id' SOLO ADMIN) 
-create('/users/employee/register
+/* 
 
-'users/edit/:id'*/
+GET ('/users/employee/:id' SOLO ADMIN) 
+PUT 'users/edit/avatar:id'
+PUT 'users/edit/:id'
+DELETE(desactivar usuario)
+
+*/
 
 export default router;

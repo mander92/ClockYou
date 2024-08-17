@@ -12,32 +12,10 @@ const initDb = async () => {
     console.log('Borrando tablas...');
 
     await pool.query(
-      'DROP TABLE IF EXISTS shiftRecords, servicesAssigned, typeOfServices, services, addresses, company, particular, users'
+      'DROP TABLE IF EXISTS shiftRecords, servicesAssigned, typeOfServices, services, addresses, users'
     );
 
     console.log('Creando tablas...');
-
-    await pool.query(`
-            CREATE TABLE IF NOT EXISTS particular (
-                id CHAR(36) PRIMARY KEY NOT NULL,
-                firstName VARCHAR(30) NOT NULL,
-                lastName VARCHAR(30) NOT NULL,
-                createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
-                modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP
-                
-            )
-        `);
-
-    await pool.query(`
-            CREATE TABLE IF NOT EXISTS company (
-                id CHAR(36) PRIMARY KEY NOT NULL,
-                name VARCHAR(50) NOT NULL,
-                cif VARCHAR(9) NOT NULL,
-                createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
-                modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP
-                
-            )
-        `);
 
     await pool.query(`
             CREATE TABLE IF NOT EXISTS addresses (
@@ -55,6 +33,9 @@ const initDb = async () => {
                 id CHAR(36) PRIMARY KEY NOT NULL,
                 email VARCHAR(100) UNIQUE NOT NULL,
                 userName VARCHAR(30) UNIQUE NOT NULL,
+                fisrtName VARCHAR(25),
+                lastName VARCHAR(40),
+                dni VARCHAR(9),
                 password VARCHAR(255) NOT NULL,
                 phone VARCHAR(15),
                 role ENUM('admin', 'employee', 'client') DEFAULT 'client',
@@ -63,11 +44,7 @@ const initDb = async () => {
                 active BOOLEAN DEFAULT false,
                 registrationCode CHAR(30),
                 recoverPassCode CHAR(10),
-                particularId CHAR(36),
-                companyId CHAR(36),
                 addressId CHAR(36),
-                FOREIGN KEY (particularId) REFERENCES particular(id),
-                FOREIGN KEY (companyId) REFERENCES company(id),
                 FOREIGN KEY (addressId) REFERENCES addresses(id),
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP, 
                 modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP
@@ -78,6 +55,7 @@ const initDb = async () => {
             CREATE TABLE IF NOT EXISTS typeOfServices (
                 id CHAR(36) PRIMARY KEY NOT NULL,
                 type VARCHAR(255) NOT NULL,
+                price DECIMAL(10,2),
                 description VARCHAR(500) NOT NULL,
                 city VARCHAR(30) NOT NULL,
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -95,7 +73,8 @@ const initDb = async () => {
                 description VARCHAR(500),
                 rating INT,
                 price INT,
-                status ENUM ('acepted', 'rejected', 'pending', 'completed') DEFAULT 'pending',
+                numberOfEmployee VARCHAR(2) DEFAULT 1,
+                status ENUM ('accepted', 'rejected', 'pending', 'completed') DEFAULT 'pending',
                 addressId CHAR(36) NOT NULL,
                 typeOfServicesId CHAR(36) NOT NULL,
                 FOREIGN KEY (addressId) REFERENCES addresses(id),
@@ -135,35 +114,37 @@ const initDb = async () => {
 
     await pool.query(
       `
-            INSERT INTO typeOfServices (id, type, description, city) VALUES (?, ?, ?, ?)`,
+            INSERT INTO typeOfServices (id, type, description, city, price) VALUES (?, ?, ?, ?, ?)`,
       [
         uuid(),
         'Jardinería',
         'Mantenimiento de jardines, poda y plantaciones',
         'Coruña',
+        '13.50'
       ]
     );
 
     await pool.query(
       `
-            INSERT INTO typeOfServices (id, type, description, city) VALUES (?, ?, ?, ?)`,
-      [uuid(), 'Albaliñería', 'Servicios de albaliñería básicos', 'Barcelona']
+            INSERT INTO typeOfServices (id, type, description, city, price) VALUES (?, ?, ?, ?, ?)`,
+      [uuid(), 'Albaliñería', 'Servicios de albaliñería básicos', 'Barcelona', '9']
     );
 
     await pool.query(
       `
-            INSERT INTO typeOfServices (id, type, description, city) VALUES (?, ?, ?, ?)`,
-      [uuid(), 'Clases de KUNG-FU', 'Clases de KUNG-FU', 'Madrid']
+            INSERT INTO typeOfServices (id, type, description, city, price) VALUES (?, ?, ?, ?, ?)`,
+      [uuid(), 'Clases de KUNG-FU', 'Clases de KUNG-FU', 'Madrid', '12']
     );
 
     await pool.query(
       `
-            INSERT INTO typeOfServices (id, type, description, city) VALUES (?, ?, ?, ?)`,
+            INSERT INTO typeOfServices (id, type, description, city, price) VALUES (?, ?, ?, ?, ?)`,
       [
         uuid(),
         'Enderezar plátanos',
         'Enderazamos plátanos... consultar con Admin',
         'Sevilla',
+        '50'
       ]
     );
 
