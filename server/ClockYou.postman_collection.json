@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "e4d7e9fe-f796-4b32-a6b6-350d4ddf5bf4",
+		"_postman_id": "a939298f-4b8b-4d5e-b78c-f0f88c888b24",
 		"name": "ClockYou",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "35978489"
+		"_exporter_id": "36002595"
 	},
 	"item": [
 		{
@@ -383,8 +383,35 @@
 				{
 					"name": "edit",
 					"request": {
-						"method": "GET",
-						"header": []
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJmOGQ5MTFkLTJmMGQtNDY3Ni1iOGY5LTE3YTFhZGMyMDhhZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyMzk2ODU0OSwiZXhwIjoxNzI0NTczMzQ5fQ.l6dbSrBVgK2y1dJBra9kweN6h6cJU5lqMCDcyDhabjE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\":\"Jardinería\",\r\n    \"city\":\"Coruña\",\r\n    \"description\":\"Miau\",\r\n    \"price\":\"22\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/typeOfServices/86bcd43a-a278-44c7-b2e2-67b86bdc5102",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"typeOfServices",
+								"86bcd43a-a278-44c7-b2e2-67b86bdc5102"
+							]
+						}
 					},
 					"response": []
 				}
