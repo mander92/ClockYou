@@ -38,7 +38,7 @@ router.get(
   authUser,
   userExists,
   getEmployeeController
-);
+); // hacer endpoint que suelte TODOS los empleados
 
 router.get('/users/employee', authUser, listEmployeeController)
 
