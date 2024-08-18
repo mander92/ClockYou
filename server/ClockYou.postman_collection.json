@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "1912155c-b18c-4183-a566-da443cfa63a7",
-		"name": "clock-you",
+		"_postman_id": "e4d7e9fe-f796-4b32-a6b6-350d4ddf5bf4",
+		"name": "ClockYou",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "36002595"
+		"_exporter_id": "35978489"
 	},
 	"item": [
 		{
@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"\",\r\n    \"password\": \"\",\r\n    \"userName\": \"\"\r\n}",
+							"raw": "{\r\n    \"email\": \"user1@prueba.com\",\r\n    \"password\": \"123456asdadas\",\r\n    \"userName\": \"user1\",\r\n    \"firstName\": \"Manuel\",\r\n    \"lastName\": \"Ares\",\r\n    \"dni\": \"12121212A\",\r\n    \"phone\": \"123456789\",\r\n    \"address\": \"Vista alegre\",\r\n    \"postCode\": \"12345\",\r\n    \"city\": \"Coruña\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -33,6 +33,119 @@
 							"path": [
 								"users",
 								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk3MTAwYjY0LWU2ZTgtNDdlNy1hZGFmLWVlNWU3Y2ZiZjMxZSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyMzkyMzcwNywiZXhwIjoxNzI0NTI4NTA3fQ.HX3vvNO0giGn-j8Yd1AOXZJFINYyYe2zzEkc3mBoK_M",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"david_miras@hotmail.com\",\r\n    \"userName\": \"Hotmail\",\r\n    \"firstName\": \"David\",\r\n    \"lastName\": \"Mirás\",\r\n    \"dni\": \"12121212A\",\r\n    \"phone\": \"123456789\",\r\n    \"address\": \"asdasd\",\r\n    \"postCode\": \"12345\",\r\n    \"city\": \"asdsad\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/users/1114669d-7ddf-44de-9f62-95d5ffe9955f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"users",
+								"1114669d-7ddf-44de-9f62-95d5ffe9955f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "registerEmployee",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyZTEyMDlkLTNjYjgtNGM4Zi1iMWM1LWFkY2FlZmI4NWE3ZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyMzczNjMwNywiZXhwIjoxNzIzODIyNzA3fQ.KmUDHTq_-fwcrOGRpmYPr5ez-cEptxVKFEaJ7xAKc-g",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"a@dd.ascc\",\r\n    \"password\": \"asd\",\r\n    \"userName\": \"adssd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/users/employee/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"users",
+								"employee",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "registerAdmin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"a\",\r\n    \"password\": \"\",\r\n    \"userName\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/users/admin/register?",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"users",
+								"admin",
+								"register"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null
+								}
 							]
 						}
 					},
@@ -85,7 +198,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/users/validate/VHnSYRyC9EKtT9ID06TYVyMXoYZU7f",
+							"raw": "http://localhost:8000/users/validate/K4tzVTAeoOhAKPH5U33nsa4fIedigS",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -94,7 +207,7 @@
 							"path": [
 								"users",
 								"validate",
-								"VHnSYRyC9EKtT9ID06TYVyMXoYZU7f"
+								"K4tzVTAeoOhAKPH5U33nsa4fIedigS"
 							]
 						}
 					},
@@ -137,7 +250,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"\",\n    \"recoverPassCode\": \"\",\n    \"newPassword\": \"\"\n}",
+							"raw": "{\n    \"email\": \"\",\n    \"recoverPasswordCode\": \"\",\n    \"newPassword\": \"\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -154,42 +267,6 @@
 							"path": [
 								"users",
 								"password"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "registerEmployee",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM1NTU2NmQ4LTc1M2EtNGQ4MC1iOWQyLThkYWZmYWFlMTBiOSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyMzg5MTk5OCwiZXhwIjoxNzI0NDk2Nzk4fQ.VOhkEux_F9mjAVPEfnev4SEbrmfUZbQY1PnI9DSrLnA",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"\",\r\n    \"password\": \"secret\",\r\n    \"userName\": \"Pinfloi\",\r\n    \"role\":\"employee\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8000/users/employee/register",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"users",
-								"employee",
-								"register"
 							]
 						}
 					},
@@ -235,7 +312,7 @@
 					"response": []
 				},
 				{
-					"name": "listAll",
+					"name": "list",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -260,46 +337,17 @@
 							"port": "8000",
 							"path": [
 								"typeOfServices"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "listFilter",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8000/typeOfServices?type=&city=",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"typeOfServices"
 							],
 							"query": [
 								{
 									"key": "type",
-									"value": ""
+									"value": "jardineria",
+									"disabled": true
 								},
 								{
 									"key": "city",
-									"value": ""
+									"value": "sevilla",
+									"disabled": true
 								}
 							]
 						}
@@ -333,25 +381,10 @@
 					"response": []
 				},
 				{
-					"name": "updateService",
+					"name": "edit",
 					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM1NTU2NmQ4LTc1M2EtNGQ4MC1iOWQyLThkYWZmYWFlMTBiOSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyMzg4MDQ0OCwiZXhwIjoxNzI0NDg1MjQ4fQ.FfuyhzphQYomU92rUHjFyifWdsLEsVTqGJAiNZCZ9Vc",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"type\":\"\",\r\n    \"city\":\"\",\r\n    \"description\":\"\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						}
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}
@@ -367,13 +400,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIyZTYwNWNjLTVlY2YtNGE5My1iYjkyLTAyMGYyOGEyOTk4MiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyMzkzNTE0NywiZXhwIjoxNzI0NTM5OTQ3fQ.23YUWkiYQCeVgoed_plhZup8mgqPtQbjjCBsRksivbs",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"startTime\": \"\",\n    \"startDate\": \"\",\n    \"address\": \"\",\n    \"city\": \"\",\n    \"postCode\": \"\",\n    \"endTime\": \"\",\n    \"endDate\": \"\",\n    \"description\":\"\"\n}",
+							"raw": "{\n    \"startTime\": \"12:00\",\n    \"endTime\": \"23:00\",\n    \"startDate\":\"2024-08-18\",\n    \"endDate\": \"2024-08-19\",\n    \"description\": \"Mantenimiento del jardín\",\n    \"address\": \"Avío\",\n    \"city\": \"Coruña\",\n    \"postCode\": \"15705\",\n    \"numberOfEmployee\": \"2\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -381,7 +414,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/services/0461193f-7a4f-4808-92f1-638bfafdc6b0",
+							"raw": "http://localhost:8000/services/1c47cb7e-b41d-4409-a336-1ae9839aaa8c",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -389,7 +422,7 @@
 							"port": "8000",
 							"path": [
 								"services",
-								"0461193f-7a4f-4808-92f1-638bfafdc6b0"
+								"1c47cb7e-b41d-4409-a336-1ae9839aaa8c"
 							]
 						}
 					},
