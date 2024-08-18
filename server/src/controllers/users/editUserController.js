@@ -1,7 +1,7 @@
 import Joi from 'joi';
 
 import generateErrorUtil from '../../utils/generateErrorUtil.js';
-import editUserService from '../../services/users/editUserService.js';
+import updateUserService from '../../services/users/updateUserService.js';
 
 const editUserController = async (req, res, next) => {
     try {
@@ -35,7 +35,7 @@ const editUserController = async (req, res, next) => {
         const { firstName, lastName, dni, phone, address, postCode, city } =
             req.body;
 
-        await editUserService(
+        await updateUserService(
             userId,
             firstName,
             lastName,

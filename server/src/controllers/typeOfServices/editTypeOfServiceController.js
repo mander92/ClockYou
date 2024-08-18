@@ -4,45 +4,56 @@ import generateErrorUtil from '../../utils/generateErrorUtil.js';
 import updateTypeOfServiceService from '../../services/typeOfServices/updateTypeOfServiceService.js';
 
 const editTypeOfServiceController = async (req, res, next) => {
-  try {
+    try {
+        const schema = Joi.object().keys({
+            typeOfServiceId: Joi.string().min(36),
+        });
 
-    const schemaBody = Joi.object().keys({
-      type: Joi.string().max(30),
-      description: Joi.string().max(500),
-      city: Joi.string().max(30)
-  });
+        const validation = schema.validate(req.params);
 
-  const validationBody = schemaBody.validate(req.body);
+        if (validation.error) {
+            generateErrorUtil(validation.error.message, 401);
+        }
+        const schemaBody = Joi.object().keys({
+            type: Joi.string().max(30),
+            description: Joi.string().max(500),
+            city: Joi.string().max(30),
+            price: Joi.number(),
+        });
 
-  if(validationBody.error){
-      generateErrorUtil(validationBody.error.message, 401);
-  };
+        const validationBody = schemaBody.validate(req.body);
 
-    const { typeId } = req.params;
-    const { type, city, description } = req.body;
+        if (validationBody.error) {
+            generateErrorUtil(validationBody.error.message, 401);
+        }
 
-    const isAdmin = req.userLogged.role;
+        const { typeOfServiceId } = req.params;
+        const { type, city, description, price } = req.body;
 
-    if (isAdmin !== 'admin') {
-      generateErrorUtil('No tienes permisos de administrador', 401);
+        const isAdmin = req.userLogged.role;
+
+        if (isAdmin !== 'admin') {
+            generateErrorUtil(
+                'Acceso denegado: Se requiere rol de Administrador',
+                401
+            );
+        }
+
+        await updateTypeOfServiceService(
+            typeOfServiceId,
+            type,
+            city,
+            description,
+            price
+        );
+
+        res.send({
+            staus: 'ok',
+            message: 'Servicio actualizado correctamente',
+        });
+    } catch (error) {
+        next(error);
     }
-
-    if (!type && !city && !description) {
-      generateErrorUtil(
-        'Debe haber contenido en al menos uno de los campos',
-        401
-      );
-    }
-
-    await updateTypeOfServiceService(typeId, type, city, description);
-
-    res.send({
-      staus: 'ok',
-      message: 'Servicio actualizado correctamente',
-    });
-  } catch (error) {
-    next(error);
-  }
 };
 
 export default editTypeOfServiceController;

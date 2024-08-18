@@ -16,11 +16,15 @@ router.get('/typeOfServices', listTypeOfServicesController);
 router.post('/typeOfServices', authUser, newTypeOfServiceController);
 
 router.delete(
-    '/typeOfServices/:typeId',
+    '/typeOfServices/:typeOfServiceId',
     authUser,
     deleteTypeOfServiceController
 );
 
-router.put('/typeOfServices/:typeId', authUser, editTypeOfServiceController);
+router.put(
+    '/typeOfServices/:typeOfServiceId',
+    authUser,
+    editTypeOfServiceController
+);
 
 export default router;

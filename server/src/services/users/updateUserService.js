@@ -1,6 +1,6 @@
 import getPool from '../../db/getPool.js';
 
-const editUserService = async (
+const updateUserService = async (
     userId,
     firstName,
     lastName,
@@ -34,4 +34,4 @@ const editUserService = async (
     );
 };
 
-export default editUserService;
+export default updateUserService;
