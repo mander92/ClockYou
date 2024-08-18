@@ -6,7 +6,7 @@ import updateUserService from '../../services/users/updateUserService.js';
 const editUserController = async (req, res, next) => {
     try {
         const schema = Joi.object().keys({
-            userId: Joi.string().min(36),
+            userId: Joi.string().length(36),
         });
 
         const validation = schema.validate(req.params);
