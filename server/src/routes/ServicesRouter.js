@@ -7,6 +7,7 @@ const router = express.Router();
 
 router.post('/services/:typeOfServiceId', authUser, newServiceController);
 
+
 /* Rutas que necesitamos hacer todavia para esta tabla
 
 GET. -> AllServicesRouter

@@ -5,22 +5,6 @@ import generateErrorUtil from '../../utils/generateErrorUtil.js';
 
 const registerUserEmployeeController = async (req, res, next) => {
     try {
-        const schema = Joi.object().keys({
-            email: Joi.string().email(),
-            password: Joi.string().min(6).max(50),
-            userName: Joi.string().min(4).max(25),
-            job: Joi.string().min(4).max(25),
-        });
-
-        const validation = schema.validate(req.body);
-
-        if (validation.error) {
-            console.log(validation.error.message);
-            generateErrorUtil(validation.error.message, 401);
-        }
-
-        const { email, password, userName, job } = req.body;
-
         const isAdmin = req.userLogged.role;
 
         if (isAdmin !== 'admin') {
@@ -28,9 +12,52 @@ const registerUserEmployeeController = async (req, res, next) => {
                 'Acceso denegado: Se requiere rol de Administrador',
                 409
             );
+        };
+
+        const schema = Joi.object().keys({
+            email: Joi.string().email(),
+            password: Joi.string().min(8).max(25),
+            userName: Joi.string().min(4).max(25),
+            firstName: Joi.string().max(25),
+            lastName: Joi.string().max(40),
+            dni: Joi.string().min(9),
+            phone: Joi.string().max(15),
+            address: Joi.string().max(100),
+            postCode: Joi.number(),
+            city: Joi.string().max(40),
+        });
+
+        const validation = schema.validate(req.body);
+
+        if (validation.error) {
+            generateErrorUtil(validation.error.message, 401);
         }
 
-        await insertEmployeeService(email, password, userName, job);
+        const {
+            email,
+            password,
+            userName,
+            firstName,
+            lastName,
+            dni,
+            phone,
+            address,
+            postCode,
+            city,
+        } = req.body;
+
+        
+
+        await insertEmployeeService(email,
+            password,
+            userName,
+            firstName,
+            lastName,
+            dni,
+            phone,
+            address,
+            postCode,
+            city,);
 
         res.send({
             status: 'ok',

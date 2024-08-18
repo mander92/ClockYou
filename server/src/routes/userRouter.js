@@ -12,6 +12,7 @@ import {
   registerUserAdminController,
   editUserController,
   getEmployeeController,
+  listEmployeeController
 } from '../controllers/users/index.js';
 
 const router = express.Router();
@@ -38,6 +39,8 @@ router.get(
   userExists,
   getEmployeeController
 );
+
+router.get('/users/employee', authUser, listEmployeeController)
 
 /* 
 

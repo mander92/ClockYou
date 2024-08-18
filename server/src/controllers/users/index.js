@@ -7,6 +7,7 @@ import registerUserEmployeeController from './registerUserEmployeeController.js'
 import editUserController from './editUserController.js';
 import registerUserAdminController from './registerUserAdminController.js';
 import getEmployeeController from './getEmployeeController.js';
+import listEmployeeController from './listEmployeeController.js';
 
 export {
   registerUserController,
@@ -18,4 +19,5 @@ export {
   registerUserAdminController,
   editUserController,
   getEmployeeController,
+  listEmployeeController
 };

@@ -1,5 +1,5 @@
 import generateErrorUtil from "../../utils/generateErrorUtil.js";
-import selectEmployeeByUserId from "../../services/users/selectEmployeeByUserId.js";
+import selectEmployeeByUserId from "../../services/users/selectEmployeeByUserIdService.js";
 
 const getEmployeeController = async (req, res, next) => {
   try {
