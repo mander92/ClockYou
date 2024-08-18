@@ -27,4 +27,11 @@ router.put(
     editTypeOfServiceController
 );
 
+/*
+
+GET. 'typeOfServiceController/:typeOfServiceId'
+
+
+*/
+
 export default router;
