@@ -18,7 +18,7 @@ const listEmployeeController = async (req, res, next) => {
 
         if (!users.length) {
             generateErrorUtil(
-                'No se ha encontrado resultados en la búsqueda',
+                'No existen resultados con los filtros aplicados',
                 401
             );
         }
