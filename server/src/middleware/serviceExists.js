@@ -13,7 +13,6 @@ const serviceExists = async (req, res, next) => {
             `,
             [serviceId]
         );
-
         if (!service.length)
             throw generateErrorUtil('Servicio no encontrado', 400);
 

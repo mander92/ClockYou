@@ -18,7 +18,6 @@ const loginUserController = async (req, res, next) => {
           const validation = schema.validate(req.body);
       
           if(validation.error){
-            console.log(validation.error.message)
             generateErrorUtil(validation.error.message, 401)
           }
 
@@ -44,7 +43,6 @@ const loginUserController = async (req, res, next) => {
 
         if (!user.active)
             generateErrorUtil('Usuario pendiente de activacion', 403);
-        console.log(user)
         const tokenInfo = {
             id: user.id,
             role: user.role,
