@@ -37,7 +37,7 @@ router.get(
   authUser,
   userExists,
   getEmployeeController
-);
+); // hacer endpoint que suelte TODOS los empleados
 
 /* 
 
