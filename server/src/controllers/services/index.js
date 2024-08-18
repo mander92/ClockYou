@@ -1,9 +1,9 @@
-import listAllServicesController from "./listAllServicesController.js";
-import newServiceController from "./newServiceController.js";
-import detailServicesController from "./detailServicesController.js";
+import listServicesController from './listServicesController.js';
+import newServiceController from './newServiceController.js';
+import detailServiceController from './detailServiceController.js';
 
 export {
-    listAllServicesController,
+    listServicesController,
     newServiceController,
-    detailServicesController
-}
+    detailServiceController,
+};

@@ -3,9 +3,8 @@ import Joi from 'joi';
 import generateErrorUtil from '../../utils/generateErrorUtil.js';
 import selectServiceByIdService from '../../services/services/selectServiceByIdService.js';
 
-const detailServicesController = async (req, res, next) => {
+const detailServiceController = async (req, res, next) => {
     try {
-    
         const schema = Joi.object().keys({
             serviceId: Joi.string().length(36),
         });
@@ -18,14 +17,14 @@ const detailServicesController = async (req, res, next) => {
 
         const { serviceId } = req.params;
 
-        console.log(serviceId)
+        console.log(serviceId);
 
         const service = await selectServiceByIdService(serviceId);
 
         res.send({
             status: 'ok',
             data: {
-                service
+                service,
             },
         });
     } catch (error) {
@@ -33,4 +32,4 @@ const detailServicesController = async (req, res, next) => {
     }
 };
 
-export default detailServicesController;
+export default detailServiceController;
