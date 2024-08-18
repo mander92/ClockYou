@@ -2,6 +2,7 @@ import getPool from '../../db/getPool.js';
 import { v4 as uuid } from 'uuid';
 
 const insertServiceService = async (
+    clientId,
     typeOfServiceId,
     startTime,
     endTime,
@@ -39,7 +40,7 @@ const insertServiceService = async (
     const id = uuid();
     await pool.query(
         `
-        INSERT INTO services(id, startDate, endDate, startTime, endTime, description, numberOfEmployee, addressId, typeOfServicesId) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO services(id, startDate, endDate, startTime, endTime, description, numberOfEmployee, clientId, addressId, typeOfServicesId) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         `,
         [
             id,
@@ -49,6 +50,7 @@ const insertServiceService = async (
             endTime,
             description,
             numberOfEmployee,
+            clientId,
             addressId[0].id,
             typeId[0].id,
         ]

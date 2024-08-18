@@ -32,7 +32,8 @@ const newServiceController = async (req, res, next) => {
         if (validationBody.error) {
             generateErrorUtil(validationBody.error.message, 401);
         }
-
+        const  clientId  = req.userLogged.id;
+        console.log(clientId);
         const { typeOfServiceId } = req.params;
         const {
             startTime,
@@ -47,6 +48,7 @@ const newServiceController = async (req, res, next) => {
         } = req.body;
 
         const [data] = await insertServiceService(
+            clientId,
             typeOfServiceId,
             startTime,
             endTime,

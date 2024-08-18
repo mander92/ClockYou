@@ -29,7 +29,7 @@ router.put(
 
 /*
 
-GET. 'typeOfServiceController/:typeOfServiceId'
+GET. 'detailTypeOfServiceController/:typeOfServiceId'
 
 
 */
