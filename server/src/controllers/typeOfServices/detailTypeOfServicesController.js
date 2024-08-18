@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-import selectTypeOfServiceById from '../../services/typeOfServices/selectTypeOfServiceById.js';
+import selectTypeOfServiceByIdService from '../../services/typeOfServices/selectTypeOfServiceByIdService.js';
 import generateErrorUtil from '../../utils/generateErrorUtil.js';
 
 const detailTypeOfServicesController = async (req, res, next) => {
@@ -17,7 +17,7 @@ const detailTypeOfServicesController = async (req, res, next) => {
             generateErrorUtil(validation.error.message, 401);
         }
 
-        const service = await selectTypeOfServiceById(typeOfServiceId);
+        const service = await selectTypeOfServiceByIdService(typeOfServiceId);
 
         res.send({
             status: 'ok',
