@@ -33,7 +33,6 @@ const newServiceController = async (req, res, next) => {
             generateErrorUtil(validationBody.error.message, 401);
         }
         const  clientId  = req.userLogged.id;
-        console.log(clientId);
         const { typeOfServiceId } = req.params;
         const {
             startTime,

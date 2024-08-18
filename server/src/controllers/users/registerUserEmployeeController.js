@@ -9,6 +9,7 @@ const registerUserEmployeeController = async (req, res, next) => {
             email: Joi.string().email(),
             password: Joi.string().min(6).max(50),
             userName: Joi.string().min(4).max(25),
+            job: Joi.string().min(4).max(25),
         });
 
         const validation = schema.validate(req.body);
@@ -18,7 +19,7 @@ const registerUserEmployeeController = async (req, res, next) => {
             generateErrorUtil(validation.error.message, 401);
         }
 
-        const { email, password, userName } = req.body;
+        const { email, password, userName, job } = req.body;
 
         const isAdmin = req.userLogged.role;
 
@@ -29,7 +30,7 @@ const registerUserEmployeeController = async (req, res, next) => {
             );
         }
 
-        await insertEmployeeService(email, password, userName);
+        await insertEmployeeService(email, password, userName, job);
 
         res.send({
             status: 'ok',
