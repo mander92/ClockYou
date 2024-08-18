@@ -22,6 +22,7 @@ router.post('/typeOfServices', authUser, newTypeOfServiceController);
 router.delete(
     '/typeOfServices/:typeOfServiceId',
     authUser,
+    typeOfServiceExist,
     deleteTypeOfServiceController
 );
 

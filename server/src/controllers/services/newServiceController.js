@@ -10,6 +10,7 @@ const newServiceController = async (req, res, next) => {
         if (role !== 'client') {
             generateErrorUtil('Acceso denegado');
         }
+
         const schemaParams = Joi.object().keys({
             typeOfServiceId: Joi.string().length(36),
         });
@@ -39,7 +40,9 @@ const newServiceController = async (req, res, next) => {
         }
 
         const clientId = req.userLogged.id;
+
         const { typeOfServiceId } = req.params;
+
         const {
             startTime,
             endTime,
