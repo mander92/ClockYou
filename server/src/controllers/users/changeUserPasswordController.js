@@ -7,7 +7,7 @@ const changeUserPasswordController = async (req, res, next) => {
     try {
         const schema = Joi.object().keys({
             email: Joi.string().email(),
-            recoverPasswordCode: Joi.string().min(10),
+            recoverPasswordCode: Joi.string().length(10),
             newPassword: Joi.string().min(6).max(50),
         });
 
