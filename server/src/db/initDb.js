@@ -34,7 +34,7 @@ const initDb = async () => {
                 userName VARCHAR(30) UNIQUE NOT NULL,
                 firstName VARCHAR(25),
                 lastName VARCHAR(40),
-                dni VARCHAR(9) UNIQUE NOT NULL,
+                dni VARCHAR(9) UNIQUE,
                 password VARCHAR(255) NOT NULL,
                 phone VARCHAR(15),
                 role ENUM('admin', 'employee', 'client') DEFAULT 'client',
