@@ -5,6 +5,11 @@ import insertServiceService from '../../services/services/insertServiceService.j
 
 const newServiceController = async (req, res, next) => {
     try {
+        const role = req.userLogged.role;
+
+        if (role !== 'client') {
+            generateErrorUtil('Acceso denegado');
+        }
         const schemaParams = Joi.object().keys({
             typeOfServiceId: Joi.string().length(36),
         });
@@ -32,7 +37,8 @@ const newServiceController = async (req, res, next) => {
         if (validationBody.error) {
             generateErrorUtil(validationBody.error.message, 401);
         }
-        const  clientId  = req.userLogged.id;
+
+        const clientId = req.userLogged.id;
         const { typeOfServiceId } = req.params;
         const {
             startTime,

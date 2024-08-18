@@ -1,10 +1,19 @@
 import Joi from 'joi';
 
-import insertEmployeeService from '../../services/users/insertEmployeeService.js';
+import insertAdminService from '../../services/users/insertAdminService.js';
 import generateErrorUtil from '../../utils/generateErrorUtil.js';
 
 const registerUserAdminController = async (req, res, next) => {
     try {
+        const isAdmin = req.userLogged.role;
+
+        if (isAdmin !== 'admin') {
+            generateErrorUtil(
+                'Acceso denegado: Se requiere rol de Administrador',
+                409
+            );
+        }
+
         const schema = Joi.object().keys({
             email: Joi.string().email(),
             password: Joi.string().min(6).max(50),
@@ -20,16 +29,7 @@ const registerUserAdminController = async (req, res, next) => {
 
         const { email, password, userName } = req.body;
 
-        const isAdmin = req.userLogged.role;
-
-        if (isAdmin !== 'admin') {
-            generateErrorUtil(
-                'Acceso denegado: Se requiere rol de Administrador',
-                409
-            );
-        }
-
-        await insertEmployeeService(email, password, userName);
+        await insertAdminService(email, password, userName);
 
         res.send({
             status: 'ok',

@@ -5,6 +5,15 @@ import updateTypeOfServiceService from '../../services/typeOfServices/updateType
 
 const editTypeOfServiceController = async (req, res, next) => {
     try {
+        const isAdmin = req.userLogged.role;
+
+        if (isAdmin !== 'admin') {
+            generateErrorUtil(
+                'Acceso denegado: Se requiere rol de Administrador',
+                401
+            );
+        }
+
         const schema = Joi.object().keys({
             typeOfServiceId: Joi.string().min(36),
         });
@@ -29,15 +38,6 @@ const editTypeOfServiceController = async (req, res, next) => {
 
         const { typeOfServiceId } = req.params;
         const { type, city, description, price } = req.body;
-
-        const isAdmin = req.userLogged.role;
-
-        if (isAdmin !== 'admin') {
-            generateErrorUtil(
-                'Acceso denegado: Se requiere rol de Administrador',
-                401
-            );
-        }
 
         await updateTypeOfServiceService(
             typeOfServiceId,

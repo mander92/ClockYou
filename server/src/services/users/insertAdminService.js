@@ -39,7 +39,7 @@ const insertAdminService = async (email, password, userName) => {
             INSERT INTO users (id, email, password, userName, role )
             VALUES (?,?,?,?,?)
         `,
-        [uuid(), email, hashPassword, userName, role]
+        [uuid(), email, hashPassword, userName, 'admin']
     );
 
     await pool.query(

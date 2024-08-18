@@ -1,5 +1,7 @@
 import express from 'express';
 
+import authUser from '../middleware/authUser.js';
+import userExists from '../middleware/userExists.js';
 import {
     registerUserController,
     validateUserController,
@@ -10,7 +12,6 @@ import {
     registerUserAdminController,
     editUserController,
 } from '../controllers/users/index.js';
-import authUser from '../middleware/authUser.js';
 
 const router = express.Router();
 
@@ -28,7 +29,7 @@ router.get('/users/validate/:registrationCode', validateUserController);
 
 router.patch('/users/password', changeUserPasswordController);
 
-router.put('/users/:userId', authUser, editUserController);
+router.put('/users/:userId', authUser, userExists, editUserController);
 
 /* 
 
