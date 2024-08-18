@@ -57,6 +57,7 @@ const initDb = async () => {
                 price DECIMAL(10,2),
                 description VARCHAR(500) NOT NULL,
                 city VARCHAR(30) NOT NULL,
+                active ENUM('active', 'paused') DEFAULT 'active',
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
                 modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP
             )
@@ -72,7 +73,7 @@ const initDb = async () => {
                 description VARCHAR(500),
                 rating INT,
                 numberOfEmployee VARCHAR(2) DEFAULT 1,
-                status ENUM ('accepted', 'rejected', 'pending', 'completed') DEFAULT 'pending',
+                status ENUM ('accepted', 'rejected', 'pending', 'completed', 'canceled') DEFAULT 'pending',
                 clientId CHAR(36) NOT NULL,
                 addressId CHAR(36) NOT NULL,
                 typeOfServicesId CHAR(36) NOT NULL,

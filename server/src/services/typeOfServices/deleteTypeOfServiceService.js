@@ -6,7 +6,7 @@ const deleteTypeOfServiceService = async (typeOfServiceId) => {
 
     await pool.query(
         `
-        DELETE FROM typeOfServices WHERE id = ?
+        UPDATE typeOfServices SET active = 'paused' WHERE id = ?
         `,
         [typeOfServiceId]
     );

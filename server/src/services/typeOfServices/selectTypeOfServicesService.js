@@ -7,7 +7,7 @@ const selectTypeOfServiceService = async (type, city) => {
     if (!type && !city) {
         const [service] = await pool.query(
             `
-            SELECT type, description, city, price from typeOfServices;
+            SELECT type, description, city, price from typeOfServices WHERE active = 'active'
             `
         );
 
@@ -17,7 +17,7 @@ const selectTypeOfServiceService = async (type, city) => {
     if (!type) {
         const [service] = await pool.query(
             `
-            SELECT type, description, city, price FROM typeOfServices WHERE city = ?
+            SELECT type, description, city, price FROM typeOfServices WHERE city = ? AND active = 'active'
             `,
             [city]
         );
@@ -28,7 +28,7 @@ const selectTypeOfServiceService = async (type, city) => {
     if (!city) {
         const [service] = await pool.query(
             `
-            SELECT type, description, city, price FROM typeOfServices WHERE type = ?
+            SELECT type, description, city, price FROM typeOfServices WHERE type = ? AND active = 'active'
             `,
 
             [type]
@@ -39,7 +39,7 @@ const selectTypeOfServiceService = async (type, city) => {
 
     const [service] = await pool.query(
         `
-        SELECT type, description, city, price FROM typeOfServices WHERE type = ? AND city = ?
+        SELECT type, description, city, price FROM typeOfServices WHERE type = ? AND city = ? AND active = 'active'
         `,
         [type, city]
     );

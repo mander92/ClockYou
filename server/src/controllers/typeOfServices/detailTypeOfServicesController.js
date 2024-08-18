@@ -5,8 +5,7 @@ import generateErrorUtil from '../../utils/generateErrorUtil.js';
 
 const detailTypeOfServicesController = async (req, res, next) => {
     try {
-        const { typeOfServiceId } = req.params;
-
+    
         const schema = Joi.object().keys({
             typeOfServiceId: Joi.string().length(36),
         });
@@ -17,12 +16,14 @@ const detailTypeOfServicesController = async (req, res, next) => {
             generateErrorUtil(validation.error.message, 401);
         }
 
+        const { typeOfServiceId } = req.params;
+
         const service = await selectTypeOfServiceByIdService(typeOfServiceId);
 
         res.send({
             status: 'ok',
             data: {
-                service,
+                service
             },
         });
     } catch (error) {

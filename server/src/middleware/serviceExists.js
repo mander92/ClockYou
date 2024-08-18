@@ -23,4 +23,4 @@ const serviceExists = async (req, res, next) => {
     }
 };
 
-export default serviceExistsExists;
+export default serviceExists;
