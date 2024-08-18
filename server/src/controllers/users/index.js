@@ -6,14 +6,16 @@ import sendRecoverPasswordCodeController from './sendRecoverPasswordCodeControll
 import registerUserEmployeeController from './registerUserEmployeeController.js';
 import editUserController from './editUserController.js';
 import registerUserAdminController from './registerUserAdminController.js';
+import getEmployeeController from './getEmployeeController.js';
 
 export {
-    registerUserController,
-    validateUserController,
-    loginUserController,
-    changeUserPasswordController,
-    sendRecoverPasswordCodeController,
-    registerUserEmployeeController,
-    registerUserAdminController,
-    editUserController,
+  registerUserController,
+  validateUserController,
+  loginUserController,
+  changeUserPasswordController,
+  sendRecoverPasswordCodeController,
+  registerUserEmployeeController,
+  registerUserAdminController,
+  editUserController,
+  getEmployeeController,
 };
