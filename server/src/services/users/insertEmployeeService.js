@@ -13,7 +13,9 @@ const insertEmployeeService = async (email,
     phone,
     address,
     postCode,
-    city,) => {
+    city,
+    job
+) => {
     const pool = await getPool();
 
     const [user] = await pool.query(
@@ -53,10 +55,10 @@ const insertEmployeeService = async (email,
   
     await pool.query(
       `
-              INSERT INTO users(id, email, password, userName, firstName, lastName, dni, phone, addressId,role )
-              VALUES (?,?,?,?,?,?,?,?,?,?)
+              INSERT INTO users(id, email, password, userName, firstName, lastName, dni, phone, addressId,role, job )
+              VALUES (?,?,?,?,?,?,?,?,?,?,?)
           `,
-      [uuid(), email, passwordHashed, userName, firstName, lastName, dni, phone, addressId ,'employee']
+      [uuid(), email, passwordHashed, userName, firstName, lastName, dni, phone, addressId ,'employee', job]
     );
   
     await pool.query(

@@ -25,6 +25,7 @@ const registerUserEmployeeController = async (req, res, next) => {
             address: Joi.string().max(100),
             postCode: Joi.number(),
             city: Joi.string().max(40),
+            job: Joi.string().max(25)
         });
 
         const validation = schema.validate(req.body);
@@ -44,6 +45,7 @@ const registerUserEmployeeController = async (req, res, next) => {
             address,
             postCode,
             city,
+            job
         } = req.body;
 
         
@@ -57,7 +59,9 @@ const registerUserEmployeeController = async (req, res, next) => {
             phone,
             address,
             postCode,
-            city,);
+            city,
+            job
+        );
 
         res.send({
             status: 'ok',

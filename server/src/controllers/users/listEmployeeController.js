@@ -14,7 +14,18 @@ const listEmployeeController = async (req,res,next) =>{
 
         const { job, active, city } = req.query;
 
-        const [ users ] = await selectEmployeeService(job,active, city);
+        const users  = await selectEmployeeService(job,active, city);
+
+        if(!users.length){
+            generateErrorUtil('No se ha encontrado en busqueda', 401)
+        }
+        res.send({
+            status: 'ok',
+            data: {
+                users
+            }
+            
+        })
 
 
     } catch (error) {
