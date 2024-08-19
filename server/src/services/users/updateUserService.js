@@ -1,30 +1,7 @@
 import getPool from '../../db/getPool.js';
 
-const updateUserService = async (
-    userId,
-    firstName,
-    lastName,
-    dni,
-    phone,
-    address,
-    postCode,
-    city
-) => {
+const updateUserService = async (userId, firstName, lastName, dni, phone) => {
     const pool = await getPool();
-
-    const [user] = await pool.query(
-        `
-        SELECT addressId FROM users WHERE id = ?
-        `,
-        [userId]
-    );
-
-    await pool.query(
-        `
-        UPDATE addresses SET address=?, city=?, postCode=? WHERE id=?
-        `,
-        [address, city, postCode, user[0].addressId]
-    );
 
     await pool.query(
         `

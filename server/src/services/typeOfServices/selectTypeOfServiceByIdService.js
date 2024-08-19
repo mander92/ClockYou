@@ -6,13 +6,13 @@ const selectTypeOfServiceByIdService = async (typeOfServiceId) => {
 
     const [service] = await pool.query(
         `
-            SELECT id, type, description, city, price FROM typeOfServices WHERE id = ? AND active = 'active'
+            SELECT id, type, description, city, price FROM typeOfServices WHERE id = ? AND deletedAt IS NULL
             `,
         [typeOfServiceId]
     );
 
     if (!service.length) {
-        generateErrorUtil('No existen servicios asociados a ese ID', 404);
+        generateErrorUtil('No existe el servicio', 404);
     }
 
     return service;

@@ -18,28 +18,14 @@ const insertAdminService = async (email, password, userName) => {
         generateErrorUtil('El email ya se encuentra registrado', 409);
     }
 
-    const [name] = await pool.query(
-        `
-            SELECT id FROM users WHERE userName = ?
-        `,
-        [userName]
-    );
-
-    if (name.length) {
-        generateErrorUtil(
-            'El nombre de usuario ya se encuentra registrado',
-            409
-        );
-    }
-
     const hashPassword = await bcrypt.hash(password, 10);
 
     await pool.query(
         `
-            INSERT INTO users (id, email, password, userName, role )
-            VALUES (?,?,?,?,?)
+            INSERT INTO users (id, email, password, role )
+            VALUES (?,?,?,?)
         `,
-        [uuid(), email, hashPassword, userName, 'admin']
+        [uuid(), email, hashPassword, 'admin']
     );
 
     await pool.query(

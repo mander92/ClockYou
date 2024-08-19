@@ -24,9 +24,7 @@ const editTypeOfServiceController = async (req, res, next) => {
             generateErrorUtil(validation.error.message, 401);
         }
         const schemaBody = Joi.object().keys({
-            type: Joi.string().max(30),
             description: Joi.string().max(500),
-            city: Joi.string().max(30),
             price: Joi.number(),
         });
 
@@ -37,15 +35,9 @@ const editTypeOfServiceController = async (req, res, next) => {
         }
 
         const { typeOfServiceId } = req.params;
-        const { type, city, description, price } = req.body;
+        const { description, price } = req.body;
 
-        await updateTypeOfServiceService(
-            typeOfServiceId,
-            type,
-            city,
-            description,
-            price
-        );
+        await updateTypeOfServiceService(typeOfServiceId, description, price);
 
         res.send({
             staus: 'ok',

@@ -6,7 +6,7 @@ const selectServiceByIdService = async (serviceId) => {
 
     const [service] = await pool.query(
         `
-            SELECT startDate, endDate, startTime, endTime, description, rating, numberOfEmployee, status FROM services WHERE id = ?
+            SELECT date, hours, description, rating, status FROM services WHERE id = ?
             `,
         [serviceId]
     );

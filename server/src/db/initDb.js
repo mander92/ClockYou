@@ -11,7 +11,7 @@ const initDb = async () => {
         console.log('Borrando tablas...');
 
         await pool.query(
-            'DROP TABLE IF EXISTS shiftRecords, servicesAssigned, services, typeOfServices, users, addresses'
+            'DROP TABLE IF EXISTS shiftRecords, services, typeOfServices, users, addresses'
         );
 
         console.log('Creando tablas...');
@@ -23,7 +23,8 @@ const initDb = async () => {
                 postCode VARCHAR(5),
                 city VARCHAR(40),
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
-                modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP
+                modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,
+                deletedAt DATETIME NULL
             )
         `);
 
@@ -31,22 +32,21 @@ const initDb = async () => {
             CREATE TABLE IF NOT EXISTS users (
                 id CHAR(36) PRIMARY KEY NOT NULL,
                 email VARCHAR(100) UNIQUE NOT NULL,
-                userName VARCHAR(30) UNIQUE NOT NULL,
                 firstName VARCHAR(25),
                 lastName VARCHAR(40),
                 dni VARCHAR(9) UNIQUE,
                 password VARCHAR(255) NOT NULL,
                 phone VARCHAR(15),
+                city VARCHAR(25),
                 role ENUM('admin', 'employee', 'client') DEFAULT 'client',
                 job VARCHAR(20),
                 avatar VARCHAR(100),
                 active BOOLEAN DEFAULT false,
                 registrationCode CHAR(30),
                 recoverPasswordCode CHAR(10),
-                addressId CHAR(36),
-                FOREIGN KEY (addressId) REFERENCES addresses(id),
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP, 
-                modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP
+                modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,
+                deletedAt DATETIME NULL
             )
         `);
 
@@ -57,22 +57,19 @@ const initDb = async () => {
                 price DECIMAL(10,2),
                 description VARCHAR(500) NOT NULL,
                 city VARCHAR(30) NOT NULL,
-                active ENUM('active', 'paused') DEFAULT 'active',
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
-                modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP
+                modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,
+                deletedAt DATETIME NULL
             )
         `);
 
         await pool.query(`
             CREATE TABLE IF NOT EXISTS services (
                 id CHAR(36) PRIMARY KEY NOT NULL,
-                startDate CHAR(10) NOT NULL,
-                endDate CHAR(10),
-                startTime TIME NOT NULL,
-                endTime TIME,
+                date CHAR(10) NOT NULL,
+                hours INT UNSIGNED NOT NULL,
                 description VARCHAR(500),
-                rating INT,
-                numberOfEmployee VARCHAR(2) DEFAULT 1,
+                rating INT UNSIGNED,
                 status ENUM ('accepted', 'rejected', 'pending', 'completed', 'canceled') DEFAULT 'pending',
                 clientId CHAR(36) NOT NULL,
                 addressId CHAR(36) NOT NULL,
@@ -81,33 +78,25 @@ const initDb = async () => {
                 FOREIGN KEY (addressId) REFERENCES addresses(id),
                 FOREIGN KEY (typeOfServicesId) REFERENCES typeOfServices(id),
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
-                modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP
-            )
-        `);
-
-        await pool.query(`
-            CREATE TABLE IF NOT EXISTS servicesAssigned (
-                id CHAR(36) PRIMARY KEY NOT NULL,
-                employeeId CHAR(36) NOT NULL,
-                serviceId CHAR(36) NOT NULL,
-                FOREIGN KEY (employeeId) REFERENCES users(id),
-                FOREIGN KEY (serviceId) REFERENCES services(id),
-                createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
-                modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP
+                modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,
+                deletedAt DATETIME NULL
             )
         `);
 
         await pool.query(`
             CREATE TABLE IF NOT EXISTS shiftRecords(
                 id CHAR(36) PRIMARY KEY NOT NULL,
-                startTime DATETIME NOT NULL,
-                endTime DATETIME,
+                clockIn DATETIME NOT NULL,
+                clockOut DATETIME,
                 latitude DECIMAL(10,8),
                 longitude DECIMAL(11,8),
-                servicesAssignedId CHAR(36) NOT NULL,
-                FOREIGN KEY (servicesAssignedId) REFERENCES servicesAssigned(id),
+                serviceId CHAR(36) NOT NULL,
+                employeeId CHAR(36) NOT NULL,
+                FOREIGN KEY (serviceId) REFERENCES services(id),
+                FOREIGN KEY (employeeId) REFERENCES users(id),
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
-                modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP
+                modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,
+                deletedAt DATETIME NULL
             )
         `);
 
@@ -157,8 +146,8 @@ const initDb = async () => {
 
         await pool.query(
             `
-            INSERT INTO users (id, email, userName, password, role, active) VALUES (?, ?, ?, ?, ?, ?)`,
-            [uuid(), ADMIN_EMAIL, ADMIN_USERNAME, hashedPass, 'admin', 1]
+            INSERT INTO users (id, email, password, role, active) VALUES (?, ?, ?, ?, ?)`,
+            [uuid(), ADMIN_EMAIL, hashedPass, 'admin', 1]
         );
 
         console.log('¡Tablas creadas!');

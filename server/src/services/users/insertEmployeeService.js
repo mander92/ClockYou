@@ -4,17 +4,15 @@ import { v4 as uuid } from 'uuid';
 import getPool from '../../db/getPool.js';
 import generateErrorUtil from '../../utils/generateErrorUtil.js';
 
-const insertEmployeeService = async (email,
+const insertEmployeeService = async (
+    email,
     password,
-    userName,
     firstName,
     lastName,
     dni,
     phone,
-    address,
-    postCode,
-    city,
-    job
+    job,
+    city
 ) => {
     const pool = await getPool();
 
@@ -29,38 +27,27 @@ const insertEmployeeService = async (email,
         generateErrorUtil('El email ya se encuentra registrado', 409);
     }
 
-    const [name] = await pool.query(
-        `
-            SELECT id FROM users WHERE userName = ?
-        `,
-        [userName]
-    );
-
-    if (name.length) {
-        generateErrorUtil(
-            'El nombre de usuario ya se encuentra registrado',
-            409
-        );
-    }
-
     const passwordHashed = await bcrypt.hash(password, 10);
 
-    const addressId = uuid()
-
     await pool.query(
-      `
-      INSERT INTO addresses(id, address, city, postCode) VALUES(?,?,?,?)
-      `,[addressId, address, city, postCode]
-    )
-  
-    await pool.query(
-      `
-              INSERT INTO users(id, email, password, userName, firstName, lastName, dni, phone, addressId,role, job )
-              VALUES (?,?,?,?,?,?,?,?,?,?,?)
+        `
+              INSERT INTO users(id, email, password, firstName, lastName, dni, phone, role, job, city )
+              VALUES (?,?,?,?,?,?,?,?,?,?)
           `,
-      [uuid(), email, passwordHashed, userName, firstName, lastName, dni, phone, addressId ,'employee', job]
+        [
+            uuid(),
+            email,
+            passwordHashed,
+            firstName,
+            lastName,
+            dni,
+            phone,
+            'employee',
+            job,
+            city,
+        ]
     );
-  
+
     await pool.query(
         `
             UPDATE users SET active=1

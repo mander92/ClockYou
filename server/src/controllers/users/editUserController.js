@@ -20,9 +20,6 @@ const editUserController = async (req, res, next) => {
             lastName: Joi.string().max(40),
             dni: Joi.string().min(9),
             phone: Joi.string().max(15),
-            address: Joi.string().max(100),
-            postCode: Joi.number(),
-            city: Joi.string().max(40),
         });
 
         const validationBody = schemaBody.validate(req.body);
@@ -32,19 +29,9 @@ const editUserController = async (req, res, next) => {
         }
 
         const { userId } = req.params;
-        const { firstName, lastName, dni, phone, address, postCode, city } =
-            req.body;
+        const { firstName, lastName, dni, phone } = req.body;
 
-        await updateUserService(
-            userId,
-            firstName,
-            lastName,
-            dni,
-            phone,
-            address,
-            postCode,
-            city
-        );
+        await updateUserService(userId, firstName, lastName, dni, phone);
 
         res.send({
             status: 'ok',

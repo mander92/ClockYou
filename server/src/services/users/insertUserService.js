@@ -1,42 +1,37 @@
-import bcrypt from "bcrypt";
-import { v4 as uuid } from "uuid";
+import bcrypt from 'bcrypt';
+import { v4 as uuid } from 'uuid';
 
-import getPool from "../../db/getPool.js";
-import generateErrorUtil from "../../utils/generateErrorUtil.js";
-import sendMailUtil from "../../utils/sendMailUtil.js";
-import { PORT } from "../../../env.js";
+import getPool from '../../db/getPool.js';
+import generateErrorUtil from '../../utils/generateErrorUtil.js';
+import sendMailUtil from '../../utils/sendMailUtil.js';
+import { PORT } from '../../../env.js';
 
-const insertUserService = async (email, password, userName, firstName, lastName, dni, phone, address, postCode, city,
-  registrationCode
+const insertUserService = async (
+    email,
+    password,
+    firstName,
+    lastName,
+    dni,
+    phone,
+    registrationCode
 ) => {
-  const pool = await getPool();
+    const pool = await getPool();
 
-  const [user] = await pool.query(
-    `
+    const [user] = await pool.query(
+        `
             SELECT id FROM users WHERE email = ?
         `,
-    [email]
-  );
+        [email]
+    );
 
-  if (user.length) {
-    generateErrorUtil("El email ya se encuentra registrado", 409);
-  }
+    if (user.length) {
+        generateErrorUtil('El email ya se encuentra registrado', 409);
+    }
 
-  const [name] = await pool.query(
-    `
-            SELECT id FROM users WHERE userName = ?
-        `,
-    [userName]
-  );
+    const emailSubject = `Activa tu cuenta de ClockYou`;
 
-  if (name.length) {
-    generateErrorUtil("El nombre de usuario ya se encuentra registrado", 409);
-  }
-
-  const emailSubject = `Activa tu cuenta de ClockYou`;
-
-  const emailBody = `
-                !!Bienvenid@ ${userName}¡¡
+    const emailBody = `
+                !!Bienvenid@ ${firstName} ${lastName}¡¡
 
                 Gracias por registrarte en ClockYou. Para activar tu cuenta haga click
                 en el siguiente enlace:
@@ -46,25 +41,26 @@ const insertUserService = async (email, password, userName, firstName, lastName,
                 Hecho con ❤ por el equipo de ClockYou.
     `;
 
-  await sendMailUtil(email, emailSubject, emailBody);
+    await sendMailUtil(email, emailSubject, emailBody);
 
-  const passwordHashed = await bcrypt.hash(password, 10);
+    const passwordHashed = await bcrypt.hash(password, 10);
 
-  const addressId = uuid()
-
-  await pool.query(
-    `
-    INSERT INTO addresses(id, address, city, postCode) VALUES(?,?,?,?)
-    `,[addressId, address, city, postCode]
-  )
-
-  await pool.query(
-    `
-            INSERT INTO users(id, email, password, userName, firstName, lastName, dni, phone, addressId,registrationCode )
-            VALUES (?,?,?,?,?,?,?,?,?,?)
+    await pool.query(
+        `
+            INSERT INTO users(id, email, password, firstName, lastName, dni, phone, registrationCode )
+            VALUES (?,?,?,?,?,?,?,?)
         `,
-    [uuid(), email, passwordHashed, userName, firstName, lastName, dni, phone, addressId ,registrationCode]
-  );
+        [
+            uuid(),
+            email,
+            passwordHashed,
+            firstName,
+            lastName,
+            dni,
+            phone,
+            registrationCode,
+        ]
+    );
 };
 
 export default insertUserService;

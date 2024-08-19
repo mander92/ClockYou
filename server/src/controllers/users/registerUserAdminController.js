@@ -17,7 +17,6 @@ const registerUserAdminController = async (req, res, next) => {
         const schema = Joi.object().keys({
             email: Joi.string().email(),
             password: Joi.string().min(6).max(50),
-            userName: Joi.string().min(4).max(25),
         });
 
         const validation = schema.validate(req.body);
@@ -27,9 +26,9 @@ const registerUserAdminController = async (req, res, next) => {
             generateErrorUtil(validation.error.message, 401);
         }
 
-        const { email, password, userName } = req.body;
+        const { email, password } = req.body;
 
-        await insertAdminService(email, password, userName);
+        await insertAdminService(email, password);
 
         res.send({
             status: 'ok',

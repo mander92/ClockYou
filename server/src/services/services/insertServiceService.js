@@ -4,10 +4,8 @@ import { v4 as uuid } from 'uuid';
 const insertServiceService = async (
     clientId,
     typeOfServiceId,
-    startTime,
-    endTime,
-    startDate,
-    endDate,
+    date,
+    hours,
     description,
     address,
     numberOfEmployee,
@@ -15,13 +13,6 @@ const insertServiceService = async (
     postCode
 ) => {
     const pool = await getPool();
-
-    const [typeId] = await pool.query(
-        `
-        SELECT id FROM typeOfServices WHERE id = ?
-        `,
-        [typeOfServiceId]
-    );
 
     await pool.query(
         `
@@ -41,25 +32,22 @@ const insertServiceService = async (
 
     await pool.query(
         `
-        INSERT INTO services(id, startDate, endDate, startTime, endTime, description, numberOfEmployee, clientId, addressId, typeOfServicesId) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO services(id, date, hours,description, clientId, addressId, typeOfServicesId) VALUES(?, ?, ?, ?, ?, ?, ?)
         `,
         [
             id,
-            startDate,
-            endDate,
-            startTime,
-            endTime,
+            date,
+            hours,
             description,
-            numberOfEmployee,
             clientId,
             addressId[0].id,
-            typeId[0].id,
+            typeOfServiceId,
         ]
     );
 
     const [data] = await pool.query(
         `
-        SELECT t.type, t.city, t.description, t.price, s.startDate, s.endDate, s.startTime, s.endTime, s.description, s.rating, s.numberOfEmployee, s.status
+        SELECT t.type, t.city, t.description, t.price, s.date, s.hours, s.description, s.rating, s.status
         FROM typeOfServices t
         INNER JOIN services s
         ON t.id = s.typeOfServicesId

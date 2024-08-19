@@ -22,15 +22,12 @@ const newServiceController = async (req, res, next) => {
         }
 
         const schemaBody = Joi.object().keys({
-            startTime: Joi.string().pattern(/^([01]\d|2[0-3]):([0-5]\d)$/),
-            endTime: Joi.string().pattern(/^([01]\d|2[0-3]):([0-5]\d)$/),
-            startDate: Joi.date().min('now'),
-            endDate: Joi.date().min('now'),
+            date: Joi.date().min('now'),
+            hours: Joi.number().min(1).max(8),
             description: Joi.string().max(500),
             address: Joi.string().max(255),
             city: Joi.string().max(40),
             postCode: Joi.string().length(5),
-            numberOfEmployee: Joi.number().min(1).max(99),
         });
 
         const validationBody = schemaBody.validate(req.body);
@@ -44,10 +41,8 @@ const newServiceController = async (req, res, next) => {
         const { typeOfServiceId } = req.params;
 
         const {
-            startTime,
-            endTime,
-            startDate,
-            endDate,
+            date,
+            hours,
             description,
             address,
             numberOfEmployee,
@@ -58,10 +53,8 @@ const newServiceController = async (req, res, next) => {
         const [data] = await insertServiceService(
             clientId,
             typeOfServiceId,
-            startTime,
-            endTime,
-            startDate,
-            endDate,
+            date,
+            hours,
             description,
             address,
             numberOfEmployee,
