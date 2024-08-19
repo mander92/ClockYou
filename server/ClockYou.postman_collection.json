@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "e4d7e9fe-f796-4b32-a6b6-350d4ddf5bf4",
+		"_postman_id": "952c376c-5ff6-4f28-9165-113d29059d64",
 		"name": "ClockYou",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "35978489"
+		"_exporter_id": "36002214"
 	},
 	"item": [
 		{
@@ -80,13 +80,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE1ODE2NTgxLTYzNzEtNGJkNS1hNjFlLTFmNWVmMDNmMzk0ZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyMzk4Mzg2OCwiZXhwIjoxNzI0NTg4NjY4fQ.cNe4XeJw4zRanLJDV-u0_i9Peq6YdpeXOHlzPZfQwaI",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4N2MyNmRkLWFhYjktNDc5NC05YjYxLWUxZmIyNDFiMGJiYSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNDA1NTc4NCwiZXhwIjoxNzI0NjYwNTg0fQ.j9zpuHG3U6NoPrnKto8yOG1ePZaQf_wZ2YEss5z6KRA",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"employee@clockYou.com\",\r\n    \"password\": \"12345678\",\r\n    \"userName\": \"employee\",\r\n    \"firstName\": \"employee\",\r\n    \"lastName\": \"employee\",\r\n    \"dni\": \"12121112A\",\r\n    \"phone\": \"123456789\",\r\n    \"address\": \"Vista alegre\",\r\n    \"postCode\": \"12345\",\r\n    \"city\": \"Coruña\",\r\n    \"job\": \"Jardinero\"\r\n}",
+							"raw": "{\r\n    \"email\": \"employee2@clockYou.com\",\r\n    \"password\": \"12345678\",\r\n    \"userName\": \"employee2\",\r\n    \"firstName\": \"employee2\",\r\n    \"lastName\": \"employee2\",\r\n    \"dni\": \"22121112A\",\r\n    \"phone\": \"223456789\",\r\n    \"address\": \"Vista alegre2\",\r\n    \"postCode\": \"22345\",\r\n    \"city\": \"Malaga\",\r\n    \"job\": \"Jardinero\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -164,7 +164,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"david_miras@icloud.com\",\n    \"password\": \"12345678\"\n}",
+							"raw": "{\n    \"email\": \"\",\n    \"password\": \"\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -285,7 +285,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyNDNmNTQwLWEyODEtNDYyOC04NDNjLWVjNTI5ODM5Y2JhZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNDAwMDI3MiwiZXhwIjoxNzI0NjA1MDcyfQ.-nLW5j2y5QfIKRjPipk6dTED_6AEVXVUV3JoYpQPOJ4",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4N2MyNmRkLWFhYjktNDc5NC05YjYxLWUxZmIyNDFiMGJiYSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNDA1NTc4NCwiZXhwIjoxNzI0NjYwNTg0fQ.j9zpuHG3U6NoPrnKto8yOG1ePZaQf_wZ2YEss5z6KRA",
 								"type": "text"
 							}
 						],
@@ -333,7 +333,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImUyMGNiZjc0LTIyOWEtNDczOS04MjQxLTM0MTFhN2Q5NDFjYiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyMzkzNDQwMSwiZXhwIjoxNzI0NTM5MjAxfQ.5ErXWwDCKGprfFwR1Lg5ajdRQPeHu8-aJfPiJ5SSClM",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4N2MyNmRkLWFhYjktNDc5NC05YjYxLWUxZmIyNDFiMGJiYSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNDA1NTc4NCwiZXhwIjoxNzI0NjYwNTg0fQ.j9zpuHG3U6NoPrnKto8yOG1ePZaQf_wZ2YEss5z6KRA",
 								"type": "text"
 							}
 						],
@@ -502,13 +502,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjkyZDgzM2E5LWU3NTMtNGFkYS04Y2RmLTg5Y2JlZDE1NDMxYiIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjM5ODgzNDQsImV4cCI6MTcyNDU5MzE0NH0.7GxzfPCpQVDkcDXuGDLwvVpZnvUTpGd729c8hj_mpto",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4N2MyNmRkLWFhYjktNDc5NC05YjYxLWUxZmIyNDFiMGJiYSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNDA1NTc4NCwiZXhwIjoxNzI0NjYwNTg0fQ.j9zpuHG3U6NoPrnKto8yOG1ePZaQf_wZ2YEss5z6KRA",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"startTime\": \"19:00\",\n    \"endTime\": \"23:00\",\n    \"startDate\":\"2024-08-19\",\n    \"endDate\": \"2024-08-19\",\n    \"description\": \"Mantenimiento del jardín\",\n    \"address\": \"Avío\",\n    \"city\": \"Coruña\",\n    \"postCode\": \"15705\",\n    \"numberOfEmployee\": \"2\"\n}",
+							"raw": "{\n    \"startTime\": \"19:00\",\n    \"endTime\": \"23:00\",\n    \"startDate\":\"2024-08-19\",\n    \"endDate\": \"2024-08-19\",\n    \"description\": \"Jardineros Manolo\",\n    \"address\": \"Avío\",\n    \"city\": \"Coruña\",\n    \"postCode\": \"15705\",\n    \"numberOfEmployee\": \"2\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -537,7 +537,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4N2MyNmRkLWFhYjktNDc5NC05YjYxLWUxZmIyNDFiMGJiYSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNDA1NTc4NCwiZXhwIjoxNzI0NjYwNTg0fQ.j9zpuHG3U6NoPrnKto8yOG1ePZaQf_wZ2YEss5z6KRA",
 								"type": "text"
 							}
 						],
@@ -587,6 +587,46 @@
 									"key": "status",
 									"value": "pending"
 								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "uploads",
+			"item": [
+				{
+					"name": "upload",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4N2MyNmRkLWFhYjktNDc5NC05YjYxLWUxZmIyNDFiMGJiYSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNDA2NTc0OSwiZXhwIjoxNzI0NjcwNTQ5fQ.Vd8dwCc-sKmp14jOobVqEr84Uqg8POPKl2nTv0rSxis",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "sampleFile",
+									"type": "file",
+									"src": "/C:/Users/guill/Desktop/programacion/CURSO HACKABOSS/05.NODEJS/travel-diary-nelson/travel-diary-api/src/uploads/84b5f68fec23cf7aa769f40280eef3b6.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/file",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"file"
 							]
 						}
 					},

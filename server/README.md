@@ -121,3 +121,8 @@ Jardinería, Limpieza, Seguridad, Mantenimiento de Edificios e Instalaciones, Ca
 ## Endpoints de los servicios
 
 -   **POST** - `/services` - El cliente crea una entrada en el servicio.
+
+## Endpoints de archivos
+
+-   **POST** - `/file` - El usuario registrado puede subir un único archivo al directorio $UPLOADS_DIR.
+
