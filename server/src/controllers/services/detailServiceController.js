@@ -5,6 +5,10 @@ import selectServiceByIdService from '../../services/services/selectServiceByIdS
 
 const detailServiceController = async (req, res, next) => {
     try {
+        const isClient = req.userLogged;
+        if (isClient.role !== 'client') {
+            generateErrorUtil('Acceso denegado', 409);
+        }
         const schema = Joi.object().keys({
             serviceId: Joi.string().length(36),
         });

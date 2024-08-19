@@ -59,7 +59,7 @@ const insertServiceService = async (
 
     const [data] = await pool.query(
         `
-        SELECT t.*, s.*
+        SELECT t.type, t.city, t.description, t.price, s.startDate, s.endDate, s.startTime, s.endTime, s.description, s.rating, s.numberOfEmployee, s.status
         FROM typeOfServices t
         INNER JOIN services s
         ON t.id = s.typeOfServicesId

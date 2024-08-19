@@ -66,8 +66,8 @@ const initDb = async () => {
         await pool.query(`
             CREATE TABLE IF NOT EXISTS services (
                 id CHAR(36) PRIMARY KEY NOT NULL,
-                startDate DATE NOT NULL,
-                endDate VARCHAR(20),
+                startDate CHAR(10) NOT NULL,
+                endDate CHAR(10),
                 startTime TIME NOT NULL,
                 endTime TIME,
                 description VARCHAR(500),
