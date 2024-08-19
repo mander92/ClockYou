@@ -2,6 +2,7 @@ import express from 'express';
 
 import authUser from '../middleware/authUser.js';
 import serviceExists from '../middleware/serviceExists.js';
+import typeOfserviceExists from '../middleware/typeOfServiceExists.js';
 
 import {
     newServiceController,
@@ -11,7 +12,12 @@ import {
 
 const router = express.Router();
 
-router.post('/services/:typeOfServiceId', authUser, newServiceController);
+router.post(
+    '/services/:typeOfServiceId',
+    authUser,
+    typeOfserviceExists,
+    newServiceController
+);
 
 router.get('/services/', authUser, listServicesController);
 

@@ -5,8 +5,6 @@ const listServicesController = async (req, res, next) => {
     try {
         const isAdmin = req.userLogged.role;
 
-        const { status } = req.query;
-
         if (isAdmin !== 'admin') {
             generateErrorUtil(
                 'Acceso denegado: Se requiere rol de Administrador',
@@ -14,7 +12,7 @@ const listServicesController = async (req, res, next) => {
             );
         }
 
-        const services = await selectServiceService(status);
+        const services = await selectServiceService();
 
         if (!services.length) {
             generateErrorUtil('No se encuentran resultados', 401);
