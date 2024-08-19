@@ -40,8 +40,6 @@ const registerUserController = async (req, res, next) => {
             job,
         } = req.body;
 
-        const isAdmin = req.userLogged.role;
-
         const registrationCode = randomstring.generate(30);
 
         await insertUserService(
