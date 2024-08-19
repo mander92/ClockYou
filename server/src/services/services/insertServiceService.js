@@ -9,7 +9,7 @@ const insertServiceService = async (
     startDate,
     endDate,
     description,
-    address,
+    serviceAddress,
     numberOfEmployee,
     city,
     postCode
@@ -18,16 +18,16 @@ const insertServiceService = async (
 
     await pool.query(
         `
-        INSERT INTO addresses(id, address, city, postCode) VALUES (?,?,?,?)
+        INSERT INTO addresses(id, serviceAddress, city, postCode) VALUES (?,?,?,?)
         `,
-        [uuid(), address, city, postCode]
+        [uuid(), serviceAddress, city, postCode]
     );
 
     const [addressId] = await pool.query(
         `
         SELECT id FROM addresses WHERE address = ?
         `,
-        [address]
+        [serviceAddress]
     );
 
     const id = uuid();
