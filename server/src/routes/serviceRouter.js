@@ -20,7 +20,6 @@ router.post(
 );
 
 router.get('/services/', authUser, listServicesController);
-
 router.get(
     '/services/:serviceId',
     authUser,
