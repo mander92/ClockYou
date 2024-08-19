@@ -16,13 +16,6 @@ const insertServiceService = async (
 ) => {
     const pool = await getPool();
 
-    const [typeId] = await pool.query(
-        `
-        SELECT id FROM typeOfServices WHERE id = ?
-        `,
-        [typeOfServiceId]
-    );
-
     await pool.query(
         `
         INSERT INTO addresses(id, address, city, postCode) VALUES (?,?,?,?)
@@ -38,6 +31,7 @@ const insertServiceService = async (
     );
 
     const id = uuid();
+
     await pool.query(
         `
         INSERT INTO services(id, startDate, endDate, startTime, endTime, description, numberOfEmployee, clientId, addressId, typeOfServicesId) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
@@ -52,13 +46,17 @@ const insertServiceService = async (
             numberOfEmployee,
             clientId,
             addressId[0].id,
-            typeId[0].id,
+            typeOfServiceId,
         ]
     );
 
     const [data] = await pool.query(
         `
-        SELECT * FROM services WHERE id = ?
+        SELECT t.*, s.*
+        FROM typeOfServices t
+        INNER JOIN services s
+        ON t.id = s.typeOfServicesId
+        WHERE s.id = ?
         `,
         [id]
     );
