@@ -1,6 +1,12 @@
 import nodemailer from 'nodemailer';
 
-import { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS } from '../../env.js';
+import {
+    SMTP_HOST,
+    SMTP_PORT,
+    SMTP_USER,
+    SMTP_PASS,
+    ADMIN_EMAIL,
+} from '../../env.js';
 import generateErrorUtil from './generateErrorUtil.js';
 
 const transport = nodemailer.createTransport({
@@ -18,7 +24,7 @@ const transport = nodemailer.createTransport({
 const sendMailUtils = async (email, subject, body) => {
     try {
         const mailOptions = {
-            from: SMTP_USER,
+            from: 'david_miras@icloud.com',
             to: email,
             subject,
             text: body,

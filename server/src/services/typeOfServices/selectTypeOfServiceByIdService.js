@@ -6,7 +6,7 @@ const selectTypeOfServiceByIdService = async (typeOfServiceId) => {
 
     const [service] = await pool.query(
         `
-            SELECT type, description, city, price FROM typeOfServices WHERE id = ? AND active = 'active'
+            SELECT id, type, description, city, price FROM typeOfServices WHERE id = ? AND active = 'active'
             `,
         [typeOfServiceId]
     );
