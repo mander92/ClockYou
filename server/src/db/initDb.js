@@ -22,7 +22,6 @@ const initDb = async () => {
                 address VARCHAR(255),
                 postCode VARCHAR(5),
                 city VARCHAR(40),
-                serviceAddress VARCHAR(255),
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
                 modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP
             )

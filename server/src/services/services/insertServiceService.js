@@ -9,25 +9,32 @@ const insertServiceService = async (
     startDate,
     endDate,
     description,
-    serviceAddress,
+    address,
     numberOfEmployee,
     city,
     postCode
 ) => {
     const pool = await getPool();
 
+    const [typeId] = await pool.query(
+        `
+        SELECT id FROM typeOfServices WHERE id = ?
+        `,
+        [typeOfServiceId]
+    );
+
     await pool.query(
         `
-        INSERT INTO addresses(id, serviceAddress, city, postCode) VALUES (?,?,?,?)
+        INSERT INTO addresses(id, address, city, postCode) VALUES (?,?,?,?)
         `,
-        [uuid(), serviceAddress, city, postCode]
+        [uuid(), address, city, postCode]
     );
 
     const [addressId] = await pool.query(
         `
         SELECT id FROM addresses WHERE address = ?
         `,
-        [serviceAddress]
+        [address]
     );
 
     const id = uuid();
@@ -46,7 +53,7 @@ const insertServiceService = async (
             numberOfEmployee,
             clientId,
             addressId[0].id,
-            typeOfServiceId,
+            typeId[0].id,
         ]
     );
 

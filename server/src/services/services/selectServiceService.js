@@ -5,7 +5,7 @@ const selectServiceService = async (status) => {
 
     const [services] = await pool.query(
         `
-            SELECT a.address, a.postCode, a.city, u.email, u.userName, u.firstName, u.lastName, u.dni, u.phone, u.active, s.startDate, s.endDate, s.startTime, s.endTime, s.description, s.numberOfEmployee, t.type, t.city, t.price
+            SELECT a.*, u.*, s.*, t.*
             FROM addresses a
             INNER JOIN users u
             ON a.id = u.addressId

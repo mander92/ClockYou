@@ -17,6 +17,7 @@ const registerUserController = async (req, res, next) => {
             address: Joi.string().max(100),
             postCode: Joi.number(),
             city: Joi.string().max(40),
+            job: Joi.string().max(25),
         });
 
         const validation = schema.validate(req.body);
@@ -36,7 +37,10 @@ const registerUserController = async (req, res, next) => {
             address,
             postCode,
             city,
+            job,
         } = req.body;
+
+        const isAdmin = req.userLogged.role;
 
         const registrationCode = randomstring.generate(30);
 
@@ -51,7 +55,8 @@ const registerUserController = async (req, res, next) => {
             address,
             postCode,
             city,
-            registrationCode
+            registrationCode,
+            job
         );
 
         res.send({
