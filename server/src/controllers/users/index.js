@@ -1,13 +1,14 @@
-import registerUserController from './registerUserController.js';
-import validateUserController from './validateUserController.js';
-import loginUserController from './loginUserController.js';
-import changeUserPasswordController from './changeUserPasswordController.js';
-import sendRecoverPasswordCodeController from './sendRecoverPasswordCodeController.js';
-import registerUserEmployeeController from './registerUserEmployeeController.js';
-import editUserController from './editUserController.js';
-import registerUserAdminController from './registerUserAdminController.js';
-import getEmployeeController from './getEmployeeController.js';
-import listEmployeeController from './listEmployeeController.js';
+import registerUserController from "./registerUserController.js";
+import validateUserController from "./validateUserController.js";
+import loginUserController from "./loginUserController.js";
+import changeUserPasswordController from "./changeUserPasswordController.js";
+import sendRecoverPasswordCodeController from "./sendRecoverPasswordCodeController.js";
+import registerUserEmployeeController from "./registerUserEmployeeController.js";
+import editUserController from "./editUserController.js";
+import registerUserAdminController from "./registerUserAdminController.js";
+import getEmployeeController from "./getEmployeeController.js";
+import listEmployeeController from "./listEmployeeController.js";
+import deleteUserController from "./deleteUserController.js";
 
 export {
   registerUserController,
@@ -19,5 +20,6 @@ export {
   registerUserAdminController,
   editUserController,
   getEmployeeController,
-  listEmployeeController
+  listEmployeeController,
+  deleteUserController,
 };
