@@ -2,7 +2,7 @@ import express from 'express';
 
 import authUser from '../middleware/authUser.js';
 
-import uploadsController from '../controllers/uploads/uploadsController.js';
+import fileController from '../controllers/file/fileController.js';
 
 import { UPLOADS_DIR } from '../../env.js';
 
@@ -23,6 +23,6 @@ import multer from "multer";
 
 const router = express.Router()
 
-router.post('/file', authUser, upload.single("sampleFile"), uploadsController);
+router.post('/file', authUser, upload.single("sampleFile"), fileController);
 
 export default router;
