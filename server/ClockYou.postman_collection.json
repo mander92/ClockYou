@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "a939298f-4b8b-4d5e-b78c-f0f88c888b24",
+		"_postman_id": "e4d7e9fe-f796-4b32-a6b6-350d4ddf5bf4",
 		"name": "ClockYou",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "36002595"
+		"_exporter_id": "35978489"
 	},
 	"item": [
 		{
@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"user1@prueba.com\",\r\n    \"password\": \"123456asdadas\",\r\n    \"userName\": \"user1\",\r\n    \"firstName\": \"Manuel\",\r\n    \"lastName\": \"Ares\",\r\n    \"dni\": \"12121212A\",\r\n    \"phone\": \"123456789\",\r\n    \"address\": \"Vista alegre\",\r\n    \"postCode\": \"12345\",\r\n    \"city\": \"Coruña\"\r\n}",
+							"raw": "{\r\n    \"email\": \"user@clockYou.com\",\r\n    \"password\": \"12345678\",\r\n    \"userName\": \"user\",\r\n    \"firstName\": \"user\",\r\n    \"lastName\": \"user\",\r\n    \"dni\": \"12121212A\",\r\n    \"phone\": \"123456789\",\r\n    \"address\": \"Vista alegre\",\r\n    \"postCode\": \"12345\",\r\n    \"city\": \"Coruña\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -45,13 +45,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk3MTAwYjY0LWU2ZTgtNDdlNy1hZGFmLWVlNWU3Y2ZiZjMxZSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyMzkyMzcwNywiZXhwIjoxNzI0NTI4NTA3fQ.HX3vvNO0giGn-j8Yd1AOXZJFINYyYe2zzEkc3mBoK_M",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImEzMzA4ZmEwLTg3MDktNDVmMy05ZWNiLTQ0NDJkNjZmNmQ3MSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyMzkzMDUzOSwiZXhwIjoxNzI0NTM1MzM5fQ.OQcrzO6rTJ_hKI9pjIV7WyhjcdmeEJQTW6Dk3N50ovo",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"david_miras@hotmail.com\",\r\n    \"userName\": \"Hotmail\",\r\n    \"firstName\": \"David\",\r\n    \"lastName\": \"Mirás\",\r\n    \"dni\": \"12121212A\",\r\n    \"phone\": \"123456789\",\r\n    \"address\": \"asdasd\",\r\n    \"postCode\": \"12345\",\r\n    \"city\": \"asdsad\"\r\n\r\n}",
+							"raw": "{\r\n    \"firstName\": \"edit\",\r\n    \"lastName\": \"edit\",\r\n    \"dni\": \"12121212A\",\r\n    \"phone\": \"666202020\",\r\n    \"address\": \"Calle\",\r\n    \"postCode\": \"12345\",\r\n    \"city\": \"Todas\"\r\n\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -59,7 +59,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/users/1114669d-7ddf-44de-9f62-95d5ffe9955f",
+							"raw": "http://localhost:8000/users/0aae404f-b915-41b8-b449-e6286ca319fe",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -67,7 +67,7 @@
 							"port": "8000",
 							"path": [
 								"users",
-								"1114669d-7ddf-44de-9f62-95d5ffe9955f"
+								"0aae404f-b915-41b8-b449-e6286ca319fe"
 							]
 						}
 					},
@@ -80,13 +80,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyZTEyMDlkLTNjYjgtNGM4Zi1iMWM1LWFkY2FlZmI4NWE3ZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyMzczNjMwNywiZXhwIjoxNzIzODIyNzA3fQ.KmUDHTq_-fwcrOGRpmYPr5ez-cEptxVKFEaJ7xAKc-g",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE1ODE2NTgxLTYzNzEtNGJkNS1hNjFlLTFmNWVmMDNmMzk0ZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyMzk4Mzg2OCwiZXhwIjoxNzI0NTg4NjY4fQ.cNe4XeJw4zRanLJDV-u0_i9Peq6YdpeXOHlzPZfQwaI",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"a@dd.ascc\",\r\n    \"password\": \"asd\",\r\n    \"userName\": \"adssd\"\r\n}",
+							"raw": "{\r\n    \"email\": \"employee@clockYou.com\",\r\n    \"password\": \"12345678\",\r\n    \"userName\": \"employee\",\r\n    \"firstName\": \"employee\",\r\n    \"lastName\": \"employee\",\r\n    \"dni\": \"12121112A\",\r\n    \"phone\": \"123456789\",\r\n    \"address\": \"Vista alegre\",\r\n    \"postCode\": \"12345\",\r\n    \"city\": \"Coruña\",\r\n    \"job\": \"Jardinero\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -116,13 +116,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE1ODE2NTgxLTYzNzEtNGJkNS1hNjFlLTFmNWVmMDNmMzk0ZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyMzk4Mzg2OCwiZXhwIjoxNzI0NTg4NjY4fQ.cNe4XeJw4zRanLJDV-u0_i9Peq6YdpeXOHlzPZfQwaI",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"a\",\r\n    \"password\": \"\",\r\n    \"userName\": \"\"\r\n}",
+							"raw": "{\r\n    \"email\": \"admin@clockYou.com\",\r\n    \"password\": \"12345678\",\r\n    \"userName\": \"admin\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -155,10 +155,16 @@
 					"name": "login",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjkyZDgzM2E5LWU3NTMtNGFkYS04Y2RmLTg5Y2JlZDE1NDMxYiIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjM5ODgzNDQsImV4cCI6MTcyNDU5MzE0NH0.7GxzfPCpQVDkcDXuGDLwvVpZnvUTpGd729c8hj_mpto",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"\",\n    \"password\": \"\"\n}",
+							"raw": "{\n    \"email\": \"david_miras@icloud.com\",\n    \"password\": \"12345678\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -198,7 +204,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/users/validate/K4tzVTAeoOhAKPH5U33nsa4fIedigS",
+							"raw": "http://localhost:8000/users/validate/Awzz8xbNht8EDZQjeqMuhZDspvue19",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -207,7 +213,7 @@
 							"path": [
 								"users",
 								"validate",
-								"K4tzVTAeoOhAKPH5U33nsa4fIedigS"
+								"Awzz8xbNht8EDZQjeqMuhZDspvue19"
 							]
 						}
 					},
@@ -220,7 +226,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"\"\n}",
+							"raw": "{\n    \"email\": \"david_miras@icloud.com\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -250,7 +256,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"\",\n    \"recoverPasswordCode\": \"\",\n    \"newPassword\": \"\"\n}",
+							"raw": "{\n    \"email\": \"david_miras@icloud.com\",\n    \"recoverPasswordCode\": \"xbfUm8priS\",\n    \"newPassword\": \"12345678\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -271,6 +277,49 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "listEmployee",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyNDNmNTQwLWEyODEtNDYyOC04NDNjLWVjNTI5ODM5Y2JhZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNDAwMDI3MiwiZXhwIjoxNzI0NjA1MDcyfQ.-nLW5j2y5QfIKRjPipk6dTED_6AEVXVUV3JoYpQPOJ4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/users/employee",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"users",
+								"employee"
+							],
+							"query": [
+								{
+									"key": "city",
+									"value": "Sevilla",
+									"disabled": true
+								},
+								{
+									"key": "job",
+									"value": "jardinero",
+									"disabled": true
+								},
+								{
+									"key": "active",
+									"value": "0",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -284,13 +333,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImUyMGNiZjc0LTIyOWEtNDczOS04MjQxLTM0MTFhN2Q5NDFjYiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyMzkzNDQwMSwiZXhwIjoxNzI0NTM5MjAxfQ.5ErXWwDCKGprfFwR1Lg5ajdRQPeHu8-aJfPiJ5SSClM",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"type\": \"\",\n    \"description\": \"\",\n    \"city\":\"\"\n}",
+							"raw": "{\n    \"type\": \"Mantenimiento\",\n    \"description\": \"De todo tipo\",\n    \"city\":\"Mallorca\",\n    \"price\":\"23\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -361,12 +410,12 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIyZTYwNWNjLTVlY2YtNGE5My1iYjkyLTAyMGYyOGEyOTk4MiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyMzkzNTE0NywiZXhwIjoxNzI0NTM5OTQ3fQ.23YUWkiYQCeVgoed_plhZup8mgqPtQbjjCBsRksivbs",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8000/typeOfServices/",
+							"raw": "http://localhost:8000/typeOfServices/c3ec6e99-22b7-4c82-b832-f8652949181b",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -374,7 +423,33 @@
 							"port": "8000",
 							"path": [
 								"typeOfServices",
-								""
+								"c3ec6e99-22b7-4c82-b832-f8652949181b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "detail",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/typeOfServices/ba2427b9-fd7a-4288-99e2-08fb5e5efab2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"typeOfServices",
+								"ba2427b9-fd7a-4288-99e2-08fb5e5efab2"
 							]
 						}
 					},
@@ -387,13 +462,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJmOGQ5MTFkLTJmMGQtNDY3Ni1iOGY5LTE3YTFhZGMyMDhhZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyMzk2ODU0OSwiZXhwIjoxNzI0NTczMzQ5fQ.l6dbSrBVgK2y1dJBra9kweN6h6cJU5lqMCDcyDhabjE",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIyZTYwNWNjLTVlY2YtNGE5My1iYjkyLTAyMGYyOGEyOTk4MiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyMzkzNTE0NywiZXhwIjoxNzI0NTM5OTQ3fQ.23YUWkiYQCeVgoed_plhZup8mgqPtQbjjCBsRksivbs",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"type\":\"Jardinería\",\r\n    \"city\":\"Coruña\",\r\n    \"description\":\"Miau\",\r\n    \"price\":\"22\"\r\n}",
+							"raw": "{\n    \"type\": \"Limpieza\",\n    \"description\": \"De todo tipo\",\n    \"city\":\"Mallorca\",\n    \"price\":\"4\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -401,7 +476,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/typeOfServices/86bcd43a-a278-44c7-b2e2-67b86bdc5102",
+							"raw": "http://localhost:8000/typeOfServices/",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -409,7 +484,7 @@
 							"port": "8000",
 							"path": [
 								"typeOfServices",
-								"86bcd43a-a278-44c7-b2e2-67b86bdc5102"
+								""
 							]
 						}
 					},
@@ -427,13 +502,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIyZTYwNWNjLTVlY2YtNGE5My1iYjkyLTAyMGYyOGEyOTk4MiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyMzkzNTE0NywiZXhwIjoxNzI0NTM5OTQ3fQ.23YUWkiYQCeVgoed_plhZup8mgqPtQbjjCBsRksivbs",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjkyZDgzM2E5LWU3NTMtNGFkYS04Y2RmLTg5Y2JlZDE1NDMxYiIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjM5ODgzNDQsImV4cCI6MTcyNDU5MzE0NH0.7GxzfPCpQVDkcDXuGDLwvVpZnvUTpGd729c8hj_mpto",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"startTime\": \"12:00\",\n    \"endTime\": \"23:00\",\n    \"startDate\":\"2024-08-18\",\n    \"endDate\": \"2024-08-19\",\n    \"description\": \"Mantenimiento del jardín\",\n    \"address\": \"Avío\",\n    \"city\": \"Coruña\",\n    \"postCode\": \"15705\",\n    \"numberOfEmployee\": \"2\"\n}",
+							"raw": "{\n    \"startTime\": \"19:00\",\n    \"endTime\": \"23:00\",\n    \"startDate\":\"2024-08-19\",\n    \"endDate\": \"2024-08-19\",\n    \"description\": \"Mantenimiento del jardín\",\n    \"address\": \"Avío\",\n    \"city\": \"Coruña\",\n    \"postCode\": \"15705\",\n    \"numberOfEmployee\": \"2\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -441,7 +516,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/services/1c47cb7e-b41d-4409-a336-1ae9839aaa8c",
+							"raw": "http://localhost:8000/services/ba2427b9-fd7a-4288-99e2-08fb5e5efab2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -449,7 +524,69 @@
 							"port": "8000",
 							"path": [
 								"services",
-								"1c47cb7e-b41d-4409-a336-1ae9839aaa8c"
+								"ba2427b9-fd7a-4288-99e2-08fb5e5efab2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/services?status=pending",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"services"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "pending"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "detail",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/services?status=pending",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"services"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "pending"
+								}
 							]
 						}
 					},
