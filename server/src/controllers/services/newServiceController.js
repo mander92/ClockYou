@@ -25,7 +25,7 @@ const newServiceController = async (req, res, next) => {
             startTime: Joi.string().pattern(/^([01]\d|2[0-3]):([0-5]\d)$/),
             endTime: Joi.string().pattern(/^([01]\d|2[0-3]):([0-5]\d)$/),
             startDate: Joi.date().min('now'),
-            endDate: Joi.date(),
+            endDate: Joi.date().min('now'),
             description: Joi.string().max(500),
             address: Joi.string().max(255),
             city: Joi.string().max(40),

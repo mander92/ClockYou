@@ -17,8 +17,6 @@ const detailServiceController = async (req, res, next) => {
 
         const { serviceId } = req.params;
 
-        console.log(serviceId);
-
         const service = await selectServiceByIdService(serviceId);
 
         res.send({
