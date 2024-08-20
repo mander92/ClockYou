@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "e4d7e9fe-f796-4b32-a6b6-350d4ddf5bf4",
+		"_postman_id": "8a6fc106-31fd-4bbc-aa19-dde6a85f2478",
 		"name": "ClockYou",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "35978489"
+		"_exporter_id": "36002214"
 	},
 	"item": [
 		{
@@ -654,6 +654,46 @@
 							"path": [
 								"services",
 								"01aba586-3ff1-4fa0-b61a-ab565c1075cc"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "uploads",
+			"item": [
+				{
+					"name": "upload",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4N2MyNmRkLWFhYjktNDc5NC05YjYxLWUxZmIyNDFiMGJiYSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNDE2MzAyNCwiZXhwIjoxNzI0NzY3ODI0fQ.LebYOxSODFpistzk7InW7uBAXoXvR1o195DZgGkV8dU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "sampleFile",
+									"type": "file",
+									"src": "/C:/Users/guill/Desktop/pikachu2.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/file",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"file"
 							]
 						}
 					},
