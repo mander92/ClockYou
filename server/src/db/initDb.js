@@ -54,6 +54,7 @@ const initDb = async () => {
             CREATE TABLE IF NOT EXISTS typeOfServices (
                 id CHAR(36) PRIMARY KEY NOT NULL,
                 type VARCHAR(255) NOT NULL,
+                price DECIMAL(10,2) NOT NULL,
                 description VARCHAR(500) NOT NULL,
                 city VARCHAR(30) NOT NULL,
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
