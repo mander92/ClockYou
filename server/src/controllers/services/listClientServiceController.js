@@ -1,29 +1,30 @@
-import selectServiceByClientIdService from "../../services/services/selectServiceByClientIdService.js";
-import generateErrorUtil from "../../utils/generateErrorUtil.js";
+import selectServiceByClientIdService from '../../services/services/selectServiceByClientIdService.js';
+import generateErrorUtil from '../../utils/generateErrorUtil.js';
 
-const listClientServiceController = async (req,res,next) => {
+const listClientServiceController = async (req, res, next) => {
     try {
-        
-        const id = req.userLogged.id;
+        const clientId = req.userLogged.id;
 
-        if(req.userLogged.role !== 'client'){
-            generateErrorUtil('No tienes permisos suficientes', 401)
+        const isClient = req.userLogged.role;
+
+        if (isClient !== 'client') {
+            generateErrorUtil(
+                'Acceso denegado: Se requiere rol de cliente',
+                409
+            );
         }
-        
 
-        const data = await selectServiceByClientIdService(id)
+        const data = await selectServiceByClientIdService(clientId);
 
         res.send({
             status: 'ok',
             data: {
-                data
-            }
-        })
-
-
+                data,
+            },
+        });
     } catch (error) {
-        next(error)
+        next(error);
     }
-}
+};
 
 export default listClientServiceController;
