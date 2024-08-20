@@ -4,6 +4,7 @@ import updateUserStateService from "../../services/users/updateUserStateService.
 const deleteUserController = async (req, res, next) => {
   try {
     const isLogged = req.userLogged;
+    const isAdmin = isLogged.role === "admin";
 
     if (!isLogged) {
       generateErrorUtil("No tienes permisos para realizar esta acción", 401);
@@ -13,6 +14,10 @@ const deleteUserController = async (req, res, next) => {
 
     if (!userId) {
       generateErrorUtil("No se ha encontrado el usuario", 404);
+    }
+
+    if (!isAdmin && userId !== isLogged.id) {
+      generateErrorUtil("No tienes permisos para realizar esta acción", 401);
     }
 
     await updateUserStateService(userId);
