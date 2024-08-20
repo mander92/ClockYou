@@ -9,6 +9,7 @@ import {
   listServicesController,
   detailServiceController,
   deleteServiceByIdController,
+  listClientServiceController
 } from '../controllers/services/index.js';
 
 const router = express.Router();
@@ -21,6 +22,9 @@ router.post(
 );
 
 router.get('/services/', authUser, listServicesController);
+
+router.get('/services/client', authUser, listClientServiceController);
+
 router.get(
   '/services/:serviceId',
   authUser,

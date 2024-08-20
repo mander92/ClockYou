@@ -9,8 +9,8 @@ export {
   newServiceController,
   detailServiceController,
   deleteServiceByIdController,
-    listServicesController,
-    newServiceController,
-    detailServiceController,
-    listClientServiceController
+  listServicesController,
+  newServiceController,
+  detailServiceController,
+  listClientServiceController
 };
