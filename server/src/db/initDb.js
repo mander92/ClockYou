@@ -106,9 +106,93 @@ const initDb = async () => {
             INSERT INTO typeOfServices (id, type, description, city, price) VALUES (?, ?, ?, ?, ?)`,
             [
                 uuid(),
-                'Jardinería',
-                'Mantenimiento de jardines, poda y plantaciones',
+                'Clases Particulares',
+                'Profesores especializados para reforzar conocimientos en distintas materias.',
                 'Coruña',
+                '20',
+            ]
+        );
+
+        await pool.query(
+            `
+            INSERT INTO typeOfServices (id, type, description, city, price) VALUES (?, ?, ?, ?, ?)`,
+            [
+                uuid(),
+                'Entrenamiento Personal',
+                'Entrenadores que te guían para alcanzar tus metas de salud y bienestar.',
+                'Barcelona',
+                '28',
+            ]
+        );
+
+        await pool.query(
+            `
+            INSERT INTO typeOfServices (id, type, description, city, price) VALUES (?, ?, ?, ?, ?)`,
+            [
+                uuid(),
+                'Cuidado De Mascotas',
+                'Atención y paseos para tus mascotas cuando lo necesites.',
+                'Madrid',
+                '12.50',
+            ]
+        );
+
+        await pool.query(
+            `
+            INSERT INTO typeOfServices (id, type, description, city, price) VALUES (?, ?, ?, ?, ?)`,
+            [
+                uuid(),
+                'Limpieza A Domicilio',
+                'Profesionales para la limpieza y organización de tu hogar.',
+                'Sevilla',
+                '30',
+            ]
+        );
+
+        await pool.query(
+            `
+            INSERT INTO typeOfServices (id, type, description, city, price) VALUES (?, ?, ?, ?, ?)`,
+            [
+                uuid(),
+                'Masajes',
+                'Sesiones de relajación y bienestar a domicilio.',
+                'Zaragoza',
+                '25',
+            ]
+        );
+
+        await pool.query(
+            `
+            INSERT INTO typeOfServices (id, type, description, city, price) VALUES (?, ?, ?, ?, ?)`,
+            [
+                uuid(),
+                'Mantenimiento Del Hogar',
+                'Reparaciones y soluciones rápidas para el hogar.',
+                'Castellón',
+                '28.80',
+            ]
+        );
+
+        await pool.query(
+            `
+            INSERT INTO typeOfServices (id, type, description, city, price) VALUES (?, ?, ?, ?, ?)`,
+            [
+                uuid(),
+                'Guía Turístico',
+                'Tours personalizados y acompañamiento en recorridos.',
+                'Portugal',
+                '21.30',
+            ]
+        );
+
+        await pool.query(
+            `
+            INSERT INTO typeOfServices (id, type, description, city, price) VALUES (?, ?, ?, ?, ?)`,
+            [
+                uuid(),
+                'Peluquería',
+                'Esteticistas a domicilio para cortes de pelo y tratamientos de belleza.',
+                'Bilbao',
                 '13.50',
             ]
         );
@@ -118,17 +202,11 @@ const initDb = async () => {
             INSERT INTO typeOfServices (id, type, description, city, price) VALUES (?, ?, ?, ?, ?)`,
             [
                 uuid(),
-                'Albaliñería',
-                'Servicios de albaliñería básicos',
-                'Barcelona',
-                '9',
+                'Lavado De Automóviles',
+                'Limpieza y detallado de vehículos en el lugar que prefieras.',
+                'León',
+                '22',
             ]
-        );
-
-        await pool.query(
-            `
-            INSERT INTO typeOfServices (id, type, description, city, price) VALUES (?, ?, ?, ?, ?)`,
-            [uuid(), 'Clases de KUNG-FU', 'Clases de KUNG-FU', 'Madrid', '12']
         );
 
         await pool.query(
@@ -136,10 +214,10 @@ const initDb = async () => {
             INSERT INTO typeOfServices (id, type, description, city, price) VALUES (?, ?, ?, ?, ?)`,
             [
                 uuid(),
-                'Enderezar plátanos',
-                'Enderazamos plátanos... consultar con Admin',
-                'Sevilla',
-                '50',
+                'Mecánico De Bicicletas',
+                'Reparación y mantenimiento de bicicletas.',
+                'Alicante',
+                '31.50',
             ]
         );
 
