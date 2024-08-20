@@ -1,15 +1,27 @@
+import Joi from 'joi';
+
 import getPool from '../db/getPool.js';
 import generateErrorUtil from '../utils/generateErrorUtil.js';
 
 const serviceExists = async (req, res, next) => {
     try {
+        const schema = Joi.object().keys({
+            serviceId: Joi.string().length(36),
+        });
+
+        const validation = schema.validate(req.params);
+
+        if (validation.error) {
+            generateErrorUtil(validation.error.message, 401);
+        }
+
         const pool = await getPool();
 
         const { serviceId } = req.params;
 
         const [service] = await pool.query(
             `
-            SELECT id FROM services WHERE id=?
+            SELECT id FROM services WHERE id=? AND deletedAt IS NULL
             `,
             [serviceId]
         );

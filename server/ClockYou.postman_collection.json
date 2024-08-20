@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "318467ff-c42e-450b-bad7-48af287414cb",
+		"_postman_id": "e4d7e9fe-f796-4b32-a6b6-350d4ddf5bf4",
 		"name": "ClockYou",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "36002595"
+		"_exporter_id": "35978489"
 	},
 	"item": [
 		{
@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"user@clockYou.com\",\r\n    \"password\": \"12345678\",\r\n    \"userName\": \"User\",\r\n    \"firstName\": \"user\",\r\n    \"lastName\": \"user\",\r\n    \"dni\": \"00000000A\",\r\n    \"phone\": \"000000000\",\r\n    \"address\": \"Calle Real, 18\",\r\n    \"postCode\": \"00000\",\r\n    \"city\": \"Coruña\"\r\n}",
+							"raw": "{\r\n    \"email\": \"david_miras@hotmail.com\",\r\n    \"password\": \"12345678\",\r\n    \"firstName\": \"David\",\r\n    \"lastName\": \"Mirás Bellón\",\r\n    \"dni\": \"12894578Z\",\r\n    \"phone\": \"987654321\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -45,13 +45,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImEzMzA4ZmEwLTg3MDktNDVmMy05ZWNiLTQ0NDJkNjZmNmQ3MSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyMzkzMDUzOSwiZXhwIjoxNzI0NTM1MzM5fQ.OQcrzO6rTJ_hKI9pjIV7WyhjcdmeEJQTW6Dk3N50ovo",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjkzOTQ5MGYzLTBiOTQtNGRjMC04ODQxLTdmNzg5MTBhYWNiMiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNDE2MzgxNSwiZXhwIjoxNzI0NzY4NjE1fQ.PFg9TgollZTIuaGGmceYWpuqERxmPrSq2cDv0ABkbtk",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"edit\",\r\n    \"lastName\": \"edit\",\r\n    \"dni\": \"12121212A\",\r\n    \"phone\": \"666202020\",\r\n    \"address\": \"Calle\",\r\n    \"postCode\": \"12345\",\r\n    \"city\": \"Todas\"\r\n\r\n}",
+							"raw": "{\r\n    \"firstName\": \"Admin\",\r\n    \"lastName\": \"ClockYou\",\r\n    \"dni\": \"46723478G\",\r\n    \"phone\": \"666202020\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -59,7 +59,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/users/0aae404f-b915-41b8-b449-e6286ca319fe",
+							"raw": "http://localhost:8000/users/939490f3-0b94-4dc0-8841-7f78910aacb",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -67,7 +67,7 @@
 							"port": "8000",
 							"path": [
 								"users",
-								"0aae404f-b915-41b8-b449-e6286ca319fe"
+								"939490f3-0b94-4dc0-8841-7f78910aacb"
 							]
 						}
 					},
@@ -80,13 +80,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNhYjhmNWRiLWM5YWQtNGFhOS1hOGQ3LTMyNWJiMzU0MGVlYiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNDEzMDI4MSwiZXhwIjoxNzI0NzM1MDgxfQ.LjF2ce3Lx5nF6fCOqyVaqsArGpoPqG57G_FSCB4Zn0E",
+								"value": "{{admin}}",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"employee@clockYou.com\",\r\n    \"password\": \"12345678\",\r\n    \"firstName\": \"employee\",\r\n    \"lastName\": \"employee\",\r\n    \"dni\": \"12121112A\",\r\n    \"phone\": \"123456789\",\r\n    \"city\": \"Coruña\",\r\n    \"job\": \"Jardinero\"\r\n}",
+							"raw": "{\r\n    \"email\": \"employee@clockYou.com\",\r\n    \"password\": \"12345678\",\r\n    \"firstName\": \"employee\",\r\n    \"lastName\": \"ClockYou\",\r\n    \"dni\": \"12376538A\",\r\n    \"phone\": \"690123587\",\r\n    \"job\": \"Masajista\",\r\n    \"city\":\"Portugal\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -116,13 +116,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE1ODE2NTgxLTYzNzEtNGJkNS1hNjFlLTFmNWVmMDNmMzk0ZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyMzk4Mzg2OCwiZXhwIjoxNzI0NTg4NjY4fQ.cNe4XeJw4zRanLJDV-u0_i9Peq6YdpeXOHlzPZfQwaI",
+								"value": "{{admin}}",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"admin@clockYou.com\",\r\n    \"password\": \"12345678\",\r\n    \"userName\": \"admin\"\r\n}",
+							"raw": "{\r\n    \"email\": \"admin@clockYou.com\",\r\n    \"password\": \"12345678\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -155,16 +155,10 @@
 					"name": "loginClient",
 					"request": {
 						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjkyZDgzM2E5LWU3NTMtNGFkYS04Y2RmLTg5Y2JlZDE1NDMxYiIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjM5ODgzNDQsImV4cCI6MTcyNDU5MzE0NH0.7GxzfPCpQVDkcDXuGDLwvVpZnvUTpGd729c8hj_mpto",
-								"type": "text"
-							}
-						],
+						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"david_miras@icloud.com\",\n    \"password\": \"12345678\"\n}",
+							"raw": "{\n    \"email\": \"david_miras@hotmail.com\",\n    \"password\": \"12345678\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -190,13 +184,7 @@
 					"name": "loginEmployee",
 					"request": {
 						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjkyZDgzM2E5LWU3NTMtNGFkYS04Y2RmLTg5Y2JlZDE1NDMxYiIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjM5ODgzNDQsImV4cCI6MTcyNDU5MzE0NH0.7GxzfPCpQVDkcDXuGDLwvVpZnvUTpGd729c8hj_mpto",
-								"type": "text"
-							}
-						],
+						"header": [],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"email\": \"employee@clockYou.com\",\n    \"password\": \"12345678\"\n}",
@@ -225,13 +213,7 @@
 					"name": "loginAdmin",
 					"request": {
 						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjkyZDgzM2E5LWU3NTMtNGFkYS04Y2RmLTg5Y2JlZDE1NDMxYiIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjM5ODgzNDQsImV4cCI6MTcyNDU5MzE0NH0.7GxzfPCpQVDkcDXuGDLwvVpZnvUTpGd729c8hj_mpto",
-								"type": "text"
-							}
-						],
+						"header": [],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"email\": \"david_miras@icloud.com\",\n    \"password\": \"12345678\"\n}",
@@ -326,7 +308,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"david_miras@icloud.com\",\n    \"recoverPasswordCode\": \"xbfUm8priS\",\n    \"newPassword\": \"12345678\"\n}",
+							"raw": "{\n    \"email\": \"david_miras@icloud.com\",\n    \"recoverPasswordCode\": \"2PORD7kj1C\",\n    \"newPassword\": \"12345678\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -355,7 +337,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyNDNmNTQwLWEyODEtNDYyOC04NDNjLWVjNTI5ODM5Y2JhZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNDAwMDI3MiwiZXhwIjoxNzI0NjA1MDcyfQ.-nLW5j2y5QfIKRjPipk6dTED_6AEVXVUV3JoYpQPOJ4",
+								"value": "{{admin}}",
 								"type": "text"
 							}
 						],
@@ -373,7 +355,7 @@
 							"query": [
 								{
 									"key": "city",
-									"value": "Sevilla",
+									"value": "Zaragoza",
 									"disabled": true
 								},
 								{
@@ -392,27 +374,18 @@
 					"response": []
 				},
 				{
-					"name": "deleteUser(token)",
+					"name": "deleteUser",
 					"request": {
 						"method": "DELETE",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNhYjhmNWRiLWM5YWQtNGFhOS1hOGQ3LTMyNWJiMzU0MGVlYiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNDEzMDI4MSwiZXhwIjoxNzI0NzM1MDgxfQ.LjF2ce3Lx5nF6fCOqyVaqsArGpoPqG57G_FSCB4Zn0E",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAyN2ViMTk3LWI5MDktNGQ5ZC1hYTAyLWUwMGRlZDU1MmM0NSIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjQxNjQyMjMsImV4cCI6MTcyNDc2OTAyM30.mssBpEsT9EwEj4mQhGH2CcrZuAfBFBKj05veElNJRnA",
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "http://localhost:8000/users/9307dcf2-cf65-49e0-a1bd-3b6d69da3a32",
+							"raw": "http://localhost:8000/users/027eb197-b909-4d9d-aa02-e00ded552c45",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -420,7 +393,7 @@
 							"port": "8000",
 							"path": [
 								"users",
-								"9307dcf2-cf65-49e0-a1bd-3b6d69da3a32"
+								"027eb197-b909-4d9d-aa02-e00ded552c45"
 							]
 						}
 					},
@@ -438,13 +411,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImUyMGNiZjc0LTIyOWEtNDczOS04MjQxLTM0MTFhN2Q5NDFjYiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyMzkzNDQwMSwiZXhwIjoxNzI0NTM5MjAxfQ.5ErXWwDCKGprfFwR1Lg5ajdRQPeHu8-aJfPiJ5SSClM",
+								"value": "{{admin}}",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"type\": \"Mantenimiento\",\n    \"description\": \"De todo tipo\",\n    \"city\":\"Mallorca\",\n    \"price\":\"23\"\n}",
+							"raw": "{\n    \"type\": \"Peluquero\",\n    \"description\": \"Corte y retoques de barba\",\n    \"city\":\"Castellón\",\n    \"price\":\"12.50\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -466,7 +439,7 @@
 					"response": []
 				},
 				{
-					"name": "list",
+					"name": "list(filter)",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -483,14 +456,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/typeOfServices",
+							"raw": "http://localhost:8000/typeOfServices/",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
-								"typeOfServices"
+								"typeOfServices",
+								""
 							],
 							"query": [
 								{
@@ -515,12 +489,16 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIyZTYwNWNjLTVlY2YtNGE5My1iYjkyLTAyMGYyOGEyOTk4MiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyMzkzNTE0NywiZXhwIjoxNzI0NTM5OTQ3fQ.23YUWkiYQCeVgoed_plhZup8mgqPtQbjjCBsRksivbs",
+								"value": "{{admin}}",
 								"type": "text"
 							}
 						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
 						"url": {
-							"raw": "http://localhost:8000/typeOfServices/c3ec6e99-22b7-4c82-b832-f8652949181b",
+							"raw": "http://localhost:8000/typeOfServices/4fc7d0f3-fa98-43c8-b979-3b1223a4099a",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -528,7 +506,7 @@
 							"port": "8000",
 							"path": [
 								"typeOfServices",
-								"c3ec6e99-22b7-4c82-b832-f8652949181b"
+								"4fc7d0f3-fa98-43c8-b979-3b1223a4099a"
 							]
 						}
 					},
@@ -538,15 +516,9 @@
 					"name": "detail",
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "",
-								"type": "text"
-							}
-						],
+						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/typeOfServices/ba2427b9-fd7a-4288-99e2-08fb5e5efab2",
+							"raw": "http://localhost:8000/typeOfServices/0b13bc26-74bf-4e8e-9ed3-9ef77ea9731a",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -554,7 +526,7 @@
 							"port": "8000",
 							"path": [
 								"typeOfServices",
-								"ba2427b9-fd7a-4288-99e2-08fb5e5efab2"
+								"0b13bc26-74bf-4e8e-9ed3-9ef77ea9731a"
 							]
 						}
 					},
@@ -567,13 +539,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIyZTYwNWNjLTVlY2YtNGE5My1iYjkyLTAyMGYyOGEyOTk4MiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyMzkzNTE0NywiZXhwIjoxNzI0NTM5OTQ3fQ.23YUWkiYQCeVgoed_plhZup8mgqPtQbjjCBsRksivbs",
+								"value": "{{admin}}",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"type\": \"Limpieza\",\n    \"description\": \"De todo tipo\",\n    \"city\":\"Mallorca\",\n    \"price\":\"4\"\n}",
+							"raw": "{\n    \"description\": \"Hacemos todo lo que nos pida el cliente\",\n    \"price\":\"22.80\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -581,7 +553,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/typeOfServices/",
+							"raw": "http://localhost:8000/typeOfServices/0b13bc26-74bf-4e8e-9ed3-9ef77ea9731a",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -589,7 +561,7 @@
 							"port": "8000",
 							"path": [
 								"typeOfServices",
-								""
+								"0b13bc26-74bf-4e8e-9ed3-9ef77ea9731a"
 							]
 						}
 					},
@@ -607,13 +579,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjkyZDgzM2E5LWU3NTMtNGFkYS04Y2RmLTg5Y2JlZDE1NDMxYiIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjM5ODgzNDQsImV4cCI6MTcyNDU5MzE0NH0.7GxzfPCpQVDkcDXuGDLwvVpZnvUTpGd729c8hj_mpto",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkNTAzZDg3LWM5YzktNGQ0Ny04NjYwLWZhNmU0ZmNmNjJhZiIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjQxNjQ2NTcsImV4cCI6MTcyNDc2OTQ1N30.uSIaWeqsp7REWos1gvhvCTRiwZDtY-gQ1GwjzA0YxxE",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"startTime\": \"19:00\",\n    \"endTime\": \"23:00\",\n    \"startDate\":\"2024-08-19\",\n    \"endDate\": \"2024-08-19\",\n    \"description\": \"Mantenimiento del jardín\",\n    \"address\": \"Avío\",\n    \"city\": \"Coruña\",\n    \"postCode\": \"15705\",\n    \"numberOfEmployee\": \"2\"\n}",
+							"raw": "{\n    \"date\": \"2024-08-22\",\n    \"hours\": \"3\",\n    \"comments\": \"Cortar césped\",\n    \"address\": \"Avío\",\n    \"city\": \"Santiago de Compostela\",\n    \"postCode\": \"15705\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -621,7 +593,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/services/ba2427b9-fd7a-4288-99e2-08fb5e5efab2",
+							"raw": "http://localhost:8000/services/17f7be1a-e96d-4255-a72f-286513c7fe3b",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -629,7 +601,7 @@
 							"port": "8000",
 							"path": [
 								"services",
-								"ba2427b9-fd7a-4288-99e2-08fb5e5efab2"
+								"17f7be1a-e96d-4255-a72f-286513c7fe3b"
 							]
 						}
 					},
@@ -642,62 +614,66 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "",
+								"value": "{{admin}}",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8000/services?status=pending",
+							"raw": "http://localhost:8000/services/",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
-								"services"
-							],
-							"query": [
-								{
-									"key": "status",
-									"value": "pending"
-								}
+								"services",
+								""
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "detail(client)",
+					"name": "detail",
 					"request": {
 						"method": "GET",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "",
+								"value": "{{client}}",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8000/services?status=pending",
+							"raw": "http://localhost:8000/services/01aba586-3ff1-4fa0-b61a-ab565c1075cc",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
-								"services"
-							],
-							"query": [
-								{
-									"key": "status",
-									"value": "pending"
-								}
+								"services",
+								"01aba586-3ff1-4fa0-b61a-ab565c1075cc"
 							]
 						}
 					},
 					"response": []
 				}
 			]
+		}
+	],
+	"variable": [
+		{
+			"key": "client",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNkNzA4NzVmLWNhNWMtNDViMy05M2YyLTgxODRkNzhhZjc2NyIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjQxMDgyMjYsImV4cCI6MTcyNDcxMzAyNn0.NCq-C84bWb20gSzjOSaTh8lk6y8-hXwBq_2BwcuLKJU"
+		},
+		{
+			"key": "admin",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ3ODFmZGUxLTA3YWUtNGI3OC04MmUwLTQyMDkwNGRkNjI1MiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNDEwODQ5MCwiZXhwIjoxNzI0NzEzMjkwfQ.FRezvVXAMHmEMts1iKpetrt_n40JIaODDxtEIObpFmU"
+		},
+		{
+			"key": "employee",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM3ZDAzYjJhLWQyNzktNDQ4NC05NDRjLWVjMjlmZDQ1ZDBkZSIsInJvbGUiOiJlbXBsb3llZSIsImlhdCI6MTcyNDEwODYzMCwiZXhwIjoxNzI0NzEzNDMwfQ._LxDEZHZhcE90XaIM4iGzzBnmsV8l-6CWNpuF0ojJgQ"
 		}
 	]
 }

@@ -1,15 +1,27 @@
+import Joi from 'joi';
+
 import getPool from '../db/getPool.js';
 import generateErrorUtil from '../utils/generateErrorUtil.js';
 
 const userExists = async (req, res, next) => {
     try {
+        const schema = Joi.object().keys({
+            userId: Joi.string().length(36),
+        });
+
+        const validation = schema.validate(req.params);
+
+        if (validation.error) {
+            generateErrorUtil(validation.error.message, 401);
+        }
+
         const pool = await getPool();
 
         const userId = req.params.userId || req.userLogged.id;
 
         const [user] = await pool.query(
             `
-            SELECT id FROM users WHERE id=?
+            SELECT id FROM users WHERE id=? AND deletedAt IS NULL
             `,
             [userId]
         );

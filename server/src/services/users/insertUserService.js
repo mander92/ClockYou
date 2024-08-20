@@ -31,15 +31,18 @@ const insertUserService = async (
     const emailSubject = `Activa tu cuenta de ClockYou`;
 
     const emailBody = `
-                !!Bienvenid@ ${firstName} ${lastName}¡¡
-
-                Gracias por registrarte en ClockYou. Para activar tu cuenta haga click
-                en el siguiente enlace:
-
-                <a href="http://localhost:${PORT}/users/validate/${registrationCode}">Activar Cuenta</a>               
-
-                Hecho con ❤ por el equipo de ClockYou.
-    `;
+    <html>
+        <body style="display: flex; justify-content: center; margin: 0;">
+            <div style="text-align: center;">
+                <h1>ClockYou</h1>
+                <h2>¡¡¡Bienvenid@ ${firstName} ${lastName}!!!</h2>
+                <h3>Gracias por registrarte en ClockYou.</h3>
+                <h4>Para activar su cuenta haga click <a href="http://localhost:${PORT}/users/validate/${registrationCode}">Aquí</a></h4>
+                <h5>Hecho con ❤ por el equipo de ClockYou.</h5>
+            </div>
+        </body>
+    </html>
+`;
 
     await sendMailUtil(email, emailSubject, emailBody);
 

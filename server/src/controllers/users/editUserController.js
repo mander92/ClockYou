@@ -5,14 +5,12 @@ import updateUserService from '../../services/users/updateUserService.js';
 
 const editUserController = async (req, res, next) => {
     try {
-        const schema = Joi.object().keys({
-            userId: Joi.string().length(36),
-        });
+        const loggedId = req.userLogged.id;
 
-        const validation = schema.validate(req.params);
+        const { userId } = req.params;
 
-        if (validation.error) {
-            generateErrorUtil(validation.error.message, 401);
+        if (loggedId !== userId) {
+            generateErrorUtil('Acceso denegado, el token no coincide', 409);
         }
 
         const schemaBody = Joi.object().keys({
@@ -28,7 +26,6 @@ const editUserController = async (req, res, next) => {
             generateErrorUtil(validationBody.error.message, 401);
         }
 
-        const { userId } = req.params;
         const { firstName, lastName, dni, phone } = req.body;
 
         await updateUserService(userId, firstName, lastName, dni, phone);

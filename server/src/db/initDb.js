@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt';
 import { v4 as uuid } from 'uuid';
 
 import getPool from './getPool.js';
-import { ADMIN_EMAIL, ADMIN_USERNAME, ADMIN_PASSWORD } from '../../env.js';
+import { ADMIN_EMAIL, ADMIN_PASSWORD } from '../../env.js';
 
 const initDb = async () => {
     try {
@@ -34,7 +34,7 @@ const initDb = async () => {
                 email VARCHAR(100) UNIQUE NOT NULL,
                 firstName VARCHAR(25),
                 lastName VARCHAR(40),
-                dni VARCHAR(9) UNIQUE,
+                dni VARCHAR(11) UNIQUE,
                 password VARCHAR(255) NOT NULL,
                 phone VARCHAR(15),
                 city VARCHAR(25),
@@ -54,7 +54,6 @@ const initDb = async () => {
             CREATE TABLE IF NOT EXISTS typeOfServices (
                 id CHAR(36) PRIMARY KEY NOT NULL,
                 type VARCHAR(255) NOT NULL,
-                price DECIMAL(10,2),
                 description VARCHAR(500) NOT NULL,
                 city VARCHAR(30) NOT NULL,
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -70,6 +69,8 @@ const initDb = async () => {
                 hours INT UNSIGNED NOT NULL,
                 description VARCHAR(500),
                 rating INT UNSIGNED,
+                totalPrice VARCHAR(10),
+                comments VARCHAR(255),
                 status ENUM ('accepted', 'rejected', 'pending', 'completed', 'canceled') DEFAULT 'pending',
                 clientId CHAR(36) NOT NULL,
                 addressId CHAR(36) NOT NULL,

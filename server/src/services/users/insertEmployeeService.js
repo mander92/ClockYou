@@ -31,8 +31,8 @@ const insertEmployeeService = async (
 
     await pool.query(
         `
-              INSERT INTO users(id, email, password, firstName, lastName, dni, phone, role, job, city )
-              VALUES (?,?,?,?,?,?,?,?,?,?)
+              INSERT INTO users(id, email, password, firstName, lastName, dni, phone, role, job, city, active )
+              VALUES (?,?,?,?,?,?,?,?,?,?,?)
           `,
         [
             uuid(),
@@ -45,13 +45,8 @@ const insertEmployeeService = async (
             'employee',
             job,
             city,
+            1,
         ]
-    );
-
-    await pool.query(
-        `
-            UPDATE users SET active=1
-        `
     );
 };
 

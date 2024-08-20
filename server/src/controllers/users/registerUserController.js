@@ -11,7 +11,7 @@ const registerUserController = async (req, res, next) => {
             password: Joi.string().min(8).max(25),
             firstName: Joi.string().max(25),
             lastName: Joi.string().max(40),
-            dni: Joi.string().min(9),
+            dni: Joi.string().length(9),
             phone: Joi.string().max(15),
             job: Joi.string().max(25),
         });
