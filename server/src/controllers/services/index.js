@@ -6,11 +6,8 @@ import listClientServiceController from './listClientServiceController.js';
 
 export {
   listServicesController,
-  newServiceController,
   detailServiceController,
   deleteServiceByIdController,
-  listServicesController,
   newServiceController,
-  detailServiceController,
   listClientServiceController
 };
