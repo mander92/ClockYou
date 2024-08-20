@@ -9,7 +9,8 @@ import {
   listServicesController,
   detailServiceController,
   deleteServiceByIdController,
-  listClientServiceController
+  listClientServiceController,
+  editServiceController
 } from '../controllers/services/index.js';
 
 const router = express.Router();
@@ -32,12 +33,21 @@ router.get(
   detailServiceController
 );
 
+router.put(
+  '/services/:serviceId',
+  authUser,
+  serviceExists,
+  editServiceController
+);
+
 router.delete(
   '/services/:serviceId',
   authUser,
   serviceExists,
   deleteServiceByIdController
 );
+
+
 
 /* Rutas que necesitamos hacer todavia para esta tabla
 
