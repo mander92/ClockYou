@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "8a6fc106-31fd-4bbc-aa19-dde6a85f2478",
+		"_postman_id": "e015d9cf-b831-48b7-a763-29979c89410b",
 		"name": "ClockYou",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "36002214"
+		"_exporter_id": "35978489"
 	},
 	"item": [
 		{
@@ -130,7 +130,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/users/admin/register?",
+							"raw": "http://localhost:8000/users/admin/register",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -140,12 +140,6 @@
 								"users",
 								"admin",
 								"register"
-							],
-							"query": [
-								{
-									"key": "",
-									"value": null
-								}
 							]
 						}
 					},
@@ -553,7 +547,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/typeOfServices/0b13bc26-74bf-4e8e-9ed3-9ef77ea9731a",
+							"raw": "http://localhost:8000/typeOfServices/570fa7c6-5b05-4775-8435-934cb41fe846",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -561,7 +555,7 @@
 							"port": "8000",
 							"path": [
 								"typeOfServices",
-								"0b13bc26-74bf-4e8e-9ed3-9ef77ea9731a"
+								"570fa7c6-5b05-4775-8435-934cb41fe846"
 							]
 						}
 					},
@@ -579,7 +573,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkNTAzZDg3LWM5YzktNGQ0Ny04NjYwLWZhNmU0ZmNmNjJhZiIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjQxNjQ2NTcsImV4cCI6MTcyNDc2OTQ1N30.uSIaWeqsp7REWos1gvhvCTRiwZDtY-gQ1GwjzA0YxxE",
+								"value": "{{client}}",
 								"type": "text"
 							}
 						],
@@ -593,7 +587,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/services/17f7be1a-e96d-4255-a72f-286513c7fe3b",
+							"raw": "http://localhost:8000/services/f038d0d0-a8b5-4bfc-b54b-9b7b70bc293e",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -601,7 +595,7 @@
 							"port": "8000",
 							"path": [
 								"services",
-								"17f7be1a-e96d-4255-a72f-286513c7fe3b"
+								"f038d0d0-a8b5-4bfc-b54b-9b7b70bc293e"
 							]
 						}
 					},
@@ -645,7 +639,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8000/services/01aba586-3ff1-4fa0-b61a-ab565c1075cc",
+							"raw": "http://localhost:8000/services/10927610-5fc4-4db7-8c63-2d0900499766",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -653,7 +647,94 @@
 							"port": "8000",
 							"path": [
 								"services",
-								"01aba586-3ff1-4fa0-b61a-ab565c1075cc"
+								"10927610-5fc4-4db7-8c63-2d0900499766"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete(admin)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{admin}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/services/10927610-5fc4-4db7-8c63-2d0900499766",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"services",
+								"10927610-5fc4-4db7-8c63-2d0900499766"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{admin}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"comments\": \"Probandooooo\",\n    \"date\":\"2024-12-32\",\n    \"hours\":\"8\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/services/10927610-5fc4-4db7-8c63-2d0900499766",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"services",
+								"10927610-5fc4-4db7-8c63-2d0900499766"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list(client)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJhNzViZWYxLTcwOGUtNDMxYS1iMjQ2LTI2NjE1ZWQxNmMwNSIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjQxODYwODUsImV4cCI6MTcyNDc5MDg4NX0.5eQ0vAZfQDhnRmVKVdaypJyvuaI9fOxsVoC44WKz_xg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/services/client",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"services",
+								"client"
 							]
 						}
 					},
