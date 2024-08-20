@@ -17,3 +17,24 @@ https://www.youtube.com/watch?v=a_L9U4y2PkA&t
 
 - CONFIGURACIÓN del archivo ".gitignore"
 https://www.freecodecamp.org/news/gitignore-file-how-to-ignore-files-and-folders-in-git/
+
+======================================================================
+
+
+TAREAS PENDIENTES: 
+------------------
+
+RUTAS service
+-------
+
+GET. -> Service (solo los servicios que ha contratado un cliente en concreto)
+GET. -> Service (solo los servicios que ha contratado un empleado en concreto)
+DELETE. -> Services/:id
+PUT. -> Services/:id
+
+
+RUTAS users
+-------
+
+PUT 'users/edit/avatar:id'
+
