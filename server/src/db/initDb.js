@@ -68,7 +68,6 @@ const initDb = async () => {
                 id CHAR(36) PRIMARY KEY NOT NULL,
                 date CHAR(10) NOT NULL,
                 hours INT UNSIGNED NOT NULL,
-                description VARCHAR(500),
                 rating INT UNSIGNED,
                 totalPrice VARCHAR(10),
                 comments VARCHAR(255),
@@ -88,8 +87,8 @@ const initDb = async () => {
         await pool.query(`
             CREATE TABLE IF NOT EXISTS shiftRecords(
                 id CHAR(36) PRIMARY KEY NOT NULL,
-                clockIn DATETIME NOT NULL,
-                clockOut DATETIME,
+                clockIn DATETIME DEFAULT NOW(),
+                clockOut DATETIME DEFAULT NOW(),
                 latitude DECIMAL(10,8),
                 longitude DECIMAL(11,8),
                 serviceId CHAR(36) NOT NULL,
