@@ -45,8 +45,7 @@ router.delete('/users/:userId', authUser, userExists, deleteUserController);
 
 /* 
 
-PUT 'users/edit/avatar:id'
-DELETE(desactivar usuario )
+PUT 'users/edit/avatar:id' ---> marc y david
 
 */
 
