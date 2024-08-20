@@ -22,14 +22,16 @@ router.post('/users/register', registerUserController);
 router.get('/users/validate/:registrationCode', validateUserController);
 
 router.post('/users/admin/register', authUser, registerUserAdminController);
-router.post('/users/employee/register',authUser,registerUserEmployeeController);
+router.post(
+  '/users/employee/register',
+  authUser,
+  registerUserEmployeeController
+);
 
 router.post('/users/login', loginUserController);
 
 router.post('/users/password/recover', sendRecoverPasswordCodeController);
 router.patch('/users/password', changeUserPasswordController);
-
-
 
 router.get('/users/employee', authUser, listEmployeeController);
 router.get(
@@ -41,16 +43,11 @@ router.get(
 
 router.put('/users/:userId', authUser, userExists, editUserController);
 
-
-
 router.delete('/users/:userId', authUser, userExists, deleteUserController);
 
 /* 
 
 PUT 'users/edit/avatar:id'
-DELETE(desactivar usuario || deletedAt)
-
-9307dcf2-cf65-49e0-a1bd-3b6d69da3a32
 
 */
 
