@@ -4,7 +4,7 @@ import { v4 as uuid } from 'uuid';
 import getPool from '../../db/getPool.js';
 import generateErrorUtil from '../../utils/generateErrorUtil.js';
 
-const insertAdminService = async (email, password, userName) => {
+const insertAdminService = async (email, password) => {
     const pool = await getPool();
 
     const [user] = await pool.query(

@@ -12,7 +12,7 @@ const registerUserEmployeeController = async (req, res, next) => {
                 'Acceso denegado: Se requiere rol de Administrador',
                 409
             );
-        }
+        };
 
         const schema = Joi.object().keys({
             email: Joi.string().email(),

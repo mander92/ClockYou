@@ -19,16 +19,18 @@ import {
 const router = express.Router();
 
 router.post('/users/register', registerUserController);
-router.post('/users/admin/register', authUser, registerUserAdminController);
-router.post('/users/login', loginUserController);
-router.post('/users/password/recover', sendRecoverPasswordCodeController);
-router.post(
-  '/users/employee/register',
-  authUser,
-  registerUserEmployeeController
-);
-
 router.get('/users/validate/:registrationCode', validateUserController);
+
+router.post('/users/admin/register', authUser, registerUserAdminController);
+router.post('/users/employee/register',authUser,registerUserEmployeeController);
+
+router.post('/users/login', loginUserController);
+
+router.post('/users/password/recover', sendRecoverPasswordCodeController);
+router.patch('/users/password', changeUserPasswordController);
+
+
+
 router.get('/users/employee', authUser, listEmployeeController);
 router.get(
   '/users/employee/:employeeId',
@@ -39,7 +41,7 @@ router.get(
 
 router.put('/users/:userId', authUser, userExists, editUserController);
 
-router.patch('/users/password', changeUserPasswordController);
+
 
 router.delete('/users/:userId', authUser, userExists, deleteUserController);
 
