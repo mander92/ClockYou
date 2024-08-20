@@ -1,10 +1,10 @@
 import getPool from '../../db/getPool.js';
 
 const selectServiceService = async () => {
-    const pool = await getPool();
+  const pool = await getPool();
 
-    const [services] = await pool.query(
-        `
+  const [services] = await pool.query(
+    `
             SELECT s.status AS Estado, s.createdAt AS Creación, 
             t.id AS typeOfServiceId, t.type AS Tipo_Servicio, t.city AS Provincia, t.price AS Precio, 
             a.id AS addressId , a.address AS Direccón, a.postCode AS CP, a.city AS Ciudad, 
@@ -17,11 +17,11 @@ const selectServiceService = async () => {
             ON u.id = s.clientId
             INNER JOIN typeOfServices t
             ON s.typeOfServicesId = t.id
-            WHERE status = 'pending'
+            WHERE status = 'pending' AND s.deletedAt IS NULL
             `
-    );
+  );
 
-    return services;
+  return services;
 };
 
 export default selectServiceService;
