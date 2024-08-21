@@ -1,6 +1,7 @@
 import express from 'express';
 
 import authUser from '../middleware/authUser.js';
+import isAdmin from '../middleware/isAdmin.js';
 import typeOfServiceExist from '../middleware/typeOfServiceExists.js';
 
 import {
@@ -15,22 +16,28 @@ const router = express.Router();
 
 router.get('/typeOfServices', listTypeOfServicesController);
 
-router.get('/typeOfServices/:typeOfServiceId', detailTypeOfServicesController);
-
-router.post('/typeOfServices', authUser, newTypeOfServiceController);
-
-router.delete(
+router.get(
     '/typeOfServices/:typeOfServiceId',
-    authUser,
     typeOfServiceExist,
-    deleteTypeOfServiceController
+    detailTypeOfServicesController
 );
+
+router.post('/typeOfServices', authUser, isAdmin, newTypeOfServiceController);
 
 router.put(
     '/typeOfServices/:typeOfServiceId',
     authUser,
+    isAdmin,
     typeOfServiceExist,
     editTypeOfServiceController
+);
+
+router.delete(
+    '/typeOfServices/:typeOfServiceId',
+    authUser,
+    isAdmin,
+    typeOfServiceExist,
+    deleteTypeOfServiceController
 );
 
 export default router;

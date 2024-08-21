@@ -5,15 +5,6 @@ import insertShiftRecordService from '../../services/shiftRecords/insertShiftRec
 
 const newShiftRecordController = async (req, res, next) => {
     try {
-        const isAdmin = req.userLogged.role;
-
-        if (isAdmin !== 'admin') {
-            generateErrorUtil(
-                'Acceso denegado: Se requiere rol de Administrador',
-                409
-            );
-        }
-
         const schema = Joi.object().keys({
             serviceId: Joi.string().length(36),
             employeeId: Joi.string().length(36),

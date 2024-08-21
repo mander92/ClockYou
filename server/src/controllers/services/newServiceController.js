@@ -14,7 +14,7 @@ const newServiceController = async (req, res, next) => {
             );
         }
 
-        const schemaBody = Joi.object().keys({
+        const schema = Joi.object().keys({
             date: Joi.date().min('now'),
             startTime: Joi.string().pattern(/^([01]\d|2[0-3]):([0-5]\d)$/),
             hours: Joi.number().min(1).max(8),
@@ -24,10 +24,10 @@ const newServiceController = async (req, res, next) => {
             postCode: Joi.string().length(5),
         });
 
-        const validationBody = schemaBody.validate(req.body);
+        const validation = schema.validate(req.body);
 
-        if (validationBody.error) {
-            generateErrorUtil(validationBody.error.message, 401);
+        if (validation.error) {
+            generateErrorUtil(validation.error.message, 401);
         }
         const userId = req.userLogged.id;
 

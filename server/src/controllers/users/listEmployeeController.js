@@ -3,15 +3,6 @@ import selectEmployeeService from '../../services/users/selectEmployeeService.js
 
 const listEmployeeController = async (req, res, next) => {
     try {
-        const isAdmin = req.userLogged.role;
-
-        if (isAdmin !== 'admin') {
-            generateErrorUtil(
-                'Acceso denegado: Se requiere rol de Administrador',
-                401
-            );
-        }
-
         const { job, active, city } = req.query;
 
         const users = await selectEmployeeService(job, active, city);

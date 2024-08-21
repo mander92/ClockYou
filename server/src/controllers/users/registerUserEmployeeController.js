@@ -5,15 +5,6 @@ import generateErrorUtil from '../../utils/generateErrorUtil.js';
 
 const registerUserEmployeeController = async (req, res, next) => {
     try {
-        const isAdmin = req.userLogged.role;
-
-        if (isAdmin !== 'admin') {
-            generateErrorUtil(
-                'Acceso denegado: Se requiere rol de Administrador',
-                409
-            );
-        }
-
         const schema = Joi.object().keys({
             email: Joi.string().email(),
             password: Joi.string().min(8).max(25),

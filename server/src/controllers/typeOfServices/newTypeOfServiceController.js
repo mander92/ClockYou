@@ -5,15 +5,6 @@ import generateErrorUtil from '../../utils/generateErrorUtil.js';
 
 const newTypeOfServiceController = async (req, res, next) => {
     try {
-        const isAdmin = req.userLogged.role;
-
-        if (isAdmin !== 'admin') {
-            generateErrorUtil(
-                'Acceso denegado: Se requiere rol de Administrador',
-                409
-            );
-        }
-
         const schema = Joi.object().keys({
             type: Joi.string().max(30),
             description: Joi.string().max(500),

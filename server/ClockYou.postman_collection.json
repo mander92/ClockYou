@@ -210,7 +210,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"david_miras@icloud.com\",\n    \"password\": \"12345678\"\n}",
+							"raw": "{\n    \"email\": \"david_miras@hotmail.com\",\n    \"password\": \"12345678\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -392,6 +392,43 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "editAvatar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjlhYTc5N2U2LTFjNjUtNGQwMi05ZDdhLTAzMTk5MzZkNmM3MiIsInJvbGUiOiJlbXBsb3llZSIsImlhdCI6MTcyNDI3MTE2NywiZXhwIjoxNzI0ODc1OTY3fQ.zWUcfVkukeY8SB2PVd04kYLjaLktCIZ5ILTbMaBBtv8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": "/private/var/folders/5q/hhv31t7j423631cknxfrvddc0000gn/T/com.apple.Photos.NSItemProvider/uuid=F6070513-7765-45BC-A424-01C3FE824E9D&library=1&type=1&mode=1&loc=true&cap=true.jpeg/IMG_7903.jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/users/avatar/d0226911-4e0e-40e7-b76d-f3fcd8139583",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"users",
+								"avatar",
+								"d0226911-4e0e-40e7-b76d-f3fcd8139583"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -492,7 +529,7 @@
 							"urlencoded": []
 						},
 						"url": {
-							"raw": "http://localhost:8000/typeOfServices/4fc7d0f3-fa98-43c8-b979-3b1223a4099a",
+							"raw": "http://localhost:8000/typeOfServices/0bdecb5f-cf7a-4f0a-ab5b-25b21f3e4200",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -500,7 +537,7 @@
 							"port": "8000",
 							"path": [
 								"typeOfServices",
-								"4fc7d0f3-fa98-43c8-b979-3b1223a4099a"
+								"0bdecb5f-cf7a-4f0a-ab5b-25b21f3e4200"
 							]
 						}
 					},
@@ -512,7 +549,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/typeOfServices/0b13bc26-74bf-4e8e-9ed3-9ef77ea9731a",
+							"raw": "http://localhost:8000/typeOfServices/0eb980fe-ba9d-4e67-b261-fd8382c0989",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -520,7 +557,7 @@
 							"port": "8000",
 							"path": [
 								"typeOfServices",
-								"0b13bc26-74bf-4e8e-9ed3-9ef77ea9731a"
+								"0eb980fe-ba9d-4e67-b261-fd8382c0989"
 							]
 						}
 					},
@@ -547,7 +584,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/typeOfServices/9a62c897-38d6-4e10-857d-5b04d323b1a7",
+							"raw": "http://localhost:8000/typeOfServices/0eb980fe-ba9d-4e67-b261-fd8382c09892",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -555,7 +592,7 @@
 							"port": "8000",
 							"path": [
 								"typeOfServices",
-								"9a62c897-38d6-4e10-857d-5b04d323b1a7"
+								"0eb980fe-ba9d-4e67-b261-fd8382c09892"
 							]
 						}
 					},
@@ -573,13 +610,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjZDkwNGM3LTlhY2YtNDQ2Ni05ZjAzLTE1OWI3ZWU0NjE4MCIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjQyNDEwMDksImV4cCI6MTcyNDg0NTgwOX0.8YyIS-jsqblJWiTxO5YT8dH8bvSaTpyLWbDI2HFHozo",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQwMjI2OTExLTRlMGUtNDBlNy1iNzZkLWYzZmNkODEzOTU4MyIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjQyNzkzODksImV4cCI6MTcyNDg4NDE4OX0.XI1q9NROwhXiBncz7f5n62IP3mr-UHuheqO0Kt3r5W4",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"date\": \"2024-08-22\",\n    \"startTime\":\"12:00\",\n    \"hours\": \"3\",\n    \"comments\": \"Para estudiante que está cursando 2ª de la ESO\",\n    \"address\": \"Avío, 2, 3ªB\",\n    \"city\": \"Santiago de Compostela\",\n    \"postCode\": \"15705\"\n}",
+							"raw": "{\n    \"date\": \"2024-08-22\",\n    \"startTime\":\"10:00\",\n    \"hours\": \"3\",\n    \"comments\": \"Para estudiante que está cursando 2ª de la ESO\",\n    \"address\": \"Avío, 2, 3ªB\",\n    \"city\": \"Santiago de Compostela\",\n    \"postCode\": \"15705\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -671,7 +708,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8000/services/010a7ed1-86bd-49b2-91c3-af87932587d2",
+							"raw": "http://localhost:8000/services/0b79b17a-15e6-4b79-ab7f-8eee3dc2e5be",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -679,7 +716,7 @@
 							"port": "8000",
 							"path": [
 								"services",
-								"010a7ed1-86bd-49b2-91c3-af87932587d2"
+								"0b79b17a-15e6-4b79-ab7f-8eee3dc2e5be"
 							]
 						}
 					},
@@ -697,7 +734,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8000/services/10927610-5fc4-4db7-8c63-2d0900499766",
+							"raw": "http://localhost:8000/services/3e21df17-77c0-4c4e-966d-018a5af17f1d",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -705,7 +742,7 @@
 							"port": "8000",
 							"path": [
 								"services",
-								"10927610-5fc4-4db7-8c63-2d0900499766"
+								"3e21df17-77c0-4c4e-966d-018a5af17f1d"
 							]
 						}
 					},
@@ -718,13 +755,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "{{admin}}",
+								"value": "",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"comments\": \"Probandooooo\",\n    \"date\":\"2024-12-32\",\n    \"startTime\": \"11:00\",\n    \"hours\":\"8\"\n}",
+							"raw": "{\n    \"comments\": \"Probandooooo\",\n    \"date\":\"2024-12-32\",\n    \"startTime\": \"11:00\",\n    \"hours\":\"8\",\n    \"address\":\"probar\",\n    \"postCode\":\"12345\",\n    \"city\":\"asdsa\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -732,7 +769,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/services/10927610-5fc4-4db7-8c63-2d0900499766",
+							"raw": "http://localhost:8000/services/0b79b17a-15e6-4b79-ab7f-8eee3dc2e5be",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -740,7 +777,7 @@
 							"port": "8000",
 							"path": [
 								"services",
-								"10927610-5fc4-4db7-8c63-2d0900499766"
+								"0b79b17a-15e6-4b79-ab7f-8eee3dc2e5be"
 							]
 						}
 					},
@@ -753,7 +790,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjZDkwNGM3LTlhY2YtNDQ2Ni05ZjAzLTE1OWI3ZWU0NjE4MCIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjQyNDEwMDksImV4cCI6MTcyNDg0NTgwOX0.8YyIS-jsqblJWiTxO5YT8dH8bvSaTpyLWbDI2HFHozo",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQwMjI2OTExLTRlMGUtNDBlNy1iNzZkLWYzZmNkODEzOTU4MyIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjQyNzkzMzUsImV4cCI6MTcyNDg4NDEzNX0.5KJV5lkT9lrqC0oekT4eilNYwQHkFdDjfw4_G8vWeiE",
 								"type": "text"
 							}
 						],
@@ -785,6 +822,32 @@
 									"value": "confirmed",
 									"disabled": true
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list(employee)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjlhYTc5N2U2LTFjNjUtNGQwMi05ZDdhLTAzMTk5MzZkNmM3MiIsInJvbGUiOiJlbXBsb3llZSIsImlhdCI6MTcyNDI4MDYzNSwiZXhwIjoxNzI0ODg1NDM1fQ.HAO6whxDacZOVBIfWMXxVWq3STgoj2qPI1-T-80k7l8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/services/employee",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"services",
+								"employee"
 							]
 						}
 					},
@@ -828,7 +891,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"serviceId\":\"010a7ed1-86bd-49b2-91c3-af87932587d2\",\n    \"clientId\":\"5cd904c7-9acf-4466-9f03-159b7ee46180\",\n    \"employeeId\":\"9aa797e6-1c65-4d02-9d7a-0319936d6c72\"\n}",
+							"raw": "{\n    \"serviceId\":\"3e21df17-77c0-4c4e-966d-018a5af17f1d\",\n    \"clientId\":\"5cd904c7-9acf-4466-9f03-159b7ee46180\",\n    \"employeeId\":\"9aa797e6-1c65-4d02-9d7a-0319936d6c72\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -873,14 +936,49 @@
 							"query": [
 								{
 									"key": "serviceId",
-									"value": "010a7ed1-86bd-49b2-91c3-af87932587d1",
+									"value": "23b8fc35-0a86-4311-96cd-9a8632b33601",
 									"disabled": true
 								},
 								{
 									"key": "employeeId",
-									"value": "",
+									"value": "9aa797e6-1c65-4d02-9d7a-0319936d6c72",
 									"disabled": true
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editAdmin",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{admin}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"clockIn\": \"2024-08-22 21:00\",\n    \"clockOut\": \"2025-08-23 21:40\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/shiftrecords/23b8fc35-0a86-4311-96cd-9a8632b33601",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"shiftrecords",
+								"23b8fc35-0a86-4311-96cd-9a8632b33601"
 							]
 						}
 					},

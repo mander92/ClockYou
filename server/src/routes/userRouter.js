@@ -1,6 +1,7 @@
 import express from 'express';
 
 import authUser from '../middleware/authUser.js';
+import isAdmin from '../middleware/isAdmin.js';
 import userExists from '../middleware/userExists.js';
 import {
     registerUserController,
@@ -20,22 +21,29 @@ import editUserAvatarCotroller from '../controllers/users/editUserAvatarCotrolle
 const router = express.Router();
 
 router.post('/users/register', registerUserController);
-router.post('/users/admin/register', authUser, registerUserAdminController);
+router.post(
+    '/users/admin/register',
+    authUser,
+    isAdmin,
+    registerUserAdminController
+);
 router.post('/users/login', loginUserController);
 router.post('/users/password/recover', sendRecoverPasswordCodeController);
 router.post(
     '/users/employee/register',
     authUser,
+    isAdmin,
     registerUserEmployeeController
 );
 
 router.post('/users/avatar/:userId', authUser, editUserAvatarCotroller);
 
 router.get('/users/validate/:registrationCode', validateUserController);
-router.get('/users/employee', authUser, listEmployeeController);
+router.get('/users/employee', authUser, isAdmin, listEmployeeController);
 router.get(
     '/users/employee/:employeeId',
     authUser,
+    isAdmin,
     userExists,
     getEmployeeController
 );

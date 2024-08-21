@@ -3,13 +3,7 @@ import getShiftRecordsService from '../../services/shiftRecords/getShiftRecordsS
 
 const listShiftRecordsController = async (req, res, next) => {
     try {
-        const user = req.userLogged.role;
-
         const { serviceId, employeeId } = req.query;
-
-        if (user !== 'admin') {
-            generateErrorUtil('No tienes permisos suficientes', 401);
-        }
 
         const data = await getShiftRecordsService(serviceId, employeeId);
 

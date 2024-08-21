@@ -1,6 +1,9 @@
 import express from 'express';
 
 import authUser from '../middleware/authUser.js';
+import isAdmin from '../middleware/isAdmin.js';
+import isClient from '../middleware/isClient.js';
+import isEmployee from '../middleware/isEmployee.js';
 import serviceExists from '../middleware/serviceExists.js';
 import typeOfserviceExists from '../middleware/typeOfServiceExists.js';
 
@@ -26,11 +29,16 @@ router.post(
 
 router.get('/services/validate/:validationCode', validateServiceController);
 
-router.get('/services/', authUser, listAdminServicesController);
+router.get('/services/', authUser, isAdmin, listAdminServicesController);
 
-router.get('/services/client', authUser, listClientServiceController);
+router.get('/services/client', authUser, isClient, listClientServiceController);
 
-router.get('/services/employee', authUser, listEmployeeServiceController);
+router.get(
+    '/services/employee',
+    authUser,
+    isEmployee,
+    listEmployeeServiceController
+);
 
 router.get(
     '/services/:serviceId',
@@ -49,6 +57,7 @@ router.put(
 router.delete(
     '/services/:serviceId',
     authUser,
+    isAdmin,
     serviceExists,
     deleteServiceByIdController
 );

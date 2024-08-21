@@ -13,16 +13,16 @@ const editUserController = async (req, res, next) => {
             generateErrorUtil('Acceso denegado, el token no coincide', 409);
         }
 
-        const schemaBody = Joi.object().keys({
+        const schema = Joi.object().keys({
             firstName: Joi.string().max(25),
             lastName: Joi.string().max(40),
             dni: Joi.string().min(9),
             phone: Joi.string().max(15),
         });
 
-        const validationBody = schemaBody.validate(req.body);
+        const validation = schema.validate(req.body);
 
-        if (validationBody.error) {
+        if (validation.error) {
             generateErrorUtil(validationBody.error.message, 401);
         }
 
