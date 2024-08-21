@@ -12,11 +12,9 @@ const listServicesController = async (req, res, next) => {
             );
         }
 
-        const services = await selectServiceService();
+        const { status } = req.query;
 
-        if (!services.length) {
-            generateErrorUtil('No se encuentran resultados', 401);
-        }
+        const services = await selectServiceService(status);
 
         res.send({
             status: 'ok',
