@@ -63,8 +63,6 @@ const insertShiftService = async (serviceId, employeeId, clientId) => {
         `,[clientId]
     );
 
-    console.log(userClient)
-
     if(!userClient.length){
         generateErrorUtil('No existe usuario cliente o incativo', 401)
     };
