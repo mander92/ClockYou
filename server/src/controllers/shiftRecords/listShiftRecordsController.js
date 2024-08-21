@@ -1,28 +1,29 @@
-import generateErrorUtil from "../../utils/generateErrorUtil.js";
-import getShiftRecordsService from "../../services/shiftRecords/getShiftRecordsService.js";
+import generateErrorUtil from '../../utils/generateErrorUtil.js';
+import getShiftRecordsService from '../../services/shiftRecords/getShiftRecordsService.js';
 
-const listShiftRecordsController = async (req,res,next) => {
+const listShiftRecordsController = async (req, res, next) => {
     try {
-
         const user = req.userLogged.role;
 
         const { serviceId, employeeId } = req.query;
-        
 
-        if(user !== 'admin'){
-            generateErrorUtil('No tienes permisos suficientes', 401)
-        };
+        if (user !== 'admin') {
+            generateErrorUtil('No tienes permisos suficientes', 401);
+        }
 
         const data = await getShiftRecordsService(serviceId, employeeId);
 
+        if (!data.length) {
+            generateErrorUtil('No existen datos', 409);
+        }
+
         res.send({
             status: 'ok',
-            data: data
-        })
-        
+            data: data,
+        });
     } catch (error) {
-        next(error)
+        next(error);
     }
-}
+};
 
 export default listShiftRecordsController;
