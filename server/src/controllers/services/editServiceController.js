@@ -3,13 +3,13 @@ import updateServiceByIdService from '../../services/services/updateServiceByIdS
 
 const editServiceController = async (req, res, next) => {
     try {
-        // const loggedId = req.userLogged.id;
+        const loggedId = req.userLogged.id;
 
-        // const { userId } = req.params;
+        const { userId } = req.params;
 
-        // if (loggedId !== userId) {
-        //     generateErrorUtil('Acceso denegado, el token no coincide', 409);
-        // }
+        if (loggedId !== userId) {
+            generateErrorUtil('Acceso denegado, el token no coincide', 409);
+        }
 
         const { serviceId } = req.params;
         const { address, postCode, city, comments, date, hours, startTime } =
