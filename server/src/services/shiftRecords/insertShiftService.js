@@ -2,14 +2,15 @@ import { v4 as uuid } from 'uuid';
  
 import getPool from "../../db/getPool.js";
 import generateErrorUtil from "../../utils/generateErrorUtil.js";
+import sendMailUtils from "../../utils/sendMailUtil.js";
 
-const insertShiftService = async (serviceId, employeeId) => {
+const insertShiftService = async (serviceId, employeeId, clientId) => {
 
     const pool = await getPool();
     
     const [service] = await pool.query(
         `
-        SELECT id FROM services WHERE id = ?
+        SELECT * FROM services WHERE id = ?
         `,[serviceId]
     );
 
@@ -27,10 +28,11 @@ const insertShiftService = async (serviceId, employeeId) => {
         generateErrorUtil('El empleado no existe o inactivo', 401)
     };
 
+    const idPedido = uuid()
     await pool.query(
         `
         INSERT INTO shiftRecords(id, employeeId, serviceId) VALUES(?,?,?)
-        `, [uuid(),employeeId,serviceId]
+        `, [idPedido,employeeId,serviceId]
     );
 
     await pool.query(
@@ -38,6 +40,54 @@ const insertShiftService = async (serviceId, employeeId) => {
         UPDATE services SET status = 'accepted' WHERE id = ?
         `,[serviceId]
     );
+
+    const [ pedido ]= pool.query(
+        `
+            SELECT s.id, t.city, t.description, t.price, t.type, s.status, s.hours, s.validationCode, s.date, s.totalprice, a.address, a.postcode   
+            FROM typeofservices t
+            INNER JOIN
+            services s
+            ON t.id = s.typeofservicesId
+            INNER JOIN 
+            addresses a
+            ON a.id = s.addressId
+            WHERE s.id = ? 
+        `,[idPedido]
+    );
+
+    console.log(pedido)
+
+    cosnt [userClient] = await pool.query(
+        `
+        SELECT firstName, lastName, email FROM users WHERE id = ? 
+        `,[clientEmail]
+    );
+
+    if(!userClient[0].email){
+        generateErrorUtil('No existe usuario cliente o incativo', 401)
+    };
+
+    const emailSubject = `Su Servicio ha sido acceptado`;
+
+    const emailBody = `
+    <html>
+        <body style="display: flex; justify-content: center; margin: 0;">
+            <div style="text-align: center;">
+                <h1>ClockYou</h1>
+                <h2>¡¡¡Hola ${firstName} ${lastName}!!!</h2>
+                <h3>Resumen de su pedido</h3>
+                
+                <h3>Gracias por confiar en ClockYou.</h3>
+                <h4>Por favor confirme su petición haga click <a href="http://localhost:${PORT}/users/validate/${registrationCode}">Aquí</a></h4>
+                <h5>Hecho con ❤ por el equipo de ClockYou.</h5>
+            </div>
+        </body>
+    </html>
+`;
+
+    await sendMailUtils(clientEmail, emailSubject, emailBody);
+
+    return 
 
 
 }
