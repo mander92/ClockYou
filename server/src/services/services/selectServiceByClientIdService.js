@@ -1,7 +1,7 @@
 import getPool from '../../db/getPool.js';
 import generateErrorUtil from '../../utils/generateErrorUtil.js';
 
-const selectServiceByClientIdService = async (clientId) => {
+const selectServiceByClientIdService = async (clientId, status) => {
     const pool = await getPool();
 
     const [data] = await pool.query(
@@ -16,9 +16,9 @@ const selectServiceByClientIdService = async (clientId) => {
             ON u.id = s.clientId
             INNER JOIN typeOfServices t
             ON s.typeOfServicesId = t.id
-            WHERE u.id = ? AND s.deletedAt IS NULL
+            WHERE u.id = ? AND s.status = ? AND s.deletedAt IS NULL
         `,
-        [clientId]
+        [clientId, status]
     );
 
     if (!data.length) {
