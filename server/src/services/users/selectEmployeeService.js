@@ -6,7 +6,7 @@ const selectEmployeeService = async (job, active, city) => {
     if (!job && !active && !city) {
         const [allUsers] = await pool.query(
             `
-            SELECT * FROM users WHERE active = 1 AND role = 'employee'
+            SELECT id, email, firstName, lastName, phone, city, job, avatar FROM users WHERE active = 1 AND role = 'employee'
             `
         );
 
@@ -16,7 +16,7 @@ const selectEmployeeService = async (job, active, city) => {
     if (job && active && city) {
         const [allUsers] = await pool.query(
             `
-                SELECT * FROM users WHERE active = ? AND job = ? AND city = ? AND role = 'employee'
+                SELECT id, email, firstName, lastName, phone, city, job, avatar FROM users WHERE active = ? AND job = ? AND city = ? AND role = 'employee'
                 `,
             [active, job, city]
         );
@@ -27,7 +27,7 @@ const selectEmployeeService = async (job, active, city) => {
     if (job && city) {
         const [allUsers] = await pool.query(
             `
-            SELECT * FROM users WHERE job = ? AND city = ? AND role = 'employee'
+            SELECT id, email, firstName, lastName, phone, city, job, avatar FROM users WHERE job = ? AND city = ? AND role = 'employee'
             `,
             [job, city]
         );
@@ -38,7 +38,7 @@ const selectEmployeeService = async (job, active, city) => {
     if (job && active) {
         const [allUsers] = await pool.query(
             `
-            SELECT * FROM users WHERE job = ? AND active = ? AND role = 'employee'
+            SELECT id, email, firstName, lastName, phone, city, job, avatar FROM users WHERE job = ? AND active = ? AND role = 'employee'
             `,
             [job, active]
         );
@@ -49,7 +49,7 @@ const selectEmployeeService = async (job, active, city) => {
     if (city && active) {
         const [allUsers] = await pool.query(
             `
-            SELECT * FROM users WHERE city = ? AND active = ? AND role = 'employee'
+            SELECT id, email, firstName, lastName, phone, city, job, avatar FROM users WHERE city = ? AND active = ? AND role = 'employee'
             `,
             [city, active]
         );
@@ -60,7 +60,7 @@ const selectEmployeeService = async (job, active, city) => {
     if (!job && !city) {
         const [allUsers] = await pool.query(
             `
-            SELECT * FROM users WHERE active = ? AND role = 'employee'
+            SELECT id, email, firstName, lastName, phone, city, job, avatar FROM users WHERE active = ? AND role = 'employee'
             `,
             [active]
         );
@@ -71,7 +71,7 @@ const selectEmployeeService = async (job, active, city) => {
     if (!city && !active) {
         const [allUsers] = await pool.query(
             `
-            SELECT * FROM users WHERE active = 1 AND job = ? AND role = 'employee'
+            SELECT id, email, firstName, lastName, phone, city, job, avatar FROM users WHERE active = 1 AND job = ? AND role = 'employee'
             `,
             [job]
         );
@@ -82,7 +82,7 @@ const selectEmployeeService = async (job, active, city) => {
     if (!job && !active) {
         const [allUsers] = await pool.query(
             `
-            SELECT * FROM users WHERE active = 1 AND city = ? AND role = 'employee'
+            SELECT id, email, firstName, lastName, phone, city, job, avatar FROM users WHERE active = 1 AND city = ? AND role = 'employee'
             `,
             [city]
         );
