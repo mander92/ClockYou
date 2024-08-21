@@ -17,6 +17,7 @@ const {
     SMTP_EMAIL,
     CLIENT_URL,
     UPLOADS_DIR,
+    AVATAR_IMG_DIR
 } = process.env;
 
 export {
@@ -36,4 +37,5 @@ export {
     SMTP_EMAIL,
     CLIENT_URL,
     UPLOADS_DIR,
+    AVATAR_IMG_DIR
 };
