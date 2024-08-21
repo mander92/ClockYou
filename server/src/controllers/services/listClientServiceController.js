@@ -13,8 +13,9 @@ const listClientServiceController = async (req, res, next) => {
                 409
             );
         }
+        const { status } = req.query;
 
-        const data = await selectServiceByClientIdService(clientId);
+        const data = await selectServiceByClientIdService(clientId, status);
 
         res.send({
             status: 'ok',
