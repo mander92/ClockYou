@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"david_miras@hotmail.com\",\r\n    \"password\": \"12345678\",\r\n    \"firstName\": \"David\",\r\n    \"lastName\": \"Mirás Bellón\",\r\n    \"dni\": \"12894578Z\",\r\n    \"phone\": \"987654321\"\r\n}",
+							"raw": "{\r\n    \"email\": \"david_miras@icloud.com\",\r\n    \"password\": \"12345678\",\r\n    \"firstName\": \"David\",\r\n    \"lastName\": \"Mirás Bellón\",\r\n    \"dni\": \"12894578Z\",\r\n    \"phone\": \"987654321\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -152,7 +152,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"david_miras@hotmail.com\",\n    \"password\": \"12345678\"\n}",
+							"raw": "{\n    \"email\": \"david_miras@icloud.com\",\n    \"password\": \"12345678\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -250,7 +250,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/users/validate/zXjBoxtbIpfTzrUABqLuz5i50PeXZf",
+							"raw": "http://localhost:8000/users/validate/",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -259,7 +259,7 @@
 							"path": [
 								"users",
 								"validate",
-								"zXjBoxtbIpfTzrUABqLuz5i50PeXZf"
+								""
 							]
 						}
 					},
@@ -354,7 +354,7 @@
 								},
 								{
 									"key": "job",
-									"value": "jardinero",
+									"value": "masajista",
 									"disabled": true
 								},
 								{
@@ -463,12 +463,12 @@
 							"query": [
 								{
 									"key": "type",
-									"value": "jardineria",
+									"value": "mecanico de bicicletas",
 									"disabled": true
 								},
 								{
 									"key": "city",
-									"value": "sevilla",
+									"value": "coruña",
 									"disabled": true
 								}
 							]
@@ -547,7 +547,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/typeOfServices/570fa7c6-5b05-4775-8435-934cb41fe846",
+							"raw": "http://localhost:8000/typeOfServices/9a62c897-38d6-4e10-857d-5b04d323b1a7",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -555,7 +555,7 @@
 							"port": "8000",
 							"path": [
 								"typeOfServices",
-								"570fa7c6-5b05-4775-8435-934cb41fe846"
+								"9a62c897-38d6-4e10-857d-5b04d323b1a7"
 							]
 						}
 					},
@@ -573,13 +573,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "{{client}}",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjZDkwNGM3LTlhY2YtNDQ2Ni05ZjAzLTE1OWI3ZWU0NjE4MCIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjQyNDEwMDksImV4cCI6MTcyNDg0NTgwOX0.8YyIS-jsqblJWiTxO5YT8dH8bvSaTpyLWbDI2HFHozo",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"date\": \"2024-08-22\",\n    \"hours\": \"3\",\n    \"comments\": \"Cortar césped\",\n    \"address\": \"Avío\",\n    \"city\": \"Santiago de Compostela\",\n    \"postCode\": \"15705\"\n}",
+							"raw": "{\n    \"date\": \"2024-08-22\",\n    \"startTime\":\"12:00\",\n    \"hours\": \"3\",\n    \"comments\": \"Para estudiante que está cursando 2ª de la ESO\",\n    \"address\": \"Avío, 2, 3ªB\",\n    \"city\": \"Santiago de Compostela\",\n    \"postCode\": \"15705\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -587,7 +587,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/services/f038d0d0-a8b5-4bfc-b54b-9b7b70bc293e",
+							"raw": "http://localhost:8000/services/9a62c897-38d6-4e10-857d-5b04d323b1a7",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -595,14 +595,14 @@
 							"port": "8000",
 							"path": [
 								"services",
-								"f038d0d0-a8b5-4bfc-b54b-9b7b70bc293e"
+								"9a62c897-38d6-4e10-857d-5b04d323b1a7"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "list(admin)",
+					"name": "listFilter(admin)",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -622,6 +622,38 @@
 							"path": [
 								"services",
 								""
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "pending",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "accepted",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "confirmed",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "rejected",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "completed",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "canceled",
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -639,7 +671,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8000/services/10927610-5fc4-4db7-8c63-2d0900499766",
+							"raw": "http://localhost:8000/services/010a7ed1-86bd-49b2-91c3-af87932587d2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -647,7 +679,7 @@
 							"port": "8000",
 							"path": [
 								"services",
-								"10927610-5fc4-4db7-8c63-2d0900499766"
+								"010a7ed1-86bd-49b2-91c3-af87932587d2"
 							]
 						}
 					},
@@ -692,7 +724,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"comments\": \"Probandooooo\",\n    \"date\":\"2024-12-32\",\n    \"hours\":\"8\"\n}",
+							"raw": "{\n    \"comments\": \"Probandooooo\",\n    \"date\":\"2024-12-32\",\n    \"startTime\": \"11:00\",\n    \"hours\":\"8\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -739,11 +771,107 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "validate",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/services/validate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"services",
+								"validate"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
 		{
-			"name": "uploads",
+			"name": "shiftRecords",
+			"item": [
+				{
+					"name": "new",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{admin}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"serviceId\":\"010a7ed1-86bd-49b2-91c3-af87932587d2\",\n    \"clientId\":\"5cd904c7-9acf-4466-9f03-159b7ee46180\",\n    \"employeeId\":\"9aa797e6-1c65-4d02-9d7a-0319936d6c72\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/shiftrecords",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"shiftrecords"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list(admin)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{admin}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/shiftrecords",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"shiftrecords"
+							],
+							"query": [
+								{
+									"key": "serviceId",
+									"value": "010a7ed1-86bd-49b2-91c3-af87932587d1",
+									"disabled": true
+								},
+								{
+									"key": "employeeId",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "upload",
 			"item": [
 				{
 					"name": "upload",
