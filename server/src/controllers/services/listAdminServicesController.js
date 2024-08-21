@@ -1,7 +1,7 @@
 import generateErrorUtil from '../../utils/generateErrorUtil.js';
 import selectServiceService from '../../services/services/selectServiceService.js';
 
-const listServicesController = async (req, res, next) => {
+const listAdminServicesController = async (req, res, next) => {
     try {
         const isAdmin = req.userLogged.role;
 
@@ -27,4 +27,4 @@ const listServicesController = async (req, res, next) => {
     }
 };
 
-export default listServicesController;
+export default listAdminServicesController;

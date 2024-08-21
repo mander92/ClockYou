@@ -5,55 +5,53 @@ import serviceExists from '../middleware/serviceExists.js';
 import typeOfserviceExists from '../middleware/typeOfServiceExists.js';
 
 import {
-  newServiceController,
-  listServicesController,
-  detailServiceController,
-  deleteServiceByIdController,
-  listClientServiceController,
-  listEmployeeServiceController,
-  editServiceController,
-  validateServiceController
+    newServiceController,
+    listAdminServicesController,
+    detailServiceController,
+    deleteServiceByIdController,
+    listClientServiceController,
+    listEmployeeServiceController,
+    editServiceController,
+    validateServiceController,
 } from '../controllers/services/index.js';
 
 const router = express.Router();
 
 router.post(
-  '/services/:typeOfServiceId',
-  authUser,
-  typeOfserviceExists,
-  newServiceController
+    '/services/:typeOfServiceId',
+    authUser,
+    typeOfserviceExists,
+    newServiceController
 );
 
 router.get('/services/validate/:validationCode', validateServiceController);
 
-router.get('/services/', authUser, listServicesController);
+router.get('/services/', authUser, listAdminServicesController);
 
 router.get('/services/client', authUser, listClientServiceController);
 
 router.get('/services/employee', authUser, listEmployeeServiceController);
 
 router.get(
-  '/services/:serviceId',
-  authUser,
-  serviceExists,
-  detailServiceController
+    '/services/:serviceId',
+    authUser,
+    serviceExists,
+    detailServiceController
 );
 
 router.put(
-  '/services/:serviceId',
-  authUser,
-  serviceExists,
-  editServiceController
+    '/services/:serviceId',
+    authUser,
+    serviceExists,
+    editServiceController
 );
 
 router.delete(
-  '/services/:serviceId',
-  authUser,
-  serviceExists,
-  deleteServiceByIdController
+    '/services/:serviceId',
+    authUser,
+    serviceExists,
+    deleteServiceByIdController
 );
-
-
 
 /* Rutas que necesitamos hacer todavia para esta tabla
 

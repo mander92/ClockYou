@@ -1,4 +1,4 @@
-import listServicesController from './listServicesController.js';
+import listAdminServicesController from './listAdminServicesController.js';
 import newServiceController from './newServiceController.js';
 import detailServiceController from './detailServiceController.js';
 import deleteServiceByIdController from './deleteServiceByIdController.js';
@@ -8,12 +8,12 @@ import editServiceController from './editServiceController.js';
 import validateServiceController from './validateServiceController.js';
 
 export {
-  listServicesController,
-  detailServiceController,
-  deleteServiceByIdController,
-  newServiceController,
-  listClientServiceController,
-  listEmployeeServiceController,
-  editServiceController,
-  validateServiceController
+    listAdminServicesController,
+    detailServiceController,
+    deleteServiceByIdController,
+    newServiceController,
+    listClientServiceController,
+    listEmployeeServiceController,
+    editServiceController,
+    validateServiceController,
 };
