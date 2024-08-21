@@ -5,7 +5,7 @@ const editShiftRecordsService = async (clockIn, clockOut, id) => {
 
   await pool.query(
     `UPDATE shiftRecords SET clockIn = ?, clockOut = ? WHERE id = ?`,
-    [clockIn, clockOut]
+    [clockIn, clockOut, id]
   );
 
   const [shift] = await pool.query(`SELECT * FROM shiftRecords WHERE id = ?`, [

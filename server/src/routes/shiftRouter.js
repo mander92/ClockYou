@@ -13,7 +13,7 @@ router.post("/shiftRecords", authUser, newShiftController);
 
 router.get("/shiftRecords", authUser, listShiftRecordsController);
 
-router.post("/shiftRecords/:id", authUser, editShiftController);
+router.put("/shiftRecords/:id", authUser, editShiftController);
 
 export default router;
 

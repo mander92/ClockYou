@@ -1,8 +1,21 @@
+import Joi from "joi";
+
 import generateErrorUtil from "../../utils/generateErrorUtil.js";
 import editShiftRecordsService from "../../services/shiftRecords/editShiftRecordsService.js";
 
 const editShiftController = async (req, res, next) => {
   try {
+    const schema = Joi.object().keys({
+      clockIn: Joi.string().required(),
+      clockOut: Joi.string().required(),
+    });
+
+    const validation = schema.validate(req.body);
+
+    if (validation.error) {
+      generateErrorUtil("Faltan campos", 401);
+    }
+
     const isAdmin = req.userLogged.role;
 
     if (isAdmin !== "admin") {
@@ -12,10 +25,6 @@ const editShiftController = async (req, res, next) => {
     const { clockIn, clockOut } = req.body;
 
     const { id } = req.params;
-
-    if (!clockIn || !clockOut) {
-      generateErrorUtil("Faltan campos", 401);
-    }
 
     const data = await editShiftRecordsService(clockIn, clockOut, id);
 
