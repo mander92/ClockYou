@@ -29,7 +29,7 @@ router.post(
     registerUserEmployeeController
 );
 
-router.post('/users/avatar/:userId', authUser, editUserAvatarCotroller)
+router.post('/users/avatar/:userId', authUser, editUserAvatarCotroller);
 
 router.get('/users/validate/:registrationCode', validateUserController);
 router.get('/users/employee', authUser, listEmployeeController);

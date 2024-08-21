@@ -27,7 +27,7 @@ const typeOfServiceExist = async (req, res, next) => {
         );
 
         if (!service.length)
-            throw generateErrorUtil('Tipo de servicio no encontrado', 400);
+            generateErrorUtil('Tipo de servicio no encontrado', 400);
 
         next();
     } catch (error) {

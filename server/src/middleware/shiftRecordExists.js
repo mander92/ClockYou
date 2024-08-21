@@ -3,10 +3,10 @@ import Joi from 'joi';
 import getPool from '../db/getPool.js';
 import generateErrorUtil from '../utils/generateErrorUtil.js';
 
-const serviceExists = async (req, res, next) => {
+const shiftRecordExists = async (req, res, next) => {
     try {
         const schema = Joi.object().keys({
-            serviceId: Joi.string().length(36),
+            shiftRecordId: Joi.string().length(36),
         });
 
         const validation = schema.validate(req.params);
@@ -17,15 +17,16 @@ const serviceExists = async (req, res, next) => {
 
         const pool = await getPool();
 
-        const { serviceId } = req.params;
+        const { shiftRecordId } = req.params;
 
-        const [service] = await pool.query(
+        const [shift] = await pool.query(
             `
-            SELECT id FROM services WHERE id=? AND deletedAt IS NULL
+            SELECT id FROM shiftRecords WHERE id = ? AND deletedAt IS NULL
             `,
-            [serviceId]
+            [shiftRecordId]
         );
-        if (!service.length) generateErrorUtil('Servicio no encontrado', 400);
+
+        if (!shift.length) generateErrorUtil('Registro no encontrado', 400);
 
         next();
     } catch (error) {
@@ -33,4 +34,4 @@ const serviceExists = async (req, res, next) => {
     }
 };
 
-export default serviceExists;
+export default shiftRecordExists;

@@ -2,7 +2,6 @@ import express from 'express';
 
 import authUser from '../middleware/authUser.js';
 import typeOfServiceExist from '../middleware/typeOfServiceExists.js';
-import userExists from '../middleware/userExists.js';
 
 import {
     newTypeOfServiceController,

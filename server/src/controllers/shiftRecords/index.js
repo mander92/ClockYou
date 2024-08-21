@@ -1,5 +1,9 @@
-import newShiftController from "./newShiftController.js";
-import listShiftRecordsController from "./listShiftRecordsController.js";
-import editShiftController from "./editShiftController.js";
+import newShiftRecordController from './newShiftRecordController.js';
+import listShiftRecordsController from './listShiftRecordsController.js';
+import editShiftRecordController from './editShiftRecordController.js';
 
-export { newShiftController, listShiftRecordsController, editShiftController };
+export {
+    newShiftRecordController,
+    listShiftRecordsController,
+    editShiftRecordController,
+};

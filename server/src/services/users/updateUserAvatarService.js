@@ -1,7 +1,6 @@
-import getPool from "../../db/getPool.js";
+import getPool from '../../db/getPool.js';
 
 const updateUserAvatarService = async (avatarName, userId) => {
-
     const pool = await getPool();
 
     await pool.query(
@@ -12,6 +11,6 @@ const updateUserAvatarService = async (avatarName, userId) => {
         `,
         [avatarName, userId]
     );
-}
+};
 
 export default updateUserAvatarService;
