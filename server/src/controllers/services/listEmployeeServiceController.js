@@ -14,7 +14,9 @@ const listEmployeeServiceController = async (req, res, next) => {
             );
         }
 
-        const data = await selectServiceByEmployeeIdService(employeeId);
+        const {status} = req.query
+
+        const data = await selectServiceByEmployeeIdService(employeeId, status);
 
         res.send({
             status: 'ok',
