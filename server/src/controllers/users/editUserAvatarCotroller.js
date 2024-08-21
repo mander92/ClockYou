@@ -4,7 +4,7 @@ import updateUserAvatarService from "../../services/users/updateUserAvatarServic
 
 const editUserAvatarCotroller = async (req,res,next) => {
     try {
-        console.log(req.files)
+       
         const user = await selectUserByIdService(req.userLogged.id);
         
         //comprobar que no exosta un avatar, si existe elimino y asigno el nuevo
