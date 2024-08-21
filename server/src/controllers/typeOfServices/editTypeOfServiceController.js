@@ -14,15 +14,6 @@ const editTypeOfServiceController = async (req, res, next) => {
             );
         }
 
-        const schema = Joi.object().keys({
-            typeOfServiceId: Joi.string().min(36),
-        });
-
-        const validation = schema.validate(req.params);
-
-        if (validation.error) {
-            generateErrorUtil(validation.error.message, 401);
-        }
         const schemaBody = Joi.object().keys({
             description: Joi.string().max(500),
             price: Joi.number(),
