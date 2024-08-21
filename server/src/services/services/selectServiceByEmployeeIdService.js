@@ -4,6 +4,28 @@ import generateErrorUtil from '../../utils/generateErrorUtil.js';
 const selectServiceByEmployeeIdService = async (employeeId, status) => {
     const pool = await getPool();
 
+    if (!status) {
+        const [data] = await pool.query(
+            `
+                SELECT s.status, t.type, t.city, s.date, s.startTime, s.hours, s.totalPrice,  a.address, a.city, a.postcode, s.comments
+                FROM shiftRecords sr
+                INNER JOIN services s
+                ON sr.serviceId = s.id
+                INNER JOIN addresses a
+                ON s.addressId = a.id
+                INNER JOIN typeOfServices t
+                ON t.id = s.typeOfServicesId
+            `,
+            [employeeId]
+        );
+
+        if (!data.length) {
+            generateErrorUtil('No tienes servicios asignados');
+        }
+
+        return data;
+    }
+
     const [data] = await pool.query(
         `
             SELECT s.status AS Estado,  s.createdAt AS Creación, t.type AS Tipo_Servicio, t.city AS Provincia, t.price AS Precio, 
@@ -22,7 +44,7 @@ const selectServiceByEmployeeIdService = async (employeeId, status) => {
     );
 
     if (!data.length) {
-        generateErrorUtil('No tienes servicios registrados');
+        generateErrorUtil('No tienes servicios asignados');
     }
 
     return data;
