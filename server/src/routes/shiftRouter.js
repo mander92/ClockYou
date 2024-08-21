@@ -10,3 +10,12 @@ const router = express.Router();
 router.post('/shiftRecords', authUser, insertShiftController)
 
 export default router;
+
+/*  
+
+get. 
+get/:id
+edit.
+delete.
+
+*/
