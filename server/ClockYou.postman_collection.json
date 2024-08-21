@@ -747,18 +747,18 @@
 					"response": []
 				},
 				{
-					"name": "list(client)",
+					"name": "listFilter(client)",
 					"request": {
 						"method": "GET",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJhNzViZWYxLTcwOGUtNDMxYS1iMjQ2LTI2NjE1ZWQxNmMwNSIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjQxODYwODUsImV4cCI6MTcyNDc5MDg4NX0.5eQ0vAZfQDhnRmVKVdaypJyvuaI9fOxsVoC44WKz_xg",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjZDkwNGM3LTlhY2YtNDQ2Ni05ZjAzLTE1OWI3ZWU0NjE4MCIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjQyNDEwMDksImV4cCI6MTcyNDg0NTgwOX0.8YyIS-jsqblJWiTxO5YT8dH8bvSaTpyLWbDI2HFHozo",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8000/services/client",
+							"raw": "http://localhost:8000/services/client/",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -766,7 +766,25 @@
 							"port": "8000",
 							"path": [
 								"services",
-								"client"
+								"client",
+								""
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "pending",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "accepted",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "confirmed",
+									"disabled": true
+								}
 							]
 						}
 					},
