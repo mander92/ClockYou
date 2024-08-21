@@ -71,7 +71,7 @@ const initDb = async () => {
                 rating INT UNSIGNED,
                 totalPrice VARCHAR(10),
                 comments VARCHAR(255),
-                status ENUM ('accepted', 'rejected', 'pending', 'completed', 'canceled') DEFAULT 'pending',
+                status ENUM ('accepted', 'rejected', 'pending', 'completed', 'confirmed', 'canceled') DEFAULT 'pending',
                 validationCode VARCHAR(30),
                 clientId CHAR(36) NOT NULL,
                 addressId CHAR(36) NOT NULL,

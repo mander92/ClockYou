@@ -10,7 +10,8 @@ import {
   detailServiceController,
   deleteServiceByIdController,
   listClientServiceController,
-  editServiceController
+  editServiceController,
+  validateServiceController
 } from '../controllers/services/index.js';
 
 const router = express.Router();
@@ -21,6 +22,8 @@ router.post(
   typeOfserviceExists,
   newServiceController
 );
+
+router.get('/services/validate/:validationCode', validateServiceController);
 
 router.get('/services/', authUser, listServicesController);
 

@@ -4,6 +4,7 @@ import detailServiceController from './detailServiceController.js';
 import deleteServiceByIdController from './deleteServiceByIdController.js';
 import listClientServiceController from './listClientServiceController.js';
 import editServiceController from './editServiceController.js';
+import validateServiceController from './validateServiceController.js';
 
 export {
   listServicesController,
@@ -11,5 +12,6 @@ export {
   deleteServiceByIdController,
   newServiceController,
   listClientServiceController,
-  editServiceController
+  editServiceController,
+  validateServiceController
 };
