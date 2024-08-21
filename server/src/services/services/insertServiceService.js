@@ -4,8 +4,8 @@ import { v4 as uuid } from 'uuid';
 import generateErrorUtil from '../../utils/generateErrorUtil.js';
 
 const insertServiceService = async (
-    userId,
     typeOfServiceId,
+    userId,
     date,
     startTime,
     hours,
@@ -24,17 +24,6 @@ const insertServiceService = async (
     );
 
     const resultPrice = price[0].price * hours;
-
-    const [clientId] = await pool.query(
-        `
-        SELECT id FROM users WHERE id = ?
-        `,
-        [userId]
-    );
-
-    if (!clientId) {
-        generateErrorUtil('Token inválido', 409);
-    }
 
     const addressId = uuid();
 
@@ -58,7 +47,7 @@ const insertServiceService = async (
             hours,
             comments,
             validationCode,
-            clientId[0].id,
+            userId,
             addressId,
             typeOfServiceId,
             resultPrice,
@@ -79,7 +68,7 @@ const insertServiceService = async (
             ON s.typeOfServicesId = t.id
             WHERE u.id = ?
         `,
-        [clientId[0].id]
+        [userId]
     );
 
     return data;
