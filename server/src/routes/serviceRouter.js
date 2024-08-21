@@ -10,6 +10,7 @@ import {
   detailServiceController,
   deleteServiceByIdController,
   listClientServiceController,
+  listEmployeeServiceController,
   editServiceController,
   validateServiceController
 } from '../controllers/services/index.js';
@@ -28,6 +29,8 @@ router.get('/services/validate/:validationCode', validateServiceController);
 router.get('/services/', authUser, listServicesController);
 
 router.get('/services/client', authUser, listClientServiceController);
+
+router.get('/services/employee', authUser, listEmployeeServiceController);
 
 router.get(
   '/services/:serviceId',
