@@ -37,8 +37,8 @@ const newServiceController = async (req, res, next) => {
             req.body;
 
         const [data] = await insertServiceService(
-            userId,
             typeOfServiceId,
+            userId,
             date,
             startTime,
             hours,
