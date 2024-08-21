@@ -1,4 +1,5 @@
 import getPool from '../../db/getPool.js';
+import Randomstring from 'randomstring';
 import { v4 as uuid } from 'uuid';
 import generateErrorUtil from '../../utils/generateErrorUtil.js';
 
@@ -43,15 +44,18 @@ const insertServiceService = async (
         [addressId, address, city, postCode]
     );
 
+    const validationCode = Randomstring.generate(30);
+
     await pool.query(
         `
-        INSERT INTO services(id, date, hours, comments, clientId, addressId, typeOfServicesId, totalPrice) VALUES (?,?,?,?,?,?,?,?)
+        INSERT INTO services(id, date, hours, comments, validationCode, clientId, addressId, typeOfServicesId, totalPrice) VALUES (?,?,?,?,?,?,?,?,?)
         `,
         [
             uuid(),
             date,
             hours,
             comments,
+            validationCode,
             clientId[0].id,
             addressId,
             typeOfServiceId,

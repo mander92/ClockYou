@@ -12,13 +12,13 @@ const insertShiftController = async (req, res, next) => {
             generateErrorUtil('No tienes permisos suficiente', 401)
         }
 
-        const { serviceId, employeeId } = req.body;
+        const { serviceId, employeeId, clientId } = req.body;
 
-        if(!serviceId || !employeeId){
+        if(!serviceId || !employeeId || !clientId){
             generateErrorUtil('faltan campos', 401)
         }
 
-        await insertShiftService(serviceId, employeeId)
+        await insertShiftService(serviceId, employeeId, clientId)
 
         res.send({
             status: 'ok',
