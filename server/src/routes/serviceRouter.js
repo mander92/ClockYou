@@ -5,7 +5,7 @@ import isAdmin from '../middleware/isAdmin.js';
 import isClient from '../middleware/isClient.js';
 import isEmployee from '../middleware/isEmployee.js';
 import serviceExists from '../middleware/serviceExists.js';
-import typeOfserviceExists from '../middleware/typeOfServiceExists.js';
+import typeOfServiceExists from '../middleware/typeOfServiceExists.js';
 
 import {
     newServiceController,
@@ -23,13 +23,13 @@ const router = express.Router();
 router.post(
     '/services/:typeOfServiceId',
     authUser,
-    typeOfserviceExists,
+    typeOfServiceExists,
     newServiceController
 );
 
 router.get('/services/validate/:validationCode', validateServiceController);
 
-router.get('/services/', authUser, isAdmin, listAdminServicesController);
+router.get('/services', authUser, isAdmin, listAdminServicesController);
 
 router.get('/services/client', authUser, isClient, listClientServiceController);
 
