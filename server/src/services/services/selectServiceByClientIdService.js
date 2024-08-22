@@ -1,5 +1,4 @@
 import getPool from '../../db/getPool.js';
-import generateErrorUtil from '../../utils/generateErrorUtil.js';
 
 const selectServiceByClientIdService = async (clientId, status) => {
     const pool = await getPool();
@@ -40,10 +39,6 @@ const selectServiceByClientIdService = async (clientId, status) => {
         `,
         [clientId, status]
     );
-
-    if (!data.length) {
-        generateErrorUtil('No tienes servicios registrados');
-    }
 
     return data;
 };
