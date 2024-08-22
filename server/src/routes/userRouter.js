@@ -15,8 +15,8 @@ import {
     getEmployeeController,
     listEmployeeController,
     deleteUserController,
+    editUserAvatarController,
 } from '../controllers/users/index.js';
-import editUserAvatarCotroller from '../controllers/users/editUserAvatarCotroller.js';
 
 const router = express.Router();
 
@@ -36,7 +36,7 @@ router.post(
     registerUserEmployeeController
 );
 
-router.post('/users/avatar/:userId', authUser, editUserAvatarCotroller);
+router.post('/users/avatar/:userId', authUser, editUserAvatarController);
 
 router.get('/users/validate/:registrationCode', validateUserController);
 router.get('/users/employee', authUser, isAdmin, listEmployeeController);

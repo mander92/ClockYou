@@ -2,7 +2,7 @@ import selectUserByIdService from '../../services/users/selectUserByIdService.js
 import { deletePictureUtil, savePictureUtil } from '../../utils/photoUtil.js';
 import updateUserAvatarService from '../../services/users/updateUserAvatarService.js';
 
-const editUserAvatarCotroller = async (req, res, next) => {
+const editUserAvatarController = async (req, res, next) => {
     try {
         const user = await selectUserByIdService(req.userLogged.id);
 
@@ -21,4 +21,4 @@ const editUserAvatarCotroller = async (req, res, next) => {
     }
 };
 
-export default editUserAvatarCotroller;
+export default editUserAvatarController;
