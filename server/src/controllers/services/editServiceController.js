@@ -23,7 +23,7 @@ const editServiceController = async (req, res, next) => {
 
         const validation = schema.validate(req.body);
 
-        if (validatio.error) {
+        if (validation.error) {
             generateErrorUtil(validation.error.message, 401);
         }
 
