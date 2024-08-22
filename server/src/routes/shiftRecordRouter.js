@@ -15,6 +15,7 @@ router.post('/shiftRecords', authUser, isAdmin, newShiftRecordController);
 
 router.get('/shiftRecords', authUser, isAdmin, listShiftRecordsController);
 
+
 router.put(
     '/shiftRecords/:shiftRecordId',
     authUser,
@@ -25,11 +26,3 @@ router.put(
 
 export default router;
 
-/*  
-
-get. 
-get/:id
-edit.
-delete.
-
-*/

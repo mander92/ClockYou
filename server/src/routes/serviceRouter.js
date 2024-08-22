@@ -62,13 +62,4 @@ router.delete(
     deleteServiceByIdController
 );
 
-/* Rutas que necesitamos hacer todavia para esta tabla
-
-GET. -> Service (solo los servicios que ha asignados a un empleado en concreto) ---> Guille
-
-PUT. -> service/:id --> cliente cambia estatus, descripcion, address ---> thanh 
-DELETE. -> Services/:id ---> fede (administrador crea en la deletedAt un now())
-
-*/
-
 export default router;
