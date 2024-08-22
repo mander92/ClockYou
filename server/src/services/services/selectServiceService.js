@@ -1,5 +1,4 @@
 import getPool from '../../db/getPool.js';
-import generateErrorUtil from '../../utils/generateErrorUtil.js';
 
 const selectServiceService = async (status) => {
     const pool = await getPool();
@@ -49,10 +48,6 @@ const selectServiceService = async (status) => {
       `,
         [status]
     );
-
-    if (!services.length) {
-        generateErrorUtil('No se encuentran resultados', 401);
-    }
 
     return services;
 };
