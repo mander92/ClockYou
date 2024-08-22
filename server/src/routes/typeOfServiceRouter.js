@@ -2,7 +2,7 @@ import express from 'express';
 
 import authUser from '../middleware/authUser.js';
 import isAdmin from '../middleware/isAdmin.js';
-import typeOfServiceExist from '../middleware/typeOfServiceExists.js';
+import typeOfServiceExists from '../middleware/typeOfServiceExists.js';
 
 import {
     newTypeOfServiceController,
@@ -18,7 +18,7 @@ router.get('/typeOfServices', listTypeOfServicesController);
 
 router.get(
     '/typeOfServices/:typeOfServiceId',
-    typeOfServiceExist,
+    typeOfServiceExists,
     detailTypeOfServicesController
 );
 
@@ -28,7 +28,7 @@ router.put(
     '/typeOfServices/:typeOfServiceId',
     authUser,
     isAdmin,
-    typeOfServiceExist,
+    typeOfServiceExists,
     editTypeOfServiceController
 );
 
@@ -36,7 +36,7 @@ router.delete(
     '/typeOfServices/:typeOfServiceId',
     authUser,
     isAdmin,
-    typeOfServiceExist,
+    typeOfServiceExists,
     deleteTypeOfServiceController
 );
 
