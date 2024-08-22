@@ -74,7 +74,7 @@ const insertShiftRecordService = async (serviceId, employeeId, clientId) => {
                 <h3>Resumen de su pedido</h3>
                 <p>Tipo De Servicio: ${pedido[0].Tipo_Servicio} en ${pedido[0].Provincia}</p>
                 <p>${pedido[0].Fecha} a las ${pedido[0].Hora_Inicio} en Calle: ${pedido[0].Dirección}, ${pedido[0].CP}, ${pedido[0].Ciudad}</p>
-                <p>Precio: ${pedido[0].Precio_Hora} * ${pedido[0].Horas_Contratadas} = ${pedido[0].Precio_Total}</p>
+                <p>Total:${pedido[0].Precio_Total}€</p>
                 <h3>Gracias por confiar en ClockYou.</h3>
                 <h4>Por favor confirme su petición haga click</h4>
                 <h3><a href="http://localhost:${PORT}/services/validate/${pedido[0].validationCode}">AQUÍ</a></h3>
