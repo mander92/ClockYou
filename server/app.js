@@ -15,13 +15,15 @@ const app = express();
 
 app.use(express.json());
 
-app.use(fileUpload())
+app.use('/uploads', express.static(process.env.UPLOAD_DIR));
+
+app.use(fileUpload());
 
 app.use(express.urlencoded({ extended: true }));
 
 app.use(cors());
 
-app.use(routes)
+app.use(routes);
 
 app.use(notFoundErrorController);
 
