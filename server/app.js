@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import fileUpload from 'express-fileupload';
 
-import { PORT } from './env.js';
+import { PORT, UPLOADS_DIR } from './env.js';
 
 import {
     notFoundErrorController,
@@ -15,7 +15,7 @@ const app = express();
 
 app.use(express.json());
 
-app.use('/uploads', express.static(process.env.UPLOAD_DIR));
+app.use('/uploads', express.static(UPLOADS_DIR));
 
 app.use(fileUpload());
 
