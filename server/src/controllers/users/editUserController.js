@@ -16,7 +16,6 @@ const editUserController = async (req, res, next) => {
         const schema = Joi.object().keys({
             firstName: Joi.string().max(25),
             lastName: Joi.string().max(40),
-            dni: Joi.string().min(9),
             phone: Joi.string().max(15),
         });
 
@@ -26,13 +25,19 @@ const editUserController = async (req, res, next) => {
             generateErrorUtil(validationBody.error.message, 401);
         }
 
-        const { firstName, lastName, dni, phone } = req.body;
+        const { firstName, lastName, phone } = req.body;
 
-        await updateUserService(userId, firstName, lastName, dni, phone);
+        const data = await updateUserService(
+            userId,
+            firstName,
+            lastName,
+            phone
+        );
 
         res.send({
             status: 'ok',
-            message: 'Usuario actualizado',
+            message: 'Datos correctamente actualizados',
+            data,
         });
     } catch (error) {
         next(error);
