@@ -13,6 +13,14 @@ https://www.youtube.com/watch?v=f9UUmN2H_9s&ab_channel=HACKABOSS
 - URL MINItwitter Berto 
 https://www.youtube.com/watch?v=a_L9U4y2PkA&t
 
+
+======================================================================
+
+
+- mysqltutorial.org
+https://www.mysqltutorial.org/mysql-basics/
+
+
 ======================================================================
 
 - CONFIGURACIÓN del archivo ".gitignore"
