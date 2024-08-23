@@ -15,9 +15,7 @@ const listEmployeeController = async (req, res, next) => {
         }
         res.send({
             status: 'ok',
-            data: {
-                users,
-            },
+            users,
         });
     } catch (error) {
         next(error);
