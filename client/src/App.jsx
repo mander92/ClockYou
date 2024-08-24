@@ -1,14 +1,23 @@
 import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
 import './App.css';
 
-function App() {
+import Header from './components/Layout/Header/Header';
+import Home from './components/Layout/Home/Home';
+import Footer from './components/Layout/Footer/Footer';
+import products from './components/data/products.json';
+
+// importamos products aquí para practicar con las PROPS pero, si solo lo va usar 1 componente de los que se despliegan en este archivo, App.jsx, lo suyo sería importar products en el componente que vaya a usar products (Home, en este caso)
+
+const App = () => {
   const [count, setCount] = useState(0);
+  console.log('XXXXXXXX --- ', products);
 
   return (
     <>
-      <h1>Hola desde el Front de ClockYou</h1>
+      <Header />
+      <Home products={products} />
+      <Footer />
+
       <div className='card'>
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
@@ -16,6 +25,6 @@ function App() {
       </div>
     </>
   );
-}
+};
 
 export default App;
