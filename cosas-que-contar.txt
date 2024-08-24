@@ -32,17 +32,14 @@ https://www.freecodecamp.org/news/gitignore-file-how-to-ignore-files-and-folders
 TAREAS PENDIENTES: 
 ------------------
 
-RUTAS service
+RUTAS shiftService
 -------
 
-GET. -> Service (solo los servicios que ha contratado un cliente en concreto)
-GET. -> Service (solo los servicios que ha contratado un empleado en concreto)
-DELETE. -> Services/:id
-PUT. -> Services/:id
+post clockIn(guardar el fichaje de entra junto con la laitud y la longitud)
+post cloockout(guardar el fichaje de salida y cambiar el estado sel servicio a completed, una vez hecho eso se debe mandar correo al cliente para que pueda valora el servicio)
 
 
-RUTAS users
+RUTAS typeOfService
 -------
 
-PUT 'users/edit/avatar:id'
-
+el get de los servicios necesitamos coger y hacer la media de las valoraciones por ciudad
