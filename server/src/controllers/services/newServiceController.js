@@ -36,7 +36,7 @@ const newServiceController = async (req, res, next) => {
         const { date, startTime, hours, comments, address, city, postCode } =
             req.body;
 
-        const [data] = await insertServiceService(
+        const data = await insertServiceService(
             typeOfServiceId,
             userId,
             date,
@@ -50,7 +50,7 @@ const newServiceController = async (req, res, next) => {
 
         res.send({
             status: 'ok',
-            data: data,
+            data,
         });
     } catch (error) {
         next(error);

@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import Joi from 'joi'
+import Joi from 'joi';
 
 import { SECRET } from '../../../env.js';
 
@@ -9,17 +9,16 @@ import generateErrorUtil from '../../utils/generateErrorUtil.js';
 
 const loginUserController = async (req, res, next) => {
     try {
-
         const schema = Joi.object().keys({
             email: Joi.string().email(),
             password: Joi.string().min(6).max(50),
-          });
-      
-          const validation = schema.validate(req.body);
-      
-          if(validation.error){
-            generateErrorUtil(validation.error.message, 401)
-          }
+        });
+
+        const validation = schema.validate(req.body);
+
+        if (validation.error) {
+            generateErrorUtil(validation.error.message, 401);
+        }
 
         const { email, password } = req.body;
 
@@ -54,7 +53,7 @@ const loginUserController = async (req, res, next) => {
 
         res.send({
             status: 'ok',
-            data: token
+            token: token,
         });
     } catch (error) {
         next(error);

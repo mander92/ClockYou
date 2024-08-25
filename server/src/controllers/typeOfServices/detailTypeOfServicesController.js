@@ -1,18 +1,15 @@
-import Joi from 'joi';
-
 import selectTypeOfServiceByIdService from '../../services/typeOfServices/selectTypeOfServiceByIdService.js';
 
 const detailTypeOfServicesController = async (req, res, next) => {
     try {
         const { typeOfServiceId } = req.params;
 
-        const service = await selectTypeOfServiceByIdService(typeOfServiceId);
+        const data = await selectTypeOfServiceByIdService(typeOfServiceId);
 
         res.send({
             status: 'ok',
-            data: {
-                service,
-            },
+            message: 'Detalle del servicio',
+            data,
         });
     } catch (error) {
         next(error);

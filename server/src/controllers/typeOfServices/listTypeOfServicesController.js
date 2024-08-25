@@ -5,9 +5,9 @@ const listTypeOfServicesController = async (req, res, next) => {
     try {
         const { type, city } = req.query;
 
-        const service = await selectTypeOfServicesService(type, city);
+        const data = await selectTypeOfServicesService(type, city);
 
-        if (!service.length) {
+        if (!data.length) {
             generateErrorUtil(
                 'No existen resultados con los filtros aplicados',
                 401
@@ -16,9 +16,8 @@ const listTypeOfServicesController = async (req, res, next) => {
 
         res.send({
             status: 'ok',
-            data: {
-                service,
-            },
+            message: 'Tipos de servicios',
+            data,
         });
     } catch (error) {
         next(error);

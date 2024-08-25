@@ -5,18 +5,18 @@ import getPool from '../../db/getPool.js';
 import generateErrorUtil from '../../utils/generateErrorUtil.js';
 import sendMailUtils from '../../utils/sendMailUtil.js';
 
-const insertShiftRecordService = async (serviceId, employeeId, clientId) => {
+const insertShiftRecordService = async (serviceId, employeeId) => {
     const pool = await getPool();
 
-    const [service] = await pool.query(
+    const [created] = await pool.query(
         `
-      SELECT id FROM services WHERE id = ?
-      `,
-        [serviceId]
+        SELECT id FROM shiftRecords WHERE serviceId = ? AND employeeId = ?
+        `,
+        [serviceId, employeeId]
     );
 
-    if (!service.length) {
-        generateErrorUtil('El servicio no existe', 401);
+    if (created.length) {
+        generateErrorUtil('El turno ya está asignado', 401);
     }
 
     const [employee] = await pool.query(
@@ -37,20 +37,19 @@ const insertShiftRecordService = async (serviceId, employeeId, clientId) => {
         [serviceId]
     );
 
-    const idTurno = uuid();
+    const id = uuid();
 
     await pool.query(
         `
         INSERT INTO shiftRecords(id, employeeId, serviceId) VALUES(?,?,?)
         `,
-        [idTurno, employeeId, serviceId]
+        [id, employeeId, serviceId]
     );
 
     const [pedido] = await pool.query(
         `
             SELECT s.status AS Estado,
-            t.type AS Tipo_Servicio, t.city AS Provincia, t.price AS Precio_Hora, s.validationCode, s.hours AS Horas_Contratadas, s.totalPrice AS Precio_Total, s.date AS Fecha, s.startTime AS Hora_Inicio, 
-            a.address AS Dirección, a.postCode AS CP, a.city AS Ciudad, s.comments AS Comenatarios, u.email AS Email, u.firstName AS Nombre, u.lastName AS Apellidos, u.phone AS Teléfono
+            t.type AS Tipo_Servicio, t.city AS Provincia, s.validationCode, s.totalPrice AS Precio_Total, s.date AS Fecha, s.startTime AS Hora_Inicio, a.address AS Dirección, a.postCode AS CP, a.city AS Ciudad, u.email AS Email
             FROM addresses a
             INNER JOIN services s
             ON a.id = s.addressId
@@ -70,15 +69,13 @@ const insertShiftRecordService = async (serviceId, employeeId, clientId) => {
         <body style="display: flex; justify-content: center; margin: 0;">
             <div style="text-align: center;">
                 <h1>ClockYou</h1>
-                <h2>¡¡¡Hola ${pedido[0].Nombre} ${pedido[0].Apellidos}!!!</h2>
-                <h3>Resumen de su pedido</h3>
-                <p>Tipo De Servicio: ${pedido[0].Tipo_Servicio} en ${pedido[0].Provincia}</p>
-                <p>${pedido[0].Fecha} a las ${pedido[0].Hora_Inicio} en Calle: ${pedido[0].Dirección}, ${pedido[0].CP}, ${pedido[0].Ciudad}</p>
-                <p>Total:${pedido[0].Precio_Total}€</p>
-                <h3>Gracias por confiar en ClockYou.</h3>
-                <h4>Por favor confirme su petición haga click</h4>
-                <h3><a href="http://localhost:${PORT}/services/validate/${pedido[0].validationCode}">AQUÍ</a></h3>
-                <h5>Hecho con ❤ por el equipo de ClockYou.</h5>
+                <h2>Resumen de su pedido</h2>
+                <h3>Tipo De Servicio: ${pedido[0].Tipo_Servicio} en ${pedido[0].Provincia}</h3>
+                <h3>${pedido[0].Fecha} a las ${pedido[0].Hora_Inicio} en Calle: ${pedido[0].Dirección}, ${pedido[0].CP}, ${pedido[0].Ciudad}</h3>
+                <h3>Total:${pedido[0].Precio_Total}€</h3>
+                <h3>Por favor confirme su petición</h3>
+                <h2><a href="http://localhost:${PORT}/services/validate/${pedido[0].validationCode}">AQUÍ</a></h2>
+                <h4>Gracias por confiar en ClockYou.</h4>
             </div>
         </body>
     </html>

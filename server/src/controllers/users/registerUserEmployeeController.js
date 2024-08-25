@@ -25,7 +25,7 @@ const registerUserEmployeeController = async (req, res, next) => {
         const { email, password, firstName, lastName, dni, phone, job, city } =
             req.body;
 
-        await insertEmployeeService(
+        const data = await insertEmployeeService(
             email,
             password,
             firstName,
@@ -36,9 +36,12 @@ const registerUserEmployeeController = async (req, res, next) => {
             city
         );
 
+        console.log(data);
+
         res.send({
             status: 'ok',
             message: 'Empleado registrado correctamente.',
+            data: data,
         });
     } catch (error) {
         next(error);

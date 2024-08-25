@@ -29,13 +29,15 @@ const insertEmployeeService = async (
 
     const passwordHashed = await bcrypt.hash(password, 10);
 
+    const id = uuid();
+
     await pool.query(
         `
               INSERT INTO users(id, email, password, firstName, lastName, dni, phone, role, job, city, active )
               VALUES (?,?,?,?,?,?,?,?,?,?,?)
           `,
         [
-            uuid(),
+            id,
             email,
             passwordHashed,
             firstName,
@@ -48,6 +50,15 @@ const insertEmployeeService = async (
             1,
         ]
     );
+
+    const [data] = await pool.query(
+        `
+        SELECT email, firstName, lastName, dni, phone, job, city FROM users WHERE id = ?
+        `,
+        [id]
+    );
+
+    return data[0];
 };
 
 export default insertEmployeeService;

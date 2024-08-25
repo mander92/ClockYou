@@ -12,7 +12,7 @@ const updateUserService = async (userId, firstName, lastName, phone) => {
 
     const [data] = await pool.query(
         `
-        SELECT firstName, lastName, phone FROM users WHERE id = ?
+        SELECT firstName AS Nombre, lastName AS Apellidos, phone AS Teléfono FROM users WHERE id = ?
         `,
         [userId]
     );

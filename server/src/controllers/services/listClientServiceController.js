@@ -15,9 +15,8 @@ const listClientServiceController = async (req, res, next) => {
 
         res.send({
             status: 'ok',
-            data: {
-                data,
-            },
+            message: 'Lista de servicios',
+            data,
         });
     } catch (error) {
         next(error);

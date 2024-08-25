@@ -8,7 +8,7 @@ const insertTypeOfServiceService = async (type, description, city, price) => {
     const [service] = await pool.query(
         `
         SELECT id FROM typeOfServices WHERE type = ? AND city = ?
-            `,
+        `,
         [type, city]
     );
 
@@ -16,12 +16,23 @@ const insertTypeOfServiceService = async (type, description, city, price) => {
         generateErrorUtil('El servicio ya se encuentra registrado', 409);
     }
 
+    const id = uuid();
+
     await pool.query(
         `
-            INSERT INTO typeOfServices (id, type, description, city, price) VALUES (?,?,?,?,?)
-            `,
-        [uuid(), type, description, city, price]
+        INSERT INTO typeOfServices (id, type, description, city, price) VALUES (?,?,?,?,?)
+        `,
+        [id, type, description, city, price]
     );
+
+    const [data] = await pool.query(
+        `
+        SELECT type, description, city, price FROM typeOfServices WHERE id = ?
+        `,
+        [id]
+    );
+
+    return data[0];
 };
 
 export default insertTypeOfServiceService;

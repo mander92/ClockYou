@@ -21,7 +21,7 @@ const validateUserController = async (req, res, next) => {
 
         res.send({
             status: 'ok',
-            message: 'Usario activado correctamente',
+            message: 'Usuario activado correctamente',
         });
     } catch (error) {
         next(error);

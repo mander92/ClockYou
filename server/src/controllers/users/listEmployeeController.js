@@ -5,9 +5,9 @@ const listEmployeeController = async (req, res, next) => {
     try {
         const { job, active, city } = req.query;
 
-        const users = await selectEmployeeService(job, active, city);
+        const data = await selectEmployeeService(job, active, city);
 
-        if (!users.length) {
+        if (!data.length) {
             generateErrorUtil(
                 'No existen resultados con los filtros aplicados',
                 401
@@ -15,7 +15,8 @@ const listEmployeeController = async (req, res, next) => {
         }
         res.send({
             status: 'ok',
-            users,
+            message: 'Lista de empleados',
+            data,
         });
     } catch (error) {
         next(error);

@@ -36,8 +36,8 @@ const editUserController = async (req, res, next) => {
 
         res.send({
             status: 'ok',
-            message: 'Datos correctamente actualizados',
-            data,
+            message: 'Datos actualizados correctamente',
+            data: data,
         });
     } catch (error) {
         next(error);

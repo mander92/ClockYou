@@ -4,13 +4,12 @@ const detailServiceController = async (req, res, next) => {
     try {
         const { serviceId } = req.params;
 
-        const service = await selectServiceByIdService(serviceId);
+        const data = await selectServiceByIdService(serviceId);
 
         res.send({
             status: 'ok',
-            data: {
-                service,
-            },
+            message: 'Detalles del servicio',
+            data,
         });
     } catch (error) {
         next(error);

@@ -20,11 +20,17 @@ const newTypeOfServiceController = async (req, res, next) => {
 
         const { type, description, city, price } = req.body;
 
-        await insertTypeOfServiceService(type, description, city, price);
+        const data = await insertTypeOfServiceService(
+            type,
+            description,
+            city,
+            price
+        );
 
         res.send({
             status: 'ok',
             message: 'El servicio ha sido creado correctamente',
+            data,
         });
     } catch (error) {
         next(error);

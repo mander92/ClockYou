@@ -4,18 +4,18 @@ import generateErrorUtil from '../../utils/generateErrorUtil.js';
 const selectTypeOfServiceByIdService = async (typeOfServiceId) => {
     const pool = await getPool();
 
-    const [service] = await pool.query(
+    const [type] = await pool.query(
         `
-            SELECT id, type, description, city, price FROM typeOfServices WHERE id = ? AND deletedAt IS NULL
-            `,
+        SELECT id, type, description, city, price FROM typeOfServices WHERE id = ? AND deletedAt IS NULL
+        `,
         [typeOfServiceId]
     );
 
-    if (!service.length) {
+    if (!type.length) {
         generateErrorUtil('No existe el servicio', 404);
     }
 
-    return service;
+    return type[0];
 };
 
 export default selectTypeOfServiceByIdService;

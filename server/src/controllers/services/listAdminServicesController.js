@@ -5,17 +5,16 @@ const listAdminServicesController = async (req, res, next) => {
     try {
         const { status } = req.query;
 
-        const services = await selectServiceService(status);
+        const data = await selectServiceService(status);
 
-        if (!services.length) {
+        if (!data.length) {
             generateErrorUtil('No se encuentran resultados', 401);
         }
 
         res.send({
             status: 'ok',
-            data: {
-                services,
-            },
+            message: 'Lista de servicios',
+            data,
         });
     } catch (error) {
         next(error);

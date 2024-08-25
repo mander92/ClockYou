@@ -13,7 +13,8 @@ const listShiftRecordsController = async (req, res, next) => {
 
         res.send({
             status: 'ok',
-            data: data,
+            message: 'Lista de registros horarios',
+            data,
         });
     } catch (error) {
         next(error);

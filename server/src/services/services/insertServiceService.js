@@ -71,7 +71,7 @@ const insertServiceService = async (
         [userId]
     );
 
-    return data;
+    return data[0];
 };
 
 export default insertServiceService;

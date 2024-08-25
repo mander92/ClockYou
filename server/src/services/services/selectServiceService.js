@@ -30,7 +30,7 @@ const selectServiceService = async (status) => {
     const [services] = await pool.query(
         `
         SELECT s.status AS Estado, s.id AS serviceId, t.id AS typeOfServiceId, 
-        u.id AS userId, a.id AS addressId, s.createdAt AS Creación, 
+        u.id AS clientId, a.id AS addressId, s.createdAt AS Creación, 
         t.type AS Tipo_Servicio, t.city AS Provincia, t.price AS Precio, 
         s.hours AS Horas, s.totalPrice AS Precio_Total, s.date AS Fecha, 
         s.startTime AS Hora_Inicio, a.city AS Ciudad, a.address AS Dirección, a.postCode AS CP, 

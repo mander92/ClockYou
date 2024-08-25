@@ -1,19 +1,18 @@
-import selectShiftRecordByIdService from "../../services/shiftRecords/selectShiftRecordByIdService.js";
+import selectShiftRecordByIdService from '../../services/shiftRecords/selectShiftRecordByIdService.js';
 
-const detailShiftRecordController = async (req,res,next) => {
+const detailShiftRecordController = async (req, res, next) => {
     try {
-
         const { shiftRecordId } = req.params;
 
-        const shiftRecord = await selectShiftRecordByIdService(shiftRecordId);
+        const data = await selectShiftRecordByIdService(shiftRecordId);
 
         res.send({
             status: 'ok',
-            data: shiftRecord
+            message: 'Detalle del registro horario',
+            data,
         });
-
     } catch (error) {
-        next(error)
+        next(error);
     }
-}
+};
 export default detailShiftRecordController;

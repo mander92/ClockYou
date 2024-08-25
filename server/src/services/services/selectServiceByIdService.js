@@ -25,7 +25,7 @@ const selectServiceByIdService = async (serviceId) => {
         generateErrorUtil('No existen servicios asociados a ese ID', 404);
     }
 
-    return service;
+    return service[0];
 };
 
 export default selectServiceByIdService;
