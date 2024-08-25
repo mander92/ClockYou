@@ -1,20 +1,18 @@
-import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout/Layout';
+import Home from './pages/Home';
 import './App.css';
-import './index.css';
+
+// importamos products aquí para practicar con las PROPS pero, si solo lo va usar 1 componente de los que se despliegan en este archivo, App.jsx, lo suyo sería importar products en el componente que vaya a usar products (Home, en este caso)
 
 const App = () => {
-  const [count, setCount] = useState(0);
-
   return (
     <>
-      <h1>Hola desde el Front de ClockYou</h1>
-      <h2>Empezando a darle estructura al Front de ClockYou</h2>
-
-      <div className='card'>
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-      </div>
+      <Layout>
+        <main className='flex-grow'>
+          <Home />
+        </main>
+      </Layout>
     </>
   );
 };

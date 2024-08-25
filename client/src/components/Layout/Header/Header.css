@@ -1,0 +1,8 @@
+.linkmainnav {
+  background-color: rgb(70, 70, 70);
+  transition: background-color 0.3s linear;
+
+  &:hover {
+    background-color: rgb(85, 85, 85);
+  }
+}
