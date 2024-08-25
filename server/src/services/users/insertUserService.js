@@ -79,7 +79,7 @@ const insertUserService = async (
                             "
                             >
                             <img
-                                src="./logo-test.png"
+                                src="https://raw.githubusercontent.com/mander92/ClockYou/main/logo-provisiomal-para-mailing.png"
                                 alt="ClockYou"
                                 style="width: 40px; margin: 0 -3px -7px 0"
                             />
