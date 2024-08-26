@@ -59,7 +59,7 @@ const updateServiceByIdService = async (
         [serviceId]
     );
 
-    return data;
+    return data[0];
 };
 
 export default updateServiceByIdService;
