@@ -36,7 +36,12 @@ router.post(
     registerUserEmployeeController
 );
 
-router.post('/users/avatar/:userId', authUser, editUserAvatarController);
+router.post(
+    '/users/avatar/:userId',
+    authUser,
+    userExists,
+    editUserAvatarController
+);
 
 router.get('/users/validate/:registrationCode', validateUserController);
 router.get('/users/employee', authUser, isAdmin, listEmployeeController);
