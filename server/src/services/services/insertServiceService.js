@@ -16,6 +16,28 @@ const insertServiceService = async (
 ) => {
     const pool = await getPool();
 
+    const [existAddress] = await pool.query(
+        `
+        SELECT id FROM addresses WHERE address = ? AND city = ? AND postCode = ?
+        `,
+        [address, city, postCode]
+    );
+
+    const [existService] = await pool.query(
+        `
+    SELECT id FROM services WHERE typeOfServicesId = ? AND clientId = ? AND date = ? AND startTime = ? AND hours = ?
+    `,
+        [typeOfServiceId, userId, date, startTime, hours]
+    );
+
+    console.log(existService);
+
+    if (existAddress.length && existService.length)
+        generateErrorUtil(
+            'Ya has solicitado un servicio con estas características',
+            401
+        );
+
     const [price] = await pool.query(
         `
         SELECT price FROM typeOfServices WHERE id = ?
