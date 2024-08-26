@@ -8,7 +8,7 @@ const editUserAvatarController = async (req, res, next) => {
 
         if (user.avatar) await deletePictureUtil(user.avatar);
 
-        const avatarName = await savePictureUtil(req.files.avatar, 500);
+        const avatarName = await savePictureUtil(req.files.avatar, 250);
 
         await updateUserAvatarService(avatarName, req.userLogged.id);
 
