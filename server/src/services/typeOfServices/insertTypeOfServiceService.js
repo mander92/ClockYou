@@ -27,7 +27,7 @@ const insertTypeOfServiceService = async (type, description, city, price) => {
 
     const [data] = await pool.query(
         `
-        SELECT type, description, city, price FROM typeOfServices WHERE id = ?
+        SELECT id, type, description, city, price FROM typeOfServices WHERE id = ?
         `,
         [id]
     );
