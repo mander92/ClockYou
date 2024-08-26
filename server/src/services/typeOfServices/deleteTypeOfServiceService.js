@@ -12,7 +12,7 @@ const deleteTypeOfServiceService = async (typeOfServiceId) => {
 
     const [data] = await pool.query(
         `
-        SELECT type, city FROM typeOfServices WHERE id = ? 
+        SELECT id, type, city FROM typeOfServices WHERE id = ? 
         `,
         [typeOfServiceId]
     );
