@@ -50,6 +50,8 @@ const newServiceController = async (req, res, next) => {
 
         res.send({
             status: 'ok',
+            message:
+                'Servicio solicitado correctamente. Recibirá la confirmación en su email',
             data,
         });
     } catch (error) {
