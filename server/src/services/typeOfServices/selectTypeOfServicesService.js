@@ -44,7 +44,7 @@ const selectTypeOfServiceService = async (type, city) => {
             [type]
         );
 
-        return service[0];
+        return service;
     }
 };
 
