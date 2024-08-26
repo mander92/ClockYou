@@ -45,3 +45,24 @@ h3,
 h4 {
   font-family: 'DM Serif Text', serif;
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+a,
+span,
+li {
+  text-wrap: balance;
+}
+
+p,
+a,
+span,
+li {
+  font-family: 'Nanum Gothic Coding', monospace;
+  font-weight: 400;
+  font-size: 1.1rem;
+}

@@ -5,11 +5,14 @@ const Header = () => {
   return (
     <header>
       <nav className='mainnav'>
-        <a href='#'>
+        <a href='#' className='flex items-center pb-3 sm:pb-0'>
           <img className='w-14' src={clockyouLogo} alt='clockYou' />
+          <span className='text-4xl pl-1.5 dm-serif-text-regular'>
+            ClockYou
+          </span>
         </a>
 
-        <ul className='flex items-center gap-3'>
+        <ul className='flex flex-wrap items-center gap-3'>
           <li>
             <a className='linkmainnav' href='#'>
               Nosotros

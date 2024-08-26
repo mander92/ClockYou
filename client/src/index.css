@@ -10,12 +10,4 @@
   h2 {
     @apply text-3xl pb-4;
   }
-
-  .mainnav {
-    @apply flex flex-wrap py-5 place-content-between items-center text-white;
-  }
-
-  .linkmainnav {
-    @apply block px-4 py-2.5 text-white;
-  }
 }

@@ -12,7 +12,7 @@ const Home = () => {
 
   return (
     <>
-      <h1>Hola desde el Front de {VITE_APP_TITLE}</h1>
+      <h1>Front de {VITE_APP_TITLE}</h1>
       <h2>Empezando a darle estructura al Front de {VITE_APP_TITLE}</h2>
 
       <ul>{productsLi}</ul>
