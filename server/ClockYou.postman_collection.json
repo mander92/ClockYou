@@ -45,13 +45,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjkzOTQ5MGYzLTBiOTQtNGRjMC04ODQxLTdmNzg5MTBhYWNiMiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNDE2MzgxNSwiZXhwIjoxNzI0NzY4NjE1fQ.PFg9TgollZTIuaGGmceYWpuqERxmPrSq2cDv0ABkbtk",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE0ODRkMDEwLTBhMjItNDBjYS04OGJiLTViM2NkOTc2MzViMiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNDM1MTI4MSwiZXhwIjoxNzI0OTU2MDgxfQ.i3faeGEqNy88mhiMreMPtGI2fS38eVNZqzST3ySl2Js",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"Admin\",\r\n    \"lastName\": \"ClockYou\",\r\n    \"dni\": \"46723478G\",\r\n    \"phone\": \"666202020\"\r\n}",
+							"raw": "{\r\n    \"firstName\": \"Admin\",\r\n    \"lastName\": \"ClockYou\",\r\n    \"phone\": \"666202020\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -59,7 +59,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/users/939490f3-0b94-4dc0-8841-7f78910aacb",
+							"raw": "http://localhost:8000/users/1484d010-0a22-40ca-88bb-5b3cd97635b2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -67,7 +67,7 @@
 							"port": "8000",
 							"path": [
 								"users",
-								"939490f3-0b94-4dc0-8841-7f78910aacb"
+								"1484d010-0a22-40ca-88bb-5b3cd97635b2"
 							]
 						}
 					},
@@ -448,7 +448,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"type\": \"Peluquero\",\n    \"description\": \"Corte y retoques de barba\",\n    \"city\":\"Castellón\",\n    \"price\":\"12.50\"\n}",
+							"raw": "{\n    \"type\": \"Animador\",\n    \"description\": \"Corte y retoques de barba\",\n    \"city\":\"Zaragoza\",\n    \"price\":\"12.50\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -505,7 +505,7 @@
 								},
 								{
 									"key": "city",
-									"value": "coruña",
+									"value": "Castellón",
 									"disabled": true
 								}
 							]
@@ -529,7 +529,7 @@
 							"urlencoded": []
 						},
 						"url": {
-							"raw": "http://localhost:8000/typeOfServices/0bdecb5f-cf7a-4f0a-ab5b-25b21f3e4200",
+							"raw": "http://localhost:8000/typeOfServices/66e006ff-29fb-44f6-b731-c82485045195",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -537,7 +537,7 @@
 							"port": "8000",
 							"path": [
 								"typeOfServices",
-								"0bdecb5f-cf7a-4f0a-ab5b-25b21f3e4200"
+								"66e006ff-29fb-44f6-b731-c82485045195"
 							]
 						}
 					},
@@ -549,7 +549,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/typeOfServices/0eb980fe-ba9d-4e67-b261-fd8382c0989",
+							"raw": "http://localhost:8000/typeOfServices/0d827e39-f84a-49e2-9822-1e004701328b",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -557,7 +557,7 @@
 							"port": "8000",
 							"path": [
 								"typeOfServices",
-								"0eb980fe-ba9d-4e67-b261-fd8382c0989"
+								"0d827e39-f84a-49e2-9822-1e004701328b"
 							]
 						}
 					},
@@ -879,7 +879,7 @@
 			"name": "shiftRecords",
 			"item": [
 				{
-					"name": "new",
+					"name": "new(admin)",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -979,6 +979,32 @@
 							"path": [
 								"shiftrecords",
 								"23b8fc35-0a86-4311-96cd-9a8632b33601"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "detail",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{admin}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/shiftrecords/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"shiftrecords",
+								""
 							]
 						}
 					},
