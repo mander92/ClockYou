@@ -17,6 +17,7 @@ const editTypeOfServiceController = async (req, res, next) => {
         }
 
         const { typeOfServiceId } = req.params;
+
         const { description, price } = req.body;
 
         const data = await updateTypeOfServiceService(
