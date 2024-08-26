@@ -13,13 +13,13 @@ const editUserAvatarController = async (req, res, next) => {
             generateErrorUtil('Acceso denegado, el token no coincide', 409);
         }
 
-        const user = await selectUserByIdService(req.userLogged.id);
+        const user = await selectUserByIdService(userId);
 
         if (user.avatar) await deletePictureUtil(user.avatar);
 
         const avatarName = await savePictureUtil(req.files.avatar, 250);
 
-        await updateUserAvatarService(avatarName, req.userLogged.id);
+        await updateUserAvatarService(avatarName, userId);
 
         res.send({
             status: 'ok',
