@@ -1,9 +1,18 @@
 import selectUserByIdService from '../../services/users/selectUserByIdService.js';
 import { deletePictureUtil, savePictureUtil } from '../../utils/photoUtil.js';
 import updateUserAvatarService from '../../services/users/updateUserAvatarService.js';
+import generateErrorUtil from '../../utils/generateErrorUtil.js';
 
 const editUserAvatarController = async (req, res, next) => {
     try {
+        const loggedId = req.userLogged.id;
+
+        const { userId } = req.params;
+
+        if (loggedId !== userId) {
+            generateErrorUtil('Acceso denegado, el token no coincide', 409);
+        }
+
         const user = await selectUserByIdService(req.userLogged.id);
 
         if (user.avatar) await deletePictureUtil(user.avatar);
