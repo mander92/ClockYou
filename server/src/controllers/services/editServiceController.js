@@ -37,7 +37,7 @@ const editServiceController = async (req, res, next) => {
 
         res.send({
             status: 'ok',
-            message: 'Servicio borrado correctamente',
+            message: 'Servicio actualizado correctamente',
             data,
         });
     } catch (error) {

@@ -58,12 +58,14 @@ const insertServiceService = async (
 
     const validationCode = Randomstring.generate(30);
 
+    const serviceId = uuid();
+
     await pool.query(
         `
         INSERT INTO services(id, date, startTime, hours, comments, validationCode, clientId, addressId, typeOfServicesId, totalPrice) VALUES (?,?,?,?,?,?,?,?,?,?)
         `,
         [
-            uuid(),
+            serviceId,
             date,
             startTime,
             hours,
@@ -88,9 +90,9 @@ const insertServiceService = async (
             ON u.id = s.clientId
             INNER JOIN typeOfServices t
             ON s.typeOfServicesId = t.id
-            WHERE u.id = ?
+            WHERE u.id = ? AND s.id = ?
         `,
-        [userId]
+        [userId, serviceId]
     );
 
     return data[0];

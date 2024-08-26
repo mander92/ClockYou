@@ -47,6 +47,19 @@ const updateServiceByIdService = async (
         `,
         [comments, date, hours, startTime, resultPrice, serviceId]
     );
+
+    const [data] = await pool.query(
+        `
+        SELECT s.date, s.startTime, s.hours, s.totalPrice, a.address, a.city, a.postCode
+        FROM services s
+        INNER JOIN addresses a
+        ON a.id = s.addressId
+        WHERE s.id = ?
+        `,
+        [serviceId]
+    );
+
+    return data;
 };
 
 export default updateServiceByIdService;
