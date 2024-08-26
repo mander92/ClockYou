@@ -103,124 +103,179 @@ const initDb = async () => {
             )
         `);
 
-        await pool.query(
-            `
-            INSERT INTO typeOfServices (id, type, description, city, price) VALUES (?, ?, ?, ?, ?)`,
-            [
-                uuid(),
-                'Clases Particulares',
-                'Profesores especializados para reforzar conocimientos en distintas materias.',
-                'Coruña',
-                '20',
-            ]
+        const insertTypeOfService = async (
+            id,
+            type,
+            description,
+            city,
+            price
+        ) => {
+            await pool.query(
+                `
+                INSERT INTO typeOfServices (id, type, description, city, price) VALUES (?, ?, ?, ?, ?)
+                `,
+                [id, type, description, city, price]
+            );
+        };
+
+        await insertTypeOfService(
+            uuid(),
+            'Clases Particulares',
+            'Profesores especializados para reforzar conocimientos en distintas materias.',
+            'Coruña',
+            '20'
         );
 
-        await pool.query(
-            `
-            INSERT INTO typeOfServices (id, type, description, city, price) VALUES (?, ?, ?, ?, ?)`,
-            [
-                uuid(),
-                'Entrenamiento Personal',
-                'Entrenadores que te guían para alcanzar tus metas de salud y bienestar.',
-                'Barcelona',
-                '28',
-            ]
+        await insertTypeOfService(
+            uuid(),
+            'Entrenamiento Personal',
+            'Entrenadores que te guían para alcanzar tus metas de salud y bienestar.',
+            'Barcelona',
+            '28'
         );
 
-        await pool.query(
-            `
-            INSERT INTO typeOfServices (id, type, description, city, price) VALUES (?, ?, ?, ?, ?)`,
-            [
-                uuid(),
-                'Cuidado De Mascotas',
-                'Atención y paseos para tus mascotas cuando lo necesites.',
-                'Madrid',
-                '12.50',
-            ]
+        await insertTypeOfService(
+            uuid(),
+            'Cuidado De Mascotas',
+            'Atención y paseos para tus mascotas cuando lo necesites.',
+            'Madrid',
+            '12.50'
         );
 
-        await pool.query(
-            `
-            INSERT INTO typeOfServices (id, type, description, city, price) VALUES (?, ?, ?, ?, ?)`,
-            [
-                uuid(),
-                'Limpieza A Domicilio',
-                'Profesionales para la limpieza y organización de tu hogar.',
-                'Sevilla',
-                '30',
-            ]
+        await insertTypeOfService(
+            uuid(),
+            'Limpieza A Domicilio',
+            'Profesionales para la limpieza y organización de tu hogar.',
+            'Sevilla',
+            '30'
         );
 
-        await pool.query(
-            `
-            INSERT INTO typeOfServices (id, type, description, city, price) VALUES (?, ?, ?, ?, ?)`,
-            [
-                uuid(),
-                'Masajes',
-                'Sesiones de relajación y bienestar a domicilio.',
-                'Zaragoza',
-                '25',
-            ]
+        await insertTypeOfService(
+            uuid(),
+            'Masajes',
+            'Sesiones de relajación y bienestar a domicilio.',
+            'Zaragoza',
+            '25'
         );
 
-        await pool.query(
-            `
-            INSERT INTO typeOfServices (id, type, description, city, price) VALUES (?, ?, ?, ?, ?)`,
-            [
-                uuid(),
-                'Mantenimiento Del Hogar',
-                'Reparaciones y soluciones rápidas para el hogar.',
-                'Castellón',
-                '28.80',
-            ]
+        await insertTypeOfService(
+            uuid(),
+            'Mantenimiento Del Hogar',
+            'Reparaciones y soluciones rápidas para el hogar.',
+            'Castellón',
+            '28.80'
         );
 
-        await pool.query(
-            `
-            INSERT INTO typeOfServices (id, type, description, city, price) VALUES (?, ?, ?, ?, ?)`,
-            [
-                uuid(),
-                'Guía Turístico',
-                'Tours personalizados y acompañamiento en recorridos.',
-                'Portugal',
-                '21.30',
-            ]
+        await insertTypeOfService(
+            uuid(),
+            'Guía Turístico',
+            'Tours personalizados y acompañamiento en recorridos.',
+            'Portugal',
+            '21.30'
         );
 
-        await pool.query(
-            `
-            INSERT INTO typeOfServices (id, type, description, city, price) VALUES (?, ?, ?, ?, ?)`,
-            [
-                uuid(),
-                'Peluquería',
-                'Esteticistas a domicilio para cortes de pelo y tratamientos de belleza.',
-                'Bilbao',
-                '13.50',
-            ]
+        await insertTypeOfService(
+            uuid(),
+            'Peluquería',
+            'Esteticistas a domicilio para cortes de pelo y tratamientos de belleza.',
+            'Bilbao',
+            '13.50'
         );
 
-        await pool.query(
-            `
-            INSERT INTO typeOfServices (id, type, description, city, price) VALUES (?, ?, ?, ?, ?)`,
-            [
-                uuid(),
-                'Lavado De Automóviles',
-                'Limpieza y detallado de vehículos en el lugar que prefieras.',
-                'León',
-                '22',
-            ]
+        await insertTypeOfService(
+            uuid(),
+            'Lavado De Automóviles',
+            'Limpieza y detallado de vehículos en el lugar que prefieras.',
+            'León',
+            '22'
         );
 
-        await pool.query(
-            `
-            INSERT INTO typeOfServices (id, type, description, city, price) VALUES (?, ?, ?, ?, ?)`,
-            [
-                uuid(),
-                'Mecánico De Bicicletas',
-                'Reparación y mantenimiento de bicicletas.',
-                'Alicante',
-                '31.50',
-            ]
+        await insertTypeOfService(
+            uuid(),
+            'Mecánico De Bicicletas',
+            'Reparación y mantenimiento de bicicletas.',
+            'Alicante',
+            '31.50'
+        );
+
+        await insertTypeOfService(
+            uuid(),
+            'Clases Particulares',
+            'Profesores especializados para reforzar conocimientos en distintas materias.',
+            'Madrid',
+            '25'
+        );
+
+        await insertTypeOfService(
+            uuid(),
+            'Entrenamiento Personal',
+            'Entrenadores que te guían para alcanzar tus metas de salud y bienestar.',
+            'Alicante',
+            '22'
+        );
+
+        await insertTypeOfService(
+            uuid(),
+            'Cuidado De Mascotas',
+            'Atención y paseos para tus mascotas cuando lo necesites.',
+            'Barcelona',
+            '15'
+        );
+
+        await insertTypeOfService(
+            uuid(),
+            'Limpieza A Domicilio',
+            'Profesionales para la limpieza y organización de tu hogar.',
+            'Pamplona',
+            '24'
+        );
+
+        await insertTypeOfService(
+            uuid(),
+            'Masajes',
+            'Sesiones de relajación y bienestar a domicilio.',
+            'Castellón',
+            '22.90'
+        );
+
+        await insertTypeOfService(
+            uuid(),
+            'Mantenimiento Del Hogar',
+            'Reparaciones y soluciones rápidas para el hogar.',
+            'Portugal',
+            '30'
+        );
+
+        await insertTypeOfService(
+            uuid(),
+            'Guía Turístico',
+            'Tours personalizados y acompañamiento en recorridos.',
+            'Bilbao',
+            '23.50'
+        );
+
+        await insertTypeOfService(
+            uuid(),
+            'Peluquería',
+            'Esteticistas a domicilio para cortes de pelo y tratamientos de belleza.',
+            'León',
+            '13.50'
+        );
+
+        await insertTypeOfService(
+            uuid(),
+            'Lavado De Automóviles',
+            'Limpieza y detallado de vehículos en el lugar que prefieras.',
+            'Alicante',
+            '24'
+        );
+
+        await insertTypeOfService(
+            uuid(),
+            'Mecánico De Bicicletas',
+            'Reparación y mantenimiento de bicicletas.',
+            'Coruña',
+            '30'
         );
 
         const hashedPass = await bcrypt.hash(ADMIN_PASSWORD, 10);
