@@ -6,7 +6,7 @@ const selectServiceByEmployeeIdService = async (employeeId) => {
 
     const [data] = await pool.query(
         `
-            SELECT s.status, t.type, t.city, s.date, s.startTime, s.hours, s.totalPrice, a.address, a.city, a.postcode, s.comments
+            SELECT t.type, t.city, s.date, s.startTime, s.hours, s.totalPrice, a.address, a.city, a.postcode, s.comments
             FROM shiftRecords sr
             INNER JOIN services s
             ON sr.serviceId = s.id
@@ -14,7 +14,7 @@ const selectServiceByEmployeeIdService = async (employeeId) => {
             ON s.addressId = a.id
             INNER JOIN typeOfServices t
             ON t.id = s.typeOfServicesId
-            WHERE sr.employeeId = ?
+            WHERE sr.employeeId = ? AND s.status = 'confirmed'
         `,
         [employeeId]
     );
