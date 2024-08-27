@@ -6,14 +6,12 @@ const updateRatingServiceByIdService = async (serviceId, rating) => {
 
     const [verify] = await pool.query(
         `
-      SELECT id FROM services WHERE id = ? AND rating IS NOT NULL
-      `,
+        SELECT id FROM services WHERE id = ? AND rating IS NOT NULL
+        `,
         [serviceId]
     );
 
-    if (verify.length) {
-        generateErrorUtil('Ya valoraste el servicio', 401);
-    }
+    if (verify.length) generateErrorUtil('Ya valoraste el servicio', 401);
 
     await pool.query(
         `
@@ -24,8 +22,8 @@ const updateRatingServiceByIdService = async (serviceId, rating) => {
 
     const [data] = await pool.query(
         `
-      SELECT rating FROM services WHERE id = ?
-      `,
+        SELECT rating FROM services WHERE id = ?
+        `,
         [serviceId]
     );
 
