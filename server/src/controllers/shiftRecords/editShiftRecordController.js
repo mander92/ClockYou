@@ -6,8 +6,8 @@ import editShiftRecordsService from '../../services/shiftRecords/editShiftRecord
 const editShiftRecordController = async (req, res, next) => {
     try {
         const schema = Joi.object().keys({
-            clockIn: Joi.date(),
-            clockOut: Joi.date(),
+            clockIn: Joi.date().optional(),
+            clockOut: Joi.date().optional(),
         });
 
         const validation = schema.validate(req.body);
