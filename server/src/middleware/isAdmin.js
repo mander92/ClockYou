@@ -4,7 +4,7 @@ const isAdmin = (req, res, next) => {
     const role = req.userLogged.role;
 
     if (role !== 'admin') {
-        return generateErrorUtil(
+        generateErrorUtil(
             'Acceso denegado: Se requiere rol de Administrador',
             409
         );
