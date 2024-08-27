@@ -6,9 +6,9 @@ import generateErrorUtil from '../../utils/generateErrorUtil.js';
 const changeUserPasswordController = async (req, res, next) => {
     try {
         const schema = Joi.object().keys({
-            email: Joi.string().email(),
-            recoverPasswordCode: Joi.string().length(10),
-            newPassword: Joi.string().min(6).max(50),
+            email: Joi.string().email().required(),
+            recoverPasswordCode: Joi.string().length(10).required(),
+            newPassword: Joi.string().min(6).max(50).required(),
         });
 
         const validation = schema.validate(req.body);
