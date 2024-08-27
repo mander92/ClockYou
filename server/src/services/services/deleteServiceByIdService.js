@@ -6,17 +6,16 @@ const deleteServiceByIdService = async (serviceId) => {
 
     const [verify] = await pool.query(
         `
-      SELECT id FROM services WHERE status = 'pending' AND id = ?
-      `,
+        SELECT id FROM services WHERE status = 'pending' AND id = ?
+        `,
         [serviceId]
     );
 
-    if (!verify.length) {
+    if (!verify.length)
         generateErrorUtil(
             'No puedes eliminar el servicio debido a su estado',
             401
         );
-    }
 
     await pool.query(
         `
