@@ -16,8 +16,8 @@ const selectEmployeeService = async (job, active, city) => {
     if (job && active && city) {
         const [allUsers] = await pool.query(
             `
-                SELECT id, email, firstName, lastName, phone, city, job, avatar FROM users WHERE active = ? AND job = ? AND city = ? AND role = 'employee'
-                `,
+            SELECT id, email, firstName, lastName, phone, city, job, avatar FROM users WHERE active = ? AND job = ? AND city = ? AND role = 'employee'
+            `,
             [active, job, city]
         );
 
