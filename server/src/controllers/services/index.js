@@ -6,14 +6,16 @@ import listClientServiceController from './listClientServiceController.js';
 import listEmployeeServiceController from './listEmployeeServiceController.js';
 import editServiceController from './editServiceController.js';
 import validateServiceController from './validateServiceController.js';
+import editRatingServiceByIdController from './editRatingServiceByIdController.js';
 
 export {
-    listAdminServicesController,
-    detailServiceController,
-    deleteServiceByIdController,
-    newServiceController,
-    listClientServiceController,
-    listEmployeeServiceController,
-    editServiceController,
-    validateServiceController,
+  listAdminServicesController,
+  detailServiceController,
+  deleteServiceByIdController,
+  newServiceController,
+  listClientServiceController,
+  listEmployeeServiceController,
+  editServiceController,
+  validateServiceController,
+  editRatingServiceByIdController,
 };
