@@ -89,8 +89,8 @@ const initDb = async () => {
         await pool.query(`
             CREATE TABLE IF NOT EXISTS shiftRecords(
                 id CHAR(36) PRIMARY KEY NOT NULL,
-                clockIn DATETIME DEFAULT NOW(),
-                clockOut DATETIME DEFAULT NOW(),
+                clockIn TIME,
+                clockOut TIME,
                 latitude DECIMAL(10,8),
                 longitude DECIMAL(11,8),
                 serviceId CHAR(36) NOT NULL,

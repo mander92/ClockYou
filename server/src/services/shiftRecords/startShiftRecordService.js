@@ -1,9 +1,22 @@
+import { genSalt } from 'bcrypt';
 import getPool from '../../db/getPool.js';
+import generateErrorUtil from '../../utils/generateErrorUtil.js';
 
 const startShiftRecordService = async (shiftRecordId) => {
     const pool = await getPool();
 
-    const clockIn = new Date();
+    const clockIn = new Date().toLocaleTimeString();
+
+    const [verify] = await pool.query(
+        `
+        SELECT id FROM shiftRecords WHERE id = ? AND clockIn IS NOT NULL
+        `,
+        [shiftRecordId]
+    );
+
+    if (verify.length) {
+        generateErrorUtil('Ya has registrado una hora de inicio', 401);
+    }
 
     await pool.query(
         `
