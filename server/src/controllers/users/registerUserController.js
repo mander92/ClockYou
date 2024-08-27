@@ -7,13 +7,13 @@ import insertUserService from '../../services/users/insertUserService.js';
 const registerUserController = async (req, res, next) => {
     try {
         const schema = Joi.object().keys({
-            email: Joi.string().email(),
-            password: Joi.string().min(8).max(25),
-            firstName: Joi.string().max(25),
-            lastName: Joi.string().max(40),
-            dni: Joi.string().length(9),
-            phone: Joi.string().max(15),
-            job: Joi.string().max(25),
+            email: Joi.string().email().required(),
+            password: Joi.string().min(8).max(25).required(),
+            firstName: Joi.string().max(25).required(),
+            lastName: Joi.string().max(40).required(),
+            dni: Joi.string().length(9).required(),
+            phone: Joi.string().max(15).required(),
+            job: Joi.string().max(25).required(),
         });
 
         const validation = schema.validate(req.body);
