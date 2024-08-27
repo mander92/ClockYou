@@ -6,7 +6,7 @@ const updateRatingServiceByIdService = async (serviceId, rating, userId) => {
 
   const [service] = await pool.query(
     `
-        SELECT id FROM services WHERE id=?
+        SELECT id FORM services WHERE id=?
         `,
     [serviceId]
   );

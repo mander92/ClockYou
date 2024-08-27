@@ -63,8 +63,8 @@ router.delete(
   deleteServiceByIdController
 );
 
-router.put(
-  '/services/:serviceId',
+router.patch(
+  '/services/:serviceId/',
   authUser,
   isClient,
   serviceExists,
