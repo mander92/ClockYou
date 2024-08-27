@@ -6,7 +6,7 @@ import insertShiftRecordService from '../../services/shiftRecords/insertShiftRec
 const newShiftRecordController = async (req, res, next) => {
     try {
         const schema = Joi.object().keys({
-            employeeId: Joi.string().length(36),
+            employeeId: Joi.string().length(36).required(),
         });
 
         const validation = schema.validate(req.body);
@@ -17,9 +17,9 @@ const newShiftRecordController = async (req, res, next) => {
 
         const { serviceId } = req.params;
 
-        const { employeeId, clientId } = req.body;
+        const { employeeId } = req.body;
 
-        await insertShiftRecordService(serviceId, employeeId, clientId);
+        await insertShiftRecordService(serviceId, employeeId);
 
         res.send({
             status: 'ok',
