@@ -20,7 +20,7 @@ const newServiceController = async (req, res, next) => {
                 .pattern(/^([01]\d|2[0-3]):([0-5]\d)$/)
                 .required(),
             hours: Joi.number().min(1).max(8).required(),
-            comments: Joi.string().max(500).optional(),
+            comments: Joi.string().max(500).required(),
             address: Joi.string().max(255).required(),
             city: Joi.string().max(40).required(),
             postCode: Joi.string().length(5).required(),
