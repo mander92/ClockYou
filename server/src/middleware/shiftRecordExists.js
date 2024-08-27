@@ -11,9 +11,7 @@ const shiftRecordExists = async (req, res, next) => {
 
         const validation = schema.validate(req.params);
 
-        if (validation.error) {
-            generateErrorUtil(validation.error.message, 401);
-        }
+        if (validation.error) generateErrorUtil(validation.error.message, 401);
 
         const pool = await getPool();
 
