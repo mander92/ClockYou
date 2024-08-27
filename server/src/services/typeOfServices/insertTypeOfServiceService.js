@@ -12,9 +12,8 @@ const insertTypeOfServiceService = async (type, description, city, price) => {
         [type, city]
     );
 
-    if (service.length) {
+    if (service.length)
         generateErrorUtil('El servicio ya se encuentra registrado', 409);
-    }
 
     const id = uuid();
 
