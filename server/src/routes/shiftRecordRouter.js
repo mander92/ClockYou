@@ -9,6 +9,8 @@ import {
     listShiftRecordsController,
     editShiftRecordController,
     detailShiftRecordController,
+    startShiftRecordsController,
+    endShiftRecordsController,
 } from '../controllers/shiftRecords/index.js';
 
 const router = express.Router();
@@ -38,5 +40,8 @@ router.put(
     shiftRecordExists,
     editShiftRecordController
 );
+
+router.post('/shiftRecords/:employeeId/start', authUser, startShiftRecordsController);
+router.post('/shiftRecords/:employeeId/end', authUser, shiftRecordExists, endShiftRecordsController);
 
 export default router;
