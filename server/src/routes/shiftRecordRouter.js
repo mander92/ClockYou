@@ -1,4 +1,5 @@
 import express from 'express';
+
 import authUser from '../middleware/authUser.js';
 import isAdmin from '../middleware/isAdmin.js';
 import isEmployee from '../middleware/isEmployee.js';
@@ -42,20 +43,20 @@ router.put(
     startShiftRecordsController
 );
 
-router.patch(
-    '/shiftRecords/:shiftRecordId',
-    authUser,
-    isEmployee,
-    shiftRecordExists,
-    endShiftRecordsController
-);
-
 router.put(
     '/shiftRecords/edit/:shiftRecordId',
     authUser,
     isAdmin,
     shiftRecordExists,
     editShiftRecordController
+);
+
+router.patch(
+    '/shiftRecords/:shiftRecordId',
+    authUser,
+    isEmployee,
+    shiftRecordExists,
+    endShiftRecordsController
 );
 
 export default router;
