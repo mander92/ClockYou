@@ -8,11 +8,11 @@
   .linkmainnav {
     @apply block px-4 py-2.5 text-white;
 
-    background-color: rgb(70, 70, 70);
+    background-color: var(--bgcolor-link-grey);
     transition: background-color 0.3s linear;
 
     &:hover {
-      background-color: rgb(85, 85, 85);
+      background-color: var(--bgcolor-link-grey-hover);
     }
   }
 }
