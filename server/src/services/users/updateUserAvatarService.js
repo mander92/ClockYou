@@ -5,9 +5,9 @@ const updateUserAvatarService = async (avatarName, userId) => {
 
     await pool.query(
         `
-            UPDATE users
-            SET avatar=?
-            WHERE id=?
+        UPDATE users
+        SET avatar=?
+        WHERE id=?
         `,
         [avatarName, userId]
     );
