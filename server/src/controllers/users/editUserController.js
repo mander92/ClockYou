@@ -14,9 +14,9 @@ const editUserController = async (req, res, next) => {
         }
 
         const schema = Joi.object().keys({
-            firstName: Joi.string().max(25),
-            lastName: Joi.string().max(40),
-            phone: Joi.string().max(15),
+            firstName: Joi.string().max(25).required(),
+            lastName: Joi.string().max(40).required(),
+            phone: Joi.string().max(15).required(),
         });
 
         const validation = schema.validate(req.body);
