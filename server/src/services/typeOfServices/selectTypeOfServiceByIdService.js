@@ -11,9 +11,7 @@ const selectTypeOfServiceByIdService = async (typeOfServiceId) => {
         [typeOfServiceId]
     );
 
-    if (!type.length) {
-        generateErrorUtil('No existe el servicio', 404);
-    }
+    if (!type.length) generateErrorUtil('No existe el servicio', 404);
 
     return type[0];
 };
