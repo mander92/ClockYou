@@ -6,10 +6,10 @@ import generateErrorUtil from '../../utils/generateErrorUtil.js';
 const newTypeOfServiceController = async (req, res, next) => {
     try {
         const schema = Joi.object().keys({
-            type: Joi.string().max(30),
-            description: Joi.string().max(500),
-            city: Joi.string().max(30),
-            price: Joi.number().min(1),
+            type: Joi.string().max(30).required(),
+            description: Joi.string().max(500).required(),
+            city: Joi.string().max(30).required(),
+            price: Joi.number().min(1).required(),
         });
 
         const validation = schema.validate(req.body);
