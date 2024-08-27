@@ -6,8 +6,8 @@ import updateTypeOfServiceService from '../../services/typeOfServices/updateType
 const editTypeOfServiceController = async (req, res, next) => {
     try {
         const schema = Joi.object().keys({
-            description: Joi.string().max(500).optional(),
-            price: Joi.number().min(1).max(100).optional(),
+            description: Joi.string().max(500).required(),
+            price: Joi.number().min(1).max(100).required(),
         });
 
         const validation = schema.validate(req.body);
