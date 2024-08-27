@@ -1,6 +1,6 @@
 import './Registro.css';
 
-const Registro = () => {
+const Registro =  () => {
   return <div>Registro</div>;
 };
 
