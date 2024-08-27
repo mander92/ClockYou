@@ -57,7 +57,7 @@ router.put(
 router.delete(
     '/services/:serviceId',
     authUser,
-    isAdmin,
+    isClient,
     serviceExists,
     deleteServiceByIdController
 );
