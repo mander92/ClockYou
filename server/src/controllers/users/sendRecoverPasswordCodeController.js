@@ -8,7 +8,7 @@ import updateRecoverPasswordService from '../../services/users/updateRecoverPass
 const sendRecoverPasswordCodeController = async (req, res, next) => {
     try {
         const schema = Joi.object().keys({
-            email: Joi.string().email(),
+            email: Joi.string().email().required(),
         });
 
         const validation = schema.validate(req.body);
