@@ -21,7 +21,7 @@ const selectServiceService = async (status) => {
             INNER JOIN typeOfServices t
             ON s.typeOfServicesId = t.id AND s.deletedAt IS NULL
             ORDER BY s.date, s.startTime
-          `
+            `
         );
 
         return services;
@@ -45,7 +45,7 @@ const selectServiceService = async (status) => {
         ON s.typeOfServicesId = t.id
         WHERE s.status = ? AND s.deletedAt IS NULL
         ORDER BY s.date, s.startTime
-      `,
+        `,
         [status]
     );
 
