@@ -5,13 +5,15 @@ import Joi from 'joi';
 const editServiceController = async (req, res, next) => {
     try {
         const schema = Joi.object().keys({
-            date: Joi.date().min('now'),
-            startTime: Joi.string().pattern(/^([01]\d|2[0-3]):([0-5]\d)$/),
-            hours: Joi.number().min(1).max(8),
-            comments: Joi.string().max(500),
-            address: Joi.string().max(255),
-            city: Joi.string().max(40),
-            postCode: Joi.string().length(5),
+            date: Joi.date().min('now').required(),
+            startTime: Joi.string()
+                .pattern(/^([01]\d|2[0-3]):([0-5]\d)$/)
+                .required(),
+            hours: Joi.number().min(1).max(8).required(),
+            comments: Joi.string().max(500).optional(),
+            address: Joi.string().max(255).required(),
+            city: Joi.string().max(40).required(),
+            postCode: Joi.string().length(5).required(),
         });
 
         const validation = schema.validate(req.body);
