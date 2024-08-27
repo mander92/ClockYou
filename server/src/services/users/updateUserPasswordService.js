@@ -12,12 +12,8 @@ const updateUserPasswordService = async (
 
     const user = await selectUserByEmailService(email);
 
-    if (!user || user.recoverPasswordCode !== recoverPasswordCode) {
-        throw generateErrorUtil(
-            'Email o código de recuperación incorrecto',
-            409
-        );
-    }
+    if (!user || user.recoverPasswordCode !== recoverPasswordCode)
+        generateErrorUtil('Email o código de recuperación incorrecto', 409);
 
     const hashPassword = await bcrypt.hash(newPassword, 10);
 
@@ -25,7 +21,8 @@ const updateUserPasswordService = async (
         `
         UPDATE users
         SET password=?, recoverPasswordCode=null
-        WHERE recoverPasswordCode=?`,
+        WHERE recoverPasswordCode=?
+        `,
         [hashPassword, recoverPasswordCode]
     );
 };
