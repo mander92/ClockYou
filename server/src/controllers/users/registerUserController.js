@@ -13,7 +13,6 @@ const registerUserController = async (req, res, next) => {
             lastName: Joi.string().max(40).required(),
             dni: Joi.string().length(9).required(),
             phone: Joi.string().max(15).required(),
-            job: Joi.string().max(25).required(),
         });
 
         const validation = schema.validate(req.body);
