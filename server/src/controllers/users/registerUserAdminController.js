@@ -1,33 +1,62 @@
 import Joi from 'joi';
 
-import insertAdminService from '../../services/users/insertAdminService.js';
+import insertAdminService from '../../services/users/insertUserAdminService.js';
 import generateErrorUtil from '../../utils/generateErrorUtil.js';
 
-const registerUserAdminController = async (req, res, next) => {
+const registerUserEmployeeController = async (req, res, next) => {
     try {
         const schema = Joi.object().keys({
+            role: Joi.string().min(5).max(8),
             email: Joi.string().email(),
-            password: Joi.string().min(6).max(50),
+            password: Joi.string().min(8).max(25),
+            firstName: Joi.string().max(25),
+            lastName: Joi.string().max(40),
+            dni: Joi.string().length(9),
+            phone: Joi.string().max(15),
+            job: Joi.string().max(25),
+            city: Joi.string().max(25),
         });
 
         const validation = schema.validate(req.body);
 
         if (validation.error) {
-            console.log(validation.error.message);
             generateErrorUtil(validation.error.message, 401);
         }
 
-        const { email, password } = req.body;
+        const {
+            role,
+            email,
+            password,
+            firstName,
+            lastName,
+            dni,
+            phone,
+            job,
+            city,
+        } = req.body;
 
-        await insertAdminService(email, password);
+        const data = await insertAdminService(
+            role,
+            email,
+            password,
+            firstName,
+            lastName,
+            dni,
+            phone,
+            job,
+            city
+        );
+
+        console.log(data);
 
         res.send({
             status: 'ok',
-            message: 'Administrador registrado correctamente.',
+            message: 'Usuario registrado correctamente.',
+            data: data,
         });
     } catch (error) {
         next(error);
     }
 };
 
-export default registerUserAdminController;
+export default registerUserEmployeeController;

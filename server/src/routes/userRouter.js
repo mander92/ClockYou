@@ -9,7 +9,6 @@ import {
     loginUserController,
     changeUserPasswordController,
     sendRecoverPasswordCodeController,
-    registerUserEmployeeController,
     registerUserAdminController,
     editUserController,
     getEmployeeController,
@@ -29,12 +28,6 @@ router.post(
 );
 router.post('/users/login', loginUserController);
 router.post('/users/password/recover', sendRecoverPasswordCodeController);
-router.post(
-    '/users/employee/register',
-    authUser,
-    isAdmin,
-    registerUserEmployeeController
-);
 
 router.post(
     '/users/avatar/:userId',

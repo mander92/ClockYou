@@ -4,7 +4,8 @@ import { v4 as uuid } from 'uuid';
 import getPool from '../../db/getPool.js';
 import generateErrorUtil from '../../utils/generateErrorUtil.js';
 
-const insertEmployeeService = async (
+const insertAdminService = async (
+    role,
     email,
     password,
     firstName,
@@ -44,7 +45,7 @@ const insertEmployeeService = async (
             lastName,
             dni,
             phone,
-            'employee',
+            role,
             job,
             city,
             1,
@@ -53,7 +54,7 @@ const insertEmployeeService = async (
 
     const [data] = await pool.query(
         `
-        SELECT email, firstName, lastName, dni, phone, job, city FROM users WHERE id = ?
+        SELECT role, email, firstName, lastName, dni, phone, job, city FROM users WHERE id = ?
         `,
         [id]
     );
@@ -61,4 +62,4 @@ const insertEmployeeService = async (
     return data[0];
 };
 
-export default insertEmployeeService;
+export default insertAdminService;
