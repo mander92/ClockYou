@@ -5,25 +5,21 @@ const endShiftRecordService = async (shiftRecordId) => {
 
     const clockOut = new Date();
 
-    const [existingRecord] = await pool.query(
+    await pool.query(
         `
-            SELECT id FROM shiftRecords WHERE serviceId = ? AND employeeId = ? AND clockIn = ?
-            `,
-        [serviceId, employeeId, clockIn]
-      );
-
-      if (existingRecord.length === 0) {
-        generateErrorUtil('El turno no está creado', 401);
-      }  
-
-    const [endedShift] = await pool.query(
-    `
-        INSERT INTO shiftRecords (serviceId,  employeeId, clockOut)
-        VALUES (?, ?, ?);
-    `, [serviceId ,employeeId, clockOut]
+        UPDATE shiftRecords SET clockOut = ? WHERE id = ?
+        `,
+        [clockOut, shiftRecordId]
     );
 
-    return endedShift;
-}
+    const [data] = await pool.query(
+        `
+        SELECT clockOut FROM shiftRecords WHERE id = ?
+        `,
+        [shiftRecordId]
+    );
+
+    return data[0];
+};
 
 export default endShiftRecordService;

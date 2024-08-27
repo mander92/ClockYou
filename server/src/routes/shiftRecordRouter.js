@@ -1,7 +1,7 @@
 import express from 'express';
 import authUser from '../middleware/authUser.js';
 import isAdmin from '../middleware/isAdmin.js';
-import IsEmployee from '../middleware/isEmployee.js';
+import isEmployee from '../middleware/isEmployee.js';
 import serviceExists from '../middleware/serviceExists.js';
 import shiftRecordExists from '../middleware/shiftRecordExists.js';
 
@@ -13,7 +13,6 @@ import {
     startShiftRecordsController,
     endShiftRecordsController,
 } from '../controllers/shiftRecords/index.js';
-import isEmployee from '../middleware/isEmployee.js';
 
 const router = express.Router();
 
@@ -35,7 +34,7 @@ router.post(
     newShiftRecordController
 );
 
-router.post(
+router.put(
     '/shiftRecords/:shiftRecordId',
     authUser,
     isEmployee,
@@ -43,15 +42,16 @@ router.post(
     startShiftRecordsController
 );
 
-// router.post(
-//     '/shiftRecords/:employeeId/end',
-//     authUser,
-//     shiftRecordExists,
-//     endShiftRecordsController
-// );
+router.patch(
+    '/shiftRecords/:shiftRecordId',
+    authUser,
+    isEmployee,
+    shiftRecordExists,
+    endShiftRecordsController
+);
 
 router.put(
-    '/shiftRecords/:shiftRecordId',
+    '/shiftRecords/edit/:shiftRecordId',
     authUser,
     isAdmin,
     shiftRecordExists,
