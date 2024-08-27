@@ -14,9 +14,8 @@ const startShiftRecordService = async (shiftRecordId) => {
         [shiftRecordId]
     );
 
-    if (verify.length) {
+    if (verify.length)
         generateErrorUtil('Ya has registrado una hora de inicio', 401);
-    }
 
     await pool.query(
         `
