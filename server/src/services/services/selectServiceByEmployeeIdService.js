@@ -6,22 +6,20 @@ const selectServiceByEmployeeIdService = async (employeeId) => {
 
     const [data] = await pool.query(
         `
-            SELECT sr.id AS shiftRecordId, t.type, t.city, s.date, s.startTime, s.hours, s.totalPrice, a.address, a.city, a.postcode, s.comments
-            FROM shiftRecords sr
-            INNER JOIN services s
-            ON sr.serviceId = s.id
-            INNER JOIN addresses a
-            ON s.addressId = a.id
-            INNER JOIN typeOfServices t
-            ON t.id = s.typeOfServicesId
-            WHERE sr.employeeId = ? AND s.status = 'confirmed'
+        SELECT sr.id AS shiftRecordId, t.type, t.city, s.date, s.startTime, s.hours, s.totalPrice, a.address, a.city, a.postcode, s.comments
+        FROM shiftRecords sr
+        INNER JOIN services s
+        ON sr.serviceId = s.id
+        INNER JOIN addresses a
+        ON s.addressId = a.id
+        INNER JOIN typeOfServices t
+        ON t.id = s.typeOfServicesId
+        WHERE sr.employeeId = ? AND s.status = 'confirmed'
         `,
         [employeeId]
     );
 
-    if (!data.length) {
-        throw generateErrorUtil('No tienes servicios asignados');
-    }
+    if (!data.length) throw generateErrorUtil('No tienes servicios asignados');
 
     return data;
 };
