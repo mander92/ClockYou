@@ -8,6 +8,7 @@ const deleteTypeOfServiceController = async (req, res, next) => {
 
         res.send({
             staus: 'ok',
+            message: 'Tipo de servicio eliminado correctamente',
             data,
         });
     } catch (error) {

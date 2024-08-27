@@ -36,9 +36,9 @@ const initDb = async () => {
         await pool.query(
             `
             CREATE TABLE IF NOT EXISTS users (
+            id CHAR(36) PRIMARY KEY NOT NULL,
             email VARCHAR(100) UNIQUE NOT NULL,
             firstName VARCHAR(25),
-            id CHAR(36) PRIMARY KEY NOT NULL,
             lastName VARCHAR(40),
             dni VARCHAR(11) UNIQUE,
             password VARCHAR(255) NOT NULL,
