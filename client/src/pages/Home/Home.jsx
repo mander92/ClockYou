@@ -1,5 +1,6 @@
 const { VITE_APP_TITLE } = import.meta.env;
-import products from '../components/data/products.json';
+import products from '../../components/data/products.json';
+import './Home.css';
 
 const Home = () => {
   const productsLi = products.map((product, index) => {

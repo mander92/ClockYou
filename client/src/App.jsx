@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
-import Home from './pages/Home';
+import Home from './pages/Home/Home';
 import './App.css';
 
 const App = () => {
@@ -8,7 +8,9 @@ const App = () => {
     <>
       <Layout>
         <main className='flex-grow'>
-          <Home />
+          <Routes>
+            <Route path='/' element={<Home />} />
+          </Routes>
         </main>
       </Layout>
     </>

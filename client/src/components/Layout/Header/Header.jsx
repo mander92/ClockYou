@@ -30,12 +30,7 @@ const Header = () => {
           </li>
           <li>
             <a className='linkmainnav' href='#'>
-              Acceso
-            </a>
-          </li>
-          <li>
-            <a className='linkmainnav' href='#'>
-              Registro
+              Login
             </a>
           </li>
         </ul>
