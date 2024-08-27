@@ -20,9 +20,8 @@ const updateServiceByIdService = async (
         [serviceId]
     );
 
-    if (status.length) {
+    if (status.length)
         generateErrorUtil('El servicio ya no se puede modificar', 409);
-    }
 
     const [addressId] = await pool.query(
         `
