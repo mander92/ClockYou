@@ -10,8 +10,8 @@ import generateErrorUtil from '../../utils/generateErrorUtil.js';
 const loginUserController = async (req, res, next) => {
     try {
         const schema = Joi.object().keys({
-            email: Joi.string().email(),
-            password: Joi.string().min(6).max(50),
+            email: Joi.string().email().required(),
+            password: Joi.string().min(8).max(50).required(),
         });
 
         const validation = schema.validate(req.body);
@@ -21,12 +21,6 @@ const loginUserController = async (req, res, next) => {
         }
 
         const { email, password } = req.body;
-
-        if (!email || !password)
-            generateErrorUtil(
-                'El email y el password no pueden estar vacíos',
-                400
-            );
 
         const user = await selectUserByEmailService(email);
 
@@ -42,6 +36,7 @@ const loginUserController = async (req, res, next) => {
 
         if (!user.active)
             generateErrorUtil('Usuario pendiente de activacion', 403);
+
         const tokenInfo = {
             id: user.id,
             role: user.role,
@@ -53,7 +48,7 @@ const loginUserController = async (req, res, next) => {
 
         res.send({
             status: 'ok',
-            token: token,
+            token,
         });
     } catch (error) {
         next(error);
