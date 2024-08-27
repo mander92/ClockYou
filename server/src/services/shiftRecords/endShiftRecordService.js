@@ -13,9 +13,8 @@ const endShiftRecordService = async (shiftRecordId) => {
         [shiftRecordId]
     );
 
-    if (clockIn.length) {
+    if (clockIn.length)
         generateErrorUtil('No has registrado una hora de inicio', 401);
-    }
 
     const [verify] = await pool.query(
         `
@@ -24,9 +23,8 @@ const endShiftRecordService = async (shiftRecordId) => {
         [shiftRecordId]
     );
 
-    if (verify.length) {
+    if (verify.length)
         generateErrorUtil('Ya has registrado una hora de fin', 401);
-    }
 
     await pool.query(
         `
