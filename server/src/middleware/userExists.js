@@ -26,7 +26,7 @@ const userExists = async (req, res, next) => {
             [userId]
         );
 
-        if (!user.length) throw generateErrorUtil('Usuario no encontrado', 400);
+        if (!user.length) generateErrorUtil('Usuario no encontrado', 400);
 
         next();
     } catch (error) {
