@@ -25,7 +25,7 @@ const insertServiceService = async (
 
     const [existService] = await pool.query(
         `
-    SELECT id FROM services WHERE typeOfServicesId = ? AND clientId = ? AND date = ? AND startTime = ? AND hours = ?
+    SELECT id FROM services WHERE typeOfServicesId = ? AND clientId = ? AND date = ? AND startTime = ? AND hours = ? AND deletedAt IS NULL
     `,
         [typeOfServiceId, userId, date, startTime, hours]
     );
