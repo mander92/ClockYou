@@ -9,9 +9,7 @@ const listClientServiceController = async (req, res, next) => {
 
         const data = await selectServiceByClientIdService(clientId, status);
 
-        if (!data.length) {
-            generateErrorUtil('No tienes servicios registrados');
-        }
+        if (!data.length) generateErrorUtil('No tienes servicios registrados');
 
         res.send({
             status: 'ok',

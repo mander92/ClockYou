@@ -11,9 +11,7 @@ const editRatingServiceByIdController = async (req, res, next) => {
 
         const validation = schema.validate(req.body);
 
-        if (validation.error) {
-            generateErrorUtil(validation.error.message, 401);
-        }
+        if (validation.error) generateErrorUtil(validation.error.message, 401);
 
         const { serviceId } = req.params;
 

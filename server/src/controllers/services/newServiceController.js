@@ -5,15 +5,6 @@ import insertServiceService from '../../services/services/insertServiceService.j
 
 const newServiceController = async (req, res, next) => {
     try {
-        const isClient = req.userLogged.role;
-
-        if (isClient !== 'client') {
-            generateErrorUtil(
-                'Acceso denegado: Se requiere rol de cliente',
-                409
-            );
-        }
-
         const schema = Joi.object().keys({
             date: Joi.date().min('now').required(),
             startTime: Joi.string()
@@ -28,9 +19,8 @@ const newServiceController = async (req, res, next) => {
 
         const validation = schema.validate(req.body);
 
-        if (validation.error) {
-            generateErrorUtil(validation.error.message, 401);
-        }
+        if (validation.error) generateErrorUtil(validation.error.message, 401);
+
         const userId = req.userLogged.id;
 
         const { typeOfServiceId } = req.params;

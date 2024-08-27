@@ -9,9 +9,8 @@ const editUserController = async (req, res, next) => {
 
         const { userId } = req.params;
 
-        if (loggedId !== userId) {
+        if (loggedId !== userId)
             generateErrorUtil('Acceso denegado, el token no coincide', 409);
-        }
 
         const schema = Joi.object().keys({
             firstName: Joi.string().max(25).required(),
@@ -21,9 +20,8 @@ const editUserController = async (req, res, next) => {
 
         const validation = schema.validate(req.body);
 
-        if (validation.error) {
+        if (validation.error)
             generateErrorUtil(validationBody.error.message, 401);
-        }
 
         const { firstName, lastName, phone } = req.body;
 

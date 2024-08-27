@@ -9,9 +9,8 @@ const editUserAvatarController = async (req, res, next) => {
 
         const { userId } = req.params;
 
-        if (loggedId !== userId) {
+        if (loggedId !== userId)
             generateErrorUtil('Acceso denegado, el token no coincide', 409);
-        }
 
         const user = await selectUserByIdService(userId);
 

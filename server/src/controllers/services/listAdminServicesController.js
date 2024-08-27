@@ -7,9 +7,7 @@ const listAdminServicesController = async (req, res, next) => {
 
         const data = await selectServiceService(status);
 
-        if (!data.length) {
-            generateErrorUtil('No se encuentran resultados', 401);
-        }
+        if (!data.length) generateErrorUtil('No se encuentran resultados', 401);
 
         res.send({
             status: 'ok',

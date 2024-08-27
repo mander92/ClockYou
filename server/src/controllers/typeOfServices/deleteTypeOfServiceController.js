@@ -4,11 +4,11 @@ const deleteTypeOfServiceController = async (req, res, next) => {
     try {
         const { typeOfServiceId } = req.params;
 
-        const deleted = await deleteTypeOfServiceService(typeOfServiceId);
+        const data = await deleteTypeOfServiceService(typeOfServiceId);
 
         res.send({
             staus: 'ok',
-            eliminado: deleted,
+            data,
         });
     } catch (error) {
         next(error);

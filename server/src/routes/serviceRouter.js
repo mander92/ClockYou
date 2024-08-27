@@ -44,6 +44,7 @@ router.get(
 router.post(
     '/services/:typeOfServiceId',
     authUser,
+    isClient,
     typeOfServiceExists,
     newServiceController
 );
@@ -51,6 +52,7 @@ router.post(
 router.put(
     '/services/:serviceId',
     authUser,
+    isClient,
     serviceExists,
     editServiceController
 );

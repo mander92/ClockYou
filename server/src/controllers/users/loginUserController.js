@@ -16,9 +16,7 @@ const loginUserController = async (req, res, next) => {
 
         const validation = schema.validate(req.body);
 
-        if (validation.error) {
-            generateErrorUtil(validation.error.message, 401);
-        }
+        if (validation.error) generateErrorUtil(validation.error.message, 401);
 
         const { email, password } = req.body;
 
@@ -26,13 +24,10 @@ const loginUserController = async (req, res, next) => {
 
         let validPassword;
 
-        if (user) {
-            validPassword = await bcrypt.compare(password, user.password);
-        }
+        if (user) validPassword = await bcrypt.compare(password, user.password);
 
-        if (!user || !validPassword) {
+        if (!user || !validPassword)
             generateErrorUtil('Usuario o contraseña incorrecto.', 401);
-        }
 
         if (!user.active)
             generateErrorUtil('Usuario pendiente de activacion', 403);
