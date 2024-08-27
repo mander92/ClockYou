@@ -47,8 +47,6 @@ const registerUserEmployeeController = async (req, res, next) => {
             city
         );
 
-        console.log(data);
-
         res.send({
             status: 'ok',
             message: 'Usuario registrado correctamente.',
