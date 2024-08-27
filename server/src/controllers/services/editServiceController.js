@@ -21,6 +21,7 @@ const editServiceController = async (req, res, next) => {
         }
 
         const { serviceId } = req.params;
+
         const { address, postCode, city, comments, date, hours, startTime } =
             req.body;
 

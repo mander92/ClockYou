@@ -1,4 +1,5 @@
 import getPool from '../../db/getPool.js';
+import generateErrorUtil from '../../utils/generateErrorUtil.js';
 
 const updateServiceByIdService = async (
     serviceId,
@@ -12,29 +13,43 @@ const updateServiceByIdService = async (
 ) => {
     const pool = await getPool();
 
+    const [status] = await pool.query(
+        `
+        SELECT id FROM services WHERE id = ? AND status != 'pending'
+        `,
+        [serviceId]
+    );
+
+    if (status.length) {
+        generateErrorUtil('El servicio ya no se puede modificar', 409);
+    }
+
     const [addressId] = await pool.query(
         `
-      SELECT addressId FROM services WHERE id = ?`,
+        SELECT addressId FROM services WHERE id = ?
+        `,
         [serviceId]
     );
 
     await pool.query(
         `
-    UPDATE addresses SET address = ?, postCode = ?, city = ?
-    WHERE id = ?
-    `,
+        UPDATE addresses SET address = ?, postCode = ?, city = ?
+        WHERE id = ?
+        `,
         [address, postCode, city, addressId[0].addressId]
     );
 
     const [typeId] = await pool.query(
         `
-        SELECT typeOfServicesId FROM services WHERE id = ?`,
+        SELECT typeOfServicesId FROM services WHERE id = ?
+        `,
         [serviceId]
     );
 
     const [price] = await pool.query(
         `
-      SELECT price FROM typeOfServices WHERE id = ?`,
+        SELECT price FROM typeOfServices WHERE id = ?
+        `,
         [typeId[0].typeOfServicesId]
     );
 
