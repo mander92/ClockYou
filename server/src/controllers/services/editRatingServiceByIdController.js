@@ -1,10 +1,12 @@
-import updateRatingServiceByIdService from '../../services/services/updateRatingServiceByIdService.js';
 import Joi from 'joi';
+
+import generateErrorUtil from '../../utils/generateErrorUtil.js';
+import updateRatingServiceByIdService from '../../services/services/updateRatingServiceByIdService.js';
 
 const editRatingServiceByIdController = async (req, res, next) => {
     try {
         const schema = Joi.object().keys({
-            rating: Joi.number().min(1).max(5),
+            rating: Joi.number().min(1).max(5).required(),
         });
 
         const validation = schema.validate(req.body);
