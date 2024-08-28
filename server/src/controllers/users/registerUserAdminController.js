@@ -3,7 +3,7 @@ import Joi from 'joi';
 import insertAdminService from '../../services/users/insertUserAdminService.js';
 import generateErrorUtil from '../../utils/generateErrorUtil.js';
 
-const registerUserEmployeeController = async (req, res, next) => {
+const registerUserAdminController = async (req, res, next) => {
     try {
         const schema = Joi.object().keys({
             role: Joi.string().min(5).max(8).required(),
@@ -55,4 +55,4 @@ const registerUserEmployeeController = async (req, res, next) => {
     }
 };
 
-export default registerUserEmployeeController;
+export default registerUserAdminController;
