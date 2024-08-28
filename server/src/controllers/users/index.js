@@ -9,6 +9,7 @@ import getEmployeeController from './getEmployeeController.js';
 import listEmployeeController from './listEmployeeController.js';
 import deleteUserController from './deleteUserController.js';
 import editUserAvatarController from './editUserAvatarController.js';
+import editUserPasswordController from './editUserPasswordController.js';
 
 export {
     registerUserController,
@@ -22,4 +23,5 @@ export {
     listEmployeeController,
     deleteUserController,
     editUserAvatarController,
+    editUserPasswordController,
 };

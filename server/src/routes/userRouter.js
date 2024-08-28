@@ -16,6 +16,7 @@ import {
     listEmployeeController,
     deleteUserController,
     editUserAvatarController,
+    editUserPasswordController,
 } from '../controllers/users/index.js';
 
 const router = express.Router();
@@ -53,6 +54,13 @@ router.post(
 );
 
 router.put('/users/:userId', authUser, userExists, editUserController);
+
+router.put(
+    '/users/password/:userId',
+    authUser,
+    userExists,
+    editUserPasswordController
+);
 
 router.patch('/users/password', changeUserPasswordController);
 

@@ -20,7 +20,7 @@ const sendRecoverPasswordCodeController = async (req, res, next) => {
         const user = await selectUserByEmailService(email);
 
         if (!user)
-            res.send({
+            return res.send({
                 status: 'ok',
                 message:
                     'Si existe una cuenta con tu email recibirás un código de recuperación',

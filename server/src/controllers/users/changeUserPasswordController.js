@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-import updateUserPasswordService from '../../services/users/updateUserPasswordService.js';
+import updateChangeUserPasswordService from '../../services/users/updateChangeUserPasswordService.js';
 import generateErrorUtil from '../../utils/generateErrorUtil.js';
 
 const changeUserPasswordController = async (req, res, next) => {
@@ -16,7 +16,7 @@ const changeUserPasswordController = async (req, res, next) => {
 
         const { recoverPasswordCode, newPassword } = req.body;
 
-        await updateUserPasswordService(recoverPasswordCode, newPassword);
+        await updateChangeUserPasswordService(recoverPasswordCode, newPassword);
 
         res.send({
             status: 'ok',
