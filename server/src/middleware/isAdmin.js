@@ -1,15 +1,27 @@
 import generateErrorUtil from '../utils/generateErrorUtil.js';
+import getPool from '../db/getPool.js';
 
-const isAdmin = (req, res, next) => {
-    const role = req.userLogged.role;
+const isAdmin = async (req, res, next) => {
+    const pool = await getPool();
 
-    if (role !== 'admin')
-        generateErrorUtil(
-            'Acceso denegado: Se requiere rol de Administrador',
-            409
+    const userId = req.userLogged.id;
+
+    try {
+        const [verify] = await pool.query(
+            'SELECT role FROM users WHERE id = ?',
+            [userId]
         );
 
-    next();
+        if (!verify.length || result[0].role !== 'admin')
+            generateErrorUtil(
+                'Acceso denegado: Se requiere rol de Administrador',
+                409
+            );
+
+        next();
+    } catch (error) {
+        next(error);
+    }
 };
 
 export default isAdmin;
