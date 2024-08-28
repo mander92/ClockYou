@@ -1,13 +1,10 @@
 import selectServiceService from '../../services/services/selectServiceService.js';
-import generateErrorUtil from '../../utils/generateErrorUtil.js';
 
 const listAdminServicesController = async (req, res, next) => {
     try {
-        const { status } = req.query;
+        const { status, order } = req.query;
 
-        const data = await selectServiceService(status);
-
-        if (!data.length) generateErrorUtil('No se encuentran resultados', 401);
+        const data = await selectServiceService(status, order);
 
         res.send({
             status: 'ok',

@@ -13,7 +13,7 @@ import {
     registerUserAdminController,
     editUserController,
     getEmployeeController,
-    listEmployeeController,
+    listUsersController,
     deleteUserController,
     editUserAvatarController,
     editUserPasswordController,
@@ -23,7 +23,7 @@ const router = express.Router();
 
 router.get('/users/validate/:registrationCode', validateUserController);
 
-router.get('/users/employee', authUser, isAdmin, listEmployeeController);
+router.get('/users/employee', authUser, isAdmin, listUsersController);
 
 router.get(
     '/users/employee/:employeeId',

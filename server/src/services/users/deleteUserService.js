@@ -1,6 +1,6 @@
 import getPool from '../../db/getPool.js';
 
-const deleteUserStateService = async (userId) => {
+const deleteUserService = async (userId) => {
     const pool = await getPool();
 
     const [email] = await pool.query(
@@ -22,4 +22,4 @@ const deleteUserStateService = async (userId) => {
     );
 };
 
-export default deleteUserStateService;
+export default deleteUserService;

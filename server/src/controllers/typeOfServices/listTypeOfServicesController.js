@@ -2,9 +2,9 @@ import selectTypeOfServicesService from '../../services/typeOfServices/selectTyp
 
 const listTypeOfServicesController = async (req, res, next) => {
     try {
-        const { type, city } = req.query;
+        const { type, city, price } = req.query;
 
-        const data = await selectTypeOfServicesService(type, city);
+        const data = await selectTypeOfServicesService(type, city, price);
 
         if (!data.length)
             return res.send({

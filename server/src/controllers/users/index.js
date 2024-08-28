@@ -6,7 +6,7 @@ import sendRecoverPasswordCodeController from './sendRecoverPasswordCodeControll
 import editUserController from './editUserController.js';
 import registerUserAdminController from './registerUserAdminController.js';
 import getEmployeeController from './getEmployeeController.js';
-import listEmployeeController from './listEmployeeController.js';
+import listUsersController from './listUsersController.js';
 import deleteUserController from './deleteUserController.js';
 import editUserAvatarController from './editUserAvatarController.js';
 import editUserPasswordController from './editUserPasswordController.js';
@@ -20,7 +20,7 @@ export {
     registerUserAdminController,
     editUserController,
     getEmployeeController,
-    listEmployeeController,
+    listUsersController,
     deleteUserController,
     editUserAvatarController,
     editUserPasswordController,
