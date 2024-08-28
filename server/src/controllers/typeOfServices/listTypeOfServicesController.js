@@ -1,5 +1,4 @@
 import selectTypeOfServicesService from '../../services/typeOfServices/selectTypeOfServicesService.js';
-import generateErrorUtil from '../../utils/generateErrorUtil.js';
 
 const listTypeOfServicesController = async (req, res, next) => {
     try {
@@ -8,7 +7,7 @@ const listTypeOfServicesController = async (req, res, next) => {
         const data = await selectTypeOfServicesService(type, city);
 
         if (!data.length)
-            res.send({
+            return res.send({
                 status: 'ok',
                 message: data,
             });
