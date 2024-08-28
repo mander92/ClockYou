@@ -2,17 +2,46 @@
 
 @layer components {
   .mainnav {
-    @apply flex flex-wrap pb-5 place-content-between items-center text-white;
+    @apply pb-5 place-content-between items-center text-white;
+
+    & span {
+      color: var(--cerulean);
+    }
   }
 
   .linkmainnav {
     @apply block px-4 py-2.5 text-white;
 
-    background-color: var(--bgcolor-link-grey);
+    background-color: var(--cerulean);
     transition: background-color 0.3s linear;
 
     &:hover {
-      background-color: var(--bgcolor-link-grey-hover);
+      background-color: var(--blue-topaz);
     }
   }
+
+  .menuburguer {
+    width: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    & span {
+      height: 4px;
+      border-radius: 4px;
+      background-color: var(--cerulean);
+    }
+  }
+
+  /* .navdinamica {
+    position: fixed;
+    right: -200%;
+    height: 100dvh;
+    width: 100%;
+    max-width: 300px;
+
+    &.show {
+      right: 0;
+    }
+  } */
 }

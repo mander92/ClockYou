@@ -24,14 +24,14 @@
 /* -------------------- */
 
 :root {
-  --bgcolor-caja-grey: #3c3c3c;
-  --bgcolor-link-grey: rgb(70, 70, 70);
-  --bgcolor-link-grey-hover: rgb(85, 85, 85);
+  --blue-topaz: #6eb5c0;
+  --cerulean: #006c84;
+  --light-blue: #e2e8e4;
   --white-color: #fff;
 }
 
 body {
-  background-color: var(--bgcolor-caja-grey);
+  background-color: var(--white-color);
 }
 
 #root {
@@ -51,6 +51,7 @@ h2,
 h3,
 h4 {
   font-family: 'DM Serif Text', serif;
+  color: var(--cerulean);
 }
 
 h1,
@@ -67,8 +68,11 @@ li {
 
 p,
 span,
-li {
+li,
+div {
   font-family: 'Nanum Gothic Coding', monospace;
   font-weight: 400;
-  line-height: 1.45;
+  line-height: 1.4;
+  font-size: 1.1rem;
+  color: var(--cerulean);
 }
