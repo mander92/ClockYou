@@ -64,7 +64,7 @@ const updateServiceByIdService = async (
 
     const [data] = await pool.query(
         `
-        SELECT s.dateTimeTime, s.hours, s.totalPrice, a.address, a.city, a.postCode
+        SELECT s.dateTime, s.hours, s.totalPrice, a.address, a.city, a.postCode
         FROM services s
         INNER JOIN addresses a
         ON a.id = s.addressId

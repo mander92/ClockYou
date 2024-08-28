@@ -6,7 +6,7 @@ const selectServiceByEmployeeIdService = async (employeeId) => {
 
     const [data] = await pool.query(
         `
-        SELECT sr.id AS shiftRecordId, t.type, t.city, s.dateTimeTime, s.hours, s.totalPrice, a.address, a.city, a.postcode, s.comments
+        SELECT sr.id AS shiftRecordId, t.type, t.city, s.dateTime, s.hours, s.totalPrice, a.address, a.city, a.postcode, s.comments
         FROM shiftRecords sr
         INNER JOIN services s
         ON sr.serviceId = s.id

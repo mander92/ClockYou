@@ -77,7 +77,7 @@ const insertServiceService = async (
     const [data] = await pool.query(
         `
         SELECT s.status AS Estado,
-        t.type AS Tipo_Servicio, t.city AS Provincia, t.price AS Precio_Hora, s.hours AS Horas_Contratadas, s.totalPrice AS Precio_Total, s.dateTime AS Fecha, a.address AS Dirección, a.postCode AS CP, a.city AS Ciudad, s.comments AS Comenatarios, u.email AS Email, u.firstName AS Nombre, u.lastName AS Apellidos, u.phone AS Teléfono
+        t.type AS TipoServicio, t.city AS Provincia, t.price AS PrecioHora, s.hours AS HorasContratadas, s.totalPrice AS PrecioTotal, s.dateTime AS DíaYHora, a.address AS Dirección, a.postCode AS CP, a.city AS Ciudad, s.comments AS Comenatarios, u.email AS Email, u.firstName AS Nombre, u.lastName AS Apellidos, u.phone AS Teléfono
         FROM addresses a
         INNER JOIN services s
         ON a.id = s.addressId

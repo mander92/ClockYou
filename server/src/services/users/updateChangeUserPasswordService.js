@@ -15,7 +15,7 @@ const updateChangeUserPasswordService = async (
         [recoverPasswordCode]
     );
 
-    if (!user || user[0].recoverPasswordCode !== recoverPasswordCode)
+    if (!user.length || user[0].recoverPasswordCode !== recoverPasswordCode)
         generateErrorUtil('Código de recuperación incorrecto', 409);
 
     const hashPassword = await bcrypt.hash(newPassword, 10);

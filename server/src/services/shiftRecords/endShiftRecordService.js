@@ -4,7 +4,7 @@ import generateErrorUtil from '../../utils/generateErrorUtil.js';
 const endShiftRecordService = async (shiftRecordId) => {
     const pool = await getPool();
 
-    const clockOut = new Date().toLocaleTimeString();
+    const clockOut = new Date();
 
     const [clockIn] = await pool.query(
         `

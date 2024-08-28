@@ -8,10 +8,10 @@ const selectServiceService = async (status) => {
             `
             SELECT s.status AS Estado, s.id AS serviceId, t.id AS typeOfServiceId, 
             u.id AS clientId, a.id AS addressId, s.createdAt AS Creación, 
-            t.type AS Tipo_Servicio, t.city AS Provincia, t.price AS Precio, 
-            s.hours AS Horas, s.totalPrice AS Precio_Total, s.dateTimeTime AS Fecha, 
+            t.type AS TipoServicio, t.city AS Provincia, t.price AS Precio, 
+            s.hours AS Horas, s.totalPrice AS PrecioTotal, s.dateTime AS DíaYHora, 
             a.city AS Ciudad, a.address AS Dirección, a.postCode AS CP, 
-            s.totalPrice AS Precio_Total, u.firstName AS Nombre, u.lastName AS Apellidos, 
+            s.totalPrice AS PrecioTotal, u.firstName AS Nombre, u.lastName AS Apellidos, 
             u.phone AS Teléfono, u.dni AS DNI, s.comments AS Comentarios
             FROM addresses a
             INNER JOIN services s
@@ -31,10 +31,10 @@ const selectServiceService = async (status) => {
         `
         SELECT s.status AS Estado, s.id AS serviceId, t.id AS typeOfServiceId, 
         u.id AS clientId, a.id AS addressId, s.createdAt AS Creación, 
-        t.type AS Tipo_Servicio, t.city AS Provincia, t.price AS Precio, 
-        s.hours AS Horas, s.totalPrice AS Precio_Total, s.dateTimeTime AS Fecha, 
+        t.type AS TipoServicio, t.city AS Provincia, t.price AS Precio, 
+        s.hours AS Horas, s.totalPrice AS PrecioTotal, s.dateTime AS DíaYHora, 
         a.city AS Ciudad, a.address AS Dirección, a.postCode AS CP, 
-        s.totalPrice AS Precio_Total, u.firstName AS Nombre, u.lastName AS Apellidos, 
+        s.totalPrice AS PrecioTotal, u.firstName AS Nombre, u.lastName AS Apellidos, 
         u.phone AS Teléfono, u.dni AS DNI, s.comments AS Comentarios
         FROM addresses a
         INNER JOIN services s

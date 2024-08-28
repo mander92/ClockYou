@@ -12,7 +12,7 @@ const isAdmin = async (req, res, next) => {
             [userId]
         );
 
-        if (!verify.length || result[0].role !== 'admin')
+        if (!verify.length || verify[0].role !== 'admin')
             generateErrorUtil(
                 'Acceso denegado: Se requiere rol de Administrador',
                 409
