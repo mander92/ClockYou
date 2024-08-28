@@ -1,7 +1,7 @@
-import './NewService.css';
+import './NotFound.css';
 
-const NewService = () => {
-  return <div>NewService</div>;
+const NotFound = () => {
+  return <div>NotFound</div>;
 };
 
-export default NewService;
+export default NotFound;
