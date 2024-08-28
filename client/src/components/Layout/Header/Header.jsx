@@ -19,7 +19,7 @@ const Header = () => {
           </span>
         </a>
 
-        <ul className='navdinamica flex flex-wrap items-center gap-3'>
+        <ul className='navdinamica'>
           <li>
             <a className='linkmainnav' href='/about'>
               Sobre Nosotros

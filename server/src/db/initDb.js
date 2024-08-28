@@ -22,97 +22,92 @@ const initDb = async () => {
         await pool.query(
             `
             CREATE TABLE IF NOT EXISTS addresses (
-            id CHAR(36) PRIMARY KEY NOT NULL,
-            address VARCHAR(255),
-            postCode VARCHAR(5),
-            city VARCHAR(40),
-            createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
-            modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,
-            deletedAt DATETIME NULL
-            )
+                id CHAR(36) PRIMARY KEY NOT NULL,
+                address VARCHAR(255) NOT NULL,
+                postCode CHAR(5) NOT NULL,
+                city VARCHAR(40) NOT NULL,
+                createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                modifiedAt TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                deletedAt TIMESTAMP )
             `
         );
 
         await pool.query(
             `
             CREATE TABLE IF NOT EXISTS users (
-            id CHAR(36) PRIMARY KEY NOT NULL,
-            email VARCHAR(100) UNIQUE NOT NULL,
-            firstName VARCHAR(25),
-            lastName VARCHAR(40),
-            dni VARCHAR(11) UNIQUE,
-            password VARCHAR(255) NOT NULL,
-            phone VARCHAR(15),
-            city VARCHAR(25),
-            role ENUM('admin', 'employee', 'client') DEFAULT 'client',
-            job VARCHAR(20),
-            avatar VARCHAR(100),
-            active BOOLEAN DEFAULT false,
-            registrationCode CHAR(30),
-            recoverPasswordCode CHAR(10),
-            createdAt DATETIME DEFAULT CURRENT_TIMESTAMP, 
-            modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,
-            deletedAt DATETIME NULL
-            )
+                id CHAR(36) PRIMARY KEY NOT NULL,
+                email VARCHAR(100) UNIQUE NOT NULL,
+                firstName VARCHAR(25),
+                lastName VARCHAR(50),
+                dni CHAR(11) UNIQUE,
+                password VARCHAR(255) NOT NULL,
+                phone VARCHAR(15),
+                city VARCHAR(25),
+                role ENUM('admin', 'employee', 'client') DEFAULT 'client',
+                job VARCHAR(20),
+                avatar CHAR(40),
+                active BOOLEAN DEFAULT false,
+                registrationCode CHAR(30),
+                recoverPasswordCode CHAR(10),
+                createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
+                modifiedAt TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                deletedAt TIMESTAMP )
             `
         );
 
         await pool.query(
             `
             CREATE TABLE IF NOT EXISTS typeOfServices (
-            id CHAR(36) PRIMARY KEY NOT NULL,
-            type VARCHAR(255) NOT NULL,
-            price DECIMAL(10,2) NOT NULL,
-            description VARCHAR(500) NOT NULL,
-            city VARCHAR(30) NOT NULL,
-            createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
-            modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,
-            deletedAt DATETIME NULL
-            )
+                id CHAR(36) PRIMARY KEY NOT NULL,
+                type VARCHAR(255) NOT NULL,
+                price DECIMAL(5,2) NOT NULL,
+                description VARCHAR(500) NOT NULL,
+                city VARCHAR(30) NOT NULL,
+                image CHAR(40),
+                createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                modifiedAt TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                deletedAt TIMESTAMP )
             `
         );
 
         await pool.query(
             `
             CREATE TABLE IF NOT EXISTS services (
-            id CHAR(36) PRIMARY KEY NOT NULL,
-            date CHAR(10) NOT NULL,
-            startTime CHAR(5) NOT NULL,
-            hours INT UNSIGNED NOT NULL,
-            rating INT UNSIGNED,
-            totalPrice VARCHAR(10),
-            comments VARCHAR(255),
-            status ENUM ('accepted', 'rejected', 'pending', 'completed', 'confirmed', 'canceled') DEFAULT 'pending',
-            validationCode VARCHAR(30),
-            clientId CHAR(36) NOT NULL,
-            addressId CHAR(36) NOT NULL,
-            typeOfServicesId CHAR(36) NOT NULL,
-            FOREIGN KEY (clientId) REFERENCES users(id),
-            FOREIGN KEY (addressId) REFERENCES addresses(id),
-            FOREIGN KEY (typeOfServicesId) REFERENCES typeOfServices(id),
-            createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
-            modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,
-            deletedAt DATETIME NULL
-            )
+                id CHAR(36) PRIMARY KEY NOT NULL,
+                dateTime TIMESTAMP NOT NULL,
+                hours INT UNSIGNED NOT NULL CHECK (hours BETWEEN 1 AND 8),
+                rating INT UNSIGNED CHECK (rating BETWEEN 1 AND 5),
+                totalPrice CHAR(3),
+                comments VARCHAR(255),
+                status ENUM ('accepted', 'rejected', 'pending', 'completed', 'confirmed', 'canceled') DEFAULT 'pending',
+                validationCode VARCHAR(30),
+                clientId CHAR(36) NOT NULL,
+                addressId CHAR(36) NOT NULL,
+                typeOfServicesId CHAR(36) NOT NULL,
+                FOREIGN KEY (clientId) REFERENCES users(id),
+                FOREIGN KEY (addressId) REFERENCES addresses(id),
+                FOREIGN KEY (typeOfServicesId) REFERENCES typeOfServices(id),
+                createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                modifiedAt TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                deletedAt TIMESTAMP )
             `
         );
 
         await pool.query(
             `
             CREATE TABLE IF NOT EXISTS shiftRecords(
-            id CHAR(36) PRIMARY KEY NOT NULL,
-            clockIn TIME,
-            clockOut TIME,
-            latitude DECIMAL(10,8),
-            longitude DECIMAL(11,8),
-            serviceId CHAR(36) NOT NULL,
-            employeeId CHAR(36) NOT NULL,
-            FOREIGN KEY (serviceId) REFERENCES services(id),
-            FOREIGN KEY (employeeId) REFERENCES users(id),
-            createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
-            modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,
-            deletedAt DATETIME NULL
-            )
+                id CHAR(36) PRIMARY KEY NOT NULL,
+                clockIn TIMESTAMP,
+                clockOut TIMESTAMP,
+                latitude DECIMAL(10,8),
+                longitude DECIMAL(11,8),
+                serviceId CHAR(36) NOT NULL,
+                employeeId CHAR(36) NOT NULL,
+                FOREIGN KEY (serviceId) REFERENCES services(id),
+                FOREIGN KEY (employeeId) REFERENCES users(id),
+                createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                modifiedAt TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                deletedAt TIMESTAMP )
             `
         );
 

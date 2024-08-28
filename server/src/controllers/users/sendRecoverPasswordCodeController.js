@@ -19,7 +19,12 @@ const sendRecoverPasswordCodeController = async (req, res, next) => {
 
         const user = await selectUserByEmailService(email);
 
-        if (!user) generateErrorUtil('Usuario no encontrado', 404);
+        if (!user)
+            res.send({
+                status: 'ok',
+                message:
+                    'Si existe una cuenta con tu email recibirás un código de recuperación',
+            });
 
         const recoverPasswordCode = randomstring.generate(10);
 
@@ -27,7 +32,8 @@ const sendRecoverPasswordCodeController = async (req, res, next) => {
 
         res.send({
             status: 'ok',
-            message: 'Código de recuperación enviado',
+            message:
+                'Si existe una cuenta con tu email recibirás un código de recuperación',
         });
     } catch (error) {
         next(error);
