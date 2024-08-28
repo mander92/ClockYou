@@ -9,18 +9,34 @@
     }
   }
 
-  .linkmainnav {
-    @apply block px-4 py-2.5 text-white;
+  .navdinamica {
+    @apply inset-0 z-10 flex flex-wrap flex-col items-center justify-center gap-3;
+    position: fixed;
+    transform: translateX(120%);
+    background-color: var(--white-color);
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
 
-    background-color: var(--cerulean);
+    > li {
+      width: 80%;
+      max-width: 300px;
+    }
+  }
+
+  .linkmainnav {
+    @apply block px-4 py-3.5;
+
+    color: var(--cerulean);
+    background-color: transparent;
     transition: background-color 0.3s linear;
+    border: 1px solid var(--light-blue);
 
     &:hover {
-      background-color: var(--blue-topaz);
+      background-color: var(--cerulean);
     }
   }
 
   .menuburguer {
+    @apply z-20;
     width: 40px;
     display: flex;
     flex-direction: column;
