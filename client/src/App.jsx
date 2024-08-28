@@ -4,7 +4,12 @@ import Home from './pages/Home/Home';
 import About from './pages/About/About';
 import Login from './pages/Login/Login';
 import Registro from './pages/Registro/Registro';
-import Validate from './pages/Validate'
+import Validate from './pages/Validate/Validate';
+import EditService from './pages/EditService/EditService';
+import NewService from './pages/NewService/NewService';
+import NewTypeOfService from './pages/NewTypeOfService/NewTypeOfService';
+import NotFound from './pages/NotFound/NotFound';
+import RecoverPassword from './pages/RecoverPassword/RecoverPassword';
 import './App.css';
 
 const App = () => {
@@ -17,10 +22,13 @@ const App = () => {
             <Route path='/about' element={<About />} />
             <Route path='/login' element={<Login />} />
             <Route path='/registro' element={<Registro />} />
-            <Route
-					    path='/users/validate/:regCode'
-					    element={<Validate />}
-				    />
+            <Route path='/validate' element={<Validate />} />
+            <Route path='/editservice' element={<EditService />} />
+            <Route path='/newservice' element={<NewService />} />
+            <Route path='/newtypeofservice' element={<NewTypeOfService />} />
+            <Route path='/notfound' element={<NotFound />} />
+            <Route path='/recoverpassword' element={<RecoverPassword />} />
+            {/* <Route path='/users/validate/:regCode' element={<Validate />} /> */}
           </Routes>
         </main>
       </Layout>
