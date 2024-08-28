@@ -6,7 +6,7 @@ import generateErrorUtil from '../utils/generateErrorUtil.js';
 const serviceExists = async (req, res, next) => {
     try {
         const schema = Joi.object().keys({
-            serviceId: Joi.string().length(36),
+            serviceId: Joi.string().length(36).required(),
         });
 
         const validation = schema.validate(req.params);
