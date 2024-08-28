@@ -7,20 +7,19 @@ const updateServiceByIdService = async (
     postCode,
     city,
     comments,
-    date,
-    hours,
-    startTime
+    dateTime,
+    hours
 ) => {
     const pool = await getPool();
 
     const [status] = await pool.query(
         `
-        SELECT id FROM services WHERE id = ? AND status != 'pending'
+        SELECT id, status FROM services WHERE id = ?
         `,
         [serviceId]
     );
 
-    if (status.length)
+    if (!status.length || status[0].status !== 'pending')
         generateErrorUtil('El servicio ya no se puede modificar', 409);
 
     const [addressId] = await pool.query(
@@ -56,10 +55,10 @@ const updateServiceByIdService = async (
 
     await pool.query(
         `
-        UPDATE services SET comments = ?, date = ?, hours = ?, startTime = ?, totalPrice = ?
+        UPDATE services SET comments = ?, dateTime = ?, hours = ?, totalPrice = ?
         WHERE id = ?
         `,
-        [comments, date, hours, startTime, resultPrice, serviceId]
+        [comments, dateTime, hours, resultPrice, serviceId]
     );
 
     const [data] = await pool.query(

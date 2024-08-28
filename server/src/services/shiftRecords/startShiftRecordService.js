@@ -5,16 +5,16 @@ import generateErrorUtil from '../../utils/generateErrorUtil.js';
 const startShiftRecordService = async (shiftRecordId) => {
     const pool = await getPool();
 
-    const clockIn = new Date().toLocaleTimeString();
+    const clockIn = new Date();
 
     const [verify] = await pool.query(
         `
-        SELECT id FROM shiftRecords WHERE id = ? AND clockIn IS NOT NULL
+        SELECT clockIn FROM shiftRecords WHERE id = ?
         `,
         [shiftRecordId]
     );
 
-    if (verify.length)
+    if (verify[0].clockIn !== null)
         generateErrorUtil('Ya has registrado una hora de inicio', 401);
 
     await pool.query(

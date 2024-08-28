@@ -8,22 +8,22 @@ const endShiftRecordService = async (shiftRecordId) => {
 
     const [clockIn] = await pool.query(
         `
-        SELECT id FROM shiftRecords WHERE id = ? AND clockIn IS NULL
+        SELECT clockIn FROM shiftRecords WHERE id = ?
         `,
         [shiftRecordId]
     );
 
-    if (clockIn.length)
+    if (clockIn[0].clockIn === null)
         generateErrorUtil('No has registrado una hora de inicio', 401);
 
     const [verify] = await pool.query(
         `
-        SELECT id FROM shiftRecords WHERE id = ? AND clockOut IS NOT NULL
+        SELECT clockOut FROM shiftRecords WHERE id = ?
         `,
         [shiftRecordId]
     );
 
-    if (verify.length)
+    if (verify[0].clockOut !== null)
         generateErrorUtil('Ya has registrado una hora de fin', 401);
 
     await pool.query(
