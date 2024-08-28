@@ -1,5 +1,5 @@
 import generateErrorUtil from '../../utils/generateErrorUtil.js';
-import updateUserStateService from '../../services/users/updateUserStateService.js';
+import deleteUserStateService from '../../services/users/deleteUserStateService.js';
 
 const deleteUserController = async (req, res, next) => {
     try {
@@ -10,7 +10,7 @@ const deleteUserController = async (req, res, next) => {
         if (loggedId !== userId)
             generateErrorUtil('Acceso denegado, el token no coincide', 409);
 
-        await updateUserStateService(userId);
+        await deleteUserStateService(userId);
 
         res.send({
             status: 'ok',

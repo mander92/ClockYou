@@ -4,7 +4,9 @@ const deleteServiceByIdController = async (req, res, next) => {
     try {
         const { serviceId } = req.params;
 
-        await deleteServiceByIdService(serviceId);
+        const userId = req.userLogged.id;
+
+        await deleteServiceByIdService(userId, serviceId);
 
         res.send({
             status: 'ok',

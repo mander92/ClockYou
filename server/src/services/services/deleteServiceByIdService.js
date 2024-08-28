@@ -1,17 +1,27 @@
 import getPool from '../../db/getPool.js';
 import generateErrorUtil from '../../utils/generateErrorUtil.js';
 
-const deleteServiceByIdService = async (serviceId) => {
+const deleteServiceByIdService = async (userId, serviceId) => {
     const pool = await getPool();
 
-    const [verify] = await pool.query(
+    const [verifyId] = await pool.query(
         `
-        SELECT id FROM services WHERE status = 'pending' AND id = ?
+        SELECT id FROM users WHERE id = ?
+        `,
+        [userId]
+    );
+
+    if (!verifyId.length)
+        generateErrorUtil('Acceso denegado, el token no coincide', 409);
+
+    const [verifyStatus] = await pool.query(
+        `
+        SELECT id, status FROM services WHERE id = ?
         `,
         [serviceId]
     );
 
-    if (!verify.length)
+    if (!verifyStatus.length || verifyStatus[0].status !== 'pending')
         generateErrorUtil(
             'No puedes eliminar el servicio debido a su estado',
             401
@@ -19,7 +29,7 @@ const deleteServiceByIdService = async (serviceId) => {
 
     await pool.query(
         `
-        UPDATE services SET deletedAt = NOW(), status = 'canceled' WHERE id = ? 
+        UPDATE services SET deletedAt = CURRENT_TIMESTAMP, status = 'canceled' WHERE id = ? 
         `,
         [serviceId]
     );

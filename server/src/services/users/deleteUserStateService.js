@@ -1,6 +1,6 @@
 import getPool from '../../db/getPool.js';
 
-const updateUserStateService = async (userId) => {
+const deleteUserStateService = async (userId) => {
     const pool = await getPool();
 
     const [email] = await pool.query(
@@ -16,10 +16,10 @@ const updateUserStateService = async (userId) => {
 
     await pool.query(
         `
-        UPDATE users SET active = 0, deletedAt = NOW(), dni = ?, email = ? WHERE id = ?
+        UPDATE users SET active = 0, deletedAt = CURRENT_TIMESTAMP, dni = ?, email = ? WHERE id = ?
         `,
         [deletedDni, deletedEmail, userId]
     );
 };
 
-export default updateUserStateService;
+export default deleteUserStateService;

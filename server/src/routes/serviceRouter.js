@@ -37,6 +37,7 @@ router.get(
 router.get(
     '/services/:serviceId',
     authUser,
+    isAdmin,
     serviceExists,
     detailServiceController
 );

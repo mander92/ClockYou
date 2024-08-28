@@ -15,6 +15,16 @@ const insertServiceService = async (
 ) => {
     const pool = await getPool();
 
+    const [verify] = await pool.query(
+        `
+        SELECT id FROM users WHERE id = ?
+        `,
+        [userId]
+    );
+
+    if (!verify.length || verify[0].id !== userId)
+        generateErrorUtil('Acceso denegado, el token no coincide', 409);
+
     const [existAddress] = await pool.query(
         `
         SELECT id FROM addresses WHERE address = ? AND city = ? AND postCode = ?

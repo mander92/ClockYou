@@ -20,7 +20,7 @@ const selectServiceService = async (status) => {
             ON u.id = s.clientId
             INNER JOIN typeOfServices t
             ON s.typeOfServicesId = t.id AND s.deletedAt IS NULL
-            ORDER BY s.dateTimeTime
+            ORDER BY s.dateTime
             `
         );
 
@@ -44,7 +44,7 @@ const selectServiceService = async (status) => {
         INNER JOIN typeOfServices t
         ON s.typeOfServicesId = t.id
         WHERE s.status = ? AND s.deletedAt IS NULL
-        ORDER BY s.dateTimeTime
+        ORDER BY s.dateTime
         `,
         [status]
     );
