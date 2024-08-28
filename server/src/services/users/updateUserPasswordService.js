@@ -3,17 +3,13 @@ import getPool from '../../db/getPool.js';
 import generateErrorUtil from '../../utils/generateErrorUtil.js';
 import selectUserByEmailService from './selectUserByEmailService.js';
 
-const updateUserPasswordService = async (
-    email,
-    recoverPasswordCode,
-    newPassword
-) => {
+const updateUserPasswordService = async (recoverPasswordCode, newPassword) => {
     const pool = await getPool();
 
-    const user = await selectUserByEmailService(email);
+    const user = await selectUserByEmailService(recoverPasswordCode);
 
     if (!user || user.recoverPasswordCode !== recoverPasswordCode)
-        generateErrorUtil('Email o código de recuperación incorrecto', 409);
+        generateErrorUtil('Código de recuperación incorrecto', 409);
 
     const hashPassword = await bcrypt.hash(newPassword, 10);
 
