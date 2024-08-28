@@ -1,28 +1,30 @@
 import express from 'express';
 import cors from 'cors';
 import fileUpload from 'express-fileupload';
-
+import morgan from 'morgan';
 
 import { PORT, UPLOADS_DIR } from './env.js';
+
+import routes from './src/routes/index.js';
 
 import {
     notFoundErrorController,
     errorController,
 } from './src/controllers/errors/index.js';
 
-import routes from './src/routes/index.js';
-
 const app = express();
 
-app.use(express.json());
+app.use(morgan('dev'));
+
+app.use(cors());
 
 app.use('/uploads', express.static(UPLOADS_DIR));
 
-app.use(fileUpload());
-
 app.use(express.urlencoded({ extended: true }));
 
-app.use(cors());
+app.use(express.json());
+
+app.use(fileUpload());
 
 app.use(routes);
 
