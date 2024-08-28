@@ -46,7 +46,7 @@ const insertShiftRecordService = async (serviceId, employeeId) => {
     const [pedido] = await pool.query(
         `
         SELECT s.status AS Estado,
-        t.type AS Tipo_Servicio, t.city AS Provincia, s.validationCode, s.totalPrice AS Precio_Total, s.date AS Fecha, s.startTime AS Hora_Inicio, a.address AS Dirección, a.postCode AS CP, a.city AS Ciudad, u.email AS Email
+        t.type AS Tipo_Servicio, t.city AS Provincia, s.validationCode, s.totalPrice AS Precio_Total, s.dateTimeTime AS Fecha, a.address AS Dirección, a.postCode AS CP, a.city AS Ciudad, u.email AS Email
         FROM addresses a
         INNER JOIN services s
         ON a.id = s.addressId
