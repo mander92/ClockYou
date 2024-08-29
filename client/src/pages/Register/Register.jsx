@@ -1,13 +1,11 @@
 import './register.css';
 
 import { useState } from 'react';
-<<<<<<< HEAD
 
 import { useNavigate } from 'react-router-dom';
 
-=======
->>>>>>> a6a98bdedf358f58715ca128d00a0d7b743e0f2f
 import { fetchRegisterService } from '../../services/userServices';
+
 import toast from 'react-hot-toast';
 
 const Register = () => {
@@ -49,7 +47,6 @@ const Register = () => {
 
                 toast.success(message);
 
-<<<<<<< HEAD
                 resetInputs();
 
                 navigate('/');
@@ -60,22 +57,15 @@ const Register = () => {
             });
         }
     };
-=======
-  return (
-    <section className='container'>
-      <form id='registerForm' className='userForm' onSubmit={handleRegister}>
-        <fieldset>
-          <legend>Registro</legend>
->>>>>>> a6a98bdedf358f58715ca128d00a0d7b743e0f2f
-
     return (
         <section className='container'>
-            <h2>Registro</h2>
-
-            <form id='registerForm' onSubmit={handleRegister}>
+            <form
+                id='registerForm'
+                className='userForm'
+                onSubmit={handleRegister}
+            >
                 <fieldset>
-                    <legend className='px-3'>Regístrate si te atreves</legend>
-
+                    <legend>Registro</legend>
                     <label htmlFor='email'>Email</label>
                     <input
                         type='email'
@@ -116,7 +106,6 @@ const Register = () => {
                         required
                     />
 
-<<<<<<< HEAD
                     <label htmlFor='phone'>Teléfono</label>
                     <input
                         type='tel'
@@ -146,32 +135,14 @@ const Register = () => {
                         placeholder='jobryp-kapDew-fetho6'
                         required
                     />
-
-                    <button>Registrarse</button>
-                    <button onClick={resetInputs}>Limpiar</button>
+                    <div>
+                        <button>Registrarse</button>
+                        <button onClick={resetInputs}>Limpiar</button>
+                    </div>
                 </fieldset>
             </form>
         </section>
     );
-=======
-          <label htmlFor='repeatedPassword'>Repetir Contraseña</label>
-          <input
-            type='password'
-            id='repeatedPassword'
-            value={repeatedPassword}
-            onChange={(e) => setRepeatedPassword(e.target.value)}
-            placeholder='jobryp-kapDew-fetho6'
-            required
-          />
-          <div>
-            <button>Registrarse</button>
-            <button onClick={resetInputs}>Limpiar</button>
-          </div>
-        </fieldset>
-      </form>
-    </section>
-  );
->>>>>>> a6a98bdedf358f58715ca128d00a0d7b743e0f2f
 };
 
 export default Register;
