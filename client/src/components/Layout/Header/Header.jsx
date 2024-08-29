@@ -6,48 +6,58 @@ const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [menuBurguer, setmenuBurguer] = useState(false);
 
-  const handleBurguer = () => {};
+  const handleBurguer = () => {
+    setmenuBurguer(!menuBurguer);
+  };
 
   return (
     <header>
-      <nav className='mainnav flex flex-wrap'>
-        <a href='/' className='flex items-center pb-3 sm:pb-0'>
-          <img className='w-14' src={clockyouLogo} alt='clockYou' />
+      <div className='container ms-auto p-3.5 pl-2.5'>
+        <nav className='mainnav flex flex-wrap'>
+          <a href='/' className='flex items-center'>
+            <img className='w-14' src={clockyouLogo} alt='clockYou' />
 
-          <span className='text-4xl pl-1.5 dm-serif-text-regular hidden sm:inline-flex'>
-            ClockYou
-          </span>
-        </a>
+            <span className='text-4xl pl-1.5 dm-serif-text-regular  sm:inline-flex'>
+              ClockYou
+            </span>
+          </a>
 
-        <ul className='navdinamica'>
-          <li>
-            <a className='linkmainnav' href='/about'>
-              Sobre Nosotros
-            </a>
-          </li>
-          <li>
-            <a className='linkmainnav' href='#'>
-              Servicios
-            </a>
-          </li>
-          <li>
-            <a className='linkmainnav' href='#'>
-              Contacto
-            </a>
-          </li>
-          <li>
-            <a className='linkmainnav' href={!showMenu ? '/login' : '/'}>
-              {!showMenu ? 'Iniciar Sesión' : 'Cerrar Sesión'}
-            </a>
-          </li>
-        </ul>
+          <ul
+            id='navdinamica'
+            className={menuBurguer ? 'navdinamica show' : 'navdinamica'}
+          >
+            <li>
+              <a className='linkmainnav' href='/about'>
+                Sobre Nosotros
+              </a>
+            </li>
+            <li>
+              <a className='linkmainnav' href='#'>
+                Servicios
+              </a>
+            </li>
+            <li>
+              <a className='linkmainnav' href='#'>
+                Contacto
+              </a>
+            </li>
+            <li>
+              <a className='linkmainnav' href={!showMenu ? '/login' : '/'}>
+                {!showMenu ? 'Iniciar Sesión' : 'Cerrar Sesión'}
+              </a>
+            </li>
+          </ul>
 
-        <div onClick={handleBurguer} className='menuburguer'>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </nav>
+          <div
+            onClick={handleBurguer}
+            className={menuBurguer ? 'menuburguer open' : 'menuburguer'}
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </nav>
+      </div>
     </header>
   );
 };
