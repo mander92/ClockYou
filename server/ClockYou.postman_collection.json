@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"david_miras@icloud.com\",\r\n    \"password\": \"12345678\",\r\n    \"firstName\": \"David\",\r\n    \"lastName\": \"Mirás Bellón\",\r\n    \"dni\": \"12894578Z\",\r\n    \"phone\": \"987654321\"\r\n}",
+							"raw": "{\r\n    \"email\": \"david_miras@icloud.com\",\r\n    \"password\": \"12345678\",\r\n    \"firstName\": \"David\",\r\n    \"lastName\": \"Mirás Bellón\",\r\n    \"dni\": \"12894578\",\r\n    \"phone\": \"987654321\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -45,7 +45,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "{{admin}}",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIyYTZhY2U5LWQyZTMtNDA2NC04M2JkLWNiMzIzMzcwMjA5OCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNDg5MzYyMSwiZXhwIjoxNzI1NDk4NDIxfQ.DN8H-ZNtwLyo_mOr0afbLuxpT8ADhJ-nWc9k1gdkHHw",
 								"type": "text"
 							}
 						],
@@ -59,7 +59,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/users/7208ffe8-b1dc-44f1-aa17-ac3158b5981d",
+							"raw": "http://localhost:8000/users/22a6ace9-d2e3-4064-83bd-cb3233702098",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -67,7 +67,7 @@
 							"port": "8000",
 							"path": [
 								"users",
-								"7208ffe8-b1dc-44f1-aa17-ac3158b5981d"
+								"22a6ace9-d2e3-4064-83bd-cb3233702098"
 							]
 						}
 					},
@@ -80,13 +80,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "{{admin}}",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIyYTZhY2U5LWQyZTMtNDA2NC04M2JkLWNiMzIzMzcwMjA5OCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNDg5MzYyMSwiZXhwIjoxNzI1NDk4NDIxfQ.DN8H-ZNtwLyo_mOr0afbLuxpT8ADhJ-nWc9k1gdkHHw",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"role\": \"employee\",\r\n    \"email\": \"employee@clockYou.com\",\r\n    \"password\": \"12345678\",\r\n    \"firstName\": \"Employee\",\r\n    \"lastName\": \"ClockYou\",\r\n    \"dni\": \"22371538A\",\r\n    \"phone\": \"690123587\",\r\n    \"job\": \"Peluquero\",\r\n    \"city\":\"Portugal\"\r\n}",
+							"raw": "{\r\n    \"role\": \"employee\",\r\n    \"email\": \"employee@clockYou.com\",\r\n    \"password\": \"12345678\",\r\n    \"firstName\": \"Employee\",\r\n    \"lastName\": \"ClockYou\",\r\n    \"dni\": \"22371518A\",\r\n    \"phone\": \"690123587\",\r\n    \"job\": \"Peluquero\",\r\n    \"city\":\"Portugal\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -116,7 +116,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "{{admin}}",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIyYTZhY2U5LWQyZTMtNDA2NC04M2JkLWNiMzIzMzcwMjA5OCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNDg5MzYyMSwiZXhwIjoxNzI1NDk4NDIxfQ.DN8H-ZNtwLyo_mOr0afbLuxpT8ADhJ-nWc9k1gdkHHw",
 								"type": "text"
 							}
 						],
@@ -250,7 +250,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/users/validate/",
+							"raw": "http://localhost:8000/users/validate",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -258,8 +258,7 @@
 							"port": "8000",
 							"path": [
 								"users",
-								"validate",
-								""
+								"validate"
 							]
 						}
 					},
@@ -296,13 +295,13 @@
 					"response": []
 				},
 				{
-					"name": "editPassword",
+					"name": "changePassword",
 					"request": {
 						"method": "PATCH",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"david_miras@icloud.com\",\n    \"recoverPasswordCode\": \"semMesZplB\",\n    \"newPassword\": \"12345678\"\n}",
+							"raw": "{\n    \"recoverPasswordCode\": \"4Elxmk5Pen\",\n    \"newPassword\": \"12345678\" \n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -325,18 +324,27 @@
 					"response": []
 				},
 				{
-					"name": "listEmployee(admin)",
+					"name": "editPassword",
 					"request": {
-						"method": "GET",
+						"method": "PUT",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "{{admin}}",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVlMjhhMjUzLTU3N2ItNDlkYi1iM2ZlLTU2OTEwMGIwYmMxMyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNDg3MDU4OSwiZXhwIjoxNzI1NDc1Mzg5fQ.N0tedbLwmLPr6FzETNYpUzCCReA4E9E9zRYQ9S8ZUm4",
 								"type": "text"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"actualPassword\": \"12345678\",\n    \"newPassword\": \"87654321\",\n    \"repeatNewPassword\": \"87654321\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:8000/users/employee",
+							"raw": "http://localhost:8000/users/password/ee28a253-577b-49db-b3fe-569100b0bc13",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -344,22 +352,53 @@
 							"port": "8000",
 							"path": [
 								"users",
-								"employee"
+								"password",
+								"ee28a253-577b-49db-b3fe-569100b0bc13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listFilter(admin)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIyYTZhY2U5LWQyZTMtNDA2NC04M2JkLWNiMzIzMzcwMjA5OCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNDg5MzYyMSwiZXhwIjoxNzI1NDk4NDIxfQ.DN8H-ZNtwLyo_mOr0afbLuxpT8ADhJ-nWc9k1gdkHHw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"users"
 							],
 							"query": [
 								{
 									"key": "city",
-									"value": "Zaragoza",
+									"value": "portugal",
 									"disabled": true
 								},
 								{
 									"key": "job",
-									"value": "masajista",
+									"value": "peluquero",
 									"disabled": true
 								},
 								{
 									"key": "active",
 									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "role",
+									"value": "admin",
 									"disabled": true
 								}
 							]
@@ -583,7 +622,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/typeOfServices/da8a7c04-ebf2-4b83-b095-7f059b51a87f",
+							"raw": "http://localhost:8000/typeOfServices/13f90253-a2ff-4ef8-84cf-097ab31d2d1d",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -591,7 +630,43 @@
 							"port": "8000",
 							"path": [
 								"typeOfServices",
-								"da8a7c04-ebf2-4b83-b095-7f059b51a87f"
+								"13f90253-a2ff-4ef8-84cf-097ab31d2d1d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editImage",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgxM2FiOTM0LWFjNzUtNDllNS05NTg3LWVhOTY1YjI2NDVmYiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNDg3NTgxOSwiZXhwIjoxNzI1NDgwNjE5fQ.QSCx4KtVq13X3n7gFD7JzkUG_DNxW7qK7fZffEMMdwE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/private/var/folders/5q/hhv31t7j423631cknxfrvddc0000gn/T/com.apple.Photos.NSItemProvider/uuid=1875AE9E-D90C-4B81-BCF4-DF7294351691&library=1&type=1&mode=1&loc=true&cap=true.jpeg/IMG_8008.jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/typeOfServices/00da5d2a-9495-4ad7-bbda-16bc1a703313",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"typeOfServices",
+								"00da5d2a-9495-4ad7-bbda-16bc1a703313"
 							]
 						}
 					},
@@ -609,13 +684,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "{{client}}",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ5ZDZjZDU5LTYyODUtNDk1Ny04MzVkLTI0NzAxM2ZhMzU5NSIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjQ4NzYxODksImV4cCI6MTcyNTQ4MDk4OX0.89KkmubQ7lcRRCITihKVH3t0OXVs_bNaKbDhZec0Bcg",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"date\": \"2024-08-28\",\n    \"startTime\":\"10:00\",\n    \"hours\": \"3\",\n    \"comments\": \"Para estudiante que está cursando 2º de la ESO\",\n    \"address\": \"Avío, 2, 3ªB\",\n    \"city\": \"Santiago de Compostela\",\n    \"postCode\": \"15705\"\n}",
+							"raw": "{\n    \"dateTime\": \"2023-10-05T14:48:00Z\",\n    \"hours\": \"3\",\n    \"comments\": \"Para estudiante que está cursando 2º de la ESO\",\n    \"address\": \"Avío, 2, 3ªB\",\n    \"city\": \"Santiago de Compostela\",\n    \"postCode\": \"15705\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -623,7 +698,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/services/534d0605-47af-477b-8066-a68f2ecb1a9c",
+							"raw": "http://localhost:8000/services/f0859766-136c-4b6b-9efc-83ffbebe82d8",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -631,7 +706,7 @@
 							"port": "8000",
 							"path": [
 								"services",
-								"534d0605-47af-477b-8066-a68f2ecb1a9c"
+								"f0859766-136c-4b6b-9efc-83ffbebe82d8"
 							]
 						}
 					},
@@ -696,18 +771,18 @@
 					"response": []
 				},
 				{
-					"name": "detail",
+					"name": "detail(admin)",
 					"request": {
 						"method": "GET",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "{{client}}",
+								"value": "{{admin}}",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8000/services/929832ea-9e65-4f86-9a7f-ff482fda82de",
+							"raw": "http://localhost:8000/services/6dc567cf-3eba-414f-9283-d6ee7aa9923d",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -715,14 +790,14 @@
 							"port": "8000",
 							"path": [
 								"services",
-								"929832ea-9e65-4f86-9a7f-ff482fda82de"
+								"6dc567cf-3eba-414f-9283-d6ee7aa9923d"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "delete",
+					"name": "delete(client)",
 					"request": {
 						"method": "DELETE",
 						"header": [
@@ -733,7 +808,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8000/services/929832ea-9e65-4f86-9a7f-ff482fda82de",
+							"raw": "http://localhost:8000/services/0b591828-a922-4e59-b185-0a325db0c6b1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -741,14 +816,14 @@
 							"port": "8000",
 							"path": [
 								"services",
-								"929832ea-9e65-4f86-9a7f-ff482fda82de"
+								"0b591828-a922-4e59-b185-0a325db0c6b1"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "edit",
+					"name": "edit(client)",
 					"request": {
 						"method": "PUT",
 						"header": [
@@ -760,7 +835,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"comments\": \"Probandooooo\",\n    \"date\":\"2024-12-12\",\n    \"startTime\": \"11:00\",\n    \"hours\":\"3\",\n    \"address\":\"probar\",\n    \"postCode\":\"12345\",\n    \"city\":\"asdsa\"\n}",
+							"raw": "{\n    \"comments\": \"Probandooooo\",\n    \"dateTime\":\"2024-08-31 14:05:57\",\n    \"hours\":\"8\",\n    \"address\":\"probar\",\n    \"postCode\":\"12345\",\n    \"city\":\"asdsa\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -768,7 +843,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/services/8dd31caf-9d66-48d4-a8b7-2624adc43399",
+							"raw": "http://localhost:8000/services/148dbcc9-f0b6-46e2-b473-cfcb51aa0d4e",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -776,7 +851,7 @@
 							"port": "8000",
 							"path": [
 								"services",
-								"8dd31caf-9d66-48d4-a8b7-2624adc43399"
+								"148dbcc9-f0b6-46e2-b473-cfcb51aa0d4e"
 							]
 						}
 					},
@@ -925,7 +1000,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"employeeId\":\"db20546e-6ffd-40f1-b4ad-e2347be09d26\"\n}",
+							"raw": "{\n    \"employeeId\":\"335904c9-ab47-423c-a5e4-4e1a5b2d7639\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -933,7 +1008,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/shiftrecords/0b591828-a922-4e59-b185-0a325db0c6b1",
+							"raw": "http://localhost:8000/shiftrecords/01dbda7a-aa49-45e6-bce5-0e9892f4ace1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -941,7 +1016,7 @@
 							"port": "8000",
 							"path": [
 								"shiftrecords",
-								"0b591828-a922-4e59-b185-0a325db0c6b1"
+								"01dbda7a-aa49-45e6-bce5-0e9892f4ace1"
 							]
 						}
 					},
@@ -985,7 +1060,7 @@
 					"response": []
 				},
 				{
-					"name": "editAdmin",
+					"name": "edit(Admin)",
 					"request": {
 						"method": "PUT",
 						"header": [
@@ -1005,7 +1080,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/shiftrecords/edit/b72fa443-abd8-4191-b17b-f00921618386",
+							"raw": "http://localhost:8000/shiftrecords/edit/d763595f-d09b-4cfd-bd2d-ff5e3d3bb90c",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1014,7 +1089,7 @@
 							"path": [
 								"shiftrecords",
 								"edit",
-								"b72fa443-abd8-4191-b17b-f00921618386"
+								"d763595f-d09b-4cfd-bd2d-ff5e3d3bb90c"
 							]
 						}
 					},
@@ -1032,7 +1107,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8000/shiftrecords/",
+							"raw": "http://localhost:8000/shiftrecords/d763595f-d09b-4cfd-bd2d-ff5e3d3bb90c",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1040,7 +1115,7 @@
 							"port": "8000",
 							"path": [
 								"shiftrecords",
-								""
+								"d763595f-d09b-4cfd-bd2d-ff5e3d3bb90c"
 							]
 						}
 					},
@@ -1053,12 +1128,21 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "{{client}}",
+								"value": "{{employee}}",
 								"type": "text"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:8000/shiftrecords/b72fa443-abd8-4191-b17b-f00921618386",
+							"raw": "http://localhost:8000/shiftrecords/d763595f-d09b-4cfd-bd2d-ff5e3d3bb90c",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1066,7 +1150,7 @@
 							"port": "8000",
 							"path": [
 								"shiftrecords",
-								"b72fa443-abd8-4191-b17b-f00921618386"
+								"d763595f-d09b-4cfd-bd2d-ff5e3d3bb90c"
 							]
 						}
 					},
