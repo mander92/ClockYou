@@ -36,7 +36,7 @@
     border: 1px solid var(--icicle);
 
     &:hover {
-      background-color: var(--cerulean);
+      background-color: var(--overcast);
     }
   }
 
