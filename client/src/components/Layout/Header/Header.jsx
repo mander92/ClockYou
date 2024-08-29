@@ -46,6 +46,11 @@ const Header = () => {
                 {!showMenu ? 'Iniciar Sesión' : 'Cerrar Sesión'}
               </a>
             </li>
+            <li>
+              <a className='linkmainnav' href='/registro'>
+                Registro
+              </a>
+            </li>
           </ul>
 
           <div

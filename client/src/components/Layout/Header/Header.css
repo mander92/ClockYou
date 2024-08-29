@@ -1,6 +1,18 @@
 @tailwind components;
 
 @layer components {
+  :root {
+    --percentageTranslate: 10%;
+  }
+
+  @media only screen and (min-width: 768px) {
+    :root {
+      --percentageTranslate: 30%;
+    }
+
+    /* font-size clamp */
+  }
+
   .mainnav {
     @apply place-content-between items-center text-white;
 
@@ -23,7 +35,7 @@
     }
 
     &.show {
-      transform: translateX(10%);
+      transform: translateX(var(--percentageTranslate));
     }
   }
 
@@ -70,6 +82,20 @@
       height: 4px;
       border-radius: 4px;
       background-color: var(--cerulean);
+    }
+
+    &.open {
+      & span:first-of-type {
+        transform: rotate(45deg) translateY(6px);
+      }
+
+      & span:nth-child(even) {
+        display: none;
+      }
+
+      & span:last-of-type {
+        transform: rotate(-45deg) translateY(-8px);
+      }
     }
   }
 }

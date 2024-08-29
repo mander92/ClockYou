@@ -3,7 +3,9 @@ import './Footer.css';
 const Footer = () => {
   return (
     <footer>
-      <p>&copy; ClockYou 2024</p>
+      <div className='container'>
+        <p>&copy; ClockYou 2024</p>
+      </div>
     </footer>
   );
 };
