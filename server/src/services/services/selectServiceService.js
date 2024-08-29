@@ -17,13 +17,13 @@ const selectServiceService = async (status, order, price) => {
     INNER JOIN users u
     ON u.id = s.clientId
     INNER JOIN typeOfServices t
-    ON s.typeOfServicesId = t.id AND s.deletedAt IS NULL
+    ON s.typeOfServicesId = t.id WHERE s.deletedAt IS NULL
     `;
 
     let sqlValues = [];
 
     if (status) {
-        sqlQuery += ' AND type = ?';
+        sqlQuery += ' AND status = ?';
         sqlValues.push(status);
     }
 
