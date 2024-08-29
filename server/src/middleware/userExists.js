@@ -19,13 +19,12 @@ const userExists = async (req, res, next) => {
 
         const [user] = await pool.query(
             `
-            SELECT id, deletedAt FROM users WHERE id = ?
+            SELECT id, deletedAt FROM users WHERE id = ? AND deletedAt IS NULL
             `,
             [userId]
         );
 
-        if (!user.length && user[0].deletedAt === null)
-            generateErrorUtil('Usuario no encontrado', 400);
+        if (!user.length) generateErrorUtil('Usuario no encontrado', 400);
 
         next();
     } catch (error) {
