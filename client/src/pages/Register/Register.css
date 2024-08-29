@@ -1,6 +1,6 @@
 #registerForm {
   & fieldset {
-    border: 1px solid var(--warm-gray);
+    border: 1px solid #cfcfcf;
     padding: 1rem;
     display: flex;
     flex-direction: column;
@@ -9,6 +9,7 @@
 
   & label {
     color: var(--glacier-blue);
+    font-size: 0.95rem;
   }
 
   & input {

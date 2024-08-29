@@ -54,11 +54,9 @@ const Register = () => {
 
   return (
     <section className='container'>
-      <h2>Registro</h2>
-
       <form id='registerForm' onSubmit={handleRegister}>
         <fieldset>
-          <legend className='px-3'>Regístrate si te atreves</legend>
+          <legend className='px-3 text-3xl'>Registro</legend>
 
           <label htmlFor='email'>Email</label>
           <input
