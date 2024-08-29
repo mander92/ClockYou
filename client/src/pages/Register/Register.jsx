@@ -1,7 +1,10 @@
+import './register.css';
+
 import { useState } from 'react';
 
-import './register.css';
-const { VITE_API_URL } = import.meta.env;
+import { fetchRegisterService } from '../../services/userServices';
+
+import toast from 'react-hot-toast';
 
 const Register = () => {
     const [email, setEmail] = useState('');
@@ -10,153 +13,122 @@ const Register = () => {
     const [dni, setDni] = useState('');
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
-    const [repeatedPass, setRepeatedPass] = useState('');
+    const [repeatedPassword, setRepeatedPassword] = useState('');
 
-    const fetchRegisterService = async (
-        email,
-        firstName,
-        lastName,
-        phone,
-        dni,
-        password
-    ) => {
-        const res = await fetch(`${VITE_API_URL}/users/register`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                email: email,
-                firstName,
-                lastName: lastName,
-                phone,
-                dni: dni,
-                password,
-            }),
-        });
-
-        const body = await res.json();
-
-        if (body.status === 'error') {
-            throw new Error(body.message);
-        }
-
-        return body.message;
+    const resetInputs = () => {
+        setEmail('');
+        setFirstName('');
+        setLastName('');
+        setDni('');
+        setPhone('');
+        setPassword('');
+        setRepeatedPassword('');
     };
 
-    const handleFormClick = async (e) => {
+    const handleRegister = async (e) => {
         try {
             e.preventDefault();
 
-            if (password !== repeatedPass) {
-                throw new Error('Las contraseñas no coinciden');
+            if (password !== repeatedPassword) {
+                throw new Error('¡Las contraseñas no coinciden!');
             } else {
                 const message = await fetchRegisterService(
                     email,
                     firstName,
                     lastName,
-                    phone,
                     dni,
-                    password,
-                    repeatedPass
+                    phone,
+                    password
                 );
 
-                alert(message);
+                toast.success(message);
 
-                setFirstName('');
-                setLastName('');
-                setDni('');
-                setEmail('');
-                setPassword('');
-                setPhone('');
-                setRepeatedPass('');
+                resetInputs();
             }
-        } catch (error) {
-            console.log(error.message);
+        } catch (err) {
+            toast.error(err.message, {
+                id: 'registerError',
+            });
         }
     };
 
     return (
         <main>
-            <h2>register</h2>
+            <h2>Registro</h2>
 
-            <form id='registerForm' onSubmit={handleFormClick}>
+            <form id='registerForm' onSubmit={handleRegister}>
                 <label htmlFor='email'>Email</label>
                 <input
-                    type='text'
+                    type='email'
                     id='email'
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder='email'
+                    placeholder='user@clockYou.com'
+                    required
                 />
 
-                <label htmlFor='nombre'>nombre</label>
+                <label htmlFor='lastName'>Nombre</label>
                 <input
                     type='text'
-                    id='nombre'
+                    id='firstName'
                     value={firstName}
-                    onChange={(e) => {
-                        setFirstName(e.target.value);
-                    }}
-                    placeholder='nombre'
+                    onChange={(e) => setFirstName(e.target.value)}
+                    placeholder='Manuel'
+                    required
                 />
 
-                <label htmlFor='lastName'>apellidos</label>
+                <label htmlFor='lastName'>Apellidos</label>
                 <input
                     type='text'
                     id='lastName'
                     value={lastName}
-                    onChange={(e) => {
-                        setLastName(e.target.value);
-                    }}
-                    placeholder='apellidos'
+                    onChange={(e) => setLastName(e.target.value)}
+                    placeholder='Pérez Rodríguez'
+                    required
                 />
 
-                <label htmlFor='dni'>dni</label>
+                <label htmlFor='dni'>DNI</label>
                 <input
                     type='text'
                     id='dni'
                     value={dni}
-                    onChange={(e) => {
-                        setDni(e.target.value);
-                    }}
-                    placeholder='dni'
+                    onChange={(e) => setDni(e.target.value)}
+                    placeholder='24873456Z'
+                    required
                 />
 
-                <label htmlFor='tel'>teléfono</label>
+                <label htmlFor='phone'>Teléfono</label>
                 <input
-                    type='text'
-                    id='tel'
+                    type='tel'
+                    id='phone'
                     value={phone}
-                    onChange={(e) => {
-                        setPhone(e.target.value);
-                    }}
-                    placeholder='teléfono'
+                    onChange={(e) => setPhone(e.target.value)}
+                    placeholder='680458923'
+                    required
                 />
 
-                <label htmlFor='contraseña'>contraseña</label>
+                <label htmlFor='pass'>Contraseña</label>
                 <input
-                    type='text'
-                    id='contraseña'
+                    type='password'
+                    id='password'
                     value={password}
-                    onChange={(e) => {
-                        setPassword(e.target.value);
-                    }}
-                    placeholder='contraseña'
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder='jobryp-kapDew-fetho6'
+                    required
                 />
 
-                <label htmlFor='repiteContraseña'>contraseña</label>
+                <label htmlFor='repeatedPassword'>Repetir Contraseña</label>
                 <input
-                    type='text'
-                    id='repiteContraseña'
-                    value={repeatedPass}
-                    onChange={(e) => {
-                        setRepeatedPass(e.target.value);
-                    }}
-                    placeholder='contraseña'
+                    type='password'
+                    id='repeatedPassword'
+                    value={repeatedPassword}
+                    onChange={(e) => setRepeatedPassword(e.target.value)}
+                    placeholder='jobryp-kapDew-fetho6'
+                    required
                 />
 
-                <button>Enviar</button>
+                <button>Registrarse</button>
+                <button onClick={resetInputs}>Limpiar</button>
             </form>
         </main>
     );
