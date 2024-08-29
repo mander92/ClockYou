@@ -1,8 +1,7 @@
 import './Validate.css';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-
-import { fetchUpdateUserRegisterService } from '../services/userServices';
+const {VITE_API_URL} = import.meta.env 
 import toast from 'react-hot-toast';
 
 const Validate = () => {
@@ -11,7 +10,20 @@ const Validate = () => {
 
     const { registrationCode } = useParams();
 
-
+    const fetchUpdateUserRegisterService = async (registrationCode) => {
+	
+        const res = await fetch(`${VITE_API_URL}/api/users/validate/${registrationCode}`, {
+            method: 'get',
+        });
+    
+        const body = await res.json();
+    
+        if (body.status === 'error') {
+            throw new Error(body.message);
+        }
+    
+        return body.message;
+    };
 
     useEffect(() => {
 

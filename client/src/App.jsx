@@ -4,7 +4,7 @@ import Home from './pages/Home/Home';
 import About from './pages/About/About';
 import Login from './pages/Login/Login';
 import Registro from './pages/Registro/Registro';
-import Validate from './pages/Validate/Validate';
+import Validate from './pages/Validate/Validate.jsx';
 import EditService from './pages/EditService/EditService';
 import NewService from './pages/NewService/NewService';
 import NewTypeOfService from './pages/NewTypeOfService/NewTypeOfService';
