@@ -76,6 +76,8 @@
     flex-direction: column;
     gap: 6px;
     @apply z-20 lg:hidden;
+    transform: rotate(0);
+    transition: transform 0.35s ease;
 
     & span {
       height: 4px;
@@ -84,6 +86,7 @@
     }
 
     &.open {
+      transform: rotate(-360deg);
       & span:first-of-type {
         transform: rotate(45deg) translateY(6px);
       }
