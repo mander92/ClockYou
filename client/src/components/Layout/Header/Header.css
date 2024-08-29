@@ -33,7 +33,7 @@
     color: var(--cerulean);
     background-color: transparent;
     transition: background-color 0.3s linear;
-    border: 1px solid var(--light-blue);
+    border: 1px solid var(--icicle);
 
     &:hover {
       background-color: var(--cerulean);
