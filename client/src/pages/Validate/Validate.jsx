@@ -11,7 +11,6 @@ const Validate = () => {
 
     const { registrationCode } = useParams();
 
-    console.log(registrationCode);
 
 
     useEffect(() => {
