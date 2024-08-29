@@ -1,9 +1,7 @@
 import './register.css';
 
 import { useState } from 'react';
-
 import { fetchRegisterService } from '../../services/userServices';
-
 import toast from 'react-hot-toast';
 
 const Register = () => {
@@ -54,9 +52,9 @@ const Register = () => {
 
   return (
     <section className='container'>
-      <form id='registerForm' onSubmit={handleRegister}>
+      <form id='registerForm' className='userForm' onSubmit={handleRegister}>
         <fieldset>
-          <legend className='px-3 text-3xl'>Registro</legend>
+          <legend>Registro</legend>
 
           <label htmlFor='email'>Email</label>
           <input
@@ -127,9 +125,10 @@ const Register = () => {
             placeholder='jobryp-kapDew-fetho6'
             required
           />
-
-          <button>Registrarse</button>
-          <button onClick={resetInputs}>Limpiar</button>
+          <div>
+            <button>Registrarse</button>
+            <button onClick={resetInputs}>Limpiar</button>
+          </div>
         </fieldset>
       </form>
     </section>

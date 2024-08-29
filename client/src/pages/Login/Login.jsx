@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import './Login.css';
+import '../Register/Register.css';
 import toast from 'react-hot-toast';
 const { VITE_API_URL } = import.meta.env;
 
@@ -43,9 +43,9 @@ const Login = () => {
 
   return (
     <section className='container'>
-      <form id='registerForm' onSubmit={handleFormClick}>
+      <form id='registerForm' className='userForm' onSubmit={handleFormClick}>
         <fieldset>
-          <legend className='px-3 text-3xl'>Inicia sesión</legend>
+          <legend>Inicia sesión</legend>
 
           <label htmlFor='email'>Email</label>
           <input
@@ -65,8 +65,9 @@ const Login = () => {
             placeholder='password'
             required
           />
-
-          <button type='submit'>Iniciar sesión</button>
+          <div>
+            <button type='submit'>Iniciar sesión</button>
+          </div>
         </fieldset>
       </form>
     </section>
