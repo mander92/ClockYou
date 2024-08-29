@@ -31,11 +31,11 @@ const App = () => {
                         path='/newtypeofservice'
                         element={<NewTypeOfService />}
                     />
-                    <Route path='/notfound' element={<NotFound />} />
                     <Route
                         path='/recoverpassword'
                         element={<RecoverPassword />}
                     />
+                    <Route path='*' element={<NotFound />} />
                 </Routes>
             </main>
         </Layout>
