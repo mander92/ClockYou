@@ -10,6 +10,7 @@ import {
     deleteTypeOfServiceController,
     editTypeOfServiceController,
     detailTypeOfServicesController,
+    editTypeOfServiceImageController,
 } from '../controllers/typeOfServices/index.js';
 
 const router = express.Router();
@@ -30,6 +31,14 @@ router.put(
     isAdmin,
     typeOfServiceExists,
     editTypeOfServiceController
+);
+
+router.patch(
+    '/typeOfServices/:typeOfServiceId',
+    authUser,
+    isAdmin,
+    typeOfServiceExists,
+    editTypeOfServiceImageController
 );
 
 router.delete(
