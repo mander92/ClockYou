@@ -1,22 +1,49 @@
-// import { useParams } from 'react-router-dom';
 import './Validate.css';
-// import { useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+
+import { fetchUpdateUserRegisterService } from '../services/userServices';
+import toast from 'react-hot-toast';
 
 const Validate = () => {
-    /* const { registrationCode } = useParams();
+
+    const navigate = useNavigate();
+
+    const { registrationCode } = useParams();
+
+    console.log(registrationCode);
 
 
-    useEffect(() =>{
+    useEffect(() => {
 
-    }, []) */
+        const activateUser = async () => {
+            try {
 
-  return( 
-    <div>
-        <h2>Validación de usuario</h2>
+                const message = await fetchUpdateUserRegisterService(registrationCode);
 
-        <p></p>
-    </div>
-  );
+                toast.success(message, {
+                    id: 'validateUserSuccess',
+                });
+
+ 
+                navigate('/');
+
+            } catch (err) {
+
+                toast.error(err.message, {
+                    id: 'validateUserError',
+                });
+
+                navigate('/');
+            }
+        };
+
+        if (registrationCode) activateUser();
+    }, [registrationCode, navigate]);
+
+    return <main>
+
+            </main>;
 };
 
 export default Validate;
