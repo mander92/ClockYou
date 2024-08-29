@@ -23,7 +23,7 @@ const router = express.Router();
 
 router.get('/users/validate/:registrationCode', validateUserController);
 
-router.get('/users/employee', authUser, isAdmin, listUsersController);
+router.get('/users', authUser, isAdmin, listUsersController);
 
 router.get(
     '/users/employee/:employeeId',
