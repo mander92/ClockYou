@@ -13,20 +13,24 @@ const Home = () => {
 
   return (
     <>
-      <h1>Front de {VITE_APP_TITLE}</h1>
-      <h2>Empezando a darle estructura al Front de {VITE_APP_TITLE}</h2>
+      <div className='container'>
+        <h1>Front de {VITE_APP_TITLE}</h1>
+        <h2>Empezando a darle estructura al Front de {VITE_APP_TITLE}</h2>
+      </div>
 
-      <ul>{productsLi}</ul>
+      <section className='container'>
+        <ul>{productsLi}</ul>
 
-      <ul>
-        {products.map((product, index) => {
-          return (
-            <li key={product.id}>
-              {product.name} ({product.price}€)
-            </li>
-          );
-        })}
-      </ul>
+        <ul>
+          {products.map((product, index) => {
+            return (
+              <li key={product.id}>
+                {product.name} ({product.price}€)
+              </li>
+            );
+          })}
+        </ul>
+      </section>
     </>
   );
 };

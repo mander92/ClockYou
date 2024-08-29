@@ -4,7 +4,7 @@
 
 @layer components {
   h1 {
-    @apply text-5xl pt-7 pb-4;
+    @apply text-5xl pb-4;
   }
 
   h2 {

@@ -130,3 +130,8 @@ button {
   line-height: 1.4;
   font-size: 1.1rem;
 }
+
+.container {
+  margin-inline: auto;
+  padding: 1.2rem;
+}

@@ -12,12 +12,12 @@ const Header = () => {
 
   return (
     <header>
-      <div className='container ms-auto p-3.5 pl-2.5'>
+      <div className='container'>
         <nav className='mainnav flex flex-wrap'>
           <a href='/' className='flex items-center'>
             <img className='w-14' src={clockyouLogo} alt='clockYou' />
 
-            <span className='text-4xl pl-1.5 dm-serif-text-regular  sm:inline-flex'>
+            <span className='text-4xl pl-1.5 dm-serif-text-regular hidden sm:inline-flex'>
               ClockYou
             </span>
           </a>
