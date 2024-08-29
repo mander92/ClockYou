@@ -31,3 +31,20 @@ export const fetchRegisterService = async (
 
     return body.message;
 };
+
+export const fetchActiveUserService = async (registrationCode) => {
+    const res = await fetch(
+        `${VITE_API_URL}/users/validate/${registrationCode}`,
+        {
+            method: 'get',
+        }
+    );
+
+    const body = await res.json();
+
+    if (body.status === 'error') {
+        throw new Error(body.message);
+    }
+
+    return body.message;
+};

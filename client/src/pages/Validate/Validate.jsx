@@ -1,50 +1,28 @@
-import './Validate.css';
-import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-const {VITE_API_URL} = import.meta.env 
+import { useParams, useNavigate } from 'react-router-dom';
+
+import { fetchActiveUserService } from '../../services/userServices';
+
 import toast from 'react-hot-toast';
-import { Watch } from 'react-loader-spinner'
+
+import './Validate.css';
 
 const Validate = () => {
-
     const navigate = useNavigate();
-
     const { registrationCode } = useParams();
 
-    console.log(registrationCode);
-
-    const fetchUpdateUserRegisterService = async (registrationCode) => {
-	
-        const res = await fetch(`${VITE_API_URL}/users/validate/${registrationCode}`, {
-            method: 'GET',
-        });
-    
-        const body = await res.json();
-    
-        if (body.status === 'error') {
-            throw new Error(body.message);
-        }
-    
-        return body.message;
-    };
-
     useEffect(() => {
-
         const activateUser = async () => {
             try {
-
-                const message = await fetchUpdateUserRegisterService(registrationCode);
+                const message = await fetchActiveUserService(registrationCode);
 
                 toast.success(message, {
                     id: 'validateUserSuccess',
                 });
 
- 
-                navigate('/');
-
-            } catch (err) {
-
-                toast.error(err.message, {
+                navigate('/login');
+            } catch (error) {
+                toast.error(error.message, {
                     id: 'validateUserError',
                 });
 
@@ -55,22 +33,7 @@ const Validate = () => {
         if (registrationCode) activateUser();
     }, [registrationCode, navigate]);
 
-    return (
-        <main>
-            <h2>Está validando su email</h2>
-
-            <Watch
-                visible={true}
-                height="80"
-                width="80"
-                radius="48"
-                color="#006c84"
-                ariaLabel="watch-loading"
-                wrapperStyle={{}}
-                wrapperClass=""
-            />
-
-        </main>);
+    return <main></main>;
 };
 
 export default Validate;
