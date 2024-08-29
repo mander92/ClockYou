@@ -1,0 +1,29 @@
+.notFound {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    background-color: #f8f9fa;
+    padding: 20px; 
+    box-sizing: border-box;
+    margin: 5px 0 5px 0;
+}
+
+.notFound h1 {
+    color: #ff4447;
+    margin-bottom: 20px;
+    
+  }
+
+.notFound a {
+    text-decoration: underline; 
+    margin-top: 20px;
+    
+  }  
+
+.notFound a:hover {
+    text-decoration: underline;
+    font-size: 1.11rem;
+  }

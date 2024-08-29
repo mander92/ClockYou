@@ -92,10 +92,11 @@
 #root {
   min-height: 100vh;
   min-height: 100dvh;
+  margin: 0;
 }
 
 main {
-  overflow-x: clip;
+  overflow: clip;
   flex-grow: 1;
 }
 
