@@ -57,78 +57,82 @@ const Register = () => {
       <h2>Registro</h2>
 
       <form id='registerForm' onSubmit={handleRegister}>
-        <label htmlFor='email'>Email</label>
-        <input
-          type='email'
-          id='email'
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder='user@clockYou.com'
-          required
-        />
+        <fieldset>
+          <legend className='px-3'>Regístrate si te atreves</legend>
 
-        <label htmlFor='lastName'>Nombre</label>
-        <input
-          type='text'
-          id='firstName'
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
-          placeholder='Manuel'
-          required
-        />
+          <label htmlFor='email'>Email</label>
+          <input
+            type='email'
+            id='email'
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder='user@clockYou.com'
+            required
+          />
 
-        <label htmlFor='lastName'>Apellidos</label>
-        <input
-          type='text'
-          id='lastName'
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
-          placeholder='Pérez Rodríguez'
-          required
-        />
+          <label htmlFor='lastName'>Nombre</label>
+          <input
+            type='text'
+            id='firstName'
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            placeholder='Manuel'
+            required
+          />
 
-        <label htmlFor='dni'>DNI</label>
-        <input
-          type='text'
-          id='dni'
-          value={dni}
-          onChange={(e) => setDni(e.target.value)}
-          placeholder='24873456Z'
-          required
-        />
+          <label htmlFor='lastName'>Apellidos</label>
+          <input
+            type='text'
+            id='lastName'
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+            placeholder='Pérez Rodríguez'
+            required
+          />
 
-        <label htmlFor='phone'>Teléfono</label>
-        <input
-          type='tel'
-          id='phone'
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-          placeholder='680458923'
-          required
-        />
+          <label htmlFor='dni'>DNI</label>
+          <input
+            type='text'
+            id='dni'
+            value={dni}
+            onChange={(e) => setDni(e.target.value)}
+            placeholder='24873456Z'
+            required
+          />
 
-        <label htmlFor='pass'>Contraseña</label>
-        <input
-          type='password'
-          id='password'
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder='jobryp-kapDew-fetho6'
-          required
-        />
+          <label htmlFor='phone'>Teléfono</label>
+          <input
+            type='tel'
+            id='phone'
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            placeholder='680458923'
+            required
+          />
 
-        <label htmlFor='repeatedPassword'>Repetir Contraseña</label>
-        <input
-          type='password'
-          id='repeatedPassword'
-          value={repeatedPassword}
-          onChange={(e) => setRepeatedPassword(e.target.value)}
-          placeholder='jobryp-kapDew-fetho6'
-          required
-        />
+          <label htmlFor='pass'>Contraseña</label>
+          <input
+            type='password'
+            id='password'
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder='jobryp-kapDew-fetho6'
+            required
+          />
 
-        <button>Registrarse</button>
-        <button onClick={resetInputs}>Limpiar</button>
+          <label htmlFor='repeatedPassword'>Repetir Contraseña</label>
+          <input
+            type='password'
+            id='repeatedPassword'
+            value={repeatedPassword}
+            onChange={(e) => setRepeatedPassword(e.target.value)}
+            placeholder='jobryp-kapDew-fetho6'
+            required
+          />
+
+          <button>Registrarse</button>
+          <button onClick={resetInputs}>Limpiar</button>
+        </fieldset>
       </form>
     </section>
   );
