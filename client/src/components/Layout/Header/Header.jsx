@@ -58,9 +58,9 @@ const Header = () => {
             onClick={handleBurguer}
             className={menuBurguer ? 'menuburguer open' : 'menuburguer'}
           >
-            <span></span>
-            <span></span>
-            <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
           </div>
         </nav>
       </div>
