@@ -1,4 +1,6 @@
 .userForm {
+  max-width: 50rem;
+
   & fieldset {
     border: 1px solid #cfcfcf;
     padding: 1rem;
