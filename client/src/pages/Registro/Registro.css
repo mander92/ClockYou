@@ -1,0 +1,11 @@
+#registerForm{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border: 1px solid black;
+    border-radius: 15px;
+    align-items: center;
+    background-color: #006c84;
+    color: black;
+    
+}
