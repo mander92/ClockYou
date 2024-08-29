@@ -13,7 +13,7 @@ const Validate = () => {
 
     const fetchUpdateUserRegisterService = async (registrationCode) => {
 	
-        const res = await fetch(`${VITE_API_URL}/api/users/validate/${registrationCode}`, {
+        const res = await fetch(`${VITE_API_URL}/users/validate/${registrationCode}`, {
             method: 'get',
         });
     
