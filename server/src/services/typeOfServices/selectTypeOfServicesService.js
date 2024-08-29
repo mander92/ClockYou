@@ -1,26 +1,30 @@
-import getPool from '../../db/getPool.js';
+import getPool from "../../db/getPool.js";
 
-const selectTypeOfServiceService = async (type, city) => {
-    const pool = await getPool();
+const selectTypeOfServiceService = async (type, city, price) => {
+  const pool = await getPool();
 
-    let sqlQuery =
-        'SELECT id, image, type, description, city, price from typeOfServices WHERE deletedAt IS NULL';
+  let sqlQuery =
+    "SELECT id, image, type, description, city, price from typeOfServices WHERE deletedAt IS NULL";
 
-    let sqlValues = [];
+  let sqlValues = [];
 
-    if (type) {
-        sqlQuery += ' AND type = ?';
-        sqlValues.push(type);
-    }
+  if (type) {
+    sqlQuery += " AND type = ?";
+    sqlValues.push(type);
+  }
 
-    if (city) {
-        sqlQuery += ' AND city = ?';
-        sqlValues.push(city);
-    }
+  if (city) {
+    sqlQuery += " AND city = ?";
+    sqlValues.push(city);
+  }
 
-    const [service] = await pool.query(sqlQuery, sqlValues);
+  if (price) {
+    sqlQuery += ` ORDER BY price ${price.toUpperCase()}`;
+  }
 
-    return service;
+  const [service] = await pool.query(sqlQuery, sqlValues);
+
+  return service;
 };
 
 export default selectTypeOfServiceService;
