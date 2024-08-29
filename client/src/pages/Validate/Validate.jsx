@@ -5,11 +5,16 @@ const {VITE_API_URL} = import.meta.env
 import toast from 'react-hot-toast';
 
 const Validate = () => {
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
+  const { registrationCode } = useParams();
 
-    const { registrationCode } = useParams();
+  useEffect(() => {
+    const activateUser = async () => {
+      try {
+        const message = await fetchUpdateUserRegisterService(registrationCode);
 
+<<<<<<< HEAD
     const fetchUpdateUserRegisterService = async (registrationCode) => {
 	
         const res = await fetch(`${VITE_API_URL}/api/users/validate/${registrationCode}`, {
@@ -24,37 +29,26 @@ const Validate = () => {
     
         return body.message;
     };
+=======
+        toast.success(message, {
+          id: 'validateUserSuccess',
+        });
 
-    useEffect(() => {
+        navigate('/');
+      } catch (err) {
+        toast.error(err.message, {
+          id: 'validateUserError',
+        });
+>>>>>>> 54c07a0049973ed01e77310ac730f070844a5895
 
-        const activateUser = async () => {
-            try {
+        navigate('/');
+      }
+    };
 
-                const message = await fetchUpdateUserRegisterService(registrationCode);
+    if (registrationCode) activateUser();
+  }, [registrationCode, navigate]);
 
-                toast.success(message, {
-                    id: 'validateUserSuccess',
-                });
-
- 
-                navigate('/');
-
-            } catch (err) {
-
-                toast.error(err.message, {
-                    id: 'validateUserError',
-                });
-
-                navigate('/');
-            }
-        };
-
-        if (registrationCode) activateUser();
-    }, [registrationCode, navigate]);
-
-    return <main>
-
-            </main>;
+  return <main></main>;
 };
 
 export default Validate;

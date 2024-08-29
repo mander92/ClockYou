@@ -2,7 +2,7 @@
 
 @layer components {
   .mainnav {
-    @apply pb-5 place-content-between items-center text-white;
+    @apply place-content-between items-center text-white;
 
     & span {
       color: var(--cerulean);
