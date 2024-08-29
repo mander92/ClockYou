@@ -11,10 +11,12 @@ const Validate = () => {
 
     const { registrationCode } = useParams();
 
+    console.log(registrationCode);
+
     const fetchUpdateUserRegisterService = async (registrationCode) => {
 	
         const res = await fetch(`${VITE_API_URL}/users/validate/${registrationCode}`, {
-            method: 'get',
+            method: 'GET',
         });
     
         const body = await res.json();

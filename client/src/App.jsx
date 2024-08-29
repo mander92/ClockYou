@@ -22,7 +22,7 @@ const App = () => {
                     <Route path='/login' element={<Login />} />
                     <Route path='/register' element={<Register />} />
                     <Route
-                        path='/validation/:registrationCode'
+                        path='/users/validate/:registrationCode'
                         element={<Validate />}
                     />
                     <Route path='/editservice' element={<EditService />} />
