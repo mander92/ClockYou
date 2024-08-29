@@ -1,11 +1,13 @@
 import { useState } from "react";
 
 import "./Login.css";
+import toast from "react-hot-toast";
 const { VITE_API_URL } = import.meta.env;
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [token, setToken] = useState("localstorage.getItem('token') || NULL");
 
   const fetchLoginService = async (email, password) => {
     const res = await fetch(`${VITE_API_URL}/users/login`, {
@@ -24,28 +26,21 @@ const Login = () => {
     if (body.status === "error") {
       throw new Error(body.message);
     }
+    localStorage.setItem(token, body.token);
+    setToken(body.token);
 
-    return body.token;
+    toast.success("Inicio de sesión exitoso");
   };
 
   const handleFormClick = async (e) => {
-    try {
-      e.preventDefault();
+    e.preventDefault();
 
-      if (email === "" || password === "") {
-        throw new Error("Debes completar todos los campos");
-      } else {
-        const message = await fetchLoginService(email, password);
+    await fetchLoginService(email, password);
 
-        alert(message);
-
-        setEmail("");
-        setPassword("");
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
+    setEmail("");
+    setPassword("");
   };
+
   return (
     <main>
       <h2>Iniciar Sesión</h2>
@@ -58,6 +53,7 @@ const Login = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="email"
+          required
         />
         <label htmlFor="password">Contraseña</label>
         <input
@@ -66,6 +62,7 @@ const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="password"
+          required
         />
 
         <button type="submit">Iniciar sesión</button>
