@@ -1,109 +1,112 @@
 import { useEffect, useState } from 'react';
 const { VITE_API_URL } = import.meta.env;
-import './typeOfServices.css'
-
+import './typeOfServices.css';
 
 const Services = () => {
-    const [data , setData ] = useState([]);
+    const [data, setData] = useState([]);
+
+    console.log(data);
 
     useEffect(() => {
-
         const fectData = async () => {
             try {
-            const res = await fetch(`${VITE_API_URL}/typeOfServices`);
+                const res = await fetch(`${VITE_API_URL}/typeOfServices`);
 
-            if(!res.ok){
-                throw new Error('ERRRROROOROROORORORR')
-            };
-    
-            const body = await res.json();
+                if (!res.ok) {
+                    throw new Error('ERRRROROOROROORORORR');
+                }
 
-            setData(body.data)
-    
+                const body = await res.json();
+
+                setData(body.data);
             } catch (error) {
-                console.log(error)
+                console.log(error);
             }
-            
-        }
+        };
 
-        fectData()
+        fectData();
+    }, []);
 
-    },[]);
-
-
-
-    const filterCities = data.map(item=>item.city);
+    const filterCities = data.map((item) => item.city);
     const citiesNoRepeated = [];
-    for(let i = 0; i < filterCities.length; i++){
-        if(!citiesNoRepeated.includes(filterCities[i])){
-            citiesNoRepeated.push(filterCities[i])
+    for (let i = 0; i < filterCities.length; i++) {
+        if (!citiesNoRepeated.includes(filterCities[i])) {
+            citiesNoRepeated.push(filterCities[i]);
         }
-    };
+    }
 
-    const filterTypeOfService = data.map(item=>item.type);
+    const filterTypeOfService = data.map((item) => item.type);
     const typeNoRepeated = [];
-    for(let i = 0; i < filterTypeOfService.length; i++){
-        if(!typeNoRepeated.includes(filterTypeOfService[i])){
-            typeNoRepeated.push(filterTypeOfService[i])
+    for (let i = 0; i < filterTypeOfService.length; i++) {
+        if (!typeNoRepeated.includes(filterTypeOfService[i])) {
+            typeNoRepeated.push(filterTypeOfService[i]);
         }
-    };
-
+    }
 
     return (
         <div className='container'>
-        <h2>Servicios</h2>
+            <h2>Servicios</h2>
 
             <div>
-
                 <div>
-
-                    <form >
-
+                    <form>
                         <label htmlFor='Ciudad'>Ciudad</label>
-                        <select name="Ciudad" id="Ciudad">
-                            {citiesNoRepeated.map((city)=>{
-                                return <option key={city} value={city}>{city}</option>
+                        <select name='Ciudad' id='Ciudad'>
+                            {citiesNoRepeated.map((city) => {
+                                return (
+                                    <option key={city} value={city}>
+                                        {city}
+                                    </option>
+                                );
                             })}
                         </select>
 
                         <label htmlFor='TipoDeServicio'>Tipo de Servicio</label>
-                        <select name="TipoDeServicio" id="TipoDeServicio">
-                            {typeNoRepeated.map((type)=>{
-                                    return <option key={type} value={type}>{type}</option>
-                                })}
+                        <select name='TipoDeServicio' id='TipoDeServicio'>
+                            {typeNoRepeated.map((type) => {
+                                return (
+                                    <option key={type} value={type}>
+                                        {type}
+                                    </option>
+                                );
+                            })}
                         </select>
-
 
                         <label htmlFor='Ordenar por'>Ordenar por</label>
-                        <select name="radio" id="Ordenar por">
-                            <option value="ASC">Ascente</option>
-                            <option value="DES">Descente</option>
+                        <select name='radio' id='Ordenar por'>
+                            <option value='ASC'>Ascente</option>
+                            <option value='DES'>Descente</option>
                         </select>
-                        <button>Buscar</button>        
-
+                        <button>Buscar</button>
                     </form>
-
                 </div>
-        
-                <div>
 
+                <div>
                     <ul>
-                        {data.map((item)=>{
-                            return <li key={item.id}>
-                                <img src="404.png" alt="oishbvoi" />
-                                <h3>{item.type}</h3>
-                                <p>{item.city}</p>
-                                <p>{item.description}</p>
-                                <p>{item.price}</p>
-                                <a href={`${VITE_API_URL}/typeOfServices/${item.id}`}><button>Ver</button></a> 
-                            </li>
+                        {data.map((item) => {
+                            return (
+                                <li key={item.id}>
+                                    <img
+                                        src={`${VITE_API_URL}/${item.image}`}
+                                        alt={item.description}
+                                    />
+                                    <h3>{item.type}</h3>
+                                    <p>{item.city}</p>
+                                    <p>{item.description}</p>
+                                    <p>{item.price}</p>
+                                    <a
+                                        href={`${VITE_API_URL}/typeOfServices/${item.id}`}
+                                    >
+                                        <button>Ver</button>
+                                    </a>
+                                </li>
+                            );
                         })}
                     </ul>
                 </div>
-            
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default Services;
