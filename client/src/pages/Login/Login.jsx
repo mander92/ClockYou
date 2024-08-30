@@ -2,7 +2,7 @@ import '../Register/Register.css';
 
 import { useContext, useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
-// import useUser from '../../hooks/useUser';
+import useUser from '../../hooks/useUser';
 
 import { fetchLoginService } from '../../services/userServices';
 
@@ -13,7 +13,7 @@ import toast from 'react-hot-toast';
 const Login = () => {
     const { authLogin } = useContext(AuthContext);
 
-    // const { user } = useUser();
+    const { user } = useUser();
 
     const navigate = useNavigate();
 
@@ -39,7 +39,7 @@ const Login = () => {
         }
     };
 
-    // if (user) return <Navigate to='/' />;
+    if (user) return <Navigate to='/' />;
 
     return (
         <section className='container'>
