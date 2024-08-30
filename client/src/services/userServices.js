@@ -67,11 +67,11 @@ export const fetchLoginService = async (email, password) => {
         throw new Error(body.message);
     }
 
-    return body.data.token;
+    return body.data;
 };
 
 export const fetchProfileService = async (authToken) => {
-    const res = await fetch(`${VITE_API_URL}/users`, {
+    const res = await fetch(`${VITE_API_URL}/user`, {
         headers: authToken
             ? {
                   Authorization: authToken,
@@ -85,7 +85,7 @@ export const fetchProfileService = async (authToken) => {
         throw new Error(body.message);
     }
 
-    return body.data.user;
+    return body.data;
 };
 
 export const fetchSendRecoverService = async (email) => {
