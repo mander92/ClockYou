@@ -5,7 +5,7 @@ import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import Validate from './pages/Validate/Validate.jsx';
 import NotFound from './pages/NotFound/NotFound';
-import RecoverPassword from './pages/RecoverPassword/RecoverPassword';
+import RecoverPassword from './pages/RecoverPassword/SendRecoverPassword.jsx';
 import TypeOfServices from '../src/components/TypeOfServices/TypeOfServices.jsx';
 import './Fonts.css';
 import './App.css';
