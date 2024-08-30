@@ -8,8 +8,8 @@ const Home = () => {
       <div className='container'>
         <h1>{`Bienvenido a ${VITE_APP_TITLE}`}</h1>
         <h2>El sitio web donde encontrarás todo lo que buscas ;)...</h2>
-        <TypeOfServicies />
       </div>
+      <TypeOfServicies />
     </>
   );
 };
