@@ -1,78 +1,82 @@
-import { useState } from "react";
+import '../Register/Register.css';
 
-import "../Register/Register.css";
-import toast from "react-hot-toast";
-const { VITE_API_URL } = import.meta.env;
+import { useContext, useState } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
+// import useUser from '../../hooks/useUser';
+
+import { fetchLoginService } from '../../services/userServices';
+
+import { AuthContext } from '../../context/AuthContext';
+
+import toast from 'react-hot-toast';
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [token, setToken] = useState("localstorage.getItem('token') || NULL");
+    const { authLogin } = useContext(AuthContext);
 
-  const fetchLoginService = async (email, password) => {
-    const res = await fetch(`${VITE_API_URL}/users/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    });
+    // const { user } = useUser();
 
-    const body = await res.json();
+    const navigate = useNavigate();
 
-    if (body.status === "error") {
-      throw new Error(body.message);
-    }
-    localStorage.setItem(token, body.token);
-    setToken(body.token);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
-    toast.success("Inicio de sesión exitoso");
-  };
+    const handleFormClick = async (e) => {
+        try {
+            e.preventDefault();
 
-  const handleFormClick = async (e) => {
-    e.preventDefault();
+            const authToken = await fetchLoginService(email, password);
 
-    await fetchLoginService(email, password);
+            authLogin(authToken);
 
-    setEmail("");
-    setPassword("");
-  };
+            setEmail('');
+            setPassword('');
 
-  return (
-    <section className="container">
-      <form id="registerForm" className="userForm" onSubmit={handleFormClick}>
-        <fieldset>
-          <legend>Inicia sesión</legend>
+            navigate('/typeOfServices');
+        } catch (error) {
+            toast.error(error.message, {
+                id: 'loginError',
+            });
+        }
+    };
 
-          <label htmlFor="email">Email</label>
-          <input
-            type="text"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="email"
-            required
-          />
-          <label htmlFor="password">Contraseña</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="password"
-            required
-          />
-          <div>
-            <button type="submit">Iniciar sesión</button>
-          </div>
-          <a href="/recoverpassword"> ¿Has olvidado tu contraseña?</a>
-        </fieldset>
-      </form>
-    </section>
-  );
+    // if (user) return <Navigate to='/' />;
+
+    return (
+        <section className='container'>
+            <form
+                id='registerForm'
+                className='userForm'
+                onSubmit={handleFormClick}
+            >
+                <fieldset>
+                    <legend>Inicia sesión</legend>
+
+                    <label htmlFor='email'>Email</label>
+                    <input
+                        type='email'
+                        id='email'
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder='email'
+                        required
+                    />
+                    <label htmlFor='password'>Contraseña</label>
+                    <input
+                        type='password'
+                        id='password'
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder='password'
+                        required
+                    />
+                    <div>
+                        <button type='submit'>Iniciar sesión</button>
+                    </div>
+                    <a href='/recoverpassword'> ¿Has olvidado tu contraseña?</a>
+                </fieldset>
+            </form>
+        </section>
+    );
 };
 
 export default Login;
