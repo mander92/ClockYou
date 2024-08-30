@@ -1,0 +1,47 @@
+:root {
+  --minmaxgriditem: 250px;
+}
+
+@media only screen and (min-width: 1440px) {
+  :root {
+    --minmaxgriditem: 300px;
+  }
+}
+
+.gridClockYou {
+  display: grid;
+  gap: 1rem 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(var(--minmaxgriditem), 1fr));
+  margin-top: 1rem;
+
+  & li {
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+    margin: 0.7rem 0;
+
+    & *:not(img) {
+      padding-inline: 1rem;
+    }
+
+    & > a {
+      padding: 0.75rem 2.5rem;
+      display: inline-flex;
+      color: var(--white-color);
+      background-color: var(--cerulean);
+      margin-inline: 1rem;
+      margin-block: 1rem;
+
+      width: 50%;
+
+      justify-content: center;
+    }
+  }
+
+  & img {
+    width: 100%;
+  }
+
+  & h3 {
+    padding: 1rem 0 0.5rem;
+  }
+}

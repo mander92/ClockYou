@@ -12,8 +12,14 @@
   margin: 5px 0 5px 0;
 }
 
+.notFound .notfoundimg {
+  min-width: 300px;
+  width: 70%;
+  max-width: 800px;
+}
+
 .notFound h1 {
-  color: #ff4447;
+  color: #1b6ff1;
   margin-bottom: 20px;
 }
 

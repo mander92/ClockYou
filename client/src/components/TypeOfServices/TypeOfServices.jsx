@@ -82,21 +82,24 @@ const Services = () => {
         </div>
 
         <div>
-          <ul>
+          <ul className='gridClockYou'>
             {data.map((item) => {
               return (
-                <li key={item.id}>
+                <li
+                  key={item.id}
+                  className='flex flex-col place-content-between'
+                >
                   <img
                     src={`${VITE_API_URL}/${item.image}`}
                     alt={item.description}
                   />
-                  <h3>{item.type}</h3>
-                  <p>{item.city}</p>
-                  <p>{item.description}</p>
+                  <h3 className='text-2xl'>{item.type}</h3>
+
+                  <p className='grow'>{item.description}</p>
+                  <p className='text-1xl font-black pt-3 pb-1'>{item.city}</p>
+
                   <p>{item.price}</p>
-                  <a href={`${VITE_API_URL}/typeOfServices/${item.id}`}>
-                    <button>Ver</button>
-                  </a>
+                  <a href={`${VITE_API_URL}/typeOfServices/${item.id}`}>Ver</a>
                 </li>
               );
             })}
