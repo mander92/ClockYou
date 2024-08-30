@@ -27,6 +27,7 @@
     box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
     transform: translateX(120%);
     transition: transform 0.3s ease;
+    min-height: var(--body-min-height);
 
     > li {
       width: 70%;
@@ -58,6 +59,7 @@
       background-color: transparent;
       box-shadow: none;
       transform: none;
+      min-height: 0;
 
       > li {
         width: auto;
