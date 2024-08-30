@@ -10,6 +10,7 @@ import listUsersController from './listUsersController.js';
 import deleteUserController from './deleteUserController.js';
 import editUserAvatarController from './editUserAvatarController.js';
 import editUserPasswordController from './editUserPasswordController.js';
+import getUserProfileController from './getUserProfileController.js';
 
 export {
     registerUserController,
@@ -24,4 +25,5 @@ export {
     deleteUserController,
     editUserAvatarController,
     editUserPasswordController,
+    getUserProfileController,
 };

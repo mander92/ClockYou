@@ -17,6 +17,7 @@ import {
     deleteUserController,
     editUserAvatarController,
     editUserPasswordController,
+    getUserProfileController,
 } from '../controllers/users/index.js';
 
 const router = express.Router();
@@ -24,6 +25,8 @@ const router = express.Router();
 router.get('/users/validate/:registrationCode', validateUserController);
 
 router.get('/users', authUser, isAdmin, listUsersController);
+
+router.get('/user', authUser, getUserProfileController);
 
 router.get(
     '/users/employee/:employeeId',
