@@ -4,7 +4,7 @@ import './Header.css';
 import clockyouLogo from '/logo-test.png';
 
 const Header = () => {
-  const [showMenu, setShowMenu] = useState(false);
+  const [userrLogged, setUserrLogged] = useState(false);
   const [menuBurguer, setmenuBurguer] = useState(false);
 
   const handleBurguer = () => {
@@ -49,8 +49,8 @@ const Header = () => {
               </a>
             </li>
             <li>
-              <a className='linkmainnav' href={!showMenu ? '/login' : '/'}>
-                {!showMenu ? 'Iniciar Sesión' : 'Cerrar Sesión'}
+              <a className='linkmainnav' href={!userrLogged ? '/login' : '/'}>
+                {!userrLogged ? 'Iniciar Sesión' : 'Cerrar Sesión'}
               </a>
             </li>
             <li>
