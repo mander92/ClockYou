@@ -11,8 +11,8 @@ import NewTypeOfService from './pages/NewTypeOfService/NewTypeOfService';
 import NotFound from './pages/NotFound/NotFound';
 import RecoverPassword from './pages/RecoverPassword/RecoverPassword';
 import TypeOfServices from './pages/TypeOfServices/TypeOfServices.jsx';
-import './App.css';
 import './Fonts.css';
+import './App.css';
 
 const App = () => {
   return (
