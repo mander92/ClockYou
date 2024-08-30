@@ -31,7 +31,7 @@ const Login = () => {
             setEmail('');
             setPassword('');
 
-            navigate('/typeOfServices');
+            navigate('/');
         } catch (error) {
             toast.error(error.message, {
                 id: 'loginError',

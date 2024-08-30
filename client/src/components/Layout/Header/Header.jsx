@@ -77,6 +77,16 @@ const Header = () => {
                                 </li>
                             </>
                         ) : (
+                            <>
+                            
+                            <li>
+                                <a
+                                    className='linkmainnav'
+                                    href='/micuenta'
+                                >
+                                    Mi Cuenta
+                                </a>
+                            </li>
                             <li>
                                 <a
                                     onClick={authLogout}
@@ -86,6 +96,7 @@ const Header = () => {
                                     Cerrar Sesión
                                 </a>
                             </li>
+                            </>
                         )}
                     </ul>
                     <div
