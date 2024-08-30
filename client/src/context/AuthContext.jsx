@@ -1,29 +1,45 @@
+// Importamos las prop-types.
+import PropTypes from 'prop-types';
+
+// Importamos la función que crea un contexto y los hooks.
 import { createContext, useState } from 'react';
-const AuthContext = createContext();
 
+// Creamos un contexto vacío.
+export const AuthContext = createContext(null);
+
+// Creamos el componente provider.
 export const AuthProvider = ({ children }) => {
-    const [token, setToken] = useState(null);
+    // Creamos una variable en el State para almacenar el token.
+    const [authToken, setAuthToken] = useState(
+        localStorage.getItem('authToken') || null
+    );
 
-    const handleAuth = (jwt) => {
-        console.log('AUTH');
+    // Función que almacena el token en el localStorage (login).
+    const authLogin = (newToken) => {
+        // Guardamos el token en el localStorage.
+        localStorage.setItem('authToken', newToken);
 
-        if (!token) {
-            setToken(jwt);
-            localStorage.setItem('userToken', jwt);
-        }
-
-        if (token) {
-            setToken(null);
-            localStorage.removeItem('userToken');
-        }
+        // Guardamos el token en el State.
+        setAuthToken(newToken);
     };
 
-    const data = {
-        token,
-        handleAuth,
+    // Función que elimina el token del localStorage y del State (logout).
+    const authLogout = () => {
+        // Eliminamos el token en el localStorage.
+        localStorage.removeItem('authToken');
+
+        // Eliminamos el token del State.
+        setAuthToken(null);
     };
 
-    return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;
+    return (
+        <AuthContext.Provider value={{ authToken, authLogin, authLogout }}>
+            {children}
+        </AuthContext.Provider>
+    );
 };
 
-export default AuthContext;
+// Validamos las props.
+AuthProvider.propTypes = {
+    children: PropTypes.node.isRequired,
+};
