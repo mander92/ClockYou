@@ -10,8 +10,9 @@ import NewService from './pages/NewService/NewService';
 import NewTypeOfService from './pages/NewTypeOfService/NewTypeOfService';
 import NotFound from './pages/NotFound/NotFound';
 import RecoverPassword from './pages/RecoverPassword/RecoverPassword';
-import Services from './pages/Services/Services.jsx'
+import TypeOfServices from './pages/TypeOfServices/TypeOfServices.jsx'
 import './App.css';
+
 
 const App = () => {
     return (
@@ -22,7 +23,7 @@ const App = () => {
                     <Route path='/about' element={<About />} />
                     <Route path='/login' element={<Login />} />
                     <Route path='/register' element={<Register />} />
-                    <Route path='/services' element={<Services />} />
+                    <Route path='/typeOfServices' element={<TypeOfServices />} />
                     <Route
                         path='/users/validate/:registrationCode'
                         element={<Validate />}

@@ -27,8 +27,6 @@ router.post('/typeOfServices', authUser, isAdmin, newTypeOfServiceController);
 
 router.put(
     '/typeOfServices/:typeOfServiceId',
-    authUser,
-    isAdmin,
     typeOfServiceExists,
     editTypeOfServiceController
 );
