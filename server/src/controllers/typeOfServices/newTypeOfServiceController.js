@@ -19,7 +19,7 @@ const newTypeOfServiceController = async (req, res, next) => {
 
         const { type, description, city, price } = req.body;
 
-        const imageName = await savePictureUtil(req.files.image, 500, 500);
+        const imageName = await savePictureUtil(req.files.image, 400, 400);
 
         const data = await insertTypeOfServiceService(
             type,
