@@ -2,7 +2,13 @@ import { v4 as uuid } from 'uuid';
 import getPool from '../../db/getPool.js';
 import generateErrorUtil from '../../utils/generateErrorUtil.js';
 
-const insertTypeOfServiceService = async (type, description, city, price) => {
+const insertTypeOfServiceService = async (
+    type,
+    description,
+    city,
+    price,
+    imageName
+) => {
     const pool = await getPool();
 
     const [service] = await pool.query(
@@ -19,14 +25,14 @@ const insertTypeOfServiceService = async (type, description, city, price) => {
 
     await pool.query(
         `
-        INSERT INTO typeOfServices (id, type, description, city, price) VALUES (?,?,?,?,?)
+        INSERT INTO typeOfServices (id, type, description, city, price, image) VALUES (?,?,?,?,?,?)
         `,
-        [id, type, description, city, price]
+        [id, type, description, city, price, imageName]
     );
 
     const [data] = await pool.query(
         `
-        SELECT id, type, description, city, price FROM typeOfServices WHERE id = ?
+        SELECT id, type, description, city, price, image FROM typeOfServices WHERE id = ?
         `,
         [id]
     );

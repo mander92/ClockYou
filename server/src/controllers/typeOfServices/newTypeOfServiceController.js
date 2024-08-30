@@ -1,5 +1,6 @@
 import Joi from 'joi';
 
+import { savePictureUtil } from '../../utils/photoUtil.js';
 import insertTypeOfServiceService from '../../services/typeOfServices/insertTypeOfServiceService.js';
 import generateErrorUtil from '../../utils/generateErrorUtil.js';
 
@@ -18,11 +19,14 @@ const newTypeOfServiceController = async (req, res, next) => {
 
         const { type, description, city, price } = req.body;
 
+        const imageName = await savePictureUtil(req.files.image, 300);
+
         const data = await insertTypeOfServiceService(
             type,
             description,
             city,
-            price
+            price,
+            imageName
         );
 
         res.send({
