@@ -10,7 +10,7 @@ const editTypeOfserviceImageController = async (req, res, next) => {
 
         if (type.image) await deletePictureUtil(type.image);
 
-        const imageName = await savePictureUtil(req.files.image, 500, 500);
+        const imageName = await savePictureUtil(req.files.image, 1024, 768);
 
         await updateTypeOfServiceImageService(imageName, typeOfServiceId);
 
