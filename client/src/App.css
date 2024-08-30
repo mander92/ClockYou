@@ -8,12 +8,17 @@
   --warm-gray: #bcbabe;
   --ice: #a1d6e2;
   --glacier-blue: #1995ad;
+  --body-min-height: 500px;
 }
 
 #root {
   min-height: 100vh;
   min-height: 100dvh;
   margin: 0;
+}
+
+body {
+  min-height: var(--body-min-height);
 }
 
 main {
