@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import './Header.css';
 import clockyouLogo from '/logo-test.png';
@@ -11,6 +11,12 @@ const Header = () => {
     setmenuBurguer(!menuBurguer);
   };
 
+  useEffect(() => {
+    menuBurguer
+      ? document.body.classList.add('overflow-hidden')
+      : document.body.classList.remove('overflow-hidden');
+  }, [menuBurguer]);
+
   return (
     <header>
       <div className='container'>
@@ -18,7 +24,7 @@ const Header = () => {
           <a href='/' className='flex items-center'>
             <img className='w-14' src={clockyouLogo} alt='clockYou' />
 
-            <span className='text-4xl pl-1.5 dm-serif-text-regular hidden sm:inline-flex'>
+            <span className='text-4xl pl-1.5 serif-FONT-regular hidden sm:inline-flex'>
               ClockYou
             </span>
           </a>
@@ -33,7 +39,7 @@ const Header = () => {
               </a>
             </li>
             <li>
-              <a className='linkmainnav' href='/typeOfServices'>
+              <a className='linkmainnav' href='/services'>
                 Servicios
               </a>
             </li>
