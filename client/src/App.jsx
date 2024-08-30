@@ -7,6 +7,7 @@ import Validate from './pages/Validate/Validate.jsx';
 import NotFound from './pages/NotFound/NotFound';
 import RecoverPassword from './pages/RecoverPassword/SendRecoverPassword.jsx';
 import TypeOfServices from '../src/components/TypeOfServices/TypeOfServices.jsx';
+import ChangeRecoverPassword from './pages/RecoverPassword/ChangeRecoverPassword.jsx';
 import './Fonts.css';
 import './App.css';
 
@@ -24,6 +25,7 @@ const App = () => {
             element={<Validate />}
           />
           <Route path='/recoverpassword' element={<RecoverPassword />} />
+          <Route path='/password' element={<ChangeRecoverPassword />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </main>

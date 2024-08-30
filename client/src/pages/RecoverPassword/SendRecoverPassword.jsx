@@ -22,7 +22,7 @@ const RecoverPassword = () => {
         toast.success(message);
         resetInputs();
 
-        navigate('/');
+        navigate('/password');
       }
     } catch (error) {
       toast.error(error.message, {
