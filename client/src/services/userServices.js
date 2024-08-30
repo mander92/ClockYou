@@ -129,4 +129,17 @@ export const fetchChangePasswordService = async (recoverPasswordCode, newPasswor
     return body.message;
 };
 
+// export const fecthDetailTypeOfService = async (typeOfServiceId) => {
+
+//     const res = await fetch(`${VITE_API_URL}/typeOfServices/${typeOfServiceId}`);
+
+//     const body = await res.json()
+
+//     if(body.status === 'error'){
+//         throw new Error('Error al carga los datos');
+//     }
+
+//     return body
+// }
+
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-const { VITE_API_URL } = import.meta.env;
+const { VITE_API_URL, VITE_CLIENT_URL } = import.meta.env;
 import './typeOfServices.css';
 
 const Services = () => {
@@ -99,7 +99,7 @@ const Services = () => {
                   <p className='text-1xl font-black pt-3 pb-1'>{item.city}</p>
 
                   <p>{item.price}</p>
-                  <a href={`${VITE_API_URL}/typeOfServices/${item.id}`}>Ver</a>
+                  <a href={`${VITE_CLIENT_URL}/typeOfServices/${item.id}`}>Ver</a>
                 </li>
               );
             })}
