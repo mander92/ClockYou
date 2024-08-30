@@ -24,7 +24,7 @@ const Header = () => {
           <a href='/' className='flex items-center'>
             <img className='w-14' src={clockyouLogo} alt='clockYou' />
 
-            <span className='text-4xl pl-1.5 dm-serif-text-regular hidden sm:inline-flex'>
+            <span className='text-4xl pl-1.5 serif-FONT-regular hidden sm:inline-flex'>
               ClockYou
             </span>
           </a>
