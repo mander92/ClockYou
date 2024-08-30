@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import './Header.css';
 import clockyouLogo from '/logo-test.png';
@@ -10,6 +10,12 @@ const Header = () => {
   const handleBurguer = () => {
     setmenuBurguer(!menuBurguer);
   };
+
+  useEffect(() => {
+    menuBurguer
+      ? document.body.classList.add('overflow-hidden')
+      : document.body.classList.remove('overflow-hidden');
+  }, [menuBurguer]);
 
   return (
     <header>
@@ -33,7 +39,7 @@ const Header = () => {
               </a>
             </li>
             <li>
-              <a className='linkmainnav' href='/typeOfServices'>
+              <a className='linkmainnav' href='/services'>
                 Servicios
               </a>
             </li>
