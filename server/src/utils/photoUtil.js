@@ -18,7 +18,7 @@ export const savePictureUtil = async (img, width, height) => {
 
         const sharpImg = sharp(img.data);
 
-        sharpImg.resize({ width, height, fit: 'inside' });
+        sharpImg.resize({ width, height });
 
         const imgName = `${uuidv4()}.jpg`;
 
