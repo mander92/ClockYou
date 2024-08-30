@@ -87,6 +87,7 @@ const Services = () => {
                             <p>{item.city}</p>
                             <p>{item.description}</p>
                             <p>{item.price}</p>
+                            <a href={`${VITE_API_URL}/services/client/${item.id}`}><button>Ver</button></a> 
                         </li>
                     })}
                 </ul>
