@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import generateErrorUtil from './generateErrorUtil.js';
 
-export const savePictureUtil = async (img, width) => {
+export const savePictureUtil = async (img, width, height) => {
     try {
         const uploadDir = path.join(process.cwd(), `/${UPLOADS_DIR}`);
 
@@ -18,7 +18,7 @@ export const savePictureUtil = async (img, width) => {
 
         const sharpImg = sharp(img.data);
 
-        sharpImg.resize(width);
+        sharpImg.resize({ width, height, fit: 'inside' });
 
         const imgName = `${uuidv4()}.jpg`;
 
