@@ -7,7 +7,6 @@ import clockyouLogo from '/logo-test.png';
 const Header = () => {
   const { authLogout } = useContext(AuthContext);
   const { user } = useUser();
-  console.log(user);
   const [menuBurguer, setmenuBurguer] = useState(false);
 
   const handleBurguer = () => {

@@ -1,36 +1,44 @@
-// import { useParams } from 'react-router-dom';
-// import { useState, useEffect } from 'react';
-// import toast from 'react-hot-toast';
-// import { fecthDetailTypeOfService } from '../../services/userServices.js'
+import { useParams } from 'react-router-dom';
+import {  useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
+const { VITE_API_URL } = import.meta.env;
 
-
+import NewServiceForm from '../../components/NewServiceForm/NewServiceForm';
 
 const DetailTypeOfService = () => {
-    // const [ data, setData ] = useState([])
-    // const { typeOfServiceId } = useParams();
+    const [data, setData] = useState({})
+    const { typeOfServiceId } = useParams();
     
-    // useEffect(() =>{
-    //     const fetchDetail = async () => {
-    //         try {
-                // const message = fecthDetailTypeOfService(typeOfServiceId);
+    useEffect(() =>{
 
-    //             setData(message)
+        const fecthTypeOfSevice = async () =>{
+            try {
+                const res = await fetch(`${VITE_API_URL}/typeOfServices/${typeOfServiceId}`)
 
-    //             toast.success('servicio ACTIVO')
+                const body = await res.json()
 
+                if(!body.status === 'ok'){
+                    throw new Error('Ha habido un error')
+                }
 
-    //         } catch (error) {
-    //             toast.error(error.message)
-    //         }
-    //     }
-    //     fetchDetail()    
-    // },[typeOfServiceId,data])
+                setData(body.data);
+                
+            } catch (error) {
+                toast.error(error.message)
+            }
+        }
 
+        fecthTypeOfSevice();
+
+    },[typeOfServiceId])
 
     return (
         <>
-            <h1>Esto es una prueba</h1>
-        
+            <h1>{data.type}</h1>
+            <img src={`${VITE_API_URL}/${data.image}`} alt={`${data.description}`} />
+            <h3>{data.description}</h3>
+            <h4>{data.price}</h4>
+            <NewServiceForm id={data.id}/>
         </>
     )
 }
