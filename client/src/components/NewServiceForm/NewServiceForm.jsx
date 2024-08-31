@@ -16,7 +16,7 @@ const [ date, setDate ] = useState({})
             <form onSubmit={handleForm}>
             <label htmlFor="fechaYhora">Elige fecha y Hora</label>
             <input 
-            type="datetime" //este tipo de campo no funciona
+            type="date" //este tipo de campo no funciona
             id='fechaYhora'
             value={date}
             onChange={(e)=>{setDate(e.target.value)}}
