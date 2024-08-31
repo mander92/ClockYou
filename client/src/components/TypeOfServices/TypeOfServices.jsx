@@ -49,9 +49,10 @@ const Services = () => {
 
       <div>
         <div>
-          <form>
-            <label htmlFor='Ciudad'>Ciudad</label>
+          <form id='filterServicesForm' className='userForm filterServicesForm'>
+            {/* <label htmlFor='Ciudad'>Ciudad</label> */}
             <select name='Ciudad' id='Ciudad'>
+              <option selected>Ciudad</option>
               {citiesNoRepeated.map((city) => {
                 return (
                   <option key={city} value={city}>
@@ -61,8 +62,9 @@ const Services = () => {
               })}
             </select>
 
-            <label htmlFor='TipoDeServicio'>Tipo de Servicio</label>
+            {/* <label htmlFor='TipoDeServicio'>Tipo de Servicio</label> */}
             <select name='TipoDeServicio' id='TipoDeServicio'>
+              <option selected>Tipo de Servicio</option>
               {typeNoRepeated.map((type) => {
                 return (
                   <option key={type} value={type}>
@@ -72,11 +74,13 @@ const Services = () => {
               })}
             </select>
 
-            <label htmlFor='Ordenar por'>Ordenar por</label>
+            {/* <label htmlFor='Ordenar por'>Ordenar por</label> */}
             <select name='radio' id='Ordenar por'>
+              <option selected>Ordenar por:</option>
               <option value='ASC'>Ascente</option>
               <option value='DES'>Descente</option>
             </select>
+
             <button>Buscar</button>
           </form>
         </div>
@@ -99,7 +103,9 @@ const Services = () => {
                   <p className='text-1xl font-black pt-3 pb-1'>{item.city}</p>
 
                   <p>{item.price}</p>
-                  <a href={`${VITE_CLIENT_URL}/typeOfServices/${item.id}`}>Ver</a>
+                  <a href={`${VITE_CLIENT_URL}/typeOfServices/${item.id}`}>
+                    Ver
+                  </a>
                 </li>
               );
             })}
