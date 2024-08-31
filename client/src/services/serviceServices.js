@@ -35,6 +35,4 @@ export const fetchInputNewService = async (
     }
 
     return body;
-
-    console.log(body);
 };
