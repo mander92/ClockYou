@@ -44,7 +44,7 @@ const LoginPage = () => {
 
     return (
         <section className='container'>
-            <form className='userForm' onSubmit={handleLogin}>
+            <form className='form' onSubmit={handleLogin}>
                 <fieldset>
                     <legend>Inicia sesión</legend>
 

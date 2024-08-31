@@ -57,7 +57,7 @@ const RegisterPage = () => {
     };
     return (
         <section className='container'>
-            <form className='userForm' onSubmit={handleRegister}>
+            <form className='form' onSubmit={handleRegister}>
                 <fieldset>
                     <legend>Registro</legend>
                     <label htmlFor='email'>Email</label>

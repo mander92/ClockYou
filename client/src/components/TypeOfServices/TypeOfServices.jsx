@@ -19,7 +19,7 @@ const Services = () => {
 
                 setData(body.data);
             } catch (error) {
-                toast.error(error.message)
+                toast.error(error.message);
             }
         };
 
@@ -50,9 +50,8 @@ const Services = () => {
                 <div>
                     <form
                         id='filterServicesForm'
-                        className='userForm filterServicesForm'
+                        className='form filterServicesForm'
                     >
-                        
                         <select name='Ciudad' id='Ciudad'>
                             <option selected>Ciudad</option>
                             {citiesNoRepeated.map((city) => {
@@ -64,7 +63,6 @@ const Services = () => {
                             })}
                         </select>
 
-                        
                         <select name='TipoDeServicio' id='TipoDeServicio'>
                             <option selected>Tipo de Servicio</option>
                             {typeNoRepeated.map((type) => {
@@ -76,10 +74,9 @@ const Services = () => {
                             })}
                         </select>
 
-                        
                         <select name='radio' id='Precio'>
                             <option selected>Ordenar por:</option>
-                            <option value='ASC' >Ascendente</option>
+                            <option value='ASC'>Ascendente</option>
                             <option value='DES'>Descendente</option>
                         </select>
 

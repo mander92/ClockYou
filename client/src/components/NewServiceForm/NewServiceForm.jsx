@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import toast from 'react-hot-toast'
+import toast from 'react-hot-toast';
 import { AuthContext } from '../../context/AuthContext';
 import PropTypes from 'prop-types';
 const { VITE_API_URL } = import.meta.env;
@@ -27,51 +27,45 @@ const NewServiceForm = ({ typeOfServiceId }) => {
 
         const fetchSendData = async () => {
             try {
+                const res = await fetch(
+                    `${VITE_API_URL}/services/${typeOfServiceId}`,
+                    {
+                        method: 'POST',
+                        headers: authToken
+                            ? {
+                                  Authorization: authToken,
+                                  'Content-Type': 'application/json',
+                              }
+                            : {},
+                        body: JSON.stringify({
+                            hours,
+                            address,
+                            postCode,
+                            city,
+                            comments,
+                            dateTime,
+                        }),
+                    }
+                );
 
-                
-                const res = await fetch(`${VITE_API_URL}/services/${typeOfServiceId}`,{
-                    method: 'POST',
-                    headers: authToken
-                    ? {
-                          Authorization: authToken,
-                          'Content-Type': 'application/json'
-                      }
-                    : {},
-                    body: JSON.stringify({ 
-                        hours,
-                        address,
-                        postCode,
-                        city,
-                        comments,
-                        dateTime,
-                    })
-            });
+                const body = await res.json();
 
-                const body = await res.json()
-
-                if(body.status === 'ok'){
-                    toast.success(body.message)
-                }else{
-                    toast.error(body.message)
+                if (body.status === 'ok') {
+                    toast.success(body.message);
+                } else {
+                    toast.error(body.message);
                 }
-
             } catch (error) {
-                toast.error(error.message)
+                toast.error(error.message);
             }
-        }
+        };
 
-        fetchSendData()
-        
+        fetchSendData();
     };
-
-   
 
     return (
         <section className='container'>
-            <form
-                className='userForm'
-                onSubmit={handleNewService}
-            >
+            <form className='form' onSubmit={handleNewService}>
                 <fieldset>
                     <legend>Solicítalo</legend>
                     <label htmlFor='datetime'>Fecha y Hora</label>
@@ -154,7 +148,7 @@ const NewServiceForm = ({ typeOfServiceId }) => {
 };
 
 NewServiceForm.propTypes = {
-    typeOfServiceId: PropTypes.string.isRequired
-}
+    typeOfServiceId: PropTypes.string.isRequired,
+};
 
 export default NewServiceForm;
