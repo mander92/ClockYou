@@ -1,13 +1,9 @@
 import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-
-import { fetchActiveUserService } from '../../services/userServices';
-
+import { fetchActiveUserService } from '../services/userServices';
 import toast from 'react-hot-toast';
 
-import './Validate.css';
-
-const Validate = () => {
+const ValidateUserPage = () => {
     const navigate = useNavigate();
     const { registrationCode } = useParams();
 
@@ -32,8 +28,6 @@ const Validate = () => {
 
         if (registrationCode) activateUser();
     }, [registrationCode, navigate]);
-
-    return <main></main>;
 };
 
-export default Validate;
+export default ValidateUserPage;

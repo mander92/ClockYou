@@ -1,29 +1,29 @@
 :root {
-  --blue-topaz: #6eb5c0;
-  --cerulean: #006c84;
-  --icicle: #e2e8e4;
-  --sunrise: #ffccbb;
-  --white-color: #fff;
-  --overcast: #f1f1f2;
-  --warm-gray: #bcbabe;
-  --ice: #a1d6e2;
-  --glacier-blue: #1995ad;
-  --body-min-height: 500px;
+    --blue-topaz: #6eb5c0;
+    --cerulean: #006c84;
+    --icicle: #e2e8e4;
+    --sunrise: #ffccbb;
+    --white-color: #fff;
+    --overcast: #f1f1f2;
+    --warm-gray: #bcbabe;
+    --ice: #a1d6e2;
+    --glacier-blue: #1995ad;
+    --body-min-height: 500px;
 }
 
 #root {
-  min-height: 100vh;
-  min-height: 100dvh;
-  margin: 0;
+    min-height: 100vh;
+    min-height: 100dvh;
+    margin: 0;
 }
 
 body {
-  min-height: var(--body-min-height);
+    min-height: var(--body-min-height);
 }
 
 main {
-  overflow: clip;
-  flex-grow: 1;
+    overflow: clip;
+    flex-grow: 1;
 }
 
 h1,
@@ -32,16 +32,16 @@ h3,
 h4,
 h5,
 legend {
-  font-family: var(--serif-FONT);
-  color: var(--cerulean);
-  text-wrap: balance;
+    font-family: var(--serif-FONT);
+    color: var(--cerulean);
+    text-wrap: balance;
 }
 
 p,
 span,
 li,
 div {
-  color: var(--cerulean);
+    color: var(--cerulean);
 }
 
 p,
@@ -54,14 +54,53 @@ input,
 ::placeholder,
 button,
 fieldset {
-  font-family: var(--sans-serif-FONT);
-  font-weight: 400;
-  font-style: normal;
-  line-height: 1.4;
-  font-size: 1rem;
+    font-family: var(--sans-serif-FONT);
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.4;
+    font-size: 1rem;
 }
 
 .container {
-  margin-inline: auto;
-  padding: 1.2rem;
+    margin-inline: auto;
+    padding: 1.2rem;
+}
+
+.userForm {
+    max-width: 50rem;
+
+    & fieldset {
+        border: 1px solid #cfcfcf;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.7rem;
+    }
+
+    & legend {
+        font-size: 1.875rem;
+        line-height: 2.25rem;
+        padding: 0 0.75rem;
+    }
+
+    & label {
+        color: var(--glacier-blue);
+        font-size: 0.95rem;
+    }
+
+    & input {
+        border: 1px solid var(--overcast);
+        padding: 0.75rem;
+        font-size: 1rem;
+    }
+
+    & button {
+        padding: 0.7rem 1.2rem;
+        display: inline-flex;
+        color: var(--white-color);
+        background-color: var(--cerulean);
+        margin-top: 0.7rem;
+        margin-right: 0.7rem;
+        /* https://www.youtube.com/watch?v=3ugXM3ZDUuE&t=55s */
+    }
 }

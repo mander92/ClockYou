@@ -1,39 +1,53 @@
-import { Routes, Route } from 'react-router-dom';
-import Layout from './components/Layout/Layout';
-import Home from './pages/Home/Home';
-import Login from './pages/Login/Login';
-import Register from './pages/Register/Register';
-import Validate from './pages/Validate/Validate.jsx';
-import NotFound from './pages/NotFound/NotFound';
-import RecoverPassword from './pages/RecoverPassword/SendRecoverPassword.jsx';
-import TypeOfServices from '../src/components/TypeOfServices/TypeOfServices.jsx';
-import ChangeRecoverPassword from './pages/RecoverPassword/ChangeRecoverPassword.jsx';
-import DetailTypeOfService from './pages/DetailTypeOfService/DetailTypeOfServices.jsx';
 import './Fonts.css';
 import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout/Layout';
+import HomePage from './pages/HomePage';
+import LoginPage from './pages/LoginPage.jsx';
+import RegisterPage from './pages/RegisterPage.jsx';
+import ValidateUserPage from './pages/ValidateUserPage.jsx';
+import NotFound from './pages/NotFound/NotFound';
+import SendRecoverPasswordPage from './pages/SendRecoverPasswordPage.jsx';
+import TypeOfServices from '../src/components/TypeOfServices/TypeOfServices.jsx';
+import ChangeRecoverPasswordPage from './pages/ChangeRecoverPasswordPage.jsx';
+import DetailTypeOfService from './pages/DetailTypeOfService/DetailTypeOfServices.jsx';
 
 const App = () => {
-  return (
-    <Layout>
-      <main className='flex-grow'>
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />
+    return (
+        <Layout>
+            <main className='flex-grow'>
+                <Routes>
+                    <Route path='/' element={<HomePage />} />
+                    <Route path='/login' element={<LoginPage />} />
+                    <Route path='/register' element={<RegisterPage />} />
 
-          <Route path='/typeOfServices/:typeOfServiceId' element={<DetailTypeOfService />} />
-          <Route path='/typeOfServices' element={<TypeOfServices />} />
-          
-          <Route
-            path='/users/validate/:registrationCode'element={<Validate />}/>
+                    <Route
+                        path='/typeOfServices/:typeOfServiceId'
+                        element={<DetailTypeOfService />}
+                    />
+                    <Route
+                        path='/typeOfServices'
+                        element={<TypeOfServices />}
+                    />
 
-          <Route path='/recoverpassword' element={<RecoverPassword />} />
-          <Route path='/password' element={<ChangeRecoverPassword />} />
-          <Route path='*' element={<NotFound />} />
-        </Routes>
-      </main>
-    </Layout>
-  );
+                    <Route
+                        path='/users/validate/:registrationCode'
+                        element={<ValidateUserPage />}
+                    />
+
+                    <Route
+                        path='/recoverpassword'
+                        element={<SendRecoverPasswordPage />}
+                    />
+                    <Route
+                        path='/password'
+                        element={<ChangeRecoverPasswordPage />}
+                    />
+                    <Route path='*' element={<NotFound />} />
+                </Routes>
+            </main>
+        </Layout>
+    );
 };
 
 export default App;

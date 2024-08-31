@@ -1,35 +1,36 @@
-import '../Register/Register.css';
-
 import { useContext, useState } from 'react';
+import useUser from '../hooks/useUser';
+
 import { Navigate, useNavigate } from 'react-router-dom';
-import useUser from '../../hooks/useUser';
 
-import { fetchLoginService } from '../../services/userServices';
+import { fetchLoginService } from '../services/userServices';
 
-import { AuthContext } from '../../context/AuthContext';
+import { AuthContext } from '../context/AuthContext';
 
 import toast from 'react-hot-toast';
 
-const Login = () => {
+const LoginPage = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
     const { authLogin } = useContext(AuthContext);
 
     const { user } = useUser();
 
     const navigate = useNavigate();
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const resetInputs = () => {
+        setEmail('');
+        setPassword('');
+    };
 
-    const handleFormClick = async (e) => {
+    const handleLogin = async (e) => {
         try {
             e.preventDefault();
 
             const authToken = await fetchLoginService(email, password);
 
             authLogin(authToken);
-
-            setEmail('');
-            setPassword('');
 
             navigate('/');
         } catch (error) {
@@ -43,11 +44,7 @@ const Login = () => {
 
     return (
         <section className='container'>
-            <form
-                id='registerForm'
-                className='userForm'
-                onSubmit={handleFormClick}
-            >
+            <form className='userForm' onSubmit={handleLogin}>
                 <fieldset>
                     <legend>Inicia sesión</legend>
 
@@ -57,7 +54,7 @@ const Login = () => {
                         id='email'
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        placeholder='email'
+                        placeholder='user@clockYou.com'
                         required
                     />
                     <label htmlFor='password'>Contraseña</label>
@@ -66,11 +63,12 @@ const Login = () => {
                         id='password'
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        placeholder='password'
+                        placeholder='jobryp-kapDew-fetho6'
                         required
                     />
                     <div>
                         <button type='submit'>Iniciar sesión</button>
+                        <button onClick={resetInputs}>Limpiar</button>
                     </div>
                     <a href='/recoverpassword'> ¿Has olvidado tu contraseña?</a>
                 </fieldset>
@@ -79,4 +77,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default LoginPage;

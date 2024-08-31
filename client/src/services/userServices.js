@@ -34,10 +34,7 @@ export const fetchRegisterService = async (
 
 export const fetchActiveUserService = async (registrationCode) => {
     const res = await fetch(
-        `${VITE_API_URL}/users/validate/${registrationCode}`,
-        {
-            method: 'get',
-        }
+        `${VITE_API_URL}/users/validate/${registrationCode}`
     );
 
     const body = await res.json();
@@ -108,7 +105,10 @@ export const fetchSendRecoverService = async (email) => {
     return body.message;
 };
 
-export const fetchChangePasswordService = async (recoverPasswordCode, newPassword) => {
+export const fetchChangePasswordService = async (
+    recoverPasswordCode,
+    newPassword
+) => {
     const res = await fetch(`${VITE_API_URL}/users/recoverPassword`, {
         method: 'put',
         headers: {
@@ -116,7 +116,7 @@ export const fetchChangePasswordService = async (recoverPasswordCode, newPasswor
         },
         body: JSON.stringify({
             recoverPasswordCode,
-            newPassword
+            newPassword,
         }),
     });
 
@@ -128,5 +128,3 @@ export const fetchChangePasswordService = async (recoverPasswordCode, newPasswor
 
     return body.message;
 };
-
-

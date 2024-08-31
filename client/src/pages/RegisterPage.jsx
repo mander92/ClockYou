@@ -1,14 +1,12 @@
-import './register.css';
-
 import { useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { fetchRegisterService } from '../../services/userServices';
+import { fetchRegisterService } from '../services/userServices';
 
 import toast from 'react-hot-toast';
 
-const Register = () => {
+const RegisterPage = () => {
     const [email, setEmail] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -51,19 +49,15 @@ const Register = () => {
 
                 navigate('/');
             }
-        } catch (err) {
-            toast.error(err.message, {
+        } catch (error) {
+            toast.error(error.message, {
                 id: 'registerError',
             });
         }
     };
     return (
         <section className='container'>
-            <form
-                id='registerForm'
-                className='userForm'
-                onSubmit={handleRegister}
-            >
+            <form className='userForm' onSubmit={handleRegister}>
                 <fieldset>
                     <legend>Registro</legend>
                     <label htmlFor='email'>Email</label>
@@ -145,4 +139,4 @@ const Register = () => {
     );
 };
 
-export default Register;
+export default RegisterPage;
