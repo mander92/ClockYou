@@ -14,7 +14,11 @@ createRoot(document.getElementById('root')).render(
                 <Toaster
                     position='top-center'
                     toastOptions={{
-                        duration: 6000,
+                        duration: 4000,
+                        style: {
+                            backgroundColor: 'var(--cerulean)',
+                            color: 'var(--white-color)',
+                        },
                     }}
                 />
             </AuthProvider>
