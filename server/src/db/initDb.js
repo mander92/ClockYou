@@ -77,7 +77,7 @@ const initDb = async () => {
                 dateTime TIMESTAMP NOT NULL,
                 hours INT UNSIGNED NOT NULL CHECK (hours BETWEEN 1 AND 8),
                 rating INT UNSIGNED CHECK (rating BETWEEN 1 AND 5),
-                totalPrice CHAR(3),
+                totalPrice DECIMAL(5, 2),
                 comments VARCHAR(255),
                 status ENUM ('accepted', 'rejected', 'pending', 'completed', 'confirmed', 'canceled') DEFAULT 'pending',
                 validationCode VARCHAR(30),
