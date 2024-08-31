@@ -1,12 +1,18 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import toast from 'react-hot-toast'
+import { AuthContext } from '../../context/AuthContext';
+import PropTypes from 'prop-types';
+const { VITE_API_URL } = import.meta.env;
 
-const NewServiceForm = ({ id }) => {
+const NewServiceForm = ({ typeOfServiceId }) => {
     const [dateTime, setDateTime] = useState('');
     const [hours, setHours] = useState(1);
     const [address, setAddress] = useState('');
     const [postCode, setPostCode] = useState('');
     const [city, setCity] = useState('');
     const [comments, setComments] = useState('');
+
+    const { authToken } = useContext(AuthContext);
 
     const resetInputs = () => {
         setDateTime('');
@@ -19,14 +25,50 @@ const NewServiceForm = ({ id }) => {
     const handleNewService = (e) => {
         e.preventDefault();
 
-        const dateTimeZ = new Date(dateTime);
-        console.log(dateTimeZ);
+        const fetchSendData = async () => {
+            try {
+
+                
+                const res = await fetch(`${VITE_API_URL}/services/${typeOfServiceId}`,{
+                    method: 'POST',
+                    headers: authToken
+                    ? {
+                          Authorization: authToken,
+                          'Content-Type': 'application/json'
+                      }
+                    : {},
+                    body: JSON.stringify({ 
+                        hours,
+                        address,
+                        postCode,
+                        city,
+                        comments,
+                        dateTime,
+                    })
+            });
+
+                const body = await res.json()
+
+                if(body.status === 'ok'){
+                    toast.success(body.message)
+                }else{
+                    toast.error(body.message)
+                }
+
+            } catch (error) {
+                toast.error(error.message)
+            }
+        }
+
+        fetchSendData()
+        
     };
+
+   
 
     return (
         <section className='container'>
             <form
-                id='recoverForm'
                 className='userForm'
                 onSubmit={handleNewService}
             >
@@ -110,5 +152,9 @@ const NewServiceForm = ({ id }) => {
         </section>
     );
 };
+
+NewServiceForm.propTypes = {
+    typeOfServiceId: PropTypes.string.isRequired
+}
 
 export default NewServiceForm;

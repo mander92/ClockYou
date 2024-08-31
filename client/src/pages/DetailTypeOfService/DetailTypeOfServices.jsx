@@ -40,7 +40,7 @@ const DetailTypeOfService = () => {
             />
             <h3>{data.description}</h3>
             <h4>{data.price}</h4>
-            <NewServiceForm id={data.id} />
+            <NewServiceForm typeOfServiceId={data.id} />
         </div>
     );
 };

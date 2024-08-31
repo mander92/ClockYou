@@ -6,7 +6,7 @@ const selectUserByIdService = async (userId) => {
 
     const [user] = await pool.query(
         `
-            SELECT id, avatar, email, firstName, lastName, phone, dni, job
+            SELECT id, role, avatar, email, firstName, lastName, phone, dni, job
             FROM users
             WHERE id=?
         `,

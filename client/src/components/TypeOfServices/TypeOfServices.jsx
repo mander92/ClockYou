@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
 const { VITE_API_URL, VITE_CLIENT_URL } = import.meta.env;
 import './typeOfServices.css';
+import toast from 'react-hot-toast';
 
 const Services = () => {
     const [data, setData] = useState([]);
-
-    console.log(data);
 
     useEffect(() => {
         const fectData = async () => {
@@ -20,7 +19,7 @@ const Services = () => {
 
                 setData(body.data);
             } catch (error) {
-                console.log(error);
+                toast.error(error.message)
             }
         };
 
@@ -53,7 +52,7 @@ const Services = () => {
                         id='filterServicesForm'
                         className='userForm filterServicesForm'
                     >
-                        {/* <label htmlFor='Ciudad'>Ciudad</label> */}
+                        
                         <select name='Ciudad' id='Ciudad'>
                             <option selected>Ciudad</option>
                             {citiesNoRepeated.map((city) => {
@@ -65,7 +64,7 @@ const Services = () => {
                             })}
                         </select>
 
-                        {/* <label htmlFor='TipoDeServicio'>Tipo de Servicio</label> */}
+                        
                         <select name='TipoDeServicio' id='TipoDeServicio'>
                             <option selected>Tipo de Servicio</option>
                             {typeNoRepeated.map((type) => {
@@ -77,10 +76,10 @@ const Services = () => {
                             })}
                         </select>
 
-                        {/* <label htmlFor='Ordenar por'>Ordenar por</label> */}
+                        
                         <select name='radio' id='Precio'>
                             <option selected>Ordenar por:</option>
-                            <option value='ASC'>Ascendente</option>
+                            <option value='ASC' >Ascendente</option>
                             <option value='DES'>Descendente</option>
                         </select>
 
