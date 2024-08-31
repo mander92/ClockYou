@@ -9,7 +9,7 @@ export const fetchRegisterService = async (
     password
 ) => {
     const res = await fetch(`${VITE_API_URL}/users/register`, {
-        method: 'post',
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
@@ -48,7 +48,7 @@ export const fetchActiveUserService = async (registrationCode) => {
 
 export const fetchLoginService = async (email, password) => {
     const res = await fetch(`${VITE_API_URL}/users/login`, {
-        method: 'post',
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
@@ -87,7 +87,7 @@ export const fetchProfileService = async (authToken) => {
 
 export const fetchSendRecoverService = async (email) => {
     const res = await fetch(`${VITE_API_URL}/users/password/recover`, {
-        method: 'post',
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
@@ -109,8 +109,8 @@ export const fetchChangePasswordService = async (
     recoverPasswordCode,
     newPassword
 ) => {
-    const res = await fetch(`${VITE_API_URL}/users/recoverPassword`, {
-        method: 'put',
+    const res = await fetch(`${VITE_API_URL}/users/password`, {
+        method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
         },

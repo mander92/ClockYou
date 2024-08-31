@@ -56,7 +56,7 @@ router.post(
     editUserAvatarController
 );
 
-router.put('/users/recoverPassword', changeUserPasswordController);
+router.patch('/users/password', changeUserPasswordController);
 
 router.put('/users/:userId', authUser, userExists, editUserController);
 
@@ -66,8 +66,6 @@ router.put(
     userExists,
     editUserPasswordController
 );
-
-
 
 router.delete('/users/:userId', authUser, userExists, deleteUserController);
 
