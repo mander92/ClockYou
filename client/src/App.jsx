@@ -18,21 +18,19 @@ const App = () => {
             <main className='flex-grow'>
                 <Routes>
                     <Route path='/' element={<HomePage />} />
-                    <Route path='/login' element={<LoginPage />} />
                     <Route path='/register' element={<RegisterPage />} />
-
                     <Route
-                        path='/typeOfServices/:typeOfServiceId'
-                        element={<DetailTypeOfService />}
+                        path='/users/validate/:registrationCode'
+                        element={<ValidateUserPage />}
                     />
+                    <Route path='/login' element={<LoginPage />} />
                     <Route
                         path='/typeOfServices'
                         element={<TypeOfServices />}
                     />
-
                     <Route
-                        path='/users/validate/:registrationCode'
-                        element={<ValidateUserPage />}
+                        path='/typeOfServices/:typeOfServiceId'
+                        element={<DetailTypeOfService />}
                     />
 
                     <Route

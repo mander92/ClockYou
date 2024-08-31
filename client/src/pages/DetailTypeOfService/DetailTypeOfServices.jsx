@@ -1,35 +1,32 @@
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 const { VITE_API_URL } = import.meta.env;
-
 import NewServiceForm from '../../components/NewServiceForm/NewServiceForm';
+import { fetchTypeOfService } from '../../services/typeOfServiceServices';
 
 const DetailTypeOfService = () => {
-    const [data, setData] = useState({});
     const { typeOfServiceId } = useParams();
+    const [data, setData] = useState(null);
 
     useEffect(() => {
-        const fecthTypeOfSevice = async () => {
+        const getTypeOfService = async () => {
             try {
-                const res = await fetch(
-                    `${VITE_API_URL}/typeOfServices/${typeOfServiceId}`
-                );
-
-                const body = await res.json();
-
-                if (!body.status === 'ok') {
-                    throw new Error('Ha habido un error');
-                }
-
-                setData(body.data);
+                const data = await fetchTypeOfService(typeOfServiceId);
+                setData(data);
             } catch (error) {
-                toast.error(error.message);
+                toast.error(error.message, {
+                    id: 'error',
+                });
             }
         };
 
-        fecthTypeOfSevice();
+        getTypeOfService();
     }, [typeOfServiceId]);
+
+    if (!data) {
+        return <div>Cargando...</div>;
+    }
 
     return (
         <div className='container'>
