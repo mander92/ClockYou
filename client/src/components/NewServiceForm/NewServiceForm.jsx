@@ -1,8 +1,9 @@
-import { useState, useContext } from 'react';
-import toast from 'react-hot-toast';
-import { AuthContext } from '../../context/AuthContext';
 import PropTypes from 'prop-types';
-const { VITE_API_URL } = import.meta.env;
+import { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext';
+import { fetchInputNewService } from '../../services/serviceServices';
+import toast from 'react-hot-toast';
 
 const NewServiceForm = ({ typeOfServiceId }) => {
     const [dateTime, setDateTime] = useState('');
@@ -13,6 +14,7 @@ const NewServiceForm = ({ typeOfServiceId }) => {
     const [comments, setComments] = useState('');
 
     const { authToken } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const resetInputs = () => {
         setDateTime('');
@@ -22,45 +24,31 @@ const NewServiceForm = ({ typeOfServiceId }) => {
         setComments('');
     };
 
-    const handleNewService = (e) => {
-        e.preventDefault();
+    const handleNewService = async (e) => {
+        try {
+            e.preventDefault();
 
-        const fetchSendData = async () => {
-            try {
-                const res = await fetch(
-                    `${VITE_API_URL}/services/${typeOfServiceId}`,
-                    {
-                        method: 'POST',
-                        headers: authToken
-                            ? {
-                                  Authorization: authToken,
-                                  'Content-Type': 'application/json',
-                              }
-                            : {},
-                        body: JSON.stringify({
-                            hours,
-                            address,
-                            postCode,
-                            city,
-                            comments,
-                            dateTime,
-                        }),
-                    }
-                );
+            const data = await fetchInputNewService(
+                authToken,
+                typeOfServiceId,
+                dateTime,
+                hours,
+                address,
+                postCode,
+                city,
+                comments
+            );
 
-                const body = await res.json();
+            toast.success(data.message);
 
-                if (body.status === 'ok') {
-                    toast.success(body.message);
-                } else {
-                    toast.error(body.message);
-                }
-            } catch (error) {
-                toast.error(error.message);
-            }
-        };
+            resetInputs();
 
-        fetchSendData();
+            navigate('/');
+        } catch (error) {
+            toast.error(error.message, {
+                id: 'serviceError',
+            });
+        }
     };
 
     return (

@@ -5,6 +5,7 @@ import { fetchSendRecoverService } from '../services/userServices.js';
 
 const SendRecoverPasswordPage = () => {
     const [email, setEmail] = useState('');
+
     const navigate = useNavigate();
 
     const resetInputs = () => {
@@ -15,15 +16,11 @@ const SendRecoverPasswordPage = () => {
         try {
             e.preventDefault();
 
-            if (!email) {
-                throw new Error('¡Debes ingresar un correo!');
-            } else {
-                const message = await fetchSendRecoverService(email);
-                toast.success(message);
-                resetInputs();
+            const message = await fetchSendRecoverService(email);
+            toast.success(message);
+            resetInputs();
 
-                navigate('/password');
-            }
+            navigate('/password');
         } catch (error) {
             toast.error(error.message, {
                 id: 'recoverError',
