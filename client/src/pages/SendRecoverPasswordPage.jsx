@@ -17,13 +17,15 @@ const SendRecoverPasswordPage = () => {
             e.preventDefault();
 
             const message = await fetchSendRecoverService(email);
-            toast.success(message);
+            toast.success(message, {
+                id: 'ok',
+            });
             resetInputs();
 
             navigate('/password');
         } catch (error) {
             toast.error(error.message, {
-                id: 'recoverError',
+                id: 'error',
             });
         }
     };

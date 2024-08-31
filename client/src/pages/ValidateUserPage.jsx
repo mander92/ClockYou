@@ -13,13 +13,13 @@ const ValidateUserPage = () => {
                 const message = await fetchActiveUserService(registrationCode);
 
                 toast.success(message, {
-                    id: 'validateUserSuccess',
+                    id: 'ok',
                 });
 
                 navigate('/login');
             } catch (error) {
                 toast.error(error.message, {
-                    id: 'validateUserError',
+                    id: 'error',
                 });
 
                 navigate('/');

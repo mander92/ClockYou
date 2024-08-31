@@ -24,20 +24,22 @@ const DetailTypeOfService = () => {
         getTypeOfService();
     }, [typeOfServiceId]);
 
-    if (!data) {
-        return <div>Cargando...</div>;
-    }
-
     return (
         <div className='container'>
-            <h1>{data.type}</h1>
-            <img
-                src={`${VITE_API_URL}/${data.image}`}
-                alt={`${data.description}`}
-            />
-            <h3>{data.description}</h3>
-            <h4>{data.price}</h4>
-            <NewServiceForm typeOfServiceId={data.id} />
+            {!data ? (
+                <div>Cargando...</div>
+            ) : (
+                <>
+                    <h1>{data.type}</h1>
+                    <img
+                        src={`${VITE_API_URL}/${data.image}`}
+                        alt={`${data.description}`}
+                    />
+                    <h3>{data.description}</h3>
+                    <h4>{data.price}</h4>
+                    <NewServiceForm typeOfServiceId={data.id} />
+                </>
+            )}
         </div>
     );
 };
