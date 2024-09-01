@@ -11,6 +11,7 @@ import SendRecoverPasswordPage from './pages/SendRecoverPasswordPage.jsx';
 import TypeOfServices from '../src/components/TypeOfServices/TypeOfServices.jsx';
 import ChangeRecoverPasswordPage from './pages/ChangeRecoverPasswordPage.jsx';
 import DetailTypeOfService from './pages/DetailTypeOfService/DetailTypeOfServices.jsx';
+import DashboardPage from './pages/DashboardPage.jsx';
 
 const App = () => {
     return (
@@ -24,6 +25,8 @@ const App = () => {
                         element={<ValidateUserPage />}
                     />
                     <Route path='/login' element={<LoginPage />} />
+                    <Route path='/user' element={<DashboardPage />} />
+
                     <Route
                         path='/typeOfServices'
                         element={<TypeOfServices />}

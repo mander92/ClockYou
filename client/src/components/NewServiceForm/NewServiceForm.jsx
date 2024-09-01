@@ -52,7 +52,7 @@ const NewServiceForm = ({ typeOfServiceId }) => {
     };
 
     return (
-        <section className='container'>
+        <section>
             <form className='form' onSubmit={handleNewService}>
                 <fieldset>
                     <legend>Solicítalo</legend>
@@ -71,7 +71,7 @@ const NewServiceForm = ({ typeOfServiceId }) => {
                         onChange={(e) => setHours(e.target.value)}
                         required
                     >
-                        <option value='' disabled>
+                        <option disabled>
                             Selecciona las horas necesarias
                         </option>
                         <option value='1'>1</option>
@@ -118,7 +118,7 @@ const NewServiceForm = ({ typeOfServiceId }) => {
                         value={comments}
                         onChange={(e) => setComments(e.target.value)}
                         placeholder='Añada comentarios adicionales para describir sus necesidades sobre el servicio solicitado para poder brindarle nuestro mejor servicio'
-                        minLength='25'
+                        minLength='10'
                         maxLength='500'
                         rows='5'
                         cols='50'

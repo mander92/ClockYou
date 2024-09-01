@@ -67,7 +67,7 @@ const LoginPage = () => {
                         required
                     />
                     <div>
-                        <button type='submit'>Iniciar sesión</button>
+                        <button>Iniciar sesión</button>
                         <button onClick={resetInputs}>Limpiar</button>
                     </div>
                     <a href='/recoverpassword'> ¿Has olvidado tu contraseña?</a>

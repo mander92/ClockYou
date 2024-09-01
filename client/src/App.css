@@ -63,7 +63,7 @@ fieldset {
 
 .container {
     margin-inline: auto;
-    padding: 1.2rem;
+    padding: 0.5rem;
 }
 
 .form {
@@ -102,5 +102,19 @@ fieldset {
         margin-top: 0.7rem;
         margin-right: 0.7rem;
         /* https://www.youtube.com/watch?v=3ugXM3ZDUuE&t=55s */
+    }
+}
+
+.user-avatar {
+    width: 200px;
+    height: 200px;
+    margin: auto;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #e6e6e6;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    transition: transform 0.4s ease;
+    &:hover {
+        transform: scale(1.03);
     }
 }

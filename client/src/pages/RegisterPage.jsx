@@ -97,6 +97,7 @@ const RegisterPage = () => {
                         value={dni}
                         onChange={(e) => setDni(e.target.value)}
                         placeholder='24873456Z'
+                        pattern='[0-9]{8}[A-Za-z]{1}'
                         required
                     />
 
