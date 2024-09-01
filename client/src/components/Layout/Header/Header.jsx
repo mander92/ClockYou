@@ -13,6 +13,15 @@ const Header = () => {
     setmenuBurguer(!menuBurguer);
   };
 
+  const hereWeAre = (e) => {
+    // no borrar función de momento, please. Espero que sea útil en breve =)
+    const navLinks = document.querySelectorAll('.linkmainnav ');
+    navLinks.forEach((navLink) => {
+      navLinktyle.backgroundColor = '';
+    });
+    e.target.style.backgroundColor = '#f1f1f2';
+  };
+
   useEffect(() => {
     menuBurguer
       ? document.body.classList.add('overflow-hidden')

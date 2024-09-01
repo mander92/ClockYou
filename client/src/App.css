@@ -73,6 +73,7 @@ fieldset {
   font-style: normal;
   line-height: 1.4;
   font-size: 1rem;
+  /* font-size: clamp(1rem, 1vw + 0.5rem, 2rem); no descomentar, please */
 }
 
 .container {
