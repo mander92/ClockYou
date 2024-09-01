@@ -1,72 +1,72 @@
 :root {
-    --minmaxgriditem: 250px;
+  --minmaxgriditem: 250px;
 }
 
 @media only screen and (min-width: 1440px) {
-    :root {
-        --minmaxgriditem: 300px;
-    }
+  :root {
+    --minmaxgriditem: 300px;
+  }
 }
 
 .gridClockYou {
-    display: grid;
-    gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(var(--minmaxgriditem), 1fr));
-    margin-top: 1.5rem;
-    & li {
-        border: 1px solid #e6e6e6;
-        border-radius: 5px;
-        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-        transition: transform 0.4s ease;
+  display: grid;
+  gap: 1rem 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(var(--minmaxgriditem), 1fr));
+  margin-top: 1rem;
 
-        &:hover {
-            transform: scale(1.02);
-        }
+  & li {
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+    margin: 0.7rem 0;
+    padding-bottom: 0.7rem;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    transition: transform 0.4s ease;
 
-        & *:not(img) {
-            padding-inline: 1rem;
-        }
-
-        & > a {
-            padding: 0.75rem 2.5rem;
-            display: inline-flex;
-            color: var(--white-color);
-            background-color: var(--cerulean);
-            margin-inline: 1rem;
-            margin-block: 1rem;
-
-            width: 50%;
-
-            justify-content: center;
-        }
+    &:hover {
+      transform: scale(1.03);
     }
 
-    & img {
-        width: 100%;
-        border-radius: 5px 5px 0 0;
+    & *:not(img) {
+      padding-inline: 1rem;
     }
 
-    & h3 {
-        padding: 1rem 0 0.5rem;
+    & > a {
+      padding: 0.75rem 2.5rem;
+      display: inline-flex;
+      color: var(--white-color);
+      background-color: var(--cerulean);
+      margin-inline: 1rem;
+      margin-block: 1rem;
+
+      width: 50%;
+
+      justify-content: center;
     }
+  }
+
+  & img {
+    width: 100%;
+  }
+
+  & h3 {
+    padding: 1rem 0 0.5rem;
+  }
 }
 
 .filterServicesForm {
-    display: grid;
-    gap: 0.75rem 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  display: grid;
+  gap: 0.75rem 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
 
-    & select,
-    textarea {
-        padding: 0.7rem 0.5rem;
-        border: 1px solid var(--icicle);
+  & select + button {
+    margin: 0;
+  }
+}
 
-        &:focus {
-            outline: none;
-        }
+@media only screen and (min-width: 1024px) {
+  .filterServicesForm {
+    & select + button {
+      display: inline-block;
     }
-
-    & button {
-        margin-right: 0 !important;
-    }
+  }
 }
