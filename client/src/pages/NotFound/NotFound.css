@@ -10,24 +10,22 @@
   padding: 20px;
   box-sizing: border-box;
   margin: 5px 0 5px 0;
-}
 
-.notFound .notfoundimg {
-  min-width: 300px;
-  width: 70%;
-  max-width: 800px;
-}
+  & .notfoundimg {
+    width: min(70%, 800px);
+  }
 
-.notFound h1 {
-  color: #1b6ff1;
-  margin-bottom: 20px;
-}
+  & h1 {
+    color: #1b6ff1;
+    margin-bottom: 20px;
+  }
 
-.notFound a {
-  text-decoration: underline;
-  margin-top: 20px;
-}
+  & a {
+    text-decoration: underline;
+    margin-top: 20px;
 
-.notFound a:hover {
-  font-size: 1.11rem;
+    &:hover {
+      font-size: 1.11rem;
+    }
+  }
 }

@@ -80,7 +80,7 @@ const TypeOfServices = () => {
                 <p className='grow'>{item.description}</p>
                 <p className='text-1xl font-black pt-3 pb-1'>{item.city}</p>
 
-                <p>{item.price}</p>
+                <p>{item.price}€</p>
                 <a href={`${VITE_CLIENT_URL}/typeOfServices/${item.id}`}>Ver</a>
               </li>
             );

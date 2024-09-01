@@ -30,8 +30,7 @@
     min-height: var(--body-min-height);
 
     > li {
-      width: 70%;
-      max-width: 300px;
+      width: min(70%, 300px);
     }
 
     &.show {
