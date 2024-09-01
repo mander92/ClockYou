@@ -29,11 +29,16 @@ const DashboardPage = () => {
                             <input disabled value={user.lastName} />
                             <label htmlFor='dni'>DNI</label>
                             <input disabled value={user.dni} />
-                            <label htmlFor='dni'>Teléfono</label>
+                            <label htmlFor='phone'>Teléfono</label>
                             <input disabled value={user.phone} />
-                            <div>
-                                <button>Editar</button>
-                            </div>
+                            {user.role === 'employee' && (
+                                <>
+                                    <label htmlFor='job'>Trabajo</label>
+                                    <input disabled value={user.job} />
+                                    <label htmlFor='city'>Ciudad</label>
+                                    <input disabled value={user.city} />
+                                </>
+                            )}
                         </fieldset>
                         <fieldset>
                             <legend>Contraseña</legend>
@@ -45,18 +50,6 @@ const DashboardPage = () => {
                                 Nueva Contraseña
                             </label>
                             <input disabled />
-                            <label htmlFor='reapeatedPassword'>
-                                Repetir Contraseña
-                            </label>
-                            <input disabled />
-                            <div>
-                                <button>Cambiar</button>
-                            </div>
-                        </fieldset>
-
-                        <fieldset>
-                            <legend>Baja</legend>
-                            <button>Eliminar Usuario</button>
                         </fieldset>
                     </form>
                 </div>
