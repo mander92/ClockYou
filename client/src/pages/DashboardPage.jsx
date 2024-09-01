@@ -48,16 +48,24 @@ const DashboardPage = () => {
                             <label htmlFor='actualPassword'>
                                 Contraseña Actual
                             </label>
-                            <input disabled />
+                            <input
+                                disabled
+                                placeholder='jobryp-kapDew-fetho6'
+                            />
                             <label htmlFor='newPassword'>
                                 Nueva Contraseña
                             </label>
-                            <input disabled />
-                            <input disabled />
+                            <input
+                                disabled
+                                placeholder='bemgon-1bizni-nuhXyd'
+                            />
                             <label htmlFor='repeatedPassword'>
                                 Repetir Contraseña
                             </label>
-                            <input disabled />
+                            <input
+                                disabled
+                                placeholder='bemgon-1bizni-nuhXyd'
+                            />
                             <div>
                                 <button>Cambiar</button>
                             </div>
