@@ -39,6 +39,9 @@ const DashboardPage = () => {
                                     <input disabled value={user.city} />
                                 </>
                             )}
+                            <div>
+                                <button>Editar</button>
+                            </div>
                         </fieldset>
                         <fieldset>
                             <legend>Contraseña</legend>
@@ -50,6 +53,20 @@ const DashboardPage = () => {
                                 Nueva Contraseña
                             </label>
                             <input disabled />
+                            <input disabled />
+                            <label htmlFor='repeatedPassword'>
+                                Repetir Contraseña
+                            </label>
+                            <input disabled />
+                            <div>
+                                <button>Cambiar</button>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Cuenta</legend>
+                            <div>
+                                <button>Eliminar Usuario</button>
+                            </div>
                         </fieldset>
                     </form>
                 </div>
