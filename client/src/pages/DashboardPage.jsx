@@ -67,7 +67,7 @@ const DashboardPage = () => {
                                 placeholder='bemgon-1bizni-nuhXyd'
                             />
                             <div>
-                                <button>Cambiar</button>
+                                <button>Editar</button>
                             </div>
                         </fieldset>
                         <fieldset>
