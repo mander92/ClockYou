@@ -125,11 +125,11 @@ const NewServiceForm = ({ typeOfServiceId }) => {
                         style={{ resize: 'none' }}
                         required
                     ></textarea>
+                    <div>
+                        <button>Solicitar</button>
+                        <button onClick={resetInputs}>Limpiar</button>
+                    </div>
                 </fieldset>
-                <div>
-                    <button>Solicitar</button>
-                    <button onClick={resetInputs}>Limpiar</button>
-                </div>
             </form>
         </section>
     );
