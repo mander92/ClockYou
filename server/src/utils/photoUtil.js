@@ -34,11 +34,7 @@ export const savePictureUtil = async (img, width, height) => {
 
 export const deletePictureUtil = async (imgName) => {
     try {
-        const imagePath = path.join(
-            process.cwd(),
-            `./src/${UPLOADS_DIR}`,
-            imgName
-        );
+        const imagePath = path.join(process.cwd(), `/${UPLOADS_DIR}`, imgName);
 
         try {
             await fs.access(imagePath);

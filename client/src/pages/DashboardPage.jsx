@@ -17,9 +17,9 @@ const DashboardPage = () => {
     const navigate = useNavigate();
     const userId = user?.id;
 
-    const [firstName, setFirstName] = useState(user?.firstName);
-    const [lastName, setLastName] = useState(user?.lastName);
-    const [phone, setPhone] = useState(user?.phone);
+    const [firstName, setFirstName] = useState(user?.firstName || '');
+    const [lastName, setLastName] = useState(user?.lastName || '');
+    const [phone, setPhone] = useState(user?.phone || '');
 
     const [actualPassword, setActualPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
@@ -133,8 +133,12 @@ const DashboardPage = () => {
                         <legend>Avatar</legend>
                         <img
                             className='user-avatar'
-                            src={`${VITE_API_URL}/${user?.avatar}`}
-                            alt={`${firstName}`}
+                            src={`${
+                                user?.avatar
+                                    ? `${VITE_API_URL}/${user.avatar}`
+                                    : '/default-avatar.png'
+                            }`}
+                            alt='Avatar'
                         />
                         {enableEditAvatar ? (
                             <input
@@ -159,12 +163,12 @@ const DashboardPage = () => {
                     <fieldset>
                         <legend>Perfil</legend>
                         <label htmlFor='email'>Email</label>
-                        <input disabled value={user?.email} />
+                        <input disabled value={user?.email || ''} />
                         <label htmlFor='firstName'>Nombre</label>
                         <input
                             type='text'
                             id='firstName'
-                            value={firstName}
+                            value={firstName || ''}
                             onChange={(e) => {
                                 setFirstName(e.target.value);
                             }}
@@ -179,7 +183,7 @@ const DashboardPage = () => {
                             }}
                         />
                         <label htmlFor='dni'>DNI</label>
-                        <input disabled value={user?.dni} />
+                        <input disabled value={user?.dni || ''} />
                         <label htmlFor='phone'>Teléfono</label>
                         <input
                             type='tel'
@@ -192,9 +196,9 @@ const DashboardPage = () => {
                         {user?.role === 'employee' && (
                             <>
                                 <label htmlFor='job'>Trabajo</label>
-                                <input disabled value={user?.job} />
+                                <input disabled value={user?.job || ''} />
                                 <label htmlFor='city'>Ciudad</label>
-                                <input disabled value={user?.city} />
+                                <input disabled value={user?.city || ''} />
                             </>
                         )}
                         <div>
