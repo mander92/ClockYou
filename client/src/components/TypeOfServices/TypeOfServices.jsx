@@ -42,6 +42,7 @@ const TypeOfServices = () => {
                     <select
                         name='city'
                         id='city'
+                        value={city}
                         onChange={(e) => {
                             setCity(e.target.value);
                         }}
@@ -61,6 +62,7 @@ const TypeOfServices = () => {
                     <select
                         name='typeOfService'
                         id='typeOfService'
+                        value={type}
                         onChange={(e) => {
                             setType(e.target.value);
                         }}
@@ -80,6 +82,7 @@ const TypeOfServices = () => {
                     <select
                         name='precio'
                         id='precio'
+                        value={price}
                         onChange={(e) => {
                             setPrice(e.target.value);
                         }}

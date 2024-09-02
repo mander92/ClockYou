@@ -14,7 +14,7 @@
   margin: 5px 0 5px 0;
 
   & .notfoundimg {
-    width: min(70%, 800px);
+    width: min(70%, 500px);
   }
 
   & h1 {
