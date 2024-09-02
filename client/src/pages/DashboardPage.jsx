@@ -5,7 +5,8 @@ import { AuthContext } from "../context/AuthContext";
 import {
   fetchEditUserService,
   fetchEditPasswordService,
-  fetchDeleteUserService
+  fetchDeleteUserService,
+  fetchEditAvatarService
 } from "../services/userServices";
 import toast from "react-hot-toast";
  import { useNavigate } from 'react-router-dom';
@@ -24,6 +25,10 @@ const DashboardPage = () => {
   const [newPassword, setNewPassword] = useState("");
   const [repeatNewPassword, setRepeatNewPassword] = useState("");
 
+
+  const [ enableEditAvatar, setEnableEditAvatar ] = useState(false)  
+  const [ avatar, setAvatar ] = useState(null);
+
   const handleEditUser = async (e) => {
     e.preventDefault();
     try {
@@ -34,8 +39,6 @@ const DashboardPage = () => {
         phone,
         userId
       );
-
-      console.log(data);
 
       toast.success(data.message, {
         id: "ok",
@@ -94,8 +97,35 @@ const DashboardPage = () => {
       setFirstName(user.firstName);
       setLastName(user.lastName);
       setPhone(user.phone);
+      
     }
   }, [user]);
+
+
+console.log(avatar)
+
+    const enableEditFile = async (e) => {
+        try {
+            e.preventDefault();
+            enableEditAvatar?setEnableEditAvatar(false):setEnableEditAvatar(true)
+    
+            if(enableEditAvatar){
+                const data = await fetchEditAvatarService(userId, authToken,avatar)
+                toast.success(data.message,{
+                    id: 'ok'
+                })
+                window.location.reload();
+            }
+            
+        } catch (error) {
+            toast.error(error.message,{id:'error'})
+        }
+            
+      }
+
+
+
+
 
   // if (userId)
   // return <Navigate to='/' />;
@@ -108,12 +138,20 @@ const DashboardPage = () => {
         <div>
           <form className="form" onSubmit={handleEditUser}>
             <fieldset>
-              <legend>Perfil</legend>
+              <legend>Avatar</legend>
               <img
                 className="user-avatar"
                 src={`${VITE_API_URL}/${user.avatar}`}
-                alt={`${user.firstName}`}
+                alt={`${firstName}`}
               />
+              {enableEditAvatar? <input type="file" accept="image/png,image/jpg,image/jpeg" onChange={(e)=>{setAvatar(e.target.files[0])}}/>: ''}
+              <div>
+                <button onClick={enableEditFile}>{!enableEditAvatar? 'Editar': 'Guardar'}</button>
+              </div>
+              
+            </fieldset>
+            <fieldset>
+            <legend>Perfil</legend>
               <label htmlFor="email">Email</label>
               <input disabled value={user.email} />
               <label htmlFor="firstName">Nombre</label>

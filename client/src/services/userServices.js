@@ -205,3 +205,25 @@ export const fetchDeleteUserService = async (
   }
   return body;
 };
+
+export const fetchEditAvatarService = async(userId, authToken,avatar) => {
+
+  const formData = new FormData()
+  formData.append('avatar',avatar)
+
+  console.log(avatar)
+
+   const res = await fetch(`${VITE_API_URL}/user/avatar/${userId}`,{
+    method: 'POST',
+    headers:{Authorization: authToken},
+    body: formData
+   })
+
+   const body = res.json()
+
+   if(body.status === 'error'){
+    throw new Error(body.message)
+   }
+
+   return body
+}
