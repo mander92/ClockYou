@@ -3,36 +3,36 @@
 @tailwind utilities;
 
 @layer components {
-  h1 {
-    @apply text-5xl pb-4;
-  }
+    h1 {
+        @apply text-5xl pb-4;
+    }
 
-  h2 {
-    @apply text-3xl pb-4;
-  }
+    h2 {
+        @apply text-3xl pb-4;
+    }
 }
 
 :root {
-  --blue-topaz: #6eb5c0;
-  --cerulean: #006c84;
-  --icicle: #e2e8e4;
-  --sunrise: #ffccbb;
-  --white-color: #fff;
-  --overcast: #f1f1f2;
-  --warm-gray: #bcbabe;
-  --ice: #a1d6e2;
-  --glacier-blue: #1995ad;
-  --body-min-height: 500px;
+    --blue-topaz: #6eb5c0;
+    --cerulean: #006c84;
+    --icicle: #e2e8e4;
+    --sunrise: #ffccbb;
+    --white-color: #fff;
+    --overcast: #f1f1f2;
+    --warm-gray: #bcbabe;
+    --ice: #a1d6e2;
+    --glacier-blue: #1995ad;
+    --body-min-height: 500px;
 }
 
 #root {
-  min-height: 100vh;
-  min-height: 100dvh;
-  margin: 0;
+    min-height: 100vh;
+    min-height: 100dvh;
+    margin: 0;
 }
 
 body {
-  min-height: var(--body-min-height);
+    min-height: var(--body-min-height);
 }
 
 h1,
@@ -41,16 +41,16 @@ h3,
 h4,
 h5,
 legend {
-  font-family: var(--serif-FONT);
-  color: var(--cerulean);
-  text-wrap: balance;
+    font-family: var(--serif-FONT);
+    color: var(--cerulean);
+    text-wrap: balance;
 }
 
 p,
 span,
 li,
 div {
-  color: var(--cerulean);
+    color: var(--cerulean);
 }
 
 p,
@@ -63,82 +63,83 @@ input,
 ::placeholder,
 button,
 fieldset {
-  font-family: var(--sans-serif-FONT);
-  font-weight: 400;
-  font-style: normal;
-  line-height: 1.4;
-  font-size: 1rem;
-  /* font-size: clamp(1rem, 1vw + 0.5rem, 2rem); no descomentar, please */
+    font-family: var(--sans-serif-FONT);
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.4;
+    font-size: 1rem;
+    border-radius: 5px;
+    /* font-size: clamp(1rem, 1vw + 0.5rem, 2rem); no descomentar, please */
 }
 
 .container {
-  margin-inline: auto;
-  padding: 0.75rem;
+    margin-inline: auto;
+    padding: 0.75rem;
 }
 
 .form {
-  max-width: 50rem;
+    max-width: 50rem;
 
-  & fieldset {
-    border: 1px solid #cfcfcf;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.7rem;
-  }
-
-  & legend {
-    font-size: 1.875rem;
-    line-height: 2.25rem;
-    padding: 0 0.75rem;
-  }
-
-  & label {
-    color: var(--glacier-blue);
-    font-size: 0.95rem;
-  }
-
-  & input {
-    border: 1px solid var(--overcast);
-    padding: 0.75rem;
-    font-size: 1rem;
-  }
-
-  & select,
-  textarea {
-    padding: 0.7rem 0.5rem;
-    border: 1px solid var(--icicle);
-    cursor: pointer;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    appearance: none;
-
-    &:focus {
-      outline: none;
+    & fieldset {
+        border: 1px solid #cfcfcf;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.7rem;
     }
-  }
 
-  & button {
-    padding: 0.7rem 1.2rem;
-    display: inline-flex;
-    color: var(--white-color);
-    background-color: var(--cerulean);
-    margin-top: 0.7rem;
-    margin-right: 0.7rem;
-    /* https://www.youtube.com/watch?v=3ugXM3ZDUuE&t=55s */
-  }
+    & legend {
+        font-size: 1.875rem;
+        line-height: 2.25rem;
+        padding: 0 0.75rem;
+    }
+
+    & label {
+        color: var(--glacier-blue);
+        font-size: 0.95rem;
+    }
+
+    & input {
+        border: 1px solid var(--overcast);
+        padding: 0.75rem;
+        font-size: 1rem;
+    }
+
+    & select,
+    textarea {
+        padding: 0.7rem 0.5rem;
+        border: 1px solid var(--icicle);
+        cursor: pointer;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    & button {
+        padding: 0.7rem 1.2rem;
+        display: inline-flex;
+        color: var(--white-color);
+        background-color: var(--cerulean);
+        margin-top: 0.7rem;
+        margin-right: 0.7rem;
+        /* https://www.youtube.com/watch?v=3ugXM3ZDUuE&t=55s */
+    }
 }
 
 .user-avatar {
-  width: 200px;
-  height: 200px;
-  margin: auto;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 1px solid #e6e6e6;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  transition: transform 0.4s ease;
-  &:hover {
-    transform: scale(1.03);
-  }
+    width: 200px;
+    height: 200px;
+    margin: auto;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #e6e6e6;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    transition: transform 0.4s ease;
+    &:hover {
+        transform: scale(1.03);
+    }
 }
