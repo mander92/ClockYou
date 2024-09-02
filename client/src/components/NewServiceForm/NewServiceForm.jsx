@@ -6,15 +6,15 @@ import { fetchInputNewService } from '../../services/serviceServices';
 import toast from 'react-hot-toast';
 
 const NewServiceForm = ({ typeOfServiceId }) => {
+    const { authToken } = useContext(AuthContext);
+    const navigate = useNavigate();
+
     const [dateTime, setDateTime] = useState('');
     const [hours, setHours] = useState(1);
     const [address, setAddress] = useState('');
     const [postCode, setPostCode] = useState('');
     const [city, setCity] = useState('');
     const [comments, setComments] = useState('');
-
-    const { authToken } = useContext(AuthContext);
-    const navigate = useNavigate();
 
     const resetInputs = () => {
         setDateTime('');
