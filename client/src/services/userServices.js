@@ -1,161 +1,187 @@
 const { VITE_API_URL } = import.meta.env;
 
 export const fetchRegisterService = async (
-    email,
-    firstName,
-    lastName,
-    dni,
-    phone,
-    password
+  email,
+  firstName,
+  lastName,
+  dni,
+  phone,
+  password
 ) => {
-    const res = await fetch(`${VITE_API_URL}/users/register`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            email,
-            firstName,
-            lastName,
-            dni,
-            phone,
-            password,
-        }),
-    });
+  const res = await fetch(`${VITE_API_URL}/users/register`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email,
+      firstName,
+      lastName,
+      dni,
+      phone,
+      password,
+    }),
+  });
 
-    const body = await res.json();
+  const body = await res.json();
 
-    if (body.status === 'error') {
-        throw new Error(body.message);
-    }
+  if (body.status === "error") {
+    throw new Error(body.message);
+  }
 
-    return body.message;
+  return body.message;
 };
 
 export const fetchActiveUserService = async (registrationCode) => {
-    const res = await fetch(
-        `${VITE_API_URL}/users/validate/${registrationCode}`
-    );
+  const res = await fetch(`${VITE_API_URL}/users/validate/${registrationCode}`);
 
-    const body = await res.json();
+  const body = await res.json();
 
-    if (body.status === 'error') {
-        throw new Error(body.message);
-    }
+  if (body.status === "error") {
+    throw new Error(body.message);
+  }
 
-    return body.message;
+  return body.message;
 };
 
 export const fetchLoginService = async (email, password) => {
-    const res = await fetch(`${VITE_API_URL}/users/login`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            email,
-            password,
-        }),
-    });
+  const res = await fetch(`${VITE_API_URL}/users/login`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email,
+      password,
+    }),
+  });
 
-    const body = await res.json();
+  const body = await res.json();
 
-    if (body.status === 'error') {
-        throw new Error(body.message);
-    }
+  if (body.status === "error") {
+    throw new Error(body.message);
+  }
 
-    return body;
+  return body;
 };
 
 export const fetchProfileService = async (authToken) => {
-    const res = await fetch(`${VITE_API_URL}/user`, {
-        headers: authToken
-            ? {
-                  Authorization: authToken,
-              }
-            : {},
-    });
+  const res = await fetch(`${VITE_API_URL}/user`, {
+    headers: authToken
+      ? {
+          Authorization: authToken,
+        }
+      : {},
+  });
 
-    const body = await res.json();
+  const body = await res.json();
 
-    if (body.status === 'error') {
-        throw new Error(body.message);
-    }
+  if (body.status === "error") {
+    throw new Error(body.message);
+  }
 
-    return body.data;
+  return body.data;
 };
 
 export const fetchSendRecoverService = async (email) => {
-    const res = await fetch(`${VITE_API_URL}/users/password/recover`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            email,
-        }),
-    });
+  const res = await fetch(`${VITE_API_URL}/users/password/recover`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email,
+    }),
+  });
 
-    const body = await res.json();
+  const body = await res.json();
 
-    if (body.status === 'error') {
-        throw new Error(body.message);
-    }
+  if (body.status === "error") {
+    throw new Error(body.message);
+  }
 
-    return body.message;
+  return body.message;
 };
 
 export const fetchChangePasswordService = async (
-    recoverPasswordCode,
-    newPassword
+  recoverPasswordCode,
+  newPassword
 ) => {
-    const res = await fetch(`${VITE_API_URL}/users/password`, {
-        method: 'PATCH',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            recoverPasswordCode,
-            newPassword,
-        }),
-    });
+  const res = await fetch(`${VITE_API_URL}/users/password`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      recoverPasswordCode,
+      newPassword,
+    }),
+  });
 
-    const body = await res.json();
+  const body = await res.json();
 
-    if (body.status === 'error') {
-        throw new Error(body.message);
-    }
+  if (body.status === "error") {
+    throw new Error(body.message);
+  }
 
-    return body.message;
+  return body.message;
 };
 
 export const fetchEditUserService = async (
-    authToken,
-    firstName,
-    lastName,
-    phone,
-    userId
+  authToken,
+  firstName,
+  lastName,
+  phone,
+  userId
 ) => {
-    const res = await fetch(`${VITE_API_URL}/user/${userId}`, {
-        method: 'PUT',
-        headers: authToken
-            ? {
-                  'Content-Type': 'application/json',
-                  Authorization: authToken,
-              }
-            : {},
-        body: JSON.stringify({
-            firstName,
-            lastName,
-            phone,
-        }),
-    });
+  const res = await fetch(`${VITE_API_URL}/user/${userId}`, {
+    method: "PUT",
+    headers: authToken
+      ? {
+          "Content-Type": "application/json",
+          Authorization: authToken,
+        }
+      : {},
+    body: JSON.stringify({
+      firstName,
+      lastName,
+      phone,
+    }),
+  });
 
-    const body = await res.json();
+  const body = await res.json();
 
-    if (body.status === 'error') {
-        throw new Error(body.message);
-    }
+  if (body.status === "error") {
+    throw new Error(body.message);
+  }
 
-    return body;
+  return body;
+};
+
+export const fetchEditPasswordService = async (
+  authToken,
+  actualPassword,
+  newPassword,
+  repeatNewPassword,
+  userId
+) => {
+  const res = await fetch(`${VITE_API_URL}/user/password/${userId}`, {
+    method: "PUT",
+    headers: authToken
+      ? {
+          "Content-Type": "application/json",
+          Authorization: authToken,
+        }
+      : {},
+    body: JSON.stringify({
+      actualPassword,
+      newPassword,
+      repeatNewPassword,
+    }),
+  });
+  const body = await res.json();
+  if (body.status === "error") {
+    throw new Error(body.message);
+  }
+  return body;
 };
