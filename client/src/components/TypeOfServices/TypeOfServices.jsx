@@ -93,6 +93,7 @@ const TypeOfServices = () => {
                         <option value='ASC'>Ascendente</option>
                         <option value='DESC'>Descendente</option>
                     </select>
+                    <button>Limpiar Filtros</button>
                 </form>
             </div>
 
