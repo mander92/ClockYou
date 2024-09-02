@@ -64,7 +64,7 @@ export const fetchLoginService = async (email, password) => {
         throw new Error(body.message);
     }
 
-    return body.data;
+    return body;
 };
 
 export const fetchProfileService = async (authToken) => {

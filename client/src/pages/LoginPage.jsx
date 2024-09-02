@@ -30,7 +30,11 @@ const LoginPage = () => {
 
             const authToken = await fetchLoginService(email, password);
 
-            authLogin(authToken);
+            authLogin(authToken.data);
+
+            toast.success(authToken.message, {
+                id: 'ok',
+            });
 
             navigate('/');
         } catch (error) {

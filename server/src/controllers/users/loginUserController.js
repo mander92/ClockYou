@@ -43,6 +43,7 @@ const loginUserController = async (req, res, next) => {
 
         res.send({
             status: 'ok',
+            message: 'Has Iniciado Sesión Correctamente',
             data,
         });
     } catch (error) {
