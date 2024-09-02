@@ -70,7 +70,7 @@ const RegisterPage = () => {
                         required
                     />
 
-                    <label htmlFor='lastName'>Nombre</label>
+                    <label htmlFor='firstName'>Nombre</label>
                     <input
                         type='text'
                         id='firstName'
@@ -111,7 +111,7 @@ const RegisterPage = () => {
                         required
                     />
 
-                    <label htmlFor='pass'>Contraseña</label>
+                    <label htmlFor='password'>Contraseña</label>
                     <input
                         type='password'
                         id='password'
