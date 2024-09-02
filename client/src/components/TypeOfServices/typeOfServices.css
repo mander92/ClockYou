@@ -2,17 +2,22 @@
   --minmaxgriditem: 250px;
 }
 
-@media only screen and (min-width: 1440px) {
+/* @media only screen and (min-width: 1440px) {
   :root {
     --minmaxgriditem: 300px;
   }
-}
+} */
 
 .gridClockYou {
   display: grid;
   gap: 1rem 1.5rem;
   grid-template-columns: repeat(auto-fit, minmax(var(--minmaxgriditem), 1fr));
   margin-top: 1rem;
+  /* 
+    https://css-tricks.com/almanac/properties/g/grid-template-columns/ 
+    https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns
+    https://stackoverflow.com/questions/45459151/how-to-set-the-maximum-width-of-a-column-in-css-grid-layout
+  */
 
   & li {
     border: 1px solid #e6e6e6;
@@ -68,5 +73,15 @@
     & select + button {
       display: inline-block;
     }
+  }
+
+  .gridClockYou {
+    grid-template-columns: repeat(3, minmax(var(--minmaxgriditem), 350px));
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .gridClockYou {
+    grid-template-columns: repeat(4, minmax(var(--minmaxgriditem), 1fr));
   }
 }
