@@ -185,3 +185,23 @@ export const fetchEditPasswordService = async (
   }
   return body;
 };
+
+export const fetchDeleteUserService = async (
+  authToken,
+  userId
+) =>  {
+  const res = await fetch(`${VITE_API_URL}/user/${userId}`, {
+    method: "DELETE",
+    headers: authToken
+    ? {
+        "Content-Type": "application/json",
+        Authorization: authToken,
+      }
+    : {},
+  });
+  const body = await res.json();
+  if (body.status === 'error') {
+    throw new Error(body.message);
+  }
+  return body;
+};

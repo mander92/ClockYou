@@ -67,6 +67,6 @@ router.put(
   editUserPasswordController
 );
 
-router.delete("/users/:userId", authUser, userExists, deleteUserController);
+router.delete("/user/:userId", authUser, userExists, deleteUserController);
 
 export default router;

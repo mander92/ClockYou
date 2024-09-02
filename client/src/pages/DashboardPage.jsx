@@ -5,15 +5,17 @@ import { AuthContext } from "../context/AuthContext";
 import {
   fetchEditUserService,
   fetchEditPasswordService,
+  fetchDeleteUserService
 } from "../services/userServices";
 import toast from "react-hot-toast";
-// import { Navigate } from 'react-router-dom';
+ import { useNavigate } from 'react-router-dom';
 
 const DashboardPage = () => {
   const { user } = useUser();
   const userId = user?.id;
-  const { authToken } = useContext(AuthContext);
+  const { authToken, authLogout } = useContext(AuthContext);
 
+  const navigate = useNavigate();  
   const [firstName, setFirstName] = useState(user?.firstName);
   const [lastName, setLastName] = useState(user?.lastName);
   const [phone, setPhone] = useState(user?.phone);
@@ -67,6 +69,25 @@ const DashboardPage = () => {
       });
     }
   };
+
+  const handleDeleteUser = async () => {
+    try {
+       const data = await fetchDeleteUserService(
+        authToken,
+        userId,
+       );
+       toast.success(data.message, {
+        id: 'ok'
+       }) 
+       authLogout(); 
+       navigate('/');
+
+    } catch (error) {
+        toast.error(error.message, {
+            id: "error",
+          });       
+    }
+  }
 
   useEffect(() => {
     if (user) {
@@ -169,7 +190,7 @@ const DashboardPage = () => {
             <fieldset>
               <legend>Cuenta</legend>
               <div>
-                <button>Eliminar Usuario</button>
+                <button onClick={handleDeleteUser}>Eliminar Usuario</button>
               </div>
             </fieldset>
           </form>
