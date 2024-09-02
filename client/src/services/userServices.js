@@ -133,18 +133,22 @@ export const fetchEditUserService = async (
     authToken,
     firstName,
     lastName,
-    phone
+    phone,
+    userId
 ) => {
-    const res = await fetch(`${VITE_API_URL}/user`, {
+    const res = await fetch(`${VITE_API_URL}/user/${userId}`, {
         method: 'PUT',
         headers: authToken
             ? {
+                  'Content-Type': 'application/json',
                   Authorization: authToken,
               }
             : {},
-        body: firstName,
-        lastName,
-        phone,
+        body: JSON.stringify({
+            firstName,
+            lastName,
+            phone,
+        }),
     });
 
     const body = await res.json();
@@ -153,5 +157,5 @@ export const fetchEditUserService = async (
         throw new Error(body.message);
     }
 
-    return body.data;
+    return body;
 };

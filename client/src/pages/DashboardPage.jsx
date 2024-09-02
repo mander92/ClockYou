@@ -7,30 +7,28 @@ import toast from 'react-hot-toast';
 // import { Navigate } from 'react-router-dom';
 
 const DashboardPage = () => {
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [phone, setPhone] = useState('');
-
     const { user } = useUser();
-
+    const userId = user?.id;
     const { authToken } = useContext(AuthContext);
 
-    // if (!user) return <Navigate to='/' />
+    const [firstName, setFirstName] = useState(user?.firstName);
+    const [lastName, setLastName] = useState(user?.lastName);
+    const [phone, setPhone] = useState(user?.phone);
 
-    const handleEditUser = async () => {
+    const handleEditUser = async (e) => {
+        e.preventDefault();
         try {
             const data = await fetchEditUserService(
                 authToken,
                 firstName,
                 lastName,
-                phone
+                phone,
+                userId
             );
-            const body = await data.json();
-            setFirstName(body.Nombre);
-            setLastName(body.Apellidos);
-            setPhone(body.Teléfono);
 
-            toast.success(body.message, {
+            console.log(data);
+
+            toast.success(data.message, {
                 id: 'ok',
             });
         } catch (error) {
@@ -40,13 +38,24 @@ const DashboardPage = () => {
         }
     };
 
+    useEffect(() => {
+        if (user) {
+            setFirstName(user.firstName);
+            setLastName(user.lastName);
+            setPhone(user.phone);
+        }
+    }, [user]);
+
+    // if (userId)
+    // return <Navigate to='/' />;
+
     return (
         <section className='container'>
             {!user ? (
                 <div>Cargando...</div>
             ) : (
                 <div>
-                    <form className='form'>
+                    <form className='form' onSubmit={handleEditUser}>
                         <fieldset>
                             <legend>Perfil</legend>
                             <img
@@ -58,7 +67,7 @@ const DashboardPage = () => {
                             <input disabled value={user.email} />
                             <label htmlFor='firstName'>Nombre</label>
                             <input
-                                type='firtsName'
+                                type='text'
                                 id='firstName'
                                 onChange={(e) => {
                                     setFirstName(e.target.value);
@@ -67,7 +76,7 @@ const DashboardPage = () => {
                             />
                             <label htmlFor='lastName'>Apellidos</label>
                             <input
-                                type='lastName'
+                                type='text'
                                 id='lastName'
                                 onChange={(e) => {
                                     setLastName(e.target.value);
@@ -78,7 +87,7 @@ const DashboardPage = () => {
                             <input disabled value={user.dni} />
                             <label htmlFor='phone'>Teléfono</label>
                             <input
-                                type='phone'
+                                type='tel'
                                 id='phone'
                                 onChange={(e) => {
                                     setPhone(e.target.value);
