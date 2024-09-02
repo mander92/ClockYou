@@ -50,7 +50,7 @@ router.post(
 );
 
 router.post(
-    '/users/avatar/:userId',
+    '/user/avatar/:userId',
     authUser,
     userExists,
     editUserAvatarController
@@ -58,7 +58,7 @@ router.post(
 
 router.patch('/users/password', changeUserPasswordController);
 
-router.put('/users/:userId', authUser, userExists, editUserController);
+router.put('/user/:userId', authUser, userExists, editUserController);
 
 router.put(
     '/users/password/:userId',

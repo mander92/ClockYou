@@ -128,3 +128,30 @@ export const fetchChangePasswordService = async (
 
     return body.message;
 };
+
+export const fetchEditUserService = async (
+    authToken,
+    firstName,
+    lastName,
+    phone
+) => {
+    const res = await fetch(`${VITE_API_URL}/user`, {
+        method: 'PUT',
+        headers: authToken
+            ? {
+                  Authorization: authToken,
+              }
+            : {},
+        body: firstName,
+        lastName,
+        phone,
+    });
+
+    const body = await res.json();
+
+    if (body.status === 'error') {
+        throw new Error(body.message);
+    }
+
+    return body.data;
+};

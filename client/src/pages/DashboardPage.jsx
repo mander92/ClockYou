@@ -1,11 +1,44 @@
 const { VITE_API_URL } = import.meta.env;
+import { useState, useContext, useEffect } from 'react';
 import useUser from '../hooks/useUser';
+import { AuthContext } from '../context/AuthContext';
+import { fetchEditUserService } from '../services/userServices';
+import toast from 'react-hot-toast';
 // import { Navigate } from 'react-router-dom';
 
 const DashboardPage = () => {
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [phone, setPhone] = useState('');
+
     const { user } = useUser();
 
-    // if (!user) return <Navigate to='/' />;
+    const { authToken } = useContext(AuthContext);
+
+    // if (!user) return <Navigate to='/' />
+
+    const handleEditUser = async () => {
+        try {
+            const data = await fetchEditUserService(
+                authToken,
+                firstName,
+                lastName,
+                phone
+            );
+            const body = await data.json();
+            setFirstName(body.Nombre);
+            setLastName(body.Apellidos);
+            setPhone(body.Teléfono);
+
+            toast.success(body.message, {
+                id: 'ok',
+            });
+        } catch (error) {
+            toast.error(error.message, {
+                id: 'error',
+            });
+        }
+    };
 
     return (
         <section className='container'>
@@ -23,14 +56,35 @@ const DashboardPage = () => {
                             />
                             <label htmlFor='email'>Email</label>
                             <input disabled value={user.email} />
-                            <label htmlFor='lastName'>Nombre</label>
-                            <input disabled value={user.firstName} />
+                            <label htmlFor='firstName'>Nombre</label>
+                            <input
+                                type='firtsName'
+                                id='firstName'
+                                onChange={(e) => {
+                                    setFirstName(e.target.value);
+                                }}
+                                value={firstName}
+                            />
                             <label htmlFor='lastName'>Apellidos</label>
-                            <input disabled value={user.lastName} />
+                            <input
+                                type='lastName'
+                                id='lastName'
+                                onChange={(e) => {
+                                    setLastName(e.target.value);
+                                }}
+                                value={lastName}
+                            />
                             <label htmlFor='dni'>DNI</label>
                             <input disabled value={user.dni} />
                             <label htmlFor='phone'>Teléfono</label>
-                            <input disabled value={user.phone} />
+                            <input
+                                type='phone'
+                                id='phone'
+                                onChange={(e) => {
+                                    setPhone(e.target.value);
+                                }}
+                                value={phone}
+                            />
                             {user.role === 'employee' && (
                                 <>
                                     <label htmlFor='job'>Trabajo</label>
@@ -40,7 +94,9 @@ const DashboardPage = () => {
                                 </>
                             )}
                             <div>
-                                <button>Editar</button>
+                                <button onClick={handleEditUser}>
+                                    Guardar Cambios
+                                </button>
                             </div>
                         </fieldset>
                         <fieldset>
