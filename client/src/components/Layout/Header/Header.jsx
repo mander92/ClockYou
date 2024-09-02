@@ -15,11 +15,18 @@ const Header = ({ currentPage }) => {
 
   const hereWeAre = (e) => {
     // no borrar función de momento, please. Espero que sea útil en breve =)
-    const navLinks = document.querySelectorAll('.linkmainnav ');
-    navLinks.forEach((navLink) => {
-      navLinktyle.backgroundColor = '';
+    e.preventDefault();
+    const navATags = Array.from(document.querySelectorAll('.linkmainnav'));
+
+    navATags.forEach((navATag) => {
+      navATag.style.backgroundColor = '';
     });
     e.target.style.backgroundColor = '#f1f1f2';
+    currentPage = navATags.indexOf(e.target);
+
+    console.log('INDEX DEL ELEMENTO CLICKADO ----- ', currentPage);
+
+    return currentPage;
   };
 
   useEffect(() => {
@@ -45,24 +52,32 @@ const Header = ({ currentPage }) => {
             className={menuBurguer ? 'navdinamica show' : 'navdinamica'}
           >
             <li>
-              <a className='linkmainnav' href='/about'>
+              <a className='linkmainnav' onClick={hereWeAre} href='/about'>
                 Sobre Nosotros
               </a>
             </li>
             <li>
-              <a className='linkmainnav' href='/typeOfServices'>
+              <a
+                className='linkmainnav'
+                onClick={hereWeAre}
+                href='/typeOfServices'
+              >
                 Servicios
               </a>
             </li>
             <li>
-              <a className='linkmainnav' href='/contact'>
+              <a className='linkmainnav' onClick={hereWeAre} href='/contact'>
                 Contacto
               </a>
             </li>
             {!user ? (
               <>
                 <li>
-                  <a className='linkmainnav' href='/register'>
+                  <a
+                    className='linkmainnav'
+                    onClick={hereWeAre}
+                    href='/register'
+                  >
                     Registrarse
                   </a>
                 </li>
