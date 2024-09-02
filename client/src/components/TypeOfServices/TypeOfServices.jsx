@@ -6,6 +6,9 @@ import toast from 'react-hot-toast';
 
 const TypeOfServices = () => {
   const [data, setData] = useState([]);
+  const [city, setCity] = useState('');
+  const [typeOfService, setTypeOfService] = useState('');
+  const [price, setPrice] = useState('');
 
   useEffect(() => {
     const getAllTypeOfServices = async () => {
@@ -22,6 +25,47 @@ const TypeOfServices = () => {
     getAllTypeOfServices();
   }, []);
 
+  const handleFilters = async (e) => {
+    e.preventDefault();
+    if (
+      city === 'Ciudad:' ||
+      typeOfService === 'Tipo de Servicio:' ||
+      price === 'Precio:'
+    ) {
+      alert('aaaaaaaaaaaaaa');
+    }
+
+    const searchParams = new URLSearchParams({
+      city: city,
+      type: typeOfService,
+      price: price,
+    });
+    const searchParamsToString = searchParams.toString();
+    // console.log(`${VITE_API_URL}/typeOfServices?${searchParamsToString}`);
+
+    try {
+      const fetchAFilterTypeOfServices = async () => {
+        console.log(searchParamsToString);
+
+        const res = await fetch(
+          `${VITE_API_URL}/typeOfServices?${searchParamsToString}`
+        );
+        const body = await res.json();
+
+        if (body.status === 'error') {
+          throw new Error(body.message);
+        }
+
+        setData(body.data);
+      };
+
+      fetchAFilterTypeOfServices();
+    } catch (error) {}
+  };
+
+  // console.log(city);
+  // if !city no hay query
+
   const citiesNoRepeated = [...new Set(data.map((item) => item.city))];
   const typeNoRepeated = [...new Set(data.map((item) => item.type))];
 
@@ -29,8 +73,15 @@ const TypeOfServices = () => {
     <div className='container'>
       <h2>Todos los Servicios</h2>
       <div>
-        <form className='form filterServicesForm'>
-          <select name='city' id='city' defaultValue='Ciudad:'>
+        <form className='form filterServicesForm' onSubmit={handleFilters}>
+          <select
+            name='city'
+            id='city'
+            value={city}
+            onChange={(e) => {
+              setCity(e.target.value);
+            }}
+          >
             <option>Ciudad:</option>
             {citiesNoRepeated.map((city) => {
               return (
@@ -44,7 +95,10 @@ const TypeOfServices = () => {
           <select
             name='typeOfService'
             id='typeOfService'
-            defaultValue='Tipo de Servicio:'
+            value={typeOfService}
+            onChange={(e) => {
+              setTypeOfService(e.target.value);
+            }}
           >
             <option>Tipo de Servicio:</option>
             {typeNoRepeated.map((type) => {
@@ -56,7 +110,14 @@ const TypeOfServices = () => {
             })}
           </select>
 
-          <select name='Precio' id='precio' defaultValue='Precio'>
+          <select
+            name='precio'
+            id='precio'
+            value={price}
+            onChange={(e) => {
+              setPrice(e.target.value);
+            }}
+          >
             <option>Precio:</option>
             <option value='ASC'>Ascendente</option>
             <option value='DES'>Descendente</option>
