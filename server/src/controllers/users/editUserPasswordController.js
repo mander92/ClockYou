@@ -15,11 +15,6 @@ const editUserPasswordController = async (req, res, next) => {
         const schema = Joi.object({
             actualPassword: Joi.string().min(8).max(25).required(),
             newPassword: Joi.string().min(8).max(25).required(),
-            repeatNewPassword: Joi.string()
-                .min(8)
-                .max(25)
-                .required()
-                .valid(Joi.ref('newPassword')),
         });
 
         const validation = schema.validate(req.body);

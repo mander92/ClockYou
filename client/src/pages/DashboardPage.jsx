@@ -17,16 +17,37 @@ const DashboardPage = () => {
     const navigate = useNavigate();
     const userId = user?.id;
 
+    const [avatar, setAvatar] = useState(null);
+    const [enableEditAvatar, setEnableEditAvatar] = useState(false);
     const [firstName, setFirstName] = useState(user?.firstName || '');
     const [lastName, setLastName] = useState(user?.lastName || '');
     const [phone, setPhone] = useState(user?.phone || '');
-
     const [actualPassword, setActualPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
-    const [repeatNewPassword, setRepeatNewPassword] = useState('');
+    const [repeatedNewPassword, setRepeatedNewPassword] = useState('');
 
-    const [enableEditAvatar, setEnableEditAvatar] = useState(false);
-    const [avatar, setAvatar] = useState(null);
+    const handleEditAvatar = async (e) => {
+        e.preventDefault();
+        try {
+            if (enableEditAvatar) {
+                const data = await fetchEditAvatarService(
+                    userId,
+                    authToken,
+                    avatar
+                );
+                setAvatar(null);
+                toast.success(data.message, {
+                    id: 'ok',
+                });
+                window.location.reload();
+            }
+            setEnableEditAvatar(!enableEditAvatar);
+        } catch (error) {
+            toast.error(error.message, {
+                id: 'error',
+            });
+        }
+    };
 
     const handleEditUser = async (e) => {
         e.preventDefault();
@@ -51,19 +72,22 @@ const DashboardPage = () => {
     const handleEditPassword = async (e) => {
         e.preventDefault();
         try {
-            const data = await fetchEditPasswordService(
-                authToken,
-                actualPassword,
-                newPassword,
-                repeatNewPassword,
-                userId
-            );
-            toast.success(data.message, {
-                id: 'ok',
-            });
-            setActualPassword('');
-            setNewPassword('');
-            setRepeatNewPassword('');
+            if (newPassword !== repeatedNewPassword) {
+                throw new Error('¡Las nuevas contraseñas no coinciden!');
+            } else {
+                const data = await fetchEditPasswordService(
+                    authToken,
+                    actualPassword,
+                    newPassword,
+                    userId
+                );
+                toast.success(data.message, {
+                    id: 'ok',
+                });
+                setActualPassword('');
+                setNewPassword('');
+                setRepeatedNewPassword('');
+            }
         } catch (error) {
             toast.error(error.message, {
                 id: 'error',
@@ -100,35 +124,12 @@ const DashboardPage = () => {
         }
     }, [user]);
 
-    const handleEditAvatar = async (e) => {
-        e.preventDefault();
-        try {
-            if (enableEditAvatar) {
-                const data = await fetchEditAvatarService(
-                    userId,
-                    authToken,
-                    avatar
-                );
-                setAvatar(null);
-                toast.success(data.message, {
-                    id: 'ok',
-                });
-                window.location.reload();
-            }
-            setEnableEditAvatar(!enableEditAvatar);
-        } catch (error) {
-            toast.error(error.message, {
-                id: 'error',
-            });
-        }
-    };
-
     if (!authToken) return <Navigate to='/' />;
 
     return (
         <section className='container'>
             <div>
-                <form className='form' onSubmit={handleEditUser}>
+                <form className='form' onSubmit={handleEditAvatar}>
                     <fieldset>
                         <legend>Avatar</legend>
                         <img
@@ -141,25 +142,29 @@ const DashboardPage = () => {
                             alt='Avatar'
                         />
                         {enableEditAvatar ? (
-                            <input
-                                type='file'
-                                accept='image/png, 
-                                image/jpg, 
-                                image/jpeg, 
-                                image/tiff'
-                                onChange={(e) => {
-                                    setAvatar(e.target.files[0]);
-                                }}
-                            />
+                            <div>
+                                <input
+                                    type='file'
+                                    accept='image/png, image/jpg, image/jpeg, image/tiff'
+                                    required
+                                    onChange={(e) => {
+                                        setAvatar(e.target.files[0]);
+                                    }}
+                                />
+                            </div>
                         ) : (
                             ''
                         )}
                         <div>
-                            <button onClick={handleEditAvatar}>
+                            <button type='submit'>
                                 {!enableEditAvatar ? 'Editar' : 'Guardar'}
                             </button>
                         </div>
                     </fieldset>
+                </form>
+            </div>
+            <div>
+                <form className='form' onSubmit={handleEditUser}>
                     <fieldset>
                         <legend>Perfil</legend>
                         <label htmlFor='email'>Email</label>
@@ -172,6 +177,7 @@ const DashboardPage = () => {
                             onChange={(e) => {
                                 setFirstName(e.target.value);
                             }}
+                            required
                         />
                         <label htmlFor='lastName'>Apellidos</label>
                         <input
@@ -181,6 +187,7 @@ const DashboardPage = () => {
                             onChange={(e) => {
                                 setLastName(e.target.value);
                             }}
+                            required
                         />
                         <label htmlFor='dni'>DNI</label>
                         <input disabled value={user?.dni || ''} />
@@ -192,6 +199,7 @@ const DashboardPage = () => {
                             onChange={(e) => {
                                 setPhone(e.target.value);
                             }}
+                            required
                         />
                         {user?.role === 'employee' && (
                             <>
@@ -202,11 +210,13 @@ const DashboardPage = () => {
                             </>
                         )}
                         <div>
-                            <button onClick={handleEditUser}>
-                                Guardar Cambios
-                            </button>
+                            <button type='submit'>Guardar Cambios</button>
                         </div>
                     </fieldset>
+                </form>
+            </div>
+            <div>
+                <form className='form' onSubmit={handleEditPassword}>
                     <fieldset>
                         <legend>Contraseña</legend>
                         <label htmlFor='actualPassword'>
@@ -216,20 +226,22 @@ const DashboardPage = () => {
                             type='password'
                             id='actualPassword'
                             value={actualPassword}
+                            placeholder='jobryp-kapDew-fetho6'
+                            required
                             onChange={(e) => {
                                 setActualPassword(e.target.value);
                             }}
-                            placeholder='jobryp-kapDew-fetho6'
                         />
                         <label htmlFor='newPassword'>Nueva Contraseña</label>
                         <input
                             type='password'
                             id='newPassword'
                             value={newPassword}
+                            placeholder='bemgon-1bizni-nuhXyd'
+                            required
                             onChange={(e) => {
                                 setNewPassword(e.target.value);
                             }}
-                            placeholder='bemgon-1bizni-nuhXyd'
                         />
                         <label htmlFor='repeatNewPassword'>
                             Repetir Contraseña
@@ -237,24 +249,25 @@ const DashboardPage = () => {
                         <input
                             type='password'
                             id='repeatNewPassword'
-                            value={repeatNewPassword}
-                            onChange={(e) => {
-                                setRepeatNewPassword(e.target.value);
-                            }}
                             placeholder='bemgon-1bizni-nuhXyd'
+                            required
+                            value={repeatedNewPassword}
+                            onChange={(e) => {
+                                setRepeatedNewPassword(e.target.value);
+                            }}
                         />
                         <div>
-                            <button onClick={handleEditPassword}>
-                                Cambiar Contraseña
-                            </button>
+                            <button type='submit'>Cambiar Contraseña</button>
                         </div>
                     </fieldset>
+                </form>
+            </div>
+            <div>
+                <form className='form' onSubmit={handleDeleteUser}>
                     <fieldset>
                         <legend>Cuenta</legend>
                         <div>
-                            <button onClick={handleDeleteUser}>
-                                Eliminar Usuario
-                            </button>
+                            <button type='submit'>Eliminar Usuario</button>
                         </div>
                     </fieldset>
                 </form>

@@ -28,13 +28,12 @@ const RegisterPage = () => {
     };
 
     const handleRegister = async (e) => {
+        e.preventDefault();
         try {
-            e.preventDefault();
-
             if (password !== repeatedPassword) {
                 throw new Error('¡Las contraseñas no coinciden!');
             } else {
-                const message = await fetchRegisterService(
+                const data = await fetchRegisterService(
                     email,
                     firstName,
                     lastName,
@@ -43,7 +42,7 @@ const RegisterPage = () => {
                     password
                 );
 
-                toast.success(message);
+                toast.success(data);
 
                 resetInputs();
 
