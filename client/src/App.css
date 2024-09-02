@@ -35,11 +35,6 @@ body {
   min-height: var(--body-min-height);
 }
 
-main {
-  overflow: clip;
-  flex-grow: 1;
-}
-
 h1,
 h2,
 h3,

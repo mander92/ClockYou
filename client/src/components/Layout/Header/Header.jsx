@@ -4,7 +4,7 @@ import useUser from '../../../hooks/useUser';
 import './Header.css';
 import clockyouLogo from '/logo-test.png';
 
-const Header = () => {
+const Header = ({ currentPage }) => {
   const { authLogout } = useContext(AuthContext);
   const { user } = useUser();
   const [menuBurguer, setmenuBurguer] = useState(false);

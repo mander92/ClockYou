@@ -1,10 +1,12 @@
 .notFound {
+  --dvhMinus: 230px;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 170px);
-  height: calc(100dvh - 170px);
+  height: calc(100vh - var(--dvhMinus));
+  height: calc(100dvh - var(--dvhMinus));
   text-align: center;
   background-color: #f8f9fa;
   padding: 20px;
