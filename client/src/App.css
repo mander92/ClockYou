@@ -19,6 +19,7 @@
   --sunrise: #ffccbb;
   --white-color: #fff;
   --overcast: #f1f1f2;
+  --darker-overcast: #e0e0e0;
   --warm-gray: #bcbabe;
   --ice: #a1d6e2;
   --glacier-blue: #1995ad;
@@ -78,8 +79,8 @@ fieldset {
 }
 
 .form {
-  max-width: 50rem;
   padding-bottom: 1.5rem;
+  max-width: 50rem;
 
   & fieldset {
     border: 1px solid #cfcfcf;
@@ -129,6 +130,14 @@ fieldset {
     margin-right: 0.7rem;
     /* https://www.youtube.com/watch?v=3ugXM3ZDUuE&t=55s */
   }
+}
+
+@media only screen and (min-width: 1024px) {
+}
+
+.formsWrapper > * {
+  margin-inline: auto;
+  max-width: 50rem;
 }
 
 .user-avatar {
