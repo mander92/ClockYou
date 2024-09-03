@@ -1,12 +1,8 @@
 import { useContext, useState } from 'react';
-import useUser from '../hooks/useUser';
-
 import { Navigate, useNavigate } from 'react-router-dom';
-
 import { fetchLoginService } from '../services/userServices';
-
 import { AuthContext } from '../context/AuthContext';
-
+import useUser from '../hooks/useUser';
 import toast from 'react-hot-toast';
 
 const LoginPage = () => {

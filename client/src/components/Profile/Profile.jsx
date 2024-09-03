@@ -12,8 +12,8 @@ import toast from 'react-hot-toast';
 const Profile = () => {
     const { user } = useUser();
     const { authToken, authLogout } = useContext(AuthContext);
-    const navigate = useNavigate();
     const userId = user?.id;
+    const navigate = useNavigate();
 
     const [firstName, setFirstName] = useState(user?.firstName || '');
     const [lastName, setLastName] = useState(user?.lastName || '');
