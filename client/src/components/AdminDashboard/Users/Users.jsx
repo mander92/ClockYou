@@ -4,15 +4,10 @@ import ListUserController from './ListUserController';
 import RegisterAdminUserController from './RegisterAdminUserController';
 
 const Users = () => {
-    const [activeSection, setActiveSection] = useState('searchUser');
+    const [activeSection, setActiveSection] = useState('ListUserController');
     const location = useLocation();
 
-    useEffect(() => {
-        const hash = location.hash.replace('#', '');
-        if (hash) {
-            setActiveSection(hash);
-        }
-    }, [location]);
+    useEffect(() => {}, [location]);
 
     const handleChange = (section) => {
         setActiveSection(section);
