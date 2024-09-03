@@ -102,7 +102,7 @@ const Profile = () => {
 
     return(
         <>
-         <form className='form' onSubmit={handleEditUser}>
+         <form className="form" onSubmit={handleEditUser}>
                 <fieldset>
                     <legend>Perfil</legend>
                     <label htmlFor='email'>Email</label>
