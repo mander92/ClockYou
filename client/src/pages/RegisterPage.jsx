@@ -58,7 +58,7 @@ const RegisterPage = () => {
     if (user) return <Navigate to='/' />;
 
     return (
-        <section className='container'>
+        <section className='container formsWrapper'>
             <form className='form' onSubmit={handleRegister}>
                 <fieldset>
                     <legend>Registro</legend>

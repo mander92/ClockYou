@@ -25,7 +25,7 @@ const Users = () => {
 
     return (
         <>
-            <div>
+            <div className='managerTabs'>
                 <button
                     to='#ListUserController'
                     onClick={() => handleChange('ListUserController')}

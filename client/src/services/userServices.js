@@ -46,10 +46,12 @@ export const fecthRegisterAdminUserService = async (
 ) => {
     const res = await fetch(`${VITE_API_URL}/users/admin/register`, {
         method: 'POST',
-        headers: {
-            Authorization: authToken,
-            'Content-Type': 'application/json',
-        },
+        headers: authToken
+            ? {
+                  'Content-Type': 'application/json',
+                  Authorization: authToken,
+              }
+            : {},
         body: JSON.stringify({
             email,
             firstName,
@@ -111,6 +113,7 @@ export const fetchProfileService = async (authToken) => {
     const res = await fetch(`${VITE_API_URL}/user`, {
         headers: authToken
             ? {
+                  'Content-Type': 'application/json',
                   Authorization: authToken,
               }
             : {},

@@ -72,7 +72,9 @@ const NewServiceForm = ({ typeOfServiceId }) => {
                     onChange={(e) => setHours(e.target.value)}
                     required
                 >
-                    <option disabled>Selecciona las horas necesarias</option>
+                    <option value='' disabled>
+                        A contratar:
+                    </option>
                     <option value='1'>1</option>
                     <option value='2'>2</option>
                     <option value='3'>3</option>
@@ -98,7 +100,6 @@ const NewServiceForm = ({ typeOfServiceId }) => {
                     value={postCode}
                     onChange={(e) => setPostCode(e.target.value)}
                     placeholder='28013'
-                    className='no-spinner'
                     min='10000'
                     max='50000'
                     required

@@ -14,6 +14,13 @@ const ListUserController = () => {
     const [role, setRole] = useState('');
     const [active, setActive] = useState('');
 
+    const resetFilters = () => {
+        setCity('');
+        setJob('');
+        setRole('');
+        setActive('');
+    };
+
     useEffect(() => {
         const getAllUserList = async () => {
             const searchParams = new URLSearchParams({
@@ -38,14 +45,14 @@ const ListUserController = () => {
         };
 
         getAllUserList();
-    }, [city, job, active, role]);
+    }, [city, job, active, role, authToken]);
 
     const citiesNoRepeated = [...new Set(data.map((item) => item.city))];
     const jobNoRepeated = [...new Set(data.map((item) => item.job))];
     const roleNoRepeated = [...new Set(data.map((item) => item.role))];
 
     return (
-        <div className='container'>
+        <div className='form'>
             <h2>Todos los Usuarios</h2>
             <div>
                 <form className='form filterServicesForm'>
@@ -120,10 +127,10 @@ const ListUserController = () => {
                         <option value='' disabled>
                             Activo:
                         </option>
-                        <option value='true'>Activo:</option>
-                        <option value='false'>Desactivado</option>
+                        <option value='1'>Activo</option>
+                        <option value='0'>Desactivado</option>
                     </select>
-                    <button>Limpiar Filtros</button>
+                    <button onClick={resetFilters}>Limpiar Filtros</button>
                 </form>
             </div>
 
@@ -136,22 +143,21 @@ const ListUserController = () => {
                                 className='flex flex-col place-content-between'
                             >
                                 <img
-                                    src={`${VITE_API_URL}/${item.avatar}`}
+                                    src={`${
+                                        item.avatar
+                                            ? `${VITE_API_URL}/${item.avatar}`
+                                            : '/default-avatar.png'
+                                    }`}
                                     alt='Avatar'
                                 />
-                                <h3 className='text-2xl'>{item.email}</h3>
-
-                                <p className='grow'>{item.firstName}</p>
-                                <p className='text-1xl font-black pt-3 pb-1'>
-                                    {item.job}
-                                </p>
-
-                                <p>{item.city}€</p>
-                                {/* <a
-                                    href={`${VITE_CLIENT_URL}/typeOfServices/${item.id}`}
-                                >
-                                    Ver
-                                </a> */}
+                                <h3 className='text-2xl'>
+                                    👤 {item.firstName} {item.lastName}
+                                </h3>
+                                <p className='grow'>✉️ {item.email}</p>
+                                <p className='grow'>📞 {item.phone}</p>
+                                <p className='grow'>🪪 {item.dni}</p>
+                                <p className='grow'>👨‍💻 {item.job}</p>
+                                <p className='grow'>🏠 {item.city}</p>
                             </li>
                         );
                     })}

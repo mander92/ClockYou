@@ -2,11 +2,10 @@ const { VITE_API_URL } = import.meta.env;
 import useUser from '../../hooks/useUser.js';
 import { useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext.jsx';
-import {fetchEditAvatarService} from '../../services/userServices.js';
+import { fetchEditAvatarService } from '../../services/userServices.js';
 import toast from 'react-hot-toast';
 
 const Avatar = () => {
-
     const { user } = useUser();
     const { authToken } = useContext(AuthContext);
     const userId = user?.id;
@@ -35,11 +34,9 @@ const Avatar = () => {
                 id: 'error',
             });
         }
-    }
-
+    };
 
     return (
-        <>
         <form className='form' onSubmit={handleEditAvatar}>
             <fieldset>
                 <legend>Avatar</legend>
@@ -73,9 +70,7 @@ const Avatar = () => {
                 </div>
             </fieldset>
         </form>
-        </>
-    )
-
-}
+    );
+};
 
 export default Avatar;

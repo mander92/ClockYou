@@ -42,7 +42,7 @@ const LoginPage = () => {
     if (user) return <Navigate to='/' />;
 
     return (
-        <section className='container'>
+        <section className='container formsWrapper'>
             <form className='form' onSubmit={handleLogin}>
                 <fieldset>
                     <legend>Inicia sesión</legend>
