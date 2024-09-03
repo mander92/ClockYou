@@ -12,15 +12,15 @@ const ListUserController = () => {
     const [city, setCity] = useState('');
     const [job, setJob] = useState('');
     const [role, setRole] = useState('');
-    const [active, setActive] = useState(true);
+    const [active, setActive] = useState('');
 
     useEffect(() => {
-        const getTypeOfServices = async () => {
+        const getAllUserList = async () => {
             const searchParams = new URLSearchParams({
                 city: city,
                 job: job,
-                active: active,
                 role: role,
+                active: active,
             });
             const searchParamsToString = searchParams.toString();
             try {
@@ -28,6 +28,7 @@ const ListUserController = () => {
                     searchParamsToString,
                     authToken
                 );
+
                 setData(data);
             } catch (error) {
                 toast.error(error.message, {
@@ -36,7 +37,7 @@ const ListUserController = () => {
             }
         };
 
-        getTypeOfServices();
+        getAllUserList();
     }, [city, job, active, role]);
 
     const citiesNoRepeated = [...new Set(data.map((item) => item.city))];
@@ -119,8 +120,8 @@ const ListUserController = () => {
                         <option value='' disabled>
                             Activo:
                         </option>
-                        <option value='1'>Activo</option>
-                        <option value='0'>Desactivado</option>
+                        <option value='true'>Activo:</option>
+                        <option value='false'>Desactivado</option>
                     </select>
                     <button>Limpiar Filtros</button>
                 </form>

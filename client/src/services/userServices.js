@@ -247,8 +247,6 @@ export const fetchEditAvatarService = async (userId, authToken, avatar) => {
     const formData = new FormData();
     formData.append('avatar', avatar);
 
-    console.log(avatar);
-
     const res = await fetch(`${VITE_API_URL}/user/avatar/${userId}`, {
         method: 'POST',
         headers: { Authorization: authToken },
@@ -266,14 +264,16 @@ export const fetchEditAvatarService = async (userId, authToken, avatar) => {
 
 export const fetchAllUsersService = async (searchParamsToString, authToken) => {
     const res = await fetch(`${VITE_API_URL}/users/?${searchParamsToString}`, {
-        headers: { Authorization: authToken },
+        headers: authToken
+            ? {
+                  'Content-Type': 'application/json',
+                  Authorization: authToken,
+              }
+            : {},
     });
-
     const body = await res.json();
-
     if (body.status === 'error') {
         throw new Error(body.message);
     }
-
     return body.data;
 };
