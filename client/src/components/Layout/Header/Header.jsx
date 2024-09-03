@@ -1,4 +1,5 @@
 import { useContext, useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthContext';
 import useUser from '../../../hooks/useUser';
 import './Header.css';
@@ -13,21 +14,8 @@ const Header = ({ currentPage }) => {
     setmenuBurguer(!menuBurguer);
   };
 
-  const hereWeAre = (e) => {
-    // no borrar función de momento, please. Espero que sea útil en breve =)
-    e.preventDefault();
-    const navATags = Array.from(document.querySelectorAll('.linkmainnav'));
-
-    navATags.forEach((navATag) => {
-      navATag.style.backgroundColor = '';
-    });
-    e.target.style.backgroundColor = '#f1f1f2';
-    currentPage = navATags.indexOf(e.target);
-
-    console.log('INDEX DEL ELEMENTO CLICKADO ----- ', currentPage);
-
-    return currentPage;
-  };
+  // const navATags = Array.from(document.querySelectorAll('.linkmainnav'));
+  // https://reactrouter.com/en/v6.3.0/api#navlink
 
   useEffect(() => {
     menuBurguer
@@ -39,57 +27,64 @@ const Header = ({ currentPage }) => {
     <header>
       <div className='container'>
         <nav className='mainnav flex flex-wrap'>
-          <a href='/' className='flex items-center'>
+          <NavLink className='flex items-center' to={'/'}>
             <img className='w-14' src={clockyouLogo} alt='clockYou' />
 
             <span className='text-4xl pl-1.5 serif-FONT-regular hidden sm:inline-flex'>
               ClockYou
             </span>
-          </a>
+          </NavLink>
 
           <ul
             id='navdinamica'
             className={menuBurguer ? 'navdinamica show' : 'navdinamica'}
           >
             <li>
-              <a className='linkmainnav' href='/about'>
+              {/* <a onClick={hereWeAre} className='linkmainnav' href='/about'>
                 Sobre Nosotros
-              </a>
+              </a> */}
+              <NavLink className='linkmainnav' to={'/about'}>
+                Sobre Nosotros
+              </NavLink>
             </li>
             <li>
-              <a className='linkmainnav' href='/typeOfServices'>
+              <NavLink className='linkmainnav' to={'/typeOfServices'}>
                 Servicios
-              </a>
+              </NavLink>
             </li>
             <li>
-              <a className='linkmainnav' href='/contact'>
+              <NavLink className='linkmainnav' to={'/contact'}>
                 Contacto
-              </a>
+              </NavLink>
             </li>
             {!user ? (
               <>
                 <li>
-                  <a className='linkmainnav' href='/register'>
+                  <NavLink className='linkmainnav' to={'/register'}>
                     Registrarse
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a className='linkmainnav' href='/login'>
+                  <NavLink className='linkmainnav' to={'/login'}>
                     Iniciar Sesión
-                  </a>
+                  </NavLink>
                 </li>
               </>
             ) : (
               <>
                 <li>
-                  <a className='linkmainnav' href='/user'>
+                  <NavLink className='linkmainnav' to={'/user'}>
                     Mi Cuenta
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a onClick={authLogout} className='linkmainnav' href='/'>
+                  <NavLink
+                    onClick={authLogout}
+                    className='linkmainnav noBgr'
+                    to={'/'}
+                  >
                     Cerrar Sesión
-                  </a>
+                  </NavLink>
                 </li>
               </>
             )}

@@ -49,6 +49,14 @@
     &:hover {
       background-color: var(--overcast);
     }
+
+    &.active {
+      background-color: var(--darker-overcast);
+    }
+
+    &.noBgr {
+      background-color: transparent;
+    }
   }
 
   @media only screen and (min-width: 1024px) {
