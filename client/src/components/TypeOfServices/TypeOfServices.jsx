@@ -10,7 +10,8 @@ const TypeOfServices = () => {
     const [type, setType] = useState('');
     const [price, setPrice] = useState('');
 
-    const resetFilters = () => {
+    const resetFilters = (e) => {
+        e.preventDefault();
         setCity('');
         setType('');
         setPrice('');
@@ -42,7 +43,6 @@ const TypeOfServices = () => {
 
     return (
         <div className='container'>
-            <h2>Todos los Servicios</h2>
             <div>
                 <form className='form filterServicesForm'>
                     <select
@@ -102,7 +102,6 @@ const TypeOfServices = () => {
                     <button onClick={resetFilters}>Limpiar Filtros</button>
                 </form>
             </div>
-
             <div>
                 <ul className='gridClockYou'>
                     {data.map((item) => {
