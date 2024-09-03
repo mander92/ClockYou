@@ -263,3 +263,17 @@ export const fetchEditAvatarService = async (userId, authToken, avatar) => {
 
     return body;
 };
+
+export const fetchAllUsersService = async (searchParamsToString, authToken) => {
+    const res = await fetch(`${VITE_API_URL}/users/?${searchParamsToString}`, {
+        headers: { Authorization: authToken },
+    });
+
+    const body = await res.json();
+
+    if (body.status === 'error') {
+        throw new Error(body.message);
+    }
+
+    return body.data;
+};
