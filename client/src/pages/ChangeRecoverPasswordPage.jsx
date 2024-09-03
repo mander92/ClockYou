@@ -13,7 +13,8 @@ const ChangeRecoverPasswordPage = () => {
 
     const navigate = useNavigate();
 
-    const resetInputs = () => {
+    const resetInputs = (e) => {
+        e.preventDefault();
         setRecoverPasswordCode('');
         setNewPassword('');
         setRepeatedPassword('');
@@ -31,8 +32,6 @@ const ChangeRecoverPasswordPage = () => {
                 );
 
                 toast.success(data);
-
-                resetInputs();
 
                 navigate('/login');
             }

@@ -18,7 +18,8 @@ const RegisterAdminUserController = () => {
     const [city, setCity] = useState('');
     const [role, setRole] = useState('');
 
-    const resetInputs = () => {
+    const resetInputs = (e) => {
+        e.preventDefault();
         setEmail('');
         setFirstName('');
         setLastName('');
@@ -53,8 +54,6 @@ const RegisterAdminUserController = () => {
                 toast.success(data, {
                     id: 'ok',
                 });
-
-                resetInputs();
             }
         } catch (error) {
             toast.error(error.message, {

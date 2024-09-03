@@ -44,8 +44,6 @@ const NewServiceForm = ({ typeOfServiceId }) => {
                 id: 'ok',
             });
 
-            resetInputs();
-
             navigate('/');
         } catch (error) {
             toast.error(error.message, {

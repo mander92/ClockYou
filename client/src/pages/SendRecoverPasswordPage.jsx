@@ -8,7 +8,8 @@ const SendRecoverPasswordPage = () => {
 
     const [email, setEmail] = useState('');
 
-    const resetInputs = () => {
+    const resetInputs = (e) => {
+        e.preventDefault();
         setEmail('');
     };
 
@@ -20,7 +21,6 @@ const SendRecoverPasswordPage = () => {
             toast.success(data, {
                 id: 'ok',
             });
-            resetInputs();
 
             navigate('/password');
         } catch (error) {

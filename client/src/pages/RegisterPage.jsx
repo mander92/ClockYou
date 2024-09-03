@@ -15,7 +15,8 @@ const RegisterPage = () => {
     const [password, setPassword] = useState('');
     const [repeatedPassword, setRepeatedPassword] = useState('');
 
-    const resetInputs = () => {
+    const resetInputs = (e) => {
+        e.preventDefault();
         setEmail('');
         setFirstName('');
         setLastName('');
@@ -44,9 +45,7 @@ const RegisterPage = () => {
                     id: 'ok',
                 });
 
-                resetInputs();
-
-                navigate('/');
+                navigate('/login');
             }
         } catch (error) {
             toast.error(error.message, {
