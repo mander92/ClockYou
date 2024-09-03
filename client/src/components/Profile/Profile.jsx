@@ -1,15 +1,13 @@
-import useUser from '../../hooks/useUser';
 import { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 import {
     fetchEditUserService,
     fetchEditPasswordService,
     fetchDeleteUserService,
 } from '../../services/userServices';
+import useUser from '../../hooks/useUser';
 import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
-
-
 
 const Profile = () => {
     const { user } = useUser();
@@ -99,10 +97,9 @@ const Profile = () => {
         }
     }, [user]);
 
-
-    return(
+    return (
         <>
-         <form className="form" onSubmit={handleEditUser}>
+            <form className='form' onSubmit={handleEditUser}>
                 <fieldset>
                     <legend>Perfil</legend>
                     <label htmlFor='email'>Email</label>
@@ -203,9 +200,8 @@ const Profile = () => {
                     </div>
                 </fieldset>
             </form>
-        
         </>
-    )
-}
+    );
+};
 
 export default Profile;
