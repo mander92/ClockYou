@@ -32,6 +32,46 @@ export const fetchRegisterService = async (
     return body.message;
 };
 
+export const fecthRegisterAdminUserService = async (
+    email,
+    firstName,
+    lastName,
+    dni,
+    phone,
+    password,
+    job,
+    city,
+    role,
+    authToken
+) => {
+    const res = await fetch(`${VITE_API_URL}/users/admin/register`, {
+        method: 'POST',
+        headers: {
+            Authorization: authToken,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            email,
+            firstName,
+            lastName,
+            dni,
+            phone,
+            password,
+            job,
+            city,
+            role,
+        }),
+    });
+
+    const body = await res.json();
+
+    if (body.status === 'error') {
+        throw new Error(body.message);
+    }
+
+    return body.message;
+};
+
 export const fetchActiveUserService = async (registrationCode) => {
     const res = await fetch(
         `${VITE_API_URL}/users/validate/${registrationCode}`

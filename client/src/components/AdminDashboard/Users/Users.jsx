@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import SearchUser from './SearchUser';
-import RegisterEmployee from './RegisterEmployee';
+import ListUserController from './ListUserController';
+import RegisterAdminUserController from './RegisterAdminUserController';
 
 const Users = () => {
     const [activeSection, setActiveSection] = useState('searchUser');
@@ -19,22 +19,22 @@ const Users = () => {
     };
 
     const sectionComponents = {
-        searchUser: <SearchUser />,
-        registerEmployee: <RegisterEmployee />,
+        ListUserController: <ListUserController />,
+        RegisterAdminUserController: <RegisterAdminUserController />,
     };
 
     return (
         <>
             <div>
                 <button
-                    to='#searchUser'
-                    onClick={() => handleChange('searchUser')}
+                    to='#ListUserController'
+                    onClick={() => handleChange('ListUserController')}
                 >
                     Listar
                 </button>
                 <button
-                    to='#registerEmployee'
-                    onClick={() => handleChange('registerEmployee')}
+                    to='#RegisterAdminUserController'
+                    onClick={() => handleChange('RegisterAdminUserController')}
                 >
                     Registrar
                 </button>

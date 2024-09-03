@@ -65,7 +65,7 @@ const RegisterPage = () => {
                         id='email'
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        placeholder='user@clockYou.com'
+                        placeholder='user@ClockYou.com'
                         required
                     />
 
