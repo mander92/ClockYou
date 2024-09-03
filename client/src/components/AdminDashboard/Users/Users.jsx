@@ -1,11 +1,12 @@
-import { NavLink, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import SearchUser from './SearchUser';
+import RegisterEmployee from './RegisterEmployee';
 
 
 
 const Users = () => {
-    const [ activeSection, setActiveSection ] = useState('searchUser')
+    const [ activeSection, setActiveSection ] = useState(false)
     const location = useLocation()
 
 
@@ -17,7 +18,7 @@ const Users = () => {
         }
       }, [location]);
     
-      const handleSectionChange = (section) => {
+      const handleChange = (section) => {
         setActiveSection(section);
       };
 
@@ -25,15 +26,12 @@ const Users = () => {
 
     return (
         <>
-            <section className="container">
                 <div>
-                    <NavLink to="#searchUser" onClick={() => handleSectionChange('searchUser')}>Usuarios</NavLink>
-                    <NavLink to="#registerEmployee" onClick={() => handleSectionChange('registerEmployee')}>Registrar un Empleado</NavLink>
+                    <button to="#searchUser" onClick={() => handleChange('searchUser')}>Usuarios</button>
+                    <button to="#registerEmployee" onClick={() => handleChange('registerEmployee')}>Registrar un Empleado</button>
                 </div>
                 {activeSection === 'searchUser' && <SearchUser />}
-                {activeSection === 'registerEmployee' && <SearchUser />}
-            </section>
-            
+                {activeSection === 'registerEmployee' && <RegisterEmployee />}
         </>
     )
 }
