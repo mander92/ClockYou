@@ -16,7 +16,7 @@ import DashboardPage from './pages/DashboardPage.jsx';
 const App = () => {
   return (
     <Layout>
-      <main className='flex-grow pb-6 overflow-x-clip'>
+      <main className='pb-6 overflow-x-clip'>
         <Routes>
           <Route path='/' element={<HomePage />} />
           <Route path='/register' element={<RegisterPage />} />

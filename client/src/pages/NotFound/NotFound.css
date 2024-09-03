@@ -1,17 +1,14 @@
 .notFound {
-  --dvhMinus: 230px;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - var(--dvhMinus));
-  height: calc(100dvh - var(--dvhMinus));
+  height: 100%;
   text-align: center;
   background-color: #f8f9fa;
   padding: 20px;
   box-sizing: border-box;
-  margin: 5px 0 5px 0;
+  margin: 5px 0;
 
   & .notfoundimg {
     width: min(70%, 500px);
