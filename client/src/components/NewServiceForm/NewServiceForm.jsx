@@ -16,7 +16,8 @@ const NewServiceForm = ({ typeOfServiceId }) => {
     const [city, setCity] = useState('');
     const [comments, setComments] = useState('');
 
-    const resetInputs = () => {
+    const resetInputs = (e) => {
+        e.preventDefault();
         setDateTime('');
         setHours(1);
         setAddress('');
