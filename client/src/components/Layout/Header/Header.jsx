@@ -5,7 +5,7 @@ import useUser from '../../../hooks/useUser';
 import './Header.css';
 import clockyouLogo from '/logo-test.png';
 
-const Header = ({ currentPage }) => {
+const Header = () => {
   const { authLogout } = useContext(AuthContext);
   const { user } = useUser();
   const [menuBurguer, setmenuBurguer] = useState(false);
@@ -40,19 +40,31 @@ const Header = ({ currentPage }) => {
             className={menuBurguer ? 'navdinamica show' : 'navdinamica'}
           >
             <li>
-              <NavLink className='linkmainnav' to={'/typeOfServices'}>
+              <NavLink
+                onClick={handleBurguer}
+                className='linkmainnav'
+                to={'/typeOfServices'}
+              >
                 Servicios
               </NavLink>
             </li>
             {!user ? (
               <>
                 <li>
-                  <NavLink className='linkmainnav' to={'/register'}>
+                  <NavLink
+                    onClick={handleBurguer}
+                    className='linkmainnav'
+                    to={'/register'}
+                  >
                     Registrarse
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink className='linkmainnav' to={'/login'}>
+                  <NavLink
+                    onClick={handleBurguer}
+                    className='linkmainnav'
+                    to={'/login'}
+                  >
                     Iniciar Sesión
                   </NavLink>
                 </li>
@@ -60,13 +72,20 @@ const Header = ({ currentPage }) => {
             ) : (
               <>
                 <li>
-                  <NavLink className='linkmainnav' to={'/user'}>
+                  <NavLink
+                    onClick={handleBurguer}
+                    className='linkmainnav'
+                    to={'/user'}
+                  >
                     Mi Cuenta
                   </NavLink>
                 </li>
                 <li>
                   <NavLink
-                    onClick={authLogout}
+                    onClick={() => {
+                      handleBurguer();
+                      authLogout();
+                    }}
                     className='linkmainnav noBgr'
                     to={'/'}
                   >

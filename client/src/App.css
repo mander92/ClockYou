@@ -186,7 +186,7 @@ fieldset {
   }
 }
 
-.no-spinner::-webkit-outer-spin-button,
+/* .no-spinner::-webkit-outer-spin-button,
 .no-spinner::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
@@ -199,4 +199,4 @@ fieldset {
 
 .active-link {
   background-color: #9a9a9a;
-}
+} */
