@@ -38,6 +38,12 @@
     }
   }
 
+  @media only screen and (min-width: 1024px) {
+    .navdinamica.show {
+      transform: translateX(0);
+    }
+  }
+
   .linkmainnav {
     @apply block px-4 py-3.5;
 

@@ -13,12 +13,6 @@
   gap: 1rem 1.5rem;
   grid-template-columns: repeat(auto-fit, minmax(var(--minmaxgriditem), 1fr));
   margin-top: 1rem;
-  /* 
-      https://css-tricks.com/almanac/properties/g/grid-template-columns/ 
-      https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns
-      https://stackoverflow.com/questions/45459151/how-to-set-the-maximum-width-of-a-column-in-css-grid-layout
-      https://css-tricks.com/an-auto-filling-css-grid-with-max-columns/
-    */
 
   & li {
     border: 1px solid #e6e6e6;
