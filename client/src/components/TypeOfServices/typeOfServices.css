@@ -61,6 +61,7 @@
   display: grid;
   gap: 0.75rem 1rem;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  padding-bottom: 0;
 
   & select + button {
     margin: 0;
