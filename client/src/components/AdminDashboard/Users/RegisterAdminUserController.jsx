@@ -1,13 +1,10 @@
 import { AuthContext } from '../../../context/AuthContext';
 import { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { fecthRegisterAdminUserService } from '../../../services/userServices';
 
 import toast from 'react-hot-toast';
 
 const RegisterAdminUserController = () => {
-    const navigate = useNavigate();
-
     const { authToken } = useContext(AuthContext);
 
     const [email, setEmail] = useState('');

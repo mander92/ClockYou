@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { useState, useEffect, useContext } from 'react';
+import { NavLink, Navigate, useLocation } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 import useUser from '../hooks/useUser';
 import Avatar from '../components/Avatar/Avatar';
 import Profile from '../components/Profile/Profile';
@@ -12,10 +13,13 @@ import Requests from '../components/ClientDashboard/Requests';
 import Orders from '../components/ClientDashboard/Orders';
 
 const DashboardPage = () => {
-    const [activeSection, setActiveSection] = useState('profile');
-    const location = useLocation();
+    const { authToken } = useContext(AuthContext);
+
     const { user } = useUser();
     const userRole = user?.role;
+    const location = useLocation();
+
+    const [activeSection, setActiveSection] = useState('profile');
 
     useEffect(() => {
         const hash = location.hash.replace('#', '');
@@ -38,6 +42,8 @@ const DashboardPage = () => {
         orders: userRole === 'client' && <Orders />,
         myservices: userRole === 'employee' && <MyServices />,
     };
+
+    if (!authToken) return <Navigate to='/' />;
 
     return (
         <section className='container'>
