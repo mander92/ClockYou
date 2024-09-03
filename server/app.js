@@ -20,8 +20,6 @@ app.use(cors());
 
 app.use(express.static(UPLOADS_DIR));
 
-app.use(express.urlencoded({ extended: true }));
-
 app.use(express.json());
 
 app.use(fileUpload());
