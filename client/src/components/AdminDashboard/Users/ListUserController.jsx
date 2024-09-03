@@ -14,7 +14,8 @@ const ListUserController = () => {
     const [role, setRole] = useState('');
     const [active, setActive] = useState('');
 
-    const resetFilters = () => {
+    const resetFilters = (e) => {
+        e.preventDefault();
         setCity('');
         setJob('');
         setRole('');
