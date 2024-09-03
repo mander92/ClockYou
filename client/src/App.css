@@ -138,6 +138,32 @@ fieldset {
   }
 }
 
+.managerTabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-bottom: 1rem;
+
+  & a {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.625rem;
+    padding-bottom: 0.625rem;
+    color: var(--cerulean);
+    background-color: transparent;
+    transition: background-color 0.3s linear;
+    border: 1px solid var(--icicle);
+
+    &:hover {
+      background-color: var(--overcast);
+    }
+
+    &:focus {
+      background-color: var(--darker-overcast);
+    }
+  }
+}
+
 @media only screen and (min-width: 1024px) {
 }
 
@@ -169,4 +195,8 @@ fieldset {
 .no-spinner {
   -moz-appearance: textfield;
   appearance: textfield;
+}
+
+.active-link {
+  background-color: #9a9a9a;
 }

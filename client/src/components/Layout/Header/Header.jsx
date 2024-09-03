@@ -40,21 +40,8 @@ const Header = ({ currentPage }) => {
             className={menuBurguer ? 'navdinamica show' : 'navdinamica'}
           >
             <li>
-              {/* <a onClick={hereWeAre} className='linkmainnav' href='/about'>
-                Sobre Nosotros
-              </a> */}
-              <NavLink className='linkmainnav' to={'/about'}>
-                Sobre Nosotros
-              </NavLink>
-            </li>
-            <li>
               <NavLink className='linkmainnav' to={'/typeOfServices'}>
                 Servicios
-              </NavLink>
-            </li>
-            <li>
-              <NavLink className='linkmainnav' to={'/contact'}>
-                Contacto
               </NavLink>
             </li>
             {!user ? (
