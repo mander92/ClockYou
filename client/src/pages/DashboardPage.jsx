@@ -43,6 +43,9 @@ const DashboardPage = () => {
         myservices: userRole === 'employee' && <MyServices />,
     };
 
+    if (!authToken) return <Navigate to='/' />;
+    Navigate;
+
     return (
         <section className='container formsWrapper'>
             <Avatar />
