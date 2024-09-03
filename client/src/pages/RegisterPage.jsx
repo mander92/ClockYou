@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
 import { fetchRegisterService } from '../services/userServices';
-
+import useUser from '../hooks/useUser';
 import toast from 'react-hot-toast';
 
 const RegisterPage = () => {
     const navigate = useNavigate();
-
+    const { user } = useUser();
     const [email, setEmail] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -54,6 +54,9 @@ const RegisterPage = () => {
             });
         }
     };
+
+    if (user) return <Navigate to='/' />;
+
     return (
         <section className='container'>
             <form className='form' onSubmit={handleRegister}>
