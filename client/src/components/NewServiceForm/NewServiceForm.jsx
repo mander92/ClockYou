@@ -39,99 +39,98 @@ const NewServiceForm = ({ typeOfServiceId }) => {
                 comments
             );
 
-            toast.success(data.message);
+            toast.success(data.message, {
+                id: 'ok',
+            });
 
             resetInputs();
 
             navigate('/');
         } catch (error) {
             toast.error(error.message, {
-                id: 'serviceError',
+                id: 'error',
             });
         }
     };
 
     return (
-        <section>
-            <form className='form' onSubmit={handleNewService}>
-                <fieldset>
-                    <legend>Solicítalo</legend>
-                    <label htmlFor='datetime'>Fecha y Hora</label>
-                    <input
-                        type='datetime-local'
-                        id='datetime'
-                        value={dateTime}
-                        onChange={(e) => setDateTime(e.target.value)}
-                        required
-                    />
-                    <label htmlFor='hours'>Horas</label>
-                    <select
-                        id='hours'
-                        value={hours}
-                        onChange={(e) => setHours(e.target.value)}
-                        required
-                    >
-                        <option disabled>
-                            Selecciona las horas necesarias
-                        </option>
-                        <option value='1'>1</option>
-                        <option value='2'>2</option>
-                        <option value='3'>3</option>
-                        <option value='4'>4</option>
-                        <option value='5'>5</option>
-                        <option value='6'>6</option>
-                        <option value='7'>7</option>
-                        <option value='8'>8</option>
-                    </select>
-                    <label htmlFor='address'>Dirección</label>
-                    <input
-                        type='text'
-                        id='address'
-                        value={address}
-                        onChange={(e) => setAddress(e.target.value)}
-                        placeholder='Gran Vía, 1, 5B'
-                        required
-                    />
-                    <label htmlFor='postCode'>Código Postal</label>
-                    <input
-                        type='number'
-                        id='c'
-                        value={postCode}
-                        onChange={(e) => setPostCode(e.target.value)}
-                        placeholder='28013'
-                        minLength='5'
-                        maxLength='5'
-                        required
-                    />
-                    <label htmlFor='city'>Localidad</label>
-                    <input
-                        type='text'
-                        id='city'
-                        value={city}
-                        onChange={(e) => setCity(e.target.value)}
-                        placeholder='Madrid'
-                        required
-                    />
-                    <label htmlFor='comments'>Comentarios</label>
-                    <textarea
-                        id='comments'
-                        value={comments}
-                        onChange={(e) => setComments(e.target.value)}
-                        placeholder='Añada comentarios adicionales para describir sus necesidades sobre el servicio solicitado para poder brindarle nuestro mejor servicio'
-                        minLength='10'
-                        maxLength='500'
-                        rows='5'
-                        cols='50'
-                        style={{ resize: 'none' }}
-                        required
-                    ></textarea>
-                    <div>
-                        <button>Solicitar</button>
-                        <button onClick={resetInputs}>Limpiar</button>
-                    </div>
-                </fieldset>
-            </form>
-        </section>
+        <form className='form' onSubmit={handleNewService}>
+            <fieldset>
+                <legend>Solicítalo</legend>
+                <label htmlFor='datetime'>Fecha y Hora</label>
+                <input
+                    type='datetime-local'
+                    id='datetime'
+                    value={dateTime}
+                    onChange={(e) => setDateTime(e.target.value)}
+                    required
+                />
+                <label htmlFor='hours'>Horas</label>
+                <select
+                    id='hours'
+                    value={hours}
+                    onChange={(e) => setHours(e.target.value)}
+                    required
+                >
+                    <option disabled>Selecciona las horas necesarias</option>
+                    <option value='1'>1</option>
+                    <option value='2'>2</option>
+                    <option value='3'>3</option>
+                    <option value='4'>4</option>
+                    <option value='5'>5</option>
+                    <option value='6'>6</option>
+                    <option value='7'>7</option>
+                    <option value='8'>8</option>
+                </select>
+                <label htmlFor='address'>Dirección</label>
+                <input
+                    type='text'
+                    id='address'
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                    placeholder='Gran Vía, 1, 5B'
+                    required
+                />
+                <label htmlFor='postCode'>Código Postal</label>
+                <input
+                    type='number'
+                    id='postCode'
+                    value={postCode}
+                    onChange={(e) => setPostCode(e.target.value)}
+                    placeholder='28013'
+                    className='no-spinner'
+                    min='10000'
+                    max='50000'
+                    required
+                />
+                <label htmlFor='city'>Localidad</label>
+                <input
+                    type='text'
+                    id='city'
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                    placeholder='Madrid'
+                    required
+                />
+                <label htmlFor='comments'>Comentarios</label>
+                <textarea
+                    id='comments'
+                    value={comments}
+                    onChange={(e) => setComments(e.target.value)}
+                    placeholder='Añada comentarios adicionales para describir sus necesidades sobre el servicio solicitado para poder brindarle nuestro mejor servicio'
+                    minLength='10'
+                    maxLength='500'
+                    rows='5'
+                    cols='50'
+                    style={{ resize: 'none' }}
+                    required
+                ></textarea>
+                <div>
+                    <button type='submit'>Solicitar</button>
+                    <button onClick={resetInputs}>Limpiar</button>
+                </div>
+            </fieldset>
+        </form>
     );
 };
 

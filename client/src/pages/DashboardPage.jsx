@@ -128,150 +128,140 @@ const DashboardPage = () => {
 
     return (
         <section className='container'>
-            <div>
-                <form className='form' onSubmit={handleEditAvatar}>
-                    <fieldset>
-                        <legend>Avatar</legend>
-                        <img
-                            className='user-avatar'
-                            src={`${
-                                user?.avatar
-                                    ? `${VITE_API_URL}/${user.avatar}`
-                                    : '/default-avatar.png'
-                            }`}
-                            alt='Avatar'
-                        />
-                        {enableEditAvatar ? (
-                            <div>
-                                <input
-                                    type='file'
-                                    accept='image/png, image/jpg, image/jpeg, image/tiff'
-                                    required
-                                    onChange={(e) => {
-                                        setAvatar(e.target.files[0]);
-                                    }}
-                                />
-                            </div>
-                        ) : (
-                            ''
-                        )}
+            <form className='form' onSubmit={handleEditAvatar}>
+                <fieldset>
+                    <legend>Avatar</legend>
+                    <img
+                        className='user-avatar'
+                        src={`${
+                            user?.avatar
+                                ? `${VITE_API_URL}/${user.avatar}`
+                                : '/default-avatar.png'
+                        }`}
+                        alt='Avatar'
+                    />
+                    {enableEditAvatar ? (
                         <div>
-                            <button type='submit'>
-                                {!enableEditAvatar ? 'Editar' : 'Guardar'}
-                            </button>
+                            <input
+                                type='file'
+                                accept='image/png, image/jpg, image/jpeg, image/tiff'
+                                required
+                                onChange={(e) => {
+                                    setAvatar(e.target.files[0]);
+                                }}
+                            />
                         </div>
-                    </fieldset>
-                </form>
-            </div>
-            <div>
-                <form className='form' onSubmit={handleEditUser}>
-                    <fieldset>
-                        <legend>Perfil</legend>
-                        <label htmlFor='email'>Email</label>
-                        <input disabled value={user?.email || ''} />
-                        <label htmlFor='firstName'>Nombre</label>
-                        <input
-                            type='text'
-                            id='firstName'
-                            value={firstName || ''}
-                            onChange={(e) => {
-                                setFirstName(e.target.value);
-                            }}
-                            required
-                        />
-                        <label htmlFor='lastName'>Apellidos</label>
-                        <input
-                            type='text'
-                            id='lastName'
-                            value={lastName}
-                            onChange={(e) => {
-                                setLastName(e.target.value);
-                            }}
-                            required
-                        />
-                        <label htmlFor='dni'>DNI</label>
-                        <input disabled value={user?.dni || ''} />
-                        <label htmlFor='phone'>Teléfono</label>
-                        <input
-                            type='tel'
-                            id='phone'
-                            value={phone}
-                            onChange={(e) => {
-                                setPhone(e.target.value);
-                            }}
-                            required
-                        />
-                        {user?.role === 'employee' && (
-                            <>
-                                <label htmlFor='job'>Trabajo</label>
-                                <input disabled value={user?.job || ''} />
-                                <label htmlFor='city'>Ciudad</label>
-                                <input disabled value={user?.city || ''} />
-                            </>
-                        )}
-                        <div>
-                            <button type='submit'>Guardar Cambios</button>
-                        </div>
-                    </fieldset>
-                </form>
-            </div>
-            <div>
-                <form className='form' onSubmit={handleEditPassword}>
-                    <fieldset>
-                        <legend>Contraseña</legend>
-                        <label htmlFor='actualPassword'>
-                            Contraseña Actual
-                        </label>
-                        <input
-                            type='password'
-                            id='actualPassword'
-                            value={actualPassword}
-                            placeholder='jobryp-kapDew-fetho6'
-                            required
-                            onChange={(e) => {
-                                setActualPassword(e.target.value);
-                            }}
-                        />
-                        <label htmlFor='newPassword'>Nueva Contraseña</label>
-                        <input
-                            type='password'
-                            id='newPassword'
-                            value={newPassword}
-                            placeholder='bemgon-1bizni-nuhXyd'
-                            required
-                            onChange={(e) => {
-                                setNewPassword(e.target.value);
-                            }}
-                        />
-                        <label htmlFor='repeatNewPassword'>
-                            Repetir Contraseña
-                        </label>
-                        <input
-                            type='password'
-                            id='repeatNewPassword'
-                            placeholder='bemgon-1bizni-nuhXyd'
-                            required
-                            value={repeatedNewPassword}
-                            onChange={(e) => {
-                                setRepeatedNewPassword(e.target.value);
-                            }}
-                        />
-                        <div>
-                            <button type='submit'>Cambiar Contraseña</button>
-                        </div>
-                    </fieldset>
-                </form>
-            </div>
-            <div>
-                <form className='form' onSubmit={handleDeleteUser}>
-                    <fieldset>
-                        <legend>Cuenta</legend>
-                        <div>
-                            <button type='submit'>Eliminar Usuario</button>
-                        </div>
-                    </fieldset>
-                </form>
-            </div>
+                    ) : (
+                        ''
+                    )}
+                    <div>
+                        <button type='submit'>
+                            {!enableEditAvatar ? 'Editar' : 'Guardar'}
+                        </button>
+                    </div>
+                </fieldset>
+            </form>
+            <form className='form' onSubmit={handleEditUser}>
+                <fieldset>
+                    <legend>Perfil</legend>
+                    <label htmlFor='email'>Email</label>
+                    <input disabled value={user?.email || ''} />
+                    <label htmlFor='firstName'>Nombre</label>
+                    <input
+                        type='text'
+                        id='firstName'
+                        value={firstName || ''}
+                        onChange={(e) => {
+                            setFirstName(e.target.value);
+                        }}
+                        required
+                    />
+                    <label htmlFor='lastName'>Apellidos</label>
+                    <input
+                        type='text'
+                        id='lastName'
+                        value={lastName}
+                        onChange={(e) => {
+                            setLastName(e.target.value);
+                        }}
+                        required
+                    />
+                    <label htmlFor='dni'>DNI</label>
+                    <input disabled value={user?.dni || ''} />
+                    <label htmlFor='phone'>Teléfono</label>
+                    <input
+                        type='tel'
+                        id='phone'
+                        value={phone}
+                        onChange={(e) => {
+                            setPhone(e.target.value);
+                        }}
+                        required
+                    />
+                    {user?.role === 'employee' && (
+                        <>
+                            <label htmlFor='job'>Trabajo</label>
+                            <input disabled value={user?.job || ''} />
+                            <label htmlFor='city'>Ciudad</label>
+                            <input disabled value={user?.city || ''} />
+                        </>
+                    )}
+                    <div>
+                        <button type='submit'>Guardar Cambios</button>
+                    </div>
+                </fieldset>
+            </form>
+            <form className='form' onSubmit={handleEditPassword}>
+                <fieldset>
+                    <legend>Contraseña</legend>
+                    <label htmlFor='actualPassword'>Contraseña Actual</label>
+                    <input
+                        type='password'
+                        id='actualPassword'
+                        value={actualPassword}
+                        placeholder='jobryp-kapDew-fetho6'
+                        required
+                        onChange={(e) => {
+                            setActualPassword(e.target.value);
+                        }}
+                    />
+                    <label htmlFor='newPassword'>Nueva Contraseña</label>
+                    <input
+                        type='password'
+                        id='newPassword'
+                        value={newPassword}
+                        placeholder='bemgon-1bizni-nuhXyd'
+                        required
+                        onChange={(e) => {
+                            setNewPassword(e.target.value);
+                        }}
+                    />
+                    <label htmlFor='repeatNewPassword'>
+                        Repetir Contraseña
+                    </label>
+                    <input
+                        type='password'
+                        id='repeatNewPassword'
+                        placeholder='bemgon-1bizni-nuhXyd'
+                        required
+                        value={repeatedNewPassword}
+                        onChange={(e) => {
+                            setRepeatedNewPassword(e.target.value);
+                        }}
+                    />
+                    <div>
+                        <button type='submit'>Cambiar Contraseña</button>
+                    </div>
+                </fieldset>
+            </form>
+            <form className='form' onSubmit={handleDeleteUser}>
+                <fieldset>
+                    <legend>Cuenta</legend>
+                    <div>
+                        <button type='submit'>Eliminar Usuario</button>
+                    </div>
+                </fieldset>
+            </form>
         </section>
     );
 };

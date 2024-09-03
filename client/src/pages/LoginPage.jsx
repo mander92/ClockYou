@@ -10,14 +10,13 @@ import { AuthContext } from '../context/AuthContext';
 import toast from 'react-hot-toast';
 
 const LoginPage = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-
     const { authLogin } = useContext(AuthContext);
-
     const { user } = useUser();
 
     const navigate = useNavigate();
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     const resetInputs = () => {
         setEmail('');
@@ -39,7 +38,7 @@ const LoginPage = () => {
             navigate('/');
         } catch (error) {
             toast.error(error.message, {
-                id: 'loginError',
+                id: 'error',
             });
         }
     };
@@ -71,7 +70,7 @@ const LoginPage = () => {
                         required
                     />
                     <div>
-                        <button>Iniciar sesión</button>
+                        <button type='submit'>Iniciar sesión</button>
                         <button onClick={resetInputs}>Limpiar</button>
                     </div>
                     <a href='/recoverpassword'> ¿Has olvidado tu contraseña?</a>

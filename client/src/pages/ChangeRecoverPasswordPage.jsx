@@ -20,28 +20,26 @@ const ChangeRecoverPasswordPage = () => {
     };
 
     const handleChangeRecoverPassword = async (e) => {
+        e.preventDefault();
         try {
-            e.preventDefault();
-
             if (newPassword !== repeatedPassword) {
                 throw new Error('¡Las contraseñas no coinciden!');
             } else {
-                const message = await fetchChangePasswordService(
+                const data = await fetchChangePasswordService(
                     recoverPasswordCode,
                     newPassword
                 );
 
-                toast.success(message);
+                toast.success(data);
 
                 resetInputs();
 
                 navigate('/login');
             }
         } catch (error) {
-            toast.error(error.message),
-                {
-                    id: 'changePasswordError',
-                };
+            toast.error(error.message, {
+                id: 'error',
+            });
         }
     };
 
@@ -80,7 +78,7 @@ const ChangeRecoverPasswordPage = () => {
                         required
                     />
                     <div>
-                        <button>Cambiar Contraseña</button>
+                        <button type='submit'>Cambiar Contraseña</button>
                         <button onClick={resetInputs}>Limpiar</button>
                     </div>
                 </fieldset>

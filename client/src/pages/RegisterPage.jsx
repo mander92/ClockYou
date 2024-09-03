@@ -1,12 +1,12 @@
 import { useState } from 'react';
-
 import { useNavigate } from 'react-router-dom';
-
 import { fetchRegisterService } from '../services/userServices';
 
 import toast from 'react-hot-toast';
 
 const RegisterPage = () => {
+    const navigate = useNavigate();
+
     const [email, setEmail] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -14,8 +14,6 @@ const RegisterPage = () => {
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
     const [repeatedPassword, setRepeatedPassword] = useState('');
-
-    const navigate = useNavigate();
 
     const resetInputs = () => {
         setEmail('');
@@ -42,7 +40,9 @@ const RegisterPage = () => {
                     password
                 );
 
-                toast.success(data);
+                toast.success(data, {
+                    id: 'ok',
+                });
 
                 resetInputs();
 
@@ -50,7 +50,7 @@ const RegisterPage = () => {
             }
         } catch (error) {
             toast.error(error.message, {
-                id: 'registerError',
+                id: 'error',
             });
         }
     };
@@ -130,7 +130,7 @@ const RegisterPage = () => {
                         required
                     />
                     <div>
-                        <button>Registrarse</button>
+                        <button type='submit'>Registrarse</button>
                         <button onClick={resetInputs}>Limpiar</button>
                     </div>
                 </fieldset>

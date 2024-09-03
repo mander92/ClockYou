@@ -10,9 +10,9 @@ const ValidateUserPage = () => {
     useEffect(() => {
         const activateUser = async () => {
             try {
-                const message = await fetchActiveUserService(registrationCode);
+                const data = await fetchActiveUserService(registrationCode);
 
-                toast.success(message, {
+                toast.success(data, {
                     id: 'ok',
                 });
 
