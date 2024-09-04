@@ -1,9 +1,11 @@
-const { VITE_API_URL } = import.meta.env;
+const { VITE_API_URL, VITE_CLIENT_URL } = import.meta.env;
 import { useEffect, useState } from 'react';
 import { fetchAllTypeOfServices } from '../../../services/typeOfServiceServices';
 import toast from 'react-hot-toast';
+import { NavLink } from 'react-router-dom';
 
 const ListServicesController = () => {
+<<<<<<< HEAD
   const [data, setData] = useState([]);
   const [city, setCity] = useState('');
   const [type, setType] = useState('');
@@ -34,6 +36,18 @@ const ListServicesController = () => {
           id: 'error',
         });
       }
+=======
+    const [data, setData] = useState([]);
+    const [city, setCity] = useState('');
+    const [type, setType] = useState('');
+    const [price, setPrice] = useState('');
+            
+    const resetFilters = (e) => {
+        e.preventDefault();
+        setCity('');
+        setType('');
+        setPrice('');
+>>>>>>> 689d40deec1c3b1739cf4857423fd906e4de212a
     };
 
     getTypeOfServices();
@@ -44,6 +58,7 @@ const ListServicesController = () => {
 
   const handleDeleteService = () => {};
 
+<<<<<<< HEAD
   const handleEditService = (data, itemId, description, price) => {
     setEnableEdit(!enableEdit);
 
@@ -81,6 +96,11 @@ const ListServicesController = () => {
                 );
               })}
             </select>
+=======
+
+
+
+>>>>>>> 689d40deec1c3b1739cf4857423fd906e4de212a
 
             <select
               name='typeOfService'
@@ -135,6 +155,7 @@ const ListServicesController = () => {
                   />
                   <h3 className='text-2xl'>{item.type}</h3>
 
+<<<<<<< HEAD
                   <input
                     type='text'
                     value={data?.description}
@@ -145,6 +166,26 @@ const ListServicesController = () => {
                   />
 
                   <p className='text-1xl font-black pt-3 pb-1'>{item.city}</p>
+=======
+                                <h3>{item.description}</h3>
+                                
+                                <p className='text-1xl font-black pt-3 pb-1'>
+                                    {item.city}
+                                </p>
+
+                                <h3>{item.price}</h3>
+                    
+                                <NavLink to={`${VITE_CLIENT_URL}/typeOfServices/edit/${item.id}`}>Editar</NavLink>
+                            </li>
+                        );
+                    })}
+                </ul>
+            </div>
+            </div>
+        </>
+    )
+}
+>>>>>>> 689d40deec1c3b1739cf4857423fd906e4de212a
 
                   <input
                     type='text'
