@@ -8,12 +8,12 @@ const ListServicesController = () => {
     const [city, setCity] = useState('');
     const [type, setType] = useState('');
     const [price, setPrice] = useState('');
-    const [description, setDescription ] = useState('');
-    const [input, setInput] = useState(true);
-
-    const [editingServiceId, setEditingServiceId] = useState(null);                
+    const [description, setDescription ] = useState([data?.description])
+    const [ enableEdit, setEnableEdit ] = useState(false);
 
 
+
+            
     const resetFilters = (e) => {
         e.preventDefault();
         setCity('');
@@ -32,6 +32,7 @@ const ListServicesController = () => {
             try {
                 const data = await fetchAllTypeOfServices(searchParamsToString);
                 setData(data);
+               
             } catch (error) {
                 toast.error(error.message, {
                     id: 'error',
@@ -49,12 +50,20 @@ const ListServicesController = () => {
 
     }
 
-    const handleEditService = (description, price) => {
+    const handleEditService = (data, itemId, description,price) => {
 
-        setInput(!input)
-        setDescription(description)
-        setPrice(price)
-    }
+        setEnableEdit(!enableEdit)
+        
+        const newArray = data.filter((item)=>{
+            if(item.id == itemId){
+                
+                setDescription(description)
+                setPrice(price)
+               
+            }})
+            
+        setData(newArray)
+}
 
     return (
         <>
@@ -137,9 +146,8 @@ const ListServicesController = () => {
 
                                 <input 
                                 type="text" 
-                                value={description}
+                                value={data?.description}
                                 onChange={(e)=>{setDescription(e.target.value)}}
-                                disabled={input}
                                 required
                                 />
                                 
@@ -150,17 +158,13 @@ const ListServicesController = () => {
                                 <input 
                                 type="text" 
                                 value={price}
+                                placeholder={item.price}
                                 onChange={(e)=>{setPrice(e.target.value)}}
-                                disabled={input}
                                 required
                                 />
                             
                                 <button onClick={handleDeleteService}>Borrar</button>
-
-                                {editingServiceId === item.id ? (
-                                    <button onClick={handleSaveClick}>Guardar</button>
-                                    ) : (
-                                    <button onClick={() => handleEditService(description,price)}>{input?'Editar':'Guardar'}</button> )}
+                                <button onClick={()=>{handleEditService(data,item.id, description,price)}}>{enableEdit?'Edita':'Guardar'}</button>
                                 
                             </li>
                         );
