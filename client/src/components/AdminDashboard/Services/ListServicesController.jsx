@@ -8,6 +8,11 @@ const ListServicesController = () => {
     const [city, setCity] = useState('');
     const [type, setType] = useState('');
     const [price, setPrice] = useState('');
+    const [description, setDescription ] = useState('');
+    const [input, setInput] = useState(true);
+
+    const [editingServiceId, setEditingServiceId] = useState(null);                
+
 
     const resetFilters = (e) => {
         e.preventDefault();
@@ -40,6 +45,18 @@ const ListServicesController = () => {
     const citiesNoRepeated = [...new Set(data.map((item) => item.city))];
     const typeNoRepeated = [...new Set(data.map((item) => item.type))];
 
+    const handleDeleteService = () => {
+
+    }
+
+    const handleSaveClick = () => {
+        
+    }
+
+    const handleEditService = (itemId) => {
+        
+        setEditingServiceId(itemId)
+    }
 
     return (
         <>
@@ -103,11 +120,14 @@ const ListServicesController = () => {
                     <button onClick={resetFilters}>Limpiar Filtros</button>
                 </form>
             </div>
+            
             <div>
                 <ul className='gridClockYou'>
                     {data.map((item) => {
+                        
                         return (
-                            <li
+                            
+                            <li id={item.id}
                                 key={item.id}
                                 className='flex flex-col place-content-between'
                             >
@@ -117,16 +137,34 @@ const ListServicesController = () => {
                                 />
                                 <h3 className='text-2xl'>{item.type}</h3>
 
-                                <p className='grow'>{item.description}</p>
+                                <input 
+                                type="text" 
+                                value={description}
+                                onChange={(e)=>{setDescription(e.target.value)}}
+                                disabled={input}
+                                required
+                                />
+                                
                                 <p className='text-1xl font-black pt-3 pb-1'>
                                     {item.city}
                                 </p>
 
-                                <p>{item.price}€</p>
-                                <div>
-                                    <buton>Borrar</buton>
-                                    <buton>Editar</buton>
-                                </div>
+                                <input 
+                                type="text" 
+                                value={price}
+                                onChange={(e)=>{setPrice(e.target.value)}}
+                                disabled={input}
+                                required
+                                />
+                            
+                                <button onClick={handleDeleteService}>Borrar</button>
+
+                                {editingServiceId === item.id ? (
+                                    <button onClick={handleSaveClick}>Guardar</button>
+                                    ) : (
+                                    <button onClick={() => handleEditService(item.id)}>
+                                        Editar
+                                    </button> )}
                                 
                             </li>
                         );
