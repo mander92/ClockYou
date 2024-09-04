@@ -2,6 +2,12 @@
   --minmaxgriditem: 250px;
   --column-count: 1;
   /* grid-template-columns: repeat(auto-fit, minmax(var(--minmaxgriditem), 1fr)); */
+  /* 
+    https://css-tricks.com/almanac/properties/g/grid-template-columns/ 
+    https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns
+    https://stackoverflow.com/questions/45459151/how-to-set-the-maximum-width-of-a-column-in-css-grid-layout
+    https://css-tricks.com/an-auto-filling-css-grid-with-max-columns/
+  */
 }
 
 @media (width > 600px) {
@@ -93,14 +99,4 @@
       display: inline-block;
     }
   }
-
-  /* .gridClockYou {
-    grid-template-columns: repeat(3, minmax(var(--minmaxgriditem), 350px));
-  } */
 }
-
-/* @media only screen and (min-width: 1280px) {
-  .gridClockYou {
-    grid-template-columns: repeat(4, minmax(var(--minmaxgriditem), 1fr));
-  }
-} */

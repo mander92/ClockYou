@@ -17,11 +17,19 @@ const Header = () => {
   // const navATags = Array.from(document.querySelectorAll('.linkmainnav'));
   // https://reactrouter.com/en/v6.3.0/api#navlink
 
-  // useEffect(() => {
-  //     menuBurguer
-  //         ? document.body.classList.add('overflow-hidden')
-  //         : document.body.classList.remove('overflow-hidden');
-  // }, [menuBurguer]);
+  useEffect(() => {
+    const navDinamica = document.getElementById('navdinamica');
+    const windowWidth = window.innerWidth;
+    let checkForShowClass = navDinamica.classList.contains('show');
+
+    if (windowWidth < 1024) {
+      checkForShowClass
+        ? document.body.classList.add('overflow-hidden')
+        : document.body.classList.remove('overflow-hidden');
+    } else {
+      document.body.classList.remove('overflow-hidden');
+    }
+  }, [menuBurguer]);
 
   return (
     <header>
