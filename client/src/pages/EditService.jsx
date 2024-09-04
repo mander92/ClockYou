@@ -1,132 +1,127 @@
 import { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { fetchTypeOfService } from '../services/typeOfServiceServices';
+import {
+  fetchTypeOfService,
+  fetchDeleteTypeOfServices,
+  fetchEditTypeOfServices,
+} from '../services/typeOfServiceServices';
 import { AuthContext } from '../context/AuthContext';
 import toast from 'react-hot-toast';
 const { VITE_API_URL } = import.meta.env;
-
+import './editPagesForms.css';
 
 const EditService = () => {
-    const { typeOfServiceId } = useParams();
-    const [data, setData] = useState(null);
-    const [description, setDescription] = useState(data?.description || '');
-    const [price, setPrice] = useState(data?.price || '')
+  const { typeOfServiceId } = useParams();
+  const [data, setData] = useState(null);
+  const [description, setDescription] = useState(data?.description || '');
+  const [price, setPrice] = useState(data?.price || '');
 
-    const {authToken} = useContext(AuthContext);
-    const navigate = useNavigate()
+  const { authToken } = useContext(AuthContext);
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    const getTypeOfService = async () => {
+      try {
+        const data = await fetchTypeOfService(typeOfServiceId);
+        setData(data);
+        setDescription(data.description);
+        setPrice(data.price);
+      } catch (error) {
+        toast.error(error.message, {
+          id: 'error',
+        });
+      }
+    };
 
-    useEffect(() => {
-        const getTypeOfService = async () => {
-            try {
-                const data = await fetchTypeOfService(typeOfServiceId);
-                setData(data);
-            } catch (error) {
-                toast.error(error.message, {
-                    id: 'error',
-                });
-            }
-        };
+    getTypeOfService();
+  }, [typeOfServiceId]);
 
-        getTypeOfService();
-    }, [typeOfServiceId]);
+  const handleEditService = async (e) => {
+    e.preventDefault();
 
-    const handleEditService = async (e) => {
-        try {
-            e.preventDefault()
-
-            const res = await fetch(`${VITE_API_URL}/typeOfServices/${typeOfServiceId}`,{
-                method: 'PUT',
-                headers: authToken? {
-                    Authorization : authToken,
-                    'Content-Type': 'application/json'
-                }:{},
-                body: JSON.stringify({
-                    description,
-                    price
-                })
-            })
-
-            const body = await res.json()
-
-            toast.success(body.message)
-
-            setData(body)
-
-            navigate('/user#services')
-
-
-
-        } catch (error) {
-            toast.error(error.message)
-        }
+    try {
+      const body = await fetchEditTypeOfServices(
+        typeOfServiceId,
+        description,
+        price,
+        authToken
+      );
+      toast.success(body.message, {
+        id: 'ok',
+      });
+      setData(body);
+      navigate('/user#services');
+    } catch (error) {
+      toast.error(error.message, {
+        id: 'error',
+      });
     }
+  };
 
-    const handleDeleteService = async () => {
-        try {
-            const res = await fetch(`${VITE_API_URL}/typeOfServices/${typeOfServiceId}`,{
-                method: 'DELETE',
-                headers: authToken? {
-                    Authorization : authToken,
-                    'Content-Type': 'application/json'
-                }:{}})
-
-            const body = await res.json()
-
-            toast.success(body.message)
-
-            navigate('/user#services')
-
-        } catch (error) {
-            toast.error(error.message)
-        }
+  const handleDeleteService = async () => {
+    try {
+      const body = await fetchDeleteTypeOfServices(typeOfServiceId, authToken);
+      toast.success(body.message, {
+        id: 'ok',
+      });
+      navigate('/user#services');
+    } catch (error) {
+      toast.error(error.message, {
+        id: 'error',
+      });
     }
+  };
 
-
-    return(
-        <>
-
-        <section className='container'>
-            <h1>{data?.type}</h1>
-            <img
-                src={`${VITE_API_URL}/${data?.image}`}
-                alt={`${data?.description}`}
-            />
-            <h2>{data?.description}</h2>
-            <h2>{data?.price}€</h2>
-            
-        
+  return (
+    <>
+      <h2 className='container'>{data?.type}</h2>
+      <section className='container editServiceLayoutWrapper'>
+        <article className='editServiceLayout'>
+          <img
+            src={`${VITE_API_URL}/${data?.image}`}
+            alt={`${data?.description}`}
+          />
+          <div>
+            <h4>{data?.description}</h4>
+            <h4>{data?.city}</h4>
+            <h4>{data?.price}€</h4>
+          </div>
+        </article>
 
         <form className='form' onSubmit={handleEditService}>
-            <label htmlFor="description">Descripción</label>
-            <input 
-            id='description'
-            type="text" 
-            value={description}
-            onChange={(e)=>{setDescription(e.target.value)}}
-            placeholder={data?.description}
-            required
+          <fieldset>
+            <legend>Modificar Servicio</legend>
+
+            <label htmlFor='description'>Descripción</label>
+            <input
+              id='description'
+              type='text'
+              value={description}
+              onChange={(e) => {
+                setDescription(e.target.value);
+              }}
+              placeholder={data?.description}
+              required
             />
 
-            <label htmlFor="description">Precio</label>
-            <input 
-            type="number" 
-            value={price}
-            onChange={(e)=>{setPrice(e.target.value)}}
-            placeholder={data?.price}
-            required
+            <label htmlFor='description'>Precio</label>
+            <input
+              type='number'
+              value={price}
+              onChange={(e) => {
+                setPrice(e.target.value);
+              }}
+              placeholder={data?.price}
+              required
             />
 
-            <button>enviar</button>
-
-            </form>
-
+            <button>Guardar Cambios</button>
             <button onClick={handleDeleteService}>Eliminar Servicio</button>
-
-        </section> 
-
-        </>
-    )
-}
+          </fieldset>
+        </form>
+      </section>
+    </>
+  );
+};
 
 export default EditService;

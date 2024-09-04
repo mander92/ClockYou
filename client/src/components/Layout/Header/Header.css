@@ -63,6 +63,7 @@
 
     &.noBgr {
       background-color: transparent;
+      color: var(--cerulean);
     }
   }
 
