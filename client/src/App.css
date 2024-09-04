@@ -140,6 +140,11 @@ fieldset {
     margin-top: 0.7rem;
     margin-right: 0.7rem;
     /* https://www.youtube.com/watch?v=3ugXM3ZDUuE&t=55s */
+
+    &.m-0 {
+      margin-top: 0;
+      margin-right: 0;
+    }
   }
 }
 
@@ -160,11 +165,13 @@ fieldset {
     border: 1px solid var(--icicle);
 
     &:hover {
-      background-color: var(--overcast);
+      background-color: var(--warm-gray);
+      color: var(--white-color);
     }
 
     &:focus {
-      background-color: var(--darker-overcast);
+      background-color: var(--warm-gray);
+      color: var(--white-color);
     }
   }
 }

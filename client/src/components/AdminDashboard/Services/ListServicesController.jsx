@@ -44,97 +44,93 @@ const ListServicesController = () => {
   return (
     <>
       <div className='container'>
-        <div>
-          <form className='form filterServicesForm'>
-            <select
-              name='city'
-              id='city'
-              value={city}
-              onChange={(e) => {
-                setCity(e.target.value);
-              }}
-            >
-              <option value='' disabled>
-                Ciudad:
-              </option>
-              {citiesNoRepeated.map((city) => {
-                return (
-                  <option key={city} value={city}>
-                    {city}
-                  </option>
-                );
-              })}
-            </select>
-
-            <select
-              name='typeOfService'
-              id='typeOfService'
-              value={type}
-              onChange={(e) => {
-                setType(e.target.value);
-              }}
-            >
-              <option value='' disabled>
-                Tipo de Servicio:
-              </option>
-              {typeNoRepeated.map((type) => {
-                return (
-                  <option key={type} value={type}>
-                    {type}
-                  </option>
-                );
-              })}
-            </select>
-
-            <select
-              name='precio'
-              id='precio'
-              value={price}
-              onChange={(e) => {
-                setPrice(e.target.value);
-              }}
-            >
-              <option value='' disabled>
-                Precio:
-              </option>
-              <option value='ASC'>Ascendente</option>
-              <option value='DESC'>Descendente</option>
-            </select>
-            <button onClick={resetFilters}>Limpiar Filtros</button>
-          </form>
-        </div>
-
-        <div>
-          <ul className='gridClockYou'>
-            {data.map((item) => {
+        <form className='form filterServicesForm'>
+          <select
+            name='city'
+            id='city'
+            value={city}
+            onChange={(e) => {
+              setCity(e.target.value);
+            }}
+          >
+            <option value='' disabled>
+              Ciudad:
+            </option>
+            {citiesNoRepeated.map((city) => {
               return (
-                <li
-                  id={item.id}
-                  key={item.id}
-                  className='flex flex-col place-content-between'
-                >
-                  <img
-                    src={`${VITE_API_URL}/${item.image}`}
-                    alt={item.description}
-                  />
-                  <h3 className='text-2xl'>{item.type}</h3>
-
-                  <h3>{item.description}</h3>
-
-                  <p className='text-1xl font-black pt-3 pb-1'>{item.city}</p>
-
-                  <h3>{item.price}</h3>
-
-                  <NavLink
-                    to={`${VITE_CLIENT_URL}/typeOfServices/edit/${item.id}`}
-                  >
-                    Editar
-                  </NavLink>
-                </li>
+                <option key={city} value={city}>
+                  {city}
+                </option>
               );
             })}
-          </ul>
-        </div>
+          </select>
+
+          <select
+            name='typeOfService'
+            id='typeOfService'
+            value={type}
+            onChange={(e) => {
+              setType(e.target.value);
+            }}
+          >
+            <option value='' disabled>
+              Tipo de Servicio:
+            </option>
+            {typeNoRepeated.map((type) => {
+              return (
+                <option key={type} value={type}>
+                  {type}
+                </option>
+              );
+            })}
+          </select>
+
+          <select
+            name='precio'
+            id='precio'
+            value={price}
+            onChange={(e) => {
+              setPrice(e.target.value);
+            }}
+          >
+            <option value='' disabled>
+              Precio:
+            </option>
+            <option value='ASC'>Ascendente</option>
+            <option value='DESC'>Descendente</option>
+          </select>
+          <button onClick={resetFilters}>Limpiar Filtros</button>
+        </form>
+
+        <ul className='gridClockYou'>
+          {data.map((item) => {
+            return (
+              <li
+                id={item.id}
+                key={item.id}
+                className='flex flex-col items-center text-center'
+              >
+                <img
+                  src={`${VITE_API_URL}/${item.image}`}
+                  alt={item.description}
+                />
+                <h3 className='text-2xl grow'>{item.type}</h3>
+
+                <p>{item.description}</p>
+
+                <p className='text-1xl font-black pt-3 pb-1'>{item.city}</p>
+
+                <h3>{item.price}</h3>
+
+                <NavLink
+                  to={`${VITE_CLIENT_URL}/typeOfServices/edit/${item.id}`}
+                >
+                  Editar
+                </NavLink>
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </>
   );

@@ -57,7 +57,8 @@
     }
 
     &.active {
-      background-color: var(--darker-overcast);
+      background-color: var(--warm-gray);
+      color: var(--white-color);
     }
 
     &.noBgr {

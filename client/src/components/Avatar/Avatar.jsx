@@ -34,37 +34,34 @@ const Avatar = () => {
 
   return (
     <form className='form avatarBox' onSubmit={handleEditAvatar}>
-      <fieldset>
-        <legend>Avatar</legend>
-        <img
-          className='user-avatar'
-          src={`${
-            user?.avatar
-              ? `${VITE_API_URL}/${user.avatar}`
-              : '/default-avatar.png'
-          }`}
-          alt='Avatar'
-        />
-        {enableEditAvatar ? (
-          <div>
-            <input
-              type='file'
-              accept='image/png, image/jpg, image/jpeg, image/tiff'
-              required
-              onChange={(e) => {
-                setAvatar(e.target.files[0]);
-              }}
-            />
-          </div>
-        ) : (
-          ''
-        )}
+      <img
+        className='user-avatar'
+        src={`${
+          user?.avatar
+            ? `${VITE_API_URL}/${user.avatar}`
+            : '/default-avatar.png'
+        }`}
+        alt='Avatar'
+      />
+      {enableEditAvatar ? (
         <div>
-          <button type='submit'>
-            {!enableEditAvatar ? 'Editar' : 'Guardar'}
-          </button>
+          <input
+            type='file'
+            accept='image/png, image/jpg, image/jpeg, image/tiff'
+            required
+            onChange={(e) => {
+              setAvatar(e.target.files[0]);
+            }}
+          />
         </div>
-      </fieldset>
+      ) : (
+        ''
+      )}
+      <div className='text-center py-5'>
+        <button className='m-0' type='submit'>
+          {!enableEditAvatar ? 'Editar' : 'Guardar'}
+        </button>
+      </div>
     </form>
   );
 };
