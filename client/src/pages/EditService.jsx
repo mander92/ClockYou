@@ -62,6 +62,26 @@ const EditService = () => {
         }
     }
 
+    const handleDeleteService = async () => {
+        try {
+            const res = await fetch(`${VITE_API_URL}/typeOfServices/${typeOfServiceId}`,{
+                method: 'DELETE',
+                headers: authToken? {
+                    Authorization : authToken,
+                    'Content-Type': 'application/json'
+                }:{}})
+
+            const body = await res.json()
+
+            toast.success(body.message)
+
+            navigate('/user#services')
+
+        } catch (error) {
+            toast.error(error.message)
+        }
+    }
+
 
     return(
         <>
@@ -98,9 +118,13 @@ const EditService = () => {
             />
 
             <button>enviar</button>
-        </form>
+
+            </form>
+
+            <button onClick={handleDeleteService}>Eliminar Servicio</button>
 
         </section> 
+
         </>
     )
 }

@@ -134,7 +134,7 @@ const ListUserController = () => {
         <button onClick={resetFilters}>Limpiar Filtros</button>
       </form>
 
-      <div class='container px-0'>
+      <div className='container px-0'>
         <ul className='gridClockYou'>
           {data.map((item) => {
             return (
