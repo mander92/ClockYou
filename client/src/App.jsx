@@ -12,6 +12,7 @@ import TypeOfServices from '../src/components/TypeOfServices/TypeOfServices.jsx'
 import ChangeRecoverPasswordPage from './pages/ChangeRecoverPasswordPage.jsx';
 import DetailTypeOfService from './pages/DetailTypeOfService/DetailTypeOfServices.jsx';
 import DashboardPage from './pages/DashboardPage.jsx';
+import EditService from './pages/EditService.jsx';
 
 const App = () => {
   return (
@@ -31,6 +32,10 @@ const App = () => {
           <Route
             path='/typeOfServices/:typeOfServiceId'
             element={<DetailTypeOfService />}
+          />
+          <Route
+            path='/typeOfServices/edit/:typeOfServiceId'
+            element={<EditService />}
           />
 
           <Route
