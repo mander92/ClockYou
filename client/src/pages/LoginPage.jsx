@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate, NavLink } from 'react-router-dom';
 import { fetchLoginService } from '../services/userServices';
 import { AuthContext } from '../context/AuthContext';
 import useUser from '../hooks/useUser';
@@ -47,7 +47,6 @@ const LoginPage = () => {
             <form className='form' onSubmit={handleLogin}>
                 <fieldset>
                     <legend>Inicia sesión</legend>
-
                     <label htmlFor='email'>Email</label>
                     <input
                         type='email'
@@ -70,7 +69,10 @@ const LoginPage = () => {
                         <button type='submit'>Iniciar sesión</button>
                         <button onClick={resetInputs}>Limpiar</button>
                     </div>
-                    <a href='/recoverpassword'> ¿Has olvidado tu contraseña?</a>
+                    <NavLink to='/recoverpassword'>
+                        {' '}
+                        ¿Has olvidado tu contraseña?
+                    </NavLink>{' '}
                 </fieldset>
             </form>
         </section>

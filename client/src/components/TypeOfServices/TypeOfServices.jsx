@@ -2,6 +2,7 @@ import './typeOfServices.css';
 const { VITE_API_URL, VITE_CLIENT_URL } = import.meta.env;
 import { useEffect, useState } from 'react';
 import { fetchAllTypeOfServices } from '../../services/typeOfServiceServices';
+import { NavLink } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
 const TypeOfServices = () => {
@@ -122,11 +123,11 @@ const TypeOfServices = () => {
                                 </p>
 
                                 <p>{item.price}€</p>
-                                <a
-                                    href={`${VITE_CLIENT_URL}/typeOfServices/${item.id}`}
+                                <NavLink
+                                    to={`${VITE_CLIENT_URL}/typeOfServices/${item.id}`}
                                 >
                                     Ver
-                                </a>
+                                </NavLink>
                             </li>
                         );
                     })}
