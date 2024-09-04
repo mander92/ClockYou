@@ -5,7 +5,7 @@ import useUser from '../hooks/useUser';
 import Avatar from '../components/Avatar/Avatar';
 import Profile from '../components/Profile/Profile';
 import Users from '../components/AdminDashboard/Users/Users';
-import Services from '../components/AdminDashboard/Services';
+import Services from '../components/AdminDashboard/Services/Services';
 import Contracts from '../components/AdminDashboard/Contracts';
 import Shifts from '../components/AdminDashboard/Shifts';
 import MyServices from '../components/EmployeeDashBoard/MyServices';
