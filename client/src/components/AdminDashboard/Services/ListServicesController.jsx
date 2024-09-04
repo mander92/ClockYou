@@ -1,7 +1,5 @@
-const { VITE_API_URL, VITE_CLIENT_URL } = import.meta.env;
 import { useEffect, useState } from 'react';
 import { fetchAllTypeOfServices } from '../../../services/typeOfServiceServices';
-import { NavLink } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
 const ListServicesController = () => {
