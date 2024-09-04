@@ -49,13 +49,11 @@ const ListServicesController = () => {
 
     }
 
-    const handleSaveClick = () => {
-        
-    }
+    const handleEditService = (description, price) => {
 
-    const handleEditService = (itemId) => {
-        
-        setEditingServiceId(itemId)
+        setInput(!input)
+        setDescription(description)
+        setPrice(price)
     }
 
     return (
@@ -162,9 +160,7 @@ const ListServicesController = () => {
                                 {editingServiceId === item.id ? (
                                     <button onClick={handleSaveClick}>Guardar</button>
                                     ) : (
-                                    <button onClick={() => handleEditService(item.id)}>
-                                        Editar
-                                    </button> )}
+                                    <button onClick={() => handleEditService(description,price)}>{input?'Editar':'Guardar'}</button> )}
                                 
                             </li>
                         );

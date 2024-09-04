@@ -169,12 +169,22 @@ fieldset {
   }
 }
 
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 768px) {
+  .managerTabs {
+    justify-content: center;
+  }
 }
 
 .formsWrapper > * {
   margin-inline: auto;
+}
+
+.formsWrapper > *:not(.avatarBox) {
   max-width: 50rem;
+}
+
+.formsWrapper > .avatarBox {
+  max-width: 30rem;
 }
 
 .user-avatar {
