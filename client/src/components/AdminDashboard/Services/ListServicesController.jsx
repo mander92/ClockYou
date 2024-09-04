@@ -5,13 +5,10 @@ import toast from 'react-hot-toast';
 import { NavLink } from 'react-router-dom';
 
 const ListServicesController = () => {
-<<<<<<< HEAD
   const [data, setData] = useState([]);
   const [city, setCity] = useState('');
   const [type, setType] = useState('');
   const [price, setPrice] = useState('');
-  const [description, setDescription] = useState([data?.description]);
-  const [enableEdit, setEnableEdit] = useState(false);
 
   const resetFilters = (e) => {
     e.preventDefault();
@@ -36,18 +33,6 @@ const ListServicesController = () => {
           id: 'error',
         });
       }
-=======
-    const [data, setData] = useState([]);
-    const [city, setCity] = useState('');
-    const [type, setType] = useState('');
-    const [price, setPrice] = useState('');
-            
-    const resetFilters = (e) => {
-        e.preventDefault();
-        setCity('');
-        setType('');
-        setPrice('');
->>>>>>> 689d40deec1c3b1739cf4857423fd906e4de212a
     };
 
     getTypeOfServices();
@@ -55,22 +40,6 @@ const ListServicesController = () => {
 
   const citiesNoRepeated = [...new Set(data.map((item) => item.city))];
   const typeNoRepeated = [...new Set(data.map((item) => item.type))];
-
-  const handleDeleteService = () => {};
-
-<<<<<<< HEAD
-  const handleEditService = (data, itemId, description, price) => {
-    setEnableEdit(!enableEdit);
-
-    const newArray = data.filter((item) => {
-      if (item.id == itemId) {
-        setDescription(description);
-        setPrice(price);
-      }
-    });
-
-    setData(newArray);
-  };
 
   return (
     <>
@@ -96,11 +65,6 @@ const ListServicesController = () => {
                 );
               })}
             </select>
-=======
-
-
-
->>>>>>> 689d40deec1c3b1739cf4857423fd906e4de212a
 
             <select
               name='typeOfService'
@@ -155,56 +119,17 @@ const ListServicesController = () => {
                   />
                   <h3 className='text-2xl'>{item.type}</h3>
 
-<<<<<<< HEAD
-                  <input
-                    type='text'
-                    value={data?.description}
-                    onChange={(e) => {
-                      setDescription(e.target.value);
-                    }}
-                    required
-                  />
+                  <h3>{item.description}</h3>
 
                   <p className='text-1xl font-black pt-3 pb-1'>{item.city}</p>
-=======
-                                <h3>{item.description}</h3>
-                                
-                                <p className='text-1xl font-black pt-3 pb-1'>
-                                    {item.city}
-                                </p>
 
-                                <h3>{item.price}</h3>
-                    
-                                <NavLink to={`${VITE_CLIENT_URL}/typeOfServices/edit/${item.id}`}>Editar</NavLink>
-                            </li>
-                        );
-                    })}
-                </ul>
-            </div>
-            </div>
-        </>
-    )
-}
->>>>>>> 689d40deec1c3b1739cf4857423fd906e4de212a
+                  <h3>{item.price}</h3>
 
-                  <input
-                    type='text'
-                    value={price}
-                    placeholder={item.price}
-                    onChange={(e) => {
-                      setPrice(e.target.value);
-                    }}
-                    required
-                  />
-
-                  <button onClick={handleDeleteService}>Borrar</button>
-                  <button
-                    onClick={() => {
-                      handleEditService(data, item.id, description, price);
-                    }}
+                  <NavLink
+                    to={`${VITE_CLIENT_URL}/typeOfServices/edit/${item.id}`}
                   >
-                    {enableEdit ? 'Edita' : 'Guardar'}
-                  </button>
+                    Editar
+                  </NavLink>
                 </li>
               );
             })}
