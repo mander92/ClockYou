@@ -1,8 +1,28 @@
 :root {
   --minmaxgriditem: 250px;
+  --column-count: 1;
+  /* grid-template-columns: repeat(auto-fit, minmax(var(--minmaxgriditem), 1fr)); */
 }
 
-@media only screen and (min-width: 1440px) {
+@media (width > 600px) {
+  :root {
+    --column-count: 2;
+  }
+}
+
+@media (width > 1024px) {
+  :root {
+    --column-count: 3;
+  }
+}
+
+@media (width > 1280px) {
+  :root {
+    --column-count: 4;
+  }
+}
+
+@media (width > 1440px) {
   :root {
     --minmaxgriditem: 300px;
   }
@@ -11,7 +31,7 @@
 .gridClockYou {
   display: grid;
   gap: 1rem 1.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(var(--minmaxgriditem), 1fr));
+  grid-template-columns: repeat(var(--column-count), 1fr);
   margin-top: 1rem;
 
   & li {
