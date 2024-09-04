@@ -1,3 +1,4 @@
+const { VITE_API_URL } = import.meta.env;
 import { useEffect, useState } from 'react';
 import { fetchAllTypeOfServices } from '../../../services/typeOfServiceServices';
 import toast from 'react-hot-toast';
