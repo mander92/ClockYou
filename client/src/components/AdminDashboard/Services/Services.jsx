@@ -1,11 +1,13 @@
 import { useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
-import ListServicesController from './ListServicesController.jsx'
-import RegisterServicesController from './RegisterServicesController.jsx'
+import ListServicesController from './ListServicesController.jsx';
+import RegisterServicesController from './RegisterServicesController.jsx';
 
 const Services = () => {
-    const [activeSection, setActiveSection] = useState('ListUserController');
+    const [activeSection, setActiveSection] = useState(
+        'ListServicesController'
+    );
     const location = useLocation();
 
     useEffect(() => {}, [location]);
@@ -21,7 +23,7 @@ const Services = () => {
 
     return (
         <>
-        <div className='managerTabs'>
+            <div className='managerTabs'>
                 <button
                     to='#ListServicesController'
                     onClick={() => handleChange('ListServicesController')}
@@ -37,7 +39,7 @@ const Services = () => {
             </div>
             {sectionComponents[activeSection]}
         </>
-    )
-}
+    );
+};
 
-export default Services; 
+export default Services;
