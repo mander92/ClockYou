@@ -43,7 +43,10 @@ const RegisterNewTypeOfServiceController = () => {
     };
 
     return (
-        <form className='form' onSubmit={handleRegisterNewTypeOfService}>
+        <form
+            className='form'
+            onSubmit={handleRegisterNewTypeOfService}
+        >
             <h1>Registra un nuevo tipo de servicio</h1>
             <fieldset>
                 <legend>Registrar un servicio</legend>
@@ -87,6 +90,8 @@ const RegisterNewTypeOfServiceController = () => {
                     onChange={(e) => {
                         setPrice(e.target.value);
                     }}
+                    min={1}
+                    max={100}
                     placeholder={'Precio'}
                     required
                 />
