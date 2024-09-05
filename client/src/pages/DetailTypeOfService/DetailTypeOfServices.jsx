@@ -38,7 +38,6 @@ const DetailTypeOfService = () => {
             />
             <h3>{data?.description}</h3>
             <h3>{data?.price}€</h3>
-            <p></p>
           </div>
         </div>
 
