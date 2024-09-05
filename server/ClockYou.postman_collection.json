@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"david_miras@icloud.com\",\r\n    \"password\": \"12345678\",\r\n    \"firstName\": \"David\",\r\n    \"lastName\": \"Mirás Bellón\",\r\n    \"dni\": \"12894578\",\r\n    \"phone\": \"987654321\"\r\n}",
+							"raw": "{\r\n    \"email\": \"david_miras@icloud.com\",\r\n    \"password\": \"12345678\",\r\n    \"firstName\": \"David\",\r\n    \"lastName\": \"Mirás Bellón\",\r\n    \"dni\": \"12894578A\",\r\n    \"phone\": \"987654321\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -45,13 +45,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIyYTZhY2U5LWQyZTMtNDA2NC04M2JkLWNiMzIzMzcwMjA5OCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNDg5MzYyMSwiZXhwIjoxNzI1NDk4NDIxfQ.DN8H-ZNtwLyo_mOr0afbLuxpT8ADhJ-nWc9k1gdkHHw",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgxYWQ0NDZjLWFlMzQtNDY3NC1iMmM0LTU5NTUyOWY2ZjA0NCIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjUyOTA5OTYsImV4cCI6MTcyNTg5NTc5Nn0.BLolvNWgxrGylKjucDKIi9OljvlrasfivCrq7bREJI8",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"Admin\",\r\n    \"lastName\": \"Default\",\r\n    \"phone\": \"666202020\"\r\n}",
+							"raw": "{\r\n    \"firstName\": \"Pichotes\",\r\n    \"lastName\": \"De los Palotes\",\r\n    \"phone\": \"666202020\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -59,15 +59,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/users/22a6ace9-d2e3-4064-83bd-cb3233702098",
+							"raw": "http://localhost:8000/user/350b1f40-06ef-4292-85d4-be7f36523141",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
-								"users",
-								"22a6ace9-d2e3-4064-83bd-cb3233702098"
+								"user",
+								"350b1f40-06ef-4292-85d4-be7f36523141"
 							]
 						}
 					},
@@ -80,7 +80,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIyYTZhY2U5LWQyZTMtNDA2NC04M2JkLWNiMzIzMzcwMjA5OCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNDg5MzYyMSwiZXhwIjoxNzI1NDk4NDIxfQ.DN8H-ZNtwLyo_mOr0afbLuxpT8ADhJ-nWc9k1gdkHHw",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNjNzNjODZkLTlhYmMtNDU3ZS05ZjVkLTQ4MjI1ZjlkZGI0ZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNTU0MzYyMywiZXhwIjoxNzI2MTQ4NDIzfQ.hTSQPbEbptnzpsVMYdzrBE4VqVWjIsqv46PSMNHaFe8",
 								"type": "text"
 							}
 						],
@@ -116,7 +116,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIyYTZhY2U5LWQyZTMtNDA2NC04M2JkLWNiMzIzMzcwMjA5OCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNDg5MzYyMSwiZXhwIjoxNzI1NDk4NDIxfQ.DN8H-ZNtwLyo_mOr0afbLuxpT8ADhJ-nWc9k1gdkHHw",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNjNzNjODZkLTlhYmMtNDU3ZS05ZjVkLTQ4MjI1ZjlkZGI0ZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNTU0MzYyMywiZXhwIjoxNzI2MTQ4NDIzfQ.hTSQPbEbptnzpsVMYdzrBE4VqVWjIsqv46PSMNHaFe8",
 								"type": "text"
 							}
 						],
@@ -233,7 +233,7 @@
 					"response": []
 				},
 				{
-					"name": "validate",
+					"name": "validate(client)",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -250,7 +250,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/users/validate",
+							"raw": "http://localhost:8000/users/validate/DdBhKTqwCSnxCLXdztz5DSm77EWLqN",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -258,7 +258,8 @@
 							"port": "8000",
 							"path": [
 								"users",
-								"validate"
+								"validate",
+								"DdBhKTqwCSnxCLXdztz5DSm77EWLqN"
 							]
 						}
 					},
@@ -301,7 +302,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"recoverPasswordCode\": \"4Elxmk5Pen\",\n    \"newPassword\": \"12345678\" \n}",
+							"raw": "{\n    \"recoverPasswordCode\": \"ke4LEhjl9i\",\n    \"newPassword\": \"12345678\" \n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -366,7 +367,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIyYTZhY2U5LWQyZTMtNDA2NC04M2JkLWNiMzIzMzcwMjA5OCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNDg5MzYyMSwiZXhwIjoxNzI1NDk4NDIxfQ.DN8H-ZNtwLyo_mOr0afbLuxpT8ADhJ-nWc9k1gdkHHw",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNjNzNjODZkLTlhYmMtNDU3ZS05ZjVkLTQ4MjI1ZjlkZGI0ZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNTU0MzYyMywiZXhwIjoxNzI2MTQ4NDIzfQ.hTSQPbEbptnzpsVMYdzrBE4VqVWjIsqv46PSMNHaFe8",
 								"type": "text"
 							}
 						],
@@ -393,12 +394,12 @@
 								},
 								{
 									"key": "active",
-									"value": "0",
+									"value": "1",
 									"disabled": true
 								},
 								{
 									"key": "role",
-									"value": "admin",
+									"value": "employee",
 									"disabled": true
 								}
 							]
@@ -413,20 +414,20 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "{{employee}}",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdjYmQ1NTBlLTEzMDYtNDQyZS1iZjJmLWM4ZDMyNzQxM2FjNyIsInJvbGUiOiJlbXBsb3llZSIsImlhdCI6MTcyNTI5ODQ5MCwiZXhwIjoxNzI1OTAzMjkwfQ.2MJZuj6cuFB2MnHT2vb8UoJGZxDTWiFfjlVaVzllPdo",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8000/users/5f32d08e-c040-4833-8218-083afe08e30d",
+							"raw": "http://localhost:8000/user/7cbd550e-1306-442e-bf2f-c8d327413ac7",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
-								"users",
-								"5f32d08e-c040-4833-8218-083afe08e30d"
+								"user",
+								"7cbd550e-1306-442e-bf2f-c8d327413ac7"
 							]
 						}
 					},
@@ -439,7 +440,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "{{client}}",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgxYWQ0NDZjLWFlMzQtNDY3NC1iMmM0LTU5NTUyOWY2ZjA0NCIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjUxMzAyODIsImV4cCI6MTcyNTczNTA4Mn0.XsVlf-0wYs8VfaKy51nPt20KQHJxpFOV9BRaW9GPSnk",
 								"type": "text"
 							}
 						],
@@ -449,21 +450,46 @@
 								{
 									"key": "avatar",
 									"type": "file",
-									"src": "/private/var/folders/5q/hhv31t7j423631cknxfrvddc0000gn/T/com.apple.Photos.NSItemProvider/uuid=4AAACDF2-143B-47D4-A3C1-D76C1A7011FE&library=1&type=1&mode=1&loc=true&cap=true.jpeg/IMG_8023.jpeg"
+									"src": "/Users/david_miras/Desktop/IMG_6385.tiff"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8000/users/avatar/7b787e32-12a1-48d4-a19c-71e1feb622e0",
+							"raw": "http://localhost:8000/user/avatar/81ad446c-ae34-4674-b2c4-595529f6f044",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
-								"users",
+								"user",
 								"avatar",
-								"7b787e32-12a1-48d4-a19c-71e1feb622e0"
+								"81ad446c-ae34-4674-b2c4-595529f6f044"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNjNzNjODZkLTlhYmMtNDU3ZS05ZjVkLTQ4MjI1ZjlkZGI0ZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNTU0MzYyMywiZXhwIjoxNzI2MTQ4NDIzfQ.hTSQPbEbptnzpsVMYdzrBE4VqVWjIsqv46PSMNHaFe8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"user"
 							]
 						}
 					},
@@ -481,18 +507,39 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "{{admin}}",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNjNzNjODZkLTlhYmMtNDU3ZS05ZjVkLTQ4MjI1ZjlkZGI0ZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNTQ3Mzg5NSwiZXhwIjoxNzI2MDc4Njk1fQ.N_Kq6KxB290EYx7w4i6ceAWt76uhq9s2QxOZ1RzibKs",
 								"type": "text"
 							}
 						],
 						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"type\": \"Peluquería\",\n    \"description\": \"Corte y retoques de barba\",\n    \"city\":\"Madrid\",\n    \"price\":\"12.50\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "type",
+									"value": "Peluquería",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Corte y retoques de barba",
+									"type": "text"
+								},
+								{
+									"key": "city",
+									"value": "Coruña",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "20",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/Users/david_miras/Downloads/404.png"
 								}
-							}
+							]
 						},
 						"url": {
 							"raw": "http://localhost:8000/typeOfServices",
@@ -526,7 +573,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/typeOfServices/?city=coruña",
+							"raw": "http://localhost:8000/typeOfServices/",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -538,13 +585,19 @@
 							],
 							"query": [
 								{
-									"key": "type",
-									"value": "peluqueria",
+									"key": "price",
+									"value": "asc",
 									"disabled": true
 								},
 								{
 									"key": "city",
-									"value": "coruña"
+									"value": "coruña",
+									"disabled": true
+								},
+								{
+									"key": "type",
+									"value": null,
+									"disabled": true
 								}
 							]
 						}
@@ -558,7 +611,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "{{admin}}",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNjNzNjODZkLTlhYmMtNDU3ZS05ZjVkLTQ4MjI1ZjlkZGI0ZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNTU0MzYyMywiZXhwIjoxNzI2MTQ4NDIzfQ.hTSQPbEbptnzpsVMYdzrBE4VqVWjIsqv46PSMNHaFe8",
 								"type": "text"
 							}
 						],
@@ -567,7 +620,7 @@
 							"urlencoded": []
 						},
 						"url": {
-							"raw": "http://localhost:8000/typeOfServices/a19ba48d-41a9-4cf1-be56-de2cb96ab3be",
+							"raw": "http://localhost:8000/typeOfServices/b780902b-c994-408e-838d-b4c3746842a8",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -575,7 +628,7 @@
 							"port": "8000",
 							"path": [
 								"typeOfServices",
-								"a19ba48d-41a9-4cf1-be56-de2cb96ab3be"
+								"b780902b-c994-408e-838d-b4c3746842a8"
 							]
 						}
 					},
@@ -587,7 +640,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/typeOfServices/0c048d7e-4f05-4641-8ebc-51f764f3b1a7",
+							"raw": "http://localhost:8000/typeOfServices/033f37ce-3ac7-41ae-b7a0-99a559b880f9",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -595,7 +648,7 @@
 							"port": "8000",
 							"path": [
 								"typeOfServices",
-								"0c048d7e-4f05-4641-8ebc-51f764f3b1a7"
+								"033f37ce-3ac7-41ae-b7a0-99a559b880f9"
 							]
 						}
 					},
@@ -608,7 +661,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "{{admin}}",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIyYTZhY2U5LWQyZTMtNDA2NC04M2JkLWNiMzIzMzcwMjA5OCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNDg5MzYyMSwiZXhwIjoxNzI1NDk4NDIxfQ.DN8H-ZNtwLyo_mOr0afbLuxpT8ADhJ-nWc9k1gdkHHw",
 								"type": "text"
 							}
 						],
@@ -622,7 +675,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/typeOfServices/13f90253-a2ff-4ef8-84cf-097ab31d2d1d",
+							"raw": "http://localhost:8000/typeOfServices/a50449a8-f0c2-4ec0-a596-8d872451b6bb",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -630,20 +683,20 @@
 							"port": "8000",
 							"path": [
 								"typeOfServices",
-								"13f90253-a2ff-4ef8-84cf-097ab31d2d1d"
+								"a50449a8-f0c2-4ec0-a596-8d872451b6bb"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "editImage",
+					"name": "editImage(admin)",
 					"request": {
 						"method": "PATCH",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgxM2FiOTM0LWFjNzUtNDllNS05NTg3LWVhOTY1YjI2NDVmYiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNDg3NTgxOSwiZXhwIjoxNzI1NDgwNjE5fQ.QSCx4KtVq13X3n7gFD7JzkUG_DNxW7qK7fZffEMMdwE",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiODdhNWQ2LTgyMjUtNDU2Ny1iYWI0LTg4OThmYTI3NGNiNSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNTAxNzY5MywiZXhwIjoxNzI1NjIyNDkzfQ.5EBgfDxG7n5hBKB2I2Dq4v9BwFm63nNGnBrbvD5k4fE",
 								"type": "text"
 							}
 						],
@@ -653,12 +706,12 @@
 								{
 									"key": "image",
 									"type": "file",
-									"src": "/private/var/folders/5q/hhv31t7j423631cknxfrvddc0000gn/T/com.apple.Photos.NSItemProvider/uuid=1875AE9E-D90C-4B81-BCF4-DF7294351691&library=1&type=1&mode=1&loc=true&cap=true.jpeg/IMG_8008.jpeg"
+									"src": "/Users/david_miras/Desktop/clases.jpg"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8000/typeOfServices/00da5d2a-9495-4ad7-bbda-16bc1a703313",
+							"raw": "http://localhost:8000/typeOfServices/c002e352-fdbf-4e9e-89fb-6384ef1920bd",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -666,7 +719,7 @@
 							"port": "8000",
 							"path": [
 								"typeOfServices",
-								"00da5d2a-9495-4ad7-bbda-16bc1a703313"
+								"c002e352-fdbf-4e9e-89fb-6384ef1920bd"
 							]
 						}
 					},
@@ -684,13 +737,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ5ZDZjZDU5LTYyODUtNDk1Ny04MzVkLTI0NzAxM2ZhMzU5NSIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjQ4NzYxODksImV4cCI6MTcyNTQ4MDk4OX0.89KkmubQ7lcRRCITihKVH3t0OXVs_bNaKbDhZec0Bcg",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgxYWQ0NDZjLWFlMzQtNDY3NC1iMmM0LTU5NTUyOWY2ZjA0NCIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjUxMzAyODIsImV4cCI6MTcyNTczNTA4Mn0.XsVlf-0wYs8VfaKy51nPt20KQHJxpFOV9BRaW9GPSnk",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"dateTime\": \"2023-10-05T14:48:00Z\",\n    \"hours\": \"3\",\n    \"comments\": \"Para estudiante que está cursando 2º de la ESO\",\n    \"address\": \"Avío, 2, 3ªB\",\n    \"city\": \"Santiago de Compostela\",\n    \"postCode\": \"15705\"\n}",
+							"raw": "{\n    \"dateTime\": \"2026-10-05T14:48:00\",\n    \"hours\": \"7\",\n    \"comments\": \"Para estudiante que está cursando 2º de la ESO\",\n    \"address\": \"Avío, 2, 3ªB\",\n    \"city\": \"Santiago de Compostela\",\n    \"postCode\": \"15705\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -698,7 +751,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/services/f0859766-136c-4b6b-9efc-83ffbebe82d8",
+							"raw": "http://localhost:8000/services/033f37ce-3ac7-41ae-b7a0-99a559b880f9",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -706,7 +759,7 @@
 							"port": "8000",
 							"path": [
 								"services",
-								"f0859766-136c-4b6b-9efc-83ffbebe82d8"
+								"033f37ce-3ac7-41ae-b7a0-99a559b880f9"
 							]
 						}
 					},
@@ -719,51 +772,28 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "{{admin}}",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNjNzNjODZkLTlhYmMtNDU3ZS05ZjVkLTQ4MjI1ZjlkZGI0ZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNTU0MzYyMywiZXhwIjoxNzI2MTQ4NDIzfQ.hTSQPbEbptnzpsVMYdzrBE4VqVWjIsqv46PSMNHaFe8",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8000/services/",
+							"raw": "http://localhost:8000/services?status=&order=asc",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
-								"services",
-								""
+								"services"
 							],
 							"query": [
 								{
 									"key": "status",
-									"value": "pending",
-									"disabled": true
+									"value": ""
 								},
 								{
-									"key": "status",
-									"value": "accepted",
-									"disabled": true
-								},
-								{
-									"key": "status",
-									"value": "confirmed",
-									"disabled": true
-								},
-								{
-									"key": "status",
-									"value": "rejected",
-									"disabled": true
-								},
-								{
-									"key": "status",
-									"value": "completed",
-									"disabled": true
-								},
-								{
-									"key": "status",
-									"value": "canceled",
-									"disabled": true
+									"key": "order",
+									"value": "asc"
 								}
 							]
 						}
@@ -777,7 +807,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "{{admin}}",
+								"value": "",
 								"type": "text"
 							}
 						],
@@ -803,12 +833,12 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "{{client}}",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ5ZDZjZDU5LTYyODUtNDk1Ny04MzVkLTI0NzAxM2ZhMzU5NSIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjQ4NzYxODksImV4cCI6MTcyNTQ4MDk4OX0.89KkmubQ7lcRRCITihKVH3t0OXVs_bNaKbDhZec0Bcg",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8000/services/0b591828-a922-4e59-b185-0a325db0c6b1",
+							"raw": "http://localhost:8000/services/7131ec0c-6b2b-4a84-bbd9-2045ccf296d6",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -816,7 +846,7 @@
 							"port": "8000",
 							"path": [
 								"services",
-								"0b591828-a922-4e59-b185-0a325db0c6b1"
+								"7131ec0c-6b2b-4a84-bbd9-2045ccf296d6"
 							]
 						}
 					},
@@ -843,7 +873,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/services/148dbcc9-f0b6-46e2-b473-cfcb51aa0d4e",
+							"raw": "http://localhost:8000/services/507aa08f-2328-4a6c-9473-d7a6c57bdcf9",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -851,7 +881,7 @@
 							"port": "8000",
 							"path": [
 								"services",
-								"148dbcc9-f0b6-46e2-b473-cfcb51aa0d4e"
+								"507aa08f-2328-4a6c-9473-d7a6c57bdcf9"
 							]
 						}
 					},
@@ -864,7 +894,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "{{client}}",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ5ZDZjZDU5LTYyODUtNDk1Ny04MzVkLTI0NzAxM2ZhMzU5NSIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjQ4Nzg4ODUsImV4cCI6MTcyNTQ4MzY4NX0.apd1PtJFQl6ozdGt6kNm3hInbhC0bHmq3NhR1uoz4Y0",
 								"type": "text"
 							}
 						],
@@ -928,7 +958,7 @@
 					"response": []
 				},
 				{
-					"name": "validate",
+					"name": "validate(client)",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -1000,7 +1030,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"employeeId\":\"335904c9-ab47-423c-a5e4-4e1a5b2d7639\"\n}",
+							"raw": "{\n    \"employeeId\":\"62bb60b6-5b7c-4a84-9683-9b6820e35b38\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1008,7 +1038,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/shiftrecords/01dbda7a-aa49-45e6-bce5-0e9892f4ace1",
+							"raw": "http://localhost:8000/shiftrecords/507aa08f-2328-4a6c-9473-d7a6c57bdcf9",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1016,7 +1046,7 @@
 							"port": "8000",
 							"path": [
 								"shiftrecords",
-								"01dbda7a-aa49-45e6-bce5-0e9892f4ace1"
+								"507aa08f-2328-4a6c-9473-d7a6c57bdcf9"
 							]
 						}
 					},
@@ -1080,7 +1110,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/shiftrecords/edit/d763595f-d09b-4cfd-bd2d-ff5e3d3bb90c",
+							"raw": "http://localhost:8000/shiftrecords/edit/b7b1af7f-62aa-4db1-ad40-ba412c2db4ce",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1089,25 +1119,25 @@
 							"path": [
 								"shiftrecords",
 								"edit",
-								"d763595f-d09b-4cfd-bd2d-ff5e3d3bb90c"
+								"b7b1af7f-62aa-4db1-ad40-ba412c2db4ce"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "detail",
+					"name": "detail(detail)",
 					"request": {
 						"method": "GET",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "{{admin}}",
+								"value": "{a",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8000/shiftrecords/d763595f-d09b-4cfd-bd2d-ff5e3d3bb90c",
+							"raw": "http://localhost:8000/shiftrecords/b7b1af7f-62aa-4db1-ad40-ba412c2db4ce",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1115,14 +1145,14 @@
 							"port": "8000",
 							"path": [
 								"shiftrecords",
-								"d763595f-d09b-4cfd-bd2d-ff5e3d3bb90c"
+								"b7b1af7f-62aa-4db1-ad40-ba412c2db4ce"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "clockIn",
+					"name": "clockIn(employee)",
 					"request": {
 						"method": "PUT",
 						"header": [
@@ -1142,7 +1172,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/shiftrecords/d763595f-d09b-4cfd-bd2d-ff5e3d3bb90c",
+							"raw": "http://localhost:8000/shiftrecords/b7b1af7f-62aa-4db1-ad40-ba412c2db4ce",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1150,14 +1180,14 @@
 							"port": "8000",
 							"path": [
 								"shiftrecords",
-								"d763595f-d09b-4cfd-bd2d-ff5e3d3bb90c"
+								"b7b1af7f-62aa-4db1-ad40-ba412c2db4ce"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "clockOut",
+					"name": "clockOut(employee)",
 					"request": {
 						"method": "PATCH",
 						"header": [
@@ -1168,7 +1198,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8000/shiftrecords/2d0518bb-759f-469a-9a03-10ae21324d61",
+							"raw": "http://localhost:8000/shiftrecords/b7b1af7f-62aa-4db1-ad40-ba412c2db4ce",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1176,7 +1206,7 @@
 							"port": "8000",
 							"path": [
 								"shiftrecords",
-								"2d0518bb-759f-469a-9a03-10ae21324d61"
+								"b7b1af7f-62aa-4db1-ad40-ba412c2db4ce"
 							]
 						}
 					},
@@ -1185,38 +1215,41 @@
 			]
 		},
 		{
-			"name": "upload",
+			"name": "test",
 			"item": [
 				{
-					"name": "upload",
+					"name": "notFound",
 					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4N2MyNmRkLWFhYjktNDc5NC05YjYxLWUxZmIyNDFiMGJiYSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNDE2MzAyNCwiZXhwIjoxNzI0NzY3ODI0fQ.LebYOxSODFpistzk7InW7uBAXoXvR1o195DZgGkV8dU",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "sampleFile",
-									"type": "file",
-									"src": "/C:/Users/guill/Desktop/pikachu2.png"
-								}
-							]
-						},
+						"method": "GET",
+						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/file",
+							"raw": "http://localhost:8000/inventada",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
-								"file"
+								"inventada"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "uploads",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/00fc02b2-9c89-4371-8a52-52105d920562.jpg",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"00fc02b2-9c89-4371-8a52-52105d920562.jpg"
 							]
 						}
 					},
