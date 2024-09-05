@@ -1,50 +1,51 @@
 .editServiceLayoutWrapper {
-  --wrap-columns: 1fr;
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: var(--wrap-columns);
-
-  & .editServiceLayout {
-    /* --the-columns: 1fr;
+    --wrap-columns: 1fr;
     display: grid;
     gap: 1rem;
-    grid-template-columns: var(--the-columns); */
-    border: 1px solid #cfcfcf;
-    padding: 1rem;
-    margin-top: 1.15rem;
-    border-radius: 5px;
+    grid-template-columns: var(--wrap-columns);
+    margin-top: 1rem;
 
-    & p {
-      height: 10px;
-      background-color: #ccc;
+    & .editServiceLayout {
+        /* --the-columns: 1fr;
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: var(--the-columns); */
+        border: 1px solid #cfcfcf;
+        padding: 1rem;
+        margin-top: 1.15rem;
+        border-radius: 5px;
+
+        & p {
+            height: 10px;
+            background-color: #ccc;
+        }
     }
-  }
 
-  & h3 {
-    line-height: 1.6rem;
-    padding-block: 1rem;
-    font-size: 1.5rem;
-  }
+    & h3 {
+        line-height: 1.6rem;
+        padding-block: 1rem;
+        font-size: 1.5rem;
+    }
 }
 
 @media (width > 1023px) {
-  .editServiceLayoutWrapper {
-    --wrap-columns: 35% 1fr;
+    .editServiceLayoutWrapper {
+        --wrap-columns: 35% 1fr;
 
-    & p:empty {
-      display: none;
+        & p:empty {
+            display: none;
+        }
     }
-  }
 
-  & :has(form[id='perfilUsuario']) {
-    --wrap-columns: 45% 1fr;
-  }
+    & :has(form[id='perfilUsuario']) {
+        --wrap-columns: 45% 1fr;
+    }
 
-  & :has(img[id='imgService']) {
-    --wrap-columns: 37% 1fr;
-  }
+    & :has(img[id='imgService']) {
+        --wrap-columns: 37% 1fr;
+    }
 
-  & :has(p:empty) {
-    background-color: transparent;
-  }
+    & :has(p:empty) {
+        background-color: transparent;
+    }
 }

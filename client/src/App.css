@@ -168,9 +168,13 @@ fieldset {
 
 .managerTabs {
     display: flex;
-    flex-wrap: wrap;
     gap: 1rem;
-    padding-bottom: 2rem;
+    padding-block: 1rem;
+    border-bottom: 1px solid #ececec;
+
+    & + .managerTabs {
+        margin-bottom: 2rem;
+    }
 
     & a,
     button {
@@ -196,6 +200,12 @@ fieldset {
             background-color: var(--warm-gray);
             color: var(--white-color);
         }
+    }
+}
+
+@media (width < 575px) {
+    .managerTabs {
+        overflow-x: scroll;
     }
 }
 
