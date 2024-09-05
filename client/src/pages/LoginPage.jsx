@@ -21,9 +21,8 @@ const LoginPage = () => {
     };
 
     const handleLogin = async (e) => {
+        e.preventDefault();
         try {
-            e.preventDefault();
-
             const authToken = await fetchLoginUserService(email, password);
 
             authLogin(authToken.data);
