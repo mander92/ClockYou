@@ -109,7 +109,7 @@ export const fetchLoginUserService = async (email, password) => {
     return body;
 };
 
-export const fetchProfileService = async (authToken) => {
+export const fetchProfileUserService = async (authToken) => {
     const res = await fetch(`${VITE_API_URL}/user`, {
         headers: authToken
             ? {
@@ -128,7 +128,7 @@ export const fetchProfileService = async (authToken) => {
     return body.data;
 };
 
-export const fetchSendRecoverService = async (email) => {
+export const fetchSendRecoverPasswordUserService = async (email) => {
     const res = await fetch(`${VITE_API_URL}/users/password/recover`, {
         method: 'POST',
         headers: {
@@ -148,7 +148,7 @@ export const fetchSendRecoverService = async (email) => {
     return body.message;
 };
 
-export const fetchChangePasswordService = async (
+export const fetchChangePasswordUserService = async (
     recoverPasswordCode,
     newPassword
 ) => {
@@ -203,7 +203,7 @@ export const fetchEditUserService = async (
     return body;
 };
 
-export const fetchEditPasswordService = async (
+export const fetchEditPasswordUserService = async (
     authToken,
     actualPassword,
     newPassword,
@@ -246,7 +246,7 @@ export const fetchDeleteUserService = async (authToken, userId) => {
     return body;
 };
 
-export const fetchEditAvatarService = async (userId, authToken, avatar) => {
+export const fetchEditAvatarUserService = async (userId, authToken, avatar) => {
     const formData = new FormData();
     formData.append('avatar', avatar);
 

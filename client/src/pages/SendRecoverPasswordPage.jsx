@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
-import { fetchSendRecoverService } from '../services/userServices.js';
+import { fetchSendRecoverPasswordUserService } from '../services/userServices.js';
 
 const SendRecoverPasswordPage = () => {
     const navigate = useNavigate();
@@ -17,7 +17,7 @@ const SendRecoverPasswordPage = () => {
         try {
             e.preventDefault();
 
-            const data = await fetchSendRecoverService(email);
+            const data = await fetchSendRecoverPasswordUserService(email);
             toast.success(data, {
                 id: 'ok',
             });

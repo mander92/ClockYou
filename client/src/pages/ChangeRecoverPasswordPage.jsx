@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { fetchChangePasswordService } from '../services/userServices.js';
+import { fetchChangePasswordUserService } from '../services/userServices.js';
 
 import toast from 'react-hot-toast';
 
@@ -26,7 +26,7 @@ const ChangeRecoverPasswordPage = () => {
             if (newPassword !== repeatedPassword) {
                 throw new Error('¡Las contraseñas no coinciden!');
             } else {
-                const data = await fetchChangePasswordService(
+                const data = await fetchChangePasswordUserService(
                     recoverPasswordCode,
                     newPassword
                 );

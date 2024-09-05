@@ -2,7 +2,7 @@ const { VITE_API_URL } = import.meta.env;
 import useUser from '../../hooks/useUser.js';
 import { useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext.jsx';
-import { fetchEditAvatarService } from '../../services/userServices.js';
+import { fetchEditAvatarUserService } from '../../services/userServices.js';
 import toast from 'react-hot-toast';
 
 const Avatar = () => {
@@ -17,7 +17,7 @@ const Avatar = () => {
         e.preventDefault();
         try {
             if (enableEditAvatar) {
-                const data = await fetchEditAvatarService(
+                const data = await fetchEditAvatarUserService(
                     userId,
                     authToken,
                     avatar
