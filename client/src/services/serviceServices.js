@@ -1,6 +1,6 @@
 const { VITE_API_URL } = import.meta.env;
 
-export const fetchInputNewService = async (
+export const fetchNewServiceServices = async (
     authToken,
     typeOfServiceId,
     dateTime,

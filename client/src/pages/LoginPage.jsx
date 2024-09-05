@@ -28,10 +28,6 @@ const LoginPage = () => {
 
             authLogin(authToken.data);
 
-            toast.success(authToken.message, {
-                id: 'ok',
-            });
-
             navigate('/');
         } catch (error) {
             toast.error(error.message, {

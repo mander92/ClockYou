@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
-import { fetchInputNewService } from '../../services/serviceServices';
+import { fetchNewServiceServices } from '../../services/serviceServices';
 import toast from 'react-hot-toast';
 
 const NewServiceForm = ({ typeOfServiceId }) => {
@@ -29,7 +29,7 @@ const NewServiceForm = ({ typeOfServiceId }) => {
         try {
             e.preventDefault();
 
-            const data = await fetchInputNewService(
+            const data = await fetchNewServiceServices(
                 authToken,
                 typeOfServiceId,
                 dateTime,

@@ -38,7 +38,7 @@ const registerUserController = async (req, res, next) => {
         res.send({
             status: 'ok',
             message:
-                'Usuario registrado correctamente. Revise su email para validar la cuenta',
+                'Usuario registrado correctamente. Revise su email para validar su cuenta',
         });
     } catch (error) {
         next(error);
