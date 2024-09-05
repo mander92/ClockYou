@@ -256,7 +256,7 @@ export const fetchEditAvatarService = async (userId, authToken, avatar) => {
         body: formData,
     });
 
-    const body = res.json();
+    const body = await res.json();
 
     if (body.status === 'error') {
         throw new Error(body.message);
