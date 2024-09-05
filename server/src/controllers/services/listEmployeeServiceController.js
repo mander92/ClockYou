@@ -8,7 +8,6 @@ const listEmployeeServiceController = async (req, res, next) => {
 
         res.send({
             status: 'ok',
-            message: 'Lista de servicios confirmados',
             data,
         });
     } catch (error) {
