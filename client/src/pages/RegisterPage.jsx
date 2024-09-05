@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, Navigate } from 'react-router-dom';
-import { fetchRegisterService } from '../services/userServices';
+import { fetchRegisterUserService } from '../services/userServices';
 import useUser from '../hooks/useUser';
 import toast from 'react-hot-toast';
 
@@ -32,7 +32,7 @@ const RegisterPage = () => {
             if (password !== repeatedPassword) {
                 throw new Error('¡Las contraseñas no coinciden!');
             } else {
-                const data = await fetchRegisterService(
+                const data = await fetchRegisterUserService(
                     email,
                     firstName,
                     lastName,

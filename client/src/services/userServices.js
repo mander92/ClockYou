@@ -1,6 +1,6 @@
 const { VITE_API_URL } = import.meta.env;
 
-export const fetchRegisterService = async (
+export const fetchRegisterUserService = async (
     email,
     firstName,
     lastName,
@@ -88,7 +88,7 @@ export const fetchActiveUserService = async (registrationCode) => {
     return body.message;
 };
 
-export const fetchLoginService = async (email, password) => {
+export const fetchLoginUserService = async (email, password) => {
     const res = await fetch(`${VITE_API_URL}/users/login`, {
         method: 'POST',
         headers: {

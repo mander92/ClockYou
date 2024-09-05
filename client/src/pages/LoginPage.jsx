@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import { Navigate, useNavigate, NavLink } from 'react-router-dom';
-import { fetchLoginService } from '../services/userServices';
+import { fetchLoginUserService } from '../services/userServices';
 import { AuthContext } from '../context/AuthContext';
 import useUser from '../hooks/useUser';
 import toast from 'react-hot-toast';
@@ -24,7 +24,7 @@ const LoginPage = () => {
         try {
             e.preventDefault();
 
-            const authToken = await fetchLoginService(email, password);
+            const authToken = await fetchLoginUserService(email, password);
 
             authLogin(authToken.data);
 
