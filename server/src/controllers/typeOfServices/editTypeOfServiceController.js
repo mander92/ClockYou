@@ -18,16 +18,11 @@ const editTypeOfServiceController = async (req, res, next) => {
 
         const { description, price } = req.body;
 
-        const data = await updateTypeOfServiceService(
-            typeOfServiceId,
-            description,
-            price
-        );
+        await updateTypeOfServiceService(typeOfServiceId, description, price);
 
         res.send({
             staus: 'ok',
             message: 'Servicio actualizado correctamente',
-            data,
         });
     } catch (error) {
         next(error);

@@ -14,7 +14,6 @@ const listTypeOfServicesController = async (req, res, next) => {
 
         res.send({
             status: 'ok',
-            message: 'Tipos de servicios',
             data,
         });
     } catch (error) {

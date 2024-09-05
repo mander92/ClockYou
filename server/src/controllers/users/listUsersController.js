@@ -8,7 +8,6 @@ const listUsersController = async (req, res, next) => {
 
         res.send({
             status: 'ok',
-            message: 'Lista de usuarios',
             data,
         });
     } catch (error) {

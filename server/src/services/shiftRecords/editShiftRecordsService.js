@@ -9,15 +9,6 @@ const editShiftRecordsService = async (clockIn, clockOut, shiftRecordId) => {
         `,
         [clockIn, clockOut, shiftRecordId]
     );
-
-    const [shift] = await pool.query(
-        `
-        SELECT * FROM shiftRecords WHERE id = ?
-        `,
-        [shiftRecordId]
-    );
-
-    return shift;
 };
 
 export default editShiftRecordsService;

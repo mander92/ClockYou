@@ -4,12 +4,11 @@ const endShiftRecordsController = async (req, res, next) => {
     try {
         const { shiftRecordId } = req.params;
 
-        const data = await endShiftRecordService(shiftRecordId);
+        await endShiftRecordService(shiftRecordId);
 
         res.send({
             status: 'ok',
-            message: 'Registrada la hora de fin del servicio',
-            data,
+            message: 'Hora de finalizacón registrada',
         });
     } catch (error) {
         next(error);

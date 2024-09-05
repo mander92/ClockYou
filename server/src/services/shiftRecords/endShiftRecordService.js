@@ -46,15 +46,6 @@ const endShiftRecordService = async (shiftRecordId) => {
         `,
         [serviceId[0].serviceId]
     );
-
-    const [data] = await pool.query(
-        `
-        SELECT clockOut FROM shiftRecords WHERE id = ?
-        `,
-        [shiftRecordId]
-    );
-
-    return data[0];
 };
 
 export default endShiftRecordService;

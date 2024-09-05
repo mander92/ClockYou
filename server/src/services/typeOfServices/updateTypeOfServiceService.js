@@ -13,15 +13,6 @@ const updateTypeOfServiceService = async (
         `,
         [description, price, typeOfServiceId]
     );
-
-    const [data] = await pool.query(
-        `
-        SELECT type, description, city, price FROM typeOfServices WHERE id = ?
-        `,
-        [typeOfServiceId]
-    );
-
-    return data[0];
 };
 
 export default updateTypeOfServiceService;
