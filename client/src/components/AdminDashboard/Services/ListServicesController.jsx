@@ -113,9 +113,9 @@ const ListServicesController = () => {
                                 src={`${VITE_API_URL}/${item.image}`}
                                 alt={item.description}
                             /> */}
-                            <h3 className='text-2xl grow'>{item.type}</h3>
+                            <h3 className='text-2xl'>{item.type}</h3>
 
-                            <p>{item.description}</p>
+                            <p className='grow'>{item.description}</p>
 
                             <p className='text-1xl font-black pt-3 pb-1'>
                                 {item.city}
