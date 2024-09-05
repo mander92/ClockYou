@@ -39,17 +39,21 @@
   }
 }
 
+img {
+  width: 100%;
+}
+
 body {
   min-height: var(--body-min-height);
 }
 
-header,
+/* header,
 footer,
 main,
 section,
 article {
   container-type: inline-size;
-}
+} */
 
 h1,
 h2,
