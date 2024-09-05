@@ -9,15 +9,6 @@ const updateUserService = async (userId, firstName, lastName, phone) => {
         `,
         [firstName, lastName, phone, userId]
     );
-
-    const [data] = await pool.query(
-        `
-        SELECT firstName, lastName, phone FROM users WHERE id = ?
-        `,
-        [userId]
-    );
-
-    return data[0];
 };
 
 export default updateUserService;
