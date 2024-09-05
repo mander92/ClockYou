@@ -3,48 +3,49 @@
 @tailwind utilities;
 
 @layer components {
-  h1 {
-    @apply text-5xl pb-4;
-  }
+    h1 {
+        @apply text-5xl pb-4;
+    }
 
-  h2 {
-    @apply text-3xl pb-4;
-  }
+    h2 {
+        @apply text-3xl pb-4;
+    }
 }
 
 :root {
-  --blue-topaz: #6eb5c0;
-  --cerulean: #006c84;
-  --icicle: #e2e8e4;
-  --sunrise: #ffccbb;
-  --white-color: #fff;
-  --overcast: #f1f1f2;
-  --darker-overcast: #e0e0e0;
-  --warm-gray: #bcbabe;
-  --ice: #a1d6e2;
-  --glacier-blue: #1995ad;
-  --body-min-height: 500px;
+    --blue-topaz: #6eb5c0;
+    --cerulean: #006c84;
+    --icicle: #e2e8e4;
+    --sunrise: #ffccbb;
+    --white-color: #fff;
+    --overcast: #f1f1f2;
+    --darker-overcast: #e0e0e0;
+    --warm-gray: #bcbabe;
+    --ice: #a1d6e2;
+    --glacier-blue: #1995ad;
+    --body-min-height: 500px;
 }
 
 #root {
-  /* https://ishadeed.com/article/min-content-size-css-grid/ */
-  min-height: 100vh;
-  min-height: 100dvh;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
+    /* https://ishadeed.com/article/min-content-size-css-grid/ */
+    min-height: 100vh;
+    min-height: 100dvh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
 
-  & main {
-    flex-grow: 1;
-  }
+    & main {
+        flex-grow: 1;
+        padding-top: 1rem;
+    }
 }
 
 img {
-  width: 100%;
+    width: 100%;
 }
 
 body {
-  min-height: var(--body-min-height);
+    min-height: var(--body-min-height);
 }
 
 /* header,
@@ -61,17 +62,17 @@ h3,
 h4,
 h5,
 legend {
-  font-family: var(--serif-FONT);
-  color: var(--cerulean);
-  text-wrap: balance;
+    font-family: var(--serif-FONT);
+    color: var(--cerulean);
+    text-wrap: balance;
 }
 
 p,
 span,
 li,
 div {
-  color: var(--cerulean);
-  text-wrap: pretty;
+    color: var(--cerulean);
+    text-wrap: pretty;
 }
 
 p,
@@ -84,142 +85,142 @@ input,
 ::placeholder,
 button,
 fieldset {
-  font-family: var(--sans-serif-FONT);
-  font-weight: 400;
-  font-style: normal;
-  line-height: 1.4;
-  font-size: 1rem;
-  border-radius: 5px;
-  /* font-size: clamp(1rem, 1vw + 0.5rem, 2rem); no descomentar, please */
+    font-family: var(--sans-serif-FONT);
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.4;
+    font-size: 1rem;
+    border-radius: 5px;
+    /* font-size: clamp(1rem, 1vw + 0.5rem, 2rem); no descomentar, please */
 }
 
 .container {
-  margin-inline: auto;
-  padding: 1rem;
+    margin-inline: auto;
+    padding: 1rem;
 }
 
 .form {
-  padding-bottom: 1.5rem;
-  max-width: 60rem;
+    padding-bottom: 1.5rem;
+    max-width: 60rem;
 
-  & fieldset {
-    border: 1px solid #cfcfcf;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.7rem;
-  }
-
-  & legend {
-    font-size: 1.875rem;
-    line-height: 2.25rem;
-    padding: 0 0.75rem;
-  }
-
-  & label {
-    color: var(--glacier-blue);
-    font-size: 0.95rem;
-  }
-
-  & input {
-    border: 1px solid var(--overcast);
-    padding: 0.75rem;
-    font-size: 1rem;
-
-    &:focus {
-      outline: none;
+    & fieldset {
+        border: 1px solid #cfcfcf;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.7rem;
     }
-  }
 
-  & select,
-  textarea {
-    padding: 0.7rem 0.5rem;
-    border: 1px solid var(--icicle);
-    cursor: pointer;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    appearance: none;
-
-    &:focus {
-      outline: none;
+    & legend {
+        font-size: 1.875rem;
+        line-height: 2.25rem;
+        padding: 0 0.75rem;
     }
-  }
 
-  & button {
-    padding: 0.7rem 1.2rem;
-    display: inline-flex;
-    color: var(--white-color);
-    background-color: var(--cerulean);
-    margin-top: 0.7rem;
-    margin-right: 0.7rem;
-    /* https://www.youtube.com/watch?v=3ugXM3ZDUuE&t=55s */
-
-    &.m-0 {
-      margin-top: 0;
-      margin-right: 0;
+    & label {
+        color: var(--glacier-blue);
+        font-size: 0.95rem;
     }
-  }
 
-  & :has(button[id='eliminarServicio']) {
-    max-width: 50rem;
-  }
+    & input {
+        border: 1px solid var(--overcast);
+        padding: 0.75rem;
+        font-size: 1rem;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    & select,
+    textarea {
+        padding: 0.7rem 0.5rem;
+        border: 1px solid var(--icicle);
+        cursor: pointer;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    & button {
+        padding: 0.7rem 1.2rem;
+        display: inline-flex;
+        color: var(--white-color);
+        background-color: var(--cerulean);
+        margin-top: 0.7rem;
+        margin-right: 0.7rem;
+        /* https://www.youtube.com/watch?v=3ugXM3ZDUuE&t=55s */
+
+        &.m-0 {
+            margin-top: 0;
+            margin-right: 0;
+        }
+    }
+
+    & :has(button[id='eliminarServicio']) {
+        max-width: 50rem;
+    }
 }
 
 .managerTabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  padding-bottom: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding-bottom: 1rem;
 
-  & a {
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-top: 0.625rem;
-    padding-bottom: 0.625rem;
-    color: var(--cerulean);
-    background-color: transparent;
-    transition: background-color 0.3s linear;
-    border: 1px solid var(--icicle);
+    & a {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-top: 0.625rem;
+        padding-bottom: 0.625rem;
+        color: var(--cerulean);
+        background-color: transparent;
+        transition: background-color 0.3s linear;
+        border: 1px solid var(--icicle);
 
-    &:hover {
-      background-color: var(--overcast);
+        &:hover {
+            background-color: var(--overcast);
+        }
+
+        &:focus {
+            background-color: var(--warm-gray);
+            color: var(--white-color);
+        }
     }
-
-    &:focus {
-      background-color: var(--warm-gray);
-      color: var(--white-color);
-    }
-  }
 }
 
 @media only screen and (min-width: 768px) {
-  .managerTabs {
-    justify-content: center;
-  }
+    .managerTabs {
+        justify-content: center;
+    }
 }
 
 .formsWrapper > * {
-  margin-inline: auto;
+    margin-inline: auto;
 }
 
 .formsWrapper > *:not(.avatarBox) {
-  max-width: 50rem;
+    max-width: 50rem;
 }
 
 .formsWrapper > .avatarBox {
-  max-width: 30rem;
+    max-width: 30rem;
 }
 
 .user-avatar {
-  width: 200px;
-  height: 200px;
-  margin: auto;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 1px solid #e6e6e6;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  transition: transform 0.4s ease;
-  &:hover {
-    transform: scale(1.03);
-  }
+    width: 200px;
+    height: 200px;
+    margin: auto;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #e6e6e6;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    transition: transform 0.4s ease;
+    &:hover {
+        transform: scale(1.03);
+    }
 }

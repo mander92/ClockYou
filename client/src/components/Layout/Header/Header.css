@@ -1,120 +1,128 @@
 @tailwind components;
 
 @layer components {
-  :root {
-    --percentageTranslate: 10%;
-  }
-
-  @media only screen and (min-width: 768px) {
     :root {
-      --percentageTranslate: 40%;
-    }
-    /* font-size clamp */
-  }
-
-  .mainnav {
-    @apply place-content-between items-center text-white;
-
-    & span {
-      color: var(--cerulean);
-    }
-  }
-
-  .navdinamica {
-    @apply inset-0 z-10 flex flex-wrap flex-col items-start justify-start gap-3 px-7 pt-32 pb-10;
-    position: fixed;
-    background-color: var(--white-color);
-    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
-    transform: translateX(120%);
-    transition: transform 0.3s ease;
-    min-height: var(--body-min-height);
-
-    > li {
-      width: min(70%, 300px);
+        --percentageTranslate: 10%;
     }
 
-    &.show {
-      transform: translateX(var(--percentageTranslate));
-    }
-  }
-
-  @media only screen and (min-width: 1024px) {
-    .navdinamica.show {
-      transform: translateX(0);
-    }
-  }
-
-  .linkmainnav {
-    @apply block px-4 py-3.5;
-
-    color: var(--cerulean);
-    background-color: transparent;
-    transition: background-color 0.3s linear;
-    border: 1px solid var(--icicle);
-
-    &:hover {
-      background-color: var(--overcast);
+    @media only screen and (min-width: 768px) {
+        :root {
+            --percentageTranslate: 40%;
+        }
+        /* font-size clamp */
     }
 
-    &.active {
-      background-color: var(--warm-gray);
-      color: var(--white-color);
+    .mainnav {
+        @apply place-content-between items-center text-white;
+
+        & span {
+            color: var(--cerulean);
+        }
     }
 
-    &.noBgr {
-      background-color: transparent;
-      color: var(--cerulean);
-    }
-  }
-
-  @media only screen and (min-width: 1024px) {
     .navdinamica {
-      @apply flex-row p-0;
-      position: relative;
-      background-color: transparent;
-      box-shadow: none;
-      transform: none;
-      min-height: 0;
+        @apply inset-0 z-10 flex flex-wrap flex-col items-start justify-start gap-3 px-7 pt-32 pb-10;
+        position: fixed;
+        background-color: var(--white-color);
+        box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+        transform: translateX(120%);
+        transition: transform 0.3s ease;
+        min-height: var(--body-min-height);
 
-      > li {
-        width: auto;
-        max-width: none;
-      }
+        > li {
+            width: min(70%, 300px);
+        }
+
+        &.show {
+            transform: translateX(var(--percentageTranslate));
+        }
+    }
+
+    @media only screen and (min-width: 1024px) {
+        .navdinamica.show {
+            transform: translateX(0);
+        }
+
+        #root > header {
+            position: sticky;
+            top: 0;
+            background-color: var(--white-color);
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+            /* https://getcssscan.com/css-box-shadow-examples */
+        }
     }
 
     .linkmainnav {
-      @apply block px-4 py-2.5;
+        @apply block px-4 py-3.5;
+
+        color: var(--cerulean);
+        background-color: transparent;
+        transition: background-color 0.3s linear;
+        border: 1px solid var(--icicle);
+
+        &:hover {
+            background-color: var(--overcast);
+        }
+
+        &.active {
+            background-color: var(--warm-gray);
+            color: var(--white-color);
+        }
+
+        &.noBgr {
+            background-color: transparent;
+            color: var(--cerulean);
+        }
     }
-  }
 
-  .menuburguer {
-    width: 40px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    @apply z-20 lg:hidden;
-    transform: rotate(0);
-    transition: transform 0.35s ease;
+    @media only screen and (min-width: 1024px) {
+        .navdinamica {
+            @apply flex-row p-0;
+            position: relative;
+            background-color: transparent;
+            box-shadow: none;
+            transform: none;
+            min-height: 0;
 
-    & span {
-      height: 4px;
-      border-radius: 4px;
-      background-color: var(--cerulean);
+            > li {
+                width: auto;
+                max-width: none;
+            }
+        }
+
+        .linkmainnav {
+            @apply block px-4 py-2.5;
+        }
     }
 
-    &.open {
-      transform: rotate(-360deg);
-      & span:first-of-type {
-        transform: rotate(45deg) translateY(6px);
-      }
+    .menuburguer {
+        width: 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        @apply z-20 lg:hidden;
+        transform: rotate(0);
+        transition: transform 0.35s ease;
 
-      & span:nth-child(even) {
-        display: none;
-      }
+        & span {
+            height: 4px;
+            border-radius: 4px;
+            background-color: var(--cerulean);
+        }
 
-      & span:last-of-type {
-        transform: rotate(-45deg) translateY(-8px);
-      }
+        &.open {
+            transform: rotate(-360deg);
+            & span:first-of-type {
+                transform: rotate(45deg) translateY(6px);
+            }
+
+            & span:nth-child(even) {
+                display: none;
+            }
+
+            & span:last-of-type {
+                transform: rotate(-45deg) translateY(-8px);
+            }
+        }
     }
-  }
 }
