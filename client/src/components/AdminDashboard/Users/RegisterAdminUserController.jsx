@@ -62,7 +62,7 @@ const RegisterAdminUserController = () => {
         }
     };
     return (
-        <form className='form' onSubmit={handleRegister}>
+        <form className='form mx-auto' onSubmit={handleRegister}>
             <fieldset>
                 <legend>Registro</legend>
                 <label htmlFor='role'>Usuario</label>

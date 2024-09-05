@@ -43,8 +43,11 @@ const ChangeRecoverPasswordPage = () => {
     };
 
     return (
-        <section className='container'>
-            <form className='form' onSubmit={handleChangeRecoverPassword}>
+        <section className='container formsWrapper'>
+            <form
+                className='form mx-auto'
+                onSubmit={handleChangeRecoverPassword}
+            >
                 <fieldset>
                     <legend>Recupera Contraseña</legend>
                     <label htmlFor='recoverCode'>Código recuperación</label>

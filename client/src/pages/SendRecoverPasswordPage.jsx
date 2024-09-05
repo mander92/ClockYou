@@ -30,8 +30,8 @@ const SendRecoverPasswordPage = () => {
         }
     };
     return (
-        <section className='container'>
-            <form id='recoverForm' className='form' onSubmit={handleRecover}>
+        <section className='container formsWrapper'>
+            <form className='form mx-auto' onSubmit={handleRecover}>
                 <fieldset>
                     <legend>Recupera tu contraseña</legend>
                     <label htmlFor='email'>Email</label>
