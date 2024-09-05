@@ -24,17 +24,11 @@ const editUserController = async (req, res, next) => {
 
         const { firstName, lastName, phone } = req.body;
 
-        const data = await updateUserService(
-            userId,
-            firstName,
-            lastName,
-            phone
-        );
+        await updateUserService(userId, firstName, lastName, phone);
 
         res.send({
             status: 'ok',
             message: 'Datos actualizados correctamente',
-            data: data,
         });
     } catch (error) {
         next(error);
