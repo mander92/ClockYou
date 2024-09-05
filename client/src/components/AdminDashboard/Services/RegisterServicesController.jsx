@@ -1,19 +1,14 @@
 import { useState, useContext } from 'react';
 import { AuthContext } from '../../../context/AuthContext';
-import toast from 'react-hot-toast';
-import useUser from '../../../hooks/useUser';
 import { fecthRegisterNewTypeOfService } from '../../../services/typeOfServiceServices';
+import toast from 'react-hot-toast';
 
 const RegisterNewTypeOfServiceController = () => {
     const [type, setType] = useState('');
     const [description, setDescription] = useState('');
     const [city, setCity] = useState('');
     const [price, setPrice] = useState('');
-    const [image, setImage] = useState('');
-
-    const { user } = useUser();
-    const userRole = user?.role;
-    console.log(userRole);
+    const [image, setImage] = useState(null);
 
     const { authToken } = useContext(AuthContext);
 
@@ -33,10 +28,11 @@ const RegisterNewTypeOfServiceController = () => {
                 description,
                 city,
                 price,
+                image,
                 authToken
             );
 
-            toast.success(data, {
+            toast.success(data.message, {
                 id: 'ok',
             });
         } catch (error) {
@@ -47,10 +43,7 @@ const RegisterNewTypeOfServiceController = () => {
     };
 
     return (
-        <form
-            className='form'
-            onSubmit={handleRegisterNewTypeOfService}
-        >
+        <form className='form' onSubmit={handleRegisterNewTypeOfService}>
             <h1>Registra un nuevo tipo de servicio</h1>
             <fieldset>
                 <legend>Registrar un servicio</legend>
@@ -98,11 +91,10 @@ const RegisterNewTypeOfServiceController = () => {
                     required
                 />
                 <input
-                    id='image'
                     type='file'
-                    value={image}
+                    accept='image/png, image/jpg, image/jpeg, image/tiff'
                     onChange={(e) => {
-                        setImage(e.target.value);
+                        setImage(e.target.files[0]);
                     }}
                     required
                 ></input>

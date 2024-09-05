@@ -10,7 +10,7 @@ const newTypeOfServiceController = async (req, res, next) => {
             type: Joi.string().max(30).required(),
             description: Joi.string().max(500).required(),
             city: Joi.string().max(30).required(),
-            price: Joi.number().min(1).required(),
+            price: Joi.number().min(1).max(100).required(),
         });
 
         const validation = schema.validate(req.body);
