@@ -42,7 +42,7 @@ const ListServicesController = () => {
     const typeNoRepeated = [...new Set(data.map((item) => item.type))];
 
     return (
-        <div className='container'>
+        <div>
             <form className='form filterServicesForm'>
                 <select
                     name='city'

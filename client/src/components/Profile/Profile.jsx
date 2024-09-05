@@ -98,7 +98,7 @@ const Profile = () => {
     }, [user]);
 
     return (
-        <>
+        <div>
             <form className='form' onSubmit={handleEditUser}>
                 <fieldset>
                     <legend>Perfil</legend>
@@ -200,7 +200,7 @@ const Profile = () => {
                     </div>
                 </fieldset>
             </form>
-        </>
+        </div>
     );
 };
 
