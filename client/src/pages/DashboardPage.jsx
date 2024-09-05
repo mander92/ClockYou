@@ -74,7 +74,7 @@ const DashboardPage = () => {
                     onClick={() => handleSectionChange('profile')}
                     className='activeSelectedLink'
                 >
-                    Mi Perfil
+                    Perfil
                 </NavLink>
 
                 {userRole === 'admin' && (

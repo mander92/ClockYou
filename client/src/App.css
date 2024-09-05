@@ -206,10 +206,11 @@ fieldset {
 @media (width < 575px) {
     .managerTabs {
         overflow-x: scroll;
+        gap: 0.7em;
     }
 }
 
-@media only screen and (min-width: 768px) {
+@media (width > 767px) {
     .managerTabs {
         justify-content: center;
     }
