@@ -4,13 +4,13 @@ import { fecthRegisterNewTypeOfService } from '../../../services/typeOfServiceSe
 import toast from 'react-hot-toast';
 
 const RegisterNewTypeOfServiceController = () => {
+    const { authToken } = useContext(AuthContext);
+
     const [type, setType] = useState('');
     const [description, setDescription] = useState('');
     const [city, setCity] = useState('');
     const [price, setPrice] = useState('');
     const [image, setImage] = useState(null);
-
-    const { authToken } = useContext(AuthContext);
 
     const resetInputs = (e) => {
         e.preventDefault();
@@ -43,13 +43,10 @@ const RegisterNewTypeOfServiceController = () => {
     };
 
     return (
-        <form
-            className='form'
-            onSubmit={handleRegisterNewTypeOfService}
-        >
-            <h1>Registra un nuevo tipo de servicio</h1>
+        <form className='form' onSubmit={handleRegisterNewTypeOfService}>
             <fieldset>
-                <legend>Registrar un servicio</legend>
+                <legend>Registrar Servicio</legend>
+                <label htmlFor='type'>Tipo</label>
                 <input
                     id='type'
                     type='text'
@@ -57,10 +54,10 @@ const RegisterNewTypeOfServiceController = () => {
                     onChange={(e) => {
                         setType(e.target.value);
                     }}
-                    placeholder={'Tipo de servicio'}
+                    placeholder={'Masajes'}
                     required
                 />
-
+                <label htmlFor='description'>Descripción</label>
                 <input
                     id='description'
                     type='text'
@@ -68,10 +65,12 @@ const RegisterNewTypeOfServiceController = () => {
                     onChange={(e) => {
                         setDescription(e.target.value);
                     }}
-                    placeholder={'Descripción'}
+                    placeholder={
+                        'Sesiones de relajación y bienestar a domicilio.'
+                    }
                     required
                 />
-
+                <label htmlFor='city'>Ciudad</label>
                 <input
                     id='city'
                     type='text'
@@ -79,10 +78,10 @@ const RegisterNewTypeOfServiceController = () => {
                     onChange={(e) => {
                         setCity(e.target.value);
                     }}
-                    placeholder={'Ciudad'}
+                    placeholder={'Madrid'}
                     required
                 />
-
+                <label htmlFor='price'>Precio</label>
                 <input
                     id='price'
                     type='number'
@@ -95,6 +94,7 @@ const RegisterNewTypeOfServiceController = () => {
                     placeholder={'Precio'}
                     required
                 />
+                <label htmlFor='file'>Imágen</label>
                 <input
                     type='file'
                     accept='image/png, image/jpg, image/jpeg, image/tiff'
@@ -104,9 +104,7 @@ const RegisterNewTypeOfServiceController = () => {
                     required
                 ></input>
                 <div>
-                    <button type='submit'>
-                        Registrar nuevo tipo de servicio
-                    </button>
+                    <button type='submit'>Registrar</button>
                     <button onClick={resetInputs}>Limpiar</button>
                 </div>
             </fieldset>

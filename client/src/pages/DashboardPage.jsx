@@ -14,8 +14,8 @@ import Orders from '../components/ClientDashboard/Orders';
 
 const DashboardPage = () => {
     const { authToken } = useContext(AuthContext);
-
     const { user } = useUser();
+
     const userRole = user?.role;
     const location = useLocation();
 
@@ -62,9 +62,7 @@ const DashboardPage = () => {
         myservices: userRole === 'employee' && <MyServices />,
     };
 
-    if (!authToken) return <Navigate to='/' />;
-
-    const getNavLinkClass = ({ isActive }) => (isActive ? 'active' : '');
+    if (!authToken && !user) return <Navigate to='/' />;
 
     return (
         <section className='container'>
@@ -74,7 +72,6 @@ const DashboardPage = () => {
                 <NavLink
                     to='#profile'
                     onClick={() => handleSectionChange('profile')}
-                    className={getNavLinkClass}
                 >
                     Mi Perfil
                 </NavLink>
