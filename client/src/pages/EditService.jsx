@@ -110,8 +110,12 @@ const EditService = () => {
             required
           />
 
-          <button>Guardar Cambios</button>
-          <button onClick={handleDeleteService}>Eliminar Servicio</button>
+          <footer>
+            <button>Guardar Cambios</button>
+            <button id='eliminarServicio' onClick={handleDeleteService}>
+              Eliminar Servicio
+            </button>
+          </footer>
         </fieldset>
       </form>
     </section>
