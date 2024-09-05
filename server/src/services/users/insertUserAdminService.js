@@ -51,15 +51,6 @@ const insertAdminService = async (
             1,
         ]
     );
-
-    const [data] = await pool.query(
-        `
-        SELECT role, email, firstName, lastName, dni, phone, job, city FROM users WHERE id = ?
-        `,
-        [id]
-    );
-
-    return data[0];
 };
 
 export default insertAdminService;

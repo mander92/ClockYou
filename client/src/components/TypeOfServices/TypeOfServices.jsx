@@ -1,7 +1,7 @@
 import './typeOfServices.css';
 const { VITE_API_URL, VITE_CLIENT_URL } = import.meta.env;
 import { useEffect, useState } from 'react';
-import { fetchAllTypeOfServicesServicess } from '../../services/typeOfServiceServices';
+import { fetchAllTypeOfServicesServices } from '../../services/typeOfServiceServices';
 import { NavLink } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
@@ -27,7 +27,7 @@ const TypeOfServices = () => {
             });
             const searchParamsToString = searchParams.toString();
             try {
-                const data = await fetchAllTypeOfServicesServicess(
+                const data = await fetchAllTypeOfServicesServices(
                     searchParamsToString
                 );
                 setData(data);

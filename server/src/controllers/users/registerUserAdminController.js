@@ -33,7 +33,7 @@ const registerUserAdminController = async (req, res, next) => {
             city,
         } = req.body;
 
-        const data = await insertAdminService(
+        await insertAdminService(
             role,
             email,
             password,
@@ -48,7 +48,6 @@ const registerUserAdminController = async (req, res, next) => {
         res.send({
             status: 'ok',
             message: 'Usuario registrado correctamente.',
-            data: data,
         });
     } catch (error) {
         next(error);
