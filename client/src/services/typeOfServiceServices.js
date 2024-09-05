@@ -1,6 +1,6 @@
 const { VITE_API_URL } = import.meta.env;
 
-export const fetchTypeOfService = async (typeOfServiceId) => {
+export const fetchTypeOfServiceServices = async (typeOfServiceId) => {
     const res = await fetch(
         `${VITE_API_URL}/typeOfServices/${typeOfServiceId}`
     );
@@ -13,7 +13,7 @@ export const fetchTypeOfService = async (typeOfServiceId) => {
     return body.data;
 };
 
-export const fetchAllTypeOfServices = async (searchParamsToString) => {
+export const fetchAllTypeOfServicesServices = async (searchParamsToString) => {
     const res = await fetch(
         `${VITE_API_URL}/typeOfServices/?${searchParamsToString}`
     );
@@ -26,7 +26,7 @@ export const fetchAllTypeOfServices = async (searchParamsToString) => {
     return body.data;
 };
 
-export const fetchEditTypeOfServices = async (
+export const fetchEditTypeOfServiceServices = async (
     typeOfServiceId,
     description,
     price,
@@ -58,7 +58,10 @@ export const fetchEditTypeOfServices = async (
     return body;
 };
 
-export const fetchDeleteTypeOfServices = async (typeOfServiceId, authToken) => {
+export const fetchDeleteTypeOfServiceServices = async (
+    typeOfServiceId,
+    authToken
+) => {
     const res = await fetch(
         `${VITE_API_URL}/typeOfServices/${typeOfServiceId}`,
         {
@@ -81,7 +84,7 @@ export const fetchDeleteTypeOfServices = async (typeOfServiceId, authToken) => {
     return body;
 };
 
-export const fecthRegisterNewTypeOfService = async (
+export const fecthNewTypeOfServiceServices = async (
     type,
     description,
     city,

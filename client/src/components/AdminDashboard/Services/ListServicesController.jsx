@@ -1,6 +1,6 @@
 const { VITE_API_URL, VITE_CLIENT_URL } = import.meta.env;
 import { useEffect, useState } from 'react';
-import { fetchAllTypeOfServices } from '../../../services/typeOfServiceServices';
+import { fetchAllTypeOfServicesServicess } from '../../../services/typeOfServiceServices';
 import toast from 'react-hot-toast';
 import { NavLink } from 'react-router-dom';
 
@@ -26,7 +26,9 @@ const ListServicesController = () => {
             });
             const searchParamsToString = searchParams.toString();
             try {
-                const data = await fetchAllTypeOfServices(searchParamsToString);
+                const data = await fetchAllTypeOfServicesServicess(
+                    searchParamsToString
+                );
                 setData(data);
             } catch (error) {
                 toast.error(error.message, {

@@ -1,9 +1,9 @@
 import { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import {
-    fetchTypeOfService,
-    fetchDeleteTypeOfServices,
-    fetchEditTypeOfServices,
+    fetchTypeOfServiceServices,
+    fetchDeleteTypeOfServiceServices,
+    fetchEditTypeOfServiceServices,
 } from '../services/typeOfServiceServices';
 import { AuthContext } from '../context/AuthContext';
 import toast from 'react-hot-toast';
@@ -22,7 +22,7 @@ const EditService = () => {
     useEffect(() => {
         const getTypeOfService = async () => {
             try {
-                const data = await fetchTypeOfService(typeOfServiceId);
+                const data = await fetchTypeOfServiceServices(typeOfServiceId);
                 setData(data);
                 setDescription(data.description);
                 setPrice(data.price);
@@ -40,7 +40,7 @@ const EditService = () => {
         e.preventDefault();
 
         try {
-            const body = await fetchEditTypeOfServices(
+            const body = await fetchEditTypeOfServiceServices(
                 typeOfServiceId,
                 description,
                 price,
@@ -59,7 +59,7 @@ const EditService = () => {
 
     const handleDeleteService = async () => {
         try {
-            const body = await fetchDeleteTypeOfServices(
+            const body = await fetchDeleteTypeOfServiceServices(
                 typeOfServiceId,
                 authToken
             );
@@ -86,10 +86,7 @@ const EditService = () => {
                 </h3>
             </article>
 
-            <form
-                className='form'
-                onSubmit={handleEditService}
-            >
+            <form className='form' onSubmit={handleEditService}>
                 <fieldset>
                     <legend>Modificar Servicio</legend>
 

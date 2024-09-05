@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 import { AuthContext } from '../../../context/AuthContext';
-import { fecthRegisterNewTypeOfService } from '../../../services/typeOfServiceServices';
+import { fecthNewTypeOfServiceServices } from '../../../services/typeOfServiceServices';
 import toast from 'react-hot-toast';
 
 const RegisterNewTypeOfServiceController = () => {
@@ -23,7 +23,7 @@ const RegisterNewTypeOfServiceController = () => {
     const handleRegisterNewTypeOfService = async (e) => {
         e.preventDefault();
         try {
-            const data = await fecthRegisterNewTypeOfService(
+            const data = await fecthNewTypeOfServiceServices(
                 type,
                 description,
                 city,
