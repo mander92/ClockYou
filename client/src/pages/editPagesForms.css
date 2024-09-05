@@ -5,24 +5,29 @@
   grid-template-columns: var(--wrap-columns);
 
   & .editServiceLayout {
-    --the-columns: 1fr;
+    /* --the-columns: 1fr;
     display: grid;
     gap: 1rem;
-    grid-template-columns: var(--the-columns);
+    grid-template-columns: var(--the-columns); */
     border: 1px solid #cfcfcf;
     padding: 1rem;
     margin-top: 1.15rem;
     border-radius: 5px;
   }
 
-  & h4 {
+  & h3 {
     line-height: 1.1rem;
-    padding-bottom: 0.5rem;
+    padding-block: 1rem;
+    font-size: 1.5rem;
   }
 }
 
 @media (width > 1023px) {
   .editServiceLayoutWrapper {
     --wrap-columns: 35% 1fr;
+  }
+
+  & :has(form[id='perfilUsuario']) {
+    --wrap-columns: 45% 1fr;
   }
 }

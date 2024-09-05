@@ -1,8 +1,8 @@
 :root {
-    /* --minmaxgriditem: 250px;
+  /* --minmaxgriditem: 250px;
     --column-count: 1; */
-    /* grid-template-columns: repeat(auto-fit, minmax(var(--minmaxgriditem), 1fr)); */
-    /* 
+  /* grid-template-columns: repeat(auto-fit, minmax(var(--minmaxgriditem), 1fr)); */
+  /* 
     https://css-tricks.com/almanac/properties/g/grid-template-columns/ 
     https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns
     https://stackoverflow.com/questions/45459151/how-to-set-the-maximum-width-of-a-column-in-css-grid-layout
@@ -35,69 +35,73 @@
 } */
 
 .gridClockYou {
-    display: grid;
-    gap: 1rem 1.5rem;
-    /* grid-template-columns: repeat(var(--column-count), 1fr); */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    margin-top: 1rem;
+  display: grid;
+  gap: 1rem 1.5rem;
+  /* grid-template-columns: repeat(var(--column-count), 1fr); */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  margin-top: 1rem;
 
-    & li {
-        border: 1px solid #e6e6e6;
-        border-radius: 5px;
-        margin: 0.7rem 0;
-        padding-bottom: 0.7rem;
-        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-        transition: transform 0.4s ease;
+  & li {
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+    margin: 0.7rem 0;
+    padding-bottom: 0.7rem;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    transition: transform 0.4s ease;
 
-        &:hover {
-            transform: scale(1.03);
-        }
-
-        & *:not(img) {
-            padding-inline: 1rem;
-        }
-
-        & > a {
-            padding: 0.75rem 2.5rem;
-            display: inline-flex;
-            color: var(--white-color);
-            background-color: var(--cerulean);
-            margin-inline: 1rem;
-            margin-block: 1rem;
-            width: 50%;
-            justify-content: center;
-        }
+    &:hover {
+      transform: scale(1.03);
     }
 
-    & img {
-        width: 100%;
-        border-radius: 5px 5px 0 0;
+    & *:not(img) {
+      padding-inline: 1rem;
     }
 
-    & h3 {
-        padding: 1rem 0 0.5rem;
+    & > a {
+      padding: 0.75rem 2.5rem;
+      display: inline-flex;
+      color: var(--white-color);
+      background-color: var(--cerulean);
+      margin-inline: 1rem;
+      margin-block: 1rem;
+      width: 50%;
+      justify-content: center;
     }
+  }
+
+  & img {
+    width: 100%;
+    border-radius: 5px 5px 0 0;
+  }
+
+  & h3 {
+    padding: 1rem 0 0.5rem;
+  }
 }
 
 .filterServicesForm {
-    display: grid;
-    gap: 0.75rem 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    padding-bottom: 0;
+  display: grid;
+  gap: 0.75rem 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  padding-bottom: 0;
 
-    & select + button {
-        margin: 0;
-    }
+  & select + button {
+    margin: 0;
+  }
 
-    & + .container {
-        padding-inline: 0;
-    }
+  & + .container {
+    padding-inline: 0;
+  }
 }
 
 @media only screen and (min-width: 1024px) {
-    .filterServicesForm {
-        & select + button {
-            display: inline-block;
-        }
+  .filterServicesForm {
+    & select + button {
+      display: inline-block;
     }
+  }
+
+  .filterServicesForm:has(select[name='role']) {
+    max-width: 100%;
+  }
 }
