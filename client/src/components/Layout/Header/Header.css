@@ -47,7 +47,7 @@
             position: sticky;
             top: 0;
             background-color: var(--white-color);
-            box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+            /* box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; */
             /* https://getcssscan.com/css-box-shadow-examples */
         }
     }
