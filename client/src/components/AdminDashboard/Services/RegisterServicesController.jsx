@@ -5,6 +5,8 @@ import { AuthContext } from '../../../context/AuthContext';
 import { fecthNewTypeOfServiceServices } from '../../../services/typeOfServiceServices';
 import toast from 'react-hot-toast';
 
+// https://stackoverflow.com/questions/75775786/how-to-properly-add-window-scroll-event-listener-in-react-for-animating-an-eleme
+
 const RegisterNewTypeOfServiceController = () => {
     const { authToken } = useContext(AuthContext);
     const navigate = useNavigate();
@@ -47,7 +49,10 @@ const RegisterNewTypeOfServiceController = () => {
     };
 
     return (
-        <form className='form' onSubmit={handleRegisterNewTypeOfService}>
+        <form
+            className='form mx-auto'
+            onSubmit={handleRegisterNewTypeOfService}
+        >
             <fieldset>
                 <legend>Registrar Servicio</legend>
                 <label htmlFor='type'>Tipo</label>
