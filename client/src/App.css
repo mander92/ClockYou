@@ -182,6 +182,11 @@ fieldset {
         transition: background-color 0.3s linear;
         border: 1px solid var(--icicle);
 
+        &.activeSelectedLink {
+            background-color: var(--warm-gray);
+            color: var(--white-color);
+        }
+
         &:hover {
             background-color: var(--overcast);
         }
