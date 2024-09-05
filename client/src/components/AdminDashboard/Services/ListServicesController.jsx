@@ -109,10 +109,10 @@ const ListServicesController = () => {
                             key={item.id}
                             className='flex flex-col items-center text-center'
                         >
-                            <img
+                            {/* <img
                                 src={`${VITE_API_URL}/${item.image}`}
                                 alt={item.description}
-                            />
+                            /> */}
                             <h3 className='text-2xl grow'>{item.type}</h3>
 
                             <p>{item.description}</p>
