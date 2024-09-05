@@ -72,6 +72,7 @@ const DashboardPage = () => {
                 <NavLink
                     to='#profile'
                     onClick={() => handleSectionChange('profile')}
+                    className='activeSelectedLink'
                 >
                     Mi Perfil
                 </NavLink>
