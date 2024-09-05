@@ -41,6 +41,7 @@ const RegisterNewTypeOfServiceController = () => {
                 id: 'ok',
             });
             navigate('/user#services');
+            resetInputs(e);
         } catch (error) {
             toast.error(error.message, {
                 id: 'error',

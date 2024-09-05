@@ -54,6 +54,7 @@ const RegisterAdminUserController = () => {
                 toast.success(data, {
                     id: 'ok',
                 });
+                resetInputs(e);
             }
         } catch (error) {
             toast.error(error.message, {
@@ -62,7 +63,10 @@ const RegisterAdminUserController = () => {
         }
     };
     return (
-        <form className='form mx-auto' onSubmit={handleRegister}>
+        <form
+            className='form mx-auto'
+            onSubmit={handleRegister}
+        >
             <fieldset>
                 <legend>Registro</legend>
                 <label htmlFor='role'>Usuario</label>
@@ -72,7 +76,10 @@ const RegisterAdminUserController = () => {
                     onChange={(e) => setRole(e.target.value)}
                     required
                 >
-                    <option value='' disabled>
+                    <option
+                        value=''
+                        disabled
+                    >
                         Tipo:
                     </option>
                     <option value='employee'>Empleado</option>
