@@ -4,12 +4,11 @@ const startShiftRecordsController = async (req, res, next) => {
     try {
         const { shiftRecordId } = req.params;
 
-        const data = await startShiftRecordService(shiftRecordId);
+        await startShiftRecordService(shiftRecordId);
 
         res.send({
             status: 'ok',
-            message: 'Registrada la hora de inicio del servicio',
-            data,
+            message: 'Hora de inicio registrada',
         });
     } catch (error) {
         next(error);

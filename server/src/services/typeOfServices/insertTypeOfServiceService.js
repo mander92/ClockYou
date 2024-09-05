@@ -29,15 +29,6 @@ const insertTypeOfServiceService = async (
         `,
         [id, type, description, city, price, imageName]
     );
-
-    const [data] = await pool.query(
-        `
-        SELECT id, type, description, city, price, image FROM typeOfServices WHERE id = ?
-        `,
-        [id]
-    );
-
-    return data[0];
 };
 
 export default insertTypeOfServiceService;

@@ -1,10 +1,13 @@
 import { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { AuthContext } from '../../../context/AuthContext';
 import { fecthNewTypeOfServiceServices } from '../../../services/typeOfServiceServices';
 import toast from 'react-hot-toast';
 
 const RegisterNewTypeOfServiceController = () => {
     const { authToken } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const [type, setType] = useState('');
     const [description, setDescription] = useState('');
@@ -35,6 +38,7 @@ const RegisterNewTypeOfServiceController = () => {
             toast.success(data.message, {
                 id: 'ok',
             });
+            navigate('/user#services');
         } catch (error) {
             toast.error(error.message, {
                 id: 'error',

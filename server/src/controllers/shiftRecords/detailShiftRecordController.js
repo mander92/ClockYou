@@ -8,7 +8,6 @@ const detailShiftRecordController = async (req, res, next) => {
 
         res.send({
             status: 'ok',
-            message: 'Detalle del registro horario',
             data,
         });
     } catch (error) {

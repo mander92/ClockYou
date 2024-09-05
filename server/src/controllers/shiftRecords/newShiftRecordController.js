@@ -21,7 +21,7 @@ const newShiftRecordController = async (req, res, next) => {
 
         res.send({
             status: 'ok',
-            message: 'Se ha creado el turno correctamente',
+            message: 'Turno creado correctamente',
         });
     } catch (error) {
         next(error);

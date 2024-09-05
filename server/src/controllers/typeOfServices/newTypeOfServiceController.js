@@ -21,7 +21,7 @@ const newTypeOfServiceController = async (req, res, next) => {
 
         const imageName = await savePictureUtil(req.files.image, 640, 480);
 
-        const data = await insertTypeOfServiceService(
+        await insertTypeOfServiceService(
             type,
             description,
             city,
@@ -31,8 +31,7 @@ const newTypeOfServiceController = async (req, res, next) => {
 
         res.send({
             status: 'ok',
-            message: 'El servicio ha sido creado correctamente',
-            data,
+            message: 'Servicio creado correctamente',
         });
     } catch (error) {
         next(error);

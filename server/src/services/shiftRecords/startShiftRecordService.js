@@ -23,15 +23,6 @@ const startShiftRecordService = async (shiftRecordId) => {
         `,
         [clockIn, shiftRecordId]
     );
-
-    const [data] = await pool.query(
-        `
-        SELECT clockIn FROM shiftRecords WHERE id = ?
-        `,
-        [shiftRecordId]
-    );
-
-    return data[0];
 };
 
 export default startShiftRecordService;

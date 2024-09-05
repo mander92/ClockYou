@@ -8,7 +8,6 @@ const detailTypeOfServicesController = async (req, res, next) => {
 
         res.send({
             status: 'ok',
-            message: 'Detalle del servicio',
             data,
         });
     } catch (error) {

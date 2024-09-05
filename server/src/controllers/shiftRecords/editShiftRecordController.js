@@ -18,15 +18,10 @@ const editShiftRecordController = async (req, res, next) => {
 
         const { shiftRecordId } = req.params;
 
-        const data = await editShiftRecordsService(
-            clockIn,
-            clockOut,
-            shiftRecordId
-        );
+        await editShiftRecordsService(clockIn, clockOut, shiftRecordId);
 
         res.send({
             status: 'ok',
-            data: data,
         });
     } catch (error) {
         next(error);
