@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, NavLink } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import ListUserController from './ListUserController';
 import RegisterAdminUserController from './RegisterAdminUserController';
@@ -21,18 +21,19 @@ const Users = () => {
     return (
         <>
             <div className='managerTabs'>
-                <button
+                <NavLink
                     to='#ListUserController'
                     onClick={() => handleChange('ListUserController')}
+                    className='activeSelectedLink'
                 >
                     Listar
-                </button>
-                <button
+                </NavLink>
+                <NavLink
                     to='#RegisterAdminUserController'
                     onClick={() => handleChange('RegisterAdminUserController')}
                 >
                     Registrar
-                </button>
+                </NavLink>
             </div>
             {sectionComponents[activeSection]}
         </>
