@@ -12,24 +12,35 @@ const Header = () => {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
     function handleBurguer() {
-        setMenuBurguer(!menuBurguer);
+        if (windowWidth < 1023) setMenuBurguer(!menuBurguer);
     }
-
-    // https://reactrouter.com/en/v6.3.0/api#navlink
 
     useEffect(() => {
         const navDinamica = document.getElementById('navdinamica');
-        const anchoVentana = window.innerWidth;
-        let checkForShowClass = navDinamica.classList.contains('show');
-
-        if (anchoVentana < 1024) {
+        const checkForShowClass = navDinamica.classList.contains('show');
+        const changeBodyStyle = () => {
             checkForShowClass
                 ? document.body.classList.add('overflow-hidden')
                 : document.body.classList.remove('overflow-hidden');
-        } else {
-            document.body.classList.remove('overflow-hidden');
-        }
-    }, [menuBurguer]);
+        };
+
+        if (windowWidth < 1024) changeBodyStyle();
+
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+            if (windowWidth > 1023) {
+                setMenuBurguer(false);
+                changeBodyStyle();
+            } else {
+                changeBodyStyle();
+            }
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, [menuBurguer, windowWidth]);
 
     return (
         <header>
