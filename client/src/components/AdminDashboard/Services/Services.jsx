@@ -26,13 +26,19 @@ const Services = () => {
             <div className='managerTabs'>
                 <button
                     to='#ListServicesController'
-                    onClick={() => handleChange('ListServicesController')}
+                    onClick={() => {
+                        handleChange('ListServicesController');
+                        window.scrollTo(0, 0);
+                    }}
                 >
                     Listar
                 </button>
                 <button
                     to='#RegisterServicesController'
-                    onClick={() => handleChange('RegisterServicesController')}
+                    onClick={() => {
+                        handleChange('RegisterServicesController');
+                        window.scrollTo(0, 0);
+                    }}
                 >
                     Registrar
                 </button>

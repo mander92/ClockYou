@@ -35,6 +35,10 @@
     color: #cecece;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 #root {
     min-height: 100vh;
     min-height: 100dvh;
@@ -108,7 +112,7 @@ select {
 }
 
 .form {
-    --span-rows: 14;
+    --span-rows: 12;
     padding-bottom: 1.5rem;
     max-width: 60rem;
 
