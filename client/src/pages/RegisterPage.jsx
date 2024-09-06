@@ -58,83 +58,97 @@ const RegisterPage = () => {
 
     return (
         <section className='container formsWrapper'>
-            <form className='form' onSubmit={handleRegister}>
+            <form
+                className='form'
+                id='registerUnlogged'
+                onSubmit={handleRegister}
+            >
                 <fieldset>
                     <legend>Registro</legend>
-                    <label htmlFor='email'>Email</label>
-                    <input
-                        type='email'
-                        id='email'
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder='user@ClockYou.com'
-                        required
-                    />
 
-                    <label htmlFor='firstName'>Nombre</label>
-                    <input
-                        type='text'
-                        id='firstName'
-                        value={firstName}
-                        onChange={(e) => setFirstName(e.target.value)}
-                        placeholder='Manuel'
-                        required
-                    />
-
-                    <label htmlFor='lastName'>Apellidos</label>
-                    <input
-                        type='text'
-                        id='lastName'
-                        value={lastName}
-                        onChange={(e) => setLastName(e.target.value)}
-                        placeholder='Pérez Rodríguez'
-                        required
-                    />
-
-                    <label htmlFor='dni'>DNI</label>
-                    <input
-                        type='text'
-                        id='dni'
-                        value={dni}
-                        onChange={(e) => setDni(e.target.value)}
-                        placeholder='24873456Z'
-                        pattern='[0-9]{8}[A-Za-z]{1}'
-                        required
-                    />
-
-                    <label htmlFor='phone'>Teléfono</label>
-                    <input
-                        type='tel'
-                        id='phone'
-                        value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
-                        placeholder='680458923'
-                        required
-                    />
-
-                    <label htmlFor='password'>Contraseña</label>
-                    <input
-                        type='password'
-                        id='password'
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        placeholder='jobryp-kapDew-fetho6'
-                        required
-                    />
-
-                    <label htmlFor='repeatedPassword'>Repetir Contraseña</label>
-                    <input
-                        type='password'
-                        id='repeatedPassword'
-                        value={repeatedPassword}
-                        onChange={(e) => setRepeatedPassword(e.target.value)}
-                        placeholder='jobryp-kapDew-fetho6'
-                        required
-                    />
                     <div>
+                        <div>
+                            <label htmlFor='email'>Email</label>
+                            <input
+                                type='email'
+                                id='email'
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                placeholder='user@ClockYou.com'
+                                required
+                            />
+
+                            <label htmlFor='firstName'>Nombre</label>
+                            <input
+                                type='text'
+                                id='firstName'
+                                value={firstName}
+                                onChange={(e) => setFirstName(e.target.value)}
+                                placeholder='Manuel'
+                                required
+                            />
+
+                            <label htmlFor='lastName'>Apellidos</label>
+                            <input
+                                type='text'
+                                id='lastName'
+                                value={lastName}
+                                onChange={(e) => setLastName(e.target.value)}
+                                placeholder='Pérez Rodríguez'
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor='dni'>DNI</label>
+                            <input
+                                type='text'
+                                id='dni'
+                                value={dni}
+                                onChange={(e) => setDni(e.target.value)}
+                                placeholder='24873456Z'
+                                pattern='[0-9]{8}[A-Za-z]{1}'
+                                required
+                            />
+                            <label htmlFor='phone'>Teléfono</label>
+                            <input
+                                type='tel'
+                                id='phone'
+                                value={phone}
+                                onChange={(e) => setPhone(e.target.value)}
+                                placeholder='680458923'
+                                required
+                            />
+
+                            <label htmlFor='password'>Contraseña</label>
+                            <input
+                                type='password'
+                                id='password'
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                placeholder='jobryp-kapDew-fetho6'
+                                required
+                            />
+
+                            <label htmlFor='repeatedPassword'>
+                                Repetir Contraseña
+                            </label>
+                            <input
+                                type='password'
+                                id='repeatedPassword'
+                                value={repeatedPassword}
+                                onChange={(e) =>
+                                    setRepeatedPassword(e.target.value)
+                                }
+                                placeholder='jobryp-kapDew-fetho6'
+                                required
+                            />
+                        </div>
+                    </div>
+
+                    <footer>
                         <button type='submit'>Registrarse</button>
                         <button onClick={resetInputs}>Limpiar</button>
-                    </div>
+                    </footer>
                 </fieldset>
             </form>
         </section>

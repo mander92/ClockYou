@@ -108,6 +108,7 @@ select {
 }
 
 .form {
+    --span-rows: 14;
     padding-bottom: 1.5rem;
     max-width: 60rem;
 
@@ -118,10 +119,10 @@ select {
         flex-direction: column;
         gap: 0.7rem;
 
-        & > div:has(select) {
+        & > div:has([id='phone']) {
             display: grid;
             gap: 1.2rem;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
 
             & > div {
                 display: grid;
@@ -186,11 +187,14 @@ select {
 }
 
 @media (width > 1023px) {
+    #registerUnlogged {
+        --span-rows: 8;
+    }
     .form {
-        & fieldset > div:has(select) {
+        & fieldset > div:has([id='phone']) {
             & > div {
                 grid-template-rows: subgrid;
-                grid-row: span 14;
+                grid-row: span var(--span-rows);
             }
         }
     }
