@@ -67,7 +67,7 @@ const RegisterAdminUserController = () => {
             <fieldset>
                 <legend>Registro</legend>
 
-            <label htmlFor='role'>Usuario</label>
+                <label htmlFor='role'>Usuario</label>
                 <select
                     id='role'
                     value={role}
@@ -162,7 +162,7 @@ const RegisterAdminUserController = () => {
                     onChange={(e) => setRepeatedPassword(e.target.value)}
                     placeholder='jobryp-kapDew-fetho6'
                     required
-                /
+                />
 
                 <div>
                     <button type='submit'>Registrarse</button>
