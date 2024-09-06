@@ -5,8 +5,6 @@ import { AuthContext } from '../../../context/AuthContext';
 import { fecthNewTypeOfServiceServices } from '../../../services/typeOfServiceServices';
 import toast from 'react-hot-toast';
 
-// https://stackoverflow.com/questions/75775786/how-to-properly-add-window-scroll-event-listener-in-react-for-animating-an-eleme
-
 const RegisterNewTypeOfServiceController = () => {
     const { authToken } = useContext(AuthContext);
     const navigate = useNavigate();

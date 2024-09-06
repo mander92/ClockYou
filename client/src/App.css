@@ -26,8 +26,16 @@
     --body-min-height: 500px;
 }
 
+::placeholder {
+    color: #cfcfcf !important;
+    opacity: 1;
+}
+
+::-ms-input-placeholder {
+    color: #cecece;
+}
+
 #root {
-    /* https://ishadeed.com/article/min-content-size-css-grid/ */
     min-height: 100vh;
     min-height: 100dvh;
     margin: 0;
@@ -89,9 +97,8 @@ fieldset {
     font-weight: 400;
     font-style: normal;
     line-height: 1.4;
-    font-size: 1rem;
+    font-size: 1.05rem;
     border-radius: 5px;
-    /* font-size: clamp(1rem, 1vw + 0.5rem, 2rem); no descomentar, please */
 }
 
 .container {
