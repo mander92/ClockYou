@@ -103,7 +103,7 @@ const Profile = () => {
         <div className='editServiceLayoutWrapper'>
             <form className='form' id='perfilUsuario' onSubmit={handleEditUser}>
                 <fieldset>
-                    <legend>Perfil</legend>
+                    <legend>Mi Perfil</legend>
                     <label htmlFor='email'>Email</label>
                     <input disabled value={user?.email || ''} />
                     <label htmlFor='firstName'>Nombre</label>

@@ -31,7 +31,7 @@ const Services = () => {
                         window.scrollTo(0, 0);
                     }}
                 >
-                    Listar
+                    Ver Todos
                 </button>
                 <button
                     to='#RegisterServicesController'

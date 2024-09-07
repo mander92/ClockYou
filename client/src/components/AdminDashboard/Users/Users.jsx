@@ -41,7 +41,7 @@ const Users = () => {
                         window.scrollTo(0, 0);
                     }}
                 >
-                    Listar
+                    Ver Todos
                 </button>
                 <button
                     to='#RegisterAdminUserController'

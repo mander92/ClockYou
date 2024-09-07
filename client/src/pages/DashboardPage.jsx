@@ -54,7 +54,7 @@ const DashboardPage = () => {
                     to='#profile'
                     onClick={() => handleSectionChange('profile')}
                 >
-                    Perfil
+                    Mi Perfil
                 </NavLink>
 
                 {userRole === 'admin' && (

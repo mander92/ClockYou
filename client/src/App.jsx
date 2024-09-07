@@ -15,39 +15,45 @@ import DashboardPage from './pages/DashboardPage.jsx';
 import EditService from './pages/EditService.jsx';
 
 const App = () => {
-  return (
-    <Layout>
-      <main className='pb-6 overflow-x-clip'>
-        <Routes>
-          <Route path='/' element={<HomePage />} />
-          <Route path='/register' element={<RegisterPage />} />
-          <Route
-            path='/users/validate/:registrationCode'
-            element={<ValidateUserPage />}
-          />
-          <Route path='/login' element={<LoginPage />} />
-          <Route path='/user' element={<DashboardPage />} />
+    return (
+        <Layout>
+            <main id='mainMain' className='pb-6 overflow-x-clip'>
+                <Routes>
+                    <Route path='/' element={<HomePage />} />
+                    <Route path='/register' element={<RegisterPage />} />
+                    <Route
+                        path='/users/validate/:registrationCode'
+                        element={<ValidateUserPage />}
+                    />
+                    <Route path='/login' element={<LoginPage />} />
+                    <Route path='/user' element={<DashboardPage />} />
 
-          <Route path='/typeOfServices' element={<TypeOfServices />} />
-          <Route
-            path='/typeOfServices/:typeOfServiceId'
-            element={<DetailTypeOfService />}
-          />
-          <Route
-            path='/typeOfServices/edit/:typeOfServiceId'
-            element={<EditService />}
-          />
+                    <Route
+                        path='/typeOfServices'
+                        element={<TypeOfServices />}
+                    />
+                    <Route
+                        path='/typeOfServices/:typeOfServiceId'
+                        element={<DetailTypeOfService />}
+                    />
+                    <Route
+                        path='/typeOfServices/edit/:typeOfServiceId'
+                        element={<EditService />}
+                    />
 
-          <Route
-            path='/recoverpassword'
-            element={<SendRecoverPasswordPage />}
-          />
-          <Route path='/password' element={<ChangeRecoverPasswordPage />} />
-          <Route path='*' element={<NotFound />} />
-        </Routes>
-      </main>
-    </Layout>
-  );
+                    <Route
+                        path='/recoverpassword'
+                        element={<SendRecoverPasswordPage />}
+                    />
+                    <Route
+                        path='/password'
+                        element={<ChangeRecoverPasswordPage />}
+                    />
+                    <Route path='*' element={<NotFound />} />
+                </Routes>
+            </main>
+        </Layout>
+    );
 };
 
 export default App;

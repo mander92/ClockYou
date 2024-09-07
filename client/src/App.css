@@ -224,6 +224,7 @@ select {
         background-color: transparent;
         transition: background-color 0.3s linear;
         border: 1px solid var(--icicle);
+        min-width: fit-content;
 
         &.activeSelectedLink {
             background-color: var(--warm-gray);

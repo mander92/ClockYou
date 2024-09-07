@@ -9,7 +9,6 @@
         :root {
             --percentageTranslate: 40%;
         }
-        /* font-size clamp */
     }
 
     .mainnav {
@@ -58,6 +57,7 @@
         background-color: transparent;
         transition: background-color 0.3s linear;
         border: 1px solid var(--icicle);
+        min-width: fit-content;
 
         &:hover {
             background-color: var(--overcast);

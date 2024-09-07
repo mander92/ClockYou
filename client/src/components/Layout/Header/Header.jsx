@@ -10,6 +10,7 @@ const Header = () => {
     const { user } = useUser();
     const [menuBurguer, setMenuBurguer] = useState(false);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const [windowScroll, setWindowScroll] = useState('100');
 
     function handleBurguer() {
         if (windowWidth < 1023) setMenuBurguer(!menuBurguer);
@@ -41,6 +42,25 @@ const Header = () => {
             window.removeEventListener('resize', handleResize);
         };
     }, [menuBurguer, windowWidth]);
+
+    // useEffect(() => {
+    //     const showOnPx = 100;
+    //     const scrollReference = () => {
+    //         return document.getElementById('mainMain');
+    //     };
+
+    //     const handleScroll = () => {
+    //         setWindowScroll(scrollReference().scrollTop);
+    //         console.log('AAAAAAAAAAAAAAAAA --- ', windowScroll);
+    //         if (windowScroll > 120)
+    //             console.log('BBBBBBBBBBBBBBB --- ', windowScroll);
+    //     };
+
+    //     window.addEventListener('scroll', handleScroll);
+    //     return () => {
+    //         window.removeEventListener('scroll', handleScroll);
+    //     };
+    // }, [windowScroll]);
 
     return (
         <header>
