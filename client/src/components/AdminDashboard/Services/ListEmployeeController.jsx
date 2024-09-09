@@ -1,13 +1,15 @@
 const { VITE_API_URL } = import.meta.env;
+import { useLocation } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../../../context/AuthContext';
 import { fetchAllEmployeeService } from '../../../services/userServices.js';
 import toast from 'react-hot-toast';
+import { fecthNewShiftRecordService } from '../../../services/shiftRecordService.js';
 
 const ListEmployeeController = ({ serviceId }) => {
     const [data, setData] = useState([]);
     const [active, setActive] = useState('');
-    const [employeeId, setEmployeeId] = useState('');
+    const [, setEmployeeId] = useState('');
     const [job, setJob] = useState('');
     const [city, setCity] = useState('');
     const { authToken } = useContext(AuthContext);
@@ -45,15 +47,20 @@ const ListEmployeeController = ({ serviceId }) => {
         setJob('');
     };
 
-    const handleNewShiftRecord = async () => {
+    const handleNewShiftRecord = async (employeeId, serviceId, authToken) => {
         try {
-            const data = await fetchAllEmployeeService(
+            console.log(employeeId);
+
+            const data = await fecthNewShiftRecordService(
                 employeeId,
                 serviceId,
                 authToken
             );
 
-            toast.success(data.message);
+            toast.success(data.message, {
+                id: 'ok',
+            });
+            window.location.reload();
         } catch (error) {
             toast.error(error.message);
         }
