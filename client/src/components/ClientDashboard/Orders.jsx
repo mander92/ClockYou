@@ -13,6 +13,7 @@ const Orders = () => {
 
     const [status, setStatus] = useState('');
     const [type, setType] = useState('');
+    const [city, setCity] = useState('');
     const { authToken } = useContext(AuthContext);
 
     const resetFilters = (e) => {
@@ -45,8 +46,8 @@ const Orders = () => {
     }, []);
     // }, [status, type, authToken]);
 
-    const statusNoRepeated = [...new Set(data.map((item) => item.Estado))];
-    console.log(statusNoRepeated);
+    const cityNoRepeated = [...new Set(data.map((item) => item.Ciudad))];
+    console.log(cityNoRepeated);
 
     const typeNoRepeated = [...new Set(data.map((item) => item.TipoServicio))];
     console.log(typeNoRepeated);
@@ -65,13 +66,9 @@ const Orders = () => {
                     <option value='' disabled>
                         Estado:
                     </option>
-                    {statusNoRepeated.map((status) => {
-                        return (
-                            <option key={status} value={status}>
-                                {status}
-                            </option>
-                        );
-                    })}
+                    <option value='pending'>pendiente</option>
+                    <option value='accepted'>aceptado</option>
+                    <option value='confirmed'>confirmado</option>
                 </select>
 
                 <select
@@ -89,6 +86,26 @@ const Orders = () => {
                         return (
                             <option key={type} value={type}>
                                 {type}
+                            </option>
+                        );
+                    })}
+                </select>
+
+                <select
+                    name='cityOfService'
+                    id='cityOfService'
+                    value={city}
+                    onChange={(e) => {
+                        setCity(e.target.value);
+                    }}
+                >
+                    <option value='' disabled>
+                        Ciudad:
+                    </option>
+                    {cityNoRepeated.map((city) => {
+                        return (
+                            <option key={city} value={city}>
+                                {city}
                             </option>
                         );
                     })}
@@ -119,11 +136,21 @@ const Orders = () => {
 
                             <h3>{item.price}</h3>
 
-                            <NavLink
-                                to={`${VITE_CLIENT_URL}/typeOfServices/edit/${item.id}`}
-                            >
-                                Editar
-                            </NavLink>
+                            {item.status === 'pending' && (
+                                <NavLink
+                                    to={`${VITE_CLIENT_URL}/typeOfServices/edit/${item.id}`}
+                                >
+                                    Editar
+                                </NavLink>
+                            )}
+
+                            {item.status === 'completed' && (
+                                <NavLink
+                                    to={`${VITE_CLIENT_URL}/typeOfServices/edit/${item.id}`}
+                                >
+                                    Valorar
+                                </NavLink>
+                            )}
                         </li>
                     );
                 })}
