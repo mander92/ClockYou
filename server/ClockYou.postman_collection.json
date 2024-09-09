@@ -494,6 +494,33 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "detailUser(admin)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNjNzNjODZkLTlhYmMtNDU3ZS05ZjVkLTQ4MjI1ZjlkZGI0ZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNTU0MzYyMywiZXhwIjoxNzI2MTQ4NDIzfQ.hTSQPbEbptnzpsVMYdzrBE4VqVWjIsqv46PSMNHaFe8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/user/admin/6902bafa-3e8b-4448-8ac1-e53539ce4923",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"user",
+								"admin",
+								"6902bafa-3e8b-4448-8ac1-e53539ce4923"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},

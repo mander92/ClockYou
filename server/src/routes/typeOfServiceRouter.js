@@ -25,18 +25,20 @@ router.get(
 
 router.post('/typeOfServices', authUser, isAdmin, newTypeOfServiceController);
 
-router.put(
-    '/typeOfServices/:typeOfServiceId',
-    typeOfServiceExists,
-    editTypeOfServiceController
-);
-
 router.patch(
     '/typeOfServices/:typeOfServiceId',
     authUser,
     isAdmin,
     typeOfServiceExists,
     editTypeOfServiceImageController
+);
+
+router.put(
+    '/typeOfServices/:typeOfServiceId',
+    authUser,
+    isAdmin,
+    typeOfServiceExists,
+    editTypeOfServiceController
 );
 
 router.delete(

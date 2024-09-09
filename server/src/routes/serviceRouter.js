@@ -21,8 +21,6 @@ import {
 
 const router = express.Router();
 
-router.get('/services/validate/:validationCode', validateServiceController);
-
 router.get('/services', authUser, isAdmin, listAdminServicesController);
 
 router.get('/services/client', authUser, isClient, listClientServiceController);
@@ -42,6 +40,8 @@ router.get(
     detailServiceController
 );
 
+router.get('/services/validate/:validationCode', validateServiceController);
+
 router.post(
     '/services/:typeOfServiceId',
     authUser,
@@ -50,20 +50,20 @@ router.post(
     newServiceController
 );
 
-router.put(
-    '/services/:serviceId',
-    authUser,
-    isClient,
-    serviceExists,
-    editServiceController
-);
-
 router.patch(
     '/services/:serviceId/',
     authUser,
     isClient,
     serviceExists,
     editRatingServiceByIdController
+);
+
+router.put(
+    '/services/:serviceId',
+    authUser,
+    isClient,
+    serviceExists,
+    editServiceController
 );
 
 router.delete(

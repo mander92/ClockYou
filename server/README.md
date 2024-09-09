@@ -1,7 +1,7 @@
 # Clock You
 
 Es una aplicación de empresas de Servicios personales diversos como
-Jardinería, Limpieza, Seguridad, Mantenimiento de Edificios e Instalaciones, Carreteras, Eventos, Conciertos, Fiestas etc… En definitiva, está pensado para empresas que ofertan servicios personalizados a clientes particulares u otras empresas. El fuerte y atractivo de esta aplicación sería hacer más fácil y rápido la búsqueda del servicio y poder disfrutar de un control centralizado del personal que se encuentra en diversas localizaciones y poder brindarle un Servicio de RRHH totalmente digitalizado e intuitivo.
+Clases Particulares, Entrenamientos Personales, Cuidado de Mascotas, Limpiezas A Domicilio, Masajes, Mantenimientos Del Hogar, Clases Particulares, etc… En definitiva, está pensado para empresas que ofertan servicios personalizados a clientes particulares. El fuerte y atractivo de esta aplicación sería hacer más fácil y rápido la búsqueda del servicio y poder disfrutar de un control centralizado del personal que se encuentra en diversas localizaciones y poder brindarle un Servicio de RRHH totalmente digitalizado e intuitivo.
 
 ## Instalar
 
@@ -17,112 +17,126 @@ Jardinería, Limpieza, Seguridad, Mantenimiento de Edificios e Instalaciones, Ca
 
 ### addresses
 
-| Campo      | Tipo         | Descripción                               |
-| ---------- | ------------ | ----------------------------------------- |
-| id         | VARCHAR(36)  | Identificador único del usuario           |
-| address    | VARCHAR(255) | Nombre de calle de la dirección           |
-| postCode   | VARCHAR(5)   | Código postal de la dirección             |
-| city       | VARCHAR(50)  | Cuidad de la dirección                    |
-| createdAt  | DATETIME     | Fecha y hora de creación del la dirección |
-| modifiedAt | DATETIME     | Fecha y hora de la última modificación    |
+| Campo      | Tipo         | Descripción                            |
+| ---------- | ------------ | -------------------------------------- |
+| id         | CHAR(36)     | Identificador único del usuario        |
+| address    | VARCHAR(255) | Nombre de calle de la dirección        |
+| postCode   | CHAR(5)      | Código postal de la dirección          |
+| city       | VARCHAR(40)  | Cuidad de la dirección                 |
+| createdAt  | TIMESTAMP    | Fecha y hora de creación               |
+| modifiedAt | TIMESTAMP    | Fecha y hora de la última modificación |
+| deletedAt  | TIMESTAMP    | Fecha y hora del borrado lógico        |
 
 ### users
 
 | Campo               | Tipo         | Descripción                                     |
 | ------------------- | ------------ | ----------------------------------------------- |
-| id                  | VARCHAR(36)  | Identificador único del usuario                 |
+| id                  | CHAR(36)     | Identificador único del usuario                 |
 | email               | VARCHAR(100) | Correo electrónico del usuario                  |
-| username            | VARCHAR(30)  | Nombre de usuario del usuario                   |
-| password            | VARCHAR(100) | Contraseña del usuario (hash)                   |
-| adress              | VARCHAR(255) | Dirección del usuario                           |
+| firstName           | VARCHAR(25)  | Nombre del usuario                              |
+| lastName            | VARCHAR(50)  | Apellidos del usuario                           |
+| dni                 | CHAR(11)     | DNI del usuario                                 |
+| password            | VARCHAR(255) | Contraseña del usuario (hash)                   |
 | phone               | VARCHAR(15)  | Teléfono del usuario                            |
+| city                | VARCHAR(25)  | Ciudad de trabajo del empleado                  |
 | role                | ENUM         | Rol del usuario ("admin", "employee", "client") |
-| description         | VARCHAR(255) | Descripción del usuario                         |
-| avatar              | VARCHAR(100) | URL del avatar del usuario                      |
+| job                 | VARCHAR(20)  | Trabajo del empleado                            |
+| avatar              | CHAR(40)     | URL del avatar del usuario                      |
 | active              | BOOLEAN      | Indica si el usuario está activo o no           |
 | registrationCode    | VARCHAR(30)  | Código de registro del usuario                  |
 | recoverPasswordCode | VARCHAR(10)  | Código de recuperación de contraseña            |
-| particularId        | VARCHAR(36)  | Identificador del usuario particular            |
-| companyId           | VARCHAR(36)  | Identificador del usuario empresa               |
-| addressId           | VARCHAR(36)  | Identificador de la dirección del usuario       |
-| createdAt           | DATETIME     | Fecha y hora de creación del usuario            |
-| modifiedAt          | DATETIME     | Fecha y hora de la última modificación          |
+| createdAt           | TIMESTAMP    | Fecha y hora de creación                        |
+| modifiedAt          | TIMESTAMP    | Fecha y hora de la última modificación          |
+| deletedAt           | TIMESTAMP    | Fecha y hora del borrado lógico                 |
 
 ### typeOfServices
 
-| Campo       | Tipo         | Descripción                               |
-| ----------- | ------------ | ----------------------------------------- |
-| id          | VARCHAR(36)  | Identificador único del usuario           |
-| type        | VARCHAR(255) | Tipo de servicio                          |
-| description | VARCHAR(500) | Descripción del servicio ofertado         |
-| city        | VARCHAR(30)  | Cuidad disponible del servicio            |
-| createdAt   | DATETIME     | Fecha y hora de creación del la dirección |
-| modifiedAt  | DATETIME     | Fecha y hora de la última modificación    |
+| Campo       | Tipo         | Descripción                            |
+| ----------- | ------------ | -------------------------------------- |
+| id          | CHAR(36)     | Identificador único del usuario        |
+| type        | VARCHAR(255) | Tipo de servicio                       |
+| description | VARCHAR(500) | Descripción del servicio ofertado      |
+| city        | VARCHAR(30)  | Cuidad disponible del servicio         |
+| image       | CHAR(40)     | Url de la imágen de tipo de servicio   |
+| createdAt   | TIMESTAMP    | Fecha y hora de creación               |
+| modifiedAt  | TIMESTAMP    | Fecha y hora de la última modificación |
+| deletedAt   | TIMESTAMP    | Fecha y hora del borrado lógico        |
 
 ### services
 
-| Campo           | Tipo         | Descripción                                                              |
-| --------------- | ------------ | ------------------------------------------------------------------------ |
-| id              | VARCHAR(36)  | Identificador único del usuario                                          |
-| location        | VARCHAR(255) | Localización del servicio                                                |
-| startDate       | DATE         | Fecha de inicio del servicio                                             |
-| endDate         | DATE         | Fecha de fin del servicio                                                |
-| startTime       | DATETIME     | Hora de inicio del servicio                                              |
-| comments        | VARCHAR(500) | Comentarios adicionales del servicio a contratar                         |
-| endTime         | DATETIME     | Hora de fin del servicio                                                 |
-| description     | VARCHAR(500) | Descripción del servicio                                                 |
-| rating          | INT          | Valoración del 1 al 5                                                    |
-| status          | ENUM         | Estado del servicio ("aceptado", "rechazado", "pendiente", "completado") |
-| addressId       | VARCHAR(36)  | Identificador de la dirección del servicio                               |
-| typeOfServiceId | VARCHAR(36)  | Identificador del tipo de servicio a contratar                           |
-| createdAt       | DATETIME     | Fecha y hora de creación del servicio                                    |
-| modifiedAt      | DATETIME     | Fecha y hora de la última modificación                                   |
-
-### servicesAssigned
-
-| Campo      | Tipo        | Descripción                            |
-| ---------- | ----------- | -------------------------------------- |
-| id         | VARCHAR(36) | Identificador único del servicio       |
-| employeeId | VARCHAR(36) | Identificador del empleado             |
-| clientId   | VARCHAR(36) | Identificador del cliente              |
-| serviceId  | VARCHAR(36) | Identificador del servicio             |
-| createdAt  | DATETIME    | Fecha y hora de creación del servicio  |
-| modifiedAt | DATETIME    | Fecha y hora de la última modificación |
+| Campo           | Tipo         | Descripción                                                             |
+| --------------- | ------------ | ----------------------------------------------------------------------- |
+| id              | CHAR(36)     | Identificador único del usuario                                         |
+| dateTime        | TIMESTAMP    | Fecha y hora de inicio del servicio                                     |
+| hours           | INT UNSIGNED | Horas a contratar por el usuario, valores entre 1 y 8                   |
+| rating          | INT UNSIGNED | Valoración del cliente sobre el servicio realizado, valores entre 1 y 5 |
+| totalPrice      | DECIMAL      | Precio total del servicio contratado por el cliente                     |
+| comments        | VARCHAR(500) | Comentarios adicionales del servicio a contratar                        |
+| status          | ENUM         | Estado del servicio                                                     |
+| validationCode  | VARCHAR(30)  | Código de validación para el usuario para aceptar el servicio           |
+| clientId        | CHAR(36)     | Identificador del cliente                                               |
+| addressId       | CHAR(36)     | Identificador de la dirección del servicio                              |
+| typeOfServiceId | HAR(36)      | Identificador del tipo de servicio contratado                           |
+| createdAt       | TIMESTAMP    | Fecha y hora de creación                                                |
+| modifiedAt      | TIMESTAMP    | Fecha y hora de la última modificación                                  |
+| deletedAt       | TIMESTAMP    | Fecha y hora del borrado lógico                                         |
 
 ### shiftRecords
 
-| Campo              | Tipo          | Descripción                                   |
-| ------------------ | ------------- | --------------------------------------------- |
-| id                 | VARCHAR(36)   | Identificador único del registro horario      |
-| startTime          | DATETIME      | Hora de inicio del servicio                   |
-| endTime            | DATETIME      | Hora de fin del servicio                      |
-| latitude           | DECIMAL(10,8) | Latitud del servicio                          |
-| longitude          | DECIMAL(11,8) | Longitud del servicio                         |
-| servicesAssignedId | VARCHAR(36)   | Identificador del servicio contratado         |
-| createdAt          | DATETIME      | Fecha y hora de creación del registro horario |
-| modifiedAt         | DATETIME      | Fecha y hora de la última modificación        |
+| Campo      | Tipo          | Descripción                                        |
+| ---------- | ------------- | -------------------------------------------------- |
+| id         | CHAR(36)      | Identificador único del registro horario           |
+| clockIn    | TIMESTAMP     | Empleado registra hora de inicio del servicio      |
+| clockOut   | TIMESTAMP     | Empleado registra hora de fin del servicio         |
+| latitude   | DECIMAL(10,8) | Latitud del servicio                               |
+| longitude  | DECIMAL(11,8) | Longitud del servicio                              |
+| serviceId  | CHAR(36)      | Identificador del servicio contratado              |
+| employeeId | CHAR(36)      | Identificador del empleado que realiza el servicio |
+| createdAt  | TIMESTAMP     | Fecha y hora de creación                           |
+| modifiedAt | TIMESTAMP     | Fecha y hora de la última modificación             |
+| deletedAt  | TIMESTAMP     | Fecha y hora del borrado lógico                    |
 
 ## Endpoints del usuario
 
--   **POST** - `/users/register` - Crea un nuevo usuario pendiente de activar.
--   **POST** - `/users/employee/register` - Admin crea un nuevo usuario empleado.
--   **POST** - `/users/admin/register` - Admin crea un nuevo usuario administrador.
--   **POST** - `/users/login` - Logea a un usuario retornando un token.
--   **POST** - `/users/password` - Actualiza la contraseña de un usuario mediante un código de recuperación.
 -   **GET** - `/users/validate/:registrationCode` - Valida a un usuario recién registrado.
--   **PATCH** - `/users/password/recover` - Envía al usuario un correo de recuperación de contraseña.
+-   **GET** - `/users/` - Admin obtiene la lista de todos los usuarios.
+-   **GET** - `/user/` - Perfil del usuario logueado.
+-   **GET** - `/user/admin/:userId` - Admin obtiene el perfil de un usuario.
+-   **POST** - `/users/register` - Crea un nuevo usuario pendiente de activar.
+-   **POST** - `/users/login` - Logea a un usuario retornando un token.
+-   **POST** - `/users/password/recover` - Envía al usuario un correo de recuperación de contraseña.
+-   **POST** - `/users/admin/register` - Admin crea un nuevo usuario tipo administrador o empleado.
+-   **POST** - `/users/avatar/:userId` - Usuario crea o edita su imágen de avatar.
+-   **PATCH** - `/users/password` - Recupera la contraseña de un usuario mediante un código de recuperación.
+-   **PUT** - `/users/password` - Usuario edita su contraseña.
+-   **DELETE** - `/user/:userId` - Usuario elimina su cuenta.
 
 ## Endpoints de los tipos de servicios
 
--   **GET** - `/typeOfServices` - Lista todos los servicios ofertados a los clientes con opción de filtros de búsqueda.
+-   **GET** - `/typeOfServices` - Lista todos los servicios ofertados a los clientes con filtros de búsqueda.
+-   **GET** - `/typeOfServices/:typeOfServiceId` - Detalle de un tipo de servicio.
 -   **POST** - `/typeOfServices` - Admin crea una entrada en los tipos de servicios ofertados a los clientes.
+-   **PATCH** - `/typeOfServices/:typeOfServiceId` - Admin edita la imágen en los tipos de servicios ofertados a los clientes.
+-   **PUT** - `/typeOfServices/:typeOfServiceId` - Admin edita una entrada en los tipos de servicios ofertados a los clientes.
 -   **DELETE** - `/typeOfServices/:serviceId` - Admin elimina una entrada en los servicios ofertados a los clientes.
 
 ## Endpoints de los servicios
 
--   **POST** - `/services` - El cliente crea una entrada en el servicio.
+-   **GET** - `/services` - Admin lista todos los servicios contratados por clientes con filtros de búsqueda.
+-   **GET** - `/services/client` - Cliente lista todos sus servicios contratados con filtros de búsqueda.
+-   **GET** - `/services/employee` - Empleado lista todos sus servicios confirmados.
+-   **GET** - `/services/:serviceId` - Admin obtiene el detalle de un servicio.
+-   **GET** - `/services/validate/:validationCode` - Cliente confirma un servicio.
+-   **POST** - `/services/:typeOfServiceId` - El cliente solicita un servicio.
+-   **PATCH** - `/services/:serviceId` - Cliente valora un servicio realizado.
+-   **PUT** - `/services/:serviceId` - Cliente edita un servicio solicitado.
+-   **DELETE** - `/services/:serviceId` - Cliente elimina un servicio solicitado.
 
-## Endpoints de archivos
+## Endpoints de registros horarios
 
--   **POST** - `/file` - El usuario registrado puede subir un único archivo al directorio $UPLOADS_DIR.
-
+-   **GET** - `/shiftrecords` - Admin lista todos los registros horarios con filtros de búsqueda.
+-   **GET** - `/shiftrecords/:shiftRecordId` - Admin obtiene el detalle de un registro horario.
+-   **POST** - `/shiftrecords/:serviceId` - Admin asigna un empleado a un servicio.
+-   **PUT** - `/shiftrecords/:shiftRecordId` - Empleado registra la hora de inicio del servicio.
+-   **PUT** - `/shiftrecords/edit/:shiftRecordId` - Admin edita los registros horarios del servicio.
+-   **PATCH** - `/shiftrecords/:shiftRecordId` - Empleado registra la hora de fin del servicio.
