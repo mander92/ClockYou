@@ -301,4 +301,23 @@ export const fetchAllEmployeeService = async (
     return body.data;
 };
 
-export const fetchListClientServiceServices = () => {};
+export const fetchListClientServiceServices = async (
+    searchParamsToString,
+    authToken
+) => {
+    const res = await fetch(`${VITE_API_URL}/services/client`, {
+        headers: authToken
+            ? {
+                  'Content-Type': 'application/json',
+                  Authorization: authToken,
+              }
+            : {},
+    });
+
+    const body = await res.json();
+    if (body.status === 'error') {
+        throw new Error(body.message);
+    }
+
+    return body.data;
+};
