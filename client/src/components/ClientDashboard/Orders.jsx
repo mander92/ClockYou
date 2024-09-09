@@ -7,9 +7,6 @@ import toast from 'react-hot-toast';
 
 const Orders = () => {
     const [data, setData] = useState([]);
-    console.log('+++++++++++++++++');
-    console.log(data);
-    console.log('+++++++++++++++++');
 
     const [status, setStatus] = useState('');
     const [type, setType] = useState('');
@@ -43,14 +40,10 @@ const Orders = () => {
         };
 
         getListClientServiceController();
-    }, []);
-    // }, [status, type, authToken]);
+    }, [status, type, city, authToken]);
 
     const cityNoRepeated = [...new Set(data.map((item) => item.Ciudad))];
-    console.log(cityNoRepeated);
-
     const typeNoRepeated = [...new Set(data.map((item) => item.TipoServicio))];
-    console.log(typeNoRepeated);
 
     return (
         <div>
@@ -116,25 +109,31 @@ const Orders = () => {
 
             <ul className='gridClockYou'>
                 {data.map((item) => {
+                    const time = new Date(item.DíaYHora).toLocaleTimeString();
+                    const date = new Date(item.DíaYHora).toLocaleDateString();
+
                     return (
                         <li
                             id={item.id}
                             key={item.id}
                             className='flex flex-col items-center text-center'
                         >
-                            {/* <img
-                                src={`${VITE_API_URL}/${item.image}`}
-                                alt={item.description}
-                            /> */}
-                            <h3 className='text-2xl'>{item.type}</h3>
+                            <h3 className='text-2xl'>{item.TipoServicio}</h3>
 
-                            <p className='grow'>{item.description}</p>
+                            <p className='grow'>
+                                {date} - {time}
+                            </p>
 
                             <p className='text-1xl font-black pt-3 pb-1'>
                                 {item.city}
                             </p>
 
-                            <h3>{item.price}</h3>
+                            <h3>
+                                {item.Ciudad} - {item.CP}
+                            </h3>
+
+                            <h3>Precio Total: {item.PrecioTotal} €</h3>
+                            <h3>{item.Estado}</h3>
 
                             {item.status === 'pending' && (
                                 <NavLink
