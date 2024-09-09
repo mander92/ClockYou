@@ -1,4 +1,3 @@
-// import { NavLink, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import ListUserController from './ListUserController';
 import RegisterAdminUserController from './RegisterAdminUserController';
