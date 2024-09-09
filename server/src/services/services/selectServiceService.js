@@ -1,6 +1,6 @@
 import getPool from '../../db/getPool.js';
 
-const selectServiceService = async (status, order, price) => {
+const selectServiceService = async (status, order) => {
     const pool = await getPool();
 
     let sqlQuery = `
@@ -28,7 +28,7 @@ const selectServiceService = async (status, order, price) => {
     }
 
     if (order) {
-        sqlQuery += ` ORDER BY s.createdAt ${order.toUpperCase()}`;
+        sqlQuery += ` ORDER BY s.dateTime ${order.toUpperCase()}`;
     }
 
     const [service] = await pool.query(sqlQuery, sqlValues);
