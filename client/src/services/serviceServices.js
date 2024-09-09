@@ -56,3 +56,20 @@ export const fecthAllServicesServices = async (
 
     return body;
 };
+
+export const fetchDetailServiceService = async (serviceId, authToken) => {
+    const res = await fetch(`${VITE_API_URL}/services/${serviceId}`, {
+        headers: {
+            Authorization: authToken,
+            'Content-Type': 'application/json',
+        },
+    });
+
+    const body = await res.json();
+
+    if (body.status !== 'ok') {
+        throw new Error(body.message);
+    }
+
+    return body;
+};

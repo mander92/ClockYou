@@ -1,5 +1,6 @@
 import { useEffect, useState, useContext } from 'react';
-
+const { VITE_CLIENT_URL } = import.meta.env;
+import { NavLink } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../../context/AuthContext';
 import { fecthAllServicesServices } from '../../../services/serviceServices.js';
@@ -99,7 +100,11 @@ const ListContracts = () => {
                                     <h3>{item.Ciudad}</h3>
                                     <h3>{time}</h3>
                                     <h3>{date}</h3>
-                                    <button>ver</button>
+                                    <NavLink
+                                        to={`${VITE_CLIENT_URL}/services/${item.serviceId}`}
+                                    >
+                                        ver
+                                    </NavLink>
                                 </li>
                             );
                         })}
