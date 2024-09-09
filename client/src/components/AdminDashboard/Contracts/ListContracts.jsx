@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../../context/AuthContext';
 import { fecthAllServicesServices } from '../../../services/serviceServices.js';
+
 const ListContracts = () => {
     const [data, setData] = useState([]);
     const [status, setStatus] = useState('');
@@ -38,8 +39,6 @@ const ListContracts = () => {
         };
         getServices();
     }, [status, dateTime, authToken]);
-
-    console.log(data);
 
     return (
         <>
