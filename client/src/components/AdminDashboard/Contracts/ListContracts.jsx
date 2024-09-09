@@ -6,7 +6,7 @@ import { fecthAllServicesServices } from '../../../services/serviceServices.js';
 const ListContracts = () => {
     const [data, setData] = useState([]);
     const [status, setStatus] = useState('');
-    const [price, setPrice] = useState('');
+    const [dateTime, setDateTime] = useState('');
     const { authToken } = useContext(AuthContext);
 
     const resetFilter = (e) => {
@@ -18,7 +18,7 @@ const ListContracts = () => {
         const getServices = async () => {
             const searchParams = new URLSearchParams({
                 status: status,
-                price: price,
+                order: dateTime,
             });
             const searchParamsToString = searchParams.toString();
             try {
@@ -35,7 +35,7 @@ const ListContracts = () => {
             }
         };
         getServices();
-    }, [status, price, authToken]);
+    }, [status, dateTime, authToken]);
 
     console.log(data);
 
@@ -65,13 +65,13 @@ const ListContracts = () => {
                         <select
                             name='precio'
                             id='precio'
-                            value={price}
+                            value={dateTime}
                             onChange={(e) => {
-                                setPrice(e.target.value);
+                                setDateTime(e.target.value);
                             }}
                         >
                             <option value='' disabled>
-                                Precio:
+                                Fecha:
                             </option>
                             <option value='ASC'>Ascendente</option>
                             <option value='DESC'>Descendente</option>
