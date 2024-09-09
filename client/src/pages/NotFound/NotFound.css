@@ -1,31 +1,32 @@
 .notFound {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: calc(100vh - 245px);
-  height: calc(100dvh - 245px);
-  text-align: center;
-  background-color: #f8f9fa;
-  padding: 20px;
-  box-sizing: border-box;
-  margin: 5px 0;
+    --_heightMinus: 260px;
 
-  & .notfoundimg {
-    width: min(70%, 500px);
-  }
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - var(--_heightMinus));
+    height: calc(100dvh - var(--_heightMinus));
+    background-color: #f8f9fa;
+    padding: 20px;
+    box-sizing: border-box;
+    margin: 5px 0;
 
-  & h1 {
-    color: #1b6ff1;
-    margin-bottom: 20px;
-  }
-
-  & a {
-    text-decoration: underline;
-    margin-top: 20px;
-
-    &:hover {
-      font-size: 1.11rem;
+    & .notfoundimg {
+        width: min(70%, 500px);
     }
-  }
+
+    & h1 {
+        color: #1b6ff1;
+        margin-bottom: 20px;
+    }
+
+    & a {
+        text-decoration: underline;
+        margin-top: 20px;
+
+        &:hover {
+            font-size: 1.11rem;
+        }
+    }
 }

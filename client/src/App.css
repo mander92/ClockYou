@@ -49,6 +49,10 @@
     & main {
         flex-grow: 1;
         padding-top: 1rem;
+
+        &:has(.notFound) {
+            background-color: #f8f9fa;
+        }
     }
 }
 
