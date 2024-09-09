@@ -37,6 +37,8 @@ const ListContracts = () => {
         getServices();
     }, [status, price, authToken]);
 
+    console.log(data);
+
     return (
         <>
             <div className='container'>
@@ -80,19 +82,36 @@ const ListContracts = () => {
                 <div>
                     <ul className='gridClockYou'>
                         {data.map((item) => {
-                            const fecha = item.DíaYHora.tolocaStringTime();
-                            console.log(fecha);
+                            const time = new Date(
+                                item.DíaYHora
+                            ).toLocaleTimeString();
+
+                            const date = new Date(
+                                item.DíaYHora
+                            ).toLocaleDateString();
+
                             return (
                                 <li key={item.serviceId}>
-                                    <h2>{item.TipoServicio}</h2>
+                                    <h2>{item.serviceId}</h2>
+                                    <h2>
+                                        tipo de servicio: {item.TipoServicio}
+                                    </h2>
+                                    <h3>{item.Estado}</h3>
+                                    <h3>{item.Provincia}</h3>
+                                    <h3>{item.Ciudad}</h3>
+                                    <h3>{item.Creación}</h3>
+                                    <h3>{item.DNI}</h3>
                                     <h3>{item.Dirección}</h3>
                                     <h3>{item.precio}</h3>
-                                    <h3>{item.Estado}</h3>
-                                    <h3>{item.DíaYHora}</h3>
+                                    <h3>{item.PrecioTotal}</h3>
+                                    <h3>{time}</h3>
+                                    <h3>{date}</h3>
                                     <h4>{item.Nombre}</h4>
                                     <h4>{item.Apellidos}</h4>
                                     <h4>{item.Teléfono}</h4>
                                     <h4>{item.Horas}</h4>
+                                    <h4>{item.Comentarios}</h4>
+                                    <button>ver</button>
                                 </li>
                             );
                         })}
