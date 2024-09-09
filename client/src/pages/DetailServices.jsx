@@ -3,6 +3,7 @@ import { useState, useEffect, useContext } from 'react';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../context/AuthContext';
 import { fetchDetailServiceService } from '../services/serviceServices.js';
+import ListEmployeeController from '../components/AdminDashboard/Services/ListEmployeeController.jsx';
 
 const DetailService = () => {
     const { serviceId } = useParams();
@@ -44,6 +45,8 @@ const DetailService = () => {
             <h3>{data.Nombre}</h3>
             <h3>{data.Apellidos}</h3>
             <h3>{data.Teléfono}</h3>
+
+            <ListEmployeeController serviceId={serviceId} />
         </>
     );
 };

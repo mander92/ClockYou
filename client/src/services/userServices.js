@@ -280,3 +280,23 @@ export const fetchAllUsersService = async (searchParamsToString, authToken) => {
     }
     return body.data;
 };
+
+export const fetchAllEmployeeService = async (
+    searchParamsToString,
+    authToken
+) => {
+    console.log(searchParamsToString);
+    const res = await fetch(`${VITE_API_URL}/users/?${searchParamsToString}`, {
+        headers: authToken
+            ? {
+                  'Content-Type': 'application/json',
+                  Authorization: authToken,
+              }
+            : {},
+    });
+    const body = await res.json();
+    if (body.status === 'error') {
+        throw new Error(body.message);
+    }
+    return body.data;
+};

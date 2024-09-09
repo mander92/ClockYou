@@ -1,36 +1,28 @@
 const { VITE_API_URL } = import.meta.env;
-import { useContext, useEffect, useState } from 'react';
-import { fetchAllUsersService } from '../../../services/userServices.js';
+import { useState, useEffect, useContext } from 'react';
+import { AuthContext } from '../../../context/AuthContext';
+import { fetchAllEmployeeService } from '../../../services/userServices.js';
 import toast from 'react-hot-toast';
-import { AuthContext } from '../../../context/AuthContext.jsx';
-import { newShiftRecordService } from '../../../services/shiftRecordsService.js';
 
 const ListEmployeeController = ({ serviceId }) => {
-    const { authToken } = useContext(AuthContext);
     const [data, setData] = useState([]);
-    const [city, setCity] = useState('');
-    const [job, setJob] = useState('');
     const [active, setActive] = useState('');
-    const [employeeId, setEmployeeId] = useState('');
-
-    const resetFilters = (e) => {
-        e.preventDefault();
-        setCity('');
-        setJob('');
-        setActive('');
-    };
+    const [job, setJob] = useState('');
+    const [city, setCity] = useState('');
+    const { authToken } = useContext(AuthContext);
+    const role = 'employee';
 
     useEffect(() => {
-        const getAllEmployeeList = async () => {
+        const getAllUserList = async () => {
             const searchParams = new URLSearchParams({
                 city: city,
                 job: job,
-                role: 'employee',
+                role: role,
                 active: active,
             });
             const searchParamsToString = searchParams.toString();
             try {
-                const data = await fetchAllUsersService(
+                const data = await fetchAllEmployeeService(
                     searchParamsToString,
                     authToken
                 );
@@ -43,31 +35,37 @@ const ListEmployeeController = ({ serviceId }) => {
             }
         };
 
-        getAllEmployeeList();
-    }, [city, job, active, authToken]);
+        getAllUserList();
+    }, [city, job, active]);
 
-    const citiesNoRepeated = [...new Set(data.map((item) => item.city))];
-    const jobNoRepeated = [...new Set(data.map((item) => item.job))];
+    const resetFilters = () => {
+        setActive('');
+        setCity('');
+        setJob('');
+    };
 
-    const handleShiftRecord = async () => {
+    const handleNewShiftRecord = async () => {
         try {
-            // const data = await newShiftRecordService(
-            //     authToken,
-            //     serviceId,
-            //     employeeId
-            // );
+            const data = await fetchAllEmployeeService(
+                id,
+                serviceId,
+                authToken
+            );
 
-            if (data.status === 'ok') {
-                toast.success(data.message);
-            }
+            toast.success(data.message);
         } catch (error) {
             toast.error(error.message);
         }
     };
 
+    const citiesNoRepeated = [...new Set(data.map((item) => item.city))];
+    const jobNoRepeated = [...new Set(data.map((item) => item.job))];
+
+    console.log(citiesNoRepeated);
+
     return (
         <>
-            <div>
+            <div className='container'>
                 <form className='form filterServicesForm'>
                     <select
                         name='city'
@@ -125,10 +123,9 @@ const ListEmployeeController = ({ serviceId }) => {
                     </select>
                     <button onClick={resetFilters}>Limpiar Filtros</button>
                 </form>
-
                 <ul className='gridClockYou'>
                     {data.map((item) => {
-                        setEmployeeId(item.id);
+                        const id = item.id;
                         return (
                             <li
                                 key={item.id}
@@ -151,8 +148,16 @@ const ListEmployeeController = ({ serviceId }) => {
                                 <p className='grow'>👨‍💻 {item.job}</p>
                                 <p className='grow'>🏠 {item.city}</p>
 
-                                <button onClick={handleShiftRecord}>
-                                    Asignar empleado
+                                <button
+                                    onClick={() =>
+                                        handleNewShiftRecord(
+                                            id,
+                                            serviceId,
+                                            authToken
+                                        )
+                                    }
+                                >
+                                    Asignar Empleado
                                 </button>
                             </li>
                         );
