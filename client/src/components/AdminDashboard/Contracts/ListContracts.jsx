@@ -12,6 +12,7 @@ const ListContracts = () => {
     const resetFilter = (e) => {
         e.preventDefault();
         setStatus('');
+        setDateTime('');
     };
 
     useEffect(() => {
@@ -92,25 +93,12 @@ const ListContracts = () => {
 
                             return (
                                 <li key={item.serviceId}>
-                                    <h2>{item.serviceId}</h2>
-                                    <h2>
-                                        tipo de servicio: {item.TipoServicio}
-                                    </h2>
+                                    <h2>{item.TipoServicio}</h2>
                                     <h3>{item.Estado}</h3>
                                     <h3>{item.Provincia}</h3>
                                     <h3>{item.Ciudad}</h3>
-                                    <h3>{item.Creación}</h3>
-                                    <h3>{item.DNI}</h3>
-                                    <h3>{item.Dirección}</h3>
-                                    <h3>{item.precio}</h3>
-                                    <h3>{item.PrecioTotal}</h3>
                                     <h3>{time}</h3>
                                     <h3>{date}</h3>
-                                    <h4>{item.Nombre}</h4>
-                                    <h4>{item.Apellidos}</h4>
-                                    <h4>{item.Teléfono}</h4>
-                                    <h4>{item.Horas}</h4>
-                                    <h4>{item.Comentarios}</h4>
                                     <button>ver</button>
                                 </li>
                             );
