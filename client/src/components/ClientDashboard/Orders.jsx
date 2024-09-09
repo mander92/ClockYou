@@ -1,6 +1,6 @@
 const { VITE_API_URL, VITE_CLIENT_URL } = import.meta.env;
 import { useEffect, useState } from 'react';
-import { fetchListClientServiceServices } from '../../services/serviceServices';
+import { fetchListClientServiceServices } from '../../services/userServices.js';
 import toast from 'react-hot-toast';
 import { NavLink } from 'react-router-dom';
 
@@ -37,8 +37,7 @@ const Orders = () => {
         };
 
         getListClientServiceController();
-    }, []);
-    //  }, [status, type);
+    }, [status, type]);
 
     const statusNoRepeated = [...new Set(data.map((item) => item.status))];
     console.log(statusNoRepeated);
@@ -100,10 +99,10 @@ const Orders = () => {
                             key={item.id}
                             className='flex flex-col items-center text-center'
                         >
-                            {/* <img
+                            <img
                                 src={`${VITE_API_URL}/${item.image}`}
                                 alt={item.description}
-                            /> */}
+                            />
                             <h3 className='text-2xl'>{item.type}</h3>
 
                             <p className='grow'>{item.description}</p>

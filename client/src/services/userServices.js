@@ -300,3 +300,5 @@ export const fetchAllEmployeeService = async (
     }
     return body.data;
 };
+
+export const fetchListClientServiceServices = () => {};

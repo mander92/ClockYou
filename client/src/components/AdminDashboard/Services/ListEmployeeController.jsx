@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 const ListEmployeeController = ({ serviceId }) => {
     const [data, setData] = useState([]);
     const [active, setActive] = useState('');
+    const [employeeId, setEmployeeId] = useState('');
     const [job, setJob] = useState('');
     const [city, setCity] = useState('');
     const { authToken } = useContext(AuthContext);
@@ -47,7 +48,7 @@ const ListEmployeeController = ({ serviceId }) => {
     const handleNewShiftRecord = async () => {
         try {
             const data = await fetchAllEmployeeService(
-                id,
+                employeeId,
                 serviceId,
                 authToken
             );
@@ -125,7 +126,7 @@ const ListEmployeeController = ({ serviceId }) => {
                 </form>
                 <ul className='gridClockYou'>
                     {data.map((item) => {
-                        const id = item.id;
+                        const employeeId = item.id;
                         return (
                             <li
                                 key={item.id}
@@ -149,13 +150,14 @@ const ListEmployeeController = ({ serviceId }) => {
                                 <p className='grow'>🏠 {item.city}</p>
 
                                 <button
-                                    onClick={() =>
-                                        handleNewShiftRecord(
-                                            id,
-                                            serviceId,
-                                            authToken
-                                        )
-                                    }
+                                    onClick={() => {
+                                        setEmployeeId(item.id),
+                                            handleNewShiftRecord(
+                                                employeeId,
+                                                serviceId,
+                                                authToken
+                                            );
+                                    }}
                                 >
                                     Asignar Empleado
                                 </button>
