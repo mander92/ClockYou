@@ -57,10 +57,13 @@ const ListEmployeeController = ({ serviceId }) => {
                 authToken
             );
 
+            setTimeout(() => {
+                window.location.reload();
+            }, 1000);
+
             toast.success(data.message, {
                 id: 'ok',
             });
-            window.location.reload();
         } catch (error) {
             toast.error(error.message);
         }
