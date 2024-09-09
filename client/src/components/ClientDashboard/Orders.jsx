@@ -1,15 +1,19 @@
 const { VITE_API_URL, VITE_CLIENT_URL } = import.meta.env;
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { fetchListClientServiceServices } from '../../services/userServices.js';
-import toast from 'react-hot-toast';
+import { AuthContext } from '../../../src/context/AuthContext.jsx';
 import { NavLink } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const Orders = () => {
     const [data, setData] = useState([]);
+    console.log('+++++++++++++++++');
     console.log(data);
+    console.log('+++++++++++++++++');
 
     const [status, setStatus] = useState('');
     const [type, setType] = useState('');
+    const { authToken } = useContext(AuthContext);
 
     const resetFilters = (e) => {
         e.preventDefault();
@@ -26,7 +30,8 @@ const Orders = () => {
             const searchParamsToString = searchParams.toString();
             try {
                 const data = await fetchListClientServiceServices(
-                    searchParamsToString
+                    searchParamsToString,
+                    authToken
                 );
                 setData(data);
             } catch (error) {
@@ -37,12 +42,13 @@ const Orders = () => {
         };
 
         getListClientServiceController();
-    }, [status, type]);
+    }, []);
+    // }, [status, type, authToken]);
 
-    const statusNoRepeated = [...new Set(data.map((item) => item.status))];
+    const statusNoRepeated = [...new Set(data.map((item) => item.Estado))];
     console.log(statusNoRepeated);
 
-    const typeNoRepeated = [...new Set(data.map((item) => item.type))];
+    const typeNoRepeated = [...new Set(data.map((item) => item.TipoServicio))];
     console.log(typeNoRepeated);
 
     return (
@@ -99,10 +105,10 @@ const Orders = () => {
                             key={item.id}
                             className='flex flex-col items-center text-center'
                         >
-                            <img
+                            {/* <img
                                 src={`${VITE_API_URL}/${item.image}`}
                                 alt={item.description}
-                            />
+                            /> */}
                             <h3 className='text-2xl'>{item.type}</h3>
 
                             <p className='grow'>{item.description}</p>
