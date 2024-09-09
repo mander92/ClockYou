@@ -36,3 +36,23 @@ export const fetchNewServiceServices = async (
 
     return body;
 };
+
+export const fecthAllServicesServices = async (
+    searchParamsToString,
+    authToken
+) => {
+    const res = await fetch(
+        `${VITE_API_URL}/services/?${searchParamsToString}`,
+        {
+            headers: { Authorization: authToken },
+        }
+    );
+
+    const body = await res.json();
+
+    if (body.status === 'error') {
+        throw new Error(body.message);
+    }
+
+    return body;
+};

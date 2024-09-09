@@ -6,7 +6,7 @@ import Avatar from '../components/Avatar/Avatar';
 import Profile from '../components/Profile/Profile';
 import Users from '../components/AdminDashboard/Users/Users';
 import Services from '../components/AdminDashboard/Services/Services';
-import Contracts from '../components/AdminDashboard/Contracts';
+import Contracts from '../components/AdminDashboard/Contracts/Contracts';
 import Shifts from '../components/AdminDashboard/Shifts';
 import MyServices from '../components/EmployeeDashBoard/MyServices';
 import Requests from '../components/ClientDashboard/Requests';
