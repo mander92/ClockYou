@@ -11,6 +11,8 @@ import Shifts from '../components/AdminDashboard/Shifts';
 import MyServices from '../components/EmployeeDashBoard/MyServices';
 import Requests from '../components/ClientDashboard/Requests';
 import Orders from '../components/ClientDashboard/Orders';
+import tabSelected from '../hooks/tabSelected';
+import toTopFast from '../hooks/toTopFast';
 
 const DashboardPage = () => {
     const { authToken } = useContext(AuthContext);
@@ -49,10 +51,14 @@ const DashboardPage = () => {
         <section className='container'>
             <Avatar />
 
-            <div className='managerTabs'>
+            <div className='managerTabs' id='tabs5'>
                 <NavLink
                     to='#profile'
-                    onClick={() => handleSectionChange('profile')}
+                    onClick={(e) => {
+                        handleSectionChange('profile');
+                        tabSelected(e, 'tabs5');
+                        toTopFast(e);
+                    }}
                 >
                     Mi Perfil
                 </NavLink>
@@ -61,25 +67,41 @@ const DashboardPage = () => {
                     <>
                         <NavLink
                             to='#users'
-                            onClick={() => handleSectionChange('users')}
+                            onClick={(e) => {
+                                handleSectionChange('users');
+                                tabSelected(e, 'tabs5');
+                                toTopFast(e);
+                            }}
                         >
                             Usuarios
                         </NavLink>
                         <NavLink
                             to='#services'
-                            onClick={() => handleSectionChange('services')}
+                            onClick={(e) => {
+                                handleSectionChange('services');
+                                tabSelected(e, 'tabs5');
+                                toTopFast(e);
+                            }}
                         >
                             Servicios
                         </NavLink>
                         <NavLink
                             to='#contracts'
-                            onClick={() => handleSectionChange('contracts')}
+                            onClick={(e) => {
+                                handleSectionChange('contracts');
+                                tabSelected(e, 'tabs5');
+                                toTopFast(e);
+                            }}
                         >
                             Contratos
                         </NavLink>
                         <NavLink
                             to='#shifts'
-                            onClick={() => handleSectionChange('shifts')}
+                            onClick={(e) => {
+                                handleSectionChange('shifts');
+                                tabSelected(e, 'tabs5');
+                                toTopFast(e);
+                            }}
                         >
                             Turnos
                         </NavLink>
@@ -90,13 +112,21 @@ const DashboardPage = () => {
                     <>
                         <NavLink
                             to='#requests'
-                            onClick={() => handleSectionChange('requests')}
+                            onClick={(e) => {
+                                handleSectionChange('requests');
+                                tabSelected(e, 'tabs5');
+                                toTopFast(e);
+                            }}
                         >
                             Solicitudes
                         </NavLink>
                         <NavLink
                             to='#orders'
-                            onClick={() => handleSectionChange('orders')}
+                            onClick={(e) => {
+                                handleSectionChange('orders');
+                                tabSelected(e, 'tabs5');
+                                toTopFast(e);
+                            }}
                         >
                             Pedidos
                         </NavLink>
@@ -105,7 +135,11 @@ const DashboardPage = () => {
                 {userRole === 'employee' && (
                     <NavLink
                         to='#myservices'
-                        onClick={() => handleSectionChange('myservies')}
+                        onClick={(e) => {
+                            handleSectionChange('myservices');
+                            tabSelected(e, 'tabs5');
+                            toTopFast(e);
+                        }}
                     >
                         Mis Servicios
                     </NavLink>
