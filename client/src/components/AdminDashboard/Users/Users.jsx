@@ -26,6 +26,7 @@ const Users = () => {
                         toTopFast(e);
                         tabSelected(e, 'tabs2');
                     }}
+                    className='activeSelectedLink'
                 >
                     Ver Todos
                 </button>

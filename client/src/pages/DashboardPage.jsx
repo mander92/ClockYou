@@ -18,6 +18,8 @@ const DashboardPage = () => {
     const { authToken } = useContext(AuthContext);
     const { user } = useUser();
 
+    const firstLoadClass = 'activeSelectedLink';
+
     const userRole = user?.role;
     const location = useLocation();
 
@@ -59,6 +61,7 @@ const DashboardPage = () => {
                         tabSelected(e, 'tabs5');
                         toTopFast(e);
                     }}
+                    className={firstLoadClass}
                 >
                     Mi Perfil
                 </NavLink>

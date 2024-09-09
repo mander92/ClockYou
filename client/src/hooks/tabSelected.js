@@ -5,10 +5,10 @@ const tabSelected = (e, identificador) => {
 
     navATags.forEach((navATag) => {
         navATag.style = '';
+        navATag.classList.remove('activeSelectedLink');
     });
 
-    e.target.style.backgroundColor = '#bcbabe';
-    e.target.style.color = 'white';
+    e.target.classList.add('activeSelectedLink');
 };
 
 export default tabSelected;
