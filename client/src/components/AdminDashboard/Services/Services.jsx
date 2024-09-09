@@ -4,6 +4,9 @@ import { useState, useEffect } from 'react';
 import ListServicesController from './ListServicesController.jsx';
 import RegisterServicesController from './RegisterServicesController.jsx';
 
+import tabSelected from '../../../../src/hooks/tabSelected';
+import toTopFast from '../../../../src/hooks/toTopFast';
+
 const Services = () => {
     const [activeSection, setActiveSection] = useState(
         'ListServicesController'
@@ -23,21 +26,24 @@ const Services = () => {
 
     return (
         <>
-            <div className='managerTabs'>
+            <div className='managerTabs' id='tabs2'>
                 <button
                     to='#ListServicesController'
-                    onClick={() => {
+                    onClick={(e) => {
                         handleChange('ListServicesController');
-                        window.scrollTo(0, 0);
+                        toTopFast(e);
+                        tabSelected(e, 'tabs2');
                     }}
+                    className='activeSelectedLink'
                 >
                     Ver Todos
                 </button>
                 <button
                     to='#RegisterServicesController'
-                    onClick={() => {
+                    onClick={(e) => {
                         handleChange('RegisterServicesController');
-                        window.scrollTo(0, 0);
+                        toTopFast(e);
+                        tabSelected(e, 'tabs2');
                     }}
                 >
                     Registrar

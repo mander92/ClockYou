@@ -230,16 +230,11 @@ select {
         border: 1px solid var(--icicle);
         min-width: fit-content;
 
-        &.activeSelectedLink {
-            background-color: var(--warm-gray);
-            color: var(--white-color);
-        }
-
         &:hover {
             background-color: var(--overcast);
         }
 
-        &:focus {
+        &.activeSelectedLink {
             background-color: var(--warm-gray);
             color: var(--white-color);
         }

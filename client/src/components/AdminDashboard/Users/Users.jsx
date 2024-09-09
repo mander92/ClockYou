@@ -1,26 +1,11 @@
-// import { NavLink, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import ListUserController from './ListUserController';
 import RegisterAdminUserController from './RegisterAdminUserController';
+import tabSelected from '../../../../src/hooks/tabSelected';
+import toTopFast from '../../../../src/hooks/toTopFast';
 
 const Users = () => {
     const [activeSection, setActiveSection] = useState('ListUserController');
-    // const [windowScroll, setWindowScroll] = useState('0');
-
-    // useEffect(() => {
-    //     const miau = window.scrollY;
-    //     console.log('BBBBBBBBBBB ---- ', miau);
-    //     function getScrollPosition() {
-    //         setWindowScroll(miau);
-    //         console.log('AAAAAAAAAAAAAAAAAA ---- ', windowScroll);
-    //     }
-
-    //     window.addEventListener('scroll', getScrollPosition);
-    //     getScrollPosition();
-    //     return () => {
-    //         window.removeEventListener('scroll', getScrollPosition);
-    //     };
-    // }, [windowScroll]);
 
     const handleChange = (section) => {
         setActiveSection(section);
@@ -33,21 +18,24 @@ const Users = () => {
 
     return (
         <>
-            <div className='managerTabs'>
+            <div className='managerTabs' id='tabs2'>
                 <button
                     to='#ListUserController'
-                    onClick={() => {
+                    onClick={(e) => {
                         handleChange('ListUserController');
-                        window.scrollTo(0, 0);
+                        toTopFast(e);
+                        tabSelected(e, 'tabs2');
                     }}
+                    className='activeSelectedLink'
                 >
                     Ver Todos
                 </button>
                 <button
                     to='#RegisterAdminUserController'
-                    onClick={() => {
+                    onClick={(e) => {
                         handleChange('RegisterAdminUserController');
-                        window.scrollTo(0, 0);
+                        toTopFast(e);
+                        tabSelected(e, 'tabs2');
                     }}
                 >
                     Registrar
