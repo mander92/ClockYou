@@ -13,6 +13,7 @@ import DashboardPage from './pages/DashboardPage.jsx';
 import EditServicePage from './pages/EditServicePage.jsx';
 import DetailTypeOfServicePage from './pages/DetailTypeOfServicePage.jsx';
 import DetailServicePage from './pages/DetailServicePage.jsx';
+import ConfirmedService from './pages/ConfirmedService.jsx';
 
 const App = () => {
     return (
@@ -53,6 +54,11 @@ const App = () => {
                     <Route
                         path='/password'
                         element={<ChangeRecoverPasswordPage />}
+                    />
+
+                    <Route
+                        path='/services/validate/:validationCode'
+                        element={<ConfirmedService />}
                     />
                     <Route path='*' element={<NotFoundPage />} />
                 </Routes>

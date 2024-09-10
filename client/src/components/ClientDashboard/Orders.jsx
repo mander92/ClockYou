@@ -21,7 +21,7 @@ const Orders = () => {
     };
 
     useEffect(() => {
-        const getListClientServiceController = async () => {
+        const getListClientService = async () => {
             const searchParams = new URLSearchParams({
                 status: status,
                 type: type,
@@ -34,8 +34,6 @@ const Orders = () => {
                     authToken
                 );
                 setData(data);
-                console.log('************** ', type);
-                console.log(searchParamsToString);
             } catch (error) {
                 toast.error(error.message, {
                     id: 'error',
@@ -44,8 +42,6 @@ const Orders = () => {
         };
 
         getListClientServiceController();
-
-        console.log('+++++++++++ ', type);
     }, [status, type, city, authToken]);
 
     const cityNoRepeated = [...new Set(data.map((item) => item.city))];
@@ -113,7 +109,7 @@ const Orders = () => {
                 {data.map((item) => {
                     const time = new Date(item.dateTime).toLocaleTimeString();
                     const date = new Date(item.dateTime).toLocaleDateString();
-                    const serviceId = item.id;
+
                     return (
                         <li id={item.id} key={item.id}>
                             <h3>

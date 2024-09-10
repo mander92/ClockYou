@@ -8,7 +8,7 @@ const validateServiceController = async (req, res, next) => {
 
         res.send({
             status: 'ok',
-            message: 'El servicio ha sido validado correctamente',
+            message: 'El servicio ha sido confirmado correctamente',
         });
     } catch (error) {
         next(error);

@@ -15,6 +15,7 @@ const selectServiceByEmployeeIdService = async (employeeId) => {
         INNER JOIN typeOfServices t
         ON t.id = s.typeOfServicesId
         WHERE sr.employeeId = ? AND s.status = 'confirmed'
+        ORDER BY s.datetime
         `,
         [employeeId]
     );

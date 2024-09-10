@@ -57,6 +57,20 @@ export const fecthAllServicesServices = async (
     return body;
 };
 
+export const fetchConfirmServiceServices = async (validationCode) => {
+    const res = await fetch(
+        `${VITE_API_URL}/services/validate/${validationCode}`
+    );
+
+    const body = await res.json();
+
+    if (body.status === 'error') {
+        throw new Error(body.message);
+    }
+
+    return body.message;
+};
+
 export const fetchDetailServiceServices = async (serviceId, authToken) => {
     const res = await fetch(`${VITE_API_URL}/services/${serviceId}`, {
         headers: {
