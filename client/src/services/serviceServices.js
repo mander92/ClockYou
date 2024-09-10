@@ -113,3 +113,24 @@ export const fetchClientAllServicesServices = async (
 
     return body.data;
 };
+
+export const fetchAllMyServices = async (authToken) => {
+    const res = await fetch(`${VITE_API_URL}/services/employee`, {
+        method: 'GET',
+        headers: authToken
+            ? {
+                  Authorization: authToken,
+                  'Content-Type': 'application/json',
+              }
+            : {},
+        body: JSON.stringify(),
+    });
+
+    const body = await res.json();
+
+    if (body.status !== 'ok') {
+        throw new Error(body.message);
+    }
+
+    return body.message;
+};
