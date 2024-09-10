@@ -47,6 +47,7 @@ const Orders = () => {
     const cityNoRepeated = [...new Set(data.map((item) => item.city))];
     const typeNoRepeated = [...new Set(data.map((item) => item.type))];
 
+
     return (
         <div>
             <form className='mx-auto form-filters'>
@@ -134,14 +135,14 @@ const Orders = () => {
 
                             {item.status === 'pending' && (
                                 <NavLink
-                                // to={`/services/${serviceId}`}
+                                to={`/services/edit/${serviceId}`}
                                 >
                                     Editar
                                 </NavLink>
                             )}
                             {item.status === 'completed' && (
                                 <NavLink
-                                // to={`/services/${serviceId}`}
+                                // to={`/services/${item.id}`}
                                 >
                                     Valorar
                                 </NavLink>

@@ -131,3 +131,48 @@ export const fetchAllMyServices = async (authToken) => {
 
     return body.data;
 };
+
+export const fetchServiceServices = async (serviceId) => {
+    const res = await fetch(
+        `${VITE_API_URL}/Services/${serviceId}`
+    );
+    const body = await res.json();
+
+    if (body.status === 'error') {
+        throw new Error(body.message);
+    }
+
+    return body.data;
+}
+
+export const fetchEditServiceService = async (
+    serviceId,
+    description,
+    price,
+    authToken
+) => {
+    const res = await fetch(
+        `${VITE_API_URL}/services/${serviceId}`,
+        {
+            method: 'PUT',
+            headers: authToken
+                ? {
+                      Authorization: authToken,
+                      'Content-Type': 'application/json',
+                  }
+                : {},
+            body: JSON.stringify({
+                description,
+                price,
+            }),
+        }
+    );
+
+    const body = await res.json();
+
+    if (body.status === 'error') {
+        throw new Error(body.message);
+    }
+
+    return body;
+};
