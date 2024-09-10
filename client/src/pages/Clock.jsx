@@ -3,7 +3,7 @@ import { useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import toast from 'react-hot-toast';
 import { useParams } from 'react-router-dom';
-import { fetchClockIn } from '../services/shiftRecordServices';
+import { fetchClockIn, fetchClockOut } from '../services/shiftRecordServices';
 
 const Clock = () => {
     const { authToken } = useContext(AuthContext);
@@ -71,7 +71,12 @@ const Clock = () => {
                 ultimoRegistro.entrada.tiempo,
                 ahora
             );
+
             setRegistros(nuevosRegistros);
+
+            const data = await fetchClockOut(authToken, ahora, shiftRecordId);
+
+            toast.success(data.message);
         } catch (error) {
             toast.error('No se pudo obtener la ubicación: ' + error.message);
         }
