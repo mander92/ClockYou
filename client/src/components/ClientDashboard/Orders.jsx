@@ -64,6 +64,7 @@ const Orders = () => {
                     <option value='accepted'>Aceptado</option>
                     <option value='confirmed'>Confirmado</option>
                     <option value='pending'>Pendiente</option>
+                    <option value='completed'>Completado</option>
                 </select>
                 <select
                     name='typeOfService'
