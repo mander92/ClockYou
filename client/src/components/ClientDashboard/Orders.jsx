@@ -6,7 +6,6 @@ import { NavLink } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
 const Orders = () => {
-    const { authToken } = useContext(AuthContext);
 
     const [data, setData] = useState([]);
     const [status, setStatus] = useState('');
