@@ -34,6 +34,8 @@ const Orders = () => {
                     authToken
                 );
                 setData(data);
+                console.log('************** ', type);
+                console.log(searchParamsToString);
             } catch (error) {
                 toast.error(error.message, {
                     id: 'error',
@@ -42,6 +44,8 @@ const Orders = () => {
         };
 
         getListClientServiceController();
+
+        console.log('+++++++++++ ', type);
     }, [status, type, city, authToken]);
 
     const cityNoRepeated = [...new Set(data.map((item) => item.city))];
@@ -111,7 +115,7 @@ const Orders = () => {
                     const date = new Date(item.dateTime).toLocaleDateString();
                     const serviceId = item.id;
                     return (
-                        <li key={item.id}>
+                        <li id={item.id} key={item.id}>
                             <h3>
                                 {item.type} en {item.province}
                             </h3>
