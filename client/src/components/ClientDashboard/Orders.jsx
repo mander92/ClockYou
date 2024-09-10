@@ -139,6 +139,13 @@ const Orders = () => {
                                     Editar
                                 </NavLink>
                             )}
+                            {item.status === 'completed' && (
+                                <NavLink
+                                // to={`/services/${serviceId}`}
+                                >
+                                    Valorar
+                                </NavLink>
+                            )}
                         </li>
                     );
                 })}
