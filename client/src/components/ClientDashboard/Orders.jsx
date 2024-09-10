@@ -25,6 +25,7 @@ const Orders = () => {
             const searchParams = new URLSearchParams({
                 status: status,
                 type: type,
+                city: city,
             });
             const searchParamsToString = searchParams.toString();
             try {
@@ -43,8 +44,8 @@ const Orders = () => {
         getListClientServiceController();
     }, [status, type, city, authToken]);
 
-    const cityNoRepeated = [...new Set(data.map((item) => item.Ciudad))];
-    const typeNoRepeated = [...new Set(data.map((item) => item.TipoServicio))];
+    const cityNoRepeated = [...new Set(data.map((item) => item.city))];
+    const typeNoRepeated = [...new Set(data.map((item) => item.type))];
 
     return (
         <div>
