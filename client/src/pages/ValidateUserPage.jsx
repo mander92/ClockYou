@@ -12,7 +12,7 @@ const ValidateUserPage = () => {
             try {
                 const data = await fetchActiveUserServices(registrationCode);
 
-                toast.success(data.message, {
+                toast.success(data, {
                     id: 'ok',
                 });
 
