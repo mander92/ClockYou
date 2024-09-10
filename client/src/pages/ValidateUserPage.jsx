@@ -12,7 +12,7 @@ const ValidateUserPage = () => {
             try {
                 const data = await fetchActiveUserServices(registrationCode);
 
-                toast.success(data, {
+                toast.success(data.message, {
                     id: 'ok',
                 });
 
@@ -22,7 +22,7 @@ const ValidateUserPage = () => {
                     id: 'error',
                 });
 
-                navigate('/');
+                navigate('/login');
             }
         };
 
