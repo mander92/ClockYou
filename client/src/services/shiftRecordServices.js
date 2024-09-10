@@ -44,3 +44,34 @@ export const fetchAllShiftRecordServices = async (
 
     return body;
 };
+
+export const fetchClockIn = async (
+    authToken,
+    ubicacion,
+    ahora,
+    shiftRecordId
+) => {
+    const res = await fetch(
+        `$${VITE_API_URL}/shiftrecords/clockIn/${shiftRecordId}`,
+        {
+            method: 'PUT',
+            headers: {
+                Authorization: authToken,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                ubicacion,
+                ahora,
+            }),
+        }
+    );
+    const body = await res.json();
+
+    if (body.status !== 'ok') {
+        throw new Error(body.message);
+    }
+
+    console.log(body);
+
+    return body;
+};

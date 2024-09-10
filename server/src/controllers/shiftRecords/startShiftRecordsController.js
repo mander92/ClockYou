@@ -3,8 +3,9 @@ import startShiftRecordService from '../../services/shiftRecords/startShiftRecor
 const startShiftRecordsController = async (req, res, next) => {
     try {
         const { shiftRecordId } = req.params;
+        const { ubicacion, ahora } = req.body;
 
-        await startShiftRecordService(shiftRecordId);
+        await startShiftRecordService(shiftRecordId, ubicacion, ahora);
 
         res.send({
             status: 'ok',

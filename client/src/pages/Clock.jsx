@@ -1,9 +1,15 @@
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
+import toast from 'react-hot-toast';
+import { useParams } from 'react-router-dom';
+import { fetchClockIn } from '../services/shiftRecordServices';
 
 const Clock = () => {
+    const { authToken } = useContext(AuthContext);
     const [registros, setRegistros] = useState([]);
     const [mapaActual, setMapaActual] = useState(null);
+    const { shiftRecordId } = useParams();
 
     const obtenerUbicacion = () => {
         return new Promise((resolve, reject) => {
@@ -17,7 +23,7 @@ const Clock = () => {
                     (error) => reject(error)
                 );
             } else {
-                reject(new Error('Geolocalización no soportada'));
+                reject(toast.error('Geolocalización no soportada'));
             }
         });
     };
@@ -25,7 +31,7 @@ const Clock = () => {
     const registrarEntrada = async () => {
         try {
             const ubicacion = await obtenerUbicacion();
-            console.log(ubicacion);
+
             const ahora = new Date();
             setRegistros([
                 ...registros,
@@ -35,14 +41,23 @@ const Clock = () => {
                     total: null,
                 },
             ]);
+
+            const data = await fetchClockIn(
+                authToken,
+                ubicacion,
+                ahora,
+                shiftRecordId
+            );
+
+            toast.success(data.message);
         } catch (error) {
-            alert('No se pudo obtener la ubicación: ' + error.message);
+            toast.error('No se pudo obtener la ubicación: ' + error.message);
         }
     };
 
     const registrarSalida = async () => {
         if (registros.length === 0 || registros[registros.length - 1].salida) {
-            alert('Primero debes registrar una entrada.');
+            toast.error('Primero debes registrar una entrada.');
             return;
         }
 
@@ -58,7 +73,7 @@ const Clock = () => {
             );
             setRegistros(nuevosRegistros);
         } catch (error) {
-            alert('No se pudo obtener la ubicación: ' + error.message);
+            toast.error('No se pudo obtener la ubicación: ' + error.message);
         }
     };
 
@@ -84,7 +99,7 @@ const Clock = () => {
     };
 
     return (
-        <div id='clockComponent'>
+        <div>
             <h2>Registro de Fichaje</h2>
             <button onClick={registrarEntrada}>Registrar Entrada</button>
             <button onClick={registrarSalida}>Registrar Salida</button>

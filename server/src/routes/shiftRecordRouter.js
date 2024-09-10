@@ -36,7 +36,7 @@ router.post(
 );
 
 router.put(
-    '/shiftRecords/:shiftRecordId',
+    '/shiftRecords/clockIn/:shiftRecordId',
     authUser,
     isEmployee,
     shiftRecordExists,

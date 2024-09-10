@@ -1,11 +1,8 @@
-import { genSalt } from 'bcrypt';
 import getPool from '../../db/getPool.js';
 import generateErrorUtil from '../../utils/generateErrorUtil.js';
 
-const startShiftRecordService = async (shiftRecordId) => {
+const startShiftRecordService = async (shiftRecordId, ubicacion, ahora) => {
     const pool = await getPool();
-
-    const clockIn = new Date();
 
     const [verify] = await pool.query(
         `
@@ -19,9 +16,9 @@ const startShiftRecordService = async (shiftRecordId) => {
 
     await pool.query(
         `
-        UPDATE shiftRecords SET clockIn = ? WHERE id = ?
+        UPDATE shiftRecords SET clockIn = ?, latitude = ?, longitude = ? WHERE id = ?
         `,
-        [clockIn, shiftRecordId]
+        [ahora, ubicacion.lat, ubicacion.lng, shiftRecordId]
     );
 };
 
