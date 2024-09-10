@@ -15,6 +15,7 @@ import DetailTypeOfServicePage from './pages/DetailTypeOfServicePage.jsx';
 import DetailServicePage from './pages/DetailServicePage.jsx';
 import ConfirmedService from './pages/ConfirmedService.jsx';
 import Clock from './pages/Clock.jsx';
+import EditServiceClientPage from './pages/EditServiceClientPage.jsx';
 
 const App = () => {
     return (
@@ -46,6 +47,11 @@ const App = () => {
                     <Route
                         path='/services/:serviceId'
                         element={<DetailServicePage />}
+                    />
+
+                    <Route
+                        path='/services/edit/'
+                        element={<EditServiceClientPage />}
                     />
 
                     <Route

@@ -133,9 +133,7 @@ export const fetchAllMyServices = async (authToken) => {
 };
 
 export const fetchServiceServices = async (serviceId) => {
-    const res = await fetch(
-        `${VITE_API_URL}/Services/${serviceId}`
-    );
+    const res = await fetch(`${VITE_API_URL}/services/${serviceId}`);
     const body = await res.json();
 
     if (body.status === 'error') {
@@ -143,7 +141,7 @@ export const fetchServiceServices = async (serviceId) => {
     }
 
     return body.data;
-}
+};
 
 export const fetchEditServiceService = async (
     serviceId,
@@ -151,22 +149,19 @@ export const fetchEditServiceService = async (
     price,
     authToken
 ) => {
-    const res = await fetch(
-        `${VITE_API_URL}/services/${serviceId}`,
-        {
-            method: 'PUT',
-            headers: authToken
-                ? {
-                      Authorization: authToken,
-                      'Content-Type': 'application/json',
-                  }
-                : {},
-            body: JSON.stringify({
-                description,
-                price,
-            }),
-        }
-    );
+    const res = await fetch(`${VITE_API_URL}/services/${serviceId}`, {
+        method: 'PUT',
+        headers: authToken
+            ? {
+                  Authorization: authToken,
+                  'Content-Type': 'application/json',
+              }
+            : {},
+        body: JSON.stringify({
+            description,
+            price,
+        }),
+    });
 
     const body = await res.json();
 

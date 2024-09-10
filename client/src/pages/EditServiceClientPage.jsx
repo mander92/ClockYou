@@ -1,7 +1,10 @@
-import { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
-import {fetchServiceServices, fetchEditServiceService} from '../services/serviceServices';
+import {
+    fetchServiceServices,
+    fetchEditServiceService,
+} from '../services/serviceServices';
 import toast from 'react-hot-toast';
 
 const EditServiceClientPage = () => {
@@ -13,7 +16,6 @@ const EditServiceClientPage = () => {
     const [comments, setComments] = useState(data?.comments || '');
     const [address, setAddress] = useState(data?.address || '');
     const [hours, setHours] = useState(data.hours || 0);
-
 
     useEffect(() => {
         const getService = async () => {
@@ -33,7 +35,7 @@ const EditServiceClientPage = () => {
         getService();
     }, [serviceId, authToken]);
 
-    const handleEditService =  async (e) => {
+    const handleEditService = async (e) => {
         e.preventDefault();
         try {
             const body = await fetchEditServiceService(
@@ -41,7 +43,6 @@ const EditServiceClientPage = () => {
                 comments,
                 address,
                 hours
-                
             );
             toast.success(body.message, {
                 id: 'ok',
@@ -54,9 +55,8 @@ const EditServiceClientPage = () => {
         }
     };
 
-
     return (
-        <form >
+        <form>
             <fieldset>
                 <legend>Editar</legend>
                 <div>
@@ -69,7 +69,7 @@ const EditServiceClientPage = () => {
                 <div>
                     <label>Dirección:</label>
                     <input
-                        type="text"
+                        type='text'
                         value={address}
                         onChange={(e) => setAddress(e.target.value)}
                     />
@@ -77,20 +77,21 @@ const EditServiceClientPage = () => {
                 <div>
                     <label>Horas Contratadas:</label>
                     <input
-                        type="number"
+                        type='number'
                         value={hours}
                         onChange={(e) => setHours(e.target.value)}
                     />
                 </div>
-                <button                                 
+                <button
                     className='mr-4 mt-4'
                     type='submit'
-                    onClick={handleEditService}>Guardar Cambios</button>
+                    onClick={handleEditService}
+                >
+                    Guardar Cambios
+                </button>
             </fieldset>
         </form>
     );
 };
-      
-    
 
-export default EditServiceClientPage;    
+export default EditServiceClientPage;
