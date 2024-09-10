@@ -1,10 +1,17 @@
 import getPool from '../../db/getPool.js';
 import generateErrorUtil from '../../utils/generateErrorUtil.js';
 
-const endShiftRecordService = async (shiftRecordId) => {
+const endShiftRecordService = async (shiftRecordId, ahora) => {
     const pool = await getPool();
 
-    const clockOut = new Date();
+    const clockOut = new Date(ahora);
+
+    const [serviceId] = await pool.query(
+        `
+        SELECT serviceId FROM shiftRecords WHERE id = ?
+        `,
+        [shiftRecordId]
+    );
 
     const [clockIn] = await pool.query(
         `
@@ -33,19 +40,14 @@ const endShiftRecordService = async (shiftRecordId) => {
         [clockOut, shiftRecordId]
     );
 
-    const [serviceId] = await pool.query(
-        `
-        SELECT serviceId FROM shiftRecords WHERE id = ?
-        `,
-        [shiftRecordId]
-    );
-
     await pool.query(
         `
         UPDATE services SET status = 'completed' WHERE id = ?
         `,
-        [serviceId[0].serviceId]
+        [serviceId]
     );
+
+    return;
 };
 
 export default endShiftRecordService;

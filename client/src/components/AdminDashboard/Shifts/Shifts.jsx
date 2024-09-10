@@ -1,5 +1,3 @@
-const { VITE_CLIENT_URL } = import.meta.env;
-
 import { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../../../context/AuthContext';
 import { fetchAllShiftRecordServices } from '../../../services/shiftRecordServices';

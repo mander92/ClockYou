@@ -52,7 +52,7 @@ export const fetchClockIn = async (
     shiftRecordId
 ) => {
     const res = await fetch(
-        `$${VITE_API_URL}/shiftrecords/clockIn/${shiftRecordId}`,
+        `${VITE_API_URL}/shiftrecords/clockIn/${shiftRecordId}`,
         {
             method: 'PUT',
             headers: {
@@ -72,6 +72,27 @@ export const fetchClockIn = async (
     }
 
     console.log(body);
+
+    return body;
+};
+
+export const fetchClockOut = async (authToken, ahora, shiftRecordId) => {
+    const res = await fetch(`${VITE_API_URL}/shiftrecords/${shiftRecordId}`, {
+        method: 'PATCH',
+        headers: {
+            Authorization: authToken,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            ahora,
+        }),
+    });
+
+    const body = await res.json();
+
+    if (body.status !== 'ok') {
+        throw new Error(body.message);
+    }
 
     return body;
 };
