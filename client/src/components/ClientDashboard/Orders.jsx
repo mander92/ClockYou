@@ -6,6 +6,7 @@ import { NavLink } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
 const Orders = () => {
+    const { authToken } = useContext(AuthContext);
 
     const [data, setData] = useState([]);
     const [status, setStatus] = useState('');
@@ -30,6 +31,7 @@ const Orders = () => {
             try {
                 const data = await fetchClientAllServicesServices(
                     searchParamsToString,
+                    authToken
                 );
                 setData(data);
             } catch (error) {
@@ -40,12 +42,11 @@ const Orders = () => {
         };
 
         getListClientService();
-    }, [status, type, city]);
+    }, [status, type, city, authToken]);
 
     const cityNoRepeated = [...new Set(data.map((item) => item.city))];
     const typeNoRepeated = [...new Set(data.map((item) => item.type))];
-    const statusNoRepeated = [...new Set(data.map((item) => item.status))];
-
+    
     return (
         <div>
             <form className='mx-auto form-filters'>
@@ -60,13 +61,10 @@ const Orders = () => {
                     <option value='' disabled>
                         Estado:
                     </option>
-                    {statusNoRepeated.map((status) => {
-                        return (
-                            <option key={status} value={status}>
-                                {status}
-                            </option>
-                        );
-                    })}
+                    <option value='accepted'>Aceptado</option>
+                    <option value='confirmed'>Confirmado</option>
+                    <option value='pending'>Pendiente</option>
+                
                 </select>
                 <select
                     name='typeOfService'
