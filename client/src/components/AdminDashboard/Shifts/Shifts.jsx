@@ -96,12 +96,12 @@ const Shifts = () => {
                     >
                         Servicio:
                     </option>
-                    {serviceNotRepeated.map((service) => (
+                    {serviceNotRepeated.map((serviceId) => (
                         <option
-                            key={service.serviceId}
-                            value={service.serviceId}
+                            key={serviceId}
+                            value={serviceId}
                         >
-                            {service.serviceName}
+                            {serviceId}
                         </option>
                     ))}
                 </select>
