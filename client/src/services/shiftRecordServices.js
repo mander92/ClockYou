@@ -24,3 +24,23 @@ export const fecthNewShiftRecordServices = async (
 
     return body;
 };
+
+export const fetchAllShiftRecordServices = async (
+    searchParamsToString,
+    authToken
+) => {
+    const res = await fetch(
+        `${VITE_API_URL}/shiftrecords/?${searchParamsToString}`,
+        {
+            headers: { Authorization: authToken },
+        }
+    );
+
+    const body = await res.json();
+
+    if (body.status === 'error') {
+        throw new Error(body.message);
+    }
+
+    return body;
+};
