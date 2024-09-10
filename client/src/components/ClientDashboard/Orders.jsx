@@ -21,7 +21,7 @@ const Orders = () => {
     };
 
     useEffect(() => {
-        const getListClientService = async () => {
+        const getListClientServiceController = async () => {
             const searchParams = new URLSearchParams({
                 status: status,
                 type: type,
@@ -41,12 +41,12 @@ const Orders = () => {
             }
         };
 
-        getListClientService();
+        getListClientServiceController();
     }, [status, type, city, authToken]);
 
     const cityNoRepeated = [...new Set(data.map((item) => item.city))];
     const typeNoRepeated = [...new Set(data.map((item) => item.type))];
-    
+
     return (
         <div>
             <form className='mx-auto form-filters'>
@@ -64,7 +64,7 @@ const Orders = () => {
                     <option value='accepted'>Aceptado</option>
                     <option value='confirmed'>Confirmado</option>
                     <option value='pending'>Pendiente</option>
-                
+                    <option value='completed'>Completado</option>
                 </select>
                 <select
                     name='typeOfService'
@@ -110,9 +110,9 @@ const Orders = () => {
                 {data.map((item) => {
                     const time = new Date(item.dateTime).toLocaleTimeString();
                     const date = new Date(item.dateTime).toLocaleDateString();
-                    
+
                     return (
-                        <li key={item.id}>
+                        <li id={item.id} key={item.id}>
                             <h3>
                                 {item.type} en {item.province}
                             </h3>
@@ -134,9 +134,16 @@ const Orders = () => {
 
                             {item.status === 'pending' && (
                                 <NavLink
-                                // to={`${VITE_CLIENT_URL}/services/${serviceId}`}
+                                // to={`/services/${serviceId}`}
                                 >
                                     Editar
+                                </NavLink>
+                            )}
+                            {item.status === 'completed' && (
+                                <NavLink
+                                // to={`/services/${serviceId}`}
+                                >
+                                    Valorar
                                 </NavLink>
                             )}
                         </li>

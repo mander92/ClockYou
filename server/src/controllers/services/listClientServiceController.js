@@ -5,9 +5,14 @@ const listClientServiceController = async (req, res, next) => {
     try {
         const clientId = req.userLogged.id;
 
-        const { status } = req.query;
+        const { status, city, type } = req.query;
 
-        const data = await selectServiceByClientIdService(clientId, status);
+        const data = await selectServiceByClientIdService(
+            clientId,
+            status,
+            city,
+            type
+        );
 
         res.send({
             status: 'ok',

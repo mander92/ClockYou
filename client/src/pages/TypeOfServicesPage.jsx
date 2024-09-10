@@ -112,9 +112,7 @@ const TypeOfServicesPage = () => {
                             <p>⭐️⭐️⭐️⭐️⭐️</p>
                             <p className='font-black'>{item.city}</p>
                             <p>{item.price}€</p>
-                            <NavLink
-                                to={`${VITE_CLIENT_URL}/typeOfServices/${item.id}`}
-                            >
+                            <NavLink to={`/typeOfServices/${item.id}`}>
                                 Infórmate
                             </NavLink>
                         </li>
