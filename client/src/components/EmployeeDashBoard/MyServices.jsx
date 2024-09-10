@@ -2,15 +2,17 @@ import { AuthContext } from '../../context/AuthContext';
 import { useEffect, useState, useContext } from 'react';
 import toast from 'react-hot-toast';
 import { fetchAllMyServices } from '../../services/serviceServices';
+import { NavLink } from 'react-router-dom';
 
 const MyServices = () => {
-    const [data, setData] = useState([]);
+    const [data, setData] = useState(null);
     const { authToken } = useContext(AuthContext);
 
     useEffect(() => {
         const getTypeOfServices = async () => {
             try {
                 const data = await fetchAllMyServices(authToken);
+
                 setData(data);
             } catch (error) {
                 toast.error(error.message, {
@@ -22,22 +24,34 @@ const MyServices = () => {
         getTypeOfServices();
     }, [authToken]);
 
+    console.log(data);
+
     return (
         <>
             <ul className='cards'>
-                {data.map((item) => {
-                    console.log(item);
-                    // return (
-                    //     <li id={item.id} key={item.id}>
-                    //         <h3>{item.type}</h3>
+                {data?.map((item) => {
+                    const date = new Date(item.dateTime).toLocaleDateString();
+                    const time = new Date(item.dateTime).toLocaleTimeString();
 
-                    //         <p className='grow'>{item.description}</p>
+                    return (
+                        <li id={item.id} key={item.id}>
+                            <h3>{item.type}</h3>
+                            <p>{item.address}</p>
+                            <p className='font-extrabold'>{item.city}</p>
+                            <p>{item.postcode}</p>
 
-                    //         <p className='font-extrabold'>{item.city}</p>
+                            <span className='font-bold'>{date}</span>
+                            <span className='font-bold'>{time}</span>
 
-                    //         <p>{item.price}</p>
-                    //     </li>
-                    // );
+                            <p className='grow'>{item.hours}</p>
+
+                            <p>{item.totalPrice}</p>
+
+                            <NavLink to={`/shiftRecords/${item.shiftRecordId}`}>
+                                Fichar
+                            </NavLink>
+                        </li>
+                    );
                 })}
             </ul>
         </>

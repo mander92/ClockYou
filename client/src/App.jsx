@@ -14,6 +14,7 @@ import EditServicePage from './pages/EditServicePage.jsx';
 import DetailTypeOfServicePage from './pages/DetailTypeOfServicePage.jsx';
 import DetailServicePage from './pages/DetailServicePage.jsx';
 import ConfirmedService from './pages/ConfirmedService.jsx';
+import Clock from './pages/Clock.jsx';
 
 const App = () => {
     return (
@@ -59,6 +60,11 @@ const App = () => {
                     <Route
                         path='/services/validate/:validationCode'
                         element={<ConfirmedService />}
+                    />
+
+                    <Route
+                        path='/shiftRecords/:shiftRecordId'
+                        element={<Clock />}
                     />
                     <Route path='*' element={<NotFoundPage />} />
                 </Routes>

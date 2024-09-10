@@ -117,14 +117,10 @@ export const fetchClientAllServicesServices = async (
 
 export const fetchAllMyServices = async (authToken) => {
     const res = await fetch(`${VITE_API_URL}/services/employee`, {
-        method: 'GET',
-        headers: authToken
-            ? {
-                  Authorization: authToken,
-                  'Content-Type': 'application/json',
-              }
-            : {},
-        body: JSON.stringify(),
+        headers: {
+            Authorization: authToken,
+            'Content-Type': 'application/json',
+        },
     });
 
     const body = await res.json();
@@ -133,5 +129,5 @@ export const fetchAllMyServices = async (authToken) => {
         throw new Error(body.message);
     }
 
-    return body.message;
+    return body.data;
 };
