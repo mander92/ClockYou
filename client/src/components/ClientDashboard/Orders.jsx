@@ -21,7 +21,7 @@ const Orders = () => {
     };
 
     useEffect(() => {
-        const getListClientService = async () => {
+        const getListClientServiceController = async () => {
             const searchParams = new URLSearchParams({
                 status: status,
                 type: type,

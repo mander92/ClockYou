@@ -107,7 +107,6 @@ export const fetchClientAllServicesServices = async (
     );
     const body = await res.json();
     const urlParams = `${VITE_API_URL}/services/client/?${searchParamsToString}`;
-    console.log('kkkkkkkkkkkkkkkkkkk ', urlParams);
 
     if (body.status === 'error') {
         throw new Error(body.message);
