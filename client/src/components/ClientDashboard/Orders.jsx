@@ -21,7 +21,7 @@ const Orders = () => {
     };
 
     useEffect(() => {
-        const getListClientServiceController = async () => {
+        const getListClientService = async () => {
             const searchParams = new URLSearchParams({
                 status: status,
                 type: type,
@@ -31,7 +31,6 @@ const Orders = () => {
             try {
                 const data = await fetchClientAllServicesServices(
                     searchParamsToString,
-                    authToken
                 );
                 setData(data);
             } catch (error) {
@@ -41,11 +40,12 @@ const Orders = () => {
             }
         };
 
-        getListClientServiceController();
-    }, [status, type, city, authToken]);
+        getListClientService();
+    }, [status, type, city]);
 
     const cityNoRepeated = [...new Set(data.map((item) => item.city))];
     const typeNoRepeated = [...new Set(data.map((item) => item.type))];
+    const statusNoRepeated = [...new Set(data.map((item) => item.status))];
 
     return (
         <div>
@@ -61,9 +61,13 @@ const Orders = () => {
                     <option value='' disabled>
                         Estado:
                     </option>
-                    <option value='accepted'>Aceptado</option>
-                    <option value='confirmed'>Confirmado</option>
-                    <option value='pending'>Pendiente</option>
+                    {statusNoRepeated.map((status) => {
+                        return (
+                            <option key={status} value={status}>
+                                {status}
+                            </option>
+                        );
+                    })}
                 </select>
                 <select
                     name='typeOfService'
@@ -109,7 +113,7 @@ const Orders = () => {
                 {data.map((item) => {
                     const time = new Date(item.dateTime).toLocaleTimeString();
                     const date = new Date(item.dateTime).toLocaleDateString();
-                    const serviceId = item.id;
+                    
                     return (
                         <li key={item.id}>
                             <h3>
