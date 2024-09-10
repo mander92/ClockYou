@@ -66,17 +66,11 @@ const Shifts = () => {
                         setEmployeeId(e.target.value);
                     }}
                 >
-                    <option
-                        value=''
-                        disabled
-                    >
+                    <option value='' disabled>
                         Empleado:
                     </option>
                     {employeeNotRepeated.map((employeeId) => (
-                        <option
-                            key={employeeId}
-                            value={employeeId}
-                        >
+                        <option key={employeeId} value={employeeId}>
                             {employeeId.employeeName}
                         </option>
                     ))}
@@ -90,26 +84,17 @@ const Shifts = () => {
                         setServiceId(e.target.value);
                     }}
                 >
-                    <option
-                        value=''
-                        disabled
-                    >
+                    <option value='' disabled>
                         Servicio:
                     </option>
                     {serviceNotRepeated.map((serviceId) => (
-                        <option
-                            key={serviceId}
-                            value={serviceId}
-                        >
+                        <option key={serviceId} value={serviceId}>
                             {serviceId}
                         </option>
                     ))}
                 </select>
 
-                <button
-                    type='button'
-                    onClick={resetFilter}
-                >
+                <button type='button' onClick={resetFilter}>
                     Limpiar Filtros
                 </button>
             </form>
@@ -124,7 +109,7 @@ const Shifts = () => {
 
                             <NavLink
                                 className='mb-4'
-                                to={`${VITE_CLIENT_URL}/shiftrecords/${shiftRecord.serviceId}`}
+                                to={`/shiftrecords/${shiftRecord.serviceId}`}
                             >
                                 Editar
                             </NavLink>

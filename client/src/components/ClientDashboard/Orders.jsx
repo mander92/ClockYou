@@ -133,7 +133,7 @@ const Orders = () => {
 
                             {item.status === 'pending' && (
                                 <NavLink
-                                // to={`${VITE_CLIENT_URL}/services/${serviceId}`}
+                                // to={`/services/${serviceId}`}
                                 >
                                     Editar
                                 </NavLink>

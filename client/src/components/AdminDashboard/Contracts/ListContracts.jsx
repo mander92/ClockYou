@@ -95,7 +95,7 @@ const ListContracts = () => {
 
                             <NavLink
                                 className='mb-4'
-                                to={`${VITE_CLIENT_URL}/services/${item.serviceId}`}
+                                to={`/services/${item.serviceId}`}
                             >
                                 Ver
                             </NavLink>

@@ -19,7 +19,7 @@ Clases Particulares, Entrenamientos Personales, Cuidado de Mascotas, Limpiezas A
 
 | Campo      | Tipo         | Descripción                            |
 | ---------- | ------------ | -------------------------------------- |
-| id         | CHAR(36)     | Identificador único del usuario        |
+| id         | CHAR(36)     | Identificador único                    |
 | address    | VARCHAR(255) | Nombre de calle de la dirección        |
 | postCode   | CHAR(5)      | Código postal de la dirección          |
 | city       | VARCHAR(40)  | Cuidad de la dirección                 |
@@ -31,7 +31,7 @@ Clases Particulares, Entrenamientos Personales, Cuidado de Mascotas, Limpiezas A
 
 | Campo               | Tipo         | Descripción                                     |
 | ------------------- | ------------ | ----------------------------------------------- |
-| id                  | CHAR(36)     | Identificador único del usuario                 |
+| id                  | CHAR(36)     | Identificador único                             |
 | email               | VARCHAR(100) | Correo electrónico del usuario                  |
 | firstName           | VARCHAR(25)  | Nombre del usuario                              |
 | lastName            | VARCHAR(50)  | Apellidos del usuario                           |
@@ -53,7 +53,7 @@ Clases Particulares, Entrenamientos Personales, Cuidado de Mascotas, Limpiezas A
 
 | Campo       | Tipo         | Descripción                            |
 | ----------- | ------------ | -------------------------------------- |
-| id          | CHAR(36)     | Identificador único del usuario        |
+| id          | CHAR(36)     | Identificador único                    |
 | type        | VARCHAR(255) | Tipo de servicio                       |
 | description | VARCHAR(500) | Descripción del servicio ofertado      |
 | city        | VARCHAR(30)  | Cuidad disponible del servicio         |
@@ -66,7 +66,7 @@ Clases Particulares, Entrenamientos Personales, Cuidado de Mascotas, Limpiezas A
 
 | Campo           | Tipo         | Descripción                                                             |
 | --------------- | ------------ | ----------------------------------------------------------------------- |
-| id              | CHAR(36)     | Identificador único del usuario                                         |
+| id              | CHAR(36)     | Identificador único                                                     |
 | dateTime        | TIMESTAMP    | Fecha y hora de inicio del servicio                                     |
 | hours           | INT UNSIGNED | Horas a contratar por el usuario, valores entre 1 y 8                   |
 | rating          | INT UNSIGNED | Valoración del cliente sobre el servicio realizado, valores entre 1 y 5 |
@@ -85,7 +85,7 @@ Clases Particulares, Entrenamientos Personales, Cuidado de Mascotas, Limpiezas A
 
 | Campo      | Tipo          | Descripción                                        |
 | ---------- | ------------- | -------------------------------------------------- |
-| id         | CHAR(36)      | Identificador único del registro horario           |
+| id         | CHAR(36)      | Identificador único                                |
 | clockIn    | TIMESTAMP     | Empleado registra hora de inicio del servicio      |
 | clockOut   | TIMESTAMP     | Empleado registra hora de fin del servicio         |
 | latitude   | DECIMAL(10,8) | Latitud del servicio                               |

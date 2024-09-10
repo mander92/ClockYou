@@ -114,7 +114,7 @@ const ListServicesController = () => {
 
                             <NavLink
                                 className='mb-4'
-                                to={`${VITE_CLIENT_URL}/typeOfServices/edit/${item.id}`}
+                                to={`/typeOfServices/edit/${item.id}`}
                             >
                                 Editar
                             </NavLink>

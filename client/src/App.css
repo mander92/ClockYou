@@ -14,249 +14,249 @@
     h3 {
         @apply text-2xl;
     }
-}
 
-:root {
-    --blue-topaz: #6eb5c0;
-    --cerulean: #006c84;
-    --icicle: #e2e8e4;
-    --sunrise: #ffccbb;
-    --white-color: #fff;
-    --overcast: #f1f1f2;
-    --darker-overcast: #e0e0e0;
-    --warm-gray: #bcbabe;
-    --ice: #a1d6e2;
-    --glacier-blue: #1995ad;
-    --column-count: 1;
-}
-
-#root {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-        Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
-        sans-serif;
-    min-height: 100vh;
-    min-height: 100dvh;
-    display: flex;
-    flex-direction: column;
-    color: var(--cerulean);
-
-    & main {
-        flex-grow: 1;
+    :root {
+        --blue-topaz: #6eb5c0;
+        --cerulean: #006c84;
+        --icicle: #e2e8e4;
+        --sunrise: #ffccbb;
+        --white-color: #fff;
+        --overcast: #f1f1f2;
+        --darker-overcast: #e0e0e0;
+        --warm-gray: #bcbabe;
+        --ice: #a1d6e2;
+        --glacier-blue: #1995ad;
+        --column-count: 1;
     }
 
-    & .container {
-        padding: 0 1rem 1rem 1rem;
+    #root {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+            Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
+            sans-serif;
+        min-height: 100vh;
+        min-height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        color: var(--cerulean);
+
+        & main {
+            flex-grow: 1;
+        }
+
+        & .container {
+            padding: 0 1rem 1rem 1rem;
+        }
     }
-}
 
-h1,
-h2,
-h3,
-legend {
-    font-family: -apple-system-body;
-    font-weight: 600;
-    text-align: center;
-}
+    h1,
+    h2,
+    h3,
+    legend {
+        font-family: -apple-system-body;
+        font-weight: 600;
+        text-align: center;
+    }
 
-form {
-    margin-top: 1rem;
-    max-width: 46rem;
-
-    & img {
+    form {
         margin-top: 1rem;
-        border-radius: 20px;
+        max-width: 46rem;
+
+        & img {
+            margin-top: 1rem;
+            border-radius: 20px;
+        }
+
+        & fieldset {
+            border: 1px solid var(--icicle);
+            padding: 0 1rem 1rem 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            border-radius: 20px;
+        }
+
+        & legend {
+            font-size: 1.5rem;
+        }
+
+        & p {
+            text-align: center;
+        }
+
+        & label,
+        a {
+            color: var(--glacier-blue);
+        }
+
+        & div {
+            margin-top: 0.5rem;
+        }
+
+        & input,
+        textarea {
+            border: 1px solid var(--icicle);
+            padding: 0.5rem;
+            border-radius: 20px;
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        & select {
+            padding: 0.5rem;
+            border: 1px solid var(--icicle);
+            cursor: pointer;
+            border-radius: 20px;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            appearance: none;
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        & button {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            color: var(--white-color);
+            background-color: var(--cerulean);
+        }
     }
 
-    & fieldset {
-        border: 1px solid var(--icicle);
-        padding: 0 1rem 1rem 1rem;
+    .manager-tabs {
+        margin-top: 1rem;
         display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        border-radius: 20px;
-    }
-
-    & legend {
-        font-size: 1.5rem;
-    }
-
-    & p {
-        text-align: center;
-    }
-
-    & label,
-    a {
-        color: var(--glacier-blue);
-    }
-
-    & div {
-        margin-top: 0.5rem;
-    }
-
-    & input,
-    textarea {
-        border: 1px solid var(--icicle);
-        padding: 0.5rem;
-        border-radius: 20px;
-
-        &:focus {
-            outline: none;
-        }
-    }
-
-    & select {
-        padding: 0.5rem;
-        border: 1px solid var(--icicle);
-        cursor: pointer;
-        border-radius: 20px;
-        -moz-appearance: none;
-        -webkit-appearance: none;
-        appearance: none;
-
-        &:focus {
-            outline: none;
-        }
-    }
-
-    & button {
-        padding: 0.5rem 1rem;
-        border-radius: 20px;
-        color: var(--white-color);
-        background-color: var(--cerulean);
-    }
-}
-
-.manager-tabs {
-    margin-top: 1rem;
-    display: flex;
-    gap: 1rem;
-    overflow-x: scroll;
-    justify-content: center;
-    & a,
-    button {
-        padding: 0.5rem 1rem;
-        color: var(--white-color);
-        background-color: var(--cerulean);
-        transition: background-color 0.3s linear;
-        border: 1px solid var(--icicle);
-        border-radius: 20px;
-
-        &:hover {
-            background-color: var(--glacier-blue);
-        }
-
-        &.activeSelectedLink {
-            background-color: var(--glacier-blue);
-        }
-    }
-}
-
-.user-avatar {
-    margin-top: 1rem;
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 1px solid var(--icicle);
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    transition: transform 0.4s ease;
-    &:hover {
-        transform: scale(1.03);
-    }
-}
-
-.cards {
-    margin-top: 1rem;
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(var(--column-count), 1fr);
-    justify-content: center;
-
-    & li {
-        border: 1px solid var(--icicle);
-        border-radius: 20px;
-        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-        transition: transform 0.4s ease;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-
-        &:hover {
-            transform: scale(1.03);
-        }
-
-        & > a,
+        gap: 1rem;
+        overflow-x: scroll;
+        justify-content: center;
+        & a,
         button {
             padding: 0.5rem 1rem;
             color: var(--white-color);
             background-color: var(--cerulean);
-            justify-content: center;
+            transition: background-color 0.3s linear;
+            border: 1px solid var(--icicle);
             border-radius: 20px;
-            margin-top: 0.5rem;
-            margin-bottom: 1rem;
-        }
 
-        & h3 {
-            margin-top: 1rem;
-            padding: 0 1rem;
-        }
+            &:hover {
+                background-color: var(--glacier-blue);
+            }
 
-        & p {
-            margin-top: 0.5rem;
-            padding: 0 1rem;
+            &.activeSelectedLink {
+                background-color: var(--glacier-blue);
+            }
         }
     }
 
-    & img {
-        width: 100%;
-        border-radius: 20px 20px 0 0;
-    }
-}
-
-.form-filters {
-    margin-top: 1rem;
-    display: grid;
-    max-width: 62rem;
-    gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-}
-
-@media only screen and (min-width: 640px) {
-    :root {
-        --column-count: 2;
-    }
-}
-
-@media only screen and (min-width: 1024px) {
-    :root {
-        --column-count: 3;
+    .user-avatar {
+        margin-top: 1rem;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 1px solid var(--icicle);
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        transition: transform 0.4s ease;
+        &:hover {
+            transform: scale(1.03);
+        }
     }
 
-    .flex-1024 {
-        display: flex;
+    .cards {
+        margin-top: 1rem;
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(var(--column-count), 1fr);
         justify-content: center;
-        align-items: center;
-        gap: 0 1rem;
+
+        & li {
+            border: 1px solid var(--icicle);
+            border-radius: 20px;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            transition: transform 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+
+            &:hover {
+                transform: scale(1.03);
+            }
+
+            & > a,
+            button {
+                padding: 0.5rem 1rem;
+                color: var(--white-color);
+                background-color: var(--cerulean);
+                justify-content: center;
+                border-radius: 20px;
+                margin-top: 0.5rem;
+                margin-bottom: 1rem;
+            }
+
+            & h3 {
+                margin-top: 1rem;
+                padding: 0 1rem;
+            }
+
+            & p {
+                margin-top: 0.5rem;
+                padding: 0 1rem;
+            }
+        }
+
+        & img {
+            width: 100%;
+            border-radius: 20px 20px 0 0;
+        }
     }
 
-    .profile-form {
-        min-width: 30.5rem;
-    }
-}
-
-@media only screen and (min-width: 1280px) {
-    .flex-1024 {
-        margin: 0rem 8rem;
-    }
-}
-
-@media only screen and (min-width: 1536px) {
-    :root {
-        --column-count: 4;
+    .form-filters {
+        margin-top: 1rem;
+        display: grid;
+        max-width: 62rem;
+        gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     }
 
-    .flex-1024 {
-        margin: 0rem 16rem;
+    @media only screen and (min-width: 640px) {
+        :root {
+            --column-count: 2;
+        }
+    }
+
+    @media only screen and (min-width: 1024px) {
+        :root {
+            --column-count: 3;
+        }
+
+        .flex-1024 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0 1rem;
+        }
+
+        .profile-form {
+            min-width: 30.5rem;
+        }
+    }
+
+    @media only screen and (min-width: 1280px) {
+        .flex-1024 {
+            margin: 0rem 8rem;
+        }
+    }
+
+    @media only screen and (min-width: 1536px) {
+        :root {
+            --column-count: 4;
+        }
+
+        .flex-1024 {
+            margin: 0rem 16rem;
+        }
     }
 }
