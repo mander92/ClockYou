@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
-import { fetchSendRecoverPasswordUserService } from '../services/userServices.js';
+import { fetchSendRecoverPasswordUserServices } from '../services/userServices.js';
 
 const SendRecoverPasswordPage = () => {
     const navigate = useNavigate();
@@ -17,7 +17,7 @@ const SendRecoverPasswordPage = () => {
         try {
             e.preventDefault();
 
-            const data = await fetchSendRecoverPasswordUserService(email);
+            const data = await fetchSendRecoverPasswordUserServices(email);
             toast.success(data, {
                 id: 'ok',
             });
@@ -30,26 +30,26 @@ const SendRecoverPasswordPage = () => {
         }
     };
     return (
-        <section className='container formsWrapper'>
-            <form className='form mx-auto' onSubmit={handleRecover}>
-                <fieldset>
-                    <legend>Recupera tu contraseña</legend>
-                    <label htmlFor='email'>Email</label>
-                    <input
-                        type='email'
-                        id='email'
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder='user@clockYou.com'
-                        required
-                    />
-                </fieldset>
-                <div>
-                    <button type='submit'>Recuperar</button>
+        <form className='mx-auto' onSubmit={handleRecover}>
+            <fieldset>
+                <legend>Recuperar contraseña</legend>
+                <label htmlFor='email'>Email</label>
+                <input
+                    type='email'
+                    id='email'
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder='user@clockYou.com'
+                    required
+                />
+                <div className='mx-auto'>
+                    <button className='mr-4' type='submit'>
+                        Recuperar
+                    </button>
                     <button onClick={resetInputs}>Limpiar</button>
                 </div>
-            </form>
-        </section>
+            </fieldset>
+        </form>
     );
 };
 export default SendRecoverPasswordPage;

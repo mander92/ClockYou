@@ -4,11 +4,15 @@
 
 @layer components {
     h1 {
-        @apply text-5xl pb-4;
+        @apply text-6xl;
     }
 
     h2 {
-        @apply text-3xl pb-4;
+        @apply text-4xl;
+    }
+
+    h3 {
+        @apply text-2xl;
     }
 }
 
@@ -23,148 +27,88 @@
     --warm-gray: #bcbabe;
     --ice: #a1d6e2;
     --glacier-blue: #1995ad;
-    --body-min-height: 500px;
+    --column-count: 1;
 }
-
-::placeholder {
-    color: #cfcfcf !important;
-    opacity: 1;
-}
-
-::-ms-input-placeholder {
-    color: #cecece;
-}
-
-/* html {
-    scroll-behavior: smooth;
-} */
 
 #root {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+        Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
+        sans-serif;
     min-height: 100vh;
     min-height: 100dvh;
-    margin: 0;
     display: flex;
     flex-direction: column;
+    color: var(--cerulean);
 
     & main {
         flex-grow: 1;
-        padding-top: 1rem;
+    }
 
-        &:has(.notFound) {
-            background-color: #f8f9fa;
-        }
+    & .container {
+        padding: 0 1rem 1rem 1rem;
     }
 }
-
-img {
-    width: 100%;
-}
-
-body {
-    min-height: var(--body-min-height);
-}
-
-/* header,
-footer,
-main,
-section,
-article {
-  container-type: inline-size;
-} */
 
 h1,
 h2,
 h3,
-h4,
-h5,
 legend {
-    font-family: var(--serif-FONT);
-    color: var(--cerulean);
-    text-wrap: balance;
+    font-family: -apple-system-body;
+    font-weight: 600;
+    text-align: center;
 }
 
-p,
-span,
-li,
-div {
-    color: var(--cerulean);
-    text-wrap: pretty;
-}
+form {
+    margin-top: 1rem;
+    max-width: 46rem;
 
-p,
-span,
-li,
-div,
-a,
-label,
-input,
-::placeholder,
-button,
-fieldset,
-select {
-    font-family: var(--sans-serif-FONT);
-    font-weight: 400;
-    font-style: normal;
-    line-height: 1.4;
-    font-size: 1.027rem;
-    border-radius: 5px;
-}
-
-.container {
-    margin-inline: auto;
-    padding: 1rem;
-}
-
-.form {
-    --span-rows: 12;
-    padding-bottom: 1.5rem;
-    max-width: 60rem;
+    & img {
+        margin-top: 1rem;
+        border-radius: 20px;
+    }
 
     & fieldset {
-        border: 1px solid #cfcfcf;
-        padding: 1rem;
+        border: 1px solid var(--icicle);
+        padding: 0 1rem 1rem 1rem;
         display: flex;
         flex-direction: column;
-        gap: 0.7rem;
-
-        & > div:has([id='phone']) {
-            display: grid;
-            gap: 1.2rem;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-
-            & > div {
-                display: grid;
-                gap: 0.7rem;
-            }
-        }
+        gap: 0.5rem;
+        border-radius: 20px;
     }
 
     & legend {
-        font-size: 1.875rem;
-        line-height: 2.25rem;
-        padding: 0 0.75rem;
+        font-size: 1.5rem;
     }
 
-    & label {
+    & p {
+        text-align: center;
+    }
+
+    & label,
+    a {
         color: var(--glacier-blue);
-        font-size: 0.95rem;
     }
 
-    & input {
-        border: 1px solid var(--overcast);
-        padding: 0.75rem;
-        font-size: 1rem;
+    & div {
+        margin-top: 0.5rem;
+    }
+
+    & input,
+    textarea {
+        border: 1px solid var(--icicle);
+        padding: 0.5rem;
+        border-radius: 20px;
 
         &:focus {
             outline: none;
         }
     }
 
-    & select,
-    textarea {
-        padding: 0.7rem 0.5rem;
+    & select {
+        padding: 0.5rem;
         border: 1px solid var(--icicle);
         cursor: pointer;
+        border-radius: 20px;
         -moz-appearance: none;
         -webkit-appearance: none;
         appearance: none;
@@ -175,107 +119,144 @@ select {
     }
 
     & button {
-        padding: 0.7rem 1.2rem;
-        display: inline-flex;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
         color: var(--white-color);
         background-color: var(--cerulean);
-        margin-top: 0.7rem;
-        margin-right: 0.7rem;
-        /* https://www.youtube.com/watch?v=3ugXM3ZDUuE&t=55s */
-
-        &.m-0 {
-            margin-top: 0;
-            margin-right: 0;
-        }
-    }
-
-    & :has(button[id='eliminarServicio']) {
-        max-width: 50rem;
     }
 }
 
-@media (width > 1023px) {
-    #registerUnlogged {
-        --span-rows: 8;
-    }
-    .form {
-        & fieldset > div:has([id='phone']) {
-            & > div {
-                grid-template-rows: subgrid;
-                grid-row: span var(--span-rows);
-            }
-        }
-    }
-}
-
-.managerTabs {
+.manager-tabs {
+    margin-top: 1rem;
     display: flex;
     gap: 1rem;
-    padding-block: 1rem;
-    border-bottom: 1px solid #ececec;
-
-    & + .managerTabs {
-        margin-bottom: 2rem;
-    }
-
+    overflow-x: scroll;
+    justify-content: center;
     & a,
     button {
-        padding-left: 1rem;
-        padding-right: 1rem;
-        padding-top: 0.625rem;
-        padding-bottom: 0.625rem;
-        color: var(--cerulean);
-        background-color: transparent;
+        padding: 0.5rem 1rem;
+        color: var(--white-color);
+        background-color: var(--cerulean);
         transition: background-color 0.3s linear;
         border: 1px solid var(--icicle);
-        min-width: fit-content;
+        border-radius: 20px;
 
         &:hover {
-            background-color: var(--overcast);
+            background-color: var(--glacier-blue);
         }
 
         &.activeSelectedLink {
-            background-color: var(--warm-gray);
-            color: var(--white-color);
+            background-color: var(--glacier-blue);
         }
     }
 }
 
-@media (width < 575px) {
-    .managerTabs {
-        overflow-x: scroll;
-        gap: 0.7em;
-    }
-}
-
-@media (width > 767px) {
-    .managerTabs {
-        justify-content: center;
-    }
-}
-
-.formsWrapper > * {
-    margin-inline: auto;
-}
-
-.formsWrapper > *:not(.avatarBox) {
-    max-width: 50rem;
-}
-
-.formsWrapper > .avatarBox {
-    max-width: 30rem;
-}
-
 .user-avatar {
+    margin-top: 1rem;
     width: 200px;
     height: 200px;
-    margin: auto;
     border-radius: 50%;
     object-fit: cover;
-    border: 1px solid #e6e6e6;
+    border: 1px solid var(--icicle);
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     transition: transform 0.4s ease;
     &:hover {
         transform: scale(1.03);
+    }
+}
+
+.cards {
+    margin-top: 1rem;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(var(--column-count), 1fr);
+    justify-content: center;
+
+    & li {
+        border: 1px solid var(--icicle);
+        border-radius: 20px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        transition: transform 0.4s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+
+        &:hover {
+            transform: scale(1.03);
+        }
+
+        & > a,
+        button {
+            padding: 0.5rem 1rem;
+            color: var(--white-color);
+            background-color: var(--cerulean);
+            justify-content: center;
+            border-radius: 20px;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        & h3 {
+            margin-top: 1rem;
+            padding: 0 1rem;
+        }
+
+        & p {
+            margin-top: 0.5rem;
+            padding: 0 1rem;
+        }
+    }
+
+    & img {
+        width: 100%;
+        border-radius: 20px 20px 0 0;
+    }
+}
+
+.form-filters {
+    margin-top: 1rem;
+    display: grid;
+    max-width: 62rem;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+@media only screen and (min-width: 640px) {
+    :root {
+        --column-count: 2;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    :root {
+        --column-count: 3;
+    }
+
+    .flex-1024 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0 1rem;
+    }
+
+    .profile-form {
+        min-width: 30.5rem;
+    }
+}
+
+@media only screen and (min-width: 1280px) {
+    .flex-1024 {
+        margin: 0rem 8rem;
+    }
+}
+
+@media only screen and (min-width: 1536px) {
+    :root {
+        --column-count: 4;
+    }
+
+    .flex-1024 {
+        margin: 0rem 16rem;
     }
 }

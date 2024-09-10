@@ -1,7 +1,6 @@
-import '../../../components/TypeOfServices/TypeOfServices.css';
 const { VITE_API_URL } = import.meta.env;
 import { useContext, useEffect, useState } from 'react';
-import { fetchAllUsersService } from '../../../services/userServices';
+import { fetchAllUsersServices } from '../../../services/userServices';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../../context/AuthContext';
 
@@ -32,7 +31,7 @@ const ListUserController = () => {
             });
             const searchParamsToString = searchParams.toString();
             try {
-                const data = await fetchAllUsersService(
+                const data = await fetchAllUsersServices(
                     searchParamsToString,
                     authToken
                 );
@@ -48,13 +47,21 @@ const ListUserController = () => {
         getAllUserList();
     }, [city, job, active, role, authToken]);
 
-    const citiesNoRepeated = [...new Set(data.map((item) => item.city))];
-    const jobNoRepeated = [...new Set(data.map((item) => item.job))];
+    const citiesNoRepeated = [
+        ...new Set(
+            data.map((item) => item.city).filter((city) => city && city.trim())
+        ),
+    ];
+    const jobNoRepeated = [
+        ...new Set(
+            data.map((item) => item.job).filter((job) => job && job.trim())
+        ),
+    ];
     const roleNoRepeated = [...new Set(data.map((item) => item.role))];
 
     return (
-        <div>
-            <form className='form filterServicesForm'>
+        <>
+            <form className='mx-auto form-filters'>
                 <select
                     name='city'
                     id='city'
@@ -74,7 +81,6 @@ const ListUserController = () => {
                         );
                     })}
                 </select>
-
                 <select
                     name='job'
                     id='job'
@@ -94,7 +100,6 @@ const ListUserController = () => {
                         );
                     })}
                 </select>
-
                 <select
                     name='role'
                     id='role'
@@ -104,7 +109,7 @@ const ListUserController = () => {
                     }}
                 >
                     <option value='' disabled>
-                        Role:
+                        Tipo:
                     </option>
                     {roleNoRepeated.map((role) => {
                         return (
@@ -114,7 +119,6 @@ const ListUserController = () => {
                         );
                     })}
                 </select>
-
                 <select
                     name='active'
                     id='active'
@@ -131,14 +135,10 @@ const ListUserController = () => {
                 </select>
                 <button onClick={resetFilters}>Limpiar Filtros</button>
             </form>
-
-            <ul className='gridClockYou'>
+            <ul className='cards'>
                 {data.map((item) => {
                     return (
-                        <li
-                            key={item.id}
-                            className='flex flex-col place-content-between'
-                        >
+                        <li key={item.id}>
                             <img
                                 src={`${
                                     item.avatar
@@ -147,19 +147,19 @@ const ListUserController = () => {
                                 }`}
                                 alt='Avatar'
                             />
-                            <h3 className='text-2xl'>
+                            <h3>
                                 👤 {item.firstName} {item.lastName}
                             </h3>
-                            <p className='grow'>✉️ {item.email}</p>
-                            <p className='grow'>📞 {item.phone}</p>
-                            <p className='grow'>🪪 {item.dni}</p>
-                            <p className='grow'>👨‍💻 {item.job}</p>
-                            <p className='grow'>🏠 {item.city}</p>
+                            <p>✉️ {item.email}</p>
+                            <p>📞 {item.phone}</p>
+                            <p>🪪 {item.dni}</p>
+                            <p>👨‍💻 {item.job}</p>
+                            <p className='mb-4'>🏠 {item.city}</p>
                         </li>
                     );
                 })}
             </ul>
-        </div>
+        </>
     );
 };
 

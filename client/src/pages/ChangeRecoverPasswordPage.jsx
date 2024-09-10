@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { fetchChangePasswordUserService } from '../services/userServices.js';
+import { fetchChangePasswordUserServices } from '../services/userServices.js';
 
 import toast from 'react-hot-toast';
 
@@ -26,7 +26,7 @@ const ChangeRecoverPasswordPage = () => {
             if (newPassword !== repeatedPassword) {
                 throw new Error('¡Las contraseñas no coinciden!');
             } else {
-                const data = await fetchChangePasswordUserService(
+                const data = await fetchChangePasswordUserServices(
                     recoverPasswordCode,
                     newPassword
                 );
@@ -43,49 +43,46 @@ const ChangeRecoverPasswordPage = () => {
     };
 
     return (
-        <section className='container formsWrapper'>
-            <form
-                className='form mx-auto'
-                onSubmit={handleChangeRecoverPassword}
-            >
-                <fieldset>
-                    <legend>Recupera Contraseña</legend>
-                    <label htmlFor='recoverCode'>Código recuperación</label>
-                    <input
-                        type='text'
-                        id='recoverPasswordCode'
-                        value={recoverPasswordCode}
-                        onChange={(e) => setRecoverPasswordCode(e.target.value)}
-                        placeholder='fDCFJL4trt'
-                        required
-                    />
+        <form className='mx-auto' onSubmit={handleChangeRecoverPassword}>
+            <fieldset>
+                <legend>Nueva Contraseña</legend>
+                <label htmlFor='recoverCode'>Código recuperación</label>
+                <input
+                    type='text'
+                    id='recoverPasswordCode'
+                    value={recoverPasswordCode}
+                    onChange={(e) => setRecoverPasswordCode(e.target.value)}
+                    placeholder='fDCFJL4trt'
+                    required
+                />
 
-                    <label htmlFor='password'>Nueva contraseña</label>
-                    <input
-                        type='password'
-                        id='newPassword'
-                        value={newPassword}
-                        onChange={(e) => setNewPassword(e.target.value)}
-                        placeholder='jobryp-kapDew-fetho6'
-                        required
-                    />
+                <label htmlFor='password'>Contraseña</label>
+                <input
+                    type='password'
+                    id='newPassword'
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                    placeholder='jobryp-kapDew-fetho6'
+                    required
+                />
 
-                    <label htmlFor='repeatedPassword'>Repite contraseña</label>
-                    <input
-                        type='password'
-                        id='repeatedPassword'
-                        value={repeatedPassword}
-                        onChange={(e) => setRepeatedPassword(e.target.value)}
-                        placeholder='jobryp-kapDew-fetho6'
-                        required
-                    />
-                    <div>
-                        <button type='submit'>Cambiar Contraseña</button>
-                        <button onClick={resetInputs}>Limpiar</button>
-                    </div>
-                </fieldset>
-            </form>
-        </section>
+                <label htmlFor='repeatedPassword'>Repetir contraseña</label>
+                <input
+                    type='password'
+                    id='repeatedPassword'
+                    value={repeatedPassword}
+                    onChange={(e) => setRepeatedPassword(e.target.value)}
+                    placeholder='jobryp-kapDew-fetho6'
+                    required
+                />
+                <div className='mx-auto'>
+                    <button className='mr-4' type='submit'>
+                        Cambiar
+                    </button>
+                    <button onClick={resetInputs}>Limpiar</button>
+                </div>
+            </fieldset>
+        </form>
     );
 };
 

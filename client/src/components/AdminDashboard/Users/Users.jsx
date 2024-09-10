@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import ListUserController from './ListUserController';
 import RegisterAdminUserController from './RegisterAdminUserController';
 import tabSelected from '../../../../src/hooks/tabSelected';
@@ -18,7 +18,7 @@ const Users = () => {
 
     return (
         <>
-            <div className='managerTabs' id='tabs2'>
+            <div className='manager-tabs' id='tabs2'>
                 <button
                     to='#ListUserController'
                     onClick={(e) => {

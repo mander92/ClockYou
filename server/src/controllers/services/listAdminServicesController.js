@@ -8,7 +8,6 @@ const listAdminServicesController = async (req, res, next) => {
 
         res.send({
             status: 'ok',
-            message: 'Lista de servicios',
             data,
         });
     } catch (error) {

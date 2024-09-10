@@ -1,6 +1,6 @@
 const { VITE_API_URL } = import.meta.env;
 
-export const fetchRegisterUserService = async (
+export const fetchRegisterUserServices = async (
     email,
     firstName,
     lastName,
@@ -32,7 +32,7 @@ export const fetchRegisterUserService = async (
     return body.message;
 };
 
-export const fecthRegisterAdminUserService = async (
+export const fecthRegisterAdminUserServices = async (
     email,
     firstName,
     lastName,
@@ -74,7 +74,7 @@ export const fecthRegisterAdminUserService = async (
     return body.message;
 };
 
-export const fetchActiveUserService = async (registrationCode) => {
+export const fetchActiveUserServices = async (registrationCode) => {
     const res = await fetch(
         `${VITE_API_URL}/users/validate/${registrationCode}`
     );
@@ -88,7 +88,7 @@ export const fetchActiveUserService = async (registrationCode) => {
     return body.message;
 };
 
-export const fetchLoginUserService = async (email, password) => {
+export const fetchLoginUserServices = async (email, password) => {
     const res = await fetch(`${VITE_API_URL}/users/login`, {
         method: 'POST',
         headers: {
@@ -109,7 +109,7 @@ export const fetchLoginUserService = async (email, password) => {
     return body;
 };
 
-export const fetchProfileUserService = async (authToken) => {
+export const fetchProfileUserServices = async (authToken) => {
     const res = await fetch(`${VITE_API_URL}/user`, {
         headers: authToken
             ? {
@@ -128,7 +128,7 @@ export const fetchProfileUserService = async (authToken) => {
     return body.data;
 };
 
-export const fetchSendRecoverPasswordUserService = async (email) => {
+export const fetchSendRecoverPasswordUserServices = async (email) => {
     const res = await fetch(`${VITE_API_URL}/users/password/recover`, {
         method: 'POST',
         headers: {
@@ -148,7 +148,7 @@ export const fetchSendRecoverPasswordUserService = async (email) => {
     return body.message;
 };
 
-export const fetchChangePasswordUserService = async (
+export const fetchChangePasswordUserServices = async (
     recoverPasswordCode,
     newPassword
 ) => {
@@ -172,7 +172,7 @@ export const fetchChangePasswordUserService = async (
     return body.message;
 };
 
-export const fetchEditUserService = async (
+export const fetchEditUserServices = async (
     authToken,
     firstName,
     lastName,
@@ -203,7 +203,7 @@ export const fetchEditUserService = async (
     return body;
 };
 
-export const fetchEditPasswordUserService = async (
+export const fetchEditPasswordUserServices = async (
     authToken,
     actualPassword,
     newPassword,
@@ -229,7 +229,7 @@ export const fetchEditPasswordUserService = async (
     return body;
 };
 
-export const fetchDeleteUserService = async (authToken, userId) => {
+export const fetchDeleteUserServices = async (authToken, userId) => {
     const res = await fetch(`${VITE_API_URL}/user/${userId}`, {
         method: 'DELETE',
         headers: authToken
@@ -246,7 +246,11 @@ export const fetchDeleteUserService = async (authToken, userId) => {
     return body;
 };
 
-export const fetchEditAvatarUserService = async (userId, authToken, avatar) => {
+export const fetchEditAvatarUserServices = async (
+    userId,
+    authToken,
+    avatar
+) => {
     const formData = new FormData();
     formData.append('avatar', avatar);
 
@@ -265,7 +269,10 @@ export const fetchEditAvatarUserService = async (userId, authToken, avatar) => {
     return body;
 };
 
-export const fetchAllUsersService = async (searchParamsToString, authToken) => {
+export const fetchAllUsersServices = async (
+    searchParamsToString,
+    authToken
+) => {
     const res = await fetch(`${VITE_API_URL}/users/?${searchParamsToString}`, {
         headers: authToken
             ? {
@@ -278,46 +285,5 @@ export const fetchAllUsersService = async (searchParamsToString, authToken) => {
     if (body.status === 'error') {
         throw new Error(body.message);
     }
-    return body.data;
-};
-
-export const fetchAllEmployeeService = async (
-    searchParamsToString,
-    authToken
-) => {
-    console.log(searchParamsToString);
-    const res = await fetch(`${VITE_API_URL}/users/?${searchParamsToString}`, {
-        headers: authToken
-            ? {
-                  'Content-Type': 'application/json',
-                  Authorization: authToken,
-              }
-            : {},
-    });
-    const body = await res.json();
-    if (body.status === 'error') {
-        throw new Error(body.message);
-    }
-    return body.data;
-};
-
-export const fetchListClientServiceServices = async (
-    searchParamsToString,
-    authToken
-) => {
-    const res = await fetch(`${VITE_API_URL}/services/client`, {
-        headers: authToken
-            ? {
-                  'Content-Type': 'application/json',
-                  Authorization: authToken,
-              }
-            : {},
-    });
-
-    const body = await res.json();
-    if (body.status === 'error') {
-        throw new Error(body.message);
-    }
-
     return body.data;
 };

@@ -20,7 +20,7 @@
     }
 
     .navdinamica {
-        @apply inset-0 z-10 flex flex-wrap flex-col items-start justify-start gap-3 px-7 pt-32 pb-10;
+        @apply inset-0 z-10 flex flex-wrap flex-col items-start justify-start gap-4 px-7 pt-32 pb-10;
         position: fixed;
         background-color: var(--white-color);
         box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
@@ -39,13 +39,14 @@
     }
 
     .linkmainnav {
-        @apply block px-4 py-3.5;
+        @apply block px-4 py-2;
 
         color: var(--cerulean);
         background-color: transparent;
         transition: background-color 0.3s linear;
         border: 1px solid var(--icicle);
         min-width: fit-content;
+        border-radius: 20px;
 
         &:hover {
             background-color: var(--overcast);
@@ -110,7 +111,7 @@
         }
 
         .linkmainnav {
-            @apply block px-4 py-2.5;
+            @apply block px-4 py-2;
         }
     }
 

@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
@@ -53,7 +52,7 @@ const NewServiceForm = ({ typeOfServiceId }) => {
     };
 
     return (
-        <form className='form' onSubmit={handleNewService}>
+        <form className='profile-form'>
             <fieldset>
                 <legend>Solicítalo</legend>
                 <label htmlFor='datetime'>Fecha y Hora</label>
@@ -121,21 +120,22 @@ const NewServiceForm = ({ typeOfServiceId }) => {
                     minLength='10'
                     maxLength='500'
                     rows='5'
-                    cols='50'
                     style={{ resize: 'none' }}
                     required
                 ></textarea>
-                <div>
-                    <button type='submit'>Solicitar</button>
+                <div className='mx-auto'>
+                    <button
+                        className='mr-4 mt-2'
+                        type='submit'
+                        onClick={handleNewService}
+                    >
+                        Solicitar
+                    </button>
                     <button onClick={resetInputs}>Limpiar</button>
                 </div>
             </fieldset>
         </form>
     );
-};
-
-NewServiceForm.propTypes = {
-    typeOfServiceId: PropTypes.string.isRequired,
 };
 
 export default NewServiceForm;

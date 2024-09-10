@@ -7,9 +7,8 @@ import Profile from '../components/Profile/Profile';
 import Users from '../components/AdminDashboard/Users/Users';
 import Services from '../components/AdminDashboard/Services/Services';
 import Contracts from '../components/AdminDashboard/Contracts/ListContracts';
-import Shifts from '../components/AdminDashboard/Shifts';
+import Shifts from '../components/AdminDashboard/Shifts/Shifts';
 import MyServices from '../components/EmployeeDashBoard/MyServices';
-import Requests from '../components/ClientDashboard/Requests';
 import Orders from '../components/ClientDashboard/Orders';
 import tabSelected from '../hooks/tabSelected';
 import toTopFast from '../hooks/toTopFast';
@@ -19,7 +18,6 @@ const DashboardPage = () => {
     const { user } = useUser();
 
     const firstLoadClass = 'activeSelectedLink';
-
     const userRole = user?.role;
     const location = useLocation();
 
@@ -42,7 +40,6 @@ const DashboardPage = () => {
         services: userRole === 'admin' && <Services />,
         contracts: userRole === 'admin' && <Contracts />,
         shifts: userRole === 'admin' && <Shifts />,
-        requests: userRole === 'client' && <Requests />,
         orders: userRole === 'client' && <Orders />,
         myservices: userRole === 'employee' && <MyServices />,
     };
@@ -50,10 +47,9 @@ const DashboardPage = () => {
     if (!authToken && !user) return <Navigate to='/' />;
 
     return (
-        <section className='container'>
+        <>
             <Avatar />
-
-            <div className='managerTabs' id='tabs5'>
+            <section className='manager-tabs' id='tabs5'>
                 <NavLink
                     to='#profile'
                     onClick={(e) => {
@@ -63,7 +59,7 @@ const DashboardPage = () => {
                     }}
                     className={firstLoadClass}
                 >
-                    Mi Perfil
+                    Perfil
                 </NavLink>
 
                 {userRole === 'admin' && (
@@ -112,18 +108,16 @@ const DashboardPage = () => {
                 )}
 
                 {userRole === 'client' && (
-                    <>
-                        <NavLink
-                            to='#orders'
-                            onClick={(e) => {
-                                handleSectionChange('orders');
-                                tabSelected(e, 'tabs5');
-                                toTopFast(e);
-                            }}
-                        >
-                            Pedidos
-                        </NavLink>
-                    </>
+                    <NavLink
+                        to='#orders'
+                        onClick={(e) => {
+                            handleSectionChange('orders');
+                            tabSelected(e, 'tabs5');
+                            toTopFast(e);
+                        }}
+                    >
+                        Pedidos
+                    </NavLink>
                 )}
                 {userRole === 'employee' && (
                     <NavLink
@@ -137,9 +131,9 @@ const DashboardPage = () => {
                         Mis Servicios
                     </NavLink>
                 )}
-            </div>
+            </section>
             {sectionComponents[activeSection]}
-        </section>
+        </>
     );
 };
 

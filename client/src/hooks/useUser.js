@@ -5,7 +5,7 @@ import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
 
 // Obtenemos los servicios.
-import { fetchProfileUserService } from '../services/userServices';
+import { fetchProfileUserServices } from '../services/userServices';
 
 // Importamos la funcion toast.
 import toast from 'react-hot-toast';
@@ -22,7 +22,7 @@ const useUser = () => {
     useEffect(() => {
         const getUser = async () => {
             try {
-                const user = await fetchProfileUserService(authToken);
+                const user = await fetchProfileUserServices(authToken);
 
                 // Almacenamos los datos del usuario en el State.
                 setUser(user);

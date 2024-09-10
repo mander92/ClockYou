@@ -57,7 +57,7 @@ export const fecthAllServicesServices = async (
     return body;
 };
 
-export const fetchDetailServiceService = async (serviceId, authToken) => {
+export const fetchDetailServiceServices = async (serviceId, authToken) => {
     const res = await fetch(`${VITE_API_URL}/services/${serviceId}`, {
         headers: {
             Authorization: authToken,
@@ -67,9 +67,35 @@ export const fetchDetailServiceService = async (serviceId, authToken) => {
 
     const body = await res.json();
 
-    if (body.status !== 'ok') {
+    if (body.status === 'error') {
         throw new Error(body.message);
     }
 
     return body;
+};
+
+export const fetchClientAllServicesServices = async (
+    searchParamsToString,
+    authToken
+) => {
+    const res = await fetch(
+        `${VITE_API_URL}/services/client/?${searchParamsToString}`,
+        {
+            method: 'GET',
+            headers: authToken
+                ? {
+                      Authorization: authToken,
+                      'Content-Type': 'application/json',
+                  }
+                : {},
+            body: JSON.stringify(),
+        }
+    );
+    const body = await res.json();
+
+    if (body.status === 'error') {
+        throw new Error(body.message);
+    }
+
+    return body.data;
 };

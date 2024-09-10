@@ -6,21 +6,22 @@ import App from './App.jsx';
 import { Toaster } from 'react-hot-toast';
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <BrowserRouter>
-      <AuthProvider>
-        <App />
-        <Toaster
-          position='top-center'
-          toastOptions={{
-            duration: 7000,
-            style: {
-              backgroundColor: 'var(--cerulean)',
-              color: 'var(--white-color)',
-            },
-          }}
-        />
-      </AuthProvider>
-    </BrowserRouter>
-  </StrictMode>
+    <StrictMode>
+        <BrowserRouter>
+            <AuthProvider>
+                <App />
+                <Toaster
+                    position='top-center'
+                    toastOptions={{
+                        duration: 7000,
+                        style: {
+                            backgroundColor: 'var(--cerulean)',
+                            color: 'var(--white-color)',
+                            borderRadius: '100px',
+                        },
+                    }}
+                />
+            </AuthProvider>
+        </BrowserRouter>
+    </StrictMode>
 );

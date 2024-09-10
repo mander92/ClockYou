@@ -1,6 +1,6 @@
 import { AuthContext } from '../../../context/AuthContext';
 import { useContext, useState } from 'react';
-import { fecthRegisterAdminUserService } from '../../../services/userServices';
+import { fecthRegisterAdminUserServices } from '../../../services/userServices';
 
 import toast from 'react-hot-toast';
 
@@ -38,7 +38,7 @@ const RegisterAdminUserController = () => {
             if (password !== repeatedPassword) {
                 throw new Error('¡Las contraseñas no coinciden!');
             } else {
-                const data = await fecthRegisterAdminUserService(
+                const data = await fecthRegisterAdminUserServices(
                     email,
                     firstName,
                     lastName,
@@ -63,11 +63,10 @@ const RegisterAdminUserController = () => {
         }
     };
     return (
-        <form className='form mx-auto' onSubmit={handleRegister}>
+        <form className='mx-auto' onSubmit={handleRegister}>
             <fieldset>
-                <legend>Registro</legend>
-
-                <label htmlFor='role'>Usuario</label>
+                <legend>Usuario</legend>
+                <label htmlFor='role'>Rol</label>
                 <select
                     id='role'
                     value={role}
@@ -152,6 +151,7 @@ const RegisterAdminUserController = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder='jobryp-kapDew-fetho6'
+                    minLength='8'
                     required
                 />
                 <label htmlFor='repeatedPassword'>Repetir Contraseña</label>
@@ -161,11 +161,14 @@ const RegisterAdminUserController = () => {
                     value={repeatedPassword}
                     onChange={(e) => setRepeatedPassword(e.target.value)}
                     placeholder='jobryp-kapDew-fetho6'
+                    minLength='8'
                     required
                 />
 
-                <div>
-                    <button type='submit'>Registrarse</button>
+                <div className='mx-auto'>
+                    <button className='mr-4' type='submit'>
+                        Registrarse
+                    </button>
                     <button onClick={resetInputs}>Limpiar</button>
                 </div>
             </fieldset>

@@ -1,22 +1,23 @@
-const { VITE_API_URL, VITE_CLIENT_URL } = import.meta.env;
+const { VITE_CLIENT_URL } = import.meta.env;
 import { useEffect, useState, useContext } from 'react';
-import { fetchListClientServiceServices } from '../../services/userServices.js';
+import { fetchClientAllServicesServices } from '../../services/serviceServices.js';
 import { AuthContext } from '../../../src/context/AuthContext.jsx';
 import { NavLink } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
 const Orders = () => {
-    const [data, setData] = useState([]);
+    const { authToken } = useContext(AuthContext);
 
+    const [data, setData] = useState([]);
     const [status, setStatus] = useState('');
     const [type, setType] = useState('');
     const [city, setCity] = useState('');
-    const { authToken } = useContext(AuthContext);
 
     const resetFilters = (e) => {
         e.preventDefault();
         setStatus('');
         setType('');
+        setCity('');
     };
 
     useEffect(() => {
@@ -27,7 +28,7 @@ const Orders = () => {
             });
             const searchParamsToString = searchParams.toString();
             try {
-                const data = await fetchListClientServiceServices(
+                const data = await fetchClientAllServicesServices(
                     searchParamsToString,
                     authToken
                 );
@@ -47,7 +48,7 @@ const Orders = () => {
 
     return (
         <div>
-            <form className='form filterServicesForm'>
+            <form className='mx-auto form-filters'>
                 <select
                     name='status'
                     id='status'
@@ -59,11 +60,10 @@ const Orders = () => {
                     <option value='' disabled>
                         Estado:
                     </option>
-                    <option value='pending'>pendiente</option>
-                    <option value='accepted'>aceptado</option>
-                    <option value='confirmed'>confirmado</option>
+                    <option value='accepted'>Aceptado</option>
+                    <option value='confirmed'>Confirmado</option>
+                    <option value='pending'>Pendiente</option>
                 </select>
-
                 <select
                     name='typeOfService'
                     id='typeOfService'
@@ -83,7 +83,6 @@ const Orders = () => {
                         );
                     })}
                 </select>
-
                 <select
                     name='cityOfService'
                     id='cityOfService'
@@ -103,51 +102,39 @@ const Orders = () => {
                         );
                     })}
                 </select>
-
                 <button onClick={resetFilters}>Limpiar Filtros</button>
             </form>
-
-            <ul className='gridClockYou'>
+            <ul className='cards'>
                 {data.map((item) => {
-                    const time = new Date(item.DíaYHora).toLocaleTimeString();
-                    const date = new Date(item.DíaYHora).toLocaleDateString();
-
+                    const time = new Date(item.dateTime).toLocaleTimeString();
+                    const date = new Date(item.dateTime).toLocaleDateString();
+                    const serviceId = item.id;
                     return (
-                        <li
-                            id={item.id}
-                            key={item.id}
-                            className='flex flex-col items-center text-center'
-                        >
-                            <h3 className='text-2xl'>{item.TipoServicio}</h3>
-
-                            <p className='grow'>
-                                {date} - {time}
-                            </p>
-
-                            <p className='text-1xl font-black pt-3 pb-1'>
-                                {item.city}
-                            </p>
-
+                        <li key={item.id}>
                             <h3>
-                                {item.Ciudad} - {item.CP}
+                                {item.type} en {item.province}
                             </h3>
-
-                            <h3>Precio Total: {item.PrecioTotal} €</h3>
-                            <h3>{item.Estado}</h3>
+                            <p className='font-extrabold'>
+                                Estado: {item.status}
+                            </p>
+                            <p>Precio Hora: {item.price}€</p>
+                            <p>Horas Contratadas: {item.hours}</p>
+                            <p className='font-extrabold'>
+                                Total: {item.totalPrice}€
+                            </p>
+                            <p>
+                                El {date} a las {time}
+                            </p>
+                            <p>
+                                En {item.address}, {item.postCode}, {item.city}
+                            </p>
+                            <p>{item.comments}</p>
 
                             {item.status === 'pending' && (
                                 <NavLink
-                                    to={`${VITE_CLIENT_URL}/typeOfServices/edit/${item.id}`}
+                                // to={`${VITE_CLIENT_URL}/services/${serviceId}`}
                                 >
                                     Editar
-                                </NavLink>
-                            )}
-
-                            {item.status === 'completed' && (
-                                <NavLink
-                                    to={`${VITE_CLIENT_URL}/typeOfServices/edit/${item.id}`}
-                                >
-                                    Valorar
                                 </NavLink>
                             )}
                         </li>

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { fetchActiveUserService } from '../services/userServices';
+import { fetchActiveUserServices } from '../services/userServices';
 import toast from 'react-hot-toast';
 
 const ValidateUserPage = () => {
@@ -10,7 +10,7 @@ const ValidateUserPage = () => {
     useEffect(() => {
         const activateUser = async () => {
             try {
-                const data = await fetchActiveUserService(registrationCode);
+                const data = await fetchActiveUserServices(registrationCode);
 
                 toast.success(data, {
                     id: 'ok',

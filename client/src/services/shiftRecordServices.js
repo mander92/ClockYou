@@ -1,6 +1,6 @@
 const { VITE_API_URL } = import.meta.env;
 
-export const fecthNewShiftRecordService = async (
+export const fecthNewShiftRecordServices = async (
     employeeId,
     serviceId,
     authToken

@@ -2,9 +2,9 @@ import { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import {
-    fetchEditUserService,
-    fetchEditPasswordUserService,
-    fetchDeleteUserService,
+    fetchEditUserServices,
+    fetchEditPasswordUserServices,
+    fetchDeleteUserServices,
 } from '../../services/userServices';
 import useUser from '../../hooks/useUser';
 import toast from 'react-hot-toast';
@@ -27,7 +27,7 @@ const Profile = () => {
     const handleEditUser = async (e) => {
         e.preventDefault();
         try {
-            const data = await fetchEditUserService(
+            const data = await fetchEditUserServices(
                 authToken,
                 firstName,
                 lastName,
@@ -50,7 +50,7 @@ const Profile = () => {
             if (newPassword !== repeatedNewPassword) {
                 throw new Error('¡Las nuevas contraseñas no coinciden!');
             } else {
-                const data = await fetchEditPasswordUserService(
+                const data = await fetchEditPasswordUserServices(
                     authToken,
                     actualPassword,
                     newPassword,
@@ -77,7 +77,7 @@ const Profile = () => {
             )
         ) {
             try {
-                const data = await fetchDeleteUserService(authToken, userId);
+                const data = await fetchDeleteUserServices(authToken, userId);
                 toast.success(data.message, {
                     id: 'ok',
                 });
@@ -100,10 +100,10 @@ const Profile = () => {
     }, [user]);
 
     return (
-        <div className='editServiceLayoutWrapper'>
-            <form className='form' id='perfilUsuario' onSubmit={handleEditUser}>
+        <section className='flex-1024'>
+            <form className='profile-form mx-auto' onSubmit={handleEditUser}>
                 <fieldset>
-                    <legend>Mi Perfil</legend>
+                    <legend>Datos</legend>
                     <label htmlFor='email'>Email</label>
                     <input disabled value={user?.email || ''} />
                     <label htmlFor='firstName'>Nombre</label>
@@ -146,13 +146,16 @@ const Profile = () => {
                             <input disabled value={user?.city || ''} />
                         </>
                     )}
-                    <div>
+                    <div className='mx-auto'>
                         <button type='submit'>Guardar Cambios</button>
                     </div>
                 </fieldset>
             </form>
-            <section>
-                <form className='form' onSubmit={handleEditPassword}>
+            <section className='mx-auto'>
+                <form
+                    className='profile-form mx-auto'
+                    onSubmit={handleEditPassword}
+                >
                     <fieldset>
                         <legend>Contraseña</legend>
                         <label htmlFor='actualPassword'>
@@ -192,21 +195,20 @@ const Profile = () => {
                                 setRepeatedNewPassword(e.target.value);
                             }}
                         />
-                        <div>
+                        <div className='mx-auto'>
                             <button type='submit'>Cambiar Contraseña</button>
                         </div>
                     </fieldset>
                 </form>
-                <form className='form' onSubmit={handleDeleteUser}>
+                <form className='mx-auto' onSubmit={handleDeleteUser}>
                     <fieldset>
-                        <legend>Cuenta</legend>
-                        <div>
+                        <div className='mx-auto'>
                             <button type='submit'>Eliminar Usuario</button>
                         </div>
                     </fieldset>
                 </form>
             </section>
-        </div>
+        </section>
     );
 };
 

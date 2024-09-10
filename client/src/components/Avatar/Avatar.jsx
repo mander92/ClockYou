@@ -1,8 +1,8 @@
 const { VITE_API_URL } = import.meta.env;
-import useUser from '../../hooks/useUser.js';
 import { useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext.jsx';
-import { fetchEditAvatarUserService } from '../../services/userServices.js';
+import { fetchEditAvatarUserServices } from '../../services/userServices.js';
+import useUser from '../../hooks/useUser.js';
 import toast from 'react-hot-toast';
 
 const Avatar = () => {
@@ -17,7 +17,7 @@ const Avatar = () => {
         e.preventDefault();
         try {
             if (enableEditAvatar) {
-                const data = await fetchEditAvatarUserService(
+                const data = await fetchEditAvatarUserServices(
                     userId,
                     authToken,
                     avatar
@@ -37,9 +37,9 @@ const Avatar = () => {
     };
 
     return (
-        <form onSubmit={handleEditAvatar}>
+        <form className='mx-auto' onSubmit={handleEditAvatar}>
             <img
-                className='user-avatar'
+                className='user-avatar mx-auto'
                 src={`${
                     user?.avatar
                         ? `${VITE_API_URL}/${user.avatar}`
@@ -48,7 +48,7 @@ const Avatar = () => {
                 alt='Avatar'
             />
             {enableEditAvatar ? (
-                <div className='text-center'>
+                <div className='text-center mt-4'>
                     <input
                         type='file'
                         accept='image/png, image/jpg, image/jpeg, image/tiff'
@@ -61,10 +61,11 @@ const Avatar = () => {
             ) : (
                 ''
             )}
-            <div className='text-center pb-8'>
-                <button className='m-0' type='submit'>
-                    {!enableEditAvatar ? 'Editar' : 'Guardar'}
+            <div className='text-center mt-4'>
+                <button type='submit'>
+                    {!enableEditAvatar ? 'Cambiar' : 'Guardar'}
                 </button>
+                <h2 className='mt-4'>Hola {user?.firstName}</h2>
             </div>
         </form>
     );

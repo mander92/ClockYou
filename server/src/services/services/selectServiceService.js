@@ -1,16 +1,16 @@
 import getPool from '../../db/getPool.js';
 
-const selectServiceService = async (status, order, price) => {
+const selectServiceService = async (status, order) => {
     const pool = await getPool();
 
     let sqlQuery = `
-    SELECT s.status AS Estado, s.id AS serviceId, t.id AS typeOfServiceId, 
-    u.id AS clientId, a.id AS addressId, s.createdAt AS Creación, 
-    t.type AS TipoServicio, t.city AS Provincia, t.price AS Precio, 
-    s.hours AS Horas, s.totalPrice AS PrecioTotal, s.dateTime AS DíaYHora, 
-    a.city AS Ciudad, a.address AS Dirección, a.postCode AS CP, 
-    s.totalPrice AS PrecioTotal, u.firstName AS Nombre, u.lastName AS Apellidos, 
-    u.phone AS Teléfono, u.dni AS DNI, s.comments AS Comentarios
+    SELECT s.status, s.id AS serviceId, t.id AS typeOfServiceId, 
+    u.id AS clientId, a.id AS addressId, s.createdAt, 
+    t.type, t.city AS province, t.price, 
+    s.hours, s.totalPrice, s.dateTime, 
+    a.city, a.address, a.postCode, 
+    s.totalPrice, u.firstName, u.lastName, 
+    u.phone, u.dni, u.email, s.comments
     FROM addresses a
     INNER JOIN services s
     ON a.id = s.addressId
@@ -28,7 +28,7 @@ const selectServiceService = async (status, order, price) => {
     }
 
     if (order) {
-        sqlQuery += ` ORDER BY s.createdAt ${order.toUpperCase()}`;
+        sqlQuery += ` ORDER BY s.dateTime ${order.toUpperCase()}`;
     }
 
     const [service] = await pool.query(sqlQuery, sqlValues);

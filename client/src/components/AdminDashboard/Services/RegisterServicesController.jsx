@@ -48,12 +48,9 @@ const RegisterNewTypeOfServiceController = () => {
     };
 
     return (
-        <form
-            className='form mx-auto'
-            onSubmit={handleRegisterNewTypeOfService}
-        >
+        <form className='mx-auto' onSubmit={handleRegisterNewTypeOfService}>
             <fieldset>
-                <legend>Registrar Servicio</legend>
+                <legend>Servicio</legend>
                 <label htmlFor='type'>Tipo</label>
                 <input
                     id='type'
@@ -111,8 +108,10 @@ const RegisterNewTypeOfServiceController = () => {
                     }}
                     required
                 ></input>
-                <div>
-                    <button type='submit'>Registrar</button>
+                <div className='mx-auto'>
+                    <button className='mr-4' type='submit'>
+                        Registrar
+                    </button>
                     <button onClick={resetInputs}>Limpiar</button>
                 </div>
             </fieldset>

@@ -1,4 +1,3 @@
-import './Fonts.css';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
@@ -6,19 +5,19 @@ import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage.jsx';
 import RegisterPage from './pages/RegisterPage.jsx';
 import ValidateUserPage from './pages/ValidateUserPage.jsx';
-import NotFound from './pages/NotFound/NotFound';
+import NotFoundPage from './pages/NotFoundPage.jsx';
 import SendRecoverPasswordPage from './pages/SendRecoverPasswordPage.jsx';
-import TypeOfServices from '../src/components/TypeOfServices/TypeOfServices.jsx';
+import TypeOfServicesPage from './pages/TypeOfServicesPage.jsx';
 import ChangeRecoverPasswordPage from './pages/ChangeRecoverPasswordPage.jsx';
-import DetailTypeOfService from './pages/DetailTypeOfService/DetailTypeOfServices.jsx';
 import DashboardPage from './pages/DashboardPage.jsx';
-import EditService from './pages/EditService.jsx';
-import DetailService from './pages/DetailServices.jsx';
+import EditServicePage from './pages/EditServicePage.jsx';
+import DetailTypeOfServicePage from './pages/DetailTypeOfServicePage.jsx';
+import DetailServicePage from './pages/DetailServicePage.jsx';
 
 const App = () => {
     return (
         <Layout>
-            <main id='mainMain' className='pb-6 overflow-x-clip'>
+            <main className='container mx-auto'>
                 <Routes>
                     <Route path='/' element={<HomePage />} />
                     <Route path='/register' element={<RegisterPage />} />
@@ -31,20 +30,20 @@ const App = () => {
 
                     <Route
                         path='/typeOfServices'
-                        element={<TypeOfServices />}
+                        element={<TypeOfServicesPage />}
                     />
                     <Route
                         path='/typeOfServices/:typeOfServiceId'
-                        element={<DetailTypeOfService />}
+                        element={<DetailTypeOfServicePage />}
                     />
                     <Route
                         path='/typeOfServices/edit/:typeOfServiceId'
-                        element={<EditService />}
+                        element={<EditServicePage />}
                     />
 
                     <Route
                         path='/services/:serviceId'
-                        element={<DetailService />}
+                        element={<DetailServicePage />}
                     />
 
                     <Route
@@ -55,7 +54,7 @@ const App = () => {
                         path='/password'
                         element={<ChangeRecoverPasswordPage />}
                     />
-                    <Route path='*' element={<NotFound />} />
+                    <Route path='*' element={<NotFoundPage />} />
                 </Routes>
             </main>
         </Layout>

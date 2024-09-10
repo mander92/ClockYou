@@ -6,8 +6,7 @@ const selectServiceByIdService = async (serviceId) => {
 
     const [service] = await pool.query(
         `
-        SELECT s.status AS Estado,
-        t.type AS TipoServicio, t.city AS Provincia, t.price AS PrecioHora, s.hours AS HorasContratadas, s.totalPrice AS PrecioTotal, s.dateTime AS DíaHora, a.address AS Dirección, a.postCode AS CP, a.city AS Ciudad, s.comments AS Comenatarios, u.email AS Email, u.firstName AS Nombre, u.lastName AS Apellidos, u.phone AS Teléfono
+        SELECT s.status, t.type, t.city AS province, t.price, s.hours, s.totalPrice, s.dateTime, a.address, a.postCode, a.city, s.comments, u.email, u.firstName, u.lastName , u.phone
         FROM addresses a
         INNER JOIN services s
         ON a.id = s.addressId

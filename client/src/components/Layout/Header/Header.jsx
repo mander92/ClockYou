@@ -44,94 +44,84 @@ const Header = () => {
 
     return (
         <header>
-            <div className='container'>
-                <nav className='mainnav flex flex-wrap'>
-                    <NavLink className='flex items-center' to={'/'}>
-                        <img
-                            className='w-14'
-                            src={clockyouLogo}
-                            alt='clockYou'
-                        />
+            <nav className='container mt-4 mx-auto mainnav flex flex-wrap'>
+                <NavLink className='flex items-center' to={'/'}>
+                    <img className='w-14' src={clockyouLogo} alt='clockYou' />
 
-                        <span className='text-4xl pl-1.5 serif-FONT-regular hidden sm:inline-flex'>
-                            ClockYou
-                        </span>
-                    </NavLink>
+                    <span className='text-2xl pl-1.5 serif-FONT-regular hidden sm:inline-flex'>
+                        ClockYou
+                    </span>
+                </NavLink>
 
-                    <ul
-                        id='navdinamica'
-                        className={
-                            menuBurguer ? 'navdinamica show' : 'navdinamica'
-                        }
-                    >
-                        <li>
-                            <NavLink
-                                onClick={handleBurguer}
-                                className='linkmainnav'
-                                to={'/typeOfServices'}
-                            >
-                                Servicios
-                            </NavLink>
-                        </li>
-                        {!user ? (
-                            <>
-                                <li>
-                                    <NavLink
-                                        onClick={handleBurguer}
-                                        className='linkmainnav'
-                                        to={'/register'}
-                                    >
-                                        Registrarse
-                                    </NavLink>
-                                </li>
-                                <li>
-                                    <NavLink
-                                        onClick={handleBurguer}
-                                        className='linkmainnav'
-                                        to={'/login'}
-                                    >
-                                        Iniciar Sesión
-                                    </NavLink>
-                                </li>
-                            </>
-                        ) : (
-                            <>
-                                <li>
-                                    <NavLink
-                                        onClick={handleBurguer}
-                                        className='linkmainnav'
-                                        to={'/user'}
-                                    >
-                                        Mi Cuenta
-                                    </NavLink>
-                                </li>
-                                <li>
-                                    <NavLink
-                                        onClick={() => {
-                                            handleBurguer();
-                                            authLogout();
-                                        }}
-                                        className='linkmainnav noBgr'
-                                        to={'/'}
-                                    >
-                                        Cerrar Sesión
-                                    </NavLink>
-                                </li>
-                            </>
-                        )}
-                    </ul>
-                    <div
-                        onClick={handleBurguer}
-                        className={
-                            menuBurguer ? 'menuburguer open' : 'menuburguer'
-                        }
-                    >
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </nav>
-            </div>
+                <ul
+                    id='navdinamica'
+                    className={menuBurguer ? 'navdinamica show' : 'navdinamica'}
+                >
+                    <li>
+                        <NavLink
+                            onClick={handleBurguer}
+                            className='linkmainnav'
+                            to={'/typeOfServices'}
+                        >
+                            Servicios
+                        </NavLink>
+                    </li>
+                    {!user ? (
+                        <>
+                            <li>
+                                <NavLink
+                                    onClick={handleBurguer}
+                                    className='linkmainnav'
+                                    to={'/register'}
+                                >
+                                    Registrarse
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    onClick={handleBurguer}
+                                    className='linkmainnav'
+                                    to={'/login'}
+                                >
+                                    Iniciar Sesión
+                                </NavLink>
+                            </li>
+                        </>
+                    ) : (
+                        <>
+                            <li>
+                                <NavLink
+                                    onClick={handleBurguer}
+                                    className='linkmainnav'
+                                    to={'/user'}
+                                >
+                                    Mi Cuenta
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    onClick={() => {
+                                        handleBurguer();
+                                        authLogout();
+                                    }}
+                                    className='linkmainnav noBgr'
+                                    to={'/'}
+                                >
+                                    Cerrar Sesión
+                                </NavLink>
+                            </li>
+                        </>
+                    )}
+                </ul>
+                <div
+                    onClick={handleBurguer}
+                    className={menuBurguer ? 'menuburguer open' : 'menuburguer'}
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
         </header>
     );
 };

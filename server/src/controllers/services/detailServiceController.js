@@ -8,7 +8,6 @@ const detailServiceController = async (req, res, next) => {
 
         res.send({
             status: 'ok',
-            message: 'Detalles del servicio',
             data,
         });
     } catch (error) {

@@ -1,10 +1,10 @@
 const { VITE_API_URL, VITE_CLIENT_URL } = import.meta.env;
 import { useEffect, useState } from 'react';
-import { fetchAllTypeOfServicesServices } from '../../../services/typeOfServiceServices';
-import toast from 'react-hot-toast';
+import { fetchAllTypeOfServicesServices } from '../services/typeOfServiceServices';
 import { NavLink } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
-const ListServicesController = () => {
+const TypeOfServicesPage = () => {
     const [data, setData] = useState([]);
     const [city, setCity] = useState('');
     const [type, setType] = useState('');
@@ -45,7 +45,7 @@ const ListServicesController = () => {
 
     return (
         <>
-            <form className='mx-auto form-filters'>
+            <form className='form-filters mx-auto'>
                 <select
                     name='city'
                     id='city'
@@ -103,20 +103,19 @@ const ListServicesController = () => {
             <ul className='cards'>
                 {data.map((item) => {
                     return (
-                        <li id={item.id} key={item.id}>
+                        <li key={item.id}>
+                            <img
+                                src={`${VITE_API_URL}/${item.image}`}
+                                alt={item.description}
+                            />
                             <h3>{item.type}</h3>
-
-                            <p className='grow'>{item.description}</p>
-
-                            <p className='font-extrabold'>{item.city}</p>
-
-                            <p>{item.price}</p>
-
+                            <p>⭐️⭐️⭐️⭐️⭐️</p>
+                            <p className='font-black'>{item.city}</p>
+                            <p>{item.price}€</p>
                             <NavLink
-                                className='mb-4'
-                                to={`${VITE_CLIENT_URL}/typeOfServices/edit/${item.id}`}
+                                to={`${VITE_CLIENT_URL}/typeOfServices/${item.id}`}
                             >
-                                Editar
+                                Infórmate
                             </NavLink>
                         </li>
                     );
@@ -126,4 +125,4 @@ const ListServicesController = () => {
     );
 };
 
-export default ListServicesController;
+export default TypeOfServicesPage;

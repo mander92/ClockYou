@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import { Navigate, useNavigate, NavLink } from 'react-router-dom';
-import { fetchLoginUserService } from '../services/userServices';
+import { fetchLoginUserServices } from '../services/userServices';
 import { AuthContext } from '../context/AuthContext';
 import useUser from '../hooks/useUser';
 import toast from 'react-hot-toast';
@@ -23,7 +23,7 @@ const LoginPage = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const authToken = await fetchLoginUserService(email, password);
+            const authToken = await fetchLoginUserServices(email, password);
 
             authLogin(authToken.data);
 
@@ -38,39 +38,39 @@ const LoginPage = () => {
     if (user) return <Navigate to='/' />;
 
     return (
-        <section className='container formsWrapper'>
-            <form className='form' onSubmit={handleLogin}>
-                <fieldset>
-                    <legend>Inicia sesión</legend>
-                    <label htmlFor='email'>Email</label>
-                    <input
-                        type='email'
-                        id='email'
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder='user@clockYou.com'
-                        required
-                    />
-                    <label htmlFor='password'>Contraseña</label>
-                    <input
-                        type='password'
-                        id='password'
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        placeholder='jobryp-kapDew-fetho6'
-                        required
-                    />
-                    <div>
-                        <button type='submit'>Iniciar sesión</button>
-                        <button onClick={resetInputs}>Limpiar</button>
-                    </div>
-                    <NavLink to='/recoverpassword'>
-                        {' '}
-                        ¿Has olvidado tu contraseña?
-                    </NavLink>{' '}
-                </fieldset>
-            </form>
-        </section>
+        <form className='mx-auto' onSubmit={handleLogin}>
+            <fieldset>
+                <legend>Inicio</legend>
+                <label htmlFor='email'>Email</label>
+                <input
+                    type='email'
+                    id='email'
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder='user@clockYou.com'
+                    required
+                />
+                <label htmlFor='password'>Contraseña</label>
+                <input
+                    type='password'
+                    id='password'
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder='jobryp-kapDew-fetho6'
+                    minLength='8'
+                    required
+                />
+                <div className='mx-auto'>
+                    <button className='mr-4' type='submit'>
+                        Iniciar
+                    </button>
+                    <button onClick={resetInputs}>Limpiar</button>
+                </div>
+                <NavLink className='text-center' to='/recoverpassword'>
+                    ¿Has olvidado tu contraseña?
+                </NavLink>
+            </fieldset>
+        </form>
     );
 };
 
