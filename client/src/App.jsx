@@ -50,6 +50,7 @@ const App = () => {
                     />
 
                     <Route
+                        // path='/services/edit/:serviceId'
                         path='/services/edit/'
                         element={<EditServiceClientPage />}
                     />

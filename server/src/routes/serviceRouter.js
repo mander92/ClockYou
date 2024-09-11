@@ -40,6 +40,14 @@ router.get(
     detailServiceController
 );
 
+// router.get(
+//     '/services/edit/:serviceId',
+//     authUser,
+//     isClient,
+//     serviceExists,
+//     detailServiceController
+// );
+
 router.get('/services/validate/:validationCode', validateServiceController);
 
 router.post(
