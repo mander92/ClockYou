@@ -55,6 +55,11 @@ const App = () => {
                     />
 
                     <Route
+                        path='/services/rating/:serviceId' //Thanh
+                        element={<RatingServiceClientPage />}
+                    />
+
+                    <Route
                         path='/recoverpassword'
                         element={<SendRecoverPasswordPage />}
                     />
@@ -71,6 +76,11 @@ const App = () => {
                     <Route
                         path='/shiftRecords/:shiftRecordId'
                         element={<Clock />}
+                    />
+
+                    <Route
+                        path='/shiftRecords/edit/:shiftRecordId'
+                        element={<EditShiftRecord />}
                     />
                     <Route path='*' element={<NotFoundPage />} />
                 </Routes>
