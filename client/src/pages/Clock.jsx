@@ -44,8 +44,6 @@ const Clock = () => {
                 },
             ]);
 
-            mostrarMapa(registros.entrada.ubicacion);
-
             setEnableEntrada(true);
 
             const data = await fetchClockIn(

@@ -37,9 +37,7 @@ const EditServiceClientPage = () => {
     useEffect(() => {
         const getService = async () => {
             try {
-                const data = await fetchClientServiceServices(
-                    serviceId
-                );
+                const data = await fetchClientServiceServices(serviceId);
                 setData(data);
                 setHours(data.hours);
                 setDateTime(data.dateTime);
@@ -81,7 +79,7 @@ const EditServiceClientPage = () => {
     return (
         <form className='profile-form mx-auto'>
             <fieldset>
-            <legend>Editar</legend>
+                <legend>Editar</legend>
                 <div>
                     <label htmlFor='comments'>Comentarios:</label>
                     <textarea
@@ -92,15 +90,41 @@ const EditServiceClientPage = () => {
                 <div>
                     <label htmlFor='address'>Dirección:</label>
                     <input
-                        type="text"
+                        type='text'
                         value={address}
+                        onChange={(e) => setAddress(e.target.value)}
+                    />
+                </div>
+                <div>
+                    <label htmlFor='postCode'>Código Postal:</label>
+                    <input
+                        type='number'
+                        maxLength='5'
+                        minLength='5'
+                        value={postCode}
+                        onChange={(e) => setPostCode(e.target.value)}
+                    />
+                </div>
+                <div>
+                    <label htmlFor='city'>Ciudad:</label>
+                    <input
+                        type='text'
+                        value={city}
+                        onChange={(e) => setCity(e.target.value)}
+                    />
+                </div>
+                <div>
+                    <label htmlFor='city'>Dirección:</label>
+                    <input
+                        type='text'
+                        value={city}
                         onChange={(e) => setAddress(e.target.value)}
                     />
                 </div>
                 <div>
                     <label htmlFor='hours'>Horas Contratadas:</label>
                     <input
-                        type="number"
+                        type='number'
                         value={hours}
                         onChange={(e) => setHours(e.target.value)}
                     />
@@ -109,7 +133,9 @@ const EditServiceClientPage = () => {
                     <button
                         className='mr-4 mt-4'
                         type='submit'
-                        onClick={handleEditService}>Guardar Cambios
+                        onClick={handleEditService}
+                    >
+                        Guardar Cambios
                     </button>
                 </div>
             </fieldset>
