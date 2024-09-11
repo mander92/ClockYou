@@ -38,7 +38,7 @@ const newServiceController = async (req, res, next) => {
         res.send({
             status: 'ok',
             message:
-                'Servicio solicitado correctamente, en cuanto asignemos un empleado recibirá la información en su email',
+                'Servicio solicitado correctamente, en cuanto asignemos un empleado recibirá la información en su Correo Eléctronico',
             data,
         });
     } catch (error) {
