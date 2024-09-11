@@ -167,6 +167,8 @@ const ProfileComponent = () => {
                             id='actualPassword'
                             value={actualPassword}
                             placeholder='jobryp-kapDew-fetho6'
+                            minLength='8'
+                            maxLength='25'
                             required
                             onChange={(e) => {
                                 setActualPassword(e.target.value);
@@ -178,6 +180,8 @@ const ProfileComponent = () => {
                             id='newPassword'
                             value={newPassword}
                             placeholder='bemgon-1bizni-nuhXyd'
+                            minLength='8'
+                            maxLength='25'
                             required
                             onChange={(e) => {
                                 setNewPassword(e.target.value);
@@ -190,6 +194,8 @@ const ProfileComponent = () => {
                             type='password'
                             id='repeatNewPassword'
                             placeholder='bemgon-1bizni-nuhXyd'
+                            minLength='8'
+                            maxLength='25'
                             required
                             value={repeatedNewPassword}
                             onChange={(e) => {

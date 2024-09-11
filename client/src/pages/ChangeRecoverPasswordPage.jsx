@@ -1,17 +1,14 @@
-import { useState } from 'react';
-
 import { useNavigate } from 'react-router-dom';
-
+import { useState } from 'react';
 import { fetchChangePasswordUserServices } from '../services/userServices.js';
-
 import toast from 'react-hot-toast';
 
 const ChangeRecoverPasswordPage = () => {
+    const navigate = useNavigate();
+
     const [recoverPasswordCode, setRecoverPasswordCode] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [repeatedPassword, setRepeatedPassword] = useState('');
-
-    const navigate = useNavigate();
 
     const resetInputs = (e) => {
         e.preventDefault();
@@ -64,6 +61,7 @@ const ChangeRecoverPasswordPage = () => {
                     onChange={(e) => setNewPassword(e.target.value)}
                     placeholder='jobryp-kapDew-fetho6'
                     minLength='8'
+                    maxLength='25'
                     required
                 />
 
@@ -75,6 +73,7 @@ const ChangeRecoverPasswordPage = () => {
                     onChange={(e) => setRepeatedPassword(e.target.value)}
                     placeholder='jobryp-kapDew-fetho6'
                     minLength='8'
+                    maxLength='25'
                     required
                 />
                 <div className='mx-auto'>
