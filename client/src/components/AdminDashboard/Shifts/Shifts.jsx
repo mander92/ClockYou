@@ -53,6 +53,7 @@ const Shifts = () => {
                 .filter((serviceId) => serviceId && serviceId.trim())
         ),
     ];
+
     return (
         <>
             <form>
@@ -69,7 +70,7 @@ const Shifts = () => {
                     </option>
                     {employeeNotRepeated.map((employeeId) => (
                         <option key={employeeId} value={employeeId}>
-                            {employeeId.employeeName}
+                            {employeeId}
                         </option>
                     ))}
                 </select>
