@@ -16,7 +16,6 @@ import DetailServicePage from './pages/DetailServicePage.jsx';
 import ConfirmedService from './pages/ConfirmedService.jsx';
 import Clock from './pages/Clock.jsx';
 import EditServiceClientPage from './pages/EditServiceClientPage.jsx';
-import EditShiftRecord from './pages/EditShiftRecords.jsx';
 
 const App = () => {
     return (
@@ -53,6 +52,11 @@ const App = () => {
                     <Route
                         path='/services/edit/:serviceId' //Thanh
                         element={<EditServiceClientPage />}
+                    />
+
+                    <Route
+                        path='/services/rating/:serviceId' //Thanh
+                        element={<RatingServiceClientPage />}
                     />
 
                     <Route

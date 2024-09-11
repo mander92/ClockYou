@@ -136,11 +136,10 @@ const Orders = () => {
                                 <NavLink to={`/services/edit/${item.id}`}>
                                     Editar
                                 </NavLink>
-                                // <NavLink to={`*`}>Editar</NavLink>
                             )}
                             {item.status === 'completed' && (
                                 <NavLink
-                                // to={`/services/${item.id}`}
+                                to={`/services/rating/${item.id}`}
                                 >
                                     Valorar
                                 </NavLink>
