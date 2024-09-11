@@ -1,9 +1,9 @@
 import getPool from '../../db/getPool.js';
 
-const getShiftRecordsService = async (shiftRecordId) => {
+const getShiftRecordsService = async (shiftRecordId, employeeId) => {
     const pool = await getPool();
 
-    if (!serviceId && !employeeId) {
+    if (!shiftRecordId && !employeeId) {
         const [shifts] = await pool.query(
             `
             SELECT * from shiftRecords;
@@ -13,12 +13,12 @@ const getShiftRecordsService = async (shiftRecordId) => {
         return shifts;
     }
 
-    if (serviceId && employeeId) {
+    if (shiftRecordId && employeeId) {
         const [shifts] = await pool.query(
             `
-            SELECT * FROM shiftRecords WHERE serviceId = ? AND employeeId = ?
+            SELECT * FROM shiftRecords WHERE shiftRecordId = ? AND employeeId = ?
             `,
-            [serviceId, employeeId]
+            [shiftRecordId, employeeId]
         );
 
         return shifts;
@@ -35,12 +35,12 @@ const getShiftRecordsService = async (shiftRecordId) => {
         return shifts;
     }
 
-    if (serviceId) {
+    if (shiftRecordId) {
         const [shifts] = await pool.query(
             `
-            SELECT * FROM shiftRecords WHERE serviceId = ? 
+            SELECT * FROM shiftRecords WHERE shiftRecordId = ? 
             `,
-            [serviceId]
+            [shiftRecordId]
         );
 
         return shifts;
