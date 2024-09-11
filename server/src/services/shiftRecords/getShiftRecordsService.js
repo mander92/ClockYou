@@ -1,6 +1,6 @@
 import getPool from '../../db/getPool.js';
 
-const getShiftRecordsService = async (serviceId, employeeId) => {
+const getShiftRecordsService = async (shiftRecordId) => {
     const pool = await getPool();
 
     if (!serviceId && !employeeId) {
@@ -16,18 +16,7 @@ const getShiftRecordsService = async (serviceId, employeeId) => {
     if (serviceId && employeeId) {
         const [shifts] = await pool.query(
             `
-            SELECT 
-            u.firstName, u.LastName, se.totalPrice, a.city, a.address, t.type 
-            FROM shiftRecords s 
-            INNER JOIN users u
-            ON u.id = s.employeeId
-            INNER JOIN services se
-            ON se.id = s.serviceId
-            INNER JOIN addresses a
-            ON a.id = se.addressId
-            INNER JOIN typeOfServices t
-            ON t.id = se.typeOfServicesId;
-            WHERE serviceId = ? AND employeeId = ?
+            SELECT * FROM shiftRecords WHERE serviceId = ? AND employeeId = ?
             `,
             [serviceId, employeeId]
         );
@@ -38,18 +27,7 @@ const getShiftRecordsService = async (serviceId, employeeId) => {
     if (employeeId) {
         const [shifts] = await pool.query(
             `
-            SELECT 
-            u.firstName, u.LastName, se.totalPrice, a.city, a.address, t.type 
-            FROM shiftRecords s 
-            INNER JOIN users u
-            ON u.id = s.employeeId
-            INNER JOIN services se
-            ON se.id = s.serviceId
-            INNER JOIN addresses a
-            ON a.id = se.addressId
-            INNER JOIN typeOfServices t
-            ON t.id = se.typeOfServicesId;
-            WHERE employeeId = ?
+            SELECT * FROM shiftRecords WHERE employeeId = ? 
             `,
             [employeeId]
         );
@@ -60,18 +38,7 @@ const getShiftRecordsService = async (serviceId, employeeId) => {
     if (serviceId) {
         const [shifts] = await pool.query(
             `
-            SELECT 
-            u.firstName, u.LastName, se.totalPrice, a.city, a.address, t.type 
-            FROM shiftRecords s 
-            INNER JOIN users u
-            ON u.id = s.employeeId
-            INNER JOIN services se
-            ON se.id = s.serviceId
-            INNER JOIN addresses a
-            ON a.id = se.addressId
-            INNER JOIN typeOfServices t
-            ON t.id = se.typeOfServicesId;
-            WHERE serviceId = ?  
+            SELECT * FROM shiftRecords WHERE serviceId = ? 
             `,
             [serviceId]
         );

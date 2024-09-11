@@ -133,15 +133,14 @@ const Orders = () => {
                             <p>{item.comments}</p>
 
                             {item.status === 'pending' && (
-                                <NavLink
-                                // to={`/services/${serviceId}`}
-                                >
+                                <NavLink to={`/services/edit/${item.id}`}>
                                     Editar
                                 </NavLink>
+                                // <NavLink to={`*`}>Editar</NavLink>
                             )}
                             {item.status === 'completed' && (
                                 <NavLink
-                                // to={`/services/${serviceId}`}
+                                // to={`/services/${item.id}`}
                                 >
                                     Valorar
                                 </NavLink>

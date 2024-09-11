@@ -26,6 +26,14 @@ router.get('/services', authUser, isAdmin, listAdminServicesController);
 router.get('/services/client', authUser, isClient, listClientServiceController);
 
 router.get(
+    '/services/edit/:serviceId',
+    // authUser,
+    // isClient,
+    // serviceExists,
+    detailServiceController
+);
+
+router.get(
     '/services/employee',
     authUser,
     isEmployee,
