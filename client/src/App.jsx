@@ -10,13 +10,13 @@ import SendRecoverPasswordPage from './pages/SendRecoverPasswordPage.jsx';
 import TypeOfServicesPage from './pages/TypeOfServicesPage.jsx';
 import ChangeRecoverPasswordPage from './pages/ChangeRecoverPasswordPage.jsx';
 import DashboardPage from './pages/DashboardPage.jsx';
-import EditServicePage from './pages/EditServicePage.jsx';
+import EditTypeOfServicePage from './pages/EditTypeOfServicePage.jsx';
 import DetailTypeOfServicePage from './pages/DetailTypeOfServicePage.jsx';
 import DetailServicePage from './pages/DetailServicePage.jsx';
-import ConfirmedService from './pages/ConfirmedService.jsx';
-import Clock from './pages/Clock.jsx';
-import EditServiceClientPage from './pages/EditServiceClientPage.jsx';
-import EditShiftRecord from './pages/EditShiftRecords.jsx';
+import ConfirmedServicePage from './pages/ConfirmedServicePage.jsx';
+import ClockPage from './pages/ClockPage.jsx';
+import EditServicePage from './pages/EditServicePage.jsx';
+import EditShiftRecordsPage from './pages/EditShiftRecordsPage.jsx';
 import RatingServiceClientPage from './pages/RatingServiceClientPage.jsx';
 
 const App = () => {
@@ -43,7 +43,7 @@ const App = () => {
                     />
                     <Route
                         path='/typeOfServices/edit/:typeOfServiceId'
-                        element={<EditServicePage />}
+                        element={<EditTypeOfServicePage />}
                     />
 
                     <Route
@@ -53,12 +53,12 @@ const App = () => {
 
                     <Route
                         path='/services/edit/:serviceId' //Thanh
-                        element={<EditServiceClientPage />}
+                        element={<EditServicePage />}
                     />
 
                     <Route
                         path='/services/rating/:serviceId' //Thanh
-                        element={<RatingServiceClientPage/>}
+                        element={<RatingServiceClientPage />}
                     />
 
                     <Route
@@ -72,17 +72,17 @@ const App = () => {
 
                     <Route
                         path='/services/validate/:validationCode'
-                        element={<ConfirmedService />}
+                        element={<ConfirmedServicePage />}
                     />
 
                     <Route
                         path='/shiftRecords/:shiftRecordId'
-                        element={<Clock />}
+                        element={<ClockPage />}
                     />
 
                     <Route
                         path='/shiftRecords/edit/:shiftRecordId'
-                        element={<EditShiftRecord />}
+                        element={<EditShiftRecordsPage />}
                     />
 
                     <Route path='/*' element={<NotFoundPage />} />

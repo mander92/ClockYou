@@ -1,8 +1,8 @@
 const { VITE_API_URL } = import.meta.env;
-import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { fetchTypeOfServiceServices } from '../services/typeOfServiceServices';
-import NewServiceForm from '../components/NewServiceForm/NewServiceForm';
+import NewServiceFormComponent from '../components/NewServiceFormComponent';
 import toast from 'react-hot-toast';
 
 const NewServicePage = () => {
@@ -42,7 +42,7 @@ const NewServicePage = () => {
                     <p>{data?.price} €</p>
                 </fieldset>
             </form>
-            <NewServiceForm typeOfServiceId={data?.id} />
+            <NewServiceFormComponent typeOfServiceId={data?.id} />
         </section>
     );
 };

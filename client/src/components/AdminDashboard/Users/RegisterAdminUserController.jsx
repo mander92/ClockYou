@@ -1,6 +1,6 @@
 import { AuthContext } from '../../../context/AuthContext';
 import { useContext, useState } from 'react';
-import { fecthRegisterAdminUserServices } from '../../../services/userServices';
+import { fetchRegisterAdminUserServices } from '../../../services/userServices';
 
 import toast from 'react-hot-toast';
 
@@ -38,7 +38,7 @@ const RegisterAdminUserController = () => {
             if (password !== repeatedPassword) {
                 throw new Error('¡Las contraseñas no coinciden!');
             } else {
-                const data = await fecthRegisterAdminUserServices(
+                const data = await fetchRegisterAdminUserServices(
                     email,
                     firstName,
                     lastName,

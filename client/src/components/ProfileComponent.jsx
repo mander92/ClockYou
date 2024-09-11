@@ -1,15 +1,15 @@
+import { AuthContext } from '../context/AuthContext';
 import { useState, useContext, useEffect } from 'react';
-import { AuthContext } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import {
     fetchEditUserServices,
     fetchEditPasswordUserServices,
     fetchDeleteUserServices,
-} from '../../services/userServices';
-import useUser from '../../hooks/useUser';
+} from '../services/userServices';
+import useUser from '../hooks/useUser';
 import toast from 'react-hot-toast';
 
-const Profile = () => {
+const ProfileComponent = () => {
     const { user } = useUser();
     const { authToken, authLogout } = useContext(AuthContext);
 
@@ -106,6 +106,7 @@ const Profile = () => {
                     <legend>Datos</legend>
                     <label htmlFor='email'>Email</label>
                     <input disabled value={user?.email || ''} />
+
                     <label htmlFor='firstName'>Nombre</label>
                     <input
                         type='text'
@@ -212,4 +213,4 @@ const Profile = () => {
     );
 };
 
-export default Profile;
+export default ProfileComponent;

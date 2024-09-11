@@ -2,8 +2,8 @@ import { useState, useEffect, useContext } from 'react';
 import { NavLink, Navigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import useUser from '../hooks/useUser';
-import Avatar from '../components/Avatar/Avatar';
-import Profile from '../components/Profile/Profile';
+import AvatarComponent from '../components/AvatarComponent';
+import ProfileComponent from '../components/ProfileComponent';
 import Users from '../components/AdminDashboard/Users/Users';
 import Services from '../components/AdminDashboard/Services/Services';
 import Contracts from '../components/AdminDashboard/Contracts/ListContracts';
@@ -21,7 +21,7 @@ const DashboardPage = () => {
     const userRole = user?.role;
     const location = useLocation();
 
-    const [activeSection, setActiveSection] = useState('profile');
+    const [activeSection, setActiveSection] = useState('ProfileComponent');
 
     useEffect(() => {
         const hash = location.hash.replace('#', '');
@@ -35,7 +35,7 @@ const DashboardPage = () => {
     };
 
     const sectionComponents = {
-        profile: <Profile />,
+        ProfileComponent: <ProfileComponent />,
         users: userRole === 'admin' && <Users />,
         services: userRole === 'admin' && <Services />,
         contracts: userRole === 'admin' && <Contracts />,
@@ -48,12 +48,12 @@ const DashboardPage = () => {
 
     return (
         <>
-            <Avatar />
+            <AvatarComponent />
             <section className='manager-tabs' id='tabs5'>
                 <NavLink
-                    to='#profile'
+                    to='#ProfileComponent'
                     onClick={(e) => {
-                        handleSectionChange('profile');
+                        handleSectionChange('ProfileComponent');
                         tabSelected(e, 'tabs5');
                         toTopFast(e);
                     }}

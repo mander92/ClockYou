@@ -2,7 +2,7 @@ const { VITE_API_URL } = import.meta.env;
 import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../../../context/AuthContext';
 import { fetchAllUsersServices } from '../../../services/userServices.js';
-import { fecthNewShiftRecordServices } from '../../../services/shiftRecordServices.js';
+import { fetchNewShiftRecordServices } from '../../../services/shiftRecordServices.js';
 import toast from 'react-hot-toast';
 
 const ListEmployeeController = ({ serviceId }) => {
@@ -49,7 +49,7 @@ const ListEmployeeController = ({ serviceId }) => {
 
     const handleNewShiftRecord = async (employeeId, serviceId, authToken) => {
         try {
-            const data = await fecthNewShiftRecordServices(
+            const data = await fetchNewShiftRecordServices(
                 employeeId,
                 serviceId,
                 authToken

@@ -1,8 +1,8 @@
 // const { VITE_CLIENT_URL } = import.meta.env;
-import { useEffect, useState, useContext } from 'react';
-import { fetchClientAllServicesServices } from '../../services/serviceServices.js';
 import { AuthContext } from '../../../src/context/AuthContext.jsx';
 import { NavLink } from 'react-router-dom';
+import { useEffect, useState, useContext } from 'react';
+import { fetchClientAllServicesServices } from '../../services/serviceServices.js';
 import toast from 'react-hot-toast';
 
 const Orders = () => {
@@ -62,9 +62,9 @@ const Orders = () => {
                         Estado:
                     </option>
                     <option value='accepted'>Aceptado</option>
+                    <option value='completed'>Completado</option>
                     <option value='confirmed'>Confirmado</option>
                     <option value='pending'>Pendiente</option>
-                    <option value='completed'>Completado</option>
                 </select>
                 <select
                     name='typeOfService'

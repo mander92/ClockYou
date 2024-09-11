@@ -1,32 +1,37 @@
-const { VITE_API_URL } = import.meta.env;
-import { useState, useEffect, useContext } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import {
-    fetchTypeOfServiceServices,
-    fetchDeleteTypeOfServiceServices,
-    fetchEditTypeOfServiceServices,
-} from '../services/typeOfServiceServices';
 import { AuthContext } from '../context/AuthContext';
+import { useContext, useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import {
+    fetchClientEditServiceServices,
+    fetchEditServiceServices,
+} from '../services/serviceServices';
 import toast from 'react-hot-toast';
 
 const EditServicePage = () => {
-    const { typeOfServiceId } = useParams();
-
+    const { serviceId } = useParams();
     const { authToken } = useContext(AuthContext);
 
     const navigate = useNavigate();
 
     const [data, setData] = useState(null);
-    const [description, setDescription] = useState(data?.description || '');
-    const [price, setPrice] = useState(data?.price || '');
+    const [hours, setHours] = useState(data?.hours || 0);
+    const [dateTime, setDateTime] = useState(data?.dateTime || '');
+    const [address, setAddress] = useState(data?.address || '');
+    const [postCode, setPostCode] = useState(data?.postCode || '');
+    const [city, setCity] = useState(data?.city || '');
+    const [comments, setComments] = useState(data?.comments || '');
 
     useEffect(() => {
-        const getTypeOfService = async () => {
+        const getService = async () => {
             try {
-                const data = await fetchTypeOfServiceServices(typeOfServiceId);
+                const data = await fetchClientEditServiceServices(serviceId);
                 setData(data);
-                setDescription(data.description);
-                setPrice(data.price);
+                setHours(data.hours);
+                setDateTime(data.dateTime);
+                setAddress(data.address);
+                setPostCode(data.postCode);
+                setCity(data.city);
+                setComments(data.comments);
             } catch (error) {
                 toast.error(error.message, {
                     id: 'error',
@@ -34,23 +39,26 @@ const EditServicePage = () => {
             }
         };
 
-        getTypeOfService();
-    }, [typeOfServiceId]);
+        getService();
+    }, [serviceId]);
 
     const handleEditService = async (e) => {
         e.preventDefault();
-
         try {
-            const body = await fetchEditTypeOfServiceServices(
-                typeOfServiceId,
-                description,
-                price,
+            const body = await fetchEditServiceServices(
+                serviceId,
+                comments,
+                address,
+                hours,
+                city,
+                dateTime,
+                postCode,
                 authToken
             );
             toast.success(body.message, {
                 id: 'ok',
             });
-            navigate('/user#services');
+            navigate('/user');
         } catch (error) {
             toast.error(error.message, {
                 id: 'error',
@@ -58,81 +66,95 @@ const EditServicePage = () => {
         }
     };
 
-    const handleDeleteService = async () => {
-        try {
-            const body = await fetchDeleteTypeOfServiceServices(
-                typeOfServiceId,
-                authToken
-            );
-            toast.success(body.message, {
-                id: 'ok',
-            });
-            navigate('/user#services');
-        } catch (error) {
-            toast.error(error.message, {
-                id: 'error',
-            });
-        }
-    };
+    const time = new Date(dateTime).toLocaleTimeString();
+    const date = new Date(dateTime).toLocaleDateString();
 
     return (
-        <>
-            <h2 className='mt-4'>
-                {data?.type} en {data?.city}
-            </h2>
-            <section className='flex-1024'>
-                <form className='profile-form mx-auto'>
-                    <fieldset>
-                        <img
-                            className='w-full h-full object-cover'
-                            src={`${VITE_API_URL}/${data?.image}`}
-                            alt={`${data?.description}`}
-                        />
-                    </fieldset>
-                </form>
-                <form className='profile-form mx-auto'>
-                    <fieldset>
-                        <legend>Editar</legend>
-                        <label htmlFor='description'>Descripción</label>
-                        <input
-                            id='description'
-                            type='text'
-                            value={description}
-                            onChange={(e) => {
-                                setDescription(e.target.value);
-                            }}
-                            placeholder={data?.description}
-                            required
-                        />
-
-                        <label htmlFor='description'>Precio</label>
-                        <input
-                            type='number'
-                            value={price}
-                            onChange={(e) => {
-                                setPrice(e.target.value);
-                            }}
-                            min={1}
-                            max={100}
-                            placeholder={data?.price}
-                            required
-                        />
-                        <div className='mx-auto'>
-                            <button
-                                className='mr-4 mt-4'
-                                type='submit'
-                                onClick={handleEditService}
-                            >
-                                Guardar
-                            </button>
-                            <button onClick={handleDeleteService}>
-                                Eliminar
-                            </button>
-                        </div>
-                    </fieldset>
-                </form>
-            </section>
-        </>
+        <form className='profile-form mx-auto'>
+            <fieldset>
+                <legend>{data?.type}</legend>
+                <h3>{data?.status}</h3>
+                <p>
+                    La fecha y hora actuales del servicio son el:{' '}
+                    <strong>
+                        {date} a las {time}
+                    </strong>
+                </p>
+                <p>
+                    <strong>Si quiere cambiarlas</strong>, hágalo en el campo
+                    fecha y hora bajo estas líneas.
+                </p>
+                <label htmlFor='datetime'>Fecha y Hora</label>
+                <input
+                    type='datetime-local'
+                    id='datetime'
+                    value={dateTime}
+                    onChange={(e) => setDateTime(e.target.value)}
+                    required
+                ></input>
+                <label htmlFor='hours'>Horas</label>
+                <select
+                    id='hours'
+                    value={hours}
+                    onChange={(e) => setHours(e.target.value)}
+                    required
+                >
+                    <option value='' disabled>
+                        A contratar:
+                    </option>
+                    <option value='1'>1</option>
+                    <option value='2'>2</option>
+                    <option value='3'>3</option>
+                    <option value='4'>4</option>
+                    <option value='5'>5</option>
+                    <option value='6'>6</option>
+                    <option value='7'>7</option>
+                    <option value='8'>8</option>
+                </select>
+                <label htmlFor='address'>Dirección</label>
+                <input
+                    type='text'
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                    required
+                />
+                <label htmlFor='postCode'>Código Postal</label>
+                <input
+                    type='number'
+                    minLength='5'
+                    maxLength='5'
+                    value={postCode}
+                    onChange={(e) => setPostCode(e.target.value)}
+                    required
+                />
+                <label htmlFor='city'>Ciudad</label>
+                <input
+                    type='text'
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                    required
+                />
+                <label htmlFor='comments'>Comentarios</label>
+                <textarea
+                    value={comments}
+                    minLength='10'
+                    maxLength='500'
+                    rows='5'
+                    style={{ resize: 'none' }}
+                    required
+                    onChange={(e) => setComments(e.target.value)}
+                />
+                <div className='mx-auto'>
+                    <button
+                        className='mr-4'
+                        type='submit'
+                        onClick={handleEditService}
+                    >
+                        Guardar Cambios
+                    </button>
+                </div>
+            </fieldset>
+        </form>
     );
 };
 

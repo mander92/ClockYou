@@ -3,8 +3,9 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { fetchConfirmServiceServices } from '../services/serviceServices.js';
 import toast from 'react-hot-toast';
 
-const ConfirmedService = () => {
+const ConfirmedServicePage = () => {
     const navigate = useNavigate();
+
     const { validationCode } = useParams();
 
     useEffect(() => {
@@ -30,4 +31,4 @@ const ConfirmedService = () => {
     }, [validationCode]);
 };
 
-export default ConfirmedService;
+export default ConfirmedServicePage;

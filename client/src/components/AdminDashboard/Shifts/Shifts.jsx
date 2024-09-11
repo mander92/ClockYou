@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../../../context/AuthContext';
-import { fetchAllShiftRecordServices } from '../../../services/shiftRecordServices';
+import { fetchAllShiftRecordsServices } from '../../../services/shiftRecordServices';
 import { NavLink } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
@@ -25,7 +25,7 @@ const Shifts = () => {
             });
             const searchParamsToString = searchParams.toString();
             try {
-                const data = await fetchAllShiftRecordServices(
+                const data = await fetchAllShiftRecordsServices(
                     searchParamsToString,
                     authToken
                 );

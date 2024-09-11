@@ -1,6 +1,6 @@
 const { VITE_API_URL } = import.meta.env;
 
-export const fecthNewShiftRecordServices = async (
+export const fetchNewShiftRecordServices = async (
     employeeId,
     serviceId,
     authToken
@@ -25,7 +25,7 @@ export const fecthNewShiftRecordServices = async (
     return body;
 };
 
-export const fetchAllShiftRecordServices = async (
+export const fetchAllShiftRecordsServices = async (
     searchParamsToString,
     authToken
 ) => {
@@ -45,7 +45,7 @@ export const fetchAllShiftRecordServices = async (
     return body;
 };
 
-export const fetchClockIn = async (
+export const fetchClockInShiftRecordServices = async (
     authToken,
     ubicacion,
     ahora,
@@ -74,7 +74,11 @@ export const fetchClockIn = async (
     return body;
 };
 
-export const fetchClockOut = async (authToken, ahora, shiftRecordId) => {
+export const fetchClockOutShiftRecordServices = async (
+    authToken,
+    ahora,
+    shiftRecordId
+) => {
     const res = await fetch(`${VITE_API_URL}/shiftrecords/${shiftRecordId}`, {
         method: 'PATCH',
         headers: {
@@ -95,7 +99,7 @@ export const fetchClockOut = async (authToken, ahora, shiftRecordId) => {
     return body;
 };
 
-export const fetchGetDetailShiftRecordService = async (
+export const fetchDetailShiftRecordServices = async (
     shiftRecordId,
     authToken
 ) => {
@@ -115,7 +119,7 @@ export const fetchGetDetailShiftRecordService = async (
     return body.data;
 };
 
-export const fetchEditShiftRecordService = async (
+export const fetchEditShiftRecordServices = async (
     shiftRecordId,
     clockIn,
     clockOut,
@@ -125,12 +129,10 @@ export const fetchEditShiftRecordService = async (
         `${VITE_API_URL}/shiftrecords/edit/${shiftRecordId}`,
         {
             method: 'PUT',
-            headers: authToken
-                ? {
-                      Authorization: authToken,
-                      'Content-Type': 'application/json',
-                  }
-                : {},
+            headers: {
+                Authorization: authToken,
+                'Content-Type': 'application/json',
+            },
             body: JSON.stringify({
                 clockIn,
                 clockOut,

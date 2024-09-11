@@ -63,6 +63,7 @@ const ChangeRecoverPasswordPage = () => {
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
                     placeholder='jobryp-kapDew-fetho6'
+                    minLength='8'
                     required
                 />
 
@@ -73,6 +74,7 @@ const ChangeRecoverPasswordPage = () => {
                     value={repeatedPassword}
                     onChange={(e) => setRepeatedPassword(e.target.value)}
                     placeholder='jobryp-kapDew-fetho6'
+                    minLength='8'
                     required
                 />
                 <div className='mx-auto'>

@@ -32,7 +32,7 @@ export const fetchRegisterUserServices = async (
     return body.message;
 };
 
-export const fecthRegisterAdminUserServices = async (
+export const fetchRegisterAdminUserServices = async (
     email,
     firstName,
     lastName,
@@ -46,12 +46,10 @@ export const fecthRegisterAdminUserServices = async (
 ) => {
     const res = await fetch(`${VITE_API_URL}/users/admin/register`, {
         method: 'POST',
-        headers: authToken
-            ? {
-                  'Content-Type': 'application/json',
-                  Authorization: authToken,
-              }
-            : {},
+        headers: {
+            Authorization: authToken,
+            'Content-Type': 'application/json',
+        },
         body: JSON.stringify({
             email,
             firstName,
@@ -111,12 +109,9 @@ export const fetchLoginUserServices = async (email, password) => {
 
 export const fetchProfileUserServices = async (authToken) => {
     const res = await fetch(`${VITE_API_URL}/user`, {
-        headers: authToken
-            ? {
-                  'Content-Type': 'application/json',
-                  Authorization: authToken,
-              }
-            : {},
+        headers: {
+            Authorization: authToken,
+        },
     });
 
     const body = await res.json();
@@ -174,6 +169,7 @@ export const fetchChangePasswordUserServices = async (
 
 export const fetchEditUserServices = async (
     authToken,
+    email,
     firstName,
     lastName,
     phone,
@@ -181,13 +177,12 @@ export const fetchEditUserServices = async (
 ) => {
     const res = await fetch(`${VITE_API_URL}/user/${userId}`, {
         method: 'PUT',
-        headers: authToken
-            ? {
-                  'Content-Type': 'application/json',
-                  Authorization: authToken,
-              }
-            : {},
+        headers: {
+            Authorization: authToken,
+            'Content-Type': 'application/json',
+        },
         body: JSON.stringify({
+            email,
             firstName,
             lastName,
             phone,
@@ -211,18 +206,18 @@ export const fetchEditPasswordUserServices = async (
 ) => {
     const res = await fetch(`${VITE_API_URL}/user/password/${userId}`, {
         method: 'PUT',
-        headers: authToken
-            ? {
-                  'Content-Type': 'application/json',
-                  Authorization: authToken,
-              }
-            : {},
+        headers: {
+            Authorization: authToken,
+            'Content-Type': 'application/json',
+        },
         body: JSON.stringify({
             actualPassword,
             newPassword,
         }),
     });
+
     const body = await res.json();
+
     if (body.status === 'error') {
         throw new Error(body.message);
     }
@@ -232,14 +227,14 @@ export const fetchEditPasswordUserServices = async (
 export const fetchDeleteUserServices = async (authToken, userId) => {
     const res = await fetch(`${VITE_API_URL}/user/${userId}`, {
         method: 'DELETE',
-        headers: authToken
-            ? {
-                  'Content-Type': 'application/json',
-                  Authorization: authToken,
-              }
-            : {},
+        headers: {
+            Authorization: authToken,
+            'Content-Type': 'application/json',
+        },
     });
+
     const body = await res.json();
+
     if (body.status === 'error') {
         throw new Error(body.message);
     }
@@ -274,14 +269,14 @@ export const fetchAllUsersServices = async (
     authToken
 ) => {
     const res = await fetch(`${VITE_API_URL}/users/?${searchParamsToString}`, {
-        headers: authToken
-            ? {
-                  'Content-Type': 'application/json',
-                  Authorization: authToken,
-              }
-            : {},
+        headers: {
+            Authorization: authToken,
+            'Content-Type': 'application/json',
+        },
     });
+
     const body = await res.json();
+
     if (body.status === 'error') {
         throw new Error(body.message);
     }

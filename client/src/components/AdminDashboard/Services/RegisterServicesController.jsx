@@ -2,7 +2,7 @@ import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { AuthContext } from '../../../context/AuthContext';
-import { fecthNewTypeOfServiceServices } from '../../../services/typeOfServiceServices';
+import { fetchNewTypeOfServiceServices } from '../../../services/typeOfServiceServices';
 import toast from 'react-hot-toast';
 
 const RegisterNewTypeOfServiceController = () => {
@@ -26,7 +26,7 @@ const RegisterNewTypeOfServiceController = () => {
     const handleRegisterNewTypeOfService = async (e) => {
         e.preventDefault();
         try {
-            const data = await fecthNewTypeOfServiceServices(
+            const data = await fetchNewTypeOfServiceServices(
                 type,
                 description,
                 city,

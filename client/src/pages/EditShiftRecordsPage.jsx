@@ -3,13 +3,13 @@ import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import toast from 'react-hot-toast';
 import {
-    fetchGetDetailShiftRecordService,
-    fetchEditShiftRecordService,
+    fetchDetailShiftRecordServices,
+    fetchEditShiftRecordServices,
 } from '../services/shiftRecordServices';
 import { GoogleMap, LoadScript } from '@react-google-maps/api';
 const { VITE_GOOGLE_API_KEY } = import.meta.env;
 
-const EditShiftRecord = () => {
+const EditShiftRecordsPage = () => {
     const { shiftRecordId } = useParams();
     const { authToken } = useContext(AuthContext);
     const [data, setData] = useState('');
@@ -21,7 +21,7 @@ const EditShiftRecord = () => {
     useEffect(() => {
         const getDetailShiftRecord = async () => {
             try {
-                const data = await fetchGetDetailShiftRecordService(
+                const data = await fetchDetailShiftRecordServices(
                     shiftRecordId,
                     authToken
                 );
@@ -61,7 +61,7 @@ const EditShiftRecord = () => {
                 .toISOString()
                 .slice(0, 19)
                 .replace('T', ' ');
-            const body = await fetchEditShiftRecordService(
+            const body = await fetchEditShiftRecordServices(
                 shiftRecordId,
                 formattedClockIn,
                 formattedClockOut,
@@ -147,4 +147,4 @@ const EditShiftRecord = () => {
     );
 };
 
-export default EditShiftRecord;
+export default EditShiftRecordsPage;

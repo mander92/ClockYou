@@ -1,20 +1,24 @@
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
-import { useState, useContext } from 'react';
+// const { VITE_GOOGLE_API_KEY } = import.meta.env;
 import { AuthContext } from '../context/AuthContext';
-import toast from 'react-hot-toast';
+import { useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchClockIn, fetchClockOut } from '../services/shiftRecordServices';
-const { VITE_GOOGLE_API_KEY } = import.meta.env;
+import {
+    fetchClockInShiftRecordServices,
+    fetchClockOutShiftRecordServices,
+} from '../services/shiftRecordServices';
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import toast from 'react-hot-toast';
 
-const Clock = () => {
+const ClockPage = () => {
     const { authToken } = useContext(AuthContext);
+    const { shiftRecordId } = useParams();
+
     const [registros, setRegistros] = useState([]);
     const [mapaActual, setMapaActual] = useState(null);
-    const { shiftRecordId } = useParams();
     const [enableEntrada, setEnableEntrada] = useState(false);
 
     const obtenerUbicacion = () => {
-        new Promise((resolve, reject) => {
+        return new Promise((resolve, reject) => {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(
                     (position) =>
@@ -25,7 +29,7 @@ const Clock = () => {
                     (error) => reject(error)
                 );
             } else {
-                reject(toast.error('Geolocalización no soportada'));
+                reject(new Error('Geolocalización no soportada'));
             }
         });
     };
@@ -46,7 +50,7 @@ const Clock = () => {
 
             setEnableEntrada(true);
 
-            const data = await fetchClockIn(
+            const data = await fetchClockInShiftRecordServices(
                 authToken,
                 ubicacion,
                 ahora,
@@ -55,16 +59,11 @@ const Clock = () => {
 
             toast.success(data.message);
         } catch (error) {
-            toast.error('No se pudo obtener la ubicación: ' + error.message);
+            toast.error(error.message);
         }
     };
 
     const registrarSalida = async () => {
-        if (registros.length === 0 || registros[registros.length - 1].salida) {
-            toast.error('Primero debes registrar una entrada.');
-            return;
-        }
-
         try {
             const ubicacion = await obtenerUbicacion();
             const ahora = new Date();
@@ -78,11 +77,15 @@ const Clock = () => {
 
             setRegistros(nuevosRegistros);
 
-            const data = await fetchClockOut(authToken, ahora, shiftRecordId);
+            const data = await fetchClockOutShiftRecordServices(
+                authToken,
+                ahora,
+                shiftRecordId
+            );
 
             toast.success(data.message);
         } catch (error) {
-            toast.error('No se pudo obtener la ubicación: ' + error.message);
+            toast.error(error.message);
         }
     };
 
@@ -191,7 +194,8 @@ const Clock = () => {
             </table>
 
             {mapaActual && (
-                <LoadScript googleMapsApiKey={VITE_GOOGLE_API_KEY}>
+                <LoadScript>
+                    {/* <LoadScript googleMapsApiKey={VITE_GOOGLE_API_KEY}> */}
                     <GoogleMap
                         mapContainerStyle={mapContainerStyle}
                         center={mapaActual.entrada || mapaActual}
@@ -210,4 +214,4 @@ const Clock = () => {
     );
 };
 
-export default Clock;
+export default ClockPage;

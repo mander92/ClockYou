@@ -1,17 +1,18 @@
 import { AuthContext } from '../../context/AuthContext';
-import { useEffect, useState, useContext } from 'react';
-import toast from 'react-hot-toast';
-import { fetchAllMyServices } from '../../services/serviceServices';
 import { NavLink } from 'react-router-dom';
+import { useEffect, useState, useContext } from 'react';
+import { fetchEmployeeAllServicesServices } from '../../services/serviceServices';
+import toast from 'react-hot-toast';
 
 const MyServices = () => {
-    const [data, setData] = useState(null);
     const { authToken } = useContext(AuthContext);
+
+    const [data, setData] = useState(null);
 
     useEffect(() => {
         const getTypeOfServices = async () => {
             try {
-                const data = await fetchAllMyServices(authToken);
+                const data = await fetchEmployeeAllServicesServices(authToken);
 
                 setData(data);
             } catch (error) {

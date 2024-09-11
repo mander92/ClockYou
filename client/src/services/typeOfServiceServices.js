@@ -84,7 +84,7 @@ export const fetchDeleteTypeOfServiceServices = async (
     return body;
 };
 
-export const fecthNewTypeOfServiceServices = async (
+export const fetchNewTypeOfServiceServices = async (
     type,
     description,
     city,

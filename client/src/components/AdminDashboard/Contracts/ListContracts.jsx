@@ -2,7 +2,7 @@ const { VITE_CLIENT_URL } = import.meta.env;
 import { useEffect, useState, useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthContext';
-import { fecthAllServicesServices } from '../../../services/serviceServices.js';
+import { fetchAllServicesServices } from '../../../services/serviceServices.js';
 import toast from 'react-hot-toast';
 
 const ListContracts = () => {
@@ -26,7 +26,7 @@ const ListContracts = () => {
             });
             const searchParamsToString = searchParams.toString();
             try {
-                const data = await fecthAllServicesServices(
+                const data = await fetchAllServicesServices(
                     searchParamsToString,
                     authToken
                 );

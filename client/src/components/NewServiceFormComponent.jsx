@@ -1,10 +1,10 @@
 import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../context/AuthContext';
-import { fetchNewServiceServices } from '../../services/serviceServices';
+import { AuthContext } from '../context/AuthContext';
+import { fetchNewServiceServices } from '../services/serviceServices';
 import toast from 'react-hot-toast';
 
-const NewServiceForm = ({ typeOfServiceId }) => {
+const NewServiceFormComponent = ({ typeOfServiceId }) => {
     const { authToken } = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -98,8 +98,8 @@ const NewServiceForm = ({ typeOfServiceId }) => {
                     value={postCode}
                     onChange={(e) => setPostCode(e.target.value)}
                     placeholder='28013'
-                    min='10000'
-                    max='50000'
+                    minLength='5'
+                    maxLength='5'
                     required
                 />
                 <label htmlFor='city'>Localidad</label>
@@ -138,4 +138,4 @@ const NewServiceForm = ({ typeOfServiceId }) => {
     );
 };
 
-export default NewServiceForm;
+export default NewServiceFormComponent;

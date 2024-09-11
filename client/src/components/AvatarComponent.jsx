@@ -1,11 +1,11 @@
 const { VITE_API_URL } = import.meta.env;
 import { useState, useContext } from 'react';
-import { AuthContext } from '../../context/AuthContext.jsx';
-import { fetchEditAvatarUserServices } from '../../services/userServices.js';
-import useUser from '../../hooks/useUser.js';
+import { AuthContext } from '../context/AuthContext.jsx';
+import { fetchEditAvatarUserServices } from '../services/userServices.js';
+import useUser from '../hooks/useUser.js';
 import toast from 'react-hot-toast';
 
-const Avatar = () => {
+const AvatarComponent = () => {
     const { user } = useUser();
     const { authToken } = useContext(AuthContext);
     const userId = user?.id;
@@ -71,4 +71,4 @@ const Avatar = () => {
     );
 };
 
-export default Avatar;
+export default AvatarComponent;
