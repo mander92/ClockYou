@@ -148,6 +148,9 @@ export const fetchEditServiceService = async (
     comments,
     address,
     hours,
+    city,
+    dateTime,
+    postCode,
     authToken
 ) => {
     console.log(authToken);
@@ -161,6 +164,9 @@ export const fetchEditServiceService = async (
             comments,
             address,
             hours,
+            city,
+            dateTime,
+            postCode,
         }),
     });
 
