@@ -1,11 +1,12 @@
 import { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../../../context/AuthContext';
 import { fetchAllShiftRecordServices } from '../../../services/shiftRecordServices';
-import toast from 'react-hot-toast';
 import { NavLink } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const Shifts = () => {
     const { authToken } = useContext(AuthContext);
+
     const [data, setData] = useState([]);
     const [employeeId, setEmployeeId] = useState('');
     const [serviceId, setServiceId] = useState('');
@@ -38,8 +39,6 @@ const Shifts = () => {
         getShifts();
     }, [employeeId, serviceId, authToken]);
 
-    console.log(data);
-
     const employeeNotRepeated = [
         ...new Set(
             data
@@ -61,7 +60,7 @@ const Shifts = () => {
 
     return (
         <>
-            <form className='mx-auto'>
+            <form className='mx-auto form-filters'>
                 <select
                     name='employeeId'
                     id='employeeId'
@@ -79,7 +78,6 @@ const Shifts = () => {
                         </option>
                     ))}
                 </select>
-
                 <select
                     name='serviceId'
                     id='serviceId'
@@ -97,10 +95,7 @@ const Shifts = () => {
                         </option>
                     ))}
                 </select>
-
-                <button type='button' onClick={resetFilter}>
-                    Limpiar Filtros
-                </button>
+                <button onClick={resetFilter}>Limpiar Filtros</button>
             </form>
             <ul className='cards'>
                 {data.map((shiftRecord) => {
