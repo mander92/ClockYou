@@ -10,6 +10,7 @@ const Clock = () => {
     const [registros, setRegistros] = useState([]);
     const [mapaActual, setMapaActual] = useState(null);
     const { shiftRecordId } = useParams();
+    const [enableEntrada, setEnableEntrada] = useState(false);
 
     const obtenerUbicacion = () => {
         return new Promise((resolve, reject) => {
@@ -41,6 +42,8 @@ const Clock = () => {
                     total: null,
                 },
             ]);
+
+            setEnableEntrada(true);
 
             const data = await fetchClockIn(
                 authToken,
@@ -99,18 +102,29 @@ const Clock = () => {
 
     const mapContainerStyle = {
         width: '80%',
-        height: '250px',
+        height: '350px',
         margin: '15px auto',
     };
 
     return (
-        <div>
-            <h2>Registro de Fichaje</h2>
-            <button onClick={registrarEntrada}>Registrar Entrada</button>
-            <button onClick={registrarSalida}>Registrar Salida</button>
+        <div className='flex flex-col mx-auto border-2 rounded-xl p-5 shadow-md max-w-screen-sm'>
+            <h2 className='flex flex-wrap gap-3 justify-around mt-7 mb-12'>
+                <button
+                    className='border-2 rounded-xl p-5 text-white bg-green-600'
+                    onClick={registrarEntrada}
+                    disabled={enableEntrada}
+                >
+                    Registrar Entrada
+                </button>
+                <button
+                    className='border-2 rounded-xl p-5 text-white bg-red-600'
+                    onClick={registrarSalida}
+                >
+                    Registrar Salida
+                </button>
+            </h2>
 
-            <h3>Registros:</h3>
-            <table>
+            <table className='flex flex-wrap mb-10'>
                 <thead>
                     <tr>
                         <th>Entrada</th>
