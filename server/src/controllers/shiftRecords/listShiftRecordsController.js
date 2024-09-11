@@ -7,8 +7,6 @@ const listShiftRecordsController = async (req, res, next) => {
 
         const data = await getShiftRecordsService(serviceId, employeeId);
 
-        if (!data.length) generateErrorUtil('No existen datos', 409);
-
         res.send({
             status: 'ok',
             data,
