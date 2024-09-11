@@ -16,6 +16,7 @@ import DetailServicePage from './pages/DetailServicePage.jsx';
 import ConfirmedService from './pages/ConfirmedService.jsx';
 import Clock from './pages/Clock.jsx';
 import EditServiceClientPage from './pages/EditServiceClientPage.jsx';
+import EditShiftRecord from './pages/EditShiftRecords.jsx';
 
 const App = () => {
     return (
@@ -55,11 +56,6 @@ const App = () => {
                     />
 
                     <Route
-                        path='/services/rating/:serviceId' //Thanh
-                        element={<RatingServiceClientPage />}
-                    />
-
-                    <Route
                         path='/recoverpassword'
                         element={<SendRecoverPasswordPage />}
                     />
@@ -82,6 +78,7 @@ const App = () => {
                         path='/shiftRecords/edit/:shiftRecordId'
                         element={<EditShiftRecord />}
                     />
+
                     <Route path='*' element={<NotFoundPage />} />
                 </Routes>
             </main>
