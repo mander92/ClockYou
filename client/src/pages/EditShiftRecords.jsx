@@ -2,13 +2,19 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import toast from 'react-hot-toast';
-import { fetchGetDetailShihtRecordService } from '../services/shiftRecordServices';
+import {
+    fetchGetDetailShihtRecordService,
+    fetchEditShiftRecordService,
+} from '../services/shiftRecordServices';
 // import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
 const EditShiftRecord = () => {
     const { shiftRecordId } = useParams();
     const { authToken } = useContext(AuthContext);
     const [data, setData] = useState('');
+    const [clockIn, setClockIn] = useState('');
+    const [clockOut, setClockOut] = useState('');
+
     // const [mapaActual, setMapaActual] = useState(null);
 
     useEffect(() => {
@@ -20,6 +26,8 @@ const EditShiftRecord = () => {
                 );
 
                 setData(data);
+                setClockIn(data.clockIn);
+                setClockOut(data.clockOut);
             } catch (error) {
                 toast.error(error.message);
             }
@@ -28,7 +36,34 @@ const EditShiftRecord = () => {
         getDetailShiftRecord();
     }, []);
 
-    console.log(data);
+    const handleEditShiftRecord = async (e) => {
+        e.preventDefault();
+
+        try {
+            const formattedClockIn = new Date(clockIn)
+                .toISOString()
+                .slice(0, 19)
+                .replace('T', ' ');
+            const formattedClockOut = new Date(clockOut)
+                .toISOString()
+                .slice(0, 19)
+                .replace('T', ' ');
+            const body = await fetchEditShiftRecordService(
+                shiftRecordId,
+                formattedClockIn,
+                formattedClockOut,
+                authToken
+            );
+            toast.success(body.message, {
+                id: 'ok',
+            });
+            console.log(body);
+        } catch (error) {
+            toast.error(error.message, {
+                id: 'error',
+            });
+        }
+    };
 
     // const mapContainerStyle = {
     //     width: '80%',
@@ -40,29 +75,65 @@ const EditShiftRecord = () => {
     const salida = new Date(data.clockOut).toLocaleString();
     return (
         <>
-            <h1>{`${data.firstName} ${data.lastName}`}</h1>
-            <h3>{`${data.type}`}</h3>
-            <h4>{`${data.address}, ${data.city}`}</h4>
+            <section className='mx-auto flex-1024'>
+                <form className='profile-form'>
+                    <fieldset>
+                        <h1>{`${data.firstName} ${data.lastName}`}</h1>
+                        <h2>{`${data.address}, ${data.city}`}</h2>
+                        <h3>{`${data.type}`}</h3>
+                        <img
+                            src={data.image}
+                            alt={data.firstName}
+                        />
+                        <p className='font-extrabold'>{entrada}</p>
+                        <p className='font-extrabold'>{salida}</p>
 
-            <p>{entrada}</p>
-            <p>{salida}</p>
+                        <p className='font-extrabold'>Comentarios:</p>
+                        <p>{data.comments}</p>
 
-            <p>{data.comments}</p>
-            <p>{data.dni}</p>
-            <p>{data.email}</p>
-            <p>{data.hours}</p>
-            <p>{data.description}</p>
-            <img src={data.image} alt={data.firstName} />
-            <p>{data.job}</p>
-            <p>{data.phone}</p>
+                        <p className='font-extrabold'>Horas contratadas:</p>
+                        <p>{data.hours}</p>
+                        <p className='font-extrabold'>Descripción</p>
+                        <p>{data.description}</p>
 
-            <form action=''>
-                <label htmlFor=''></label>
-                <input type='datetime-local' />
-                <label htmlFor=''></label>
-                <input type='datetime-local' />
-                <button></button>
-            </form>
+                        <label
+                            htmlFor='clockin'
+                            className='font-extrabold'
+                        >
+                            Entrada
+                        </label>
+                        <input
+                            id='clockin'
+                            value={clockIn}
+                            onChange={(e) => {
+                                setClockIn(e.target.value);
+                            }}
+                            type='datetime-local'
+                            required
+                        />
+                        <label
+                            htmlFor='clockin'
+                            className='font-extrabold'
+                        >
+                            Salida
+                        </label>
+                        <input
+                            type='datetime-local'
+                            htmlFor='clockout'
+                            id='clockout'
+                            value={clockOut}
+                            onChange={(e) => setClockOut(e.target.value)}
+                            required
+                        />
+                        <button
+                            type='submit'
+                            onClick={handleEditShiftRecord}
+                        >
+                            Editar Turno
+                        </button>
+                    </fieldset>
+                </form>
+            </section>
 
             {/* {mapaActual && (
                 <LoadScript
