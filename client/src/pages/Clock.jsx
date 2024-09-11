@@ -14,7 +14,7 @@ const Clock = () => {
     const [enableEntrada, setEnableEntrada] = useState(false);
 
     const obtenerUbicacion = () => {
-        return new Promise((resolve, reject) => {
+        new Promise((resolve, reject) => {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(
                     (position) =>

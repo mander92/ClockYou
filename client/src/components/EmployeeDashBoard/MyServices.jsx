@@ -24,8 +24,6 @@ const MyServices = () => {
         getTypeOfServices();
     }, [authToken]);
 
-    console.log(data);
-
     return (
         <>
             <ul className='cards'>
