@@ -38,6 +38,8 @@ const Shifts = () => {
         getShifts();
     }, [employeeId, serviceId, authToken]);
 
+    console.log(data);
+
     const employeeNotRepeated = [
         ...new Set(
             data
