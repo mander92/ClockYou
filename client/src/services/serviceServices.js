@@ -150,7 +150,6 @@ export const fetchEditServiceService = async (
     hours,
     authToken
 ) => {
-    console.log(authToken);
     const res = await fetch(`${VITE_API_URL}/services/${serviceId}`, {
         method: 'PUT',
         headers: {

@@ -7,7 +7,6 @@ const containerStyle = {
 };
 
 function MyMapComponent({ center }) {
-    console.log(center);
     // Carga el script de Google Maps con la API Key
     const { isLoaded } = useLoadScript({
         googleMapsApiKey: VITE_GOOGLE_API_KEY, // Reemplaza con tu clave de API
