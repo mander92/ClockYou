@@ -6,8 +6,8 @@ import {
     fetchGetDetailShihtRecordService,
     fetchEditShiftRecordService,
 } from '../services/shiftRecordServices';
-import { GoogleMap, LoadScript } from '@react-google-maps/api';
-const { VITE_GOOGLE_API_KEY } = import.meta.env;
+
+// import MyMapComponent from '../components/Map';
 
 const EditShiftRecord = () => {
     const { shiftRecordId } = useParams();
@@ -16,7 +16,7 @@ const EditShiftRecord = () => {
     const [clockIn, setClockIn] = useState(data?.clockIn);
     const [clockOut, setClockOut] = useState(data?.clockOut);
 
-    const [mapaActual, setMapaActual] = useState(null);
+    const [mapaActual, setMapaActual] = useState({});
 
     useEffect(() => {
         const getDetailShiftRecord = async () => {
@@ -26,14 +26,20 @@ const EditShiftRecord = () => {
                     authToken
                 );
 
+                console.log(data);
+
                 setData(data);
                 setClockIn(data.clockIn);
                 setClockOut(data.clockOut);
+
+                const latitude = data?.latitude;
+                const longitude = data?.longitude;
+
                 const ubicacion = {
-                    lat: data?.latitutde,
-                    lng: data?.longitude,
+                    lat: parseFloat(latitude),
+                    lng: parseFloat(longitude),
                 };
-                mostrarMapa(ubicacion);
+                setMapaActual(ubicacion);
             } catch (error) {
                 toast.error(error.message);
             }
@@ -41,10 +47,6 @@ const EditShiftRecord = () => {
 
         getDetailShiftRecord();
     }, []);
-
-    const mostrarMapa = (ubicacion) => {
-        setMapaActual(ubicacion);
-    };
 
     const handleEditShiftRecord = async (e) => {
         e.preventDefault();
@@ -75,14 +77,10 @@ const EditShiftRecord = () => {
         }
     };
 
-    const mapContainerStyle = {
-        width: '80%',
-        height: '250px',
-        margin: '15px auto',
-    };
-
     const entrada = new Date(data.clockIn).toLocaleString();
     const salida = new Date(data.clockOut).toLocaleString();
+
+    console.log(mapaActual);
 
     return (
         <>
@@ -103,16 +101,6 @@ const EditShiftRecord = () => {
                         <p>{data.hours}</p>
                         <p className='font-extrabold'>Descripción</p>
                         <p>{data.description}</p>
-
-                        <LoadScript googleMapsApiKey={VITE_GOOGLE_API_KEY}>
-                            <GoogleMap
-                                mapContainerStyle={mapContainerStyle}
-                                center={mapaActual}
-                                zoom={15}
-                            >
-                                {/* <Marker position={mapaActual} /> */}
-                            </GoogleMap>
-                        </LoadScript>
 
                         <label htmlFor='clockin' className='font-extrabold'>
                             Entrada
@@ -141,6 +129,7 @@ const EditShiftRecord = () => {
                     </fieldset>
                 </form>
             </section>
+            {/* <MyMapComponent center={mapaActual} /> */}
         </>
     );
 };
