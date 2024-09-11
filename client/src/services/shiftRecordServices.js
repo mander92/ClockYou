@@ -96,3 +96,23 @@ export const fetchClockOut = async (authToken, ahora, shiftRecordId) => {
 
     return body;
 };
+
+export const fetchGetDetailShihtRecordService = async (
+    shiftRecordId,
+    authToken
+) => {
+    const res = await fetch(`${VITE_API_URL}/shiftrecords/${shiftRecordId}`, {
+        headers: {
+            Authorization: authToken,
+            'Content-Type': 'application/json',
+        },
+    });
+
+    const body = await res.json();
+
+    if (body.status !== 'ok') {
+        throw new Error(body.message);
+    }
+
+    return body.data;
+};

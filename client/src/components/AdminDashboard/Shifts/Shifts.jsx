@@ -43,7 +43,10 @@ const Shifts = () => {
     const employeeNotRepeated = [
         ...new Set(
             data
-                .map((shiftRecord) => shiftRecord.employeeId)
+                .map(
+                    (shiftRecord) =>
+                        `${shiftRecord.firstName} ${shiftRecord.LastName}`
+                )
                 .filter((employeeId) => employeeId && employeeId.trim())
         ),
     ];
@@ -51,14 +54,14 @@ const Shifts = () => {
     const serviceNotRepeated = [
         ...new Set(
             data
-                .map((shiftRecord) => shiftRecord.serviceId)
+                .map((shiftRecord) => shiftRecord.type)
                 .filter((serviceId) => serviceId && serviceId.trim())
         ),
     ];
 
     return (
         <>
-            <form>
+            <form className='mx-auto'>
                 <select
                     name='employeeId'
                     id='employeeId'
@@ -101,16 +104,24 @@ const Shifts = () => {
             </form>
             <ul className='cards'>
                 {data.map((shiftRecord) => {
+                    const entrada = new Date(
+                        shiftRecord.clockIn
+                    ).toLocaleString();
+                    const salida = new Date(
+                        shiftRecord.clockOut
+                    ).toLocaleString();
                     return (
                         <li key={shiftRecord.id}>
-                            <h3>{shiftRecord.employeeId}</h3>
-                            <p>{shiftRecord.serviceId}</p>
-                            <p>Entrada: {shiftRecord.clockIn}</p>
-                            <p>Salida: {shiftRecord.clockOut}</p>
+                            <h3>{`${shiftRecord.firstName} ${shiftRecord.LastName}`}</h3>
+                            <p>{shiftRecord.type}</p>
+                            <p>Entrada: {entrada}</p>
+                            <p>Salida: {salida}</p>
+                            <p>{shiftRecord.address}</p>
+                            <p>{shiftRecord.totalPrice}</p>
 
                             <NavLink
                                 className='mb-4'
-                                to={`/shiftrecords/${shiftRecord.serviceId}`}
+                                to={`/shiftrecords/edit/${shiftRecord.id}`}
                             >
                                 Editar
                             </NavLink>
