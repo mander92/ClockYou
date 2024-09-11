@@ -15,11 +15,26 @@ const EditServiceClientPage = () => {
     const navigate = useNavigate();
 
     const [data, setData] = useState(null);
-    console.log(data);
+    const [hours, setHours] = useState(data?.hours || 0);
+    const [dateTime, setDateTime] = useState(data?.dateTime || '');
+    const [address, setAddress] = useState(data?.address || '');
+    const [postcode, setPostcode] = useState(data?.postcode || '');
+    const [city, setCity] = useState(data?.city || '');
+    const [comments, setComments] = useState(data?.comments || '');
 
-    // const [comments, setComments] = useState(data?.comments || '');
-    // const [address, setAddress] = useState(data?.address || '');
-    // const [hours, setHours] = useState(data.hours || 0);
+    console.log(
+        hours +
+            ' -- ' +
+            dateTime +
+            ' -- ' +
+            address +
+            ' -- ' +
+            postcode +
+            ' -- ' +
+            city +
+            ' -- ' +
+            comments
+    );
 
     useEffect(() => {
         const getService = async () => {
@@ -29,9 +44,12 @@ const EditServiceClientPage = () => {
                     authToken
                 );
                 setData(data);
-                // setComments(data.comments);
-                // setAddress(data.address);
-                // setHours(data.hours);
+                setHours(data.hours);
+                setDateTime(data.dateTime);
+                setAddress(data.address);
+                setPostcode(data.postcode);
+                setCity(data.city);
+                setComments(data.comments);
             } catch (error) {
                 toast.error(error.message, {
                     id: 'error',
@@ -40,7 +58,7 @@ const EditServiceClientPage = () => {
         };
 
         getService();
-    }, [serviceId, authToken]);
+    }, [serviceId]);
 
     // const handleEditService = async (e) => {
     //     e.preventDefault();
