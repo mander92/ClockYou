@@ -1,8 +1,9 @@
+import { v4 as uuid } from 'uuid';
+import { ADMIN_EMAIL } from '../../../env.js';
 import getPool from '../../db/getPool.js';
 import Randomstring from 'randomstring';
-import { v4 as uuid } from 'uuid';
 import generateErrorUtil from '../../utils/generateErrorUtil.js';
-import { ADMIN_EMAIL } from '../../../env.js';
+import sendMailUtils from '../../utils/sendMailUtil.js';
 
 const insertServiceService = async (
     typeOfServiceId,
@@ -87,8 +88,8 @@ const insertServiceService = async (
 
     const [data] = await pool.query(
         `
-        SELECT s.status AS Estado,
-        t.type AS TipoServicio, t.city AS Provincia, t.price AS PrecioHora, s.hours AS HorasContratadas, s.totalPrice AS PrecioTotal, s.dateTime AS DíaYHora, a.address AS Dirección, a.postCode AS CP, a.city AS Ciudad, s.comments AS Comenatarios, u.email AS Email, u.firstName AS Nombre, u.lastName AS Apellidos, u.phone AS Teléfono
+        SELECT s.status,
+        t.type, t.city AS province, t.price, s.hours, s.totalPrice, s.dateTime, a.address, a.postCode, a.city, s.comments, u.email, u.firstName, u.lastName, u.phone
         FROM addresses a
         INNER JOIN services s
         ON a.id = s.addressId
@@ -101,7 +102,7 @@ const insertServiceService = async (
         [userId, serviceId]
     );
 
-    const utcDateTime = new Date(pedido[0].DíaYHora);
+    const utcDateTime = new Date(data[0].dateTime);
 
     const localDateTime = new Date(utcDateTime).toLocaleString();
 
@@ -110,7 +111,7 @@ const insertServiceService = async (
     const emailBody = `
     <html>
         <body>
-            <table bgcolor="#3c3c3c" width="670" border="0" cellspacing="0" cellpadding="0" align="center" style="margin: 0 auto" > <tbody> <tr> <td> <table bgcolor="#3c3c3c" width="670" border="0" cellspacing="0" cellpadding="0" align="left" > <tbody> <tr> <td align="left" style=" padding: 20px 40px; color: #fff; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; " > <p style=" margin: 10px 0 20px; font-size: 35px; font-weight: bold; " > <img src="https://raw.githubusercontent.com/mander92/ClockYou/main/docs/logo-provisiomal-para-mailing.png" alt="" style="width: 40px; margin: 0 -3px -10px 0" /> ClockYou </p> <p style="margin: 0 0 15px; font-size: 20px"> Solicitud de Servicio </p> <p style="margin: 0 0 10px; font-size: 16px"> Tipo De Servicio: <br /> ${pedido[0].TipoServicio} en ${pedido[0].Provincia} </p> <p style="margin: 0 0 10px; font-size: 16px"> ${localDateTime} en Calle: ${pedido[0].Dirección}, ${pedido[0].CP}, ${pedido[0].Ciudad} </p> <p style="margin: 0 0 10px; font-size: 16px"> Total:${pedido[0].PrecioTotal}€ </p> <p style="margin: 25px 0 5px; font-size: 18px"> Por favor, confirme su petición haciendo click en el siguiente enlace: </p> <p style="margin: 50px 0 2px"> Gracias por confiar en ti mismo. </p> <p style="margin: 0 0 10px">&copy; ClockYou 2024</p> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table>
+            <table bgcolor="#3c3c3c" width="670" border="0" cellspacing="0" cellpadding="0" align="center" style="margin: 0 auto" > <tbody> <tr> <td> <table bgcolor="#3c3c3c" width="670" border="0" cellspacing="0" cellpadding="0" align="left" > <tbody> <tr> <td align="left" style=" padding: 20px 40px; color: #fff; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; " > <p style=" margin: 10px 0 20px; font-size: 35px; font-weight: bold; " > <img src="https://raw.githubusercontent.com/mander92/ClockYou/main/docs/logo-provisiomal-para-mailing.png" alt="Logo" style="width: 40px; margin: 0 -3px -10px 0" /> ClockYou </p> <p style="margin: 0 0 15px; font-size: 20px"> ${data[0].type} en ${data[0].province}</p> <br /></p> <p style="margin: 0 0 10px; font-size: 16px"> El ${localDateTime} en Calle: ${data[0].address}, ${data[0].postCode}, ${data[0].city} </p> <p style="margin: 25px 0 5px; font-size: 18px"> Por favor, asigne un empleado para continuar con el proceso.</p> <p style="margin: 50px 0 2px"> Gracias por confiar en nosotros. </p> <p style="margin: 0 0 10px">&copy; ClockYou 2024</p> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table>
         </body>
     </html>
 `;

@@ -20,8 +20,6 @@ const selectServiceByEmployeeIdService = async (employeeId) => {
         [employeeId]
     );
 
-    if (!data.length) throw generateErrorUtil('No tienes servicios asignados');
-
     return data;
 };
 

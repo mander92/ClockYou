@@ -153,7 +153,6 @@ export const fetchEditServiceService = async (
     postCode,
     authToken
 ) => {
-    console.log(authToken);
     const res = await fetch(`${VITE_API_URL}/services/${serviceId}`, {
         method: 'PUT',
         headers: {

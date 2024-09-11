@@ -18,7 +18,7 @@ export const fecthNewShiftRecordServices = async (
 
     const body = await res.json();
 
-    if (body.status !== 'ok') {
+    if (body.status === 'error') {
         throw new Error(body.message);
     }
 
@@ -67,11 +67,9 @@ export const fetchClockIn = async (
     );
     const body = await res.json();
 
-    if (body.status !== 'ok') {
+    if (body.status === 'error') {
         throw new Error(body.message);
     }
-
-    console.log(body);
 
     return body;
 };
@@ -90,14 +88,14 @@ export const fetchClockOut = async (authToken, ahora, shiftRecordId) => {
 
     const body = await res.json();
 
-    if (body.status !== 'ok') {
+    if (body.status === 'error') {
         throw new Error(body.message);
     }
 
     return body;
 };
 
-export const fetchGetDetailShihtRecordService = async (
+export const fetchGetDetailShiftRecordService = async (
     shiftRecordId,
     authToken
 ) => {
@@ -110,7 +108,7 @@ export const fetchGetDetailShihtRecordService = async (
 
     const body = await res.json();
 
-    if (body.status !== 'ok') {
+    if (body.status === 'error') {
         throw new Error(body.message);
     }
 

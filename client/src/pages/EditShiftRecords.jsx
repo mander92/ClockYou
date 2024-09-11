@@ -3,24 +3,25 @@ import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import toast from 'react-hot-toast';
 import {
-    fetchGetDetailShihtRecordService,
+    fetchGetDetailShiftRecordService,
     fetchEditShiftRecordService,
 } from '../services/shiftRecordServices';
-// import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import { GoogleMap, LoadScript } from '@react-google-maps/api';
+const { VITE_GOOGLE_API_KEY } = import.meta.env;
 
 const EditShiftRecord = () => {
     const { shiftRecordId } = useParams();
     const { authToken } = useContext(AuthContext);
     const [data, setData] = useState('');
-    const [clockIn, setClockIn] = useState('');
-    const [clockOut, setClockOut] = useState('');
+    const [clockIn, setClockIn] = useState(data?.clockIn);
+    const [clockOut, setClockOut] = useState(data?.clockOut);
 
-    // const [mapaActual, setMapaActual] = useState(null);
+    const [mapaActual, setMapaActual] = useState(null);
 
     useEffect(() => {
         const getDetailShiftRecord = async () => {
             try {
-                const data = await fetchGetDetailShihtRecordService(
+                const data = await fetchGetDetailShiftRecordService(
                     shiftRecordId,
                     authToken
                 );
@@ -28,6 +29,14 @@ const EditShiftRecord = () => {
                 setData(data);
                 setClockIn(data.clockIn);
                 setClockOut(data.clockOut);
+                const latitude = data.latitude;
+                const longitude = data.longitude;
+
+                const ubicacion = {
+                    lat: parseFloat(latitude),
+                    lng: parseFloat(longitude),
+                };
+                mostrarMapa(ubicacion);
             } catch (error) {
                 toast.error(error.message);
             }
@@ -35,6 +44,10 @@ const EditShiftRecord = () => {
 
         getDetailShiftRecord();
     }, []);
+
+    const mostrarMapa = (ubicacion) => {
+        setMapaActual(ubicacion);
+    };
 
     const handleEditShiftRecord = async (e) => {
         e.preventDefault();
@@ -57,7 +70,6 @@ const EditShiftRecord = () => {
             toast.success(body.message, {
                 id: 'ok',
             });
-            console.log(body);
         } catch (error) {
             toast.error(error.message, {
                 id: 'error',
@@ -65,14 +77,15 @@ const EditShiftRecord = () => {
         }
     };
 
-    // const mapContainerStyle = {
-    //     width: '80%',
-    //     height: '250px',
-    //     margin: '15px auto',
-    // };
+    const mapContainerStyle = {
+        width: '80%',
+        height: '250px',
+        margin: '15px auto',
+    };
 
     const entrada = new Date(data.clockIn).toLocaleString();
     const salida = new Date(data.clockOut).toLocaleString();
+
     return (
         <>
             <section className='mx-auto flex-1024'>
@@ -81,10 +94,7 @@ const EditShiftRecord = () => {
                         <h1>{`${data.firstName} ${data.lastName}`}</h1>
                         <h2>{`${data.address}, ${data.city}`}</h2>
                         <h3>{`${data.type}`}</h3>
-                        <img
-                            src={data.image}
-                            alt={data.firstName}
-                        />
+
                         <p className='font-extrabold'>{entrada}</p>
                         <p className='font-extrabold'>{salida}</p>
 
@@ -93,13 +103,20 @@ const EditShiftRecord = () => {
 
                         <p className='font-extrabold'>Horas contratadas:</p>
                         <p>{data.hours}</p>
-                        <p className='font-extrabold'>Descripción</p>
+                        <p className='font-extrabold'>DescripciÃ³n</p>
                         <p>{data.description}</p>
 
-                        <label
-                            htmlFor='clockin'
-                            className='font-extrabold'
-                        >
+                        <LoadScript googleMapsApiKey={VITE_GOOGLE_API_KEY}>
+                            <GoogleMap
+                                mapContainerStyle={mapContainerStyle}
+                                center={mapaActual}
+                                zoom={15}
+                            >
+                                {/* <Marker position={mapaActual} /> */}
+                            </GoogleMap>
+                        </LoadScript>
+
+                        <label htmlFor='clockin' className='font-extrabold'>
                             Entrada
                         </label>
                         <input
@@ -109,12 +126,8 @@ const EditShiftRecord = () => {
                                 setClockIn(e.target.value);
                             }}
                             type='datetime-local'
-                            required
                         />
-                        <label
-                            htmlFor='clockin'
-                            className='font-extrabold'
-                        >
+                        <label htmlFor='clockin' className='font-extrabold'>
                             Salida
                         </label>
                         <input
@@ -123,36 +136,13 @@ const EditShiftRecord = () => {
                             id='clockout'
                             value={clockOut}
                             onChange={(e) => setClockOut(e.target.value)}
-                            required
                         />
-                        <button
-                            type='submit'
-                            onClick={handleEditShiftRecord}
-                        >
+                        <button onClick={() => handleEditShiftRecord()}>
                             Editar Turno
                         </button>
                     </fieldset>
                 </form>
             </section>
-
-            {/* {mapaActual && (
-                <LoadScript
-                    googleMapsApiKey={import.meta.env.VITE_GOOGLE_API_KEY}
-                >
-                    <GoogleMap
-                        mapContainerStyle={mapContainerStyle}
-                        center={mapaActual.entrada || mapaActual}
-                        zoom={15}
-                    >
-                        {mapaActual.entrada && (
-                            <Marker position={mapaActual.entrada} />
-                        )}
-                        {mapaActual.salida && (
-                            <Marker position={mapaActual.salida} />
-                        )}
-                    </GoogleMap>
-                </LoadScript>
-            )} */}
         </>
     );
 };
