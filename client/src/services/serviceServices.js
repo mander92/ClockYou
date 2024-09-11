@@ -132,8 +132,8 @@ export const fetchAllMyServices = async (authToken) => {
     return body.data;
 };
 
-export const fetchServiceServices = async (serviceId) => {
-    const res = await fetch(`${VITE_API_URL}/services/${serviceId}`);
+export const fetchClientServiceServices = async (serviceId) => {
+    const res = await fetch(`${VITE_API_URL}/services/edit/${serviceId}`);
     const body = await res.json();
 
     if (body.status === 'error') {

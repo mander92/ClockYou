@@ -50,8 +50,7 @@ const App = () => {
                     />
 
                     <Route
-                        // path='/services/edit/:serviceId'
-                        path='/services/edit/'
+                        path='/services/edit/:serviceId' //Thanh
                         element={<EditServiceClientPage />}
                     />
 

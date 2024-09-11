@@ -23,8 +23,6 @@ const router = express.Router();
 
 router.get('/services', authUser, isAdmin, listAdminServicesController);
 
-router.get('/services/client', authUser, isClient, listClientServiceController);
-
 router.get(
     '/services/employee',
     authUser,
@@ -40,13 +38,15 @@ router.get(
     detailServiceController
 );
 
-// router.get(
-//     '/services/edit/:serviceId',
-//     authUser,
-//     isClient,
-//     serviceExists,
-//     detailServiceController
-// );
+router.get('/services/client', authUser, isClient, listClientServiceController);
+
+router.get(
+    '/services/edit/:serviceId',
+    // authUser,
+    // isClient,
+    serviceExists,
+    detailServiceController
+);
 
 router.get('/services/validate/:validationCode', validateServiceController);
 
