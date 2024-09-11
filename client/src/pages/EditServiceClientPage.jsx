@@ -9,8 +9,6 @@ import toast from 'react-hot-toast';
 
 const EditServiceClientPage = () => {
     const { serviceId } = useParams();
-    console.log('+++++++++++++++ ', serviceId);
-
     const { authToken } = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -18,7 +16,7 @@ const EditServiceClientPage = () => {
     const [hours, setHours] = useState(data?.hours || 0);
     const [dateTime, setDateTime] = useState(data?.dateTime || '');
     const [address, setAddress] = useState(data?.address || '');
-    const [postcode, setPostcode] = useState(data?.postcode || '');
+    const [postCode, setPostCode] = useState(data?.postCode || '');
     const [city, setCity] = useState(data?.city || '');
     const [comments, setComments] = useState(data?.comments || '');
 
@@ -29,7 +27,7 @@ const EditServiceClientPage = () => {
             ' -- ' +
             address +
             ' -- ' +
-            postcode +
+            postCode +
             ' -- ' +
             city +
             ' -- ' +
@@ -47,7 +45,7 @@ const EditServiceClientPage = () => {
                 setHours(data.hours);
                 setDateTime(data.dateTime);
                 setAddress(data.address);
-                setPostcode(data.postcode);
+                setPostCode(data.postCode);
                 setCity(data.city);
                 setComments(data.comments);
             } catch (error) {
@@ -58,7 +56,7 @@ const EditServiceClientPage = () => {
         };
 
         getService();
-    }, [serviceId]);
+    }, []);
 
     // const handleEditService = async (e) => {
     //     e.preventDefault();
