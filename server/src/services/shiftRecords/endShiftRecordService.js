@@ -44,7 +44,7 @@ const endShiftRecordService = async (shiftRecordId, ahora) => {
         `
         UPDATE services SET status = 'completed' WHERE id = ?
         `,
-        [serviceId]
+        [serviceId[0].serviceId]
     );
 
     return;
