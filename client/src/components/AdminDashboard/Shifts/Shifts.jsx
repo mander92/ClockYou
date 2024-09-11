@@ -1,11 +1,12 @@
 import { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../../../context/AuthContext';
 import { fetchAllShiftRecordServices } from '../../../services/shiftRecordServices';
-import toast from 'react-hot-toast';
 import { NavLink } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const Shifts = () => {
     const { authToken } = useContext(AuthContext);
+
     const [data, setData] = useState([]);
     const [employeeId, setEmployeeId] = useState('');
     const [serviceId, setServiceId] = useState('');
@@ -41,7 +42,10 @@ const Shifts = () => {
     const employeeNotRepeated = [
         ...new Set(
             data
-                .map((shiftRecord) => shiftRecord.employeeId)
+                .map(
+                    (shiftRecord) =>
+                        `${shiftRecord.firstName} ${shiftRecord.LastName}`
+                )
                 .filter((employeeId) => employeeId && employeeId.trim())
         ),
     ];
@@ -49,13 +53,14 @@ const Shifts = () => {
     const serviceNotRepeated = [
         ...new Set(
             data
-                .map((shiftRecord) => shiftRecord.serviceId)
+                .map((shiftRecord) => shiftRecord.type)
                 .filter((serviceId) => serviceId && serviceId.trim())
         ),
     ];
+
     return (
         <>
-            <form>
+            <form className='mx-auto form-filters'>
                 <select
                     name='employeeId'
                     id='employeeId'
@@ -69,11 +74,10 @@ const Shifts = () => {
                     </option>
                     {employeeNotRepeated.map((employeeId) => (
                         <option key={employeeId} value={employeeId}>
-                            {employeeId.employeeName}
+                            {employeeId}
                         </option>
                     ))}
                 </select>
-
                 <select
                     name='serviceId'
                     id='serviceId'
@@ -91,23 +95,28 @@ const Shifts = () => {
                         </option>
                     ))}
                 </select>
-
-                <button type='button' onClick={resetFilter}>
-                    Limpiar Filtros
-                </button>
+                <button onClick={resetFilter}>Limpiar Filtros</button>
             </form>
             <ul className='cards'>
                 {data.map((shiftRecord) => {
+                    const entrada = new Date(
+                        shiftRecord.clockIn
+                    ).toLocaleString();
+                    const salida = new Date(
+                        shiftRecord.clockOut
+                    ).toLocaleString();
                     return (
                         <li key={shiftRecord.id}>
-                            <h3>{shiftRecord.employeeId}</h3>
-                            <p>{shiftRecord.serviceId}</p>
-                            <p>Entrada: {shiftRecord.clockIn}</p>
-                            <p>Salida: {shiftRecord.clockOut}</p>
+                            <h3>{`${shiftRecord.firstName} ${shiftRecord.LastName}`}</h3>
+                            <p>{shiftRecord.type}</p>
+                            <p>Entrada: {entrada}</p>
+                            <p>Salida: {salida}</p>
+                            <p>{shiftRecord.address}</p>
+                            <p>{shiftRecord.totalPrice}</p>
 
                             <NavLink
                                 className='mb-4'
-                                to={`/shiftrecords/${shiftRecord.serviceId}`}
+                                to={`/shiftrecords/edit/${shiftRecord.id}`}
                             >
                                 Editar
                             </NavLink>

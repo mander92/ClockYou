@@ -16,6 +16,7 @@ import DetailServicePage from './pages/DetailServicePage.jsx';
 import ConfirmedService from './pages/ConfirmedService.jsx';
 import Clock from './pages/Clock.jsx';
 import EditServiceClientPage from './pages/EditServiceClientPage.jsx';
+import EditShiftRecord from './pages/EditShiftRecords.jsx';
 
 const App = () => {
     return (
@@ -72,7 +73,13 @@ const App = () => {
                         path='/shiftRecords/:shiftRecordId'
                         element={<Clock />}
                     />
-                    <Route path='*' element={<NotFoundPage />} />
+
+                    <Route
+                        path='/shiftRecords/edit/:shiftRecordId'
+                        element={<EditShiftRecord />}
+                    />
+
+                    <Route path='/*' element={<NotFoundPage />} />
                 </Routes>
             </main>
         </Layout>

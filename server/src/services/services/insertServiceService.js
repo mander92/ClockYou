@@ -2,6 +2,7 @@ import getPool from '../../db/getPool.js';
 import Randomstring from 'randomstring';
 import { v4 as uuid } from 'uuid';
 import generateErrorUtil from '../../utils/generateErrorUtil.js';
+import { ADMIN_EMAIL } from '../../../env.js';
 
 const insertServiceService = async (
     typeOfServiceId,
@@ -99,6 +100,22 @@ const insertServiceService = async (
         `,
         [userId, serviceId]
     );
+
+    const utcDateTime = new Date(pedido[0].DíaYHora);
+
+    const localDateTime = new Date(utcDateTime).toLocaleString();
+
+    const emailSubject = `Nuevo pedido`;
+
+    const emailBody = `
+    <html>
+        <body>
+            <table bgcolor="#3c3c3c" width="670" border="0" cellspacing="0" cellpadding="0" align="center" style="margin: 0 auto" > <tbody> <tr> <td> <table bgcolor="#3c3c3c" width="670" border="0" cellspacing="0" cellpadding="0" align="left" > <tbody> <tr> <td align="left" style=" padding: 20px 40px; color: #fff; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; " > <p style=" margin: 10px 0 20px; font-size: 35px; font-weight: bold; " > <img src="https://raw.githubusercontent.com/mander92/ClockYou/main/docs/logo-provisiomal-para-mailing.png" alt="" style="width: 40px; margin: 0 -3px -10px 0" /> ClockYou </p> <p style="margin: 0 0 15px; font-size: 20px"> Solicitud de Servicio </p> <p style="margin: 0 0 10px; font-size: 16px"> Tipo De Servicio: <br /> ${pedido[0].TipoServicio} en ${pedido[0].Provincia} </p> <p style="margin: 0 0 10px; font-size: 16px"> ${localDateTime} en Calle: ${pedido[0].Dirección}, ${pedido[0].CP}, ${pedido[0].Ciudad} </p> <p style="margin: 0 0 10px; font-size: 16px"> Total:${pedido[0].PrecioTotal}€ </p> <p style="margin: 25px 0 5px; font-size: 18px"> Por favor, confirme su petición haciendo click en el siguiente enlace: </p> <p style="margin: 50px 0 2px"> Gracias por confiar en ti mismo. </p> <p style="margin: 0 0 10px">&copy; ClockYou 2024</p> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table>
+        </body>
+    </html>
+`;
+
+    await sendMailUtils(ADMIN_EMAIL, emailSubject, emailBody);
 
     return data[0];
 };

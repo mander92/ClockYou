@@ -96,3 +96,55 @@ export const fetchClockOut = async (authToken, ahora, shiftRecordId) => {
 
     return body;
 };
+
+export const fetchGetDetailShihtRecordService = async (
+    shiftRecordId,
+    authToken
+) => {
+    const res = await fetch(`${VITE_API_URL}/shiftrecords/${shiftRecordId}`, {
+        headers: {
+            Authorization: authToken,
+            'Content-Type': 'application/json',
+        },
+    });
+
+    const body = await res.json();
+
+    if (body.status !== 'ok') {
+        throw new Error(body.message);
+    }
+
+    return body.data;
+};
+
+export const fetchEditShiftRecordService = async (
+    shiftRecordId,
+    clockIn,
+    clockOut,
+    authToken
+) => {
+    const res = await fetch(
+        `${VITE_API_URL}/shiftrecords/edit/${shiftRecordId}`,
+        {
+            method: 'PUT',
+            headers: authToken
+                ? {
+                      Authorization: authToken,
+                      'Content-Type': 'application/json',
+                  }
+                : {},
+            body: JSON.stringify({
+                clockIn,
+                clockOut,
+            }),
+        }
+    );
+
+    const body = await res.json();
+
+    if (body.status === 'error') {
+        throw new Error(body.message);
+    }
+
+    return body;
+};

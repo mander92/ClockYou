@@ -37,10 +37,7 @@ const EditServiceClientPage = () => {
     useEffect(() => {
         const getService = async () => {
             try {
-                const data = await fetchClientServiceServices(
-                    serviceId,
-                    authToken
-                );
+                const data = await fetchClientServiceServices(serviceId);
                 setData(data);
                 setHours(data.hours);
                 setDateTime(data.dateTime);
@@ -56,32 +53,93 @@ const EditServiceClientPage = () => {
         };
 
         getService();
-    }, []);
+    }, [serviceId]);
 
-    // const handleEditService = async (e) => {
-    //     e.preventDefault();
-    //     try {
-    //         const body = await fetchEditServiceService(
-    //             serviceId,
-    //             comments,
-    //             address,
-    //             hours
-    //         );
-    //         toast.success(body.message, {
-    //             id: 'ok',
-    //         });
-    //         navigate('/orders');
-    //     } catch (error) {
-    //         toast.error(error.message, {
-    //             id: 'error',
-    //         });
-    //     }
-    // };
+    const handleEditService = async (e) => {
+        e.preventDefault();
+        try {
+            const body = await fetchEditServiceService(
+                serviceId,
+                comments,
+                address,
+                hours,
+                authToken
+            );
+            toast.success(body.message, {
+                id: 'ok',
+            });
+            navigate('/orders');
+        } catch (error) {
+            toast.error(error.message, {
+                id: 'error',
+            });
+        }
+    };
 
     return (
-        <div>
-            <h1>Hola</h1>
-        </div>
+        <form className='profile-form mx-auto'>
+            <fieldset>
+                <legend>Editar</legend>
+                <div>
+                    <label htmlFor='comments'>Comentarios:</label>
+                    <textarea
+                        value={comments}
+                        onChange={(e) => setComments(e.target.value)}
+                    />
+                </div>
+                <div>
+                    <label htmlFor='address'>Dirección:</label>
+                    <input
+                        type='text'
+                        value={address}
+                        onChange={(e) => setAddress(e.target.value)}
+                    />
+                </div>
+                <div>
+                    <label htmlFor='postCode'>Código Postal:</label>
+                    <input
+                        type='number'
+                        maxLength='5'
+                        minLength='5'
+                        value={postCode}
+                        onChange={(e) => setPostCode(e.target.value)}
+                    />
+                </div>
+                <div>
+                    <label htmlFor='city'>Ciudad:</label>
+                    <input
+                        type='text'
+                        value={city}
+                        onChange={(e) => setCity(e.target.value)}
+                    />
+                </div>
+                <div>
+                    <label htmlFor='city'>Dirección:</label>
+                    <input
+                        type='text'
+                        value={city}
+                        onChange={(e) => setAddress(e.target.value)}
+                    />
+                </div>
+                <div>
+                    <label htmlFor='hours'>Horas Contratadas:</label>
+                    <input
+                        type='number'
+                        value={hours}
+                        onChange={(e) => setHours(e.target.value)}
+                    />
+                </div>
+                <div className='mx-auto'>
+                    <button
+                        className='mr-4 mt-4'
+                        type='submit'
+                        onClick={handleEditService}
+                    >
+                        Guardar Cambios
+                    </button>
+                </div>
+            </fieldset>
+        </form>
     );
 };
 

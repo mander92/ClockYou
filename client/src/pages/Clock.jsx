@@ -4,12 +4,14 @@ import { AuthContext } from '../context/AuthContext';
 import toast from 'react-hot-toast';
 import { useParams } from 'react-router-dom';
 import { fetchClockIn, fetchClockOut } from '../services/shiftRecordServices';
+const { VITE_GOOGLE_API_KEY } = import.meta.env;
 
 const Clock = () => {
     const { authToken } = useContext(AuthContext);
     const [registros, setRegistros] = useState([]);
     const [mapaActual, setMapaActual] = useState(null);
     const { shiftRecordId } = useParams();
+    const [enableEntrada, setEnableEntrada] = useState(false);
 
     const obtenerUbicacion = () => {
         return new Promise((resolve, reject) => {
@@ -41,6 +43,8 @@ const Clock = () => {
                     total: null,
                 },
             ]);
+
+            setEnableEntrada(true);
 
             const data = await fetchClockIn(
                 authToken,
@@ -99,17 +103,28 @@ const Clock = () => {
 
     const mapContainerStyle = {
         width: '80%',
-        height: '250px',
+        height: '350px',
         margin: '15px auto',
     };
 
     return (
-        <div>
-            <h2>Registro de Fichaje</h2>
-            <button onClick={registrarEntrada}>Registrar Entrada</button>
-            <button onClick={registrarSalida}>Registrar Salida</button>
+        <div className='flex flex-col mt-12 my-auto mx-auto border-2 rounded-xl p-5 shadow-md max-w-screen-lg self-center'>
+            <h2 className='flex flex-wrap gap-3 justify-around mt-7 mb-12'>
+                <button
+                    className='border-2 rounded-xl p-5 text-white bg-green-600'
+                    disabled={enableEntrada}
+                    onClick={registrarEntrada}
+                >
+                    Registrar Entrada
+                </button>
+                <button
+                    className='border-2 rounded-xl p-5 text-white bg-red-600'
+                    onClick={registrarSalida}
+                >
+                    Registrar Salida
+                </button>
+            </h2>
 
-            <h3>Registros:</h3>
             <table>
                 <thead>
                     <tr>
@@ -124,7 +139,7 @@ const Clock = () => {
                         <tr key={index}>
                             <td>
                                 {formatearHora(registro.entrada.tiempo)}
-                                <button
+                                {/* <button
                                     onClick={() =>
                                         mostrarMapa({
                                             entrada: registro.entrada.ubicacion,
@@ -132,7 +147,7 @@ const Clock = () => {
                                     }
                                 >
                                     Ver mapa
-                                </button>
+                                </button> */}
                             </td>
                             <td>
                                 {registro.salida ? (
@@ -176,9 +191,7 @@ const Clock = () => {
             </table>
 
             {mapaActual && (
-                <LoadScript
-                    googleMapsApiKey={import.meta.env.VITE_GOOGLE_API_KEY}
-                >
+                <LoadScript googleMapsApiKey={VITE_GOOGLE_API_KEY}>
                     <GoogleMap
                         mapContainerStyle={mapContainerStyle}
                         center={mapaActual.entrada || mapaActual}

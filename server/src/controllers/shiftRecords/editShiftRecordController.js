@@ -22,6 +22,7 @@ const editShiftRecordController = async (req, res, next) => {
 
         res.send({
             status: 'ok',
+            message: 'Turno editado correctamente',
         });
     } catch (error) {
         next(error);

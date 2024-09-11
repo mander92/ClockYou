@@ -106,7 +106,7 @@ export const fetchClientAllServicesServices = async (
         }
     );
     const body = await res.json();
-    const urlParams = `${VITE_API_URL}/services/client/?${searchParamsToString}`;
+    // const urlParams = `${VITE_API_URL}/services/client/?${searchParamsToString}`;
 
     if (body.status === 'error') {
         throw new Error(body.message);
@@ -145,21 +145,22 @@ export const fetchClientServiceServices = async (serviceId) => {
 
 export const fetchEditServiceService = async (
     serviceId,
-    description,
-    price,
+    comments,
+    address,
+    hours,
     authToken
 ) => {
+    console.log(authToken);
     const res = await fetch(`${VITE_API_URL}/services/${serviceId}`, {
         method: 'PUT',
-        headers: authToken
-            ? {
-                  Authorization: authToken,
-                  'Content-Type': 'application/json',
-              }
-            : {},
+        headers: {
+            Authorization: authToken,
+            'Content-Type': 'application/json',
+        },
         body: JSON.stringify({
-            description,
-            price,
+            comments,
+            address,
+            hours,
         }),
     });
 

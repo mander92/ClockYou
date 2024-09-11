@@ -1,30 +1,93 @@
 import getPool from '../../db/getPool.js';
 
-const getShiftRecordsService = async (shiftRecordId) => {
+const getShiftRecordsService = async (shiftRecordId, employeeId) => {
     const pool = await getPool();
 
-    let sqlQuery = `
-        SELECT 
-            u.firstName, 
-            u.lastName, 
-            se.totalPrice, 
-            a.city, 
-            a.address, 
-            t.type 
-        FROM 
-            shiftRecords s
-        INNER JOIN 
-            users u ON u.id = s.employeeId
-        INNER JOIN 
-            services se ON se.id = s.serviceId
-        INNER JOIN 
-            addresses a ON a.id = se.addressId
-        INNER JOIN 
-            typeOfServices t ON t.id = se.typeOfServicesId
-    `;
+    if (!shiftRecordId && !employeeId) {
+        const [shifts] = await pool.query(
+            `
+            SELECT 
+            s.id, u.firstName, u.LastName  ,s.clockIn, s.clockOut, se.totalPrice, a.city, a.address, t.type 
+            FROM shiftRecords s 
+            INNER JOIN users u
+            ON u.id = s.employeeId
+            INNER JOIN services se
+            ON se.id = s.serviceId
+            INNER JOIN addresses a
+            ON a.id = se.addressId
+            INNER JOIN typeOfServices t
+            ON t.id = se.typeOfServicesId
+            `
+        );
 
-    const [shift] = await pool.query(sqlQuery, sqlValues);
-    return shift;
+        return shifts;
+    }
+
+    if (shiftRecordId && employeeId) {
+        const [shifts] = await pool.query(
+            `
+            SELECT 
+            s.id, u.firstName, u.LastName, s.clockIn, s.clockOut, se.totalPrice, a.city, a.address, t.type 
+            FROM shiftRecords s 
+            INNER JOIN users u
+            ON u.id = s.employeeId
+            INNER JOIN services se
+            ON se.id = s.serviceId
+            INNER JOIN addresses a
+            ON a.id = se.addressId
+            INNER JOIN typeOfServices t
+            ON t.id = se.typeOfServicesId 
+            WHERE shiftRecordId = ? AND employeeId = ?
+            `,
+            [shiftRecordId, employeeId]
+        );
+
+        return shifts;
+    }
+
+    if (employeeId) {
+        const [shifts] = await pool.query(
+            `
+            SELECT 
+            s.id, u.firstName, u.LastName, s.clockIn, s.clockOut, se.totalPrice, a.city, a.address, t.type 
+            FROM shiftRecords s 
+            INNER JOIN users u
+            ON u.id = s.employeeId
+            INNER JOIN services se
+            ON se.id = s.serviceId
+            INNER JOIN addresses a
+            ON a.id = se.addressId
+            INNER JOIN typeOfServices t
+            ON t.id = se.typeOfServicesId 
+            WHERE employeeId = ? 
+            `,
+            [employeeId]
+        );
+
+        return shifts;
+    }
+
+    if (shiftRecordId) {
+        const [shifts] = await pool.query(
+            `
+            SELECT 
+            s.id, u.firstName, u.LastName, s.clockIn, s.clockOut, se.totalPrice, a.city, a.address, t.type 
+            FROM shiftRecords s 
+            INNER JOIN users u
+            ON u.id = s.employeeId
+            INNER JOIN services se
+            ON se.id = s.serviceId
+            INNER JOIN addresses a
+            ON a.id = se.addressId
+            INNER JOIN typeOfServices t
+            ON t.id = se.typeOfServicesId 
+            WHERE shiftRecordId = ? 
+            `,
+            [shiftRecordId]
+        );
+
+        return shifts;
+    }
 };
 
 export default getShiftRecordsService;

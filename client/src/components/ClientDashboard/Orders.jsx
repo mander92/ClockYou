@@ -1,4 +1,3 @@
-const { VITE_CLIENT_URL } = import.meta.env;
 import { useEffect, useState, useContext } from 'react';
 import { fetchClientAllServicesServices } from '../../services/serviceServices.js';
 import { AuthContext } from '../../../src/context/AuthContext.jsx';
@@ -136,12 +135,9 @@ const Orders = () => {
                                 <NavLink to={`/services/edit/${item.id}`}>
                                     Editar
                                 </NavLink>
-                                // <NavLink to={`*`}>Editar</NavLink>
                             )}
                             {item.status === 'completed' && (
-                                <NavLink
-                                // to={`/services/${item.id}`}
-                                >
+                                <NavLink to={`/services/rating/${item.id}`}>
                                     Valorar
                                 </NavLink>
                             )}
