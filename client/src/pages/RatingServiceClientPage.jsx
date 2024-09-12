@@ -5,14 +5,13 @@ import {
     fetchClientRatingServiceServices,
     fetchRatingServiceServices,
 } from '../services/serviceServices';
-import {FaStar} from 'react-icons/fa'
+import {FaStar} from 'react-icons/fa';
 import toast from 'react-hot-toast';
 
 
 const RatingServiceClientPage = () => {
     const { serviceId } = useParams();
     const { authToken } = useContext(AuthContext);
-
     const navigate = useNavigate();
 
     const [data, setData] = useState(null);  
@@ -58,36 +57,42 @@ const RatingServiceClientPage = () => {
     return (
         <form className='mx-auto'>
             <fieldset>
-                <legend>Valorar el servicio</legend>
+                <legend className=" text-xl font-semibold mb-4">Valorar nuestro servicio</legend>
+                <div className='my-4'>
+                    <h3>{data?.type} en {data?.province}</h3>
+                    <p><strong>Precio por Hora:</strong> {data?.price}€</p>
+                    <p><strong>Horas Contratadas:</strong> {data?.hours}</p>
+                    <p><strong>Dirección:</strong> {data?.address}, {data?.postCode}, {data?.city}</p>
+                </div>
 
-                
-                <div className='flex'>
+                <div className='flex justify-center mb-4'>
                     {[...Array(5)].map((_, index) => {
                             const currentRating = index + 1;
                             return (
-                                <label key={currentRating}>
-                                    <input
-                                        className='hidden'
-                                        type="radio"
-                                        name="rating"
-                                        value={currentRating}
-                                        checked={rating === currentRating}
-                                        onChange={() => setRating(currentRating)}
-                                    />
-                                    <FaStar
-                                        className='cursor-pointer'
-                                        size={50}
-                                        color={currentRating <= (hover || rating) ? "#ffc107" : "#e4e5e9"}
-                                        onMouseEnter={() => setHover(currentRating)}
-                                        onMouseLeave={() => setHover(null)}
-                                    />
-                                </label>
+                                <>
+                                    <label key={currentRating}></label>
+                                        <input
+                                            className='hidden'
+                                            type="radio"
+                                            name="rating"
+                                            value={currentRating}
+                                            checked={rating === currentRating}
+                                            onChange={() => setRating(currentRating)}
+                                        />
+                                        <FaStar
+                                            className='cursor-pointer'
+                                            size={30}
+                                            color={currentRating <= (hover || rating) ? "#ffc107" : "#e4e5e9"}
+                                            onMouseEnter={() => setHover(currentRating)}
+                                            onMouseLeave={() => setHover(null)}
+                                            onClick={() => setRating(currentRating)} 
+                                        />                       
+                                </>    
                             );
                         })}               
                 </div>
                 
-                    <label htmlFor="comment">Commentarios:</label>
-                    <textarea/>
+
                 
                 <div className='mx-auto'>
                     <button
