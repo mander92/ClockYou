@@ -10,7 +10,7 @@
     "keywords": [],
     "author": "",
     "license": "ISC",
-    "description": "Es una aplicación de empresas de Servicios personales diversos como Jardinería, Limpieza, Seguridad, Mantenimiento de Edificios e Instalaciones, Carreteras, Eventos, Conciertos, Fiestas etc… ",
+    "description": "Es una aplicación de empresas de Servicios personales diversos como Clases Particulares, Entrenamientos Personales, Cuidado de Mascotas, Limpiezas A Domicilio, Masajes, Mantenimientos Del Hogar, Clases Particulares, etc… En definitiva, está pensado para empresas que ofertan servicios personalizados a clientes particulares. El fuerte y atractivo de esta aplicación sería hacer más fácil y rápido la búsqueda del servicio y poder disfrutar de un control centralizado del personal que se encuentra en diversas localizaciones y poder brindarle un Servicio de RRHH totalmente digitalizado e intuitivo. ",
     "dependencies": {
         "bcrypt": "^5.1.1",
         "cors": "^2.8.5",
