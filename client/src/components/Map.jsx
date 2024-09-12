@@ -1,8 +1,12 @@
-const MapView = () => {
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { IconLocation } from './IconLocation';
+import 'leaflet/dist/leaflet.css';
+
+const MapView = ({ location }) => {
     return (
         <>
             <MapContainer
-                center={[37.19243432714087, -5.813902940369889]}
+                center={location.currentLocation}
                 zoom={13}
                 scrollWheelZoom={false}
             >
@@ -10,10 +14,8 @@ const MapView = () => {
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
                 />
-                <Marker position={[37.19243432714087, -5.813902940369889]}>
-                    <Popup>
-                        A pretty CSS3 popup. <br /> Easily customizable.
-                    </Popup>
+                <Marker position={location.currentLocation} icon={IconLocation}>
+                    <Popup>Registro de Entrada</Popup>
                 </Marker>
             </MapContainer>
         </>

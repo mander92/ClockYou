@@ -6,9 +6,7 @@ import {
     fetchDetailShiftRecordServices,
     fetchEditShiftRecordServices,
 } from '../services/shiftRecordServices';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import { IconLocation } from '../components/IconLocation';
-import 'leaflet/dist/leaflet.css';
+import Map from '../components/Map';
 
 const EditShiftRecordsPage = () => {
     const { shiftRecordId } = useParams();
@@ -120,23 +118,7 @@ const EditShiftRecordsPage = () => {
                         />
                         {location.currentLocation ? (
                             <div>
-                                <MapContainer
-                                    center={location.currentLocation}
-                                    zoom={13}
-                                    scrollWheelZoom={false}
-                                >
-                                    <TileLayer
-                                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                                        url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-                                    />
-                                    <Marker
-                                        position={location.currentLocation}
-                                        icon={IconLocation}
-                                    >
-                                        <Popup>Registro de Entrada</Popup>
-                                    </Marker>
-                                </MapContainer>
-                                ;
+                                <Map location={location} />
                             </div>
                         ) : (
                             <span>Cargando el mapa</span>
