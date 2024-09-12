@@ -47,8 +47,8 @@ export const fetchAllShiftRecordsServices = async (
 
 export const fetchClockInShiftRecordServices = async (
     authToken,
-    ubicacion,
-    ahora,
+    entrada,
+    location,
     shiftRecordId
 ) => {
     const res = await fetch(
@@ -60,8 +60,8 @@ export const fetchClockInShiftRecordServices = async (
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                ubicacion,
-                ahora,
+                location,
+                entrada,
             }),
         }
     );

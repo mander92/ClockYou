@@ -1,25 +1,42 @@
 import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import toast from 'react-hot-toast';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import {
     fetchClockInShiftRecordServices,
     fetchClockOutShiftRecordServices,
+    fetchDetailShiftRecordServices,
 } from '../services/shiftRecordServices';
 import Map from '../components/Map';
 
 const ShiftRecordPage = () => {
     const { authToken } = useContext(AuthContext);
+    const { shiftRecordId } = useParams();
+    const navigate = useNavigate();
+    const [clockIn, setClockIn] = useState([]);
     const [enableEntrada, setEnableEntrada] = useState(false);
     const [enableSalida, setEnableSalida] = useState(false);
     const [entradaLocal, setEntradaLocal] = useState(null);
     const [salidaLocal, setSalidaLocal] = useState(null);
-    const [entrada, setEntrada] = useState(null);
-    const [salida, setSalida] = useState(null);
-    const [totalTime, setTotalTime] = useState('');
     const [location, setLocation] = useState({
         currentLocation: { lat: '', lng: '' },
     });
+
+    useEffect(() => {
+        const getAllData = async () => {
+            try {
+                const data = await fetchDetailShiftRecordServices(
+                    shiftRecordId,
+                    authToken
+                );
+
+                setClockIn(data?.clockIn);
+            } catch (error) {
+                toast.error(error.message);
+            }
+        };
+        getAllData();
+    }, []);
 
     const getLocation = () => {
         return new Promise((resolve, reject) => {
@@ -39,34 +56,64 @@ const ShiftRecordPage = () => {
     };
 
     const registrarEntrada = async () => {
-        const data = await getLocation();
-        const entrada = new Date();
-        setEntrada(entrada);
-        setEnableEntrada(true);
-        setEntradaLocal(entrada.toLocaleString());
-        setLocation({ currentLocation: data });
+        try {
+            const location = await getLocation();
+            const entrada = new Date();
+            setEnableEntrada(true);
+            setEntradaLocal(entrada.toLocaleString());
+            setLocation({ currentLocation: location });
+
+            const dataClockIn = await fetchClockInShiftRecordServices(
+                authToken,
+                entrada,
+                location,
+                shiftRecordId
+            );
+
+            toast.success(dataClockIn.message, {
+                id: 'ok',
+            });
+        } catch (error) {
+            toast.error(error.message);
+        }
     };
 
-    const calcularTiempoTotal = (entrada, salida) => {
-        const diff = salida - entrada;
-        console.log(diff);
-        const horas = Math.floor(diff / 3600000);
-        console.log(horas);
-        const minutos = Math.floor((diff % 3600000) / 60000);
-        return `${horas}h ${minutos}m`;
+    // const calcularTiempoTotal = (entrada) => {
+    //     const entradaDate = new Date(entrada);
+    //     const salida = new Date();
+    //     const diff = salida - entradaDate;
+    //     const horas = Math.floor(diff / 3600000);
+    //     console.log(horas);
+    //     const minutos = Math.ceil((diff % 3600000) / 60000);
+    //     return `${horas}h ${minutos}m`;
+    // };
+
+    const registrarSalida = async () => {
+        try {
+            setEnableSalida(true);
+
+            const salidas = new Date();
+
+            const salidaToLocalString = salidas.toLocaleString();
+            setSalidaLocal(salidaToLocalString);
+
+            const dataClockOut = await fetchClockOutShiftRecordServices(
+                authToken,
+                salidas,
+                shiftRecordId
+            );
+
+            toast.success(dataClockOut.message, {
+                id: 'ok',
+            });
+
+            navigate('/user');
+        } catch (error) {
+            toast.error(error.message);
+        }
     };
 
-    const registrarSalida = () => {
-        setEnableSalida(true);
-
-        const salidas = new Date();
-        setSalida(salidas);
-
-        const salidaToLocalString = salidas.toLocaleString();
-        setSalidaLocal(salidaToLocalString);
-
-        setTotalTime(calcularTiempoTotal(entrada, salida));
-    };
+    const entradaLocalString = new Date(clockIn).toLocaleString();
 
     return (
         <div className='flex flex-col mt-12 my-auto mx-auto border-2 rounded-xl p-5 shadow-md max-w-screen-lg self-center'>
@@ -88,20 +135,19 @@ const ShiftRecordPage = () => {
                     </button>
                 </div>
 
-                <p>Entrada: {entradaLocal ? entradaLocal : ''}</p>
+                <p>
+                    Entrada:{' '}
+                    {clockIn
+                        ? entradaLocalString
+                        : entradaLocal
+                          ? entradaLocal
+                          : ''}
+                </p>
                 <p>Salida: {salidaLocal ? salidaLocal : ''}</p>
-                <p>Total Horas: {totalTime ? totalTime : ''}</p>
                 {location.currentLocation.lat && entradaLocal && (
                     <Map location={location} />
                 )}
             </h2>
-
-            {/*<h2 className='flex flex-col flex-wrap gap-3 justify-around mt-7 mb-12'>
-                <p>{salidaLocal}</p>
-                {location.currentLocation.lat && salidaLocal && (
-                    <Map location={location} />
-                )}
-            </h2> */}
         </div>
     );
 };
