@@ -94,7 +94,7 @@ const EditShiftRecordsPage = () => {
 
                         <p className='font-extrabold'>Horas contratadas:</p>
                         <p>{data.hours}</p>
-                        <p className='font-extrabold'>DescripciÃ³n</p>
+                        <p className='font-extrabold'>Descripción</p>
                         <p>{data.description}</p>
 
                         <label htmlFor='clockin' className='font-extrabold'>
