@@ -120,6 +120,7 @@ const Orders = () => {
                     return (
                         <li id={item.id} key={item.id}>
                             <h3>{item.type}</h3>
+                            <p>{item.status}</p>
                             <p className='font-extrabold'>{item.province}</p>
                             <p className='grow'>{item.comments}</p>
                             <p className='font-extrabold'>
@@ -141,7 +142,25 @@ const Orders = () => {
                                     Editar
                                 </NavLink>
                             )}
-
+                            {item.status === 'accepted' && (
+                                <NavLink
+                                    to={`/services/validate/${item.validationCode}`}
+                                >
+                                    Confirmar
+                                </NavLink>
+                            )}
+                            {item.status === 'confirmed' && (
+                                <NavLink
+                                    disabled={''}
+                                    onClick={() => {
+                                        toast(
+                                            'Cuando el servicio esté completado podrá valorar'
+                                        );
+                                    }}
+                                >
+                                    Valorar
+                                </NavLink>
+                            )}
                             {item.status === 'completed' &&
                             item.rating != null ? (
                                 <div className='flex my-6'>
