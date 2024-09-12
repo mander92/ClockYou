@@ -78,6 +78,12 @@ const EditServicePage = () => {
     // const dateLocal = new Date(data?.dateTime).toLocaleString();
     // console.log(dateLocal);
 
+    // const arrDate = date.split('/');
+    // const rearrangeDate = `${arrDate[2]}-${arrDate[1]}-${arrDate[0]}`;
+    // const arrTime = time.split(':');
+    // const rearrangeTime = `${arrTime[0]}:${arrTime[1]}`;
+    // const dateTimeFinalConversion = `${rearrangeDate}T${rearrangeTime}`;
+
     return (
         <form className='profile-form mx-auto'>
             <fieldset>
