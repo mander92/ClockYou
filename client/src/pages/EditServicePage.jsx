@@ -74,14 +74,12 @@ const EditServicePage = () => {
             <fieldset>
                 <legend>{data?.type}</legend>
                 <h3>{data?.status}</h3>
-                <p>
-                    La fecha y hora actuales del servicio son el:{' '}
+                <p className='text-left py-4'>
+                    La fecha y hora actuales para el comienzo del servicio son:
                     <strong>
-                        {date} a las {time}
+                        {} {date} a las {time}
                     </strong>
-                </p>
-                <p>
-                    <strong>Si quiere cambiarlas</strong>, hágalo en el campo
+                    . <strong>Si quiere cambiarlas</strong>, hágalo en el campo
                     fecha y hora bajo estas líneas.
                 </p>
                 <label htmlFor='datetime'>Fecha y Hora</label>
