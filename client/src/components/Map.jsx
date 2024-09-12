@@ -1,31 +1,26 @@
-import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
-const { VITE_GOOGLE_API_KEY } = import.meta.env;
-// Estilos opcionales para el mapa
-const containerStyle = {
-    width: '100%',
-    height: '400px',
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+
+const MapView = () => {
+    return (
+        <>
+            <MapContainer
+                center={[37.19243432714087, -5.813902940369889]}
+                zoom={13}
+                scrollWheelZoom={false}
+            >
+                <TileLayer
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+                />
+                <Marker position={[37.19243432714087, -5.813902940369889]}>
+                    <Popup>
+                        A pretty CSS3 popup. <br /> Easily customizable.
+                    </Popup>
+                </Marker>
+            </MapContainer>
+        </>
+    );
 };
 
-function MyMapComponent({ center }) {
-    // Carga el script de Google Maps con la API Key
-    const { isLoaded } = useLoadScript({
-        googleMapsApiKey: VITE_GOOGLE_API_KEY, // Reemplaza con tu clave de API
-    });
-
-    if (!isLoaded) {
-        return <div>Cargando el mapa...</div>;
-    }
-
-    return (
-        <GoogleMap
-            mapContainerStyle={containerStyle}
-            center={center}
-            zoom={10} // Nivel de zoom inicial
-        >
-            {/* Ejemplo de cómo añadir un marcador */}
-            <Marker position={center} />
-        </GoogleMap>
-    );
-}
-
-export default MyMapComponent;
+export default MapView;
