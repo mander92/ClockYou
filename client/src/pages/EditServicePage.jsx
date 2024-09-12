@@ -26,12 +26,12 @@ const EditServicePage = () => {
             try {
                 const data = await fetchClientEditServiceServices(serviceId);
                 setData(data);
-                setHours(data.hours);
-                setDateTime(data.dateTime);
-                setAddress(data.address);
-                setPostCode(data.postCode);
-                setCity(data.city);
-                setComments(data.comments);
+                setHours(data?.hours);
+                setDateTime(data?.dateTime);
+                setAddress(data?.address);
+                setPostCode(data?.postCode);
+                setCity(data?.city);
+                setComments(data?.comments);
             } catch (error) {
                 toast.error(error.message, {
                     id: 'error',
@@ -44,14 +44,20 @@ const EditServicePage = () => {
 
     const handleEditService = async (e) => {
         e.preventDefault();
+
         try {
+            const formattedDateTime = new Date(dateTime)
+                .toISOString()
+                .slice(0, 19)
+                .replace('T', ' ');
+
             const body = await fetchEditServiceServices(
                 serviceId,
                 comments,
                 address,
                 hours,
                 city,
-                dateTime,
+                formattedDateTime,
                 postCode,
                 authToken
             );
@@ -68,6 +74,9 @@ const EditServicePage = () => {
 
     const time = new Date(dateTime).toLocaleTimeString();
     const date = new Date(dateTime).toLocaleDateString();
+    // 2024-09-30T10:30:00.000Z ---> 2024-09-24T10:56
+    // const dateLocal = new Date(data?.dateTime).toLocaleString();
+    // console.log(dateLocal);
 
     return (
         <form className='profile-form mx-auto'>
@@ -88,7 +97,6 @@ const EditServicePage = () => {
                     id='datetime'
                     value={dateTime}
                     onChange={(e) => setDateTime(e.target.value)}
-                    required
                 ></input>
                 <label htmlFor='hours'>Horas</label>
                 <select
