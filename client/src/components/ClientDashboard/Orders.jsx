@@ -3,6 +3,7 @@ import { AuthContext } from '../../../src/context/AuthContext.jsx';
 import { NavLink } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react';
 import { fetchClientAllServicesServices } from '../../services/serviceServices.js';
+import { FaStar } from 'react-icons/fa';
 import toast from 'react-hot-toast';
 
 const Orders = () => {
@@ -137,10 +138,23 @@ const Orders = () => {
                                     Editar
                                 </NavLink>
                             )}
-                            {item.status === 'completed' && (
-                                <NavLink to={`/services/rating/${item.id}`}>
-                                    Valorar
-                                </NavLink>
+
+                            {item.status === 'completed' && item.rating ? (
+                                <div className='flex'>
+                                    {[...Array(5)].map((_, index) => (
+                                        <FaStar
+                                            key={index}
+                                            size={30}
+                                            color={index + 1 <= item.rating ? "#ffc107" : "#e4e5e9"}
+                                        />
+                                    ))}
+                                </div>
+                            ) : (
+                                item.status === 'completed' && (
+                                    <NavLink to={`/services/rating/${item.id}`}>
+                                        Valorar
+                                    </NavLink>
+                                )
                             )}
                         </li>
                     );
