@@ -7,6 +7,7 @@ import {
     fetchEditShiftRecordServices,
 } from '../services/shiftRecordServices';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { IconLocation } from '../components/IconLocation';
 import 'leaflet/dist/leaflet.css';
 
 const EditShiftRecordsPage = () => {
@@ -46,6 +47,8 @@ const EditShiftRecordsPage = () => {
     const handleEditShiftRecord = async (e) => {
         e.preventDefault();
 
+        console.log('aqui');
+
         try {
             const formattedClockIn = new Date(clockIn)
                 .toISOString()
@@ -74,12 +77,10 @@ const EditShiftRecordsPage = () => {
     const entrada = new Date(data?.clockIn).toLocaleString();
     const salida = new Date(data?.clockOut).toLocaleString();
 
-    console.log(location);
-
     return (
         <>
             <section className='mx-auto flex-1024'>
-                <form className='profile-form'>
+                <form className='profile-form' onSubmit={handleEditShiftRecord}>
                     <fieldset>
                         <h1>{`${data.firstName} ${data.lastName}`}</h1>
                         <h2>{`${data.address}, ${data.city}`}</h2>
@@ -128,7 +129,10 @@ const EditShiftRecordsPage = () => {
                                         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                                         url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
                                     />
-                                    <Marker position={location.currentLocation}>
+                                    <Marker
+                                        position={location.currentLocation}
+                                        icon={IconLocation}
+                                    >
                                         <Popup>Registro de Entrada</Popup>
                                     </Marker>
                                 </MapContainer>
@@ -138,9 +142,7 @@ const EditShiftRecordsPage = () => {
                             <span>Cargando el mapa</span>
                         )}
 
-                        <button onClick={() => handleEditShiftRecord()}>
-                            Editar Turno
-                        </button>
+                        <button>Editar Turno</button>
                     </fieldset>
                 </form>
             </section>
