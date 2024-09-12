@@ -13,13 +13,40 @@ const EditServicePage = () => {
 
     const navigate = useNavigate();
 
-    const [data, setData] = useState(null);
-    const [hours, setHours] = useState(data?.hours || 0);
-    const [dateTime, setDateTime] = useState(data?.dateTime || '');
-    const [address, setAddress] = useState(data?.address || '');
-    const [postCode, setPostCode] = useState(data?.postCode || '');
-    const [city, setCity] = useState(data?.city || '');
-    const [comments, setComments] = useState(data?.comments || '');
+    const [data, setData] = useState([]);
+    const [hours, setHours] = useState(0);
+    const [dateTime, setDateTime] = useState('');
+    const [address, setAddress] = useState('');
+    const [postCode, setPostCode] = useState('');
+    const [city, setCity] = useState('');
+    const [comments, setComments] = useState('');
+
+    const time = new Date(dateTime).toLocaleTimeString([], {
+        hour: '2-digit',
+        minute: '2-digit',
+    });
+
+    const getTomorrowDate = () => {
+        const today = new Date();
+        const tomorrow = new Date(today);
+        tomorrow.setDate(today.getDate() + 1);
+        return tomorrow.toISOString().split('T')[0];
+    };
+
+    const timeIntervals = () => {
+        const options = [];
+        const startHour = 8;
+        const endHour = 16;
+        for (let i = startHour * 60; i <= endHour * 60; i += 30) {
+            const hours = Math.floor(i / 60);
+            const minutes = i % 60;
+            const time = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+            options.push(time);
+        }
+        return options;
+    };
+
+    const valuesTimeInterval = timeIntervals();
 
     useEffect(() => {
         const getService = async () => {
@@ -41,8 +68,6 @@ const EditServicePage = () => {
 
         getService();
     }, [serviceId]);
-
-    useEffect(() => {}, [dateTime]);
 
     const handleEditService = async (e) => {
         e.preventDefault();
@@ -74,38 +99,60 @@ const EditServicePage = () => {
         }
     };
 
-    const time = new Date(dateTime).toLocaleTimeString();
-    const date = new Date(dateTime).toLocaleDateString();
-    // 2024-09-30T10:30:00.000Z ---> 2024-09-24T10:56
-    const arrayDate = date.split('/');
-    let ceroDelMes = '0';
-    if (arrayDate[1] > 9) ceroDelMes = '';
-    const rearrangeDate = `${arrayDate[2]}-${ceroDelMes}${arrayDate[1]}-${arrayDate[0]}`;
-    const arrayTime = time.split(':');
-    const rearrangeTime = `${arrayTime[0]}:${arrayTime[1]}`;
-    const dateTimeFinalConversion = `${rearrangeDate}T${rearrangeTime}`;
+    // const time = new Date(dateTime).toLocaleTimeString();
+    // const date = new Date(dateTime).toLocaleDateString();
+    // // 2024-09-30T10:30:00.000Z ---> 2024-09-24T10:56
+    // const arrayDate = date.split('/');
+    // let ceroDelMes = '0';
+    // if (arrayDate[1] > 9) ceroDelMes = '';
+    // const rearrangeDate = `${arrayDate[2]}-${ceroDelMes}${arrayDate[1]}-${arrayDate[0]}`;
+    // const arrayTime = time.split(':');
+    // const rearrangeTime = `${arrayTime[0]}:${arrayTime[1]}`;
+    // const dateTimeFinalConversion = `${rearrangeDate}T${rearrangeTime}`;
 
     return (
         <form className='profile-form mx-auto'>
             <fieldset>
                 <legend>{data?.type}</legend>
                 <h3>{data?.status}</h3>
-                <p className='text-left py-4'>
+                {/* <p className='text-left py-4'>
                     La fecha y hora actuales para el comienzo del servicio son:
                     <strong>
                         {} {date} a las {time}
                     </strong>
                     . <strong>Si quiere cambiarlas</strong>, hágalo en el campo
                     fecha y hora bajo estas líneas.
-                </p>
-                <label htmlFor='datetime'>Fecha y Hora</label>
+                </p> */}
+                <label htmlFor='date'>Fecha</label>
                 <input
-                    type='datetime-local'
-                    id='datetime'
-                    value={dateTimeFinalConversion}
-                    // value={dateTime}
-                    onChange={(e) => setDateTime(e.target.value)}
-                ></input>
+                    required
+                    type='date'
+                    id='date'
+                    value={dateTime.split('T')[0]}
+                    min={getTomorrowDate()}
+                    onChange={(e) =>
+                        setDateTime(
+                            e.target.value + 'T' + dateTime.split('T')[1]
+                        )
+                    }
+                />
+                <label htmlFor='time'>Hora</label>
+                <select
+                    required
+                    id='time'
+                    value={time}
+                    onChange={(e) =>
+                        setDateTime(
+                            dateTime.split('T')[0] + 'T' + e.target.value
+                        )
+                    }
+                >
+                    {valuesTimeInterval.map((opcion) => (
+                        <option key={opcion} value={opcion}>
+                            {opcion}
+                        </option>
+                    ))}
+                </select>
                 <label htmlFor='hours'>Horas</label>
                 <select
                     id='hours'

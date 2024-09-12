@@ -1,12 +1,15 @@
 const { VITE_API_URL } = import.meta.env;
-import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import { useState, useEffect, useContext } from 'react';
 import { fetchAllUsersServices } from '../../../services/userServices.js';
 import { fetchNewShiftRecordServices } from '../../../services/shiftRecordServices.js';
 import toast from 'react-hot-toast';
 
 const ListEmployeeController = ({ serviceId }) => {
     const { authToken } = useContext(AuthContext);
+
+    const navigate = useNavigate();
 
     const role = 'employee';
 
@@ -55,15 +58,15 @@ const ListEmployeeController = ({ serviceId }) => {
                 authToken
             );
 
-            setTimeout(() => {
-                window.location.reload();
-            }, 1000);
-
             toast.success(data.message, {
                 id: 'ok',
             });
+
+            navigate('/user');
         } catch (error) {
-            toast.error(error.message);
+            toast.error(error.message, {
+                id: 'error',
+            });
         }
     };
 

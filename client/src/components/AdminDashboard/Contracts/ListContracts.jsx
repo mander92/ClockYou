@@ -1,4 +1,3 @@
-const { VITE_CLIENT_URL } = import.meta.env;
 import { useEffect, useState, useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthContext';
@@ -97,7 +96,9 @@ const ListContracts = () => {
                                 className='mb-4'
                                 to={`/services/${item.serviceId}`}
                             >
-                                Ver
+                                {item.status === 'pending'
+                                    ? 'Asignar Empleado'
+                                    : 'Detalles'}
                             </NavLink>
                         </li>
                     );
