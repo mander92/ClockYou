@@ -14,7 +14,6 @@ import EditTypeOfServicePage from './pages/EditTypeOfServicePage.jsx';
 import DetailTypeOfServicePage from './pages/DetailTypeOfServicePage.jsx';
 import DetailServicePage from './pages/DetailServicePage.jsx';
 import ConfirmedServicePage from './pages/ConfirmedServicePage.jsx';
-// import ClockPage from './pages/ClockPage.jsx';
 import EditServicePage from './pages/EditServicePage.jsx';
 import EditShiftRecordsPage from './pages/EditShiftRecordsPage.jsx';
 import RatingServiceClientPage from './pages/RatingServiceClientPage.jsx';

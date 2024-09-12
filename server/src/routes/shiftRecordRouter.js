@@ -22,7 +22,6 @@ router.get('/shiftRecords', authUser, isAdmin, listShiftRecordsController);
 router.get(
     '/shiftRecords/:shiftRecordId',
     authUser,
-    isAdmin,
     shiftRecordExists,
     detailShiftRecordController
 );
