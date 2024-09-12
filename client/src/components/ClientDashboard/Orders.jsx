@@ -118,15 +118,14 @@ const Orders = () => {
                     const date = new Date(item.dateTime).toLocaleDateString();
 
                     return (
-                        <li id={item.id} key={item.id} className='py-4'>
-                            <h3>
-                                {item.type} en {item.province}
-                            </h3>
-                            <p >{item.comments}</p>
+                        <li id={item.id} key={item.id}>
+                            <h3>{item.type}</h3>
+                            <p className='font-extrabold'>{item.province}</p>
+                            <p className='grow'>{item.comments}</p>
                             <p className='font-extrabold'>
                                 El {date} a las {time}
                             </p>
-                            <p>
+                            <p className='grow'>
                                 En {item.address}, {item.postCode}, {item.city}
                             </p>
                             <p className='font-extrabold'>
@@ -143,13 +142,18 @@ const Orders = () => {
                                 </NavLink>
                             )}
 
-                            {item.status === 'completed' && item.rating != null ? (
+                            {item.status === 'completed' &&
+                            item.rating != null ? (
                                 <div className='flex my-6'>
                                     {[...Array(5)].map((_, index) => (
                                         <FaStar
                                             key={index}
                                             size={30}
-                                            color={index + 1 <= item.rating ? "#ffc107" : "#e4e5e9"}
+                                            color={
+                                                index + 1 <= item.rating
+                                                    ? '#ffc107'
+                                                    : '#e4e5e9'
+                                            }
                                         />
                                     ))}
                                 </div>

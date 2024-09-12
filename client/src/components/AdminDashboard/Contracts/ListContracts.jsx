@@ -79,18 +79,23 @@ const ListContracts = () => {
             </form>
             <ul className='cards'>
                 {data.map((item) => {
-                    const time = new Date(item.dateTime).toLocaleTimeString();
+                    const time = new Date(item.dateTime).toLocaleTimeString(
+                        [],
+                        {
+                            hour: '2-digit',
+                            minute: '2-digit',
+                        }
+                    );
                     const date = new Date(item.dateTime).toLocaleDateString();
                     return (
                         <li key={item.id}>
-                            <h3>
-                                {item.type} en {item.province}
-                            </h3>
-                            <p>{item.status}</p>
+                            <h3>{item.type}</h3>
+                            <p className='font-extrabold'>{item.province}</p>
                             <p>{item.city}</p>
-                            <p>
-                                {date} {time}
+                            <p className='font-extrabold'>
+                                El {date} a las {time}
                             </p>
+                            <p>{item.status}</p>
 
                             <NavLink
                                 className='mb-4'

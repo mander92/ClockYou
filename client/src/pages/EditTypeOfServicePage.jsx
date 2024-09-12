@@ -126,7 +126,7 @@ const EditTypeOfServicePage = () => {
                             required
                         />
                         <div className='mx-auto'>
-                            <button className='mr-4 mt-4' type='submit'>
+                            <button className='mr-4' type='submit'>
                                 Guardar
                             </button>
                             <button type='button' onClick={handleDeleteService}>
