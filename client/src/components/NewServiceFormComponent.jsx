@@ -15,10 +15,17 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
     const [city, setCity] = useState('');
     const [comments, setComments] = useState('');
 
+    const getTomorrowDate = () => {
+        const today = new Date();
+        const tomorrow = new Date(today);
+        tomorrow.setDate(today.getDate() + 1);
+        return tomorrow.toISOString().split('T')[0];
+    };
+
     const timeIntervals = () => {
         const options = [];
         const startHour = 8;
-        const endHour = 18;
+        const endHour = 16;
         for (let i = startHour * 60; i <= endHour * 60; i += 30) {
             const hours = Math.floor(i / 60);
             const minutes = i % 60;
@@ -40,13 +47,17 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
     };
 
     const handleNewService = async (e) => {
+        e.preventDefault();
         try {
-            e.preventDefault();
+            const formattedDateTime = new Date(dateTime)
+                .toISOString()
+                .slice(0, 19)
+                .replace('T', ' ');
 
             const data = await fetchNewServiceServices(
                 authToken,
                 typeOfServiceId,
-                dateTime,
+                formattedDateTime,
                 hours,
                 address,
                 postCode,
@@ -64,13 +75,6 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
                 id: 'error',
             });
         }
-    };
-
-    const getTomorrowDate = () => {
-        const today = new Date();
-        const tomorrow = new Date(today);
-        tomorrow.setDate(today.getDate() + 1);
-        return tomorrow.toISOString().split('T')[0];
     };
 
     return (
