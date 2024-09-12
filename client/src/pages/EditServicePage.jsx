@@ -75,6 +75,8 @@ const EditServicePage = () => {
     const time = new Date(dateTime).toLocaleTimeString();
     const date = new Date(dateTime).toLocaleDateString();
     // 2024-09-30T10:30:00.000Z ---> 2024-09-24T10:56
+    // const dateLocal = new Date(data?.dateTime).toLocaleString();
+    // console.log(dateLocal);
 
     return (
         <form className='profile-form mx-auto'>
