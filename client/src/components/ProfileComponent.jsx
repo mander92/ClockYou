@@ -210,7 +210,9 @@ const ProfileComponent = () => {
                 <form className='mx-auto' onSubmit={handleDeleteUser}>
                     <fieldset>
                         <div className='mx-auto'>
-                            <button type='submit'>Eliminar Usuario</button>
+                            <button className='mt-2' type='submit'>
+                                Eliminar Usuario
+                            </button>
                         </div>
                     </fieldset>
                 </form>
