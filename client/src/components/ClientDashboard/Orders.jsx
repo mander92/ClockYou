@@ -118,15 +118,15 @@ const Orders = () => {
                     const date = new Date(item.dateTime).toLocaleDateString();
 
                     return (
-                        <li id={item.id} key={item.id}>
+                        <li id={item.id} key={item.id} className='py-4'>
                             <h3>
                                 {item.type} en {item.province}
                             </h3>
-                            <p className='grow'>{item.comments}</p>
+                            <p >{item.comments}</p>
                             <p className='font-extrabold'>
                                 El {date} a las {time}
                             </p>
-                            <p className='grow'>
+                            <p>
                                 En {item.address}, {item.postCode}, {item.city}
                             </p>
                             <p className='font-extrabold'>
@@ -143,8 +143,8 @@ const Orders = () => {
                                 </NavLink>
                             )}
 
-                            {item.status === 'completed' && item.rating ? (
-                                <div className='flex'>
+                            {item.status === 'completed' && item.rating != null ? (
+                                <div className='flex my-6'>
                                     {[...Array(5)].map((_, index) => (
                                         <FaStar
                                             key={index}

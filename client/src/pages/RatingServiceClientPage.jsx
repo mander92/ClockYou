@@ -67,29 +67,29 @@ const RatingServiceClientPage = () => {
 
                 <div className='flex justify-center mb-4'>
                     {[...Array(5)].map((_, index) => {
-                            const currentRating = index + 1;
-                            return (
-                                <>
-                                    <label key={currentRating}></label>
-                                        <input
-                                            className='hidden'
-                                            type="radio"
-                                            name="rating"
-                                            value={currentRating}
-                                            checked={rating === currentRating}
-                                            onChange={() => setRating(currentRating)}
-                                        />
-                                        <FaStar
-                                            className='cursor-pointer'
-                                            size={30}
-                                            color={currentRating <= (hover || rating) ? "#ffc107" : "#e4e5e9"}
-                                            onMouseEnter={() => setHover(currentRating)}
-                                            onMouseLeave={() => setHover(null)}
-                                            onClick={() => setRating(currentRating)} 
-                                        />                       
-                                </>    
-                            );
-                        })}               
+                        const currentRating = index + 1;
+                        return (
+                            <>
+                                <label key={currentRating}></label>
+                                <input
+                                    className='hidden'
+                                    type="radio"
+                                    name="rating"
+                                    value={currentRating}
+                                    checked={rating === currentRating}
+                                    onChange={() => setRating(currentRating)}
+                                />
+                                <FaStar
+                                    className='cursor-pointer'
+                                    size={30}
+                                    color={currentRating <= (hover || rating) ? "#ffc107" : "#e4e5e9"}
+                                    onMouseEnter={() => setHover(currentRating)}
+                                    onMouseLeave={() => setHover(null)}
+                                    onClick={() => setRating(currentRating)} 
+                                />                       
+                            </>    
+                        );
+                    })}               
                 </div>
                 
 
