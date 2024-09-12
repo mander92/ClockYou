@@ -15,6 +15,21 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
     const [city, setCity] = useState('');
     const [comments, setComments] = useState('');
 
+    const timeIntervals = () => {
+        const options = [];
+        const startHour = 8;
+        const endHour = 18;
+        for (let i = startHour * 60; i <= endHour * 60; i += 30) {
+            const hours = Math.floor(i / 60);
+            const minutes = i % 60;
+            const time = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+            options.push(time);
+        }
+        return options;
+    };
+
+    const valuesTimeInterval = timeIntervals();
+
     const resetInputs = (e) => {
         e.preventDefault();
         setDateTime('');
@@ -51,24 +66,53 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
         }
     };
 
+    const getTomorrowDate = () => {
+        const today = new Date();
+        const tomorrow = new Date(today);
+        tomorrow.setDate(today.getDate() + 1);
+        return tomorrow.toISOString().split('T')[0];
+    };
+
     return (
         <form className='profile-form'>
             <fieldset>
                 <legend>Solicítalo</legend>
-                <label htmlFor='datetime'>Fecha y Hora</label>
+                <label htmlFor='date'>Fecha</label>
                 <input
-                    type='datetime-local'
-                    id='datetime'
-                    value={dateTime}
-                    onChange={(e) => setDateTime(e.target.value)}
                     required
+                    type='date'
+                    id='date'
+                    value={dateTime.split('T')[0]}
+                    min={getTomorrowDate()}
+                    onChange={(e) =>
+                        setDateTime(
+                            e.target.value + 'T' + dateTime.split('T')[1]
+                        )
+                    }
                 />
+                <label htmlFor='time'>Hora</label>
+                <select
+                    required
+                    id='time'
+                    value={dateTime.split('T')[1]}
+                    onChange={(e) =>
+                        setDateTime(
+                            dateTime.split('T')[0] + 'T' + e.target.value
+                        )
+                    }
+                >
+                    {valuesTimeInterval.map((opcion) => (
+                        <option key={opcion} value={opcion}>
+                            {opcion}
+                        </option>
+                    ))}
+                </select>
                 <label htmlFor='hours'>Horas</label>
                 <select
+                    required
                     id='hours'
                     value={hours}
                     onChange={(e) => setHours(e.target.value)}
-                    required
                 >
                     <option value='' disabled>
                         A contratar:
@@ -84,15 +128,16 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
                 </select>
                 <label htmlFor='address'>Dirección</label>
                 <input
+                    required
                     type='text'
                     id='address'
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
                     placeholder='Gran Vía, 1, 5B'
-                    required
                 />
                 <label htmlFor='postCode'>Código Postal</label>
                 <input
+                    required
                     type='number'
                     id='postCode'
                     value={postCode}
@@ -100,19 +145,19 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
                     placeholder='28013'
                     minLength='5'
                     maxLength='5'
-                    required
                 />
                 <label htmlFor='city'>Localidad</label>
                 <input
+                    required
                     type='text'
                     id='city'
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
                     placeholder='Madrid'
-                    required
                 />
                 <label htmlFor='comments'>Comentarios</label>
                 <textarea
+                    required
                     id='comments'
                     value={comments}
                     onChange={(e) => setComments(e.target.value)}
@@ -121,11 +166,10 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
                     maxLength='500'
                     rows='5'
                     style={{ resize: 'none' }}
-                    required
                 ></textarea>
                 <div className='mx-auto'>
                     <button
-                        className='mr-4 mt-2'
+                        className='mr-4'
                         type='submit'
                         onClick={handleNewService}
                     >
