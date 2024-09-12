@@ -163,6 +163,12 @@
         }
     }
 
+    @media (width < 640px) {
+        .manager-tabs {
+            overflow-x: scroll;
+        }
+    }
+
     .user-avatar {
         margin-top: 1rem;
         width: 200px;
