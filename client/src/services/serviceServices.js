@@ -168,3 +168,38 @@ export const fetchEditServiceServices = async (
 
     return body;
 };
+
+export const fetchClientRatingServiceServices = async (serviceId) => {
+    const res = await fetch(`${VITE_API_URL}/services/rating/${serviceId}`);
+
+    const body = await res.json();
+
+    if (body.status === 'error') {
+        throw new Error(body.message);
+    }
+
+    return body.data;
+};
+
+export const fetchRatingServiceServices = async (
+    serviceId,
+    rating,
+    authToken
+) => {
+    const res = await fetch(`${VITE_API_URL}/services/${serviceId}`, {
+        method: 'PATCH',
+        headers: {
+            Authorization: authToken,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({rating}),
+    });
+
+    const body = await res.json();
+
+    if (body.status === 'error') {
+        throw new Error(body.message);
+    }
+
+    return body;
+};

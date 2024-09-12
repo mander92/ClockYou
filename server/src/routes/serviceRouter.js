@@ -34,6 +34,11 @@ router.get(
 );
 
 router.get(
+    '/services/rating/:serviceId',
+    detailServiceController
+);
+
+router.get(
     '/services/employee',
     authUser,
     isEmployee,
