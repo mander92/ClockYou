@@ -6,7 +6,7 @@ import {
     fetchClockInShiftRecordServices,
     fetchClockOutShiftRecordServices,
 } from '../services/shiftRecordServices';
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+// import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import toast from 'react-hot-toast';
 
 const ClockPage = () => {
