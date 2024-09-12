@@ -55,10 +55,6 @@
         & .container {
             padding: 0 1rem 1rem 1rem;
         }
-
-        .manager-tabs {
-            overflow-x: scroll;
-        }
     }
 
     h1,
@@ -163,12 +159,6 @@
         }
     }
 
-    @media (width < 640px) {
-        .manager-tabs {
-            overflow-x: scroll;
-        }
-    }
-
     .user-avatar {
         margin-top: 1rem;
         width: 200px;
@@ -238,6 +228,12 @@
         max-width: 62rem;
         gap: 1rem;
         grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    }
+
+    @media (width < 640px) {
+        .manager-tabs {
+            overflow-x: scroll;
+        }
     }
 
     @media only screen and (min-width: 640px) {
