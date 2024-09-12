@@ -6,8 +6,9 @@ import {
     fetchDetailShiftRecordServices,
     fetchEditShiftRecordServices,
 } from '../services/shiftRecordServices';
-import { GoogleMap, LoadScript } from '@react-google-maps/api';
-const { VITE_GOOGLE_API_KEY } = import.meta.env;
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { IconLocation } from '../components/IconLocation';
+import 'leaflet/dist/leaflet.css';
 
 const EditShiftRecordsPage = () => {
     const { shiftRecordId } = useParams();
@@ -16,7 +17,7 @@ const EditShiftRecordsPage = () => {
     const [clockIn, setClockIn] = useState(data?.clockIn);
     const [clockOut, setClockOut] = useState(data?.clockOut);
 
-    const [mapaActual, setMapaActual] = useState(null);
+    const [location, setLocation] = useState({});
 
     useEffect(() => {
         const getDetailShiftRecord = async () => {
@@ -27,16 +28,14 @@ const EditShiftRecordsPage = () => {
                 );
 
                 setData(data);
-                setClockIn(data.clockIn);
-                setClockOut(data.clockOut);
-                const latitude = data.latitude;
-                const longitude = data.longitude;
-
-                const ubicacion = {
-                    lat: parseFloat(latitude),
-                    lng: parseFloat(longitude),
-                };
-                mostrarMapa(ubicacion);
+                setClockIn(data?.clockIn);
+                setClockOut(data?.clockOut);
+                setLocation({
+                    currentLocation: {
+                        lat: data?.latitude,
+                        lng: data?.longitude,
+                    },
+                });
             } catch (error) {
                 toast.error(error.message);
             }
@@ -45,12 +44,10 @@ const EditShiftRecordsPage = () => {
         getDetailShiftRecord();
     }, []);
 
-    const mostrarMapa = (ubicacion) => {
-        setMapaActual(ubicacion);
-    };
-
     const handleEditShiftRecord = async (e) => {
         e.preventDefault();
+
+        console.log('aqui');
 
         try {
             const formattedClockIn = new Date(clockIn)
@@ -77,19 +74,13 @@ const EditShiftRecordsPage = () => {
         }
     };
 
-    const mapContainerStyle = {
-        width: '80%',
-        height: '250px',
-        margin: '15px auto',
-    };
-
-    const entrada = new Date(data.clockIn).toLocaleString();
-    const salida = new Date(data.clockOut).toLocaleString();
+    const entrada = new Date(data?.clockIn).toLocaleString();
+    const salida = new Date(data?.clockOut).toLocaleString();
 
     return (
         <>
             <section className='mx-auto flex-1024'>
-                <form className='profile-form'>
+                <form className='profile-form' onSubmit={handleEditShiftRecord}>
                     <fieldset>
                         <h1>{`${data.firstName} ${data.lastName}`}</h1>
                         <h2>{`${data.address}, ${data.city}`}</h2>
@@ -105,16 +96,6 @@ const EditShiftRecordsPage = () => {
                         <p>{data.hours}</p>
                         <p className='font-extrabold'>DescripciÃ³n</p>
                         <p>{data.description}</p>
-
-                        <LoadScript googleMapsApiKey={VITE_GOOGLE_API_KEY}>
-                            <GoogleMap
-                                mapContainerStyle={mapContainerStyle}
-                                center={mapaActual}
-                                zoom={15}
-                            >
-                                {/* <Marker position={mapaActual} /> */}
-                            </GoogleMap>
-                        </LoadScript>
 
                         <label htmlFor='clockin' className='font-extrabold'>
                             Entrada
@@ -137,9 +118,31 @@ const EditShiftRecordsPage = () => {
                             value={clockOut}
                             onChange={(e) => setClockOut(e.target.value)}
                         />
-                        <button onClick={() => handleEditShiftRecord()}>
-                            Editar Turno
-                        </button>
+                        {location.currentLocation ? (
+                            <div>
+                                <MapContainer
+                                    center={location.currentLocation}
+                                    zoom={13}
+                                    scrollWheelZoom={false}
+                                >
+                                    <TileLayer
+                                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                                        url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+                                    />
+                                    <Marker
+                                        position={location.currentLocation}
+                                        icon={IconLocation}
+                                    >
+                                        <Popup>Registro de Entrada</Popup>
+                                    </Marker>
+                                </MapContainer>
+                                ;
+                            </div>
+                        ) : (
+                            <span>Cargando el mapa</span>
+                        )}
+
+                        <button>Editar Turno</button>
                     </fieldset>
                 </form>
             </section>
