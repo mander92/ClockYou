@@ -1,4 +1,3 @@
-// const { VITE_CLIENT_URL } = import.meta.env;
 import { AuthContext } from '../../../src/context/AuthContext.jsx';
 import { NavLink } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react';
@@ -108,7 +107,13 @@ const Orders = () => {
             </form>
             <ul className='cards'>
                 {data.map((item) => {
-                    const time = new Date(item.dateTime).toLocaleTimeString();
+                    const time = new Date(item.dateTime).toLocaleTimeString(
+                        [],
+                        {
+                            hour: '2-digit',
+                            minute: '2-digit',
+                        }
+                    );
                     const date = new Date(item.dateTime).toLocaleDateString();
 
                     return (
@@ -116,22 +121,21 @@ const Orders = () => {
                             <h3>
                                 {item.type} en {item.province}
                             </h3>
+                            <p className='grow'>{item.comments}</p>
+                            <p className='font-extrabold'>
+                                El {date} a las {time}
+                            </p>
+                            <p className='grow'>
+                                En {item.address}, {item.postCode}, {item.city}
+                            </p>
                             <p className='font-extrabold'>
                                 Estado: {item.status}
                             </p>
-                            <p>Precio Hora: {item.price}€</p>
+                            <p>Precio: {item.price}€</p>
                             <p>Horas Contratadas: {item.hours}</p>
                             <p className='font-extrabold'>
                                 Total: {item.totalPrice}€
                             </p>
-                            <p>
-                                El {date} a las {time}
-                            </p>
-                            <p>
-                                En {item.address}, {item.postCode}, {item.city}
-                            </p>
-                            <p>{item.comments}</p>
-
                             {item.status === 'pending' && (
                                 <NavLink to={`/user/services/edit/${item.id}`}>
                                     Editar
