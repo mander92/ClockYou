@@ -42,6 +42,8 @@ const EditServicePage = () => {
         getService();
     }, [serviceId]);
 
+    useEffect(() => {}, [dateTime]);
+
     const handleEditService = async (e) => {
         e.preventDefault();
 
@@ -75,14 +77,13 @@ const EditServicePage = () => {
     const time = new Date(dateTime).toLocaleTimeString();
     const date = new Date(dateTime).toLocaleDateString();
     // 2024-09-30T10:30:00.000Z ---> 2024-09-24T10:56
-    // const dateLocal = new Date(data?.dateTime).toLocaleString();
-    // console.log(dateLocal);
-
-    // const arrDate = date.split('/');
-    // const rearrangeDate = `${arrDate[2]}-${arrDate[1]}-${arrDate[0]}`;
-    // const arrTime = time.split(':');
-    // const rearrangeTime = `${arrTime[0]}:${arrTime[1]}`;
-    // const dateTimeFinalConversion = `${rearrangeDate}T${rearrangeTime}`;
+    const arrayDate = date.split('/');
+    let ceroDelMes = '0';
+    if (arrayDate[1] > 9) ceroDelMes = '';
+    const rearrangeDate = `${arrayDate[2]}-${ceroDelMes}${arrayDate[1]}-${arrayDate[0]}`;
+    const arrayTime = time.split(':');
+    const rearrangeTime = `${arrayTime[0]}:${arrayTime[1]}`;
+    const dateTimeFinalConversion = `${rearrangeDate}T${rearrangeTime}`;
 
     return (
         <form className='profile-form mx-auto'>
@@ -101,7 +102,8 @@ const EditServicePage = () => {
                 <input
                     type='datetime-local'
                     id='datetime'
-                    value={dateTime}
+                    value={dateTimeFinalConversion}
+                    // value={dateTime}
                     onChange={(e) => setDateTime(e.target.value)}
                 ></input>
                 <label htmlFor='hours'>Horas</label>
