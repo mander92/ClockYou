@@ -102,28 +102,29 @@ const EditTypeOfServicePage = () => {
                         <legend>Editar</legend>
                         <label htmlFor='description'>Descripción</label>
                         <input
+                            required
                             id='description'
                             type='text'
                             value={description}
+                            placeholder={data?.description}
                             onChange={(e) => {
                                 setDescription(e.target.value);
                             }}
-                            placeholder={data?.description}
-                            required
                         />
 
                         <label htmlFor='price'>Precio</label>
                         <input
+                            required
                             id='price'
                             type='number'
+                            min='1'
+                            max='100'
+                            step='0.01'
                             value={price}
+                            placeholder={data?.price}
                             onChange={(e) => {
                                 setPrice(e.target.value);
                             }}
-                            min={1}
-                            max={100}
-                            placeholder={data?.price}
-                            required
                         />
                         <div className='mx-auto'>
                             <button className='mr-4' type='submit'>

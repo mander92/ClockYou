@@ -48,23 +48,23 @@ const RegisterNewTypeOfServiceController = () => {
     };
 
     return (
-        <form className='mx-auto' onSubmit={handleRegisterNewTypeOfService}>
+        <form className='mx-auto'>
             <fieldset>
                 <legend>Servicio</legend>
                 <label htmlFor='type'>Tipo</label>
                 <input
+                    required
                     id='type'
                     type='text'
+                    placeholder='Masajes'
                     value={type}
                     onChange={(e) => {
                         setType(e.target.value);
                     }}
-                    placeholder={'Masajes'}
-                    required
                 />
-
                 <label htmlFor='city'>Ciudad</label>
                 <input
+                    required
                     id='city'
                     type='text'
                     value={city}
@@ -72,30 +72,30 @@ const RegisterNewTypeOfServiceController = () => {
                         setCity(e.target.value);
                     }}
                     placeholder={'Madrid'}
-                    required
                 />
                 <label htmlFor='price'>Precio</label>
                 <input
+                    required
                     id='price'
                     type='number'
+                    min='1'
+                    max='100'
+                    step='0.01'
+                    placeholder='15'
                     value={price}
                     onChange={(e) => {
                         setPrice(e.target.value);
                     }}
-                    min={1}
-                    max={100}
-                    placeholder={'Precio'}
-                    required
                 />
                 <label htmlFor='description'>Descripción</label>
                 <textarea
+                    required
                     id='description'
                     type='text'
                     minLength='10'
                     maxLength='500'
                     rows='2'
                     style={{ resize: 'none' }}
-                    required
                     value={description}
                     onChange={(e) => {
                         setDescription(e.target.value);
@@ -108,17 +108,20 @@ const RegisterNewTypeOfServiceController = () => {
                     Selecciona Imágen
                 </label>
                 <input
+                    required
                     id='file'
-                    className='hidden'
                     type='file'
+                    className='hidden'
                     accept='image/png, image/jpg, image/jpeg, image/tiff'
                     onChange={(e) => {
                         setImage(e.target.files[0]);
                     }}
-                    required
                 ></input>
                 <div className='mx-auto'>
-                    <button className='mr-4' type='submit'>
+                    <button
+                        className='mr-4'
+                        onClick={handleRegisterNewTypeOfService}
+                    >
                         Registrar
                     </button>
                     <button onClick={resetInputs}>Limpiar</button>
