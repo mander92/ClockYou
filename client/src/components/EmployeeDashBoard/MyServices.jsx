@@ -1,17 +1,19 @@
 import { AuthContext } from '../../context/AuthContext';
-import { NavLink } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react';
 import { fetchEmployeeAllServicesServices } from '../../services/serviceServices';
 import { FaStar } from 'react-icons/fa';
+import ShiftModal from './ShiftRecordComponent.jsx';
 import toast from 'react-hot-toast';
 
 const MyServices = () => {
     const { authToken } = useContext(AuthContext);
 
     const [data, setData] = useState(null);
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [selectedShiftRecordId, setSelectedShiftRecordId] = useState(null);
 
     useEffect(() => {
-        const getTypeOfServices = async () => {
+        const getServices = async () => {
             try {
                 const data = await fetchEmployeeAllServicesServices(authToken);
 
@@ -23,8 +25,18 @@ const MyServices = () => {
             }
         };
 
-        getTypeOfServices();
+        getServices();
     }, [authToken]);
+
+    const openModal = (shiftRecordId) => {
+        setSelectedShiftRecordId(shiftRecordId);
+        setModalIsOpen(true);
+    };
+
+    const closeModal = () => {
+        setModalIsOpen(false);
+        setSelectedShiftRecordId(null);
+    };
 
     return (
         <>
@@ -92,11 +104,13 @@ const MyServices = () => {
                                     </div>
                                 ) : (
                                     item.status === 'confirmed' && (
-                                        <NavLink
-                                            to={`/shiftRecords/${item.shiftRecordId}`}
+                                        <button
+                                            onClick={() =>
+                                                openModal(item.shiftRecordId)
+                                            }
                                         >
                                             Fichar
-                                        </NavLink>
+                                        </button>
                                     )
                                 )}
                             </li>
@@ -104,6 +118,11 @@ const MyServices = () => {
                     })}
                 </ul>
             }
+            <ShiftModal
+                isOpen={modalIsOpen}
+                onRequestClose={closeModal}
+                shiftRecordId={selectedShiftRecordId}
+            />
         </>
     );
 };

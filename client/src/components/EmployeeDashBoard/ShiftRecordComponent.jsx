@@ -1,18 +1,15 @@
 import { useState, useContext } from 'react';
-import { AuthContext } from '../context/AuthContext';
-import { useNavigate, useParams } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext';
 import {
     fetchClockInShiftRecordServices,
     fetchClockOutShiftRecordServices,
-} from '../services/shiftRecordServices';
+} from '../../services/shiftRecordServices';
 import toast from 'react-hot-toast';
-import Map from '../components/Map';
+import Map from '../Map';
+import Modal from 'react-modal';
 
-const ShiftRecordPage = () => {
-    const { shiftRecordId } = useParams();
+const ShiftRecordComponent = ({ shiftRecordId, onRequestClose }) => {
     const { authToken } = useContext(AuthContext);
-
-    const navigate = useNavigate();
 
     const [location, setLocation] = useState({
         currentLocation: { lat: '', lng: '' },
@@ -51,7 +48,7 @@ const ShiftRecordPage = () => {
             toast.success(data.message, {
                 id: 'ok',
             });
-            navigate('/user');
+            onRequestClose();
         } catch (error) {
             toast.error(error.message, {
                 id: 'error',
@@ -72,7 +69,7 @@ const ShiftRecordPage = () => {
             toast.success(data.message, {
                 id: 'ok',
             });
-            navigate('/user');
+            onRequestClose();
         } catch (error) {
             toast.error(error.message, {
                 id: 'error',
@@ -99,4 +96,20 @@ const ShiftRecordPage = () => {
     );
 };
 
-export default ShiftRecordPage;
+const RatingModal = ({ isOpen, onRequestClose, shiftRecordId }) => {
+    return (
+        <Modal
+            isOpen={isOpen}
+            onRequestClose={onRequestClose}
+            ariaHideApp={false}
+            className='modal-content'
+        >
+            <ShiftRecordComponent
+                shiftRecordId={shiftRecordId}
+                onRequestClose={onRequestClose}
+            />
+        </Modal>
+    );
+};
+
+export default RatingModal;

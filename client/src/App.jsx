@@ -17,7 +17,7 @@ import ConfirmedServicePage from './pages/ConfirmedServicePage.jsx';
 import EditServicePage from './pages/EditServicePage.jsx';
 import EditShiftRecordsPage from './pages/EditShiftRecordsPage.jsx';
 import RatingServiceComponent from './components/ClientDashboard/RatingServiceComponent.jsx';
-import ShiftRecordPage from './pages/ShiftRecordPage.jsx';
+import ShiftRecordComponent from './components/EmployeeDashboard/ShiftRecordComponent.jsx';
 
 const App = () => {
     return (
@@ -77,7 +77,7 @@ const App = () => {
 
                     <Route
                         path='/shiftRecords/:shiftRecordId'
-                        element={<ShiftRecordPage />}
+                        element={<ShiftRecordComponent />}
                     />
 
                     <Route
