@@ -2,7 +2,7 @@ import { AuthContext } from '../../context/AuthContext';
 import { useEffect, useState, useContext } from 'react';
 import { fetchEmployeeAllServicesServices } from '../../services/serviceServices';
 import { FaStar } from 'react-icons/fa';
-import ShiftModal from './ShiftRecordComponent.jsx';
+import ShiftRecordModal from './ShiftRecordComponent.jsx';
 import toast from 'react-hot-toast';
 
 const MyServices = () => {
@@ -11,12 +11,12 @@ const MyServices = () => {
     const [data, setData] = useState(null);
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [selectedShiftRecordId, setSelectedShiftRecordId] = useState(null);
+    const [initialLocation, setInitialLocation] = useState(null);
 
     useEffect(() => {
         const getServices = async () => {
             try {
                 const data = await fetchEmployeeAllServicesServices(authToken);
-
                 setData(data);
             } catch (error) {
                 toast.error(error.message, {
@@ -29,13 +29,38 @@ const MyServices = () => {
     }, [authToken]);
 
     const openModal = (shiftRecordId) => {
-        setSelectedShiftRecordId(shiftRecordId);
-        setModalIsOpen(true);
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const location = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude,
+                    };
+                    setInitialLocation(location);
+                    setSelectedShiftRecordId(shiftRecordId);
+                    setModalIsOpen(true);
+                },
+                (error) => {
+                    console.error('Error obteniendo la ubicación: ', error);
+                    setInitialLocation(null);
+                    setSelectedShiftRecordId(shiftRecordId);
+                    setModalIsOpen(true);
+                }
+            );
+        } else {
+            console.error(
+                'Geolocalización no es soportada por este navegador.'
+            );
+            setInitialLocation(null);
+            setSelectedShiftRecordId(shiftRecordId);
+            setModalIsOpen(true);
+        }
     };
 
     const closeModal = () => {
         setModalIsOpen(false);
         setSelectedShiftRecordId(null);
+        setInitialLocation(null);
     };
 
     return (
@@ -118,10 +143,11 @@ const MyServices = () => {
                     })}
                 </ul>
             }
-            <ShiftModal
+            <ShiftRecordModal
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}
                 shiftRecordId={selectedShiftRecordId}
+                initialLocation={initialLocation}
             />
         </>
     );

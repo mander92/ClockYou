@@ -8,11 +8,15 @@ import toast from 'react-hot-toast';
 import Map from '../Map';
 import Modal from 'react-modal';
 
-const ShiftRecordComponent = ({ shiftRecordId, onRequestClose }) => {
+const ShiftRecordComponent = ({
+    shiftRecordId,
+    onRequestClose,
+    initialLocation,
+}) => {
     const { authToken } = useContext(AuthContext);
 
     const [location, setLocation] = useState({
-        currentLocation: { lat: '', lng: '' },
+        currentLocation: initialLocation || { lat: '', lng: '' },
     });
 
     const getLocation = () => {
@@ -95,7 +99,12 @@ const ShiftRecordComponent = ({ shiftRecordId, onRequestClose }) => {
     );
 };
 
-const RatingModal = ({ isOpen, onRequestClose, shiftRecordId }) => {
+const ShiftRecordModal = ({
+    isOpen,
+    onRequestClose,
+    shiftRecordId,
+    initialLocation,
+}) => {
     return (
         <Modal
             isOpen={isOpen}
@@ -106,9 +115,10 @@ const RatingModal = ({ isOpen, onRequestClose, shiftRecordId }) => {
             <ShiftRecordComponent
                 shiftRecordId={shiftRecordId}
                 onRequestClose={onRequestClose}
+                initialLocation={initialLocation}
             />
         </Modal>
     );
 };
 
-export default RatingModal;
+export default ShiftRecordModal;

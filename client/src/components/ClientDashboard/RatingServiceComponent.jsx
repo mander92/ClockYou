@@ -83,7 +83,6 @@ const RatingModal = ({ isOpen, onRequestClose, serviceId }) => {
         <Modal
             isOpen={isOpen}
             onRequestClose={onRequestClose}
-            ariaHideApp={false}
             className='modal-content'
         >
             <RatingServiceComponent
