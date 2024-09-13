@@ -3,12 +3,16 @@ import { useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext.jsx';
 import { fetchEditAvatarUserServices } from '../services/userServices.js';
 import useUser from '../hooks/useUser.js';
+import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
 const AvatarComponent = () => {
     const { user } = useUser();
     const { authToken } = useContext(AuthContext);
+
     const userId = user?.id;
+
+    const navigate = useNavigate();
 
     const [avatar, setAvatar] = useState(null);
     const [enableEditAvatar, setEnableEditAvatar] = useState(false);
@@ -26,7 +30,8 @@ const AvatarComponent = () => {
                 toast.success(data.message, {
                     id: 'ok',
                 });
-                window.location.reload();
+
+                navigate('/');
             }
             setEnableEditAvatar(!enableEditAvatar);
         } catch (error) {
