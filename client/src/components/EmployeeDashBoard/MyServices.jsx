@@ -25,9 +25,11 @@ const MyServices = () => {
         getTypeOfServices();
     }, [authToken]);
 
+    console.log(data);
+
     return (
         <>
-            {data.length === 0 ? (
+            {
                 <ul className='cards'>
                     {data?.map((item) => {
                         const date = new Date(
@@ -61,9 +63,7 @@ const MyServices = () => {
                         );
                     })}
                 </ul>
-            ) : (
-                <h1></h1>
-            )}
+            }
         </>
     );
 };
