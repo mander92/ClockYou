@@ -79,7 +79,6 @@ const ShiftRecordComponent = ({ shiftRecordId, onRequestClose }) => {
 
     return (
         <form className='mx-auto form-1024'>
-            <h2 className='mb-4'>Registro Horario</h2>
             <fieldset>
                 <button
                     className='mt-4 mb-2 text-white bg-green-600'
