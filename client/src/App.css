@@ -126,11 +126,13 @@
             }
         }
 
-        & button {
+        & button,
+        .input-file {
             padding: 0.5rem 1rem;
             border-radius: 20px;
             color: var(--white-color);
             background-color: var(--cerulean);
+            cursor: pointer;
         }
     }
 
@@ -240,6 +242,12 @@
         grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     }
 
+    .leaflet-container {
+        height: 300px;
+        width: 500px;
+        margin: 0 auto;
+    }
+
     @media (width > 599px) {
         .manager-tabs {
             justify-content: center;
@@ -284,10 +292,4 @@
             margin: 0rem 16rem;
         }
     }
-}
-
-.leaflet-container {
-    height: 300px;
-    width: 500px;
-    margin: 0 auto; /* Centra el mapa horizontalmente */
 }

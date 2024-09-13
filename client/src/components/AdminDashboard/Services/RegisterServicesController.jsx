@@ -62,19 +62,7 @@ const RegisterNewTypeOfServiceController = () => {
                     placeholder={'Masajes'}
                     required
                 />
-                <label htmlFor='description'>Descripción</label>
-                <input
-                    id='description'
-                    type='text'
-                    value={description}
-                    onChange={(e) => {
-                        setDescription(e.target.value);
-                    }}
-                    placeholder={
-                        'Sesiones de relajación y bienestar a domicilio.'
-                    }
-                    required
-                />
+
                 <label htmlFor='city'>Ciudad</label>
                 <input
                     id='city'
@@ -99,8 +87,29 @@ const RegisterNewTypeOfServiceController = () => {
                     placeholder={'Precio'}
                     required
                 />
-                <label htmlFor='file'>Imágen</label>
+                <label htmlFor='description'>Descripción</label>
+                <textarea
+                    id='description'
+                    type='text'
+                    minLength='10'
+                    maxLength='500'
+                    rows='2'
+                    style={{ resize: 'none' }}
+                    required
+                    value={description}
+                    onChange={(e) => {
+                        setDescription(e.target.value);
+                    }}
+                    placeholder={
+                        'Sesiones de relajación y bienestar a domicilio.'
+                    }
+                />
+                <label className='input-file text-center mt-2' htmlFor='file'>
+                    Selecciona Imágen
+                </label>
                 <input
+                    id='file'
+                    className='hidden'
                     type='file'
                     accept='image/png, image/jpg, image/jpeg, image/tiff'
                     onChange={(e) => {
