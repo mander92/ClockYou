@@ -122,7 +122,7 @@ const Orders = () => {
                             <h3>
                                 {item.type} en {item.province}
                             </h3>
-                            <p >{item.comments}</p>
+                            <p>{item.comments}</p>
                             <p className='font-extrabold'>
                                 El {date} a las {time}
                             </p>
@@ -138,18 +138,34 @@ const Orders = () => {
                                 Total: {item.totalPrice}€
                             </p>
                             {item.status === 'pending' && (
-                                <NavLink to={`/user/services/edit/${item.id}`}>
-                                    Editar
-                                </NavLink>
+                                <div className='flex gap-10'>
+                                    <button>
+                                        <NavLink
+                                            to={`/user/services/edit/${item.id}`}
+                                        >
+                                            Editar
+                                        </NavLink>
+                                    </button>
+
+                                    <button className='bg-red-700'>
+                                        {/*Esto no pinta en rojo*/}
+                                        Cancelar
+                                    </button>
+                                </div>
                             )}
 
-                            {item.status === 'completed' && item.rating != null ? (
+                            {item.status === 'completed' &&
+                            item.rating != null ? (
                                 <div className='flex my-6'>
                                     {[...Array(5)].map((_, index) => (
                                         <FaStar
                                             key={index}
                                             size={30}
-                                            color={index + 1 <= item.rating ? "#ffc107" : "#e4e5e9"}
+                                            color={
+                                                index + 1 <= item.rating
+                                                    ? '#ffc107'
+                                                    : '#e4e5e9'
+                                            }
                                         />
                                     ))}
                                 </div>

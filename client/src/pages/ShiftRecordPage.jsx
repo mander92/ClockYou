@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import toast from 'react-hot-toast';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, NavLink } from 'react-router-dom';
 import {
     fetchClockInShiftRecordServices,
     fetchClockOutShiftRecordServices,
@@ -12,8 +12,8 @@ import Map from '../components/Map';
 const ShiftRecordPage = () => {
     const { authToken } = useContext(AuthContext);
     const { shiftRecordId } = useParams();
-    const navigate = useNavigate();
     const [clockIn, setClockIn] = useState([]);
+    const [ClockOut, setClockOut] = useState([]);
     const [enableEntrada, setEnableEntrada] = useState(false);
     const [enableSalida, setEnableSalida] = useState(false);
     const [entradaLocal, setEntradaLocal] = useState(null);
@@ -31,6 +31,7 @@ const ShiftRecordPage = () => {
                 );
 
                 setClockIn(data?.clockIn);
+                setClockOut(data?.ClockOut);
             } catch (error) {
                 toast.error(error.message);
             }
@@ -93,6 +94,7 @@ const ShiftRecordPage = () => {
             setEnableSalida(true);
 
             const salidas = new Date();
+            setClockOut(salidas);
 
             const salidaToLocalString = salidas.toLocaleString();
             setSalidaLocal(salidaToLocalString);
@@ -106,8 +108,6 @@ const ShiftRecordPage = () => {
             toast.success(dataClockOut.message, {
                 id: 'ok',
             });
-
-            navigate('/user');
         } catch (error) {
             toast.error(error.message);
         }
@@ -136,7 +136,7 @@ const ShiftRecordPage = () => {
                 </div>
 
                 <p>
-                    Entrada:{' '}
+                    Entrada:
                     {clockIn
                         ? entradaLocalString
                         : entradaLocal
@@ -146,6 +146,11 @@ const ShiftRecordPage = () => {
                 <p>Salida: {salidaLocal ? salidaLocal : ''}</p>
                 {location.currentLocation.lat && entradaLocal && (
                     <Map location={location} />
+                )}
+                {salidaLocal && (
+                    <button className='max-w-56 mx-auto border-2 rounded-xl'>
+                        <NavLink to={'/'}>Pincha auí para volver</NavLink>
+                    </button>
                 )}
             </h2>
         </div>
