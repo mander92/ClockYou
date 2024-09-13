@@ -242,6 +242,19 @@
         grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     }
 
+    .modal-content {
+        position: absolute;
+        padding: 0 1rem 1rem 1rem;
+        background-color: var(--glacier-blue);
+        border-radius: 20px;
+        top: 50%;
+        left: 50%;
+        right: auto;
+        bottom: auto;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+    }
+
     @media (width > 555px) {
         .manager-tabs {
             justify-content: center;

@@ -1,8 +1,9 @@
-import { AuthContext } from '../../../src/context/AuthContext.jsx';
+import { AuthContext } from '../../../src/context/AuthContext';
 import { NavLink } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react';
 import { fetchClientAllServicesServices } from '../../services/serviceServices.js';
 import { FaStar } from 'react-icons/fa';
+import RatingModal from './RatingServiceComponent.jsx';
 import toast from 'react-hot-toast';
 
 const Orders = () => {
@@ -12,6 +13,8 @@ const Orders = () => {
     const [status, setStatus] = useState('');
     const [type, setType] = useState('');
     const [city, setCity] = useState('');
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [selectedServiceId, setSelectedServiceId] = useState(null);
 
     const resetFilters = (e) => {
         e.preventDefault();
@@ -46,6 +49,16 @@ const Orders = () => {
 
     const cityNoRepeated = [...new Set(data.map((item) => item.city))];
     const typeNoRepeated = [...new Set(data.map((item) => item.type))];
+
+    const openModal = (serviceId) => {
+        setSelectedServiceId(serviceId);
+        setModalIsOpen(true);
+    };
+
+    const closeModal = () => {
+        setModalIsOpen(false);
+        setSelectedServiceId(null);
+    };
 
     return (
         <>
@@ -108,8 +121,6 @@ const Orders = () => {
             </form>
             <ul className='cards'>
                 {data.map((item) => {
-                    console.log(item);
-
                     const time = new Date(item.dateTime).toLocaleTimeString(
                         [],
                         {
@@ -119,7 +130,7 @@ const Orders = () => {
                     );
                     const date = new Date(item.dateTime).toLocaleDateString();
                     return (
-                        <li id={item.id} key={item.id}>
+                        <li key={item.id}>
                             <h3>{item.type}</h3>
                             <p className='font-extrabold'>{item.province}</p>
                             <p className='grow'>{item.comments}</p>
@@ -178,15 +189,20 @@ const Orders = () => {
                                 </div>
                             ) : (
                                 item.status === 'completed' && (
-                                    <NavLink to={`/services/rating/${item.id}`}>
+                                    <button onClick={() => openModal(item.id)}>
                                         Valorar
-                                    </NavLink>
+                                    </button>
                                 )
                             )}
                         </li>
                     );
                 })}
             </ul>
+            <RatingModal
+                isOpen={modalIsOpen}
+                onRequestClose={closeModal}
+                serviceId={selectedServiceId}
+            />
         </>
     );
 };

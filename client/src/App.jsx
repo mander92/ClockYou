@@ -16,7 +16,7 @@ import DetailServicePage from './pages/DetailServicePage.jsx';
 import ConfirmedServicePage from './pages/ConfirmedServicePage.jsx';
 import EditServicePage from './pages/EditServicePage.jsx';
 import EditShiftRecordsPage from './pages/EditShiftRecordsPage.jsx';
-import RatingServiceClientPage from './pages/RatingServiceClientPage.jsx';
+import RatingServiceComponent from './components/ClientDashboard/RatingServiceComponent.jsx';
 import ShiftRecordPage from './pages/ShiftRecordPage.jsx';
 
 const App = () => {
@@ -57,8 +57,8 @@ const App = () => {
                     />
 
                     <Route
-                        path='/services/rating/:serviceId' //Thanh
-                        element={<RatingServiceClientPage />}
+                        path='/services/rating/:serviceId'
+                        element={<RatingServiceComponent />}
                     />
 
                     <Route
