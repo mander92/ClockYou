@@ -1,43 +1,22 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
-import toast from 'react-hot-toast';
-import { useParams, NavLink } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import {
     fetchClockInShiftRecordServices,
     fetchClockOutShiftRecordServices,
-    fetchDetailShiftRecordServices,
 } from '../services/shiftRecordServices';
+import toast from 'react-hot-toast';
 import Map from '../components/Map';
 
 const ShiftRecordPage = () => {
-    const { authToken } = useContext(AuthContext);
     const { shiftRecordId } = useParams();
-    const [clockIn, setClockIn] = useState([]);
-    const [ClockOut, setClockOut] = useState([]);
-    const [enableEntrada, setEnableEntrada] = useState(false);
-    const [enableSalida, setEnableSalida] = useState(false);
-    const [entradaLocal, setEntradaLocal] = useState(null);
-    const [salidaLocal, setSalidaLocal] = useState(null);
+    const { authToken } = useContext(AuthContext);
+
+    const navigate = useNavigate();
+
     const [location, setLocation] = useState({
         currentLocation: { lat: '', lng: '' },
     });
-
-    useEffect(() => {
-        const getAllData = async () => {
-            try {
-                const data = await fetchDetailShiftRecordServices(
-                    shiftRecordId,
-                    authToken
-                );
-
-                setClockIn(data?.clockIn);
-                setClockOut(data?.ClockOut);
-            } catch (error) {
-                toast.error(error.message);
-            }
-        };
-        getAllData();
-    }, []);
 
     const getLocation = () => {
         return new Promise((resolve, reject) => {
@@ -56,104 +35,67 @@ const ShiftRecordPage = () => {
         });
     };
 
-    const registrarEntrada = async () => {
+    const getStart = async (e) => {
+        e.preventDefault();
+        const clockIn = new Date();
         try {
             const location = await getLocation();
-            const entrada = new Date();
-            setEnableEntrada(true);
-            setEntradaLocal(entrada.toLocaleString());
             setLocation({ currentLocation: location });
-
-            const dataClockIn = await fetchClockInShiftRecordServices(
+            const data = await fetchClockInShiftRecordServices(
                 authToken,
-                entrada,
+                clockIn,
                 location,
                 shiftRecordId
             );
 
-            toast.success(dataClockIn.message, {
+            toast.success(data.message, {
                 id: 'ok',
             });
+            navigate('/user');
         } catch (error) {
-            toast.error(error.message);
+            toast.error(error.message, {
+                id: 'error',
+            });
         }
     };
 
-    // const calcularTiempoTotal = (entrada) => {
-    //     const entradaDate = new Date(entrada);
-    //     const salida = new Date();
-    //     const diff = salida - entradaDate;
-    //     const horas = Math.floor(diff / 3600000);
-    //     console.log(horas);
-    //     const minutos = Math.ceil((diff % 3600000) / 60000);
-    //     return `${horas}h ${minutos}m`;
-    // };
-
-    const registrarSalida = async () => {
+    const getEnd = async (e) => {
+        e.preventDefault();
+        const clockOut = new Date();
         try {
-            setEnableSalida(true);
-
-            const salidas = new Date();
-            setClockOut(salidas);
-
-            const salidaToLocalString = salidas.toLocaleString();
-            setSalidaLocal(salidaToLocalString);
-
-            const dataClockOut = await fetchClockOutShiftRecordServices(
+            const data = await fetchClockOutShiftRecordServices(
                 authToken,
-                salidas,
+                clockOut,
                 shiftRecordId
             );
 
-            toast.success(dataClockOut.message, {
+            toast.success(data.message, {
                 id: 'ok',
             });
+            navigate('/user');
         } catch (error) {
-            toast.error(error.message);
+            toast.error(error.message, {
+                id: 'error',
+            });
         }
     };
 
-    const entradaLocalString = new Date(clockIn).toLocaleString();
-
     return (
-        <div className='flex flex-col mt-12 my-auto mx-auto border-2 rounded-xl p-5 shadow-md max-w-screen-lg self-center'>
-            <h2 className='flex flex-col flex-wrap gap-3 justify-around mt-7 mb-12'>
-                <div className='flex gap-11'>
-                    <button
-                        className='border-2 mx-auto max-w-56 rounded-xl p-5 text-white bg-green-600'
-                        disabled={enableEntrada}
-                        onClick={registrarEntrada}
-                    >
-                        Registrar Entrada
-                    </button>
-                    <button
-                        className='border-2 mx-auto max-w-56 rounded-xl p-5 text-white bg-red-600'
-                        disabled={enableSalida}
-                        onClick={registrarSalida}
-                    >
-                        Registrar Salida
-                    </button>
-                </div>
-
-                <p>
-                    Entrada:
-                    {clockIn
-                        ? entradaLocalString
-                        : entradaLocal
-                          ? entradaLocal
-                          : ''}
-                </p>
-                <p>Salida: {salidaLocal ? salidaLocal : ''}</p>
-                {location.currentLocation.lat && entradaLocal && (
-                    <Map location={location} />
-                )}
-                {salidaLocal && (
-                    <button className='max-w-56 mx-auto border-2 rounded-xl'>
-                        <NavLink to={'/'}>Pincha auí para volver</NavLink>
-                    </button>
-                )}
-            </h2>
-        </div>
+        <form className='mx-auto form-1024'>
+            <h2 className='mb-4'>Registro Horario</h2>
+            <fieldset>
+                <button
+                    className='mt-4 mb-2 text-white bg-green-600'
+                    onClick={getStart}
+                >
+                    Registrar Entrada
+                </button>
+                <Map location={location} />
+                <button className='mt-2 text-white bg-red-600' onClick={getEnd}>
+                    Registrar Salida
+                </button>
+            </fieldset>
+        </form>
     );
 };
 

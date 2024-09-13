@@ -128,7 +128,7 @@ const DashboardPage = () => {
                             toTopFast(e);
                         }}
                     >
-                        Mis Servicios
+                        Servicios
                     </NavLink>
                 )}
             </section>

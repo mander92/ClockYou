@@ -47,7 +47,7 @@ export const fetchAllShiftRecordsServices = async (
 
 export const fetchClockInShiftRecordServices = async (
     authToken,
-    entrada,
+    clockIn,
     location,
     shiftRecordId
 ) => {
@@ -61,7 +61,7 @@ export const fetchClockInShiftRecordServices = async (
             },
             body: JSON.stringify({
                 location,
-                entrada,
+                clockIn,
             }),
         }
     );
@@ -76,7 +76,7 @@ export const fetchClockInShiftRecordServices = async (
 
 export const fetchClockOutShiftRecordServices = async (
     authToken,
-    ahora,
+    clockOut,
     shiftRecordId
 ) => {
     const res = await fetch(`${VITE_API_URL}/shiftrecords/${shiftRecordId}`, {
@@ -86,7 +86,7 @@ export const fetchClockOutShiftRecordServices = async (
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            ahora,
+            clockOut,
         }),
     });
 
