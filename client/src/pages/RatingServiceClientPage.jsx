@@ -1,10 +1,7 @@
 import { AuthContext } from '../context/AuthContext';
-import { useEffect, useState, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import {
-    fetchDetailServiceServices,
-    fetchRatingServiceServices,
-} from '../services/serviceServices';
+import { fetchRatingServiceServices } from '../services/serviceServices';
 import { FaStar } from 'react-icons/fa';
 import toast from 'react-hot-toast';
 
@@ -14,27 +11,8 @@ const RatingServiceClientPage = () => {
 
     const navigate = useNavigate();
 
-    const [data, setData] = useState(null);
     const [rating, setRating] = useState(null);
     const [hover, setHover] = useState(null);
-
-    useEffect(() => {
-        const getRating = async () => {
-            try {
-                const data = await fetchDetailServiceServices(
-                    serviceId,
-                    authToken
-                );
-                setData(data);
-                setRating(data.rating);
-            } catch (error) {
-                toast.error(error.message, {
-                    id: 'error',
-                });
-            }
-        };
-        getRating();
-    }, [serviceId, authToken]);
 
     const handleRatingService = async (e) => {
         e.preventDefault();
@@ -59,26 +37,8 @@ const RatingServiceClientPage = () => {
     return (
         <form className='mx-auto'>
             <fieldset>
-                <legend className=' text-xl font-semibold mb-4'>
-                    Valorar nuestro servicio
-                </legend>
-                <div className='my-4'>
-                    <h3>
-                        {data?.type} en {data?.province}
-                    </h3>
-                    <p>
-                        <strong>Precio por Hora:</strong> {data?.price}€
-                    </p>
-                    <p>
-                        <strong>Horas Contratadas:</strong> {data?.hours}
-                    </p>
-                    <p>
-                        <strong>Dirección:</strong> {data?.address},{' '}
-                        {data?.postCode}, {data?.city}
-                    </p>
-                </div>
-
-                <div className='flex justify-center mb-4'>
+                <legend>¿Cómo valorarías nuestro servicio?</legend>
+                <section className='flex justify-center mt-2'>
                     {[...Array(5)].map((_, index) => {
                         const currentRating = index + 1;
                         return (
@@ -107,16 +67,9 @@ const RatingServiceClientPage = () => {
                             </>
                         );
                     })}
-                </div>
-
+                </section>
                 <div className='mx-auto'>
-                    <button
-                        className='mr-4 mt-4'
-                        type='submit'
-                        onClick={handleRatingService}
-                    >
-                        Enviar
-                    </button>
+                    <button onClick={handleRatingService}>Valorar</button>
                 </div>
             </fieldset>
         </form>

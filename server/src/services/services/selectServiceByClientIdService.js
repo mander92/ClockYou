@@ -3,15 +3,10 @@ import getPool from '../../db/getPool.js';
 const selectServiceByClientIdService = async (clientId, status, city, type) => {
     const pool = await getPool();
 
-    // let sqlQuery =
-    //     'SELECT id, image, type, description, city, price from typeOfServices WHERE deletedAt IS NULL';
-
-    // let sqlValues = [];
-
     if (!status && !city && !type) {
         const [data] = await pool.query(
             `
-            SELECT s.id, s.status, s.validationCode, t.type, t.city AS province, t.price, s.hours, s.totalPrice, s.dateTime , a.address, a.postCode, a.city, s.comments, u.email, u.firstName,u.lastName, u.phone
+            SELECT s.id, s.rating, s.status, s.validationCode, t.type, t.city AS province, t.price, s.hours, s.totalPrice, s.dateTime , a.address, a.postCode, a.city, s.comments, u.email, u.firstName,u.lastName, u.phone
             FROM addresses a
             INNER JOIN services s
             ON a.id = s.addressId
@@ -29,7 +24,7 @@ const selectServiceByClientIdService = async (clientId, status, city, type) => {
     if (status) {
         const [data] = await pool.query(
             `
-            SELECT s.id, s.status, s.validationCode, t.type, t.city AS province, t.price, s.hours, s.totalPrice, s.dateTime , a.address, a.postCode, a.city, s.comments, u.email, u.firstName,u.lastName, u.phone
+            SELECT s.id, s.rating, s.status, s.validationCode, t.type, t.city AS province, t.price, s.hours, s.totalPrice, s.dateTime , a.address, a.postCode, a.city, s.comments, u.email, u.firstName,u.lastName, u.phone
             FROM addresses a
             INNER JOIN services s
             ON a.id = s.addressId
@@ -47,7 +42,7 @@ const selectServiceByClientIdService = async (clientId, status, city, type) => {
     if (type) {
         const [data] = await pool.query(
             `
-            SELECT s.id, s.status, s.validationCode, t.type, t.city AS province, t.price, s.hours, s.totalPrice, s.dateTime , a.address, a.postCode, a.city, s.comments, u.email, u.firstName,u.lastName, u.phone
+            SELECT s.id, s.rating, s.status, s.validationCode, t.type, t.city AS province, t.price, s.hours, s.totalPrice, s.dateTime , a.address, a.postCode, a.city, s.comments, u.email, u.firstName,u.lastName, u.phone
             FROM addresses a
             INNER JOIN services s
             ON a.id = s.addressId
@@ -65,7 +60,7 @@ const selectServiceByClientIdService = async (clientId, status, city, type) => {
     if (city) {
         const [data] = await pool.query(
             `
-            SELECT s.id, s.status, s.validationCode, t.type, t.city AS province, t.price, s.hours, s.totalPrice, s.dateTime , a.address, a.postCode, a.city, s.comments, u.email, u.firstName,u.lastName, u.phone
+            SELECT s.id, s.rating, s.status, s.validationCode, t.type, t.city AS province, t.price, s.hours, s.totalPrice, s.dateTime , a.address, a.postCode, a.city, s.comments, u.email, u.firstName,u.lastName, u.phone
             FROM addresses a
             INNER JOIN services s
             ON a.id = s.addressId
@@ -79,21 +74,6 @@ const selectServiceByClientIdService = async (clientId, status, city, type) => {
         );
         return data;
     }
-
-    // const [data] = await pool.query(
-    //     `
-    //         SELECT s.status, t.type, t.city AS province, t.price, s.hours, s.totalPrice, s.dateTime , a.address, a.postCode, a.city, s.comments, u.email, u.firstName,u.lastName, u.phone
-    //         FROM addresses a
-    //         INNER JOIN services s
-    //         ON a.id = s.addressId
-    //         INNER JOIN users u
-    //         ON u.id = s.clientId
-    //         INNER JOIN typeOfServices t
-    //         ON s.typeOfServicesId = t.id
-    //         WHERE u.id = ? AND s.status = ? AND s.deletedAt IS NULL
-    //         `,
-    //     [clientId, status]
-    // );
 
     return data;
 };

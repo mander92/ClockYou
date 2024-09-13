@@ -21,7 +21,7 @@ const Orders = () => {
     };
 
     useEffect(() => {
-        const getListClientServiceController = async () => {
+        const getList = async () => {
             const searchParams = new URLSearchParams({
                 status: status,
                 type: type,
@@ -41,7 +41,7 @@ const Orders = () => {
             }
         };
 
-        getListClientServiceController();
+        getList();
     }, [status, type, city, authToken]);
 
     const cityNoRepeated = [...new Set(data.map((item) => item.city))];
@@ -108,6 +108,8 @@ const Orders = () => {
             </form>
             <ul className='cards'>
                 {data.map((item) => {
+                    console.log(item);
+
                     const time = new Date(item.dateTime).toLocaleTimeString(
                         [],
                         {
@@ -119,7 +121,6 @@ const Orders = () => {
                     return (
                         <li id={item.id} key={item.id}>
                             <h3>{item.type}</h3>
-                            <p>{item.status}</p>
                             <p className='font-extrabold'>{item.province}</p>
                             <p className='grow'>{item.comments}</p>
                             <p className='font-extrabold'>
@@ -161,8 +162,8 @@ const Orders = () => {
                                 </NavLink>
                             )}
                             {item.status === 'completed' &&
-                            item.rating != null ? (
-                                <div className='flex my-6'>
+                            item.rating !== null ? (
+                                <div className='flex mt-2 mb-6'>
                                     {[...Array(5)].map((_, index) => (
                                         <FaStar
                                             key={index}
