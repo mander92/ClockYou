@@ -2,7 +2,7 @@ import { AuthContext } from '../context/AuthContext';
 import { useEffect, useState, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
-    fetchClientRatingServiceServices,
+    fetchDetailServiceServices,
     fetchRatingServiceServices,
 } from '../services/serviceServices';
 import { FaStar } from 'react-icons/fa';
@@ -11,6 +11,7 @@ import toast from 'react-hot-toast';
 const RatingServiceClientPage = () => {
     const { serviceId } = useParams();
     const { authToken } = useContext(AuthContext);
+
     const navigate = useNavigate();
 
     const [data, setData] = useState(null);
@@ -20,9 +21,12 @@ const RatingServiceClientPage = () => {
     useEffect(() => {
         const getRating = async () => {
             try {
-                const data = await fetchClientRatingServiceServices(serviceId);
+                const data = await fetchDetailServiceServices(
+                    serviceId,
+                    authToken
+                );
                 setData(data);
-                setRating(data?.rating);
+                setRating(data.rating);
             } catch (error) {
                 toast.error(error.message, {
                     id: 'error',
@@ -30,7 +34,7 @@ const RatingServiceClientPage = () => {
             }
         };
         getRating();
-    }, [serviceId]);
+    }, [serviceId, authToken]);
 
     const handleRatingService = async (e) => {
         e.preventDefault();

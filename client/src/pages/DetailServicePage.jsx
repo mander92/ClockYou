@@ -19,7 +19,7 @@ const DetailServicePage = () => {
                     authToken
                 );
 
-                setData(data.data);
+                setData(data);
             } catch (error) {
                 toast.error(error.message);
             }

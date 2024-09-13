@@ -169,7 +169,6 @@ export const fetchChangePasswordUserServices = async (
 
 export const fetchEditUserServices = async (
     authToken,
-    email,
     firstName,
     lastName,
     phone,
@@ -182,7 +181,6 @@ export const fetchEditUserServices = async (
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            email,
             firstName,
             lastName,
             phone,

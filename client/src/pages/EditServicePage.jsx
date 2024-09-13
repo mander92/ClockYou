@@ -2,7 +2,7 @@ import { AuthContext } from '../context/AuthContext';
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
-    fetchClientEditServiceServices,
+    fetchDetailServiceServices,
     fetchEditServiceServices,
 } from '../services/serviceServices';
 import toast from 'react-hot-toast';
@@ -13,13 +13,37 @@ const EditServicePage = () => {
 
     const navigate = useNavigate();
 
-    const [data, setData] = useState([]);
+    const [data, setData] = useState(null);
     const [hours, setHours] = useState(0);
     const [dateTime, setDateTime] = useState('');
     const [address, setAddress] = useState('');
     const [postCode, setPostCode] = useState('');
     const [city, setCity] = useState('');
     const [comments, setComments] = useState('');
+
+    useEffect(() => {
+        const getService = async () => {
+            try {
+                const data = await fetchDetailServiceServices(
+                    serviceId,
+                    authToken
+                );
+                setData(data);
+                setHours(data.hours);
+                setDateTime(data.dateTime);
+                setAddress(data.address);
+                setPostCode(data.postCode);
+                setCity(data.city);
+                setComments(data.comments);
+            } catch (error) {
+                toast.error(error.message, {
+                    id: 'error',
+                });
+            }
+        };
+
+        getService();
+    }, [serviceId, authToken]);
 
     const time = new Date(dateTime).toLocaleTimeString([], {
         hour: '2-digit',
@@ -47,27 +71,6 @@ const EditServicePage = () => {
     };
 
     const valuesTimeInterval = timeIntervals();
-
-    useEffect(() => {
-        const getService = async () => {
-            try {
-                const data = await fetchClientEditServiceServices(serviceId);
-                setData(data);
-                setHours(data?.hours);
-                setDateTime(data?.dateTime);
-                setAddress(data?.address);
-                setPostCode(data?.postCode);
-                setCity(data?.city);
-                setComments(data?.comments);
-            } catch (error) {
-                toast.error(error.message, {
-                    id: 'error',
-                });
-            }
-        };
-
-        getService();
-    }, [serviceId]);
 
     const handleEditService = async (e) => {
         e.preventDefault();
@@ -99,22 +102,11 @@ const EditServicePage = () => {
         }
     };
 
-    // const time = new Date(dateTime).toLocaleTimeString();
-    // const date = new Date(dateTime).toLocaleDateString();
-    // // 2024-09-30T10:30:00.000Z ---> 2024-09-24T10:56
-    // const arrayDate = date.split('/');
-    // let ceroDelMes = '0';
-    // if (arrayDate[1] > 9) ceroDelMes = '';
-    // const rearrangeDate = `${arrayDate[2]}-${ceroDelMes}${arrayDate[1]}-${arrayDate[0]}`;
-    // const arrayTime = time.split(':');
-    // const rearrangeTime = `${arrayTime[0]}:${arrayTime[1]}`;
-    // const dateTimeFinalConversion = `${rearrangeDate}T${rearrangeTime}`;
-
     return (
         <form className='profile-form mx-auto'>
             <fieldset>
                 <legend>
-                    {data.type} en {data.province}
+                    {data?.type} en {data?.province}
                 </legend>
                 <label htmlFor='date'>Fecha</label>
                 <input

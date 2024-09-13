@@ -48,7 +48,7 @@ const Orders = () => {
     const typeNoRepeated = [...new Set(data.map((item) => item.type))];
 
     return (
-        <div>
+        <>
             <form className='mx-auto form-filters'>
                 <select
                     name='status'
@@ -116,7 +116,6 @@ const Orders = () => {
                         }
                     );
                     const date = new Date(item.dateTime).toLocaleDateString();
-
                     return (
                         <li id={item.id} key={item.id}>
                             <h3>{item.type}</h3>
@@ -138,20 +137,9 @@ const Orders = () => {
                                 Total: {item.totalPrice}€
                             </p>
                             {item.status === 'pending' && (
-                                <div className='flex gap-10'>
-                                    <button>
-                                        <NavLink
-                                            to={`/user/services/edit/${item.id}`}
-                                        >
-                                            Editar
-                                        </NavLink>
-                                    </button>
-
-                                    <button className='bg-red-700'>
-                                        {/*Esto no pinta en rojo*/}
-                                        Cancelar
-                                    </button>
-                                </div>
+                                <NavLink to={`/services/edit/${item.id}`}>
+                                    Editar
+                                </NavLink>
                             )}
                             {item.status === 'accepted' && (
                                 <NavLink
@@ -198,7 +186,7 @@ const Orders = () => {
                     );
                 })}
             </ul>
-        </div>
+        </>
     );
 };
 

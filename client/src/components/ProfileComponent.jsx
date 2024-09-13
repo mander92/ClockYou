@@ -24,6 +24,14 @@ const ProfileComponent = () => {
     const [newPassword, setNewPassword] = useState('');
     const [repeatedNewPassword, setRepeatedNewPassword] = useState('');
 
+    useEffect(() => {
+        if (user) {
+            setFirstName(user?.firstName);
+            setLastName(user?.lastName);
+            setPhone(user?.phone);
+        }
+    }, [user]);
+
     const handleEditUser = async (e) => {
         e.preventDefault();
         try {
@@ -90,14 +98,6 @@ const ProfileComponent = () => {
             }
         }
     };
-
-    useEffect(() => {
-        if (user) {
-            setFirstName(user?.firstName);
-            setLastName(user?.lastName);
-            setPhone(user?.phone);
-        }
-    }, [user]);
 
     return (
         <section className='flex-1024'>

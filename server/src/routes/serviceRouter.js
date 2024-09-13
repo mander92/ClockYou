@@ -26,19 +26,6 @@ router.get('/services', authUser, isAdmin, listAdminServicesController);
 router.get('/services/client', authUser, isClient, listClientServiceController);
 
 router.get(
-    '/services/edit/:serviceId',
-    // authUser,
-    // isClient,
-    // serviceExists,
-    detailServiceController
-);
-
-router.get(
-    '/services/rating/:serviceId',
-    detailServiceController
-);
-
-router.get(
     '/services/employee',
     authUser,
     isEmployee,
@@ -48,7 +35,6 @@ router.get(
 router.get(
     '/services/:serviceId',
     authUser,
-    isAdmin,
     serviceExists,
     detailServiceController
 );
