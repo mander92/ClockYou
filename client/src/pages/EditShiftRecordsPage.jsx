@@ -94,6 +94,13 @@ const EditShiftRecordsPage = () => {
                         <p>{data.hours}</p>
                         <p className='font-extrabold'>Descripción</p>
                         <p>{data.description}</p>
+                        {location.currentLocation ? (
+                            <div>
+                                <Map location={location} />
+                            </div>
+                        ) : (
+                            <span>Cargando el mapa</span>
+                        )}
 
                         <label htmlFor='clockin' className='font-extrabold'>
                             Entrada
@@ -116,13 +123,6 @@ const EditShiftRecordsPage = () => {
                             value={clockOut}
                             onChange={(e) => setClockOut(e.target.value)}
                         />
-                        {location.currentLocation ? (
-                            <div>
-                                <Map location={location} />
-                            </div>
-                        ) : (
-                            <span>Cargando el mapa</span>
-                        )}
 
                         <button>Editar Turno</button>
                     </fieldset>

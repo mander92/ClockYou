@@ -27,34 +27,43 @@ const MyServices = () => {
 
     return (
         <>
-            <ul className='cards'>
-                {data?.map((item) => {
-                    const date = new Date(item.dateTime).toLocaleDateString();
-                    const time = new Date(item.dateTime).toLocaleTimeString(
-                        [],
-                        {
-                            hour: '2-digit',
-                            minute: '2-digit',
-                        }
-                    );
+            {data.length === 0 ? (
+                <ul className='cards'>
+                    {data?.map((item) => {
+                        const date = new Date(
+                            item.dateTime
+                        ).toLocaleDateString();
+                        const time = new Date(item.dateTime).toLocaleTimeString(
+                            [],
+                            {
+                                hour: '2-digit',
+                                minute: '2-digit',
+                            }
+                        );
 
-                    return (
-                        <li id={item.id} key={item.id}>
-                            <h3>
-                                El {date} a las {time}
-                            </h3>
-                            <p>
-                                En {item.address}, {item.postcode}, {item.city}
-                            </p>
-                            <p>Horas: {item.hours}</p>
-                            <p>Precio: {item.totalPrice}€</p>
-                            <NavLink to={`/shiftRecords/${item.shiftRecordId}`}>
-                                Fichar
-                            </NavLink>
-                        </li>
-                    );
-                })}
-            </ul>
+                        return (
+                            <li id={item.id} key={item.id}>
+                                <h3>
+                                    El {date} a las {time}
+                                </h3>
+                                <p>
+                                    En {item.address}, {item.postcode},{' '}
+                                    {item.city}
+                                </p>
+                                <p>Horas: {item.hours}</p>
+                                <p>Precio: {item.totalPrice}€</p>
+                                <NavLink
+                                    to={`/shiftRecords/${item.shiftRecordId}`}
+                                >
+                                    Fichar
+                                </NavLink>
+                            </li>
+                        );
+                    })}
+                </ul>
+            ) : (
+                <h1></h1>
+            )}
         </>
     );
 };
