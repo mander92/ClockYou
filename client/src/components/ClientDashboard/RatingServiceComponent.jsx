@@ -18,12 +18,12 @@ const RatingServiceComponent = ({ serviceId, onRequestClose }) => {
         e.preventDefault();
 
         try {
-            const body = await fetchRatingServiceServices(
+            const data = await fetchRatingServiceServices(
                 serviceId,
                 rating,
                 authToken
             );
-            toast.success(body.message, {
+            toast.success(data.message, {
                 id: 'ok',
             });
             onRequestClose();

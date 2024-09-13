@@ -14,7 +14,7 @@ const EditTypeOfServicePage = () => {
     const { authToken } = useContext(AuthContext);
     const navigate = useNavigate();
 
-    const [data, setData] = useState(null);
+    const [data, setData] = useState([]);
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
 
@@ -39,13 +39,13 @@ const EditTypeOfServicePage = () => {
         e.preventDefault();
 
         try {
-            const body = await fetchEditTypeOfServiceServices(
+            const data = await fetchEditTypeOfServiceServices(
                 typeOfServiceId,
                 description,
                 price,
                 authToken
             );
-            toast.success(body.message, {
+            toast.success(data.message, {
                 id: 'ok',
             });
             navigate('/user#services');
@@ -63,11 +63,11 @@ const EditTypeOfServicePage = () => {
             )
         ) {
             try {
-                const body = await fetchDeleteTypeOfServiceServices(
+                const data = await fetchDeleteTypeOfServiceServices(
                     typeOfServiceId,
                     authToken
                 );
-                toast.success(body.message, {
+                toast.success(data.message, {
                     id: 'ok',
                 });
                 navigate('/user#services');
@@ -82,15 +82,15 @@ const EditTypeOfServicePage = () => {
     return (
         <>
             <h2 className='mt-4'>
-                {data?.type} en {data?.city}
+                {data.type} en {data.city}
             </h2>
             <section className='flex-1024'>
                 <form className='profile-form mx-auto'>
                     <fieldset>
                         <img
                             className='w-full h-full object-cover'
-                            src={`${VITE_API_URL}/${data?.image}`}
-                            alt={`${data?.description}`}
+                            src={`${VITE_API_URL}/${data.image}`}
+                            alt={`${data.description}`}
                         />
                     </fieldset>
                 </form>
@@ -106,7 +106,6 @@ const EditTypeOfServicePage = () => {
                             id='description'
                             type='text'
                             value={description}
-                            placeholder={data?.description}
                             onChange={(e) => {
                                 setDescription(e.target.value);
                             }}
@@ -121,7 +120,6 @@ const EditTypeOfServicePage = () => {
                             max='100'
                             step='0.01'
                             value={price}
-                            placeholder={data?.price}
                             onChange={(e) => {
                                 setPrice(e.target.value);
                             }}

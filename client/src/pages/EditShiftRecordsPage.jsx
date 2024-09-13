@@ -11,9 +11,9 @@ import Map from '../components/Map';
 const EditShiftRecordsPage = () => {
     const { shiftRecordId } = useParams();
     const { authToken } = useContext(AuthContext);
-    const [data, setData] = useState('');
-    const [clockIn, setClockIn] = useState(data?.clockIn);
-    const [clockOut, setClockOut] = useState(data?.clockOut);
+    const [data, setData] = useState([]);
+    const [clockIn, setClockIn] = useState(data.clockIn);
+    const [clockOut, setClockOut] = useState(data.clockOut);
 
     const [location, setLocation] = useState({});
 
@@ -26,12 +26,12 @@ const EditShiftRecordsPage = () => {
                 );
 
                 setData(data);
-                setClockIn(data?.clockIn);
-                setClockOut(data?.clockOut);
+                setClockIn(data.clockIn);
+                setClockOut(data.clockOut);
                 setLocation({
                     currentLocation: {
-                        lat: data?.latitude,
-                        lng: data?.longitude,
+                        lat: data.latitude,
+                        lng: data.longitude,
                     },
                 });
             } catch (error) {
@@ -44,9 +44,6 @@ const EditShiftRecordsPage = () => {
 
     const handleEditShiftRecord = async (e) => {
         e.preventDefault();
-
-        console.log('aqui');
-
         try {
             const formattedClockIn = new Date(clockIn)
                 .toISOString()
@@ -56,13 +53,13 @@ const EditShiftRecordsPage = () => {
                 .toISOString()
                 .slice(0, 19)
                 .replace('T', ' ');
-            const body = await fetchEditShiftRecordServices(
+            const data = await fetchEditShiftRecordServices(
                 shiftRecordId,
                 formattedClockIn,
                 formattedClockOut,
                 authToken
             );
-            toast.success(body.message, {
+            toast.success(data.message, {
                 id: 'ok',
             });
         } catch (error) {
@@ -72,8 +69,8 @@ const EditShiftRecordsPage = () => {
         }
     };
 
-    const entrada = new Date(data?.clockIn).toLocaleString();
-    const salida = new Date(data?.clockOut).toLocaleString();
+    const entrada = new Date(data.clockIn).toLocaleString();
+    const salida = new Date(data.clockOut).toLocaleString();
 
     return (
         <>

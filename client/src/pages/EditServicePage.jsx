@@ -13,7 +13,7 @@ const EditServicePage = () => {
 
     const navigate = useNavigate();
 
-    const [data, setData] = useState(null);
+    const [data, setData] = useState([]);
     const [hours, setHours] = useState(0);
     const [dateTime, setDateTime] = useState('');
     const [address, setAddress] = useState('');
@@ -81,7 +81,7 @@ const EditServicePage = () => {
                 .slice(0, 19)
                 .replace('T', ' ');
 
-            const body = await fetchEditServiceServices(
+            const data = await fetchEditServiceServices(
                 serviceId,
                 comments,
                 address,
@@ -91,7 +91,7 @@ const EditServicePage = () => {
                 postCode,
                 authToken
             );
-            toast.success(body.message, {
+            toast.success(data.message, {
                 id: 'ok',
             });
             navigate('/user');
@@ -106,7 +106,7 @@ const EditServicePage = () => {
         <form className='profile-form mx-auto'>
             <fieldset>
                 <legend>
-                    {data?.type} en {data?.province}
+                    {data.type} en {data.province}
                 </legend>
                 <label htmlFor='date'>Fecha</label>
                 <input

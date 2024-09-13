@@ -8,7 +8,7 @@ import toast from 'react-hot-toast';
 const MyServices = () => {
     const { authToken } = useContext(AuthContext);
 
-    const [data, setData] = useState(null);
+    const [data, setData] = useState([]);
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [selectedShiftRecordId, setSelectedShiftRecordId] = useState(null);
     const [initialLocation, setInitialLocation] = useState(null);
@@ -67,7 +67,7 @@ const MyServices = () => {
         <>
             {
                 <ul className='cards'>
-                    {data?.map((item) => {
+                    {data.map((item) => {
                         const clockIn = item.clockIn
                             ? new Date(item.clockIn).toLocaleString()
                             : null;
