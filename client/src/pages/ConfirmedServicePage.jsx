@@ -17,13 +17,11 @@ const ConfirmedServicePage = () => {
                     id: 'ok',
                 });
 
-                navigate('/');
+                navigate('/login');
             } catch (error) {
                 toast.error(error.message, {
                     id: 'error',
                 });
-
-                navigate('/');
             }
         };
 

@@ -113,16 +113,9 @@ const EditServicePage = () => {
     return (
         <form className='profile-form mx-auto'>
             <fieldset>
-                <legend>{data?.type}</legend>
-                <h3>{data?.status}</h3>
-                {/* <p className='text-left py-4'>
-                    La fecha y hora actuales para el comienzo del servicio son:
-                    <strong>
-                        {} {date} a las {time}
-                    </strong>
-                    . <strong>Si quiere cambiarlas</strong>, hágalo en el campo
-                    fecha y hora bajo estas líneas.
-                </p> */}
+                <legend>
+                    {data.type} en {data.province}
+                </legend>
                 <label htmlFor='date'>Fecha</label>
                 <input
                     required

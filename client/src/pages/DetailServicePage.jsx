@@ -27,7 +27,10 @@ const DetailServicePage = () => {
         DetailService();
     }, [serviceId, authToken]);
 
-    const time = new Date(data.dateTime).toLocaleTimeString();
+    const time = new Date(data.dateTime).toLocaleTimeString([], {
+        hour: '2-digit',
+        minute: '2-digit',
+    });
     const date = new Date(data.dateTime).toLocaleDateString();
 
     return (
@@ -37,10 +40,8 @@ const DetailServicePage = () => {
                     <h2 className='mt-4'>
                         {data.type} en {data.province}
                     </h2>
-                    <p className='font-extrabold'>Estado: {data.status}</p>
                     <p>{data.comments}</p>
-                    <p>Horas Contratadas: {data.hours}</p>
-                    <p>Total: {data.totalPrice}€</p>
+
                     <p className='font-extrabold'>
                         Solicitado el {date} a las {time}
                     </p>
@@ -52,9 +53,13 @@ const DetailServicePage = () => {
                         {data.firstName} {data.lastName}
                     </p>
                     <p>{data.phone}</p>
+                    <p>Horas Contratadas: {data.hours}</p>
+                    <p className='font-extrabold'>Total: {data.totalPrice}€</p>
                 </fieldset>
             </form>
-            <ListEmployeeController serviceId={serviceId} />
+            {data.status === 'pending' && (
+                <ListEmployeeController serviceId={serviceId} />
+            )}
         </>
     );
 };

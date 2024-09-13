@@ -118,15 +118,15 @@ const Orders = () => {
                     const date = new Date(item.dateTime).toLocaleDateString();
 
                     return (
-                        <li id={item.id} key={item.id} className='py-4'>
-                            <h3>
-                                {item.type} en {item.province}
-                            </h3>
-                            <p>{item.comments}</p>
+                        <li id={item.id} key={item.id}>
+                            <h3>{item.type}</h3>
+                            <p>{item.status}</p>
+                            <p className='font-extrabold'>{item.province}</p>
+                            <p className='grow'>{item.comments}</p>
                             <p className='font-extrabold'>
                                 El {date} a las {time}
                             </p>
-                            <p>
+                            <p className='grow'>
                                 En {item.address}, {item.postCode}, {item.city}
                             </p>
                             <p className='font-extrabold'>
@@ -153,7 +153,25 @@ const Orders = () => {
                                     </button>
                                 </div>
                             )}
-
+                            {item.status === 'accepted' && (
+                                <NavLink
+                                    to={`/services/validate/${item.validationCode}`}
+                                >
+                                    Confirmar
+                                </NavLink>
+                            )}
+                            {item.status === 'confirmed' && (
+                                <NavLink
+                                    disabled={''}
+                                    onClick={() => {
+                                        toast(
+                                            'Cuando el servicio esté completado podrá valorar'
+                                        );
+                                    }}
+                                >
+                                    Valorar
+                                </NavLink>
+                            )}
                             {item.status === 'completed' &&
                             item.rating != null ? (
                                 <div className='flex my-6'>
