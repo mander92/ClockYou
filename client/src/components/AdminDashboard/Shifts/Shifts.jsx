@@ -9,7 +9,7 @@ const Shifts = () => {
 
     const [data, setData] = useState([]);
     const [employeeId, setEmployeeId] = useState('');
-    const [serviceId, setServiceId] = useState('');
+    const [shiftRecorId, setServiceId] = useState('');
 
     const resetFilter = (e) => {
         e.preventDefault();
@@ -21,7 +21,7 @@ const Shifts = () => {
         const getShifts = async () => {
             const searchParams = new URLSearchParams({
                 employeeId: employeeId,
-                serviceId: serviceId,
+                shiftRecorId: shiftRecorId,
             });
             const searchParamsToString = searchParams.toString();
             try {
@@ -37,24 +37,32 @@ const Shifts = () => {
             }
         };
         getShifts();
-    }, [employeeId, serviceId, authToken]);
+    }, [employeeId, shiftRecorId, authToken]);
 
-    const employeeNotRepeated = [
-        ...new Set(
-            data
-                .map(
-                    (shiftRecord) =>
-                        `${shiftRecord.firstName} ${shiftRecord.LastName}`
+    const employeeList = data
+        .map((shiftRecord) => {
+            return {
+                id: shiftRecord.employeeId,
+                firstName: shiftRecord.firstName,
+                LastName: shiftRecord.LastName,
+            };
+        })
+        .filter(
+            (employee, index, self) =>
+                index ===
+                self.findIndex(
+                    (o) => o.id === employee.id && o.nombre === employee.nombre
                 )
-                .filter((employeeId) => employeeId && employeeId.trim())
-        ),
-    ];
+        );
 
     const serviceNotRepeated = [
         ...new Set(
-            data
-                .map((shiftRecord) => shiftRecord.type)
-                .filter((serviceId) => serviceId && serviceId.trim())
+            data.map((shiftRecord) => {
+                return {
+                    id: shiftRecord.id,
+                    type: shiftRecord.type,
+                };
+            })
         ),
     ];
 
@@ -72,16 +80,16 @@ const Shifts = () => {
                     <option value='' disabled>
                         Empleado:
                     </option>
-                    {employeeNotRepeated.map((employeeId) => (
-                        <option key={employeeId} value={employeeId}>
-                            {employeeId}
+                    {employeeList.map((employee) => (
+                        <option key={employee.id} value={employee.id}>
+                            {`${employee.firstName} ${employee.LastName}`}
                         </option>
                     ))}
                 </select>
                 <select
                     name='serviceId'
                     id='serviceId'
-                    value={serviceId}
+                    value={shiftRecorId}
                     onChange={(e) => {
                         setServiceId(e.target.value);
                     }}
@@ -89,9 +97,9 @@ const Shifts = () => {
                     <option value='' disabled>
                         Servicio:
                     </option>
-                    {serviceNotRepeated.map((serviceId) => (
-                        <option key={serviceId} value={serviceId}>
-                            {serviceId}
+                    {serviceNotRepeated.map((service) => (
+                        <option key={service.id} value={service.id}>
+                            {service.type}
                         </option>
                     ))}
                 </select>
