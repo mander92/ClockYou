@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "89e4de01-0098-4739-ae9d-254e5c4ff36b",
+		"_postman_id": "e015d9cf-b831-48b7-a763-29979c89410b",
 		"name": "ClockYou",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "36002595"
+		"_exporter_id": "35978489"
 	},
 	"item": [
 		{
@@ -828,7 +828,7 @@
 					"response": []
 				},
 				{
-					"name": "detail(admin)",
+					"name": "detail",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -848,33 +848,6 @@
 							"path": [
 								"services",
 								"6dc567cf-3eba-414f-9283-d6ee7aa9923d"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "detail(Client)",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{client}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8000/services/edit/57592c64-7d5a-4afe-860c-f1ada7750790",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"services",
-								"edit",
-								"57592c64-7d5a-4afe-860c-f1ada7750790"
 							]
 						}
 					},
@@ -1032,7 +1005,7 @@
 					"response": []
 				},
 				{
-					"name": "rating",
+					"name": "rating(client)",
 					"request": {
 						"method": "PATCH",
 						"header": [
@@ -1044,7 +1017,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"rating\": 5\n}",
+							"raw": "{\n    \"rating\": 3\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1052,7 +1025,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/services/0b591828-a922-4e59-b185-0a325db0c6b1",
+							"raw": "http://localhost:8000/services/01dbda7a-aa49-45e6-bce5-0e9892f4ace1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1060,7 +1033,7 @@
 							"port": "8000",
 							"path": [
 								"services",
-								"0b591828-a922-4e59-b185-0a325db0c6b1"
+								"01dbda7a-aa49-45e6-bce5-0e9892f4ace1"
 							]
 						}
 					},
@@ -1180,13 +1153,13 @@
 					"response": []
 				},
 				{
-					"name": "detail(detail)",
+					"name": "detail",
 					"request": {
 						"method": "GET",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "{a",
+								"value": "",
 								"type": "text"
 							}
 						],
