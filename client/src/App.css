@@ -72,7 +72,7 @@
 
         & img {
             margin-top: 1rem;
-            border-radius: 20px;
+            border-radius: 1rem;
         }
 
         & fieldset {
@@ -81,7 +81,7 @@
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
-            border-radius: 20px;
+            border-radius: 1rem;
         }
 
         & legend {
@@ -105,7 +105,7 @@
         textarea {
             border: 1px solid var(--icicle);
             padding: 0.5rem;
-            border-radius: 20px;
+            border-radius: 1rem;
 
             &:focus {
                 outline: none;
@@ -116,7 +116,7 @@
             padding: 0.5rem;
             border: 1px solid var(--icicle);
             cursor: pointer;
-            border-radius: 20px;
+            border-radius: 1rem;
             -moz-appearance: none;
             -webkit-appearance: none;
             appearance: none;
@@ -129,7 +129,7 @@
         & button,
         .input-file {
             padding: 0.5rem 1rem;
-            border-radius: 20px;
+            border-radius: 1rem;
             color: var(--white-color);
             background-color: var(--cerulean);
             cursor: pointer;
@@ -164,7 +164,7 @@
             background-color: var(--cerulean);
             transition: background-color 0.3s linear;
             border: 1px solid var(--icicle);
-            border-radius: 20px;
+            border-radius: 1rem;
 
             &:hover {
                 background-color: var(--glacier-blue);
@@ -203,7 +203,7 @@
 
         & li {
             border: 1px solid var(--icicle);
-            border-radius: 20px;
+            border-radius: 1rem;
             box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
             transition: transform 0.4s ease;
             display: flex;
@@ -221,7 +221,7 @@
                 color: var(--white-color);
                 background-color: var(--cerulean);
                 justify-content: center;
-                border-radius: 20px;
+                border-radius: 1rem;
                 margin-top: 0.5rem;
                 margin-bottom: 1rem;
             }
@@ -255,7 +255,7 @@
         position: absolute;
         padding: 0 1rem 1rem 1rem;
         background-color: var(--overcast);
-        border-radius: 20px;
+        border-radius: 1rem;
         top: 50%;
         left: 50%;
         right: auto;

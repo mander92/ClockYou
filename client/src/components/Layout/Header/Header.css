@@ -46,7 +46,7 @@
         transition: background-color 0.3s linear;
         border: 1px solid var(--icicle);
         min-width: fit-content;
-        border-radius: 20px;
+        border-radius: 1rem;
 
         &:hover {
             background-color: var(--overcast);
