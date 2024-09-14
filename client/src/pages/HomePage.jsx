@@ -4,9 +4,18 @@ import TypeOfServicesPage from './TypeOfServicesPage';
 const HomePage = () => {
     return (
         <>
-            <section>
-                <h1 className='my-4'>{`Bienvenido a ${VITE_APP_TITLE}`}</h1>
-                <h2>El sitio web donde encontrarás todo lo que buscas ;)...</h2>
+            <section className='mx-auto'>
+                <article className='initial-content'>
+                    <h1 className='my-4'>{`Bienvenido a ${VITE_APP_TITLE}`}</h1>
+                    <h2>
+                        El sitio web donde encontrarás todo lo que buscas ;)...
+                    </h2>
+                </article>
+                <img
+                    className='rounded-b-2xl'
+                    src='./landing.webp'
+                    alt='Servicios múltiples'
+                />
             </section>
             <TypeOfServicesPage />
         </>

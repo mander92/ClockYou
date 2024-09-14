@@ -136,6 +136,15 @@
         }
     }
 
+    .initial-content {
+        position: absolute;
+        top: 6rem;
+        left: 50%;
+        transform: translateX(-50%);
+        color: var(--white-color);
+        z-index: 1;
+    }
+
     .manager-tabs {
         margin-top: 1rem;
         display: flex;
