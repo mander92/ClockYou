@@ -115,6 +115,7 @@ const DashboardPage = () => {
                             tabSelected(e, 'tabs5');
                             toTopFast(e);
                         }}
+                        className='only-2-buttons'
                     >
                         Pedidos
                     </NavLink>

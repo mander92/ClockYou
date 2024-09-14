@@ -22,8 +22,6 @@
     .navdinamica {
         @apply inset-0 z-10 flex flex-wrap flex-col items-start justify-start gap-4 px-7 pt-32 pb-10;
         position: fixed;
-        background-color: var(--white-color);
-        box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
         transform: translateX(120%);
         transition: transform 0.3s ease;
         min-height: var(--body-min-height);
@@ -44,7 +42,7 @@
         color: var(--cerulean);
         background-color: transparent;
         transition: background-color 0.3s linear;
-        border: 1px solid var(--icicle);
+        border: 1px solid #f0f0f0;
         min-width: fit-content;
         border-radius: 1rem;
 
@@ -64,6 +62,19 @@
     }
 
     @media (width < 1024px) {
+        .navdinamica {
+            background: var(--white-color);
+            background: hsl(0 0% 100% / 0.98);
+            box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+        }
+
+        @supports (backdrop-filter: blur(1rem)) {
+            .navdinamica {
+                background: hsl(0 0% 100% / 0.85);
+                backdrop-filter: blur(1.9rem);
+            }
+        }
+
         .navdinamica::before {
             content: '';
             background-image: url('./logo-test.png');
@@ -82,7 +93,7 @@
         }
     }
 
-    @media only screen and (min-width: 1024px) {
+    @media (width > 1023px) {
         .navdinamica.show {
             transform: translateX(0);
         }
@@ -90,8 +101,13 @@
         #root > header {
             position: sticky;
             top: 0;
-            background-color: #fafafa;
+            background-color: var(--white-color);
             z-index: 1;
+
+            &.sombreado {
+                background-color: #fafafa;
+                box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+            }
         }
     }
 

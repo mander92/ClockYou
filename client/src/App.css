@@ -157,6 +157,10 @@
         scrollbar-width: none;
         -ms-overflow-style: none;
 
+        &:has(.only-2-buttons) {
+            justify-content: center;
+        }
+
         & a,
         button {
             padding: 0.5rem 1rem;
@@ -165,6 +169,7 @@
             transition: background-color 0.3s linear;
             border: 1px solid var(--icicle);
             border-radius: 1rem;
+            width: min-content;
 
             &:hover {
                 background-color: var(--glacier-blue);

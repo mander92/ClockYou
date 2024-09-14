@@ -16,6 +16,23 @@ const Header = () => {
     }
 
     useEffect(() => {
+        const mainHeader = document.getElementById('mainHeader');
+        const mainHeaderHeight = mainHeader.offsetHeight;
+        let howMuchScrollY;
+        const handleScroll = () => {
+            howMuchScrollY = window.scrollY;
+            howMuchScrollY > mainHeaderHeight
+                ? mainHeader.classList.add('sombreado')
+                : mainHeader.classList.remove('sombreado');
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
+    useEffect(() => {
         const navDinamica = document.getElementById('navdinamica');
         const checkForShowClass = navDinamica.classList.contains('show');
         const changeBodyStyle = () => {
@@ -43,7 +60,7 @@ const Header = () => {
     }, [menuBurguer, windowWidth]);
 
     return (
-        <header>
+        <header id='mainHeader'>
             <nav className='container mt-4 mx-auto mainnav flex flex-wrap'>
                 <NavLink className='flex items-center' to={'/'}>
                     <img className='w-14' src={clockyouLogo} alt='clockYou' />
