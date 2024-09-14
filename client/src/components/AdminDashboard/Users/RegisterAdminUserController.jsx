@@ -12,8 +12,6 @@ const RegisterAdminUserController = () => {
     const [lastName, setLastName] = useState('');
     const [dni, setDni] = useState('');
     const [phone, setPhone] = useState('');
-    const [password, setPassword] = useState('');
-    const [repeatedPassword, setRepeatedPassword] = useState('');
     const [job, setJob] = useState('');
     const [city, setCity] = useState('');
     const [role, setRole] = useState('');
@@ -25,8 +23,7 @@ const RegisterAdminUserController = () => {
         setLastName('');
         setDni('');
         setPhone('');
-        setPassword('');
-        setRepeatedPassword('');
+
         setJob('');
         setCity('');
         setRole('');
@@ -35,27 +32,22 @@ const RegisterAdminUserController = () => {
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
-            if (password !== repeatedPassword) {
-                throw new Error('¡Las contraseñas no coinciden!');
-            } else {
-                const data = await fetchRegisterAdminUserServices(
-                    email,
-                    firstName,
-                    lastName,
-                    dni,
-                    phone,
-                    password,
-                    job,
-                    city,
-                    role,
-                    authToken
-                );
+            const data = await fetchRegisterAdminUserServices(
+                email,
+                firstName,
+                lastName,
+                dni,
+                phone,
+                job,
+                city,
+                role,
+                authToken
+            );
 
-                toast.success(data, {
-                    id: 'ok',
-                });
-                resetInputs(e);
-            }
+            toast.success(data, {
+                id: 'ok',
+            });
+            resetInputs(e);
         } catch (error) {
             toast.error(error.message, {
                 id: 'error',
@@ -142,26 +134,6 @@ const RegisterAdminUserController = () => {
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder='680458923'
-                    required
-                />
-                <label htmlFor='password'>Contraseña</label>
-                <input
-                    type='password'
-                    id='password'
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder='jobryp-kapDew-fetho6'
-                    minLength='8'
-                    required
-                />
-                <label htmlFor='repeatedPassword'>Repetir Contraseña</label>
-                <input
-                    type='password'
-                    id='repeatedPassword'
-                    value={repeatedPassword}
-                    onChange={(e) => setRepeatedPassword(e.target.value)}
-                    placeholder='jobryp-kapDew-fetho6'
-                    minLength='8'
                     required
                 />
 
