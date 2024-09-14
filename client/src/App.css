@@ -142,7 +142,7 @@
         left: 50%;
         transform: translateX(-50%);
         color: var(--white-color);
-        z-index: 1;
+        z-index: 2;
     }
 
     .manager-tabs {
@@ -239,7 +239,7 @@
 
         & img {
             width: 100%;
-            border-radius: 20px 20px 0 0;
+            border-radius: 1rem 1rem 0 0;
         }
     }
 
