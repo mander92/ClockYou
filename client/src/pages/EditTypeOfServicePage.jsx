@@ -1,10 +1,10 @@
-const { VITE_API_URL } = import.meta.env;
 import { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import {
     fetchTypeOfServiceServices,
     fetchDeleteTypeOfServiceServices,
     fetchEditTypeOfServiceServices,
+    fetchEditImageTypeOfServicesService,
 } from '../services/typeOfServiceServices';
 import { AuthContext } from '../context/AuthContext';
 import toast from 'react-hot-toast';
@@ -17,6 +17,8 @@ const EditTypeOfServicePage = () => {
     const [data, setData] = useState([]);
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
+    const [image, setImage] = useState('');
+    const [enableEditImage, setEnableEditImage] = useState(false);
 
     useEffect(() => {
         const getTypeOfService = async () => {
@@ -34,6 +36,26 @@ const EditTypeOfServicePage = () => {
 
         getTypeOfService();
     }, [typeOfServiceId]);
+
+    const handleEditImage = async (e) => {
+        e.preventDefault();
+        if (enableEditImage) {
+            try {
+                const data = await fetchEditImageTypeOfServicesService(
+                    image,
+                    authToken,
+                    typeOfServiceId
+                );
+
+                toast.success(data.message);
+            } catch (error) {
+                toast.error(error.message);
+            }
+            setEnableEditImage(false);
+        } else {
+            setEnableEditImage(true);
+        }
+    };
 
     const handleEditService = async (e) => {
         e.preventDefault();
@@ -87,11 +109,31 @@ const EditTypeOfServicePage = () => {
             <section className='flex-1024'>
                 <form className='profile-form mx-auto'>
                     <fieldset>
-                        <img
-                            className='w-full h-full object-cover'
-                            src={`${VITE_API_URL}/${data.image}`}
-                            alt={`${data.description}`}
-                        />
+                        {enableEditImage ? (
+                            <>
+                                <label
+                                    className='input-file text-center mt-2'
+                                    htmlFor='file'
+                                >
+                                    Selecciona Imágen
+                                </label>
+
+                                <input
+                                    id='file'
+                                    type='file'
+                                    className='hidden'
+                                    accept='image/png, image/jpg, image/jpeg, image/tiff'
+                                    onChange={(e) => {
+                                        setImage(e.target.files[0]);
+                                    }}
+                                />
+                            </>
+                        ) : (
+                            ''
+                        )}
+                        <button onClick={handleEditImage}>
+                            {enableEditImage ? 'Guardar' : 'Editar imagen'}
+                        </button>
                     </fieldset>
                 </form>
                 <form

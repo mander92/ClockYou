@@ -112,3 +112,29 @@ export const fetchNewTypeOfServiceServices = async (
 
     return body;
 };
+
+export const fetchEditImageTypeOfServicesService = async (
+    image,
+    authToken,
+    typeOfServiceId
+) => {
+    const formData = new FormData();
+    formData.append('image', image);
+
+    const res = await fetch(
+        `${VITE_API_URL}/typeOfServices/${typeOfServiceId}`,
+        {
+            method: 'PATCH',
+            headers: { Authorization: authToken },
+            body: formData,
+        }
+    );
+
+    const body = await res.json();
+
+    if (body.status !== 'ok') {
+        throw new Error(body.message);
+    }
+
+    return body;
+};
