@@ -165,11 +165,7 @@ const Orders = () => {
                                     disabled={''}
                                     onClick={() => {
                                         toast(
-                                            'Cuando el servicio esté completado lo podrá valorar.',
-                                            {
-                                                position: 'top-center',
-                                                className: 'foo-bar',
-                                            }
+                                            'Cuando el servicio esté completado lo podrá valorar.'
                                         );
                                     }}
                                 >
