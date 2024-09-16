@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import {
     fetchDetailServiceServices,
     fetchEditServiceServices,
+    fetchDeleteServiceService
 } from '../services/serviceServices';
 import toast from 'react-hot-toast';
 
@@ -102,6 +103,22 @@ const EditServicePage = () => {
         }
     };
 
+    const handleDeleteService = async () => {
+        
+        try {
+            const data = await fetchDeleteServiceService(serviceId, authToken); 
+                toast.success(data.message, {
+                    id: 'ok',
+                });
+                navigate('/user');
+            
+        } catch (error) {
+            toast.error(error.message, {
+                id: 'error',
+            });    
+        }
+    };
+
     return (
         <form className='profile-form mx-auto'>
             <fieldset>
@@ -197,6 +214,13 @@ const EditServicePage = () => {
                         onClick={handleEditService}
                     >
                         Guardar Cambios
+                    </button>
+                    <button
+                        className='ml-4 bg-red-500 text-white'
+                        type='button'
+                        onClick={handleDeleteService}
+                    >
+                        Eliminar Servicio
                     </button>
                 </div>
             </fieldset>

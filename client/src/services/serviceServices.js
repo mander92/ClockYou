@@ -179,3 +179,25 @@ export const fetchRatingServiceServices = async (
 
     return body;
 };
+
+export const fetchDeleteServiceService = async (
+    serviceId,
+    authToken
+) => {
+    const res = await fetch(`${VITE_API_URL}/services/${serviceId}`, {
+        method: 'DELETE',
+        headers: {
+            Authorization: authToken,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({}),
+    });
+
+    const body = await res.json();
+
+    if (body.status === 'error') {
+        throw new Error(body.message);
+    }
+
+    return body;
+};
