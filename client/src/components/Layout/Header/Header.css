@@ -23,7 +23,7 @@
         @apply inset-0 z-10 flex flex-wrap flex-col items-start justify-start gap-4 px-7 pt-32 pb-10;
         position: fixed;
         transform: translateX(120%);
-        transition: transform 0.3s ease;
+        transition: transform 0.35s ease-out;
         min-height: var(--body-min-height);
         isolation: isolate;
 

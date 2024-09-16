@@ -183,7 +183,7 @@
             transition: background-color 0.3s linear;
             border: 1px solid var(--icicle);
             border-radius: 1rem;
-            width: min-content;
+            width: fit-content;
 
             &:hover {
                 background-color: var(--glacier-blue);

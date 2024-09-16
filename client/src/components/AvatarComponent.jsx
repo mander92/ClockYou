@@ -32,6 +32,7 @@ const AvatarComponent = () => {
                 });
 
                 navigate('/');
+                // location.reload();
             }
             setEnableEditAvatar(!enableEditAvatar);
         } catch (error) {
