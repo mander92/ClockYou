@@ -27,7 +27,7 @@ const ValidateUserPage = () => {
         };
 
         if (registrationCode) activateUser();
-    }, [registrationCode, navigate]);
+    }, []);
 };
 
 export default ValidateUserPage;
