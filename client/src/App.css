@@ -228,9 +228,6 @@
         border: 1px solid var(--icicle);
         box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
         transition: transform 0.4s ease;
-        &:hover {
-            transform: scale(1.03);
-        }
     }
 
     .cards {
@@ -249,10 +246,6 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-
-            &:hover {
-                transform: scale(1.03);
-            }
 
             & > a,
             button {
@@ -279,6 +272,16 @@
         & img {
             width: 100%;
             border-radius: 1rem 1rem 0 0;
+        }
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+        .user-avatar:hover {
+            transform: scale(1.03);
+        }
+
+        .cards li:hover {
+            transform: scale(1.03);
         }
     }
 
