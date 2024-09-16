@@ -4,7 +4,7 @@ import TypeOfServicesPage from './TypeOfServicesPage';
 const HomePage = () => {
     return (
         <>
-            <section className='mx-auto'>
+            <section className='mx-auto isolate relative'>
                 <article className='initial-content'>
                     <h1 className='my-4'>{`Bienvenido a ${VITE_APP_TITLE}`}</h1>
                     <h2>

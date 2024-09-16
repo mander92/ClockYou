@@ -141,25 +141,41 @@
     }
 
     .initial-content {
-        position: absolute;
-        top: 6rem;
-        left: 50%;
-        transform: translateX(-50%);
-        color: var(--white-color);
-        z-index: 2;
+        position: relative;
+        color: var(--cerulean);
+        inset: auto;
+        transform: none;
+        width: auto;
+        padding-bottom: 2rem;
+
+        & + img {
+            display: none;
+        }
     }
 
-    @media (width < 768px) {
+    @media (width > 767px) {
         .initial-content {
-            position: relative;
-            color: var(--cerulean);
-            inset: auto;
-            transform: none;
-            padding-bottom: 2rem;
-        }
+            position: absolute;
+            top: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--white-color);
+            z-index: 2;
+            width: min(85%, 650px);
 
-        .initial-content + img {
-            display: none;
+            & + img {
+                display: block;
+            }
+        }
+    }
+
+    @media (width > 767px) and (width < 1024px) {
+        section:has(.initial-content)::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background-color: rgba(0, 0, 0, 0.35);
         }
     }
 
@@ -212,9 +228,6 @@
         border: 1px solid var(--icicle);
         box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
         transition: transform 0.4s ease;
-        &:hover {
-            transform: scale(1.03);
-        }
     }
 
     .cards {
@@ -233,10 +246,6 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-
-            &:hover {
-                transform: scale(1.03);
-            }
 
             & > a,
             button {
@@ -263,6 +272,16 @@
         & img {
             width: 100%;
             border-radius: 1rem 1rem 0 0;
+        }
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+        .user-avatar:hover {
+            transform: scale(1.03);
+        }
+
+        .cards li:hover {
+            transform: scale(1.03);
         }
     }
 
