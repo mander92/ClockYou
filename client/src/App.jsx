@@ -18,6 +18,7 @@ import EditServicePage from './pages/EditServicePage.jsx';
 import EditShiftRecordsPage from './pages/EditShiftRecordsPage.jsx';
 import RatingServiceComponent from './components/ClientDashboard/RatingServiceComponent.jsx';
 import ShiftRecordComponent from './components/EmployeeDashboard/ShiftRecordComponent.jsx';
+import ScrollTop from './components/ScrollTop.jsx';
 
 const App = () => {
     return (
@@ -88,6 +89,7 @@ const App = () => {
                     <Route path='/*' element={<NotFoundPage />} />
                 </Routes>
             </main>
+            <ScrollTop />
         </Layout>
     );
 };
