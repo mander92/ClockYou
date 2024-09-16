@@ -145,6 +145,20 @@
         z-index: 2;
     }
 
+    @media (width < 768px) {
+        .initial-content {
+            position: relative;
+            color: var(--cerulean);
+            inset: auto;
+            transform: none;
+            padding-bottom: 2rem;
+        }
+
+        .initial-content + img {
+            display: none;
+        }
+    }
+
     .manager-tabs {
         margin-top: 1rem;
         display: flex;
@@ -157,7 +171,7 @@
         scrollbar-width: none;
         -ms-overflow-style: none;
 
-        &:has(.only-2-buttons) {
+        &:has(.less-than-4-buttons) {
             justify-content: center;
         }
 
@@ -325,4 +339,29 @@
     .leaflet-container {
         width: 500px;
     }
+}
+
+.sr-only,
+.vanish {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+.not-sr-only,
+.pop {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
 }
