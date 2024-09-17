@@ -93,7 +93,7 @@ const RegisterNewTypeOfServiceController = () => {
                     id='description'
                     type='text'
                     minLength='10'
-                    maxLength='500'
+                    maxLength='250'
                     rows='2'
                     style={{ resize: 'none' }}
                     value={description}

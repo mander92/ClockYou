@@ -208,7 +208,7 @@ const EditServicePage = () => {
                 <textarea
                     value={comments}
                     minLength='10'
-                    maxLength='500'
+                    maxLength='250'
                     rows='5'
                     style={{ resize: 'none' }}
                     required

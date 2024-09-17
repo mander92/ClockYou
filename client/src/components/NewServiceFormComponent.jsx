@@ -167,7 +167,7 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
                     onChange={(e) => setComments(e.target.value)}
                     placeholder='Añada comentarios adicionales para describir con detalle sus necesidades sobre el servicio solicitado'
                     minLength='10'
-                    maxLength='500'
+                    maxLength='250'
                     rows='5'
                     style={{ resize: 'none' }}
                 ></textarea>
