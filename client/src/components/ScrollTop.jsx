@@ -30,7 +30,7 @@ const ScrollTop = () => {
         <div
             id='scroll'
             onClick={scrollToTop}
-            className={show ? 'opacity-1' : 'opacity-0'}
+            className={show ? 'show cursor-pointer' : 'hide cursor-pointer'}
         >
             <img
                 className='arrowTopIcon'

@@ -379,11 +379,11 @@
         width: 22px;
     }
 
-    & .hide {
+    &.hide {
         display: none;
     }
 
-    & .show {
+    &.show {
         display: block;
     }
 }
