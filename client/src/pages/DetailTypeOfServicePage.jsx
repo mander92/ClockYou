@@ -2,6 +2,7 @@ const { VITE_API_URL } = import.meta.env;
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { fetchTypeOfServiceServices } from '../services/typeOfServiceServices';
+import { FaStar } from 'react-icons/fa';
 import NewServiceFormComponent from '../components/NewServiceFormComponent';
 import toast from 'react-hot-toast';
 
@@ -38,7 +39,19 @@ const NewServicePage = () => {
                         alt={`${data.description}`}
                     />
                     <h3>{data.description}</h3>
-                    <p>⭐️⭐️⭐️⭐️⭐️</p>
+                    <div className='flex justify-center mb-2'>
+                        {[...Array(5)].map((_, index) => (
+                            <FaStar
+                                key={index}
+                                size={30}
+                                color={
+                                    index + 1 <= Math.ceil(data.averageRating)
+                                        ? '#ffc107'
+                                        : '#e4e5e9'
+                                }
+                            />
+                        ))}
+                    </div>
                     <p>{data.price} €</p>
                 </fieldset>
             </form>

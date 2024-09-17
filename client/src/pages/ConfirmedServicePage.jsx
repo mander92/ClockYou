@@ -26,7 +26,7 @@ const ConfirmedServicePage = () => {
         };
 
         confirmService();
-    }, [validationCode]);
+    }, []);
 };
 
 export default ConfirmedServicePage;

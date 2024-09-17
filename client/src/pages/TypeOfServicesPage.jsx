@@ -1,7 +1,8 @@
-const { VITE_API_URL, VITE_CLIENT_URL } = import.meta.env;
+const { VITE_API_URL } = import.meta.env;
 import { useEffect, useState } from 'react';
 import { fetchAllTypeOfServicesServices } from '../services/typeOfServiceServices';
 import { NavLink } from 'react-router-dom';
+import { FaStar } from 'react-icons/fa';
 import toast from 'react-hot-toast';
 
 const TypeOfServicesPage = () => {
@@ -26,9 +27,8 @@ const TypeOfServicesPage = () => {
             });
             const searchParamsToString = searchParams.toString();
             try {
-                const data = await fetchAllTypeOfServicesServices(
-                    searchParamsToString
-                );
+                const data =
+                    await fetchAllTypeOfServicesServices(searchParamsToString);
                 setData(data);
             } catch (error) {
                 toast.error(error.message, {
@@ -109,7 +109,20 @@ const TypeOfServicesPage = () => {
                                 alt={item.description}
                             />
                             <h3>{item.type}</h3>
-                            <p>⭐️⭐️⭐️⭐️⭐️</p>
+                            <div className='flex mt-2 mb-6'>
+                                {[...Array(5)].map((_, index) => (
+                                    <FaStar
+                                        key={index}
+                                        size={30}
+                                        color={
+                                            index + 1 <=
+                                            Math.ceil(item.averageRating)
+                                                ? '#ffc107'
+                                                : '#e4e5e9'
+                                        }
+                                    />
+                                ))}
+                            </div>
                             <p className='font-black'>{item.city}</p>
                             <p>{item.price}€</p>
                             <NavLink to={`/typeOfServices/${item.id}`}>
