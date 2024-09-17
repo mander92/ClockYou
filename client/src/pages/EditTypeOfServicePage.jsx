@@ -81,7 +81,7 @@ const EditTypeOfServicePage = () => {
     const handleDeleteService = async () => {
         if (
             window.confirm(
-                '¿Estás seguro de querer eliminar el servicio? ¡¡¡Esta acción no se puede deshacer!!!'
+                '¿Estás seguro de querer eliminar el servicio?\n¡¡¡Esta acción no se puede deshacer!!!'
             )
         ) {
             try {
@@ -167,10 +167,12 @@ const EditTypeOfServicePage = () => {
                             }}
                         />
                         <div className='mx-auto'>
-                            <button className='mr-4' type='submit'>
-                                Guardar
-                            </button>
-                            <button type='button' onClick={handleDeleteService}>
+                            <button type='submit'>Guardar</button>
+                            <button
+                                className='ml-4 bg-red-500 text-white'
+                                type='button'
+                                onClick={handleDeleteService}
+                            >
                                 Eliminar
                             </button>
                         </div>

@@ -81,7 +81,7 @@ const ProfileComponent = () => {
     const handleDeleteUser = async () => {
         if (
             window.confirm(
-                '¿Estás seguro de querer eliminar tu cuenta? ¡¡¡Esta acción no se puede deshacer!!!'
+                '¿Estás seguro de querer eliminar tu cuenta?\n¡¡¡Esta acción no se puede deshacer!!!'
             )
         ) {
             try {
@@ -210,7 +210,10 @@ const ProfileComponent = () => {
                 <form className='mx-auto' onSubmit={handleDeleteUser}>
                     <fieldset>
                         <div className='mx-auto'>
-                            <button className='mt-2' type='submit'>
+                            <button
+                                className='bg-red-500 text-white mt-2'
+                                type='submit'
+                            >
                                 Eliminar Usuario
                             </button>
                         </div>
