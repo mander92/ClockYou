@@ -44,7 +44,7 @@
         transition: background-color 0.3s linear;
         border: 1px solid #f0f0f0;
         min-width: fit-content;
-        border-radius: 1rem;
+        border-radius: 20px;
 
         &:hover {
             background-color: var(--overcast);

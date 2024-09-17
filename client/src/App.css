@@ -76,7 +76,7 @@
 
         & img {
             margin-top: 1rem;
-            border-radius: 1rem;
+            border-radius: 20px;
         }
 
         & fieldset {
@@ -85,7 +85,7 @@
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
-            border-radius: 1rem;
+            border-radius: 20px;
         }
 
         & legend {
@@ -109,7 +109,7 @@
         textarea {
             border: 1px solid var(--icicle);
             padding: 0.5rem;
-            border-radius: 1rem;
+            border-radius: 20px;
 
             &:focus {
                 outline: none;
@@ -120,7 +120,7 @@
             padding: 0.5rem;
             border: 1px solid var(--icicle);
             cursor: pointer;
-            border-radius: 1rem;
+            border-radius: 20px;
             -moz-appearance: none;
             -webkit-appearance: none;
             appearance: none;
@@ -133,7 +133,7 @@
         & button,
         .input-file {
             padding: 0.5rem 1rem;
-            border-radius: 1rem;
+            border-radius: 20px;
             color: var(--white-color);
             background-color: var(--cerulean);
             cursor: pointer;
@@ -202,7 +202,7 @@
             background-color: var(--cerulean);
             transition: background-color 0.3s linear;
             border: 1px solid var(--icicle);
-            border-radius: 1rem;
+            border-radius: 20px;
             width: fit-content;
 
             &:hover {
@@ -239,7 +239,7 @@
 
         & li {
             border: 1px solid var(--icicle);
-            border-radius: 1rem;
+            border-radius: 20px;
             box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
             transition: transform 0.4s ease;
             display: flex;
@@ -258,7 +258,7 @@
                 color: var(--white-color);
                 background-color: var(--cerulean);
                 justify-content: center;
-                border-radius: 1rem;
+                border-radius: 20px;
                 margin-top: 0.5rem;
                 margin-bottom: 1rem;
             }
@@ -276,7 +276,7 @@
 
         & img {
             width: 100%;
-            border-radius: 1rem 1rem 0 0;
+            border-radius: 20px 20px 0 0;
         }
 
         &.pedidosCliente {
@@ -321,7 +321,7 @@
         position: absolute;
         padding: 0 1rem 1rem 1rem;
         background-color: var(--overcast);
-        border-radius: 1rem;
+        border-radius: 20px;
         top: 50%;
         left: 50%;
         right: auto;
