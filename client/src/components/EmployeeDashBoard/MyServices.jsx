@@ -4,6 +4,7 @@ import { fetchEmployeeAllServicesServices } from '../../services/serviceServices
 import { FaStar } from 'react-icons/fa';
 import ShiftRecordModal from './ShiftRecordComponent.jsx';
 import toast from 'react-hot-toast';
+import Map from '../Map.jsx';
 
 const MyServices = () => {
     const { authToken } = useContext(AuthContext);
@@ -27,6 +28,8 @@ const MyServices = () => {
 
         getServices();
     }, [authToken]);
+
+    console.log(data);
 
     const openModal = (shiftRecordId) => {
         if (navigator.geolocation) {
@@ -68,6 +71,12 @@ const MyServices = () => {
             {
                 <ul className='cards'>
                     {data.map((item) => {
+                        const location = {
+                            currentLocation: {
+                                lat: item.latitude,
+                                lng: item.longitude,
+                            },
+                        };
                         const clockIn = item.clockIn
                             ? new Date(item.clockIn).toLocaleString()
                             : null;
@@ -113,6 +122,8 @@ const MyServices = () => {
                                         {item.minutesWorked} Minutos
                                     </p>
                                 )}
+                                <Map location={location} />
+
                                 {item.rating !== null ? (
                                     <div className='flex mt-2 mb-6'>
                                         {[...Array(5)].map((_, index) => (

@@ -7,7 +7,7 @@ const MapView = ({ location }) => {
         <>
             <MapContainer
                 center={location.currentLocation}
-                zoom={17}
+                zoom={13}
                 scrollWheelZoom={false}
             >
                 <TileLayer

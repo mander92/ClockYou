@@ -378,13 +378,18 @@
 
 .leaflet-container {
     height: 300px;
-    width: 300px;
     margin: 0 auto;
 }
 
 @media (width > 550px) {
     .leaflet-container {
         width: 500px;
+    }
+}
+
+@media (width < 300px) {
+    .leaflet-container {
+        width: 50%;
     }
 }
 
