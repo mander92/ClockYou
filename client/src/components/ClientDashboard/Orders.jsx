@@ -119,7 +119,7 @@ const Orders = () => {
                 </select>
                 <button onClick={resetFilters}>Limpiar Filtros</button>
             </form>
-            <ul className='cards'>
+            <ul className='cards pedidosCliente'>
                 {data.map((item) => {
                     const time = new Date(item.dateTime).toLocaleTimeString(
                         [],

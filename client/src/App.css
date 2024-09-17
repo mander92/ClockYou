@@ -247,6 +247,11 @@
             align-items: center;
             text-align: center;
 
+            & > * {
+                text-align: center;
+                justify-self: center;
+            }
+
             & > a,
             button {
                 padding: 0.5rem 1rem;
@@ -272,6 +277,25 @@
         & img {
             width: 100%;
             border-radius: 1rem 1rem 0 0;
+        }
+
+        &.pedidosCliente {
+            grid-auto-columns: 1fr;
+
+            & > li {
+                display: grid;
+                grid-template-rows: subgrid;
+                grid-row: span 11;
+                align-items: start;
+
+                & > *:not(h3) {
+                    margin-top: 0;
+                }
+
+                & h3 {
+                    margin-top: 1.5rem;
+                }
+            }
         }
     }
 
