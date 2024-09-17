@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import {
     fetchDetailServiceServices,
     fetchEditServiceServices,
-    fetchDeleteServiceService
+    fetchDeleteServiceService,
 } from '../services/serviceServices';
 import toast from 'react-hot-toast';
 
@@ -104,18 +104,25 @@ const EditServicePage = () => {
     };
 
     const handleDeleteService = async () => {
-        
-        try {
-            const data = await fetchDeleteServiceService(serviceId, authToken); 
+        if (
+            window.confirm(
+                '¿Estás seguro de querer eliminar este servicio?\n¡¡¡Esta acción no se puede deshacer!!!'
+            )
+        ) {
+            try {
+                const data = await fetchDeleteServiceService(
+                    serviceId,
+                    authToken
+                );
                 toast.success(data.message, {
                     id: 'ok',
                 });
                 navigate('/user');
-            
-        } catch (error) {
-            toast.error(error.message, {
-                id: 'error',
-            });    
+            } catch (error) {
+                toast.error(error.message, {
+                    id: 'error',
+                });
+            }
         }
     };
 
