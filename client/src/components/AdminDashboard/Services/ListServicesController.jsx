@@ -1,4 +1,3 @@
-const { VITE_API_URL, VITE_CLIENT_URL } = import.meta.env;
 import { useEffect, useState } from 'react';
 import { fetchAllTypeOfServicesServices } from '../../../services/typeOfServiceServices';
 import toast from 'react-hot-toast';
@@ -26,9 +25,8 @@ const ListServicesController = () => {
             });
             const searchParamsToString = searchParams.toString();
             try {
-                const data = await fetchAllTypeOfServicesServices(
-                    searchParamsToString
-                );
+                const data =
+                    await fetchAllTypeOfServicesServices(searchParamsToString);
                 setData(data);
             } catch (error) {
                 toast.error(error.message, {

@@ -1,3 +1,4 @@
+const { VITE_API_URL } = import.meta.env;
 import { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import {
@@ -27,6 +28,7 @@ const EditTypeOfServicePage = () => {
                 setData(data);
                 setDescription(data.description);
                 setPrice(data.price);
+                setImage(data.image);
             } catch (error) {
                 toast.error(error.message, {
                     id: 'error',
@@ -47,9 +49,13 @@ const EditTypeOfServicePage = () => {
                     typeOfServiceId
                 );
 
-                toast.success(data.message);
+                toast.success(data.message, {
+                    id: 'ok',
+                });
             } catch (error) {
-                toast.error(error.message);
+                toast.error(error.message, {
+                    id: 'error',
+                });
             }
             setEnableEditImage(false);
         } else {
@@ -109,6 +115,11 @@ const EditTypeOfServicePage = () => {
             <section className='flex-1024'>
                 <form className='profile-form mx-auto'>
                     <fieldset>
+                        <img
+                            className='w-full h-full object-cover'
+                            src={`${VITE_API_URL}/${image}`}
+                            alt={`${data.description}`}
+                        />
                         {enableEditImage ? (
                             <>
                                 <label
@@ -131,8 +142,8 @@ const EditTypeOfServicePage = () => {
                         ) : (
                             ''
                         )}
-                        <button onClick={handleEditImage}>
-                            {enableEditImage ? 'Guardar' : 'Editar imagen'}
+                        <button className='mt-2' onClick={handleEditImage}>
+                            {enableEditImage ? 'Guardar' : 'Editar Imágen'}
                         </button>
                     </fieldset>
                 </form>
