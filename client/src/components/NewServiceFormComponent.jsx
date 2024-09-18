@@ -94,7 +94,7 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
                         )
                     }
                 />
-                <label htmlFor='time'>Hora</label>
+                <label htmlFor='time'>Hora comienzo servicio</label>
                 <select
                     required
                     id='time'
