@@ -12,8 +12,10 @@ const AvatarComponent = () => {
     const userId = user?.id;
 
     const [avatar, setAvatar] = useState(null);
-    const [avatarPreview, setAvatarPreview] = useState(user?.avatar);
+    // const [avatarPreview, setAvatarPreview] = useState(user?.avatar);
+    const [avatarPreview, setAvatarPreview] = useState(false);
     const [enableEditAvatar, setEnableEditAvatar] = useState(false);
+    // const [imagePreview, setImagePreview] = useState();
 
     const handleFile = (e) => {
         const file = e.target.files[0];
@@ -44,14 +46,18 @@ const AvatarComponent = () => {
         }
     };
 
+    // avatar ? miau : guau : muuu
+
     return (
         <form className='mx-auto' onSubmit={handleEditAvatar}>
             <img
                 className='user-avatar mx-auto'
                 src={`${
-                    user?.avatar
-                        ? `${VITE_API_URL}/${user.avatar}`
-                        : '/default-avatar.png'
+                    avatarPreview
+                        ? avatarPreview
+                        : user?.avatar
+                          ? `${VITE_API_URL}/${user.avatar}`
+                          : '/default-avatar.png'
                 }`}
                 alt='Avatar'
             />
