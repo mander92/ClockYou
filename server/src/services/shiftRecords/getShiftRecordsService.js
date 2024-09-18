@@ -7,7 +7,9 @@ const getShiftRecordsService = async (shiftRecordId, employeeId) => {
         const [shifts] = await pool.query(
             `
             SELECT 
-            s.id, s.employeeId, u.firstName, u.lastName  ,s.clockIn, s.clockOut, se.totalPrice, a.city, a.address, t.type 
+            s.id, s.employeeId, u.firstName, u.lastName, s.clockIn, s.clockOut, se.dateTime, a.city, a.address, t.type,
+            TIMESTAMPDIFF(HOUR, s.clockIn, s.clockOut) AS hoursWorked,
+            MOD(TIMESTAMPDIFF(MINUTE, s.clockIn, s.clockOut), 60) AS minutesWorked
             FROM shiftRecords s 
             INNER JOIN users u
             ON u.id = s.employeeId
@@ -27,7 +29,9 @@ const getShiftRecordsService = async (shiftRecordId, employeeId) => {
         const [shifts] = await pool.query(
             `
             SELECT 
-            s.id, s.employeeId, u.firstName, u.lastName  ,s.clockIn, s.clockOut, se.totalPrice, a.city, a.address, t.type 
+            s.id, s.employeeId, u.firstName, u.lastName, s.clockIn, s.clockOut, se.dateTime, a.city, a.address, t.type, 
+            TIMESTAMPDIFF(HOUR, s.clockIn, s.clockOut) AS hoursWorked,
+            MOD(TIMESTAMPDIFF(MINUTE, s.clockIn, s.clockOut), 60) AS minutesWorked
             FROM shiftRecords s 
             INNER JOIN users u
             ON u.id = s.employeeId
@@ -49,7 +53,9 @@ const getShiftRecordsService = async (shiftRecordId, employeeId) => {
         const [shifts] = await pool.query(
             `
             SELECT 
-            s.id, s.employeeId, u.firstName, u.lastName  ,s.clockIn, s.clockOut, se.totalPrice, a.city, a.address, t.type 
+            s.id, s.employeeId, u.firstName, u.lastName, s.clockIn, s.clockOut, se.dateTime, a.city, a.address, t.type, 
+            TIMESTAMPDIFF(HOUR, s.clockIn, s.clockOut) AS hoursWorked,
+            MOD(TIMESTAMPDIFF(MINUTE, s.clockIn, s.clockOut), 60) AS minutesWorked
             FROM shiftRecords s 
             INNER JOIN users u
             ON u.id = s.employeeId
@@ -71,7 +77,9 @@ const getShiftRecordsService = async (shiftRecordId, employeeId) => {
         const [shifts] = await pool.query(
             `
             SELECT 
-            s.id, s.employeeId, u.firstName, u.lastName  ,s.clockIn, s.clockOut, se.totalPrice, a.city, a.address, t.type  
+            s.id, s.employeeId, u.firstName, u.lastName, s.clockIn, s.clockOut, se.dateTime, a.city, a.address, t.type, 
+            TIMESTAMPDIFF(HOUR, s.clockIn, s.clockOut) AS hoursWorked,
+            MOD(TIMESTAMPDIFF(MINUTE, s.clockIn, s.clockOut), 60) AS minutesWorked            
             FROM shiftRecords s 
             INNER JOIN users u
             ON u.id = s.employeeId

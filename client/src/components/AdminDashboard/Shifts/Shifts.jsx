@@ -57,16 +57,21 @@ const Shifts = () => {
                 )
         );
 
-    const serviceNotRepeated = [
-        ...new Set(
-            data.map((shiftRecord) => {
-                return {
-                    id: shiftRecord.id,
-                    type: shiftRecord.type,
-                };
-            })
-        ),
-    ];
+    const serviceNotRepeated = data
+        .map((shiftRecord) => {
+            return {
+                id: shiftRecord.id,
+                type: shiftRecord.type,
+            };
+        })
+        .filter(
+            (employee, index, self) =>
+                index ===
+                self.findIndex(
+                    (o) => o.id === employee.id && o.nombre === employee.nombre
+                )
+        );
+
     const openModal = (shiftRecordId) => {
         setSelectedShiftRecordId(shiftRecordId);
         setModalIsOpen(true);
@@ -124,14 +129,39 @@ const Shifts = () => {
                     const clockOut = item.clockOut
                         ? new Date(item.clockOut).toLocaleString()
                         : null;
+                    const dateTime = item.clockIn
+                        ? new Date(item.dateTime).toLocaleString()
+                        : null;
 
                     return (
                         <li key={item.id}>
                             <h3>{`${item.firstName} ${item.lastName}`}</h3>
                             <p>{item.type}</p>
-
-                            {clockIn && <p>Entrada: {clockIn}</p>}
-                            {clockOut && <p>Salida: {clockOut}</p>}
+                            <p className='grow'>
+                                {item.address}, {item.city}
+                            </p>
+                            {dateTime && (
+                                <p>
+                                    <strong>Previsto:</strong> {dateTime}
+                                </p>
+                            )}
+                            {clockIn && (
+                                <p>
+                                    <strong>Entrada:</strong> {clockIn}
+                                </p>
+                            )}
+                            {clockOut && (
+                                <p>
+                                    <strong>Salida:</strong> {clockOut}
+                                </p>
+                            )}
+                            {(item.hoursWorked ||
+                                item.minutesWorked !== null) && (
+                                <p className='font-extrabold'>
+                                    Total: {item.hoursWorked} Horas{' '}
+                                    {item.minutesWorked} Minutos
+                                </p>
+                            )}
 
                             <button onClick={() => openModal(item.id)}>
                                 Editar

@@ -5,12 +5,18 @@ const selectServiceByIdService = async (serviceId) => {
 
     const [service] = await pool.query(
         `
-        SELECT s.status, t.type, t.city AS province, t.price, s.hours, s.totalPrice, s.dateTime, a.address, a.postCode, a.city, s.comments, u.email, u.firstName, u.lastName , u.phone
+        SELECT sr.clockIn, sr.clockOut, sr.latitude, sr.longitude, sr.employeeId, s.status, t.type, t.city AS province, t.price, s.hours, s.totalPrice, s.dateTime, a.address, a.postCode, a.city, s.comments, u.email, u.firstName, u.lastName , u.phone, ue.firstName AS firstNameEmployee, ue.lastName AS lastNameEmployee, ue.job,
+        TIMESTAMPDIFF(HOUR, sr.clockIn, sr.clockOut) AS hoursWorked,
+        MOD(TIMESTAMPDIFF(MINUTE, sr.clockIn, sr.clockOut), 60) AS minutesWorked
         FROM addresses a
         INNER JOIN services s
         ON a.id = s.addressId
+        INNER JOIN shiftRecords sr
+        ON sr.serviceId = s.id
         INNER JOIN users u
         ON u.id = s.clientId
+        INNER JOIN users ue
+        ON sr.employeeId = ue.id
         INNER JOIN typeOfServices t
         ON s.typeOfServicesId = t.id
         WHERE s.id = ? AND s.deletedAt IS NULL
