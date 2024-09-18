@@ -20,6 +20,13 @@ const EditTypeOfServicePage = () => {
     const [price, setPrice] = useState('');
     const [image, setImage] = useState('');
     const [enableEditImage, setEnableEditImage] = useState(false);
+    const [imgPreview, setImgPreview] = useState(false);
+
+    const handleFile = (e) => {
+        const file = e.target.files[0];
+        setImage(file);
+        setImgPreview(URL.createObjectURL(file));
+    };
 
     useEffect(() => {
         const getTypeOfService = async () => {
@@ -117,7 +124,14 @@ const EditTypeOfServicePage = () => {
                     <fieldset>
                         <img
                             className='w-full h-full object-cover'
-                            src={`${VITE_API_URL}/${image}`}
+                            // src={`${VITE_API_URL}/${image}`}
+                            src={`${
+                                imgPreview
+                                    ? imgPreview
+                                    : data?.image
+                                      ? `${VITE_API_URL}/${image}`
+                                      : ''
+                            }`}
                             alt={`${data.description}`}
                         />
                         {enableEditImage ? (
@@ -134,9 +148,10 @@ const EditTypeOfServicePage = () => {
                                     type='file'
                                     className='hidden'
                                     accept='image/png, image/jpg, image/jpeg, image/tiff'
-                                    onChange={(e) => {
-                                        setImage(e.target.files[0]);
-                                    }}
+                                    // onChange={(e) => {
+                                    //     setImage(e.target.files[0]);
+                                    // }}
+                                    onChange={handleFile}
                                 />
                             </>
                         ) : (
