@@ -109,7 +109,7 @@ const TypeOfServicesPage = () => {
                                 alt={item.description}
                             />
                             <h3>{item.type}</h3>
-                            <div className='flex mt-2 mb-6'>
+                            <div className='flex mt-2'>
                                 {[...Array(5)].map((_, index) => (
                                     <FaStar
                                         key={index}
