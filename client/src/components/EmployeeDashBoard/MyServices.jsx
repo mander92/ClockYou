@@ -92,17 +92,15 @@ const MyServices = () => {
                                 </h3>
                                 <p>{item.comments}</p>
                                 <p>
-                                    {item.firstName} {item.lastName} (
-                                    {item.phone})
+                                    {item.firstName} {item.lastName}, Tel:{' '}
+                                    {item.phone}
                                 </p>
-                                <p className='font-extrabold'>
+                                <p className='grow'>
                                     En {item.address}, {item.city},{' '}
-                                    {item.postCode}
+                                    {item.postCode}, {item.province}
                                 </p>
                                 <p>Horas: {item.hours}</p>
-                                <p className='font-extrabold'>
-                                    Precio: {item.totalPrice}€
-                                </p>
+                                <p>Precio: {item.totalPrice}€</p>
 
                                 {clockIn && <p>Entrada: {clockIn}</p>}
                                 {clockOut && <p>Salida: {clockOut}</p>}
@@ -130,9 +128,7 @@ const MyServices = () => {
                                 ) : (
                                     item.status === 'confirmed' && (
                                         <button
-                                            onClick={() =>
-                                                openModal(item.shiftRecordId)
-                                            }
+                                            onClick={() => openModal(item.id)}
                                         >
                                             Fichar
                                         </button>

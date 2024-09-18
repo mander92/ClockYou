@@ -1,20 +1,17 @@
-import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../../../context/AuthContext';
-import Modal from 'react-modal';
-import toast from 'react-hot-toast';
+import { useState, useEffect, useContext } from 'react';
 import {
     fetchDetailShiftRecordServices,
     fetchEditShiftRecordServices,
 } from '../../../services/shiftRecordServices';
-// import Map from '../../../components/Map';
+import Modal from 'react-modal';
+import toast from 'react-hot-toast';
 
 const EditShiftRecordComponent = ({ shiftRecordId, onRequestClose }) => {
     const { authToken } = useContext(AuthContext);
     const [data, setData] = useState([]);
-    const [clockIn, setClockIn] = useState(data.clockIn);
-    const [clockOut, setClockOut] = useState(data.clockOut);
-
-    // const [location, setLocation] = useState({});
+    const [clockIn, setClockIn] = useState('');
+    const [clockOut, setClockOut] = useState('');
 
     useEffect(() => {
         const getDetailShiftRecord = async () => {
@@ -23,16 +20,9 @@ const EditShiftRecordComponent = ({ shiftRecordId, onRequestClose }) => {
                     shiftRecordId,
                     authToken
                 );
-
                 setData(data);
                 setClockIn(data.clockIn);
                 setClockOut(data.clockOut);
-                // setLocation({
-                //     currentLocation: {
-                //         lat: data.latitude,
-                //         lng: data.longitude,
-                //     },
-                // });
             } catch (error) {
                 toast.error(error.message);
             }
@@ -75,28 +65,13 @@ const EditShiftRecordComponent = ({ shiftRecordId, onRequestClose }) => {
     return (
         <>
             <section className='mx-auto flex-1024'>
-                <form
-                    className='profile-form'
-                    onSubmit={handleEditShiftRecord}
-                >
+                <form className='profile-form' onSubmit={handleEditShiftRecord}>
                     <fieldset>
-                        <p className='font-extrabold'>Entrada: {entrada}</p>
+                        <p className='mt-2 font-extrabold'>
+                            Entrada: {entrada}
+                        </p>
                         <p className='font-extrabold'>Salida: {salida}</p>
-
-                        {/* {location.currentLocation ? (
-                            <div>
-                                <Map location={location} />
-                            </div>
-                        ) : (
-                            <span>Cargando el mapa</span>
-                        )} */}
-
-                        <label
-                            htmlFor='clockin'
-                            className='font-extrabold'
-                        >
-                            Entrada
-                        </label>
+                        <label htmlFor='clockin'>Entrada</label>
                         <input
                             id='clockin'
                             value={clockIn}
@@ -105,12 +80,7 @@ const EditShiftRecordComponent = ({ shiftRecordId, onRequestClose }) => {
                             }}
                             type='datetime-local'
                         />
-                        <label
-                            htmlFor='clockin'
-                            className='font-extrabold'
-                        >
-                            Salida
-                        </label>
+                        <label htmlFor='clockin'>Salida</label>
                         <input
                             type='datetime-local'
                             htmlFor='clockout'
@@ -119,7 +89,7 @@ const EditShiftRecordComponent = ({ shiftRecordId, onRequestClose }) => {
                             onChange={(e) => setClockOut(e.target.value)}
                         />
 
-                        <button>Editar Turno</button>
+                        <button className='mt-2'>Editar Turno</button>
                     </fieldset>
                 </form>
             </section>

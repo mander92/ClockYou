@@ -6,7 +6,7 @@ const selectServiceByClientIdService = async (clientId, status, city, type) => {
     if (!status && !city && !type) {
         const [data] = await pool.query(
             `
-            SELECT s.id, s.rating, s.status, s.validationCode, t.type, t.city AS province, t.price, s.hours, s.totalPrice, s.dateTime , a.address, a.postCode, a.city, s.comments, u.email, u.firstName,u.lastName, u.phone
+            SELECT s.id, s.rating, s.status, s.validationCode, t.type, t.city AS province, t.price, s.hours, s.totalPrice, s.dateTime , a.address, a.postCode, a.city, s.comments
             FROM addresses a
             INNER JOIN services s
             ON a.id = s.addressId
@@ -24,7 +24,7 @@ const selectServiceByClientIdService = async (clientId, status, city, type) => {
     if (status) {
         const [data] = await pool.query(
             `
-            SELECT s.id, s.rating, s.status, s.validationCode, t.type, t.city AS province, t.price, s.hours, s.totalPrice, s.dateTime , a.address, a.postCode, a.city, s.comments, u.email, u.firstName,u.lastName, u.phone
+            SELECT s.id, s.rating, s.status, s.validationCode, t.type, t.city AS province, t.price, s.hours, s.totalPrice, s.dateTime , a.address, a.postCode, a.city, s.comments
             FROM addresses a
             INNER JOIN services s
             ON a.id = s.addressId
@@ -42,7 +42,7 @@ const selectServiceByClientIdService = async (clientId, status, city, type) => {
     if (type) {
         const [data] = await pool.query(
             `
-            SELECT s.id, s.rating, s.status, s.validationCode, t.type, t.city AS province, t.price, s.hours, s.totalPrice, s.dateTime , a.address, a.postCode, a.city, s.comments, u.email, u.firstName,u.lastName, u.phone
+            SELECT s.id, s.rating, s.status, s.validationCode, t.type, t.city AS province, t.price, s.hours, s.totalPrice, s.dateTime , a.address, a.postCode, a.city, s.comments
             FROM addresses a
             INNER JOIN services s
             ON a.id = s.addressId
@@ -60,7 +60,7 @@ const selectServiceByClientIdService = async (clientId, status, city, type) => {
     if (city) {
         const [data] = await pool.query(
             `
-            SELECT s.id, s.rating, s.status, s.validationCode, t.type, t.city AS province, t.price, s.hours, s.totalPrice, s.dateTime , a.address, a.postCode, a.city, s.comments, u.email, u.firstName,u.lastName, u.phone
+            SELECT s.id, s.rating, s.status, s.validationCode, t.type, t.city AS province, t.price, s.hours, s.totalPrice, s.dateTime , a.address, a.postCode, a.city, s.comments
             FROM addresses a
             INNER JOIN services s
             ON a.id = s.addressId

@@ -90,8 +90,10 @@ const ListContracts = () => {
                     return (
                         <li key={item.id}>
                             <h3>{item.type}</h3>
-                            <p className='font-extrabold'>{item.province}</p>
-                            <p>{item.city}</p>
+                            <p className='grow'>
+                                En {item.address}, {item.city}, {item.postCode},{' '}
+                                {item.province}
+                            </p>
                             <p className='font-extrabold'>
                                 El {date} a las {time}
                             </p>

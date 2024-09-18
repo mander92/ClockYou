@@ -108,7 +108,7 @@ const ListServicesController = () => {
 
                             <p className='font-extrabold'>{item.city}</p>
 
-                            <p>{item.price}</p>
+                            <p>{item.price}€</p>
 
                             <NavLink
                                 className='mb-4'

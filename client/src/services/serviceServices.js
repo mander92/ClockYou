@@ -180,10 +180,7 @@ export const fetchRatingServiceServices = async (
     return body;
 };
 
-export const fetchDeleteServiceService = async (
-    serviceId,
-    authToken
-) => {
+export const fetchDeleteServiceService = async (serviceId, authToken) => {
     const res = await fetch(`${VITE_API_URL}/services/${serviceId}`, {
         method: 'DELETE',
         headers: {

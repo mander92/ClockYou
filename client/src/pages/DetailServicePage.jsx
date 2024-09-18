@@ -48,17 +48,16 @@ const DetailServicePage = () => {
         <section>
             <form className='form-filters mx-auto'>
                 <fieldset>
-                    <legend>Servicio</legend>
-                    <p className='mt-2 font-extrabold'>
-                        {data.type} en {data.province}
-                    </p>
+                    <legend>Solicitud</legend>
+                    <p className='mt-2'>{data.type}</p>
                     <p>{data.comments}</p>
 
                     <p className='font-extrabold'>
                         Solicitado el {date} a las {time}
                     </p>
-                    <p>
-                        En {data.address}, {data.postCode}, {data.city}
+                    <p className='grow'>
+                        En {data.address}, {data.city}, {data.postCode},{' '}
+                        {data.province}
                     </p>
                     <p>Horas Contratadas: {data.hours}</p>
                     <p className='font-extrabold'>Total: {data.totalPrice}€</p>
@@ -67,45 +66,41 @@ const DetailServicePage = () => {
             <form className='form-filters mx-auto'>
                 <fieldset>
                     <legend>Cliente</legend>
-                    <p className='mt-2 font-extrabold'>
+                    <p className='mt-2'>
                         {data.firstName} {data.lastName}
                     </p>
-                    <p className='font-extrabold'>{data.email}</p>
+                    <p>{data.email}</p>
                     <p>{data.phone}</p>
                 </fieldset>
             </form>
             {data.status === 'pending' && (
                 <ListEmployeeController serviceId={serviceId} />
             )}
-            <form className='form-filters mx-auto'>
-                <fieldset>
-                    <legend>Empleado</legend>
-                    <p className='mt-2 font-extrabold'>
-                        {data.firstNameEmployee} {data.lastNameEmployee}
-                    </p>
-                    <p>
-                        <strong>Inicio: </strong>
-                        {clockIn}
-                    </p>
-                    <p>
-                        <strong>Fin: </strong>
-                        {clockOut}
-                    </p>
-                    {(data.hoursWorked || data.minutesWorked !== null) && (
-                        <p className='font-extrabold'>
-                            Total: {data.hoursWorked} Horas {data.minutesWorked}{' '}
-                            Minutos
+            {data.status === 'completed' && (
+                <form className='form-filters mx-auto'>
+                    <fieldset>
+                        <legend>Empleado</legend>
+                        <p className='mt-2'>
+                            {data.firstNameEmployee} {data.lastNameEmployee}
                         </p>
-                    )}
-                    {location.currentLocation ? (
-                        <div>
-                            <Map location={location} />
-                        </div>
-                    ) : (
-                        <span>Cargando el mapa</span>
-                    )}
-                </fieldset>
-            </form>
+                        <p className='font-extrabold'>Entrada: {clockIn}</p>
+                        <p className='font-extrabold'>Salida: {clockOut}</p>
+                        {(data.hoursWorked || data.minutesWorked !== null) && (
+                            <p>
+                                Total: {data.hoursWorked} Horas{' '}
+                                {data.minutesWorked} Minutos
+                            </p>
+                        )}
+                        {location.currentLocation ? (
+                            <div>
+                                <Map location={location} />
+                            </div>
+                        ) : (
+                            <span>Cargando el mapa</span>
+                        )}
+                    </fieldset>
+                </form>
+            )}
         </section>
     );
 };

@@ -71,10 +71,7 @@ const Orders = () => {
                         setStatus(e.target.value);
                     }}
                 >
-                    <option
-                        value=''
-                        disabled
-                    >
+                    <option value='' disabled>
                         Estado:
                     </option>
                     <option value='accepted'>Aceptado</option>
@@ -90,18 +87,12 @@ const Orders = () => {
                         setType(e.target.value);
                     }}
                 >
-                    <option
-                        value=''
-                        disabled
-                    >
+                    <option value='' disabled>
                         Tipo de Servicio:
                     </option>
                     {typeNoRepeated.map((type) => {
                         return (
-                            <option
-                                key={type}
-                                value={type}
-                            >
+                            <option key={type} value={type}>
                                 {type}
                             </option>
                         );
@@ -115,18 +106,12 @@ const Orders = () => {
                         setCity(e.target.value);
                     }}
                 >
-                    <option
-                        value=''
-                        disabled
-                    >
+                    <option value='' disabled>
                         Ciudad:
                     </option>
                     {cityNoRepeated.map((city) => {
                         return (
-                            <option
-                                key={city}
-                                value={city}
-                            >
+                            <option key={city} value={city}>
                                 {city}
                             </option>
                         );
@@ -147,13 +132,13 @@ const Orders = () => {
                     return (
                         <li key={item.id}>
                             <h3>{item.type}</h3>
-                            <p className='font-extrabold'>{item.province}</p>
                             <p className='grow'>{item.comments}</p>
                             <p className='font-extrabold'>
                                 El {date} a las {time}
                             </p>
                             <p className='grow'>
-                                En {item.address}, {item.postCode}, {item.city}
+                                En {item.address}, {item.city}, {item.postCode},{' '}
+                                {item.province}
                             </p>
                             <p className='font-extrabold'>
                                 Estado: {item.status}
@@ -189,7 +174,7 @@ const Orders = () => {
                             )}
                             {item.status === 'completed' &&
                             item.rating !== null ? (
-                                <div className='flex mt-2 mb-6'>
+                                <div className='flex mt-2'>
                                     {[...Array(5)].map((_, index) => (
                                         <FaStar
                                             key={index}
