@@ -59,9 +59,17 @@ const AvatarComponent = () => {
             />
             {enableEditAvatar ? (
                 <div className='text-center mt-4'>
+                    <label
+                        className='input-file text-center mt-2'
+                        htmlFor='file'
+                    >
+                        Selecciona Imágen
+                    </label>
                     <input
+                        id='file'
                         type='file'
                         accept='image/png, image/jpg, image/jpeg, image/tiff'
+                        className='hidden'
                         required
                         onChange={handleFile}
                     />

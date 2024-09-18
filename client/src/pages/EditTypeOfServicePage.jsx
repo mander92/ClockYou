@@ -119,11 +119,12 @@ const EditTypeOfServicePage = () => {
                 {data.type} en {data.city}
             </h2>
             <section className='flex-1024'>
-                <form className='profile-form mx-auto'>
+                <form
+                    className='profile-form mx-auto'
+                    onSubmit={handleEditImage}
+                >
                     <fieldset>
                         <img
-                            className='w-full h-full object-cover'
-                            // src={`${VITE_API_URL}/${image}`}
                             src={`${
                                 imgPreview
                                     ? imgPreview
@@ -147,19 +148,13 @@ const EditTypeOfServicePage = () => {
                                     type='file'
                                     className='hidden'
                                     accept='image/png, image/jpg, image/jpeg, image/tiff'
-                                    // onChange={(e) => {
-                                    //     setImage(e.target.files[0]);
-                                    // }}
                                     onChange={handleFile}
                                 />
                             </>
                         ) : (
                             ''
                         )}
-                        <button
-                            className='mt-2'
-                            onClick={handleEditImage}
-                        >
+                        <button className='mt-2' type='submit'>
                             {enableEditImage ? 'Guardar' : 'Editar Imágen'}
                         </button>
                     </fieldset>
