@@ -1,13 +1,13 @@
 import getPool from '../../db/getPool.js';
 
-const getShiftRecordsService = async (shiftRecorId, employeeId) => {
+const getShiftRecordsService = async (shiftRecordId, employeeId) => {
     const pool = await getPool();
 
-    if (!shiftRecorId && !employeeId) {
+    if (!shiftRecordId && !employeeId) {
         const [shifts] = await pool.query(
             `
             SELECT 
-            s.id, s.employeeId, u.firstName, u.LastName  ,s.clockIn, s.clockOut, se.totalPrice, a.city, a.address, t.type 
+            s.id, s.employeeId, u.firstName, u.lastName  ,s.clockIn, s.clockOut, se.totalPrice, a.city, a.address, t.type 
             FROM shiftRecords s 
             INNER JOIN users u
             ON u.id = s.employeeId
@@ -23,11 +23,11 @@ const getShiftRecordsService = async (shiftRecorId, employeeId) => {
         return shifts;
     }
 
-    if (shiftRecorId && employeeId) {
+    if (shiftRecordId && employeeId) {
         const [shifts] = await pool.query(
             `
             SELECT 
-            s.id, s.employeeId, u.firstName, u.LastName  ,s.clockIn, s.clockOut, se.totalPrice, a.city, a.address, t.type 
+            s.id, s.employeeId, u.firstName, u.lastName  ,s.clockIn, s.clockOut, se.totalPrice, a.city, a.address, t.type 
             FROM shiftRecords s 
             INNER JOIN users u
             ON u.id = s.employeeId
@@ -39,7 +39,7 @@ const getShiftRecordsService = async (shiftRecorId, employeeId) => {
             ON t.id = se.typeOfServicesId 
             WHERE s.id = ? AND s.employeeId = ?
             `,
-            [shiftRecorId, employeeId]
+            [shiftRecordId, employeeId]
         );
 
         return shifts;
@@ -49,7 +49,7 @@ const getShiftRecordsService = async (shiftRecorId, employeeId) => {
         const [shifts] = await pool.query(
             `
             SELECT 
-            s.id, s.employeeId, u.firstName, u.LastName  ,s.clockIn, s.clockOut, se.totalPrice, a.city, a.address, t.type 
+            s.id, s.employeeId, u.firstName, u.lastName  ,s.clockIn, s.clockOut, se.totalPrice, a.city, a.address, t.type 
             FROM shiftRecords s 
             INNER JOIN users u
             ON u.id = s.employeeId
@@ -67,11 +67,11 @@ const getShiftRecordsService = async (shiftRecorId, employeeId) => {
         return shifts;
     }
 
-    if (shiftRecorId) {
+    if (shiftRecordId) {
         const [shifts] = await pool.query(
             `
             SELECT 
-            s.id, s.employeeId, u.firstName, u.LastName  ,s.clockIn, s.clockOut, se.totalPrice, a.city, a.address, t.type  
+            s.id, s.employeeId, u.firstName, u.lastName  ,s.clockIn, s.clockOut, se.totalPrice, a.city, a.address, t.type  
             FROM shiftRecords s 
             INNER JOIN users u
             ON u.id = s.employeeId
@@ -83,7 +83,7 @@ const getShiftRecordsService = async (shiftRecorId, employeeId) => {
             ON t.id = se.typeOfServicesId 
             WHERE s.id = ? 
             `,
-            [shiftRecorId]
+            [shiftRecordId]
         );
 
         return shifts;

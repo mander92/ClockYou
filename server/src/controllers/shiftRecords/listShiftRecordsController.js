@@ -1,11 +1,10 @@
-import generateErrorUtil from '../../utils/generateErrorUtil.js';
 import getShiftRecordsService from '../../services/shiftRecords/getShiftRecordsService.js';
 
 const listShiftRecordsController = async (req, res, next) => {
     try {
-        const { shiftRecorId, employeeId } = req.query;
+        const { shiftRecordId, employeeId } = req.query;
 
-        const data = await getShiftRecordsService(shiftRecorId, employeeId);
+        const data = await getShiftRecordsService(shiftRecordId, employeeId);
 
         res.send({
             status: 'ok',

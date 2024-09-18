@@ -46,7 +46,7 @@ const Shifts = () => {
             return {
                 id: shiftRecord.employeeId,
                 firstName: shiftRecord.firstName,
-                LastName: shiftRecord.LastName,
+                lastName: shiftRecord.lastName,
             };
         })
         .filter(
@@ -88,18 +88,12 @@ const Shifts = () => {
                         setEmployeeId(e.target.value);
                     }}
                 >
-                    <option
-                        value=''
-                        disabled
-                    >
+                    <option value='' disabled>
                         Empleado:
                     </option>
                     {employeeList.map((employee) => (
-                        <option
-                            key={employee.id}
-                            value={employee.id}
-                        >
-                            {`${employee.firstName} ${employee.LastName}`}
+                        <option key={employee.id} value={employee.id}>
+                            {`${employee.firstName} ${employee.lastName}`}
                         </option>
                     ))}
                 </select>
@@ -111,17 +105,11 @@ const Shifts = () => {
                         setShiftRecordId(e.target.value);
                     }}
                 >
-                    <option
-                        value=''
-                        disabled
-                    >
+                    <option value='' disabled>
                         Servicio:
                     </option>
                     {serviceNotRepeated.map((service) => (
-                        <option
-                            key={service.id}
-                            value={service.id}
-                        >
+                        <option key={service.id} value={service.id}>
                             {service.type}
                         </option>
                     ))}
@@ -139,7 +127,7 @@ const Shifts = () => {
 
                     return (
                         <li key={item.id}>
-                            <h3>{`${item.firstName} ${item.LastName}`}</h3>
+                            <h3>{`${item.firstName} ${item.lastName}`}</h3>
                             <p>{item.type}</p>
 
                             {clockIn && <p>Entrada: {clockIn}</p>}
