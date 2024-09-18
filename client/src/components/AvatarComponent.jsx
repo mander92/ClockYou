@@ -1,9 +1,8 @@
-const { VITE_API_URL } = import.meta.env;
+
 import { useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext.jsx';
 import { fetchEditAvatarUserServices } from '../services/userServices.js';
 import useUser from '../hooks/useUser.js';
-import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
 const AvatarComponent = () => {
@@ -12,27 +11,37 @@ const AvatarComponent = () => {
 
     const userId = user?.id;
 
-    const navigate = useNavigate();
+  
 
     const [avatar, setAvatar] = useState(null);
+    const [avatarPreview, setAvatarPreview] = useState('');
     const [enableEditAvatar, setEnableEditAvatar] = useState(false);
+
+    const handleFile = (e) => {
+        const file = e.target.files[0];
+        setAvatar(file);
+        setAvatarPreview(URL.createObjectURL(file));
+        handleEditAvatar();
+    };
 
     const handleEditAvatar = async (e) => {
         e.preventDefault();
         try {
             if (enableEditAvatar) {
+
                 const data = await fetchEditAvatarUserServices(
                     userId,
                     authToken,
                     avatar
                 );
                 setAvatar(null);
+
+
+
                 toast.success(data.message, {
                     id: 'ok',
                 });
 
-                navigate('/');
-                // location.reload();
             }
             setEnableEditAvatar(!enableEditAvatar);
         } catch (error) {
@@ -46,11 +55,7 @@ const AvatarComponent = () => {
         <form className='mx-auto' onSubmit={handleEditAvatar}>
             <img
                 className='user-avatar mx-auto'
-                src={`${
-                    user?.avatar
-                        ? `${VITE_API_URL}/${user.avatar}`
-                        : '/default-avatar.png'
-                }`}
+                src={user?.avatar ? avatarPreview : '/default-avatar.png'}
                 alt='Avatar'
             />
             {enableEditAvatar ? (
@@ -59,9 +64,7 @@ const AvatarComponent = () => {
                         type='file'
                         accept='image/png, image/jpg, image/jpeg, image/tiff'
                         required
-                        onChange={(e) => {
-                            setAvatar(e.target.files[0]);
-                        }}
+                        onChange={handleFile}
                     />
                 </div>
             ) : (
