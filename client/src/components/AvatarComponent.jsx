@@ -1,4 +1,4 @@
-
+const { VITE_API_URL } = import.meta.env;
 import { useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext.jsx';
 import { fetchEditAvatarUserServices } from '../services/userServices.js';
@@ -11,24 +11,20 @@ const AvatarComponent = () => {
 
     const userId = user?.id;
 
-  
-
     const [avatar, setAvatar] = useState(null);
-    const [avatarPreview, setAvatarPreview] = useState('');
+    const [avatarPreview, setAvatarPreview] = useState(user?.avatar);
     const [enableEditAvatar, setEnableEditAvatar] = useState(false);
 
     const handleFile = (e) => {
         const file = e.target.files[0];
         setAvatar(file);
         setAvatarPreview(URL.createObjectURL(file));
-        handleEditAvatar();
     };
 
     const handleEditAvatar = async (e) => {
         e.preventDefault();
         try {
             if (enableEditAvatar) {
-
                 const data = await fetchEditAvatarUserServices(
                     userId,
                     authToken,
@@ -36,12 +32,9 @@ const AvatarComponent = () => {
                 );
                 setAvatar(null);
 
-
-
                 toast.success(data.message, {
                     id: 'ok',
                 });
-
             }
             setEnableEditAvatar(!enableEditAvatar);
         } catch (error) {
@@ -55,7 +48,11 @@ const AvatarComponent = () => {
         <form className='mx-auto' onSubmit={handleEditAvatar}>
             <img
                 className='user-avatar mx-auto'
-                src={user?.avatar ? avatarPreview : '/default-avatar.png'}
+                src={`${
+                    user?.avatar
+                        ? `${VITE_API_URL}/${user.avatar}`
+                        : '/default-avatar.png'
+                }`}
                 alt='Avatar'
             />
             {enableEditAvatar ? (
