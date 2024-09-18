@@ -83,7 +83,6 @@ const EditTypeOfServicePage = () => {
             toast.success(data.message, {
                 id: 'ok',
             });
-            navigate('/user#services');
         } catch (error) {
             toast.error(error.message, {
                 id: 'error',
@@ -157,7 +156,10 @@ const EditTypeOfServicePage = () => {
                         ) : (
                             ''
                         )}
-                        <button className='mt-2' onClick={handleEditImage}>
+                        <button
+                            className='mt-2'
+                            onClick={handleEditImage}
+                        >
                             {enableEditImage ? 'Guardar' : 'Editar Imágen'}
                         </button>
                     </fieldset>
