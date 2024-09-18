@@ -1,21 +1,20 @@
-import { useParams } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
-import { AuthContext } from '../context/AuthContext';
+import { AuthContext } from '../../../context/AuthContext';
+import Modal from 'react-modal';
 import toast from 'react-hot-toast';
 import {
     fetchDetailShiftRecordServices,
     fetchEditShiftRecordServices,
-} from '../services/shiftRecordServices';
-import Map from '../components/Map';
+} from '../../../services/shiftRecordServices';
+// import Map from '../../../components/Map';
 
-const EditShiftRecordsPage = () => {
-    const { shiftRecordId } = useParams();
+const EditShiftRecordComponent = ({ shiftRecordId, onRequestClose }) => {
     const { authToken } = useContext(AuthContext);
     const [data, setData] = useState([]);
     const [clockIn, setClockIn] = useState(data.clockIn);
     const [clockOut, setClockOut] = useState(data.clockOut);
 
-    const [location, setLocation] = useState({});
+    // const [location, setLocation] = useState({});
 
     useEffect(() => {
         const getDetailShiftRecord = async () => {
@@ -28,12 +27,12 @@ const EditShiftRecordsPage = () => {
                 setData(data);
                 setClockIn(data.clockIn);
                 setClockOut(data.clockOut);
-                setLocation({
-                    currentLocation: {
-                        lat: data.latitude,
-                        lng: data.longitude,
-                    },
-                });
+                // setLocation({
+                //     currentLocation: {
+                //         lat: data.latitude,
+                //         lng: data.longitude,
+                //     },
+                // });
             } catch (error) {
                 toast.error(error.message);
             }
@@ -59,6 +58,7 @@ const EditShiftRecordsPage = () => {
                 formattedClockOut,
                 authToken
             );
+            onRequestClose();
             toast.success(data.message, {
                 id: 'ok',
             });
@@ -75,31 +75,26 @@ const EditShiftRecordsPage = () => {
     return (
         <>
             <section className='mx-auto flex-1024'>
-                <form className='profile-form' onSubmit={handleEditShiftRecord}>
+                <form
+                    className='profile-form'
+                    onSubmit={handleEditShiftRecord}
+                >
                     <fieldset>
-                        <h1>{`${data.firstName} ${data.lastName}`}</h1>
-                        <h2>{`${data.address}, ${data.city}`}</h2>
-                        <h3>{`${data.type}`}</h3>
+                        <p className='font-extrabold'>Entrada: {entrada}</p>
+                        <p className='font-extrabold'>Salida: {salida}</p>
 
-                        <p className='font-extrabold'>{entrada}</p>
-                        <p className='font-extrabold'>{salida}</p>
-
-                        <p className='font-extrabold'>Comentarios:</p>
-                        <p>{data.comments}</p>
-
-                        <p className='font-extrabold'>Horas contratadas:</p>
-                        <p>{data.hours}</p>
-                        <p className='font-extrabold'>Descripción</p>
-                        <p>{data.description}</p>
-                        {location.currentLocation ? (
+                        {/* {location.currentLocation ? (
                             <div>
                                 <Map location={location} />
                             </div>
                         ) : (
                             <span>Cargando el mapa</span>
-                        )}
+                        )} */}
 
-                        <label htmlFor='clockin' className='font-extrabold'>
+                        <label
+                            htmlFor='clockin'
+                            className='font-extrabold'
+                        >
                             Entrada
                         </label>
                         <input
@@ -110,7 +105,10 @@ const EditShiftRecordsPage = () => {
                             }}
                             type='datetime-local'
                         />
-                        <label htmlFor='clockin' className='font-extrabold'>
+                        <label
+                            htmlFor='clockin'
+                            className='font-extrabold'
+                        >
                             Salida
                         </label>
                         <input
@@ -129,4 +127,19 @@ const EditShiftRecordsPage = () => {
     );
 };
 
-export default EditShiftRecordsPage;
+const EditShiftRecordModal = ({ isOpen, onRequestClose, shiftRecordId }) => {
+    return (
+        <Modal
+            isOpen={isOpen}
+            onRequestClose={onRequestClose}
+            className='modal-content'
+        >
+            <EditShiftRecordComponent
+                shiftRecordId={shiftRecordId}
+                onRequestClose={onRequestClose}
+            />
+        </Modal>
+    );
+};
+
+export default EditShiftRecordModal;

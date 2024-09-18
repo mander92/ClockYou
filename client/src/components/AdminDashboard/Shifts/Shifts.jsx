@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../../../context/AuthContext';
 import { fetchAllShiftRecordsServices } from '../../../services/shiftRecordServices';
-import { NavLink } from 'react-router-dom';
+import EditShiftRecordModal from './EditShiftRecordComponent';
 import toast from 'react-hot-toast';
 
 const Shifts = () => {
@@ -9,19 +9,21 @@ const Shifts = () => {
 
     const [data, setData] = useState([]);
     const [employeeId, setEmployeeId] = useState('');
-    const [shiftRecorId, setServiceId] = useState('');
+    const [shiftRecordId, setShiftRecordId] = useState('');
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [selectedShiftRecordId, setSelectedShiftRecordId] = useState(null);
 
     const resetFilter = (e) => {
         e.preventDefault();
         setEmployeeId('');
-        setServiceId('');
+        setShiftRecordId('');
     };
 
     useEffect(() => {
         const getShifts = async () => {
             const searchParams = new URLSearchParams({
                 employeeId: employeeId,
-                shiftRecorId: shiftRecorId,
+                shiftRecordId: shiftRecordId,
             });
             const searchParamsToString = searchParams.toString();
             try {
@@ -37,7 +39,7 @@ const Shifts = () => {
             }
         };
         getShifts();
-    }, [employeeId, shiftRecorId, authToken]);
+    }, [employeeId, shiftRecordId, authToken]);
 
     const employeeList = data
         .map((shiftRecord) => {
@@ -65,6 +67,15 @@ const Shifts = () => {
             })
         ),
     ];
+    const openModal = (shiftRecordId) => {
+        setSelectedShiftRecordId(shiftRecordId);
+        setModalIsOpen(true);
+    };
+
+    const closeModal = () => {
+        setModalIsOpen(false);
+        setSelectedShiftRecordId(null);
+    };
 
     return (
         <>
@@ -77,11 +88,17 @@ const Shifts = () => {
                         setEmployeeId(e.target.value);
                     }}
                 >
-                    <option value='' disabled>
+                    <option
+                        value=''
+                        disabled
+                    >
                         Empleado:
                     </option>
                     {employeeList.map((employee) => (
-                        <option key={employee.id} value={employee.id}>
+                        <option
+                            key={employee.id}
+                            value={employee.id}
+                        >
                             {`${employee.firstName} ${employee.LastName}`}
                         </option>
                     ))}
@@ -89,16 +106,22 @@ const Shifts = () => {
                 <select
                     name='serviceId'
                     id='serviceId'
-                    value={shiftRecorId}
+                    value={shiftRecordId}
                     onChange={(e) => {
-                        setServiceId(e.target.value);
+                        setShiftRecordId(e.target.value);
                     }}
                 >
-                    <option value='' disabled>
+                    <option
+                        value=''
+                        disabled
+                    >
                         Servicio:
                     </option>
                     {serviceNotRepeated.map((service) => (
-                        <option key={service.id} value={service.id}>
+                        <option
+                            key={service.id}
+                            value={service.id}
+                        >
                             {service.type}
                         </option>
                     ))}
@@ -106,32 +129,34 @@ const Shifts = () => {
                 <button onClick={resetFilter}>Limpiar Filtros</button>
             </form>
             <ul className='cards'>
-                {data.map((shiftRecord) => {
-                    const entrada = new Date(
-                        shiftRecord.clockIn
-                    ).toLocaleString();
-                    const salida = new Date(
-                        shiftRecord.clockOut
-                    ).toLocaleString();
-                    return (
-                        <li key={shiftRecord.id}>
-                            <h3>{`${shiftRecord.firstName} ${shiftRecord.LastName}`}</h3>
-                            <p>{shiftRecord.type}</p>
-                            <p>Entrada: {entrada}</p>
-                            <p>Salida: {salida}</p>
-                            <p>{shiftRecord.address}</p>
-                            <p>{shiftRecord.totalPrice}</p>
+                {data.map((item) => {
+                    const clockIn = item.clockIn
+                        ? new Date(item.clockIn).toLocaleString()
+                        : null;
+                    const clockOut = item.clockOut
+                        ? new Date(item.clockOut).toLocaleString()
+                        : null;
 
-                            <NavLink
-                                className='mb-4'
-                                to={`/shiftrecords/edit/${shiftRecord.id}`}
-                            >
+                    return (
+                        <li key={item.id}>
+                            <h3>{`${item.firstName} ${item.LastName}`}</h3>
+                            <p>{item.type}</p>
+
+                            {clockIn && <p>Entrada: {clockIn}</p>}
+                            {clockOut && <p>Salida: {clockOut}</p>}
+
+                            <button onClick={() => openModal(item.id)}>
                                 Editar
-                            </NavLink>
+                            </button>
                         </li>
                     );
                 })}
             </ul>
+            <EditShiftRecordModal
+                isOpen={modalIsOpen}
+                onRequestClose={closeModal}
+                shiftRecordId={selectedShiftRecordId}
+            />
         </>
     );
 };
