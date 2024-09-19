@@ -119,8 +119,8 @@ const MyServices = () => {
                                         {item.minutesWorked} Minutos
                                     </p>
                                 )}
-                                {item.rating !== null ? (
-                                    <div className='flex mt-2 mb-6'>
+                                {item.status === 'completed' ? (
+                                    <div className='flex mt-2 mb-4'>
                                         {[...Array(5)].map((_, index) => (
                                             <FaStar
                                                 key={index}
