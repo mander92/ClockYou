@@ -53,7 +53,7 @@ const DetailServicePage = () => {
                     <p>{data.comments}</p>
 
                     <p className='font-extrabold'>
-                        Solicitado el {date} a las {time}
+                        Solicitado para el {date} a las {time}
                     </p>
                     <p className='grow'>
                         En {data.address}, {data.city}, {data.postCode},{' '}
