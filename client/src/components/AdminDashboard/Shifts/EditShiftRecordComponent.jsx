@@ -1,4 +1,5 @@
 import { AuthContext } from '../../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
 import {
     fetchDetailShiftRecordServices,
@@ -9,7 +10,9 @@ import toast from 'react-hot-toast';
 
 const EditShiftRecordComponent = ({ shiftRecordId, onRequestClose }) => {
     const { authToken } = useContext(AuthContext);
-    const [data, setData] = useState([]);
+
+    const navigate = useNavigate();
+
     const [clockIn, setClockIn] = useState('');
     const [clockOut, setClockOut] = useState('');
 
@@ -20,9 +23,20 @@ const EditShiftRecordComponent = ({ shiftRecordId, onRequestClose }) => {
                     shiftRecordId,
                     authToken
                 );
-                setData(data);
-                setClockIn(data.clockIn);
-                setClockOut(data.clockOut);
+                const clockInDate = new Date(data.clockIn);
+                const clockOutDate = new Date(data.clockOut);
+
+                const formatDateToLocal = (date) => {
+                    const year = date.getFullYear();
+                    const month = String(date.getMonth() + 1).padStart(2, '0');
+                    const day = String(date.getDate()).padStart(2, '0');
+                    const hours = String(date.getHours()).padStart(2, '0');
+                    const minutes = String(date.getMinutes()).padStart(2, '0');
+                    return `${year}-${month}-${day}T${hours}:${minutes}`;
+                };
+
+                setClockIn(formatDateToLocal(clockInDate));
+                setClockOut(formatDateToLocal(clockOutDate));
             } catch (error) {
                 toast.error(error.message);
             }
@@ -48,10 +62,13 @@ const EditShiftRecordComponent = ({ shiftRecordId, onRequestClose }) => {
                 formattedClockOut,
                 authToken
             );
-            onRequestClose();
+
             toast.success(data.message, {
                 id: 'ok',
             });
+
+            onRequestClose();
+            navigate('/user#ProfileComponent');
         } catch (error) {
             toast.error(error.message, {
                 id: 'error',
@@ -59,18 +76,12 @@ const EditShiftRecordComponent = ({ shiftRecordId, onRequestClose }) => {
         }
     };
 
-    const entrada = new Date(data.clockIn).toLocaleString();
-    const salida = new Date(data.clockOut).toLocaleString();
-
     return (
         <>
             <section className='mx-auto flex-1024'>
                 <form className='profile-form' onSubmit={handleEditShiftRecord}>
                     <fieldset>
-                        <p className='mt-2 font-extrabold'>
-                            Entrada: {entrada}
-                        </p>
-                        <p className='font-extrabold'>Salida: {salida}</p>
+                        <legend>{''}</legend>
                         <label htmlFor='clockin'>Entrada</label>
                         <input
                             id='clockin'
@@ -89,7 +100,7 @@ const EditShiftRecordComponent = ({ shiftRecordId, onRequestClose }) => {
                             onChange={(e) => setClockOut(e.target.value)}
                         />
 
-                        <button className='mt-2'>Editar Turno</button>
+                        <button className='mt-2'>Guardar</button>
                     </fieldset>
                 </form>
             </section>
