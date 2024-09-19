@@ -102,8 +102,16 @@ const MyServices = () => {
                                 <p>Horas: {item.hours}</p>
                                 <p>Precio: {item.totalPrice}€</p>
 
-                                {clockIn && <p>Entrada: {clockIn}</p>}
-                                {clockOut && <p>Salida: {clockOut}</p>}
+                                {clockIn && (
+                                    <p className='font-extrabold'>
+                                        Entrada: {clockIn}
+                                    </p>
+                                )}
+                                {clockOut && (
+                                    <p className='font-extrabold'>
+                                        Salida: {clockOut}
+                                    </p>
+                                )}
                                 {(item.hoursWorked ||
                                     item.minutesWorked !== null) && (
                                     <p className='font-extrabold'>

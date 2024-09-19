@@ -27,7 +27,7 @@ const RatingServiceComponent = ({ serviceId, onRequestClose }) => {
                 id: 'ok',
             });
             onRequestClose();
-            navigate('/');
+            navigate('/user#ProfileComponent');
         } catch (error) {
             toast.error(error.message, {
                 id: 'error',

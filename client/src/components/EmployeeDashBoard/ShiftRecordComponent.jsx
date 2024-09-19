@@ -1,4 +1,5 @@
 import { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import {
     fetchClockInShiftRecordServices,
@@ -14,6 +15,8 @@ const ShiftRecordComponent = ({
     initialLocation,
 }) => {
     const { authToken } = useContext(AuthContext);
+
+    const navigate = useNavigate();
 
     const [location, setLocation] = useState({
         currentLocation: initialLocation || { lat: '', lng: '' },
@@ -53,6 +56,7 @@ const ShiftRecordComponent = ({
                 id: 'ok',
             });
             onRequestClose();
+            navigate('/user#ProfileComponent');
         } catch (error) {
             toast.error(error.message, {
                 id: 'error',
@@ -74,6 +78,7 @@ const ShiftRecordComponent = ({
                 id: 'ok',
             });
             onRequestClose();
+            navigate('/user#ProfileComponent');
         } catch (error) {
             toast.error(error.message, {
                 id: 'error',

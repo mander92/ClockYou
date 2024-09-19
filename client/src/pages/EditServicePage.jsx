@@ -95,7 +95,7 @@ const EditServicePage = () => {
             toast.success(data.message, {
                 id: 'ok',
             });
-            navigate('/user');
+            navigate('/user#orders');
         } catch (error) {
             toast.error(error.message, {
                 id: 'error',
@@ -117,7 +117,7 @@ const EditServicePage = () => {
                 toast.success(data.message, {
                     id: 'ok',
                 });
-                navigate('/user');
+                navigate('/user#orders');
             } catch (error) {
                 toast.error(error.message, {
                     id: 'error',
