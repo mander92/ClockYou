@@ -81,7 +81,7 @@ const EditShiftRecordComponent = ({ shiftRecordId, onRequestClose }) => {
             <section className='mx-auto flex-1024'>
                 <form className='profile-form' onSubmit={handleEditShiftRecord}>
                     <fieldset>
-                        <legend>{''}</legend>
+                        <legend>Horarios</legend>
                         <label htmlFor='clockin'>Entrada</label>
                         <input
                             id='clockin'
