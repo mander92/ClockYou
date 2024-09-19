@@ -119,7 +119,7 @@ const Orders = () => {
                 </select>
                 <button onClick={resetFilters}>Limpiar Filtros</button>
             </form>
-            <ul className='cards pedidosCliente'>
+            <ul className='cards'>
                 {data.map((item) => {
                     const time = new Date(item.dateTime).toLocaleTimeString(
                         [],
@@ -139,9 +139,6 @@ const Orders = () => {
                             <p className='grow'>
                                 En {item.address}, {item.city}, {item.postCode},{' '}
                                 {item.province}
-                            </p>
-                            <p className='font-extrabold'>
-                                Estado: {item.status}
                             </p>
                             <p>Precio: {item.price}€</p>
                             <p>Horas Contratadas: {item.hours}</p>
@@ -174,7 +171,7 @@ const Orders = () => {
                             )}
                             {item.status === 'completed' &&
                             item.rating !== null ? (
-                                <div className='flex mt-2'>
+                                <div className='flex mt-2 mb-4'>
                                     {[...Array(5)].map((_, index) => (
                                         <FaStar
                                             key={index}
