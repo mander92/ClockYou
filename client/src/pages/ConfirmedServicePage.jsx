@@ -1,9 +1,11 @@
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { fetchConfirmServiceServices } from '../services/serviceServices.js';
 import toast from 'react-hot-toast';
 
 const ConfirmedServicePage = () => {
+    const navigate = useNavigate();
+
     const { validationCode } = useParams();
 
     useEffect(() => {
@@ -14,6 +16,8 @@ const ConfirmedServicePage = () => {
                 toast.success(data, {
                     id: 'ok',
                 });
+
+                navigate('/');
             } catch (error) {
                 toast.error(error.message, {
                     id: 'error',
