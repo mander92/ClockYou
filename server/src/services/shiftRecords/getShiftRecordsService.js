@@ -19,6 +19,7 @@ const getShiftRecordsService = async (shiftRecordId, employeeId) => {
             ON a.id = se.addressId
             INNER JOIN typeOfServices t
             ON t.id = se.typeOfServicesId
+            ORDER BY se.createdAt DESC
             `
         );
 
@@ -42,6 +43,7 @@ const getShiftRecordsService = async (shiftRecordId, employeeId) => {
             INNER JOIN typeOfServices t
             ON t.id = se.typeOfServicesId 
             WHERE s.id = ? AND s.employeeId = ?
+            ORDER BY se.createdAt DESC
             `,
             [shiftRecordId, employeeId]
         );
@@ -66,6 +68,7 @@ const getShiftRecordsService = async (shiftRecordId, employeeId) => {
             INNER JOIN typeOfServices t
             ON t.id = se.typeOfServicesId 
             WHERE s.employeeId = ? 
+            ORDER BY se.createdAt DESC
             `,
             [employeeId]
         );
@@ -90,6 +93,7 @@ const getShiftRecordsService = async (shiftRecordId, employeeId) => {
             INNER JOIN typeOfServices t
             ON t.id = se.typeOfServicesId 
             WHERE s.id = ? 
+            ORDER BY se.createdAt DESC
             `,
             [shiftRecordId]
         );
