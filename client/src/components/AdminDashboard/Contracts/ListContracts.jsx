@@ -1,6 +1,7 @@
-import { useEffect, useState, useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthContext';
+import { FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
+import { useEffect, useState, useContext } from 'react';
 import { fetchAllServicesServices } from '../../../services/serviceServices.js';
 import toast from 'react-hot-toast';
 
@@ -88,17 +89,22 @@ const ListContracts = () => {
                     );
                     const date = new Date(item.dateTime).toLocaleDateString();
                     return (
-                        <li key={item.id}>
+                        <li key={item.id} className='relative'>
+                            <div className='icon-container'>
+                                {item.status === 'completed' ? (
+                                    <FaCheckCircle className='text-green-500' />
+                                ) : (
+                                    <FaExclamationCircle className='text-yellow-500' />
+                                )}
+                            </div>
                             <h3>{item.type}</h3>
+                            <p className='font-extrabold'>
+                                El {date} a las {time}
+                            </p>
                             <p className='grow'>
                                 En {item.address}, {item.city}, {item.postCode},{' '}
                                 {item.province}
                             </p>
-                            <p className='font-extrabold'>
-                                El {date} a las {time}
-                            </p>
-                            <p>{item.status}</p>
-
                             <NavLink
                                 className='mb-4'
                                 to={`/services/${item.serviceId}`}

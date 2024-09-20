@@ -1,7 +1,7 @@
 import { AuthContext } from '../../context/AuthContext';
 import { useEffect, useState, useContext } from 'react';
+import { FaStar, FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
 import { fetchEmployeeAllServicesServices } from '../../services/serviceServices';
-import { FaStar } from 'react-icons/fa';
 import ShiftRecordModal from './ShiftRecordComponent.jsx';
 import toast from 'react-hot-toast';
 
@@ -86,22 +86,30 @@ const MyServices = () => {
                         );
 
                         return (
-                            <li id={item.id} key={item.id}>
+                            <li key={item.id} className='relative'>
+                                <div className='icon-container'>
+                                    {item.status === 'completed' ? (
+                                        <FaCheckCircle className='text-green-500' />
+                                    ) : (
+                                        <FaExclamationCircle className='text-yellow-500' />
+                                    )}
+                                </div>
                                 <h3>
                                     El {date} a las {time}
                                 </h3>
-                                <p>{item.comments}</p>
-                                <p>
-                                    {item.firstName} {item.lastName}, Tel:{' '}
-                                    {item.phone}
-                                </p>
+                                <p className='grow'>{item.comments}</p>
                                 <p className='grow'>
                                     En {item.address}, {item.city},{' '}
                                     {item.postCode}, {item.province}
                                 </p>
                                 <p>Horas: {item.hours}</p>
-                                <p>Precio: {item.totalPrice}€</p>
-
+                                <p className='font-extrabold'>
+                                    Precio: {item.totalPrice}€
+                                </p>
+                                <p>
+                                    {item.firstName} {item.lastName}, ☎
+                                    {item.phone}
+                                </p>
                                 {clockIn && (
                                     <p className='font-extrabold'>
                                         Entrada: {clockIn}
@@ -123,7 +131,7 @@ const MyServices = () => {
                                     <div className='flex mt-2 mb-4'>
                                         {[...Array(5)].map((_, index) => (
                                             <FaStar
-                                                key={index}
+                                                key={item.id}
                                                 size={30}
                                                 color={
                                                     index + 1 <= item.rating

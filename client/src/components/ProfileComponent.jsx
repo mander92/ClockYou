@@ -17,9 +17,9 @@ const ProfileComponent = () => {
 
     const userId = user?.id;
 
-    const [firstName, setFirstName] = useState(user?.firstName || '');
-    const [lastName, setLastName] = useState(user?.lastName || '');
-    const [phone, setPhone] = useState(user?.phone || '');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [phone, setPhone] = useState('');
     const [actualPassword, setActualPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [repeatedNewPassword, setRepeatedNewPassword] = useState('');
@@ -111,7 +111,7 @@ const ProfileComponent = () => {
                     <input
                         type='text'
                         id='firstName'
-                        value={firstName || ''}
+                        value={firstName}
                         onChange={(e) => {
                             setFirstName(e.target.value);
                         }}

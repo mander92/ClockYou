@@ -136,23 +136,25 @@ const Shifts = () => {
                     return (
                         <li key={item.id}>
                             <h3>{`${item.firstName} ${item.lastName}`}</h3>
+                            <p>{item.province}</p>
                             <p>{item.type}</p>
                             <p className='grow'>
-                                {item.address}, {item.city}
+                                En {item.address}, {item.city}
                             </p>
+                            <p>Horas: {item.hours}</p>
                             {dateTime && (
-                                <p>
-                                    <strong>Previsto:</strong> {dateTime}
+                                <p className='font-extrabold'>
+                                    Previsto: {dateTime}
                                 </p>
                             )}
                             {clockIn && (
-                                <p>
-                                    <strong>Entrada:</strong> {clockIn}
+                                <p className='font-extrabold'>
+                                    Entrada: {clockIn}
                                 </p>
                             )}
                             {clockOut && (
-                                <p>
-                                    <strong>Salida:</strong> {clockOut}
+                                <p className='font-extrabold'>
+                                    Salida: {clockOut}
                                 </p>
                             )}
                             {(item.hoursWorked ||

@@ -1,8 +1,8 @@
 import { AuthContext } from '../../../src/context/AuthContext';
 import { NavLink } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react';
+import { FaStar, FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
 import { fetchClientAllServicesServices } from '../../services/serviceServices.js';
-import { FaStar } from 'react-icons/fa';
 import RatingModal from './RatingServiceComponent.jsx';
 import toast from 'react-hot-toast';
 
@@ -130,17 +130,24 @@ const Orders = () => {
                     );
                     const date = new Date(item.dateTime).toLocaleDateString();
                     return (
-                        <li key={item.id}>
+                        <li key={item.id} className='relative'>
+                            <div className='icon-container'>
+                                {item.status === 'completed' ? (
+                                    <FaCheckCircle className='text-green-500' />
+                                ) : (
+                                    <FaExclamationCircle className='text-yellow-500' />
+                                )}
+                            </div>
                             <h3>{item.type}</h3>
-                            <p className='grow'>{item.comments}</p>
                             <p className='font-extrabold'>
                                 El {date} a las {time}
                             </p>
+                            <p className='grow'>{item.comments}</p>
                             <p className='grow'>
                                 En {item.address}, {item.city}, {item.postCode},{' '}
                                 {item.province}
                             </p>
-                            <p>Precio: {item.price}€</p>
+                            <p>Precio hora: {item.price}€</p>
                             <p>Horas Contratadas: {item.hours}</p>
                             <p className='font-extrabold'>
                                 Total: {item.totalPrice}€
