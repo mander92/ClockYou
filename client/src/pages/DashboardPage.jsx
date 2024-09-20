@@ -109,19 +109,20 @@ const DashboardPage = () => {
 
                 {userRole === 'client' && (
                     <NavLink
+                        className='less-than-4-buttons'
                         to='#orders'
                         onClick={(e) => {
                             handleSectionChange('orders');
                             tabSelected(e, 'tabs5');
                             toTopFast(e);
                         }}
-                        className='less-than-4-buttons'
                     >
                         Pedidos
                     </NavLink>
                 )}
                 {userRole === 'employee' && (
                     <NavLink
+                        className='less-than-4-buttons'
                         to='#myservices'
                         onClick={(e) => {
                             handleSectionChange('myservices');
