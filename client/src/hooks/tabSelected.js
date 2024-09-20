@@ -12,5 +12,3 @@ const tabSelected = (e, identificador) => {
 };
 
 export default tabSelected;
-
-// generar eventListener click sobre array de elementos en cada componente donde se exporte tabSelected, en vez de añadir onClick elemento por elemento
