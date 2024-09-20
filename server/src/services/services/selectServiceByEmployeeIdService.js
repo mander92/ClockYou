@@ -17,7 +17,7 @@ const selectServiceByEmployeeIdService = async (employeeId) => {
         ON u.id = s.clientId
         INNER JOIN typeOfServices t
         ON t.id = s.typeOfServicesId
-        WHERE sr.employeeId = ? AND s.status = 'confirmed' OR 'completed'
+        WHERE sr.employeeId = ? AND (s.status = 'confirmed' OR s.status = 'completed')
         ORDER BY s.modifiedAt DESC
         `,
         [employeeId]
