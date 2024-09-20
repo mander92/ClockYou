@@ -1,5 +1,6 @@
-import { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../../../context/AuthContext';
+import { useEffect, useState, useContext } from 'react';
+import { FaStar, FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
 import { fetchAllShiftRecordsServices } from '../../../services/shiftRecordServices';
 import EditShiftRecordModal from './EditShiftRecordComponent';
 import toast from 'react-hot-toast';
@@ -134,7 +135,14 @@ const Shifts = () => {
                         : null;
 
                     return (
-                        <li key={item.id}>
+                        <li key={item.id} className='relative'>
+                            <div className='icon-container'>
+                                {item.status === 'completed' ? (
+                                    <FaCheckCircle className='text-green-500' />
+                                ) : (
+                                    <FaExclamationCircle className='text-yellow-500' />
+                                )}
+                            </div>
                             <h3>{`${item.firstName} ${item.lastName}`}</h3>
                             <p>{item.province}</p>
                             <p>{item.type}</p>
@@ -164,7 +172,21 @@ const Shifts = () => {
                                     {item.minutesWorked} Minutos
                                 </p>
                             )}
-
+                            {item.status === 'completed' && (
+                                <div className='flex mt-2 mb-2'>
+                                    {[...Array(5)].map((_, index) => (
+                                        <FaStar
+                                            key={item.id}
+                                            size={30}
+                                            color={
+                                                index + 1 <= item.rating
+                                                    ? '#ffc107'
+                                                    : '#e4e5e9'
+                                            }
+                                        />
+                                    ))}
+                                </div>
+                            )}
                             <button onClick={() => openModal(item.id)}>
                                 Editar
                             </button>

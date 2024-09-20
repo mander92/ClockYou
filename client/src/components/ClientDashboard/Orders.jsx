@@ -181,7 +181,7 @@ const Orders = () => {
                                 <div className='flex mt-2 mb-4'>
                                     {[...Array(5)].map((_, index) => (
                                         <FaStar
-                                            key={index}
+                                            key={item.id}
                                             size={30}
                                             color={
                                                 index + 1 <= item.rating
