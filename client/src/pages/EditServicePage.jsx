@@ -1,6 +1,8 @@
+const { VITE_START_RESERVATION_HOUR, VITE_END_RESERVATION_HOUR } = import.meta
+    .env;
 import { AuthContext } from '../context/AuthContext';
-import { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
 import {
     fetchDetailServiceServices,
     fetchEditServiceServices,
@@ -60,8 +62,8 @@ const EditServicePage = () => {
 
     const timeIntervals = () => {
         const options = [];
-        const startHour = 8;
-        const endHour = 16;
+        const startHour = VITE_START_RESERVATION_HOUR;
+        const endHour = VITE_END_RESERVATION_HOUR;
         for (let i = startHour * 60; i <= endHour * 60; i += 30) {
             const hours = Math.floor(i / 60);
             const minutes = i % 60;

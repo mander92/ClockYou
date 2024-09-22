@@ -1,31 +1,26 @@
-import { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+const { VITE_START_RESERVATION_HOUR, VITE_END_RESERVATION_HOUR } = import.meta
+    .env;
 import { AuthContext } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import { useState, useContext } from 'react';
 import { fetchNewServiceServices } from '../services/serviceServices';
 import toast from 'react-hot-toast';
 
 const NewServiceFormComponent = ({ typeOfServiceId }) => {
     const { authToken } = useContext(AuthContext);
+
     const navigate = useNavigate();
 
-    const [dateTime, setDateTime] = useState('');
-    const [hours, setHours] = useState(1);
-    const [address, setAddress] = useState('');
-    const [postCode, setPostCode] = useState('');
-    const [city, setCity] = useState('');
-    const [comments, setComments] = useState('');
-
     const getTomorrowDate = () => {
-        const today = new Date();
-        const tomorrow = new Date(today);
-        tomorrow.setDate(today.getDate() + 1);
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
         return tomorrow.toISOString().split('T')[0];
     };
 
     const timeIntervals = () => {
         const options = [];
-        const startHour = 8;
-        const endHour = 16;
+        const startHour = VITE_START_RESERVATION_HOUR;
+        const endHour = VITE_END_RESERVATION_HOUR;
         for (let i = startHour * 60; i <= endHour * 60; i += 30) {
             const hours = Math.floor(i / 60);
             const minutes = i % 60;
@@ -37,9 +32,19 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
 
     const valuesTimeInterval = timeIntervals();
 
+    const [dateTime, setDateTime] = useState(() => {
+        const tomorrow = getTomorrowDate();
+        return `${tomorrow}T${valuesTimeInterval[0]}`;
+    });
+
+    const [hours, setHours] = useState(1);
+    const [address, setAddress] = useState('');
+    const [postCode, setPostCode] = useState('');
+    const [city, setCity] = useState('');
+    const [comments, setComments] = useState('');
+
     const resetInputs = (e) => {
         e.preventDefault();
-        setDateTime('');
         setHours(1);
         setAddress('');
         setCity('');
@@ -64,12 +69,10 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
                 city,
                 comments
             );
-
             toast.success(data.message, {
                 id: 'ok',
             });
-
-            navigate('/');
+            navigate('/user#orders');
         } catch (error) {
             toast.error(error.message, {
                 id: 'error',
@@ -78,7 +81,7 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
     };
 
     return (
-        <form className='profile-form'>
+        <form className='profile-form' onSubmit={handleNewService}>
             <fieldset>
                 <legend>Solicítalo</legend>
                 <label htmlFor='date'>Fecha</label>
@@ -94,7 +97,7 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
                         )
                     }
                 />
-                <label htmlFor='time'>Hora comienzo servicio</label>
+                <label htmlFor='time'>Hora</label>
                 <select
                     required
                     id='time'
@@ -105,6 +108,9 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
                         )
                     }
                 >
+                    <option value='' disabled>
+                        Inicio del servicio
+                    </option>
                     {valuesTimeInterval.map((opcion) => (
                         <option key={opcion} value={opcion}>
                             {opcion}
@@ -172,11 +178,7 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
                     style={{ resize: 'none' }}
                 ></textarea>
                 <div className='mx-auto'>
-                    <button
-                        className='mr-4'
-                        type='submit'
-                        onClick={handleNewService}
-                    >
+                    <button className='mr-4' type='submit'>
                         Solicitar
                     </button>
                     <button onClick={resetInputs}>Limpiar</button>
