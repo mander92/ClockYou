@@ -11,11 +11,7 @@ const HomePage = () => {
                         El sitio web donde encontrarás todo lo que buscas ;)...
                     </h2>
                 </article>
-                <img
-                    className='rounded-b-2xl'
-                    src='./landing.webp'
-                    alt='Servicios múltiples'
-                />
+                <img src='./landing.webp' alt='Servicios múltiples' />
             </section>
             <TypeOfServicesPage />
         </>

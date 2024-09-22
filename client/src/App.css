@@ -57,6 +57,30 @@
         }
     }
 
+    #scroll {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        z-index: 900;
+        display: grid;
+        place-content: center;
+        padding: 0.7rem;
+        background-color: var(--cerulean);
+
+        & .arrowTopIcon {
+            aspect-ratio: 1;
+            width: 22px;
+        }
+
+        &.hide {
+            display: none;
+        }
+
+        &.show {
+            display: block;
+        }
+    }
+
     h1,
     h2,
     h3,
@@ -66,9 +90,9 @@
         text-align: center;
     }
 
-    [class^='go41'] {
+    /* [class^='go41'] {
         text-align: center;
-    }
+    } */
 
     form {
         margin-top: 1rem;
@@ -138,96 +162,6 @@
             background-color: var(--cerulean);
             cursor: pointer;
         }
-    }
-
-    .initial-content {
-        position: relative;
-        color: var(--cerulean);
-        inset: auto;
-        transform: none;
-        width: auto;
-        padding-bottom: 2rem;
-
-        & + img {
-            display: none;
-        }
-    }
-
-    @media (width > 767px) {
-        .initial-content {
-            position: absolute;
-            top: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            color: var(--white-color);
-            z-index: 2;
-            width: min(85%, 650px);
-
-            & + img {
-                display: block;
-            }
-        }
-    }
-
-    @media (width > 767px) and (width < 1024px) {
-        section:has(.initial-content)::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            z-index: 1;
-            background-color: rgba(0, 0, 0, 0.35);
-        }
-    }
-
-    .manager-tabs {
-        margin-top: 1rem;
-        display: flex;
-        gap: 1rem;
-        justify-content: left;
-        overflow-x: scroll;
-        ::-webkit-scrollbar {
-            display: none;
-        }
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-
-        &:has(.less-than-4-buttons) {
-            justify-content: center;
-        }
-
-        & a,
-        button {
-            padding: 0.5rem 1rem;
-            color: var(--white-color);
-            background-color: var(--cerulean);
-            transition: background-color 0.3s linear;
-            border: 1px solid var(--icicle);
-            border-radius: 20px;
-            width: fit-content;
-
-            &:hover {
-                background-color: var(--glacier-blue);
-            }
-
-            &.activeSelectedLink {
-                background-color: var(--glacier-blue);
-            }
-        }
-
-        & + .manager-tabs {
-            justify-content: center;
-        }
-    }
-
-    .user-avatar {
-        margin-top: 1rem;
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 1px solid var(--icicle);
-        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-        transition: transform 0.4s ease;
     }
 
     .cards {
@@ -309,13 +243,56 @@
         } */
     }
 
-    @media (hover: hover) and (pointer: fine) {
-        .user-avatar:hover {
-            transform: scale(1.03);
+    .manager-tabs {
+        margin-top: 1rem;
+        display: flex;
+        gap: 1rem;
+        justify-content: left;
+        overflow-x: scroll;
+        ::-webkit-scrollbar {
+            display: none;
+        }
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+
+        &:has(.less-than-4-buttons) {
+            justify-content: center;
         }
 
-        .cards li:hover {
-            transform: scale(1.03);
+        & a,
+        button {
+            padding: 0.5rem 1rem;
+            color: var(--white-color);
+            background-color: var(--cerulean);
+            transition: background-color 0.3s linear;
+            border: 1px solid var(--icicle);
+            border-radius: 20px;
+            width: fit-content;
+
+            &:hover {
+                background-color: var(--glacier-blue);
+            }
+
+            &.activeSelectedLink {
+                background-color: var(--glacier-blue);
+            }
+        }
+
+        & + .manager-tabs {
+            justify-content: center;
+        }
+    }
+
+    .initial-content {
+        position: relative;
+        color: var(--cerulean);
+        inset: auto;
+        transform: none;
+        width: auto;
+
+        & + img {
+            display: none;
+            border-radius: 20px;
         }
     }
 
@@ -327,6 +304,17 @@
         grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     }
 
+    .user-avatar {
+        margin-top: 1rem;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 1px solid var(--icicle);
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        transition: transform 0.4s ease;
+    }
+
     .modal-content {
         position: absolute;
         padding: 0 1rem 1rem 1rem;
@@ -334,101 +322,104 @@
         border-radius: 20px;
         top: 50%;
         left: 50%;
-        right: auto;
-        bottom: auto;
-        margin-right: -50%;
         transform: translate(-50%, -50%);
-    }
-
-    @media (width > 555px) {
-        .manager-tabs {
-            justify-content: center;
-        }
-    }
-
-    @media only screen and (min-width: 640px) {
-        :root {
-            --column-count: 2;
-        }
-    }
-
-    @media only screen and (min-width: 1024px) {
-        :root {
-            --column-count: 3;
-        }
-
-        .flex-1024 {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 0 1rem;
-        }
-
-        .profile-form {
-            min-width: 30.5rem;
-        }
-    }
-
-    @media only screen and (min-width: 1280px) {
-        .flex-1024 {
-            margin: 0rem 8rem;
-        }
-    }
-
-    @media only screen and (min-width: 1536px) {
-        :root {
-            --column-count: 4;
-        }
-
-        .flex-1024 {
-            margin: 0rem 16rem;
-        }
     }
 }
 
 .leaflet-container {
-    height: 300px;
-    width: 300px;
-    margin: 0 auto;
+    height: 270px;
+    width: 270px;
+    margin: auto;
+    border-radius: 20px;
 }
 
-@media (width > 550px) {
+@media (hover: hover) and (pointer: fine) {
+    .user-avatar:hover {
+        transform: scale(1.03);
+    }
+
+    .cards li:hover {
+        transform: scale(1.03);
+    }
+}
+
+@media (width > 555px) {
+    .manager-tabs {
+        justify-content: center;
+    }
+}
+
+@media only screen and (min-width: 640px) {
+    :root {
+        --column-count: 2;
+    }
+
     .leaflet-container {
-        width: 500px;
+        height: 450px;
+        width: 450px;
     }
 }
 
-@media (width < 300px) {
-    .leaflet-container {
-        width: 50%;
+@media only screen and (min-width: 768px) {
+    .initial-content {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        color: var(--white-color);
+        z-index: 2;
+        width: min(85%, 650px);
+
+        & + img {
+            display: block;
+        }
     }
 }
 
-#scroll {
-    position: fixed;
-    bottom: 6px;
-    right: 6px;
-    z-index: 900;
-    display: grid;
-    place-content: center;
-    padding: 0.7rem;
-    background-color: var(--cerulean);
-
-    & .arrowTopIcon {
-        aspect-ratio: 1;
-        width: 22px;
-    }
-
-    &.hide {
-        display: none;
-    }
-
-    &.show {
-        display: block;
+@media (width > 767px) and (width < 1024px) {
+    section:has(.initial-content)::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background-color: rgba(0, 0, 0, 0.35);
+        border-radius: 20px;
     }
 }
 
-.sr-only,
+@media only screen and (min-width: 1024px) {
+    :root {
+        --column-count: 3;
+    }
+
+    .flex-1024 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0 1rem;
+    }
+
+    .profile-form {
+        min-width: 30.5rem;
+    }
+}
+
+@media only screen and (min-width: 1280px) {
+    .flex-1024 {
+        margin: 0rem 8rem;
+    }
+}
+
+@media only screen and (min-width: 1536px) {
+    :root {
+        --column-count: 4;
+    }
+
+    .flex-1024 {
+        margin: 0rem 16rem;
+    }
+}
+
+/* .sr-only,
 .vanish {
     position: absolute;
     width: 1px;
@@ -451,4 +442,4 @@
     overflow: visible;
     clip: auto;
     white-space: normal;
-}
+} */
