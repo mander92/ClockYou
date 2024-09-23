@@ -57,6 +57,11 @@
         }
     }
 
+    .container:has(.heroCss) {
+        max-width: none;
+        padding: 0 5% !important;
+    }
+
     #scroll {
         position: fixed;
         bottom: 10px;
@@ -348,6 +353,15 @@
     }
 }
 
+@media (width < 639px) {
+    .initial-content {
+        & h1 + h2 {
+            font-size: 2rem;
+            line-height: 2rem;
+        }
+    }
+}
+
 @media only screen and (min-width: 640px) {
     :root {
         --column-count: 2;
@@ -363,7 +377,8 @@
     .initial-content {
         position: absolute;
         left: 50%;
-        transform: translateX(-50%);
+        top: 50%;
+        transform: translate(-50%, -130%);
         color: var(--white-color);
         z-index: 2;
         width: min(85%, 650px);
@@ -371,6 +386,32 @@
         & + img {
             display: block;
             border-radius: 20px;
+        }
+    }
+
+    .container:has(.heroCss) {
+        padding: 0 !important;
+    }
+
+    .heroCss {
+        height: calc(100dvh - 88px);
+        min-height: 650px;
+        max-height: 1080px;
+        background-color: #fefefe;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0 !important;
+
+        &.conBgrImg {
+            background-image: url(./landing.webp);
+            background-size: cover;
+            background-position: center;
+        }
+
+        & img.m-auto {
+            width: 260px;
         }
     }
 }
@@ -404,6 +445,12 @@
 
     .leaflet-container {
         width: 800px;
+    }
+
+    .heroCss {
+        & img.m-auto {
+            width: auto;
+        }
     }
 }
 
