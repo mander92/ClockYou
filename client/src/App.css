@@ -333,6 +333,14 @@
     border-radius: 20px;
 }
 
+.identifyUserIcon {
+    color: var(--cerulean);
+    font-size: 2rem;
+    position: absolute;
+    top: 2.2rem;
+    left: 2.5rem;
+}
+
 @media (hover: hover) and (pointer: fine) {
     .user-avatar:hover {
         transform: scale(1.03);
@@ -401,6 +409,12 @@
     .profile-form {
         min-width: 30.5rem;
     }
+
+    .identifyUserIcon {
+        position: relative;
+        inset: 0.3rem auto auto -0.3rem;
+        font-size: 1.7rem;
+    }
 }
 
 @media only screen and (min-width: 1280px) {
@@ -418,28 +432,3 @@
         margin: 0rem 16rem;
     }
 }
-
-/* .sr-only,
-.vanish {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border-width: 0;
-}
-
-.not-sr-only,
-.pop {
-    position: static;
-    width: auto;
-    height: auto;
-    padding: 0;
-    margin: 0;
-    overflow: visible;
-    clip: auto;
-    white-space: normal;
-} */
