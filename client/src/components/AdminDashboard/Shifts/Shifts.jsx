@@ -56,7 +56,8 @@ const Shifts = () => {
                 self.findIndex(
                     (o) => o.id === employee.id && o.nombre === employee.nombre
                 )
-        );
+        )
+        .sort((a, b) => a.firstName.localeCompare(b.firstName));
 
     const serviceNotRepeated = data
         .map((shiftRecord) => {
@@ -66,12 +67,13 @@ const Shifts = () => {
             };
         })
         .filter(
-            (employee, index, self) =>
+            (service, index, self) =>
                 index ===
                 self.findIndex(
-                    (o) => o.id === employee.id && o.nombre === employee.nombre
+                    (o) => o.id === service.id && o.type === service.type
                 )
-        );
+        )
+        .sort((a, b) => a.type.localeCompare(b.type));
 
     const openModal = (shiftRecordId) => {
         setSelectedShiftRecordId(shiftRecordId);

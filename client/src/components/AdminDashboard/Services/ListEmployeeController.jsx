@@ -70,8 +70,8 @@ const ListEmployeeController = ({ serviceId }) => {
         }
     };
 
-    const citiesNoRepeated = [...new Set(data.map((item) => item.city))];
-    const jobNoRepeated = [...new Set(data.map((item) => item.job))];
+    const citiesNoRepeated = [...new Set(data.map((item) => item.city))].sort();
+    const jobNoRepeated = [...new Set(data.map((item) => item.job))].sort();
 
     return (
         <>

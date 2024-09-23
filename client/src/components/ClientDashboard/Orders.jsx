@@ -47,8 +47,8 @@ const Orders = () => {
         getList();
     }, [status, type, city, authToken]);
 
-    const cityNoRepeated = [...new Set(data.map((item) => item.city))];
-    const typeNoRepeated = [...new Set(data.map((item) => item.type))];
+    const cityNoRepeated = [...new Set(data.map((item) => item.city))].sort();
+    const typeNoRepeated = [...new Set(data.map((item) => item.type))].sort();
 
     const openModal = (serviceId) => {
         setSelectedServiceId(serviceId);

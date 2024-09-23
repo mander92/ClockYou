@@ -51,13 +51,12 @@ const ListUserController = () => {
         ...new Set(
             data.map((item) => item.city).filter((city) => city && city.trim())
         ),
-    ];
+    ].sort();
     const jobNoRepeated = [
         ...new Set(
             data.map((item) => item.job).filter((job) => job && job.trim())
         ),
-    ];
-    const roleNoRepeated = [...new Set(data.map((item) => item.role))];
+    ].sort();
 
     return (
         <>
@@ -111,16 +110,9 @@ const ListUserController = () => {
                     <option value='' disabled>
                         Tipo:
                     </option>
-                    <option value='employee'>Empleado</option>
                     <option value='admin'>Administrador</option>
                     <option value='client'>Cliente</option>
-                    {/* {roleNoRepeated.map((role) => {
-                        return (
-                            <option key={role} value={role}>
-                                {role}
-                            </option>
-                        );
-                    })} */}
+                    <option value='employee'>Empleado</option>
                 </select>
                 <select
                     name='active'
