@@ -355,8 +355,8 @@
     }
 
     .leaflet-container {
-        height: 450px;
-        width: 450px;
+        height: 480px;
+        width: 480px;
     }
 }
 
@@ -400,6 +400,10 @@
 
     .profile-form {
         min-width: 30.5rem;
+    }
+
+    .leaflet-container {
+        width: 800px;
     }
 }
 
