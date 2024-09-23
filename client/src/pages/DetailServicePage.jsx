@@ -70,6 +70,7 @@ const DetailServicePage = () => {
                         {data.firstName} {data.lastName}
                     </p>
                     <p>{data.email}</p>
+                    <p>{data.dni}</p>
                     <p>{data.phone}</p>
                 </fieldset>
             </form>
