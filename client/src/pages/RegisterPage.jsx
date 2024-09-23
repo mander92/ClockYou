@@ -91,14 +91,14 @@ const RegisterPage = () => {
                     required
                 />
 
-                <label htmlFor='dni'>DNI</label>
+                <label htmlFor='dni'>DNI/NIE</label>
                 <input
                     type='text'
                     id='dni'
                     value={dni}
                     onChange={(e) => setDni(e.target.value)}
                     placeholder='24873456Z'
-                    pattern='[0-9]{8}[A-Za-z]{1}'
+                    pattern='^[0-9]{8}[A-Za-z]$|^[XYZ][0-9]{7}[A-Za-z]$'
                     required
                 />
                 <label htmlFor='phone'>Teléfono</label>
