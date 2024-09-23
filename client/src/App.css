@@ -328,6 +328,10 @@
     border-radius: 20px;
 }
 
+[class^='go41'] {
+    text-align: center;
+}
+
 @media (hover: hover) and (pointer: fine) {
     .user-avatar:hover {
         transform: scale(1.03);
