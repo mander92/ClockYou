@@ -68,8 +68,8 @@ const RegisterAdminUserController = () => {
                     <option value='' disabled>
                         Tipo:
                     </option>
-                    <option value='employee'>Empleado</option>
                     <option value='admin'>Admin</option>
+                    <option value='employee'>Empleado</option>
                 </select>
 
                 <label htmlFor='job'>Trabajo</label>
