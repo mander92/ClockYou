@@ -20,7 +20,8 @@
     }
 
     .navdinamica {
-        @apply inset-0 z-10 flex flex-wrap flex-col items-start justify-start gap-4 px-7 pt-32 pb-10;
+        @apply inset-0 flex flex-wrap flex-col items-start justify-start gap-4 px-7 pt-32 pb-10;
+        z-index: 500;
         position: fixed;
         transform: translateX(120%);
         transition: transform 0.35s ease-out;
@@ -153,7 +154,8 @@
         display: flex;
         flex-direction: column;
         gap: 6px;
-        @apply z-20 lg:hidden;
+        @apply lg:hidden;
+        z-index: 550;
         transform: rotate(0);
         transition: transform 0.35s ease;
 
