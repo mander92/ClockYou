@@ -333,14 +333,6 @@
     border-radius: 20px;
 }
 
-.identifyUserIcon {
-    color: var(--cerulean);
-    font-size: 2rem;
-    position: absolute;
-    top: 2.2rem;
-    left: 2.5rem;
-}
-
 @media (hover: hover) and (pointer: fine) {
     .user-avatar:hover {
         transform: scale(1.03);
@@ -408,12 +400,6 @@
 
     .profile-form {
         min-width: 30.5rem;
-    }
-
-    .identifyUserIcon {
-        position: relative;
-        inset: 0.3rem auto auto -0.3rem;
-        font-size: 1.7rem;
     }
 }
 

@@ -31,6 +31,15 @@
             width: min(70%, 300px);
         }
 
+        .identifyUserIcon {
+            width: auto;
+            color: var(--cerulean);
+            font-size: 2rem;
+            position: absolute;
+            top: 2.2rem;
+            left: 2.5rem;
+        }
+
         &.show {
             transform: translateX(var(--percentageTranslate));
         }
@@ -94,8 +103,16 @@
     }
 
     @media (width > 1023px) {
-        .navdinamica.show {
-            transform: translateX(0);
+        .navdinamica {
+            &.show {
+                transform: translateX(0);
+            }
+
+            & .identifyUserIcon {
+                position: relative;
+                inset: 0.3rem auto auto -0.3rem;
+                font-size: 1.7rem;
+            }
         }
 
         #root > header {
