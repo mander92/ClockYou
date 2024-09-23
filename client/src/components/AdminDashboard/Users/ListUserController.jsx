@@ -111,13 +111,16 @@ const ListUserController = () => {
                     <option value='' disabled>
                         Tipo:
                     </option>
-                    {roleNoRepeated.map((role) => {
+                    <option value='employee'>Empleado</option>
+                    <option value='admin'>Administrador</option>
+                    <option value='client'>Cliente</option>
+                    {/* {roleNoRepeated.map((role) => {
                         return (
                             <option key={role} value={role}>
                                 {role}
                             </option>
                         );
-                    })}
+                    })} */}
                 </select>
                 <select
                     name='active'
