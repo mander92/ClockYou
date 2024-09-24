@@ -423,6 +423,9 @@
         overflow-y: scroll;
         height: calc(100dvh - 72px);
     }
+    .scroll-container::-webkit-scrollbar {
+        display: none; /* Ocultar barra de desplazamiento en navegadores basados en WebKit */
+    }
 
     .hero-css,
     .hero-css-2,
