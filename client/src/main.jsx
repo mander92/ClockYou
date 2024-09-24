@@ -18,6 +18,7 @@ createRoot(document.getElementById('root')).render(
                             backgroundColor: 'var(--cerulean)',
                             color: 'var(--white-color)',
                             borderRadius: '100px',
+                            textAlign: 'center',
                         },
                     }}
                 />

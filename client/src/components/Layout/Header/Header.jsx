@@ -5,7 +5,6 @@ import { FaUser, FaUserTie } from 'react-icons/fa';
 import { FaUserClock } from 'react-icons/fa6';
 import useUser from '../../../hooks/useUser';
 import './Header.css';
-import clockyouLogo from '/logo-test.png';
 
 const Header = () => {
     const { authLogout } = useContext(AuthContext);
@@ -63,9 +62,9 @@ const Header = () => {
 
     return (
         <header id='mainHeader'>
-            <nav className='container mt-4 mx-auto mainnav flex flex-wrap'>
+            <nav className='container my-2 mx-auto mainnav flex flex-wrap'>
                 <NavLink className='flex items-center' to={'/'}>
-                    <img className='w-14' src={clockyouLogo} alt='clockYou' />
+                    <img className='w-14' src='/logo-test.png' alt='clockYou' />
 
                     <span className='text-2xl pl-1.5 serif-FONT-regular hidden sm:inline-flex'>
                         ClockYou
