@@ -403,7 +403,7 @@
 
         & img {
             width: 100%;
-            max-width: 250px;
+            max-width: 280px;
             margin: auto;
         }
 
@@ -418,9 +418,11 @@
         overflow-y: scroll;
         height: calc(100dvh - 72px);
     }
+
     .scroll-container::-webkit-scrollbar {
         display: none;
     }
+
     .scroll-container {
         -ms-overflow-style: none;
         scrollbar-width: none;
