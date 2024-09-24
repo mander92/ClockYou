@@ -95,7 +95,6 @@ const RegisterNewTypeOfServiceController = () => {
                     minLength='10'
                     maxLength='250'
                     rows='2'
-                    style={{ resize: 'none' }}
                     value={description}
                     onChange={(e) => {
                         setDescription(e.target.value);

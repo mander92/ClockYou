@@ -175,7 +175,6 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
                     minLength='10'
                     maxLength='250'
                     rows='5'
-                    style={{ resize: 'none' }}
                 ></textarea>
                 <div className='mx-auto'>
                     <button className='mr-4' type='submit'>

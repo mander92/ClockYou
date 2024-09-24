@@ -2,7 +2,7 @@ const { VITE_APP_TITLE } = import.meta.env;
 
 const HomePage = () => {
     return (
-        <div className=''>
+        <div className='scroll-container'>
             <section className='mx-auto isolate relative hero-css bgr-img'>
                 <article className='initial-content'>
                     <h1 className='my-4'>{`Bienvenido a ${VITE_APP_TITLE}`}</h1>
@@ -34,7 +34,7 @@ const HomePage = () => {
                 </div>
             </section>
             <section className='hero-css-3'>
-                <form>
+                <form className='mx-auto pt-16'>
                     <fieldset>
                         <legend>Contacta con {VITE_APP_TITLE}</legend>
                         <label htmlFor='name'>Nombre</label>
@@ -62,7 +62,6 @@ const HomePage = () => {
                             minLength='10'
                             maxLength='250'
                             rows='7'
-                            style={{ resize: 'none' }}
                         ></textarea>
                         <div className='mx-auto'>
                             <button className='mr-4' type='submit'>

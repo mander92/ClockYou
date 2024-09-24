@@ -212,7 +212,6 @@ const EditServicePage = () => {
                     minLength='10'
                     maxLength='250'
                     rows='5'
-                    style={{ resize: 'none' }}
                     required
                     onChange={(e) => setComments(e.target.value)}
                 />
