@@ -419,7 +419,11 @@
         height: calc(100dvh - 72px);
     }
     .scroll-container::-webkit-scrollbar {
-        display: none; /* Ocultar barra de desplazamiento en navegadores basados en WebKit */
+        display: none;
+    }
+    .scroll-container {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
     }
 
     .hero-css,
