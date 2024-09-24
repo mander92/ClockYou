@@ -328,11 +328,6 @@
     border-radius: 20px;
 }
 
-/* [class^='go41'] {
-    text-align: center;
-    Añadida en main.jsx
-} */
-
 @media (hover: hover) and (pointer: fine) {
     .user-avatar:hover {
         transform: scale(1.03);
@@ -386,10 +381,16 @@
         padding: 0 !important;
     }
 
-    .hero-css {
-        min-height: 500px;
-        max-height: 1440px;
+    /* .scroll-container {
+        scroll-snap-type: y mandatory;
+        overflow-y: auto;
 
+        &:has(.hero-css) {
+            height: 100dvh;
+        }
+    } */
+
+    .hero-css {
         &.bgr-img {
             background-image: url(./landing.webp);
             background-size: cover;
@@ -398,11 +399,6 @@
     }
 
     .hero-css-2 {
-        display: flex;
-        flex-direction: column;
-        justify-content: center; /* Centra horizontalmente */
-        align-items: center; /* Centra verticalmente */
-        height: calc(100dvh - 72px); /* Corrige la unidad de medida */
         text-align: center;
 
         & img {
@@ -419,20 +415,26 @@
 
     .hero-css-3 {
         background-color: var(--overcast);
+        background-color: #f7f7f7;
+
+        & form {
+            width: 85%;
+        }
     }
 
-    .scroll-container {
-        scroll-snap-type: y mandatory;
-        overflow-y: scroll;
-        height: calc(100dvh - 72px);
-    }
-
-    .hero-css,
-    .hero-css-2,
-    .hero-css-3 {
+    [class*='hero-css'] {
         scroll-snap-align: start;
         scroll-snap-stop: always;
         height: calc(100dvh - 72px);
+        min-height: 500px;
+        max-height: 1440px;
+    }
+
+    [class*='hero-css-'] {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 }
 
