@@ -16,7 +16,7 @@ const HomePage = () => {
                 <h2 className='pt-8 mb-8'>¿Cómo funciona?</h2>
                 <div className='articles-container'>
                     <article>
-                        <img src='./step-1.webp' alt='' />
+                        <img src='./step-1-pShop.webp' alt='' />
                         <h3>Busca lo que necesitas</h3>
                         <p className='text-center'>
                             Tenemos casi de todo: limpieza, clases particulares,
