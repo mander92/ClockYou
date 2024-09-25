@@ -444,6 +444,14 @@
     }
 }
 
+@media (width > 1023px) and (height < 731px) {
+    .hero-css-2 {
+        & > * {
+            scale: 0.7;
+        }
+    }
+}
+
 @media (width > 639px) and (width < 1024px) {
     section:has(.initial-content)::after {
         content: '';
