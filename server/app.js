@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import fileUpload from 'express-fileupload';
+import fileUpload from 'express-fileupload'
 import morgan from 'morgan';
 
 import { PORT, UPLOADS_DIR } from './env.js';
