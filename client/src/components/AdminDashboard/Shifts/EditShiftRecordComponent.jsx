@@ -38,7 +38,7 @@ const EditShiftRecordComponent = ({ shiftRecordId, onRequestClose }) => {
                 setClockIn(formatDateToLocal(clockInDate));
                 setClockOut(formatDateToLocal(clockOutDate));
             } catch (error) {
-                toast.error(error.message);
+                toast.error(error.message, { id: 'error' });
             }
         };
 

@@ -28,7 +28,7 @@ const ChangeRecoverPasswordPage = () => {
                     newPassword
                 );
 
-                toast.success(data);
+                toast.success(data, { id: 'ok' });
 
                 navigate('/login');
             }

@@ -29,7 +29,7 @@ const DetailServicePage = () => {
                     },
                 });
             } catch (error) {
-                toast.error(error.message);
+                toast.error(error.message, { id: 'error' });
             }
         };
         DetailService();
