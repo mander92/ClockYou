@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
-import arrowTopIcon from '/icon-top-arrow-32.png';
 
-const ScrollTop = () => {
+const ScrollTopComponent = () => {
     const [show, setShow] = useState(false);
 
     const toggleShow = () => {
@@ -27,18 +26,18 @@ const ScrollTop = () => {
     }, []);
 
     return (
-        <div
+        <button
             id='scroll'
             onClick={scrollToTop}
             className={show ? 'show cursor-pointer' : 'hide cursor-pointer'}
         >
             <img
                 className='arrowTopIcon'
-                src={arrowTopIcon}
+                src='/icon-top-arrow-32.png'
                 alt='vuelve arriba'
             />
-        </div>
+        </button>
     );
 };
 
-export default ScrollTop;
+export default ScrollTopComponent;

@@ -18,33 +18,21 @@ import EditServicePage from './pages/EditServicePage.jsx';
 import EditShiftRecordComponent from './components/AdminDashboard/Shifts/EditShiftRecordComponent.jsx';
 import RatingServiceComponent from './components/ClientDashboard/RatingServiceComponent.jsx';
 import ShiftRecordComponent from './components/EmployeeDashBoard/ShiftRecordComponent.jsx';
-import ScrollTop from './components/ScrollTop.jsx';
+import ScrollTopComponent from './components/ScrollTopComponent.jsx';
 
 const App = () => {
     return (
         <Layout>
             <main className='container mx-auto'>
                 <Routes>
-                    <Route
-                        path='/'
-                        element={<HomePage />}
-                    />
-                    <Route
-                        path='/register'
-                        element={<RegisterPage />}
-                    />
+                    <Route path='/' element={<HomePage />} />
+                    <Route path='/register' element={<RegisterPage />} />
                     <Route
                         path='/users/validate/:registrationCode'
                         element={<ValidateUserPage />}
                     />
-                    <Route
-                        path='/login'
-                        element={<LoginPage />}
-                    />
-                    <Route
-                        path='/user'
-                        element={<DashboardPage />}
-                    />
+                    <Route path='/login' element={<LoginPage />} />
+                    <Route path='/user' element={<DashboardPage />} />
 
                     <Route
                         path='/typeOfServices'
@@ -98,13 +86,10 @@ const App = () => {
                         element={<EditShiftRecordComponent />}
                     />
 
-                    <Route
-                        path='/*'
-                        element={<NotFoundPage />}
-                    />
+                    <Route path='/*' element={<NotFoundPage />} />
                 </Routes>
             </main>
-            <ScrollTop />
+            <ScrollTopComponent />
         </Layout>
     );
 };

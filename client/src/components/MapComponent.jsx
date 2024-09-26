@@ -1,8 +1,8 @@
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import { IconLocation } from './IconLocation';
+import { IconLocationComponent } from './IconLocationComponent';
 import 'leaflet/dist/leaflet.css';
 
-const MapView = ({ location }) => {
+const MapComponent = ({ location }) => {
     return (
         <>
             <MapContainer
@@ -14,7 +14,10 @@ const MapView = ({ location }) => {
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
                 />
-                <Marker position={location.currentLocation} icon={IconLocation}>
+                <Marker
+                    position={location.currentLocation}
+                    icon={IconLocationComponent}
+                >
                     <Popup>Registro de Entrada</Popup>
                 </Marker>
             </MapContainer>
@@ -22,4 +25,4 @@ const MapView = ({ location }) => {
     );
 };
 
-export default MapView;
+export default MapComponent;

@@ -4,7 +4,7 @@ import { AuthContext } from '../context/AuthContext';
 import { fetchDetailServiceServices } from '../services/serviceServices.js';
 import ListEmployeeController from '../components/AdminDashboard/Services/ListEmployeeController.jsx';
 import toast from 'react-hot-toast';
-import Map from '../components/Map.jsx';
+import MapComponent from '../components/MapComponent.jsx';
 
 const DetailServicePage = () => {
     const { serviceId } = useParams();
@@ -94,7 +94,7 @@ const DetailServicePage = () => {
                         )}
                         {location.currentLocation ? (
                             <div>
-                                <Map location={location} />
+                                <MapComponent location={location} />
                             </div>
                         ) : (
                             <span>Cargando el mapa</span>

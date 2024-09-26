@@ -6,7 +6,7 @@ import {
     fetchClockOutShiftRecordServices,
 } from '../../services/shiftRecordServices';
 import toast from 'react-hot-toast';
-import Map from '../Map';
+import MapComponent from '../MapComponent';
 import Modal from 'react-modal';
 
 const ShiftRecordComponent = ({
@@ -95,7 +95,7 @@ const ShiftRecordComponent = ({
                 >
                     Registrar Entrada
                 </button>
-                <Map location={location} />
+                <MapComponent location={location} />
                 <button className='mt-2 text-white bg-red-600' onClick={getEnd}>
                     Registrar Salida
                 </button>

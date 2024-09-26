@@ -1,5 +1,5 @@
 const { VITE_APP_TITLE } = import.meta.env;
-import ContactForm from '../components/ContactForm.jsx';
+import ContactFormComponent from '../components/ContactFormComponent.jsx';
 
 const HomePage = () => {
     return (
@@ -37,7 +37,7 @@ const HomePage = () => {
                 </div>
             </section>
             <section className='hero-css-3'>
-                <ContactForm />
+                <ContactFormComponent />
             </section>
         </>
     );
