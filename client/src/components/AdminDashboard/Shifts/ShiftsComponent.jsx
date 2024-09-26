@@ -5,7 +5,7 @@ import { fetchAllShiftRecordsServices } from '../../../services/shiftRecordServi
 import EditShiftRecordModal from './EditShiftRecordComponent';
 import toast from 'react-hot-toast';
 
-const Shifts = () => {
+const ShiftsComponent = () => {
     const { authToken } = useContext(AuthContext);
 
     const [data, setData] = useState([]);
@@ -205,4 +205,4 @@ const Shifts = () => {
     );
 };
 
-export default Shifts;
+export default ShiftsComponent;

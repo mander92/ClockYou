@@ -1,4 +1,4 @@
-import { AuthContext } from '../../../src/context/AuthContext';
+import { AuthContext } from '../../context/AuthContext.jsx';
 import { NavLink } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react';
 import { FaStar, FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
@@ -6,7 +6,7 @@ import { fetchClientAllServicesServices } from '../../services/serviceServices.j
 import RatingModal from './RatingServiceComponent.jsx';
 import toast from 'react-hot-toast';
 
-const Orders = () => {
+const OrdersComponent = () => {
     const { authToken } = useContext(AuthContext);
 
     const [data, setData] = useState([]);
@@ -211,4 +211,4 @@ const Orders = () => {
     );
 };
 
-export default Orders;
+export default OrdersComponent;

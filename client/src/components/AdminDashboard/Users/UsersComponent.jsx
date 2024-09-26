@@ -1,30 +1,28 @@
 import { useState } from 'react';
-import ListServicesController from './ListServicesController.jsx';
-import RegisterServicesController from './RegisterServicesController.jsx';
-import tabSelected from '../../../../src/hooks/tabSelected';
-import toTopFast from '../../../../src/hooks/toTopFast';
+import ListUserComponent from './ListUserComponent';
+import RegisterAdminUserComponent from './RegisterAdminUserComponent';
+import tabSelected from '../../../hooks/tabSelected';
+import toTopFast from '../../../hooks/toTopFast';
 
-const Services = () => {
-    const [activeSection, setActiveSection] = useState(
-        'ListServicesController'
-    );
+const UsersComponent = () => {
+    const [activeSection, setActiveSection] = useState('ListUserComponent');
 
     const handleChange = (section) => {
         setActiveSection(section);
     };
 
     const sectionComponents = {
-        ListServicesController: <ListServicesController />,
-        RegisterServicesController: <RegisterServicesController />,
+        ListUserComponent: <ListUserComponent />,
+        RegisterAdminUserComponent: <RegisterAdminUserComponent />,
     };
 
     return (
         <>
             <div className='manager-tabs' id='tabs2'>
                 <button
-                    to='#ListServicesController'
+                    to='#ListUserComponent'
                     onClick={(e) => {
-                        handleChange('ListServicesController');
+                        handleChange('ListUserComponent');
                         toTopFast(e);
                         tabSelected(e, 'tabs2');
                     }}
@@ -33,9 +31,9 @@ const Services = () => {
                     Ver Todos
                 </button>
                 <button
-                    to='#RegisterServicesController'
+                    to='#RegisterAdminUserComponent'
                     onClick={(e) => {
-                        handleChange('RegisterServicesController');
+                        handleChange('RegisterAdminUserComponent');
                         toTopFast(e);
                         tabSelected(e, 'tabs2');
                     }}
@@ -48,4 +46,4 @@ const Services = () => {
     );
 };
 
-export default Services;
+export default UsersComponent;

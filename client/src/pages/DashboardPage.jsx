@@ -4,12 +4,12 @@ import { AuthContext } from '../context/AuthContext';
 import useUser from '../hooks/useUser';
 import AvatarComponent from '../components/AvatarComponent';
 import ProfileComponent from '../components/ProfileComponent';
-import Users from '../components/AdminDashboard/Users/Users';
-import Services from '../components/AdminDashboard/Services/Services';
-import Contracts from '../components/AdminDashboard/Contracts/ListContracts';
-import Shifts from '../components/AdminDashboard/Shifts/Shifts';
-import MyServices from '../components/EmployeeDashBoard/MyServices';
-import Orders from '../components/ClientDashboard/Orders';
+import UsersComponent from '../components/AdminDashboard/Users/UsersComponent';
+import ServicesComponent from '../components/AdminDashboard/Services/ServicesComponent';
+import Contracts from '../components/AdminDashboard/Contracts/ListContractsComponent';
+import ShiftsComponent from '../components/AdminDashboard/Shifts/ShiftsComponent';
+import MyServicesComponent from '../components/EmployeeDashBoard/MyServicesComponent';
+import OrdersComponent from '../components/ClientDashboard/OrdersComponent';
 import tabSelected from '../hooks/tabSelected';
 import toTopFast from '../hooks/toTopFast';
 
@@ -36,12 +36,12 @@ const DashboardPage = () => {
 
     const sectionComponents = {
         ProfileComponent: <ProfileComponent />,
-        users: userRole === 'admin' && <Users />,
-        services: userRole === 'admin' && <Services />,
+        UsersComponent: userRole === 'admin' && <UsersComponent />,
+        services: userRole === 'admin' && <ServicesComponent />,
         contracts: userRole === 'admin' && <Contracts />,
-        shifts: userRole === 'admin' && <Shifts />,
-        orders: userRole === 'client' && <Orders />,
-        myservices: userRole === 'employee' && <MyServices />,
+        shifts: userRole === 'admin' && <ShiftsComponent />,
+        orders: userRole === 'client' && <OrdersComponent />,
+        myServices: userRole === 'employee' && <MyServicesComponent />,
     };
 
     if (!authToken && !user) return <Navigate to='/' />;
@@ -65,9 +65,9 @@ const DashboardPage = () => {
                 {userRole === 'admin' && (
                     <>
                         <NavLink
-                            to='#users'
+                            to='#UsersComponent'
                             onClick={(e) => {
-                                handleSectionChange('users');
+                                handleSectionChange('UsersComponent');
                                 tabSelected(e, 'tabs5');
                                 toTopFast(e);
                             }}
@@ -123,9 +123,9 @@ const DashboardPage = () => {
                 {userRole === 'employee' && (
                     <NavLink
                         className='less-than-4-buttons'
-                        to='#myservices'
+                        to='#myServices'
                         onClick={(e) => {
-                            handleSectionChange('myservices');
+                            handleSectionChange('myServices');
                             tabSelected(e, 'tabs5');
                             toTopFast(e);
                         }}

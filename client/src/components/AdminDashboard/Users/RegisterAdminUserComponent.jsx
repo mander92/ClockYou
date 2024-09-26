@@ -4,7 +4,7 @@ import { fetchRegisterAdminUserServices } from '../../../services/userServices';
 
 import toast from 'react-hot-toast';
 
-const RegisterAdminUserController = () => {
+const RegisterAdminUserComponent = () => {
     const { authToken } = useContext(AuthContext);
 
     const [email, setEmail] = useState('');
@@ -148,4 +148,4 @@ const RegisterAdminUserController = () => {
     );
 };
 
-export default RegisterAdminUserController;
+export default RegisterAdminUserComponent;

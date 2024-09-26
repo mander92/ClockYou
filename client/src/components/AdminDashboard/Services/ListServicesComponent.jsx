@@ -3,7 +3,7 @@ import { fetchAllTypeOfServicesServices } from '../../../services/typeOfServiceS
 import toast from 'react-hot-toast';
 import { NavLink } from 'react-router-dom';
 
-const ListServicesController = () => {
+const ListServicesComponent = () => {
     const [data, setData] = useState([]);
     const [city, setCity] = useState('');
     const [type, setType] = useState('');
@@ -124,4 +124,4 @@ const ListServicesController = () => {
     );
 };
 
-export default ListServicesController;
+export default ListServicesComponent;

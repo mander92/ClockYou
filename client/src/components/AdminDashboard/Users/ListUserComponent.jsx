@@ -1,22 +1,25 @@
 const { VITE_API_URL } = import.meta.env;
-import { AuthContext } from '../../../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
-import { useState, useEffect, useContext } from 'react';
-import { fetchAllUsersServices } from '../../../services/userServices.js';
-import { fetchNewShiftRecordServices } from '../../../services/shiftRecordServices.js';
+import { useContext, useEffect, useState } from 'react';
+import { fetchAllUsersServices } from '../../../services/userServices';
 import toast from 'react-hot-toast';
+import { AuthContext } from '../../../context/AuthContext';
 
-const ListEmployeeController = ({ serviceId }) => {
+const ListUserComponent = () => {
     const { authToken } = useContext(AuthContext);
 
-    const navigate = useNavigate();
-
-    const role = 'employee';
-
     const [data, setData] = useState([]);
-    const [active, setActive] = useState('');
-    const [job, setJob] = useState('');
     const [city, setCity] = useState('');
+    const [job, setJob] = useState('');
+    const [role, setRole] = useState('');
+    const [active, setActive] = useState('');
+
+    const resetFilters = (e) => {
+        e.preventDefault();
+        setCity('');
+        setJob('');
+        setRole('');
+        setActive('');
+    };
 
     useEffect(() => {
         const getAllUserList = async () => {
@@ -42,36 +45,18 @@ const ListEmployeeController = ({ serviceId }) => {
         };
 
         getAllUserList();
-    }, [city, job, active, authToken]);
+    }, [city, job, active, role, authToken]);
 
-    const resetFilters = () => {
-        setActive('');
-        setCity('');
-        setJob('');
-    };
-
-    const handleNewShiftRecord = async (employeeId, serviceId, authToken) => {
-        try {
-            const data = await fetchNewShiftRecordServices(
-                employeeId,
-                serviceId,
-                authToken
-            );
-
-            toast.success(data.message, {
-                id: 'ok',
-            });
-
-            navigate('/user');
-        } catch (error) {
-            toast.error(error.message, {
-                id: 'error',
-            });
-        }
-    };
-
-    const citiesNoRepeated = [...new Set(data.map((item) => item.city))].sort();
-    const jobNoRepeated = [...new Set(data.map((item) => item.job))].sort();
+    const citiesNoRepeated = [
+        ...new Set(
+            data.map((item) => item.city).filter((city) => city && city.trim())
+        ),
+    ].sort();
+    const jobNoRepeated = [
+        ...new Set(
+            data.map((item) => item.job).filter((job) => job && job.trim())
+        ),
+    ].sort();
 
     return (
         <>
@@ -95,7 +80,6 @@ const ListEmployeeController = ({ serviceId }) => {
                         );
                     })}
                 </select>
-
                 <select
                     name='job'
                     id='job'
@@ -115,7 +99,21 @@ const ListEmployeeController = ({ serviceId }) => {
                         );
                     })}
                 </select>
-
+                <select
+                    name='role'
+                    id='role'
+                    value={role}
+                    onChange={(e) => {
+                        setRole(e.target.value);
+                    }}
+                >
+                    <option value='' disabled>
+                        Tipo:
+                    </option>
+                    <option value='admin'>Administrador</option>
+                    <option value='client'>Cliente</option>
+                    <option value='employee'>Empleado</option>
+                </select>
                 <select
                     name='active'
                     id='active'
@@ -134,7 +132,6 @@ const ListEmployeeController = ({ serviceId }) => {
             </form>
             <ul className='cards'>
                 {data.map((item) => {
-                    const employeeId = item.id;
                     return (
                         <li key={item.id}>
                             <img
@@ -152,19 +149,7 @@ const ListEmployeeController = ({ serviceId }) => {
                             <p>📞 {item.phone}</p>
                             <p>🪪 {item.dni}</p>
                             <p>👨‍💻 {item.job}</p>
-                            <p>🏠 {item.city}</p>
-
-                            <button
-                                onClick={() => {
-                                    handleNewShiftRecord(
-                                        employeeId,
-                                        serviceId,
-                                        authToken
-                                    );
-                                }}
-                            >
-                                Asignar Empleado
-                            </button>
+                            <p className='mb-4'>🏠 {item.city}</p>
                         </li>
                     );
                 })}
@@ -173,4 +158,4 @@ const ListEmployeeController = ({ serviceId }) => {
     );
 };
 
-export default ListEmployeeController;
+export default ListUserComponent;

@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { fetchDetailServiceServices } from '../services/serviceServices.js';
-import ListEmployeeController from '../components/AdminDashboard/Services/ListEmployeeController.jsx';
+import ListEmployeeComponent from '../components/AdminDashboard/Services/ListEmployeeComponent.jsx';
 import toast from 'react-hot-toast';
 import MapComponent from '../components/MapComponent.jsx';
 
@@ -75,7 +75,7 @@ const DetailServicePage = () => {
                 </fieldset>
             </form>
             {data.status === 'pending' && (
-                <ListEmployeeController serviceId={serviceId} />
+                <ListEmployeeComponent serviceId={serviceId} />
             )}
             {data.status === 'completed' && (
                 <form className='form-filters mx-auto'>

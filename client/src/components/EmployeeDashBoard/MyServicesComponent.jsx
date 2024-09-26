@@ -1,11 +1,11 @@
-import { AuthContext } from '../../context/AuthContext';
+import { AuthContext } from '../../context/AuthContext.jsx';
 import { useEffect, useState, useContext } from 'react';
 import { FaStar, FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
-import { fetchEmployeeAllServicesServices } from '../../services/serviceServices';
+import { fetchEmployeeAllServicesServices } from '../../services/serviceServices.js';
 import ShiftRecordModal from './ShiftRecordComponent.jsx';
 import toast from 'react-hot-toast';
 
-const MyServices = () => {
+const MyServicesComponent = () => {
     const { authToken } = useContext(AuthContext);
 
     const [data, setData] = useState([]);
@@ -165,4 +165,4 @@ const MyServices = () => {
     );
 };
 
-export default MyServices;
+export default MyServicesComponent;

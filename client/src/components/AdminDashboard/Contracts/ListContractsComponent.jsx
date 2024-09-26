@@ -1,11 +1,11 @@
 import { NavLink } from 'react-router-dom';
-import { AuthContext } from '../../../context/AuthContext';
+import { AuthContext } from '../../../context/AuthContext.jsx';
 import { FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
 import { useEffect, useState, useContext } from 'react';
 import { fetchAllServicesServices } from '../../../services/serviceServices.js';
 import toast from 'react-hot-toast';
 
-const ListContracts = () => {
+const ListContractsComponent = () => {
     const { authToken } = useContext(AuthContext);
 
     const [data, setData] = useState([]);
@@ -121,4 +121,4 @@ const ListContracts = () => {
     );
 };
 
-export default ListContracts;
+export default ListContractsComponent;
