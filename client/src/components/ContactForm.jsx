@@ -22,7 +22,6 @@ const ContactForm = () => {
         }).then((res) => res.json());
 
         if (res.success) {
-            // console.log('Success', res);
             toast.success('Consulta enviada correctamente', { id: 'ok' });
             event.target.reset();
         }
@@ -62,7 +61,7 @@ const ContactForm = () => {
                     <button className='mr-4' type='submit'>
                         Enviar
                     </button>
-                    <button>Limpiar</button>
+                    <button type='reset'>Limpiar</button>
                 </div>
             </fieldset>
         </form>
