@@ -415,18 +415,13 @@
     }
 
     .scroll-container {
-        scroll-snap-type: y mandatory;
-        overflow-y: scroll;
-        height: calc(100dvh - 72px);
-    }
-
-    .scroll-container::-webkit-scrollbar {
-        display: none;
-    }
-
-    .scroll-container {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
+        &:has([class*='hero-css-']) {
+            height: 100dvh;
+            scroll-snap-type: y mandatory;
+            overflow-y: auto;
+            scroll-padding-top: 72px;
+            scroll-padding-bottom: 72px;
+        }
     }
 
     [class*='hero-css'] {
@@ -440,7 +435,6 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        flex-shrink: 0;
     }
 }
 

@@ -3,7 +3,7 @@ import ContactForm from '../components/ContactForm.jsx';
 
 const HomePage = () => {
     return (
-        <div className='scroll-container'>
+        <>
             <section className='mx-auto isolate relative hero-css bgr-img'>
                 <article className='initial-content'>
                     <h1 className='my-4'>{`Bienvenido a ${VITE_APP_TITLE}`}</h1>
@@ -39,7 +39,7 @@ const HomePage = () => {
             <section className='hero-css-3'>
                 <ContactForm />
             </section>
-        </div>
+        </>
     );
 };
 
