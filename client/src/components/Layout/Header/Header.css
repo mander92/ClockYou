@@ -5,9 +5,35 @@
         --percentageTranslate: 10%;
     }
 
-    @media only screen and (min-width: 768px) {
-        :root {
-            --percentageTranslate: 40%;
+    .menuburguer {
+        width: 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        @apply lg:hidden;
+        z-index: 550;
+        transform: rotate(0);
+        transition: transform 0.35s ease;
+
+        & span {
+            height: 4px;
+            border-radius: 4px;
+            background-color: var(--cerulean);
+        }
+
+        &.open {
+            transform: rotate(-360deg);
+            & span:first-of-type {
+                transform: rotate(45deg) translateY(6px);
+            }
+
+            & span:nth-child(even) {
+                display: none;
+            }
+
+            & span:last-of-type {
+                transform: rotate(-45deg) translateY(-8px);
+            }
         }
     }
 
@@ -71,6 +97,24 @@
         }
     }
 
+    @media only screen and (min-width: 640px) {
+        :root {
+            --percentageTranslate: 40%;
+        }
+
+        #root > header {
+            position: sticky;
+            top: 0;
+            background-color: var(--white-color);
+            z-index: 1;
+
+            &.sombreado {
+                background-color: #fafafa;
+                box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+            }
+        }
+    }
+
     @media (width < 1024px) {
         .navdinamica {
             background: var(--white-color);
@@ -103,32 +147,6 @@
         }
     }
 
-    @media (width > 1023px) {
-        .navdinamica {
-            &.show {
-                transform: translateX(0);
-            }
-
-            & .identifyUserIcon {
-                position: relative;
-                inset: 0.3rem auto auto -0.3rem;
-                font-size: 1.7rem;
-            }
-        }
-
-        #root > header {
-            position: sticky;
-            top: 0;
-            background-color: var(--white-color);
-            z-index: 1;
-
-            &.sombreado {
-                background-color: #fafafa;
-                box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-            }
-        }
-    }
-
     @media only screen and (min-width: 1024px) {
         .navdinamica {
             @apply flex-row p-0;
@@ -142,42 +160,20 @@
                 width: auto;
                 max-width: none;
             }
+
+            &.show {
+                transform: translateX(0);
+            }
+
+            & .identifyUserIcon {
+                position: relative;
+                inset: 0.3rem auto auto -0.3rem;
+                font-size: 1.7rem;
+            }
         }
 
         .linkmainnav {
             @apply block px-4 py-2;
-        }
-    }
-
-    .menuburguer {
-        width: 40px;
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-        @apply lg:hidden;
-        z-index: 550;
-        transform: rotate(0);
-        transition: transform 0.35s ease;
-
-        & span {
-            height: 4px;
-            border-radius: 4px;
-            background-color: var(--cerulean);
-        }
-
-        &.open {
-            transform: rotate(-360deg);
-            & span:first-of-type {
-                transform: rotate(45deg) translateY(6px);
-            }
-
-            & span:nth-child(even) {
-                display: none;
-            }
-
-            & span:last-of-type {
-                transform: rotate(-45deg) translateY(-8px);
-            }
         }
     }
 }

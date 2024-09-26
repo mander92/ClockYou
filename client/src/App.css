@@ -219,25 +219,6 @@
             top: 10px;
             right: 10px;
         }
-
-        /* &.pedidosCliente {
-            grid-auto-columns: 1fr;
-
-            & > li {
-                display: grid;
-                grid-template-rows: subgrid;
-                grid-row: span 11;
-                align-items: start;
-
-                & > *:not(h3) {
-                    margin-top: 0;
-                }
-
-                & h3 {
-                    margin-top: 1.5rem;
-                }
-            }
-        } */
     }
 
     .manager-tabs {
@@ -350,17 +331,17 @@
         --column-count: 2;
     }
 
-    .leaflet-container {
-        height: 480px;
-        width: 480px;
-    }
-
     h1 {
         @apply text-6xl;
     }
 
     h2 {
         @apply text-4xl;
+    }
+
+    .leaflet-container {
+        height: 480px;
+        width: 480px;
     }
 
     .initial-content {
@@ -407,6 +388,7 @@
             margin: 1rem;
         }
     }
+
     .hero-css-3 {
         & form {
             width: min(80%, 650px);
