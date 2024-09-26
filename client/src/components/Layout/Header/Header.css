@@ -167,7 +167,7 @@
 
             & .identifyUserIcon {
                 position: relative;
-                inset: 0.3rem auto auto -0.3rem;
+                inset: 0.5rem auto auto;
                 font-size: 1.7rem;
             }
         }
