@@ -15,7 +15,7 @@ const HomePage = () => {
             </section>
             <section className='hero-css-2'>
                 <div>
-                    <h2 className='pt-8 mb-8'>¿Cómo funciona?</h2>
+                    <h2 className='my-12'>¿Cómo funciona?</h2>
                     <div className='articles-container'>
                         <article>
                             <img src='./step-1-pShop.webp' alt='' />
@@ -25,7 +25,7 @@ const HomePage = () => {
                                 particulares, cuidado de mascotas...
                             </p>
                         </article>
-                        <article className='mt-6'>
+                        <article className='mt-12'>
                             <img src='./step-2.webp' alt='' />
                             <h3>El profesional ideal</h3>
                             <p className='text-center'>
@@ -36,7 +36,7 @@ const HomePage = () => {
                     </div>
                 </div>
             </section>
-            <section className='hero-css-3'>
+            <section className='mt-12 hero-css-3'>
                 <ContactFormComponent />
             </section>
         </>
