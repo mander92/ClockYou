@@ -1,6 +1,6 @@
 const { VITE_API_URL } = import.meta.env;
-import { useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext.jsx';
+import { useState, useContext } from 'react';
 import { fetchEditAvatarUserServices } from '../services/userServices.js';
 import useUser from '../hooks/useUser.js';
 import toast from 'react-hot-toast';
@@ -48,13 +48,12 @@ const AvatarComponent = () => {
         <form className='mx-auto' onSubmit={handleEditAvatar}>
             <img
                 className='user-avatar mx-auto'
-                src={`${
-                    avatarPreview
-                        ? avatarPreview
-                        : user?.avatar
-                          ? `${VITE_API_URL}/${user.avatar}`
-                          : '/default-avatar.png'
-                }`}
+                src={
+                    avatarPreview ||
+                    (user?.avatar
+                        ? `${VITE_API_URL}/${user.avatar}`
+                        : '/default-avatar.png')
+                }
                 alt='Avatar'
             />
             {enableEditAvatar ? (

@@ -1,13 +1,13 @@
 const { VITE_API_URL } = import.meta.env;
-import { useState, useEffect, useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useState, useEffect, useContext } from 'react';
 import {
     fetchTypeOfServiceServices,
     fetchDeleteTypeOfServiceServices,
     fetchEditTypeOfServiceServices,
     fetchEditImageTypeOfServicesService,
 } from '../services/typeOfServiceServices';
-import { AuthContext } from '../context/AuthContext';
 import toast from 'react-hot-toast';
 
 const EditTypeOfServicePage = () => {
@@ -127,13 +127,10 @@ const EditTypeOfServicePage = () => {
                 >
                     <fieldset>
                         <img
-                            src={`${
-                                imgPreview
-                                    ? imgPreview
-                                    : data?.image
-                                      ? `${VITE_API_URL}/${image}`
-                                      : ''
-                            }`}
+                            src={
+                                imgPreview ||
+                                (data?.image ? `${VITE_API_URL}/${image}` : '')
+                            }
                             alt={`${data.description}`}
                         />
                         {enableEditImage ? (
