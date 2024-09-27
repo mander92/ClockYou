@@ -387,6 +387,8 @@
             padding: 0;
             margin: 1rem;
         }
+
+        background-color: var(--overcast);
     }
 
     .hero-css-3 {

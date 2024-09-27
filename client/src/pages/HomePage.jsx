@@ -21,8 +21,8 @@ const HomePage = () => {
                             <img src='./step-1-pShop.webp' alt='' />
                             <h3>Busca lo que necesitas</h3>
                             <p className='text-center'>
-                                Tenemos casi de todo: limpieza, clases
-                                particulares, cuidado de mascotas...
+                                Tenemos casi de todo: limpieza a domicilio,
+                                clases particulares, cuidado de mascotas...
                             </p>
                         </article>
                         <article className='mt-12'>
