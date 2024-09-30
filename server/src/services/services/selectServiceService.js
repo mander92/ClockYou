@@ -21,6 +21,8 @@ const selectServiceService = async (status, order) => {
 
     if (order) {
         sqlQuery += ` ORDER BY s.dateTime ${order.toUpperCase()}`;
+    } else {
+        sqlQuery += ' ORDER BY s.modifiedAt DESC';
     }
 
     const [service] = await pool.query(sqlQuery, sqlValues);
