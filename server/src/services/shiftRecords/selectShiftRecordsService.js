@@ -12,8 +12,7 @@ const selectShiftRecordsService = async (
             SELECT 
             s.id, s.employeeId, u.firstName, u.lastName, s.clockIn, s.clockOut, se.rating, se.status, se.hours, se.dateTime, a.city, a.address, t.type, t.city AS province,
             TIMESTAMPDIFF(HOUR, s.clockIn, s.clockOut) AS hoursWorked,
-            MOD(TIMESTAMPDIFF(MINUTE, s.clockIn, s.clockOut), 60) AS minutesWorked,
-            SUM(se.hours) AS totalHours
+            MOD(TIMESTAMPDIFF(MINUTE, s.clockIn, s.clockOut), 60) AS minutesWorked
             FROM shiftRecords s 
             INNER JOIN users u
             ON u.id = s.employeeId
@@ -46,7 +45,7 @@ const selectShiftRecordsService = async (
     sqlQuery += `
             GROUP BY
             s.id, s.employeeId, u.firstName, u.lastName, s.clockIn, s.clockOut, se.rating, se.status, se.dateTime, a.city, a.address, t.type, province, hoursWorked, minutesWorked
-            ORDER BY se.createdAt DESC
+            ORDER BY se.modifiedAt DESC
             `;
 
     const [shiftRecord] = await pool.query(sqlQuery, sqlValues);
