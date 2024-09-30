@@ -87,8 +87,8 @@ const ShiftsComponent = () => {
                     <option value='' disabled>
                         Empleado:
                     </option>
-                    {employeeList.map((employee) => (
-                        <option key={employee.id} value={employee.id}>
+                    {employeeList.map((employee, index) => (
+                        <option key={index} value={employee.id}>
                             {`${employee.firstName} ${employee.lastName}`}
                         </option>
                     ))}
@@ -102,8 +102,8 @@ const ShiftsComponent = () => {
                     <option value='' disabled>
                         Servicio:
                     </option>
-                    {typeNoRepeated.map((type) => (
-                        <option key={type} value={type}>
+                    {typeNoRepeated.map((type, index) => (
+                        <option key={index} value={type}>
                             {type}
                         </option>
                     ))}
