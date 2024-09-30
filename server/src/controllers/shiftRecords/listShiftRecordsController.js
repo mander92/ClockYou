@@ -2,9 +2,14 @@ import selectShiftRecordsService from '../../services/shiftRecords/selectShiftRe
 
 const listShiftRecordsController = async (req, res, next) => {
     try {
-        const { typeOfService, employeeId } = req.query;
+        const { typeOfService, employeeId, startDate, endDate } = req.query;
 
-        const data = await selectShiftRecordsService(typeOfService, employeeId);
+        const data = await selectShiftRecordsService(
+            typeOfService,
+            employeeId,
+            startDate,
+            endDate
+        );
 
         res.send({
             status: 'ok',
