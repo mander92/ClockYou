@@ -4,12 +4,7 @@ const selectTypeOfServiceService = async (type, city, price) => {
     const pool = await getPool();
 
     let sqlQuery = ` SELECT 
-      t.id, 
-      t.image, 
-      t.type, 
-      t.description, 
-      t.city, 
-      t.price,
+      t.id, t.image, t.type, t.description, t.city, t.price,
       (SELECT AVG(rating) FROM services s WHERE s.typeOfServicesId = t.id) AS averageRating
     FROM 
       typeOfServices t
@@ -30,6 +25,8 @@ const selectTypeOfServiceService = async (type, city, price) => {
 
     if (price) {
         sqlQuery += ` ORDER BY price ${price.toUpperCase()}`;
+    } else {
+        sqlQuery += ' ORDER BY t.modifiedAt DESC';
     }
 
     const [service] = await pool.query(sqlQuery, sqlValues);
