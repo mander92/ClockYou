@@ -8,7 +8,8 @@ import toast from 'react-hot-toast';
 const ShiftsComponent = () => {
     const { authToken } = useContext(AuthContext);
 
-    const [data, setData] = useState([]);
+    const [details, setDetails] = useState([]);
+    const [totals, setTotals] = useState([]);
     const [employeeId, setEmployeeId] = useState('');
     const [typeOfService, setTypeOfService] = useState('');
     const [startDate, setStartDate] = useState('');
@@ -34,11 +35,14 @@ const ShiftsComponent = () => {
             });
             const searchParamsToString = searchParams.toString();
             try {
-                const data = await fetchAllShiftRecordsServices(
+                const response = await fetchAllShiftRecordsServices(
                     searchParamsToString,
                     authToken
                 );
-                setData(data.data);
+
+                const data = response.data;
+                setDetails(data.details);
+                setTotals(data.totals);
             } catch (error) {
                 toast.error(error.message, {
                     id: 'error',
@@ -48,7 +52,14 @@ const ShiftsComponent = () => {
         getShifts();
     }, [employeeId, typeOfService, startDate, endDate, authToken]);
 
-    const employeeList = data
+    const combinedData = details.map((detail) => {
+        const total =
+            totals.find((total) => total.employeeId === detail.employeeId) ||
+            {};
+        return { ...detail, ...total };
+    });
+
+    const employeeList = totals
         .map((shiftRecord) => {
             return {
                 id: shiftRecord.employeeId,
@@ -60,12 +71,14 @@ const ShiftsComponent = () => {
             (employee, index, self) =>
                 index ===
                 self.findIndex(
-                    (o) => o.id === employee.id && o.nombre === employee.nombre
+                    (o) =>
+                        o.id === employee.id &&
+                        o.firstName === employee.firstName
                 )
         )
         .sort((a, b) => a.firstName.localeCompare(b.firstName));
 
-    const typeNoRepeated = [...new Set(data.map((item) => item.type))].sort(
+    const typeNoRepeated = [...new Set(details.map((item) => item.type))].sort(
         (a, b) => a.localeCompare(b)
     );
 
@@ -130,7 +143,7 @@ const ShiftsComponent = () => {
                 <button onClick={resetFilter}>Limpiar Filtros</button>
             </form>
             <ul className='cards'>
-                {data.map((item) => {
+                {combinedData.map((item) => {
                     const clockIn = item.clockIn
                         ? new Date(item.clockIn).toLocaleString()
                         : null;
@@ -151,6 +164,10 @@ const ShiftsComponent = () => {
                                 )}
                             </div>
                             <h3>{`${item.firstName} ${item.lastName}`}</h3>
+                            <p className='font-extrabold'>
+                                Horas Totales: {item.totalHoursWorked} Horas{' '}
+                                {item.totalMinutesWorked} Minutos
+                            </p>
                             <p>{item.province}</p>
                             <p>{item.type}</p>
                             <p className='grow'>
@@ -172,16 +189,16 @@ const ShiftsComponent = () => {
                                     Salida: {clockOut}
                                 </p>
                             )}
-                            {(item.hoursWorked ||
-                                item.minutesWorked !== null) && (
+                            {item.totalHoursWorked !== null ||
+                            item.totalMinutesWorked !== null ? (
                                 <p className='font-extrabold'>
                                     Total: {item.hoursWorked} Horas{' '}
                                     {item.minutesWorked} Minutos
                                 </p>
-                            )}
-                            <p>Horas mensuales: {item.totalHours}</p>
+                            ) : null}
+
                             {item.status === 'completed' && (
-                                <div className='flex mt-2 mb-2'>
+                                <div className='flex my-2'>
                                     {[...Array(5)].map((_, index) => (
                                         <FaStar
                                             key={item.id}
