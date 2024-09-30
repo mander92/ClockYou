@@ -375,6 +375,11 @@
     [class*='hero-css'] {
         scroll-snap-align: start;
         scroll-snap-stop: always;
+        text-align: center;
+    }
+
+    [class*='hero-css']:not(.hero-css-3) {
+        height: calc(100dvh - 72px);
     }
 
     [class*='hero-css-'] {
@@ -385,7 +390,6 @@
     }
 
     .hero-css {
-        height: calc(100dvh - 72px);
         min-height: 500px;
         max-height: 1440px;
 
@@ -397,9 +401,6 @@
     }
 
     .hero-css-2 {
-        text-align: center;
-        height: calc(100dvh - 72px);
-
         & img {
             width: 100%;
             max-width: 280px;
