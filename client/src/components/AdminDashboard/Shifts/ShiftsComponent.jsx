@@ -11,6 +11,8 @@ const ShiftsComponent = () => {
     const [data, setData] = useState([]);
     const [employeeId, setEmployeeId] = useState('');
     const [typeOfService, setTypeOfService] = useState('');
+    const [startDate, setStartDate] = useState('');
+    const [endDate, setEndDate] = useState('');
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [selectedShiftRecordId, setSelectedShiftRecordId] = useState(null);
 
@@ -18,11 +20,15 @@ const ShiftsComponent = () => {
         e.preventDefault();
         setEmployeeId('');
         setTypeOfService('');
+        setStartDate('');
+        setEndDate('');
     };
 
     useEffect(() => {
         const getShifts = async () => {
             const searchParams = new URLSearchParams({
+                startDate: startDate,
+                endDate: endDate,
                 employeeId: employeeId,
                 typeOfService: typeOfService,
             });
@@ -40,7 +46,7 @@ const ShiftsComponent = () => {
             }
         };
         getShifts();
-    }, [employeeId, typeOfService, authToken]);
+    }, [employeeId, typeOfService, startDate, endDate, authToken]);
 
     const employeeList = data
         .map((shiftRecord) => {
@@ -108,6 +114,19 @@ const ShiftsComponent = () => {
                         </option>
                     ))}
                 </select>
+                <input
+                    id='startDate'
+                    type='datetime-local'
+                    value={startDate}
+                    onChange={(e) => setStartDate(e.target.value)}
+                />
+
+                <input
+                    id='endDate'
+                    type='datetime-local'
+                    value={endDate}
+                    onChange={(e) => setEndDate(e.target.value)}
+                />
                 <button onClick={resetFilter}>Limpiar Filtros</button>
             </form>
             <ul className='cards'>
@@ -160,6 +179,7 @@ const ShiftsComponent = () => {
                                     {item.minutesWorked} Minutos
                                 </p>
                             )}
+                            <p>Horas mensuales: {item.totalHours}</p>
                             {item.status === 'completed' && (
                                 <div className='flex mt-2 mb-2'>
                                     {[...Array(5)].map((_, index) => (
