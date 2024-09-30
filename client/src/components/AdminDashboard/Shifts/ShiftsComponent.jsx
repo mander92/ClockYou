@@ -94,8 +94,8 @@ const ShiftsComponent = () => {
                     ))}
                 </select>
                 <select
-                    name='typeOfServices'
-                    id='typeOfServices'
+                    name='typeOfService'
+                    id='typeOfService'
                     value={typeOfService}
                     onChange={(e) => setTypeOfService(e.target.value)}
                 >
