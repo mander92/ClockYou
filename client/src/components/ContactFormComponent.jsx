@@ -35,7 +35,7 @@ const ContactFormComponent = () => {
                     type='text'
                     id='name'
                     name='name'
-                    placeholder='Manuel Pérez'
+                    placeholder='Escribe aquí tu nombre'
                     required
                 />
                 <label htmlFor='email'>Email</label>
@@ -43,7 +43,7 @@ const ContactFormComponent = () => {
                     type='email'
                     id='email'
                     name='email'
-                    placeholder='user@ClockYou.com'
+                    placeholder='Escribe aquí tu email'
                     required
                 />
                 <label htmlFor='comments'>Cuéntanos</label>

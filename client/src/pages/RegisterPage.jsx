@@ -67,7 +67,7 @@ const RegisterPage = () => {
                     id='email'
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder='user@ClockYou.com'
+                    placeholder='Escribe aquí tu email'
                     required
                 />
 
@@ -77,7 +77,7 @@ const RegisterPage = () => {
                     id='firstName'
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
-                    placeholder='Manuel'
+                    placeholder='Escribe aquí tu nombre'
                     required
                 />
 
@@ -87,7 +87,7 @@ const RegisterPage = () => {
                     id='lastName'
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
-                    placeholder='Pérez Rodríguez'
+                    placeholder='Escribe aquí tus apellidos'
                     required
                 />
 
