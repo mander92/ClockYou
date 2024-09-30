@@ -10,21 +10,21 @@ const ShiftsComponent = () => {
 
     const [data, setData] = useState([]);
     const [employeeId, setEmployeeId] = useState('');
-    const [shiftRecordId, setShiftRecordId] = useState('');
+    const [typeOfService, setTypeOfService] = useState('');
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [selectedShiftRecordId, setSelectedShiftRecordId] = useState(null);
 
     const resetFilter = (e) => {
         e.preventDefault();
         setEmployeeId('');
-        setShiftRecordId('');
+        setTypeOfService('');
     };
 
     useEffect(() => {
         const getShifts = async () => {
             const searchParams = new URLSearchParams({
                 employeeId: employeeId,
-                shiftRecordId: shiftRecordId,
+                typeOfService: typeOfService,
             });
             const searchParamsToString = searchParams.toString();
             try {
@@ -40,7 +40,7 @@ const ShiftsComponent = () => {
             }
         };
         getShifts();
-    }, [employeeId, shiftRecordId, authToken]);
+    }, [employeeId, typeOfService, authToken]);
 
     const employeeList = data
         .map((shiftRecord) => {
@@ -59,21 +59,9 @@ const ShiftsComponent = () => {
         )
         .sort((a, b) => a.firstName.localeCompare(b.firstName));
 
-    const serviceNotRepeated = data
-        .map((shiftRecord) => {
-            return {
-                id: shiftRecord.id,
-                type: shiftRecord.type,
-            };
-        })
-        .filter(
-            (service, index, self) =>
-                index ===
-                self.findIndex(
-                    (o) => o.id === service.id && o.type === service.type
-                )
-        )
-        .sort((a, b) => a.type.localeCompare(b.type));
+    const typeNoRepeated = [...new Set(data.map((item) => item.type))].sort(
+        (a, b) => a.localeCompare(b)
+    );
 
     const openModal = (shiftRecordId) => {
         setSelectedShiftRecordId(shiftRecordId);
@@ -106,19 +94,17 @@ const ShiftsComponent = () => {
                     ))}
                 </select>
                 <select
-                    name='serviceId'
-                    id='serviceId'
-                    value={shiftRecordId}
-                    onChange={(e) => {
-                        setShiftRecordId(e.target.value);
-                    }}
+                    name='typeOfServices'
+                    id='typeOfServices'
+                    value={typeOfService}
+                    onChange={(e) => setTypeOfService(e.target.value)}
                 >
                     <option value='' disabled>
                         Servicio:
                     </option>
-                    {serviceNotRepeated.map((service) => (
-                        <option key={service.id} value={service.id}>
-                            {service.type}
+                    {typeNoRepeated.map((type) => (
+                        <option key={type} value={type}>
+                            {type}
                         </option>
                     ))}
                 </select>

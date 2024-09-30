@@ -40,8 +40,12 @@ const TypeOfServicesPage = () => {
         getTypeOfServices();
     }, [city, type, price]);
 
-    const citiesNoRepeated = [...new Set(data.map((item) => item.city))].sort();
-    const typeNoRepeated = [...new Set(data.map((item) => item.type))].sort();
+    const citiesNoRepeated = [...new Set(data.map((item) => item.city))].sort(
+        (a, b) => a.localeCompare(b)
+    );
+    const typeNoRepeated = [...new Set(data.map((item) => item.type))].sort(
+        (a, b) => a.localeCompare(b)
+    );
 
     return (
         <>

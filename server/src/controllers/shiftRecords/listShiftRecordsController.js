@@ -1,10 +1,10 @@
-import getShiftRecordsService from '../../services/shiftRecords/getShiftRecordsService.js';
+import selectShiftRecordsService from '../../services/shiftRecords/selectShiftRecordsService.js';
 
 const listShiftRecordsController = async (req, res, next) => {
     try {
-        const { shiftRecordId, employeeId } = req.query;
+        const { typeOfService, employeeId } = req.query;
 
-        const data = await getShiftRecordsService(shiftRecordId, employeeId);
+        const data = await selectShiftRecordsService(typeOfService, employeeId);
 
         res.send({
             status: 'ok',
