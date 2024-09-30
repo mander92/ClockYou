@@ -13,9 +13,17 @@ import {
     detailShiftRecordController,
     startShiftRecordsController,
     endShiftRecordsController,
+    listTotalHoursController,
 } from '../controllers/shiftRecords/index.js';
 
 const router = express.Router();
+
+router.get(
+    '/shiftRecords/totalHours',
+    authUser,
+    isAdmin,
+    listTotalHoursController
+);
 
 router.get('/shiftRecords', authUser, isAdmin, listShiftRecordsController);
 
