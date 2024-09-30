@@ -23,8 +23,6 @@ const selectShiftRecordsService = async (
             ON a.id = se.addressId
             INNER JOIN typeOfServices t
             ON t.id = se.typeOfServicesId
-            GROUP BY
-            s.id, s.employeeId, u.firstName, u.lastName, s.clockIn, s.clockOut, se.rating, se.status, se.dateTime, a.city, a.address, t.type, province, hoursWorked, minutesWorked
             WHERE 1=1
             `;
 
@@ -41,11 +39,15 @@ const selectShiftRecordsService = async (
     }
 
     if (startDate && endDate) {
-        sqlQuery += '  AND se.dateTime BETWEEN ? AND ?';
-        sqlValues.push(startDate);
+        sqlQuery += ' AND se.dateTime BETWEEN ? AND ?';
+        sqlValues.push(startDate, endDate);
     }
 
-    sqlQuery += ' ORDER BY se.createdAt DESC';
+    sqlQuery += `
+            GROUP BY
+            s.id, s.employeeId, u.firstName, u.lastName, s.clockIn, s.clockOut, se.rating, se.status, se.dateTime, a.city, a.address, t.type, province, hoursWorked, minutesWorked
+            ORDER BY se.createdAt DESC
+            `;
 
     const [shiftRecord] = await pool.query(sqlQuery, sqlValues);
 
