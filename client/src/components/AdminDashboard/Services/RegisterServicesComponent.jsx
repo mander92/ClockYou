@@ -38,7 +38,7 @@ const RegisterNewTypeOfServiceController = () => {
             toast.success(data.message, {
                 id: 'ok',
             });
-            navigate('/user#services');
+            navigate('/user#ServicesComponent');
             resetInputs(e);
         } catch (error) {
             toast.error(error.message, {

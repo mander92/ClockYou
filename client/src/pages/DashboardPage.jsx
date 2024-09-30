@@ -6,7 +6,7 @@ import AvatarComponent from '../components/AvatarComponent';
 import ProfileComponent from '../components/ProfileComponent';
 import UsersComponent from '../components/AdminDashboard/Users/UsersComponent';
 import ServicesComponent from '../components/AdminDashboard/Services/ServicesComponent';
-import Contracts from '../components/AdminDashboard/Contracts/ListContractsComponent';
+import ContractsComponent from '../components/AdminDashboard/Contracts/ContractsComponent';
 import ShiftsComponent from '../components/AdminDashboard/Shifts/ShiftsComponent';
 import MyServicesComponent from '../components/EmployeeDashBoard/MyServicesComponent';
 import OrdersComponent from '../components/ClientDashboard/OrdersComponent';
@@ -37,11 +37,11 @@ const DashboardPage = () => {
     const sectionComponents = {
         ProfileComponent: <ProfileComponent />,
         UsersComponent: userRole === 'admin' && <UsersComponent />,
-        services: userRole === 'admin' && <ServicesComponent />,
-        contracts: userRole === 'admin' && <Contracts />,
-        shifts: userRole === 'admin' && <ShiftsComponent />,
-        orders: userRole === 'client' && <OrdersComponent />,
-        myServices: userRole === 'employee' && <MyServicesComponent />,
+        ServicesComponent: userRole === 'admin' && <ServicesComponent />,
+        ContractsComponent: userRole === 'admin' && <ContractsComponent />,
+        ShiftsComponent: userRole === 'admin' && <ShiftsComponent />,
+        OrdersComponent: userRole === 'client' && <OrdersComponent />,
+        MyServicesComponent: userRole === 'employee' && <MyServicesComponent />,
     };
 
     if (!authToken && !user) return <Navigate to='/' />;
@@ -75,9 +75,9 @@ const DashboardPage = () => {
                             Usuarios
                         </NavLink>
                         <NavLink
-                            to='#services'
+                            to='#ServicesComponent'
                             onClick={(e) => {
-                                handleSectionChange('services');
+                                handleSectionChange('ServicesComponent');
                                 tabSelected(e, 'tabs5');
                                 toTopFast(e);
                             }}
@@ -85,9 +85,9 @@ const DashboardPage = () => {
                             Servicios
                         </NavLink>
                         <NavLink
-                            to='#contracts'
+                            to='#ContractsComponent'
                             onClick={(e) => {
-                                handleSectionChange('contracts');
+                                handleSectionChange('ContractsComponent');
                                 tabSelected(e, 'tabs5');
                                 toTopFast(e);
                             }}
@@ -95,9 +95,9 @@ const DashboardPage = () => {
                             Contratos
                         </NavLink>
                         <NavLink
-                            to='#shifts'
+                            to='#ShiftsComponent'
                             onClick={(e) => {
-                                handleSectionChange('shifts');
+                                handleSectionChange('ShiftsComponent');
                                 tabSelected(e, 'tabs5');
                                 toTopFast(e);
                             }}
@@ -110,9 +110,9 @@ const DashboardPage = () => {
                 {userRole === 'client' && (
                     <NavLink
                         className='less-than-4-buttons'
-                        to='#orders'
+                        to='#OrdersComponent'
                         onClick={(e) => {
-                            handleSectionChange('orders');
+                            handleSectionChange('OrdersComponent');
                             tabSelected(e, 'tabs5');
                             toTopFast(e);
                         }}
@@ -123,9 +123,9 @@ const DashboardPage = () => {
                 {userRole === 'employee' && (
                     <NavLink
                         className='less-than-4-buttons'
-                        to='#myServices'
+                        to='#MyServicesComponent'
                         onClick={(e) => {
-                            handleSectionChange('myServices');
+                            handleSectionChange('MyServicesComponent');
                             tabSelected(e, 'tabs5');
                             toTopFast(e);
                         }}
