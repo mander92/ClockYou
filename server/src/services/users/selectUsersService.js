@@ -28,6 +28,8 @@ const selectUsersService = async (job, active, city, role) => {
         sqlValues.push(role);
     }
 
+    sqlQuery += ' ORDER BY createdAt DESC';
+
     const [service] = await pool.query(sqlQuery, sqlValues);
 
     return service;
