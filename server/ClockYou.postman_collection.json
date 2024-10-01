@@ -331,13 +331,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVlMjhhMjUzLTU3N2ItNDlkYi1iM2ZlLTU2OTEwMGIwYmMxMyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNDg3MDU4OSwiZXhwIjoxNzI1NDc1Mzg5fQ.N0tedbLwmLPr6FzETNYpUzCCReA4E9E9zRYQ9S8ZUm4",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgxYWQ0NDZjLWFlMzQtNDY3NC1iMmM0LTU5NTUyOWY2ZjA0NCIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjUyODU3NTYsImV4cCI6MTcyNTg5MDU1Nn0.yKq4ZYAyUujQICYml7dIE_KCa4Q5LU8wOYg8yv5Gkrc",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"actualPassword\": \"12345678\",\n    \"newPassword\": \"87654321\",\n    \"repeatNewPassword\": \"87654321\"\n}",
+							"raw": "{\n    \"actualPassword\": \"12345678\",\n    \"newPassword\": \"12345678\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -345,16 +345,16 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/users/password/ee28a253-577b-49db-b3fe-569100b0bc13",
+							"raw": "http://localhost:8000/user/password/81ad446c-ae34-4674-b2c4-595529f6f044",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
-								"users",
+								"user",
 								"password",
-								"ee28a253-577b-49db-b3fe-569100b0bc13"
+								"81ad446c-ae34-4674-b2c4-595529f6f044"
 							]
 						}
 					},
@@ -623,7 +623,7 @@
 								},
 								{
 									"key": "type",
-									"value": null,
+									"value": "Masajes",
 									"disabled": true
 								}
 							]
@@ -764,13 +764,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgxYWQ0NDZjLWFlMzQtNDY3NC1iMmM0LTU5NTUyOWY2ZjA0NCIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjUxMzAyODIsImV4cCI6MTcyNTczNTA4Mn0.XsVlf-0wYs8VfaKy51nPt20KQHJxpFOV9BRaW9GPSnk",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFjMTBkYjVkLTQxOTQtNDdjOC1hMGE5LWFiZTA5YWNjNWQ0YiIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjU4OTA0MTQsImV4cCI6MTcyNjQ5NTIxNH0.LqqCPYiNOB9XTIN8YjIVsZ4EyY9hQfecElAlAjmiwGg",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"dateTime\": \"2026-10-05T14:48:00\",\n    \"hours\": \"7\",\n    \"comments\": \"Para estudiante que está cursando 2º de la ESO\",\n    \"address\": \"Avío, 2, 3ªB\",\n    \"city\": \"Santiago de Compostela\",\n    \"postCode\": \"15705\"\n}",
+							"raw": "{\n    \"dateTime\": \"2026-10-05T14:48:00\",\n    \"hours\": \"4\",\n    \"comments\": \"Para estudiante que está cursando 2º de la ESO\",\n    \"address\": \"Avío, 2, 3ªB\",\n    \"city\": \"Santiago de Compostela\",\n    \"postCode\": \"15705\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -778,7 +778,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/services/033f37ce-3ac7-41ae-b7a0-99a559b880f9",
+							"raw": "http://localhost:8000/services/ef6bf110-bebb-4519-b238-95e506fc4bfc",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -786,7 +786,7 @@
 							"port": "8000",
 							"path": [
 								"services",
-								"033f37ce-3ac7-41ae-b7a0-99a559b880f9"
+								"ef6bf110-bebb-4519-b238-95e506fc4bfc"
 							]
 						}
 					},
@@ -799,12 +799,12 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNjNzNjODZkLTlhYmMtNDU3ZS05ZjVkLTQ4MjI1ZjlkZGI0ZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNTU0MzYyMywiZXhwIjoxNzI2MTQ4NDIzfQ.hTSQPbEbptnzpsVMYdzrBE4VqVWjIsqv46PSMNHaFe8",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNjNzNjODZkLTlhYmMtNDU3ZS05ZjVkLTQ4MjI1ZjlkZGI0ZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNjE3Nzk4NSwiZXhwIjoxNzI2NzgyNzg1fQ.m-1BiUo-bSwxQcN8BvJLICE0q6WUOJ9-3Oo0Tqd6GFA",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8000/services?status=&order=asc",
+							"raw": "http://localhost:8000/services",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -816,11 +816,13 @@
 							"query": [
 								{
 									"key": "status",
-									"value": ""
+									"value": "",
+									"disabled": true
 								},
 								{
 									"key": "order",
-									"value": "asc"
+									"value": "asc",
+									"disabled": true
 								}
 							]
 						}
@@ -921,7 +923,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ5ZDZjZDU5LTYyODUtNDk1Ny04MzVkLTI0NzAxM2ZhMzU5NSIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjQ4Nzg4ODUsImV4cCI6MTcyNTQ4MzY4NX0.apd1PtJFQl6ozdGt6kNm3hInbhC0bHmq3NhR1uoz4Y0",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFjMTBkYjVkLTQxOTQtNDdjOC1hMGE5LWFiZTA5YWNjNWQ0YiIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjU4OTA0MTQsImV4cCI6MTcyNjQ5NTIxNH0.LqqCPYiNOB9XTIN8YjIVsZ4EyY9hQfecElAlAjmiwGg",
 								"type": "text"
 							}
 						],
@@ -951,6 +953,11 @@
 								{
 									"key": "status",
 									"value": "confirmed",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "completed",
 									"disabled": true
 								}
 							]
@@ -1108,7 +1115,7 @@
 								},
 								{
 									"key": "employeeId",
-									"value": "",
+									"value": "8a798161-0e98-4887-9c63-2cc8cf0b7f40",
 									"disabled": true
 								},
 								{
@@ -1118,7 +1125,12 @@
 								},
 								{
 									"key": "endDate",
-									"value": "2024-09-23 12:00:00",
+									"value": "2024-09-21 12:00:00",
+									"disabled": true
+								},
+								{
+									"key": "generateExcel",
+									"value": "true",
 									"disabled": true
 								}
 							]
@@ -1288,14 +1300,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/00fc02b2-9c89-4371-8a52-52105d920562.jpg",
+							"raw": "http://localhost:8000/4bf2009b-44ec-47ed-b6c4-493ff62fe54d.jpg",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
-								"00fc02b2-9c89-4371-8a52-52105d920562.jpg"
+								"4bf2009b-44ec-47ed-b6c4-493ff62fe54d.jpg"
 							]
 						}
 					},
