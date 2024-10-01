@@ -1,8 +1,9 @@
 import ExcelJS from 'exceljs';
 import path from 'path';
 import fs from 'fs';
+import { UPLOADS_DIR } from '../../env.js';
 
-const createExcelFile = async (data, columns, fileName) => {
+const createExcelUtil = async (data, columns, fileName) => {
     try {
         const workbook = new ExcelJS.Workbook();
         const worksheet = workbook.addWorksheet('Sheet 1');
@@ -13,13 +14,14 @@ const createExcelFile = async (data, columns, fileName) => {
             worksheet.addRow(row);
         });
 
-        const directoryPath = path.resolve('documents');
+        const directoryPath = path.resolve(`${UPLOADS_DIR}/documents`);
 
         if (!fs.existsSync(directoryPath)) {
             fs.mkdirSync(directoryPath);
         }
 
         const filePath = path.resolve(directoryPath, fileName);
+
         await workbook.xlsx.writeFile(filePath);
 
         return filePath;
@@ -29,4 +31,4 @@ const createExcelFile = async (data, columns, fileName) => {
     }
 };
 
-export default createExcelFile;
+export default createExcelUtil;

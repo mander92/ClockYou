@@ -1,6 +1,4 @@
 node_modules
 uploads
-documents
-avatar_img
 .env
 *.local

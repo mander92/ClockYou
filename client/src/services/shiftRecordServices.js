@@ -42,7 +42,7 @@ export const fetchAllShiftRecordsServices = async (
         throw new Error(body.message);
     }
 
-    return body;
+    return body.data;
 };
 
 export const fetchClockInShiftRecordServices = async (

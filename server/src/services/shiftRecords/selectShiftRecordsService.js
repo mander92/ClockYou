@@ -1,12 +1,13 @@
 import getPool from '../../db/getPool.js';
-import createExcelFile from '../../utils/createExcelUtil.js';
+import createExcelUtil from '../../utils/createExcelUtil.js';
+import path from 'path';
 
 const selectShiftRecordsService = async (
     typeOfService,
     employeeId,
     startDate,
     endDate,
-    generateExcel = false
+    generateExcel
 ) => {
     const pool = await getPool();
 
@@ -81,41 +82,42 @@ const selectShiftRecordsService = async (
     }
 
     sqlQueryTotal += `
-        GROUP BY s.employeeId, u.firstName, u.lastName
+        GROUP BY s.employeeId, u.firstName, u.lastName 
         ORDER BY totalHoursWorked DESC
     `;
 
     const [rowsTotal] = await pool.query(sqlQueryTotal, sqlValues);
 
-    const result = { details: rowsDetails, totals: rowsTotal };
+    const data = { details: rowsDetails, totals: rowsTotal };
 
     if (generateExcel) {
         const columns = [
-            { header: 'Employee ID', key: 'employeeId', width: 15 },
-            { header: 'First Name', key: 'firstName', width: 20 },
-            { header: 'Last Name', key: 'lastName', width: 20 },
+            { header: 'Nombre', key: 'firstName', width: 20 },
+            { header: 'Apellidos', key: 'lastName', width: 20 },
 
             {
-                header: 'Total Hours Worked',
+                header: 'Total Horas',
                 key: 'totalHoursWorked',
                 width: 20,
             },
             {
-                header: 'Total Minutes Worked',
+                header: 'Total Minutos',
                 key: 'totalMinutesWorked',
                 width: 20,
             },
         ];
 
-        const filePath = await createExcelFile(
+        const filePath = await createExcelUtil(
             rowsTotal,
             columns,
             'shiftRecords.xlsx'
         );
-        return { ...result, excelFilePath: filePath };
+
+        const publicUrl = `/documents/${path.basename(filePath)}`;
+        return { ...data, excelFilePath: publicUrl };
     }
 
-    return result;
+    return data;
 };
 
 export default selectShiftRecordsService;

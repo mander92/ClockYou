@@ -1,3 +1,4 @@
+const { VITE_API_URL } = import.meta.env;
 import { AuthContext } from '../../../context/AuthContext';
 import { useEffect, useState, useContext } from 'react';
 import { FaStar, FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
@@ -16,6 +17,7 @@ const ShiftsComponent = () => {
     const [endDate, setEndDate] = useState('');
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [selectedShiftRecordId, setSelectedShiftRecordId] = useState(null);
+    const [generateExcel, setGenerateExcel] = useState(false);
 
     const resetFilter = (e) => {
         e.preventDefault();
@@ -31,17 +33,23 @@ const ShiftsComponent = () => {
             endDate: endDate,
             employeeId: employeeId,
             typeOfService: typeOfService,
+            generateExcel: generateExcel,
         });
         const searchParamsToString = searchParams.toString();
         try {
-            const response = await fetchAllShiftRecordsServices(
+            const data = await fetchAllShiftRecordsServices(
                 searchParamsToString,
                 authToken
             );
 
-            const data = response.data;
             setDetails(data.details);
             setTotals(data.totals);
+
+            if (generateExcel && data.excelFilePath) {
+                window.open(`${VITE_API_URL}/${data.excelFilePath}`, '_blank');
+            }
+
+            setGenerateExcel(false);
         } catch (error) {
             toast.error(error.message, {
                 id: 'error',
@@ -51,14 +59,7 @@ const ShiftsComponent = () => {
 
     useEffect(() => {
         getShifts();
-    }, [employeeId, typeOfService, startDate, endDate]);
-
-    const combinedData = details.map((detail) => {
-        const total =
-            totals.find((total) => total.employeeId === detail.employeeId) ||
-            {};
-        return { ...detail, ...total };
-    });
+    }, [employeeId, typeOfService, startDate, endDate, generateExcel]);
 
     const employeeList = totals
         .map((shiftRecord) => {
@@ -134,7 +135,6 @@ const ShiftsComponent = () => {
                     value={startDate}
                     onChange={(e) => setStartDate(e.target.value)}
                 />
-
                 <input
                     id='endDate'
                     type='datetime-local'
@@ -142,9 +142,12 @@ const ShiftsComponent = () => {
                     onChange={(e) => setEndDate(e.target.value)}
                 />
                 <button onClick={resetFilter}>Limpiar Filtros</button>
+                <button type='button' onClick={() => setGenerateExcel(true)}>
+                    Generar Excel
+                </button>
             </form>
             <ul className='cards'>
-                {combinedData.map((item) => {
+                {details.map((item) => {
                     const clockIn = item.clockIn
                         ? new Date(item.clockIn).toLocaleString()
                         : null;
@@ -165,10 +168,6 @@ const ShiftsComponent = () => {
                                 )}
                             </div>
                             <h3>{`${item.firstName} ${item.lastName}`}</h3>
-                            <p className='font-extrabold'>
-                                Horas Totales: {item.totalHoursWorked} Horas{' '}
-                                {item.totalMinutesWorked} Minutos
-                            </p>
                             <p>{item.province}</p>
                             <p>{item.type}</p>
                             <p className='grow'>
@@ -197,7 +196,6 @@ const ShiftsComponent = () => {
                                     {item.minutesWorked} Minutos
                                 </p>
                             ) : null}
-
                             {item.status === 'completed' && (
                                 <div className='flex my-2'>
                                     {[...Array(5)].map((_, index) => (
@@ -219,6 +217,15 @@ const ShiftsComponent = () => {
                         </li>
                     );
                 })}
+                {totals.map((total) => (
+                    <li key={total.employeeId} className='relative'>
+                        <h3>{`${total.firstName} ${total.lastName}`}</h3>
+                        <p className='font-extrabold mb-2'>
+                            Trabajado: {total.totalHoursWorked} Horas{' '}
+                            {total.totalMinutesWorked} Minutos
+                        </p>
+                    </li>
+                ))}
             </ul>
             <EditShiftRecordModal
                 isOpen={modalIsOpen}
