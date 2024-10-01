@@ -1086,7 +1086,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "{{admin}}",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNjNzNjODZkLTlhYmMtNDU3ZS05ZjVkLTQ4MjI1ZjlkZGI0ZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNzcwNjExMCwiZXhwIjoxNzI4MzEwOTEwfQ.L1IWfLBHCoA_6cN6E4d2AbWVdC3ecXR4WIZI5lSVgtQ",
 								"type": "text"
 							}
 						],
@@ -1102,13 +1102,23 @@
 							],
 							"query": [
 								{
-									"key": "serviceId",
-									"value": "125b6900-1c2e-4734-bdfd-f6106ee3e13f",
+									"key": "typeOfService",
+									"value": "Clases Particulares",
 									"disabled": true
 								},
 								{
 									"key": "employeeId",
-									"value": "865a8fea-164a-4b62-8b22-8f8931fa9ba1",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "startDate",
+									"value": "2024-09-20 12:00:00",
+									"disabled": true
+								},
+								{
+									"key": "endDate",
+									"value": "2024-09-23 12:00:00",
 									"disabled": true
 								}
 							]
@@ -1191,7 +1201,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "",
+							"raw": "{\n    \"clockIn\": \"2024-08-22 21:00\",\n    \"location\": \"\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1224,6 +1234,15 @@
 								"type": "text"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"clockOut\": \"2025-08-23 21:40\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://localhost:8000/shiftrecords/b7b1af7f-62aa-4db1-ad40-ba412c2db4ce",
 							"protocol": "http",
