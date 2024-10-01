@@ -1,5 +1,4 @@
 import { AuthContext } from '../../../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
 import {
     fetchDetailShiftRecordServices,
@@ -10,8 +9,6 @@ import toast from 'react-hot-toast';
 
 const EditShiftRecordComponent = ({ shiftRecordId, onRequestClose }) => {
     const { authToken } = useContext(AuthContext);
-
-    const navigate = useNavigate();
 
     const [clockIn, setClockIn] = useState('');
     const [clockOut, setClockOut] = useState('');
@@ -68,7 +65,6 @@ const EditShiftRecordComponent = ({ shiftRecordId, onRequestClose }) => {
             });
 
             onRequestClose();
-            navigate('/user#ProfileComponent');
         } catch (error) {
             toast.error(error.message, {
                 id: 'error',

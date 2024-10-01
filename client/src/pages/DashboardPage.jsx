@@ -17,11 +17,10 @@ const DashboardPage = () => {
     const { authToken } = useContext(AuthContext);
     const { user } = useUser();
 
-    const firstLoadClass = 'activeSelectedLink';
     const userRole = user?.role;
     const location = useLocation();
 
-    const [activeSection, setActiveSection] = useState('ProfileComponent');
+    const [activeSection, setActiveSection] = useState('');
 
     useEffect(() => {
         const hash = location.hash.replace('#', '');
@@ -57,7 +56,6 @@ const DashboardPage = () => {
                         tabSelected(e, 'tabs5');
                         toTopFast(e);
                     }}
-                    className={firstLoadClass}
                 >
                     Perfil
                 </NavLink>

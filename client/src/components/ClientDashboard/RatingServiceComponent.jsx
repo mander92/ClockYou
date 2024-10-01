@@ -2,14 +2,11 @@ import { useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { fetchRatingServiceServices } from '../../services/serviceServices';
 import { FaStar } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
 import toast from 'react-hot-toast';
 
 const RatingServiceComponent = ({ serviceId, onRequestClose }) => {
     const { authToken } = useContext(AuthContext);
-
-    const navigate = useNavigate();
 
     const [rating, setRating] = useState(null);
     const [hover, setHover] = useState(null);
@@ -27,7 +24,6 @@ const RatingServiceComponent = ({ serviceId, onRequestClose }) => {
                 id: 'ok',
             });
             onRequestClose();
-            navigate('/user#ProfileComponent');
         } catch (error) {
             toast.error(error.message, {
                 id: 'error',

@@ -62,7 +62,7 @@ const ListEmployeeComponent = ({ serviceId }) => {
                 id: 'ok',
             });
 
-            navigate('/user');
+            navigate('/user#ContractsComponent');
         } catch (error) {
             toast.error(error.message, {
                 id: 'error',
