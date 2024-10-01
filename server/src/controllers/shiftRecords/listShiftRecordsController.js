@@ -1,20 +1,27 @@
 import selectShiftRecordsService from '../../services/shiftRecords/selectShiftRecordsService.js';
-
+import path from 'path';
 const listShiftRecordsController = async (req, res, next) => {
     try {
-        const { typeOfService, employeeId, startDate, endDate } = req.query;
+        const { typeOfService, employeeId, startDate, endDate, generateExcel } =
+            req.query;
 
         const data = await selectShiftRecordsService(
             typeOfService,
             employeeId,
             startDate,
-            endDate
+            endDate,
+            generateExcel
         );
 
-        res.send({
-            status: 'ok',
-            data,
-        });
+        if (generateExcel) {
+            const filePath = data.excelFilePath;
+            res.sendFile(path.resolve(filePath));
+        } else {
+            res.send({
+                status: 'ok',
+                data,
+            });
+        }
     } catch (error) {
         next(error);
     }

@@ -1,10 +1,12 @@
 import getPool from '../../db/getPool.js';
+import createExcelFile from '../../utils/createExcelUtil.js';
 
 const selectShiftRecordsService = async (
     typeOfService,
     employeeId,
     startDate,
-    endDate
+    endDate,
+    generateExcel = false
 ) => {
     const pool = await getPool();
 
@@ -85,7 +87,35 @@ const selectShiftRecordsService = async (
 
     const [rowsTotal] = await pool.query(sqlQueryTotal, sqlValues);
 
-    return { details: rowsDetails, totals: rowsTotal };
+    const result = { details: rowsDetails, totals: rowsTotal };
+
+    if (generateExcel) {
+        const columns = [
+            { header: 'Employee ID', key: 'employeeId', width: 15 },
+            { header: 'First Name', key: 'firstName', width: 20 },
+            { header: 'Last Name', key: 'lastName', width: 20 },
+
+            {
+                header: 'Total Hours Worked',
+                key: 'totalHoursWorked',
+                width: 20,
+            },
+            {
+                header: 'Total Minutes Worked',
+                key: 'totalMinutesWorked',
+                width: 20,
+            },
+        ];
+
+        const filePath = await createExcelFile(
+            rowsTotal,
+            columns,
+            'shiftRecords.xlsx'
+        );
+        return { ...result, excelFilePath: filePath };
+    }
+
+    return result;
 };
 
 export default selectShiftRecordsService;
