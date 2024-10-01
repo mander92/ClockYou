@@ -45,7 +45,7 @@ const OrdersComponent = () => {
 
     useEffect(() => {
         getList();
-    }, []);
+    }, [status, type, city]);
 
     const cityNoRepeated = [...new Set(data.map((item) => item.city))].sort();
     const typeNoRepeated = [...new Set(data.map((item) => item.type))].sort();

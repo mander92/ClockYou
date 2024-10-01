@@ -51,7 +51,7 @@ const ShiftsComponent = () => {
 
     useEffect(() => {
         getShifts();
-    }, []);
+    }, [employeeId, typeOfService, startDate, endDate]);
 
     const combinedData = details.map((detail) => {
         const total =
