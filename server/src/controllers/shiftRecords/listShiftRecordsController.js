@@ -1,5 +1,5 @@
 import selectShiftRecordsService from '../../services/shiftRecords/selectShiftRecordsService.js';
-import path from 'path';
+
 const listShiftRecordsController = async (req, res, next) => {
     try {
         const { typeOfService, employeeId, startDate, endDate, generateExcel } =
@@ -13,15 +13,10 @@ const listShiftRecordsController = async (req, res, next) => {
             generateExcel
         );
 
-        if (generateExcel) {
-            const filePath = data.excelFilePath;
-            res.sendFile(path.resolve(filePath));
-        } else {
-            res.send({
-                status: 'ok',
-                data,
-            });
-        }
+        res.send({
+            status: 'ok',
+            data,
+        });
     } catch (error) {
         next(error);
     }
