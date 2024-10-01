@@ -39,7 +39,7 @@ const SendRecoverPasswordPage = () => {
                     id='email'
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder='user@clockYou.com'
+                    placeholder='Escribe aquí tu email'
                     required
                 />
                 <div className='mx-auto'>

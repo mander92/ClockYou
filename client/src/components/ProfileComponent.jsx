@@ -166,7 +166,7 @@ const ProfileComponent = () => {
                             type='password'
                             id='actualPassword'
                             value={actualPassword}
-                            placeholder='jobryp-kapDew-fetho6'
+                            placeholder='Escribe aquí tu contraseña actual'
                             minLength='8'
                             maxLength='25'
                             required
@@ -179,7 +179,7 @@ const ProfileComponent = () => {
                             type='password'
                             id='newPassword'
                             value={newPassword}
-                            placeholder='bemgon-1bizni-nuhXyd'
+                            placeholder='Escribe aquí tu nueva contraseña'
                             minLength='8'
                             maxLength='25'
                             required
@@ -193,7 +193,7 @@ const ProfileComponent = () => {
                         <input
                             type='password'
                             id='repeatNewPassword'
-                            placeholder='bemgon-1bizni-nuhXyd'
+                            placeholder='Repite aquí tu nueva contraseña'
                             minLength='8'
                             maxLength='25'
                             required

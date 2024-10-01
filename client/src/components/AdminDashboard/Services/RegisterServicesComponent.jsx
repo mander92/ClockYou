@@ -56,7 +56,7 @@ const RegisterNewTypeOfServiceController = () => {
                     required
                     id='type'
                     type='text'
-                    placeholder='Masajes'
+                    placeholder='Escribe aquí el tipo de servicio'
                     value={type}
                     onChange={(e) => {
                         setType(e.target.value);
@@ -71,7 +71,7 @@ const RegisterNewTypeOfServiceController = () => {
                     onChange={(e) => {
                         setCity(e.target.value);
                     }}
-                    placeholder={'Madrid'}
+                    placeholder='Escribe aquí la ciudad'
                 />
                 <label htmlFor='price'>Precio</label>
                 <input
@@ -81,7 +81,7 @@ const RegisterNewTypeOfServiceController = () => {
                     min='1'
                     max='100'
                     step='0.01'
-                    placeholder='15'
+                    placeholder='Escribe aquí el precio'
                     value={price}
                     onChange={(e) => {
                         setPrice(e.target.value);
@@ -95,13 +95,11 @@ const RegisterNewTypeOfServiceController = () => {
                     minLength='10'
                     maxLength='250'
                     rows='2'
+                    placeholder='Escribe aquí una descripción'
                     value={description}
                     onChange={(e) => {
                         setDescription(e.target.value);
                     }}
-                    placeholder={
-                        'Sesiones de relajación y bienestar a domicilio.'
-                    }
                 />
                 <label className='input-file text-center mt-2' htmlFor='file'>
                     Selecciona Imágen

@@ -143,7 +143,7 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
                     id='address'
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
-                    placeholder='Gran Vía, 1, 5B'
+                    placeholder='Escribe aquí tu dirección'
                 />
                 <label htmlFor='postCode'>Código Postal</label>
                 <input
@@ -152,7 +152,7 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
                     id='postCode'
                     value={postCode}
                     onChange={(e) => setPostCode(e.target.value)}
-                    placeholder='28013'
+                    placeholder='Escribe aquí tu código postal'
                     minLength='5'
                     maxLength='5'
                 />
@@ -163,7 +163,7 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
                     id='city'
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
-                    placeholder='Madrid'
+                    placeholder='Escribe aquí tu localidad'
                 />
                 <label htmlFor='comments'>Comentarios</label>
                 <textarea

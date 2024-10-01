@@ -49,7 +49,7 @@ const ChangeRecoverPasswordPage = () => {
                     id='recoverPasswordCode'
                     value={recoverPasswordCode}
                     onChange={(e) => setRecoverPasswordCode(e.target.value)}
-                    placeholder='fDCFJL4trt'
+                    placeholder='Escribe aquí el código recibido'
                     required
                 />
 
@@ -59,7 +59,7 @@ const ChangeRecoverPasswordPage = () => {
                     id='newPassword'
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
-                    placeholder='jobryp-kapDew-fetho6'
+                    placeholder='Escribe aquí tu contraseña'
                     minLength='8'
                     maxLength='25'
                     required
@@ -71,7 +71,7 @@ const ChangeRecoverPasswordPage = () => {
                     id='repeatedPassword'
                     value={repeatedPassword}
                     onChange={(e) => setRepeatedPassword(e.target.value)}
-                    placeholder='jobryp-kapDew-fetho6'
+                    placeholder='Repite aquí tu contraseña'
                     minLength='8'
                     maxLength='25'
                     required

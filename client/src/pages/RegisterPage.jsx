@@ -97,7 +97,7 @@ const RegisterPage = () => {
                     id='dni'
                     value={dni}
                     onChange={(e) => setDni(e.target.value)}
-                    placeholder='24873456Z'
+                    placeholder='Escribe aquí tu DNI/NIE'
                     pattern='^[0-9]{8}[A-Za-z]$|^[XYZ][0-9]{7}[A-Za-z]$'
                     required
                 />
@@ -107,7 +107,7 @@ const RegisterPage = () => {
                     id='phone'
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    placeholder='680458923'
+                    placeholder='Escribe aquí tu número de teléfono'
                     required
                 />
 
@@ -117,7 +117,7 @@ const RegisterPage = () => {
                     id='password'
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    placeholder='jobryp-kapDew-fetho6'
+                    placeholder='Escribe aquí tu contraseña'
                     minLength='8'
                     required
                 />
@@ -128,7 +128,7 @@ const RegisterPage = () => {
                     id='repeatedPassword'
                     value={repeatedPassword}
                     onChange={(e) => setRepeatedPassword(e.target.value)}
-                    placeholder='jobryp-kapDew-fetho6'
+                    placeholder='Repite aquí tu contraseña'
                     minLength='8'
                     required
                 />

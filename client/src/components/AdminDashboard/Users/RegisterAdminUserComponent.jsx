@@ -78,7 +78,7 @@ const RegisterAdminUserComponent = () => {
                     id='job'
                     value={job}
                     onChange={(e) => setJob(e.target.value)}
-                    placeholder='Masajista'
+                    placeholder='Escribe aquí su trabajo'
                     required
                 />
                 <label htmlFor='city'>Ciudad</label>
@@ -87,7 +87,7 @@ const RegisterAdminUserComponent = () => {
                     id='city'
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
-                    placeholder='Madrid'
+                    placeholder='Escribe aquí la ciudad'
                     required
                 />
                 <label htmlFor='email'>Email</label>
@@ -96,7 +96,7 @@ const RegisterAdminUserComponent = () => {
                     id='email'
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder='user@ClockYou.com'
+                    placeholder='Escribe aquí el email'
                     required
                 />
                 <label htmlFor='firstName'>Nombre</label>
@@ -105,7 +105,7 @@ const RegisterAdminUserComponent = () => {
                     id='firstName'
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
-                    placeholder='Manuel'
+                    placeholder='Escribe aquí su nombre'
                     required
                 />
                 <label htmlFor='lastName'>Apellidos</label>
@@ -114,7 +114,7 @@ const RegisterAdminUserComponent = () => {
                     id='lastName'
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
-                    placeholder='Pérez Rodríguez'
+                    placeholder='Escribe aquí sus apellidos'
                     required
                 />
                 <label htmlFor='dni'>DNI/NIE</label>
@@ -123,7 +123,7 @@ const RegisterAdminUserComponent = () => {
                     id='dni'
                     value={dni}
                     onChange={(e) => setDni(e.target.value)}
-                    placeholder='24873456Z'
+                    placeholder='Escribe aquí su DNI/NIE'
                     pattern='^[0-9]{8}[A-Za-z]$|^[XYZ][0-9]{7}[A-Za-z]$'
                     required
                 />
@@ -133,7 +133,7 @@ const RegisterAdminUserComponent = () => {
                     id='phone'
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    placeholder='680458923'
+                    placeholder='Escribe aquí su teléfono'
                     required
                 />
 

@@ -47,7 +47,7 @@ const LoginPage = () => {
                     id='email'
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder='user@clockYou.com'
+                    placeholder='Escribe aquí tu email'
                     required
                 />
                 <label htmlFor='password'>Contraseña</label>
@@ -56,7 +56,7 @@ const LoginPage = () => {
                     id='password'
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    placeholder='jobryp-kapDew-fetho6'
+                    placeholder='Escribe aquí tu contraseña'
                     minLength='8'
                     required
                 />
