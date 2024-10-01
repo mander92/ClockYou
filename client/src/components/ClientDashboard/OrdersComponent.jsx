@@ -23,29 +23,29 @@ const OrdersComponent = () => {
         setCity('');
     };
 
-    useEffect(() => {
-        const getList = async () => {
-            const searchParams = new URLSearchParams({
-                status: status,
-                type: type,
-                city: city,
+    const getList = async () => {
+        const searchParams = new URLSearchParams({
+            status: status,
+            type: type,
+            city: city,
+        });
+        const searchParamsToString = searchParams.toString();
+        try {
+            const data = await fetchClientAllServicesServices(
+                searchParamsToString,
+                authToken
+            );
+            setData(data);
+        } catch (error) {
+            toast.error(error.message, {
+                id: 'error',
             });
-            const searchParamsToString = searchParams.toString();
-            try {
-                const data = await fetchClientAllServicesServices(
-                    searchParamsToString,
-                    authToken
-                );
-                setData(data);
-            } catch (error) {
-                toast.error(error.message, {
-                    id: 'error',
-                });
-            }
-        };
+        }
+    };
 
+    useEffect(() => {
         getList();
-    }, [status, type, city, authToken]);
+    }, []);
 
     const cityNoRepeated = [...new Set(data.map((item) => item.city))].sort();
     const typeNoRepeated = [...new Set(data.map((item) => item.type))].sort();
@@ -206,6 +206,7 @@ const OrdersComponent = () => {
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}
                 serviceId={selectedServiceId}
+                onRatingSuccess={getList}
             />
         </>
     );

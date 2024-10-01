@@ -7,7 +7,11 @@ import {
 import Modal from 'react-modal';
 import toast from 'react-hot-toast';
 
-const EditShiftRecordComponent = ({ shiftRecordId, onRequestClose }) => {
+const EditShiftRecordComponent = ({
+    shiftRecordId,
+    onRequestClose,
+    onEditSuccess,
+}) => {
     const { authToken } = useContext(AuthContext);
 
     const [clockIn, setClockIn] = useState('');
@@ -65,6 +69,7 @@ const EditShiftRecordComponent = ({ shiftRecordId, onRequestClose }) => {
             });
 
             onRequestClose();
+            onEditSuccess();
         } catch (error) {
             toast.error(error.message, {
                 id: 'error',
@@ -104,7 +109,12 @@ const EditShiftRecordComponent = ({ shiftRecordId, onRequestClose }) => {
     );
 };
 
-const EditShiftRecordModal = ({ isOpen, onRequestClose, shiftRecordId }) => {
+const EditShiftRecordModal = ({
+    isOpen,
+    onRequestClose,
+    shiftRecordId,
+    onEditSuccess,
+}) => {
     return (
         <Modal
             isOpen={isOpen}
@@ -114,6 +124,7 @@ const EditShiftRecordModal = ({ isOpen, onRequestClose, shiftRecordId }) => {
             <EditShiftRecordComponent
                 shiftRecordId={shiftRecordId}
                 onRequestClose={onRequestClose}
+                onEditSuccess={onEditSuccess}
             />
         </Modal>
     );

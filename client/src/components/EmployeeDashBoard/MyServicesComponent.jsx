@@ -13,20 +13,20 @@ const MyServicesComponent = () => {
     const [selectedShiftRecordId, setSelectedShiftRecordId] = useState(null);
     const [initialLocation, setInitialLocation] = useState(null);
 
-    useEffect(() => {
-        const getServices = async () => {
-            try {
-                const data = await fetchEmployeeAllServicesServices(authToken);
-                setData(data);
-            } catch (error) {
-                toast.error(error.message, {
-                    id: 'error',
-                });
-            }
-        };
+    const getServices = async () => {
+        try {
+            const data = await fetchEmployeeAllServicesServices(authToken);
+            setData(data);
+        } catch (error) {
+            toast.error(error.message, {
+                id: 'error',
+            });
+        }
+    };
 
+    useEffect(() => {
         getServices();
-    }, [authToken]);
+    }, []);
 
     const openModal = (shiftRecordId) => {
         if (navigator.geolocation) {
@@ -160,6 +160,7 @@ const MyServicesComponent = () => {
                 onRequestClose={closeModal}
                 shiftRecordId={selectedShiftRecordId}
                 initialLocation={initialLocation}
+                onShiftRecordSuccess={getServices}
             />
         </>
     );

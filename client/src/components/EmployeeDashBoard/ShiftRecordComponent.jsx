@@ -1,5 +1,4 @@
 import { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import {
     fetchClockInShiftRecordServices,
@@ -13,10 +12,9 @@ const ShiftRecordComponent = ({
     shiftRecordId,
     onRequestClose,
     initialLocation,
+    onShiftRecordSuccess,
 }) => {
     const { authToken } = useContext(AuthContext);
-
-    const navigate = useNavigate();
 
     const [location, setLocation] = useState({
         currentLocation: initialLocation || { lat: '', lng: '' },
@@ -56,7 +54,7 @@ const ShiftRecordComponent = ({
                 id: 'ok',
             });
             onRequestClose();
-            navigate('/user#ProfileComponent');
+            onShiftRecordSuccess();
         } catch (error) {
             toast.error(error.message, {
                 id: 'error',
@@ -78,7 +76,7 @@ const ShiftRecordComponent = ({
                 id: 'ok',
             });
             onRequestClose();
-            navigate('/user#ProfileComponent');
+            onShiftRecordSuccess();
         } catch (error) {
             toast.error(error.message, {
                 id: 'error',
@@ -109,18 +107,19 @@ const ShiftRecordModal = ({
     onRequestClose,
     shiftRecordId,
     initialLocation,
+    onShiftRecordSuccess,
 }) => {
     return (
         <Modal
             isOpen={isOpen}
             onRequestClose={onRequestClose}
-            ariaHideApp={false}
             className='modal-content'
         >
             <ShiftRecordComponent
                 shiftRecordId={shiftRecordId}
                 onRequestClose={onRequestClose}
                 initialLocation={initialLocation}
+                onShiftRecordSuccess={onShiftRecordSuccess}
             />
         </Modal>
     );

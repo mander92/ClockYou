@@ -5,7 +5,7 @@ import tabSelected from '../../../hooks/tabSelected.js';
 import toTopFast from '../../../hooks/toTopFast.js';
 
 const ServicesComponent = () => {
-    const [activeSection, setActiveSection] = useState('ListServicesComponent');
+    const [activeSection, setActiveSection] = useState('');
 
     const handleChange = (section) => {
         setActiveSection(section);
@@ -26,7 +26,6 @@ const ServicesComponent = () => {
                         toTopFast(e);
                         tabSelected(e, 'tabs2');
                     }}
-                    className='activeSelectedLink'
                 >
                     Ver Todos
                 </button>

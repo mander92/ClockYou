@@ -25,32 +25,33 @@ const ShiftsComponent = () => {
         setEndDate('');
     };
 
-    useEffect(() => {
-        const getShifts = async () => {
-            const searchParams = new URLSearchParams({
-                startDate: startDate,
-                endDate: endDate,
-                employeeId: employeeId,
-                typeOfService: typeOfService,
-            });
-            const searchParamsToString = searchParams.toString();
-            try {
-                const response = await fetchAllShiftRecordsServices(
-                    searchParamsToString,
-                    authToken
-                );
+    const getShifts = async () => {
+        const searchParams = new URLSearchParams({
+            startDate: startDate,
+            endDate: endDate,
+            employeeId: employeeId,
+            typeOfService: typeOfService,
+        });
+        const searchParamsToString = searchParams.toString();
+        try {
+            const response = await fetchAllShiftRecordsServices(
+                searchParamsToString,
+                authToken
+            );
 
-                const data = response.data;
-                setDetails(data.details);
-                setTotals(data.totals);
-            } catch (error) {
-                toast.error(error.message, {
-                    id: 'error',
-                });
-            }
-        };
+            const data = response.data;
+            setDetails(data.details);
+            setTotals(data.totals);
+        } catch (error) {
+            toast.error(error.message, {
+                id: 'error',
+            });
+        }
+    };
+
+    useEffect(() => {
         getShifts();
-    }, [employeeId, typeOfService, startDate, endDate, authToken]);
+    }, []);
 
     const combinedData = details.map((detail) => {
         const total =
@@ -223,6 +224,7 @@ const ShiftsComponent = () => {
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}
                 shiftRecordId={selectedShiftRecordId}
+                onEditSuccess={getShifts}
             />
         </>
     );

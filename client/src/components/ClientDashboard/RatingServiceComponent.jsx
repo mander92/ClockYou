@@ -5,7 +5,11 @@ import { FaStar } from 'react-icons/fa';
 import Modal from 'react-modal';
 import toast from 'react-hot-toast';
 
-const RatingServiceComponent = ({ serviceId, onRequestClose }) => {
+const RatingServiceComponent = ({
+    serviceId,
+    onRequestClose,
+    onRatingSuccess,
+}) => {
     const { authToken } = useContext(AuthContext);
 
     const [rating, setRating] = useState(null);
@@ -24,6 +28,7 @@ const RatingServiceComponent = ({ serviceId, onRequestClose }) => {
                 id: 'ok',
             });
             onRequestClose();
+            onRatingSuccess();
         } catch (error) {
             toast.error(error.message, {
                 id: 'error',
@@ -74,7 +79,12 @@ const RatingServiceComponent = ({ serviceId, onRequestClose }) => {
     );
 };
 
-const RatingModal = ({ isOpen, onRequestClose, serviceId }) => {
+const RatingModal = ({
+    isOpen,
+    onRequestClose,
+    serviceId,
+    onRatingSuccess,
+}) => {
     return (
         <Modal
             isOpen={isOpen}
@@ -84,6 +94,7 @@ const RatingModal = ({ isOpen, onRequestClose, serviceId }) => {
             <RatingServiceComponent
                 serviceId={serviceId}
                 onRequestClose={onRequestClose}
+                onRatingSuccess={onRatingSuccess}
             />
         </Modal>
     );

@@ -5,7 +5,7 @@ import tabSelected from '../../../hooks/tabSelected';
 import toTopFast from '../../../hooks/toTopFast';
 
 const UsersComponent = () => {
-    const [activeSection, setActiveSection] = useState('ListUserComponent');
+    const [activeSection, setActiveSection] = useState('');
 
     const handleChange = (section) => {
         setActiveSection(section);
@@ -26,7 +26,6 @@ const UsersComponent = () => {
                         toTopFast(e);
                         tabSelected(e, 'tabs2');
                     }}
-                    className='activeSelectedLink'
                 >
                     Ver Todos
                 </button>
