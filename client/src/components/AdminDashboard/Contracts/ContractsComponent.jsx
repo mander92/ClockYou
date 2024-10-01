@@ -4,6 +4,7 @@ import { FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
 import { useEffect, useState, useContext } from 'react';
 import { fetchAllServicesServices } from '../../../services/serviceServices.js';
 import toast from 'react-hot-toast';
+import Calendars from '../../Calendars.jsx';
 
 const ListContractsComponent = () => {
     const { authToken } = useContext(AuthContext);
@@ -117,6 +118,7 @@ const ListContractsComponent = () => {
                     );
                 })}
             </ul>
+            <Calendars />
         </>
     );
 };
