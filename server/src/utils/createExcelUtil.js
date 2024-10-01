@@ -13,7 +13,7 @@ const createExcelFile = async (data, columns, fileName) => {
             worksheet.addRow(row);
         });
 
-        const directoryPath = path.resolve('documentos');
+        const directoryPath = path.resolve('documents');
 
         if (!fs.existsSync(directoryPath)) {
             fs.mkdirSync(directoryPath);
