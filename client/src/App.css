@@ -320,12 +320,6 @@
     }
 }
 
-@media (width > 555px) {
-    .manager-tabs {
-        justify-content: center;
-    }
-}
-
 @media only screen and (min-width: 640px) {
     :root {
         --column-count: 2;
@@ -337,6 +331,10 @@
 
     h2 {
         @apply text-4xl;
+    }
+
+    .manager-tabs {
+        justify-content: center;
     }
 
     .leaflet-container {
