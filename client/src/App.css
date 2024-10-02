@@ -227,6 +227,7 @@
         gap: 1rem;
         justify-content: left;
         overflow-x: scroll;
+        white-space: nowrap;
         ::-webkit-scrollbar {
             display: none;
         }
@@ -300,6 +301,11 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+    }
+
+    .calendar {
+        height: 500px;
+        margin-top: 1rem;
     }
 }
 
