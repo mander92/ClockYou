@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { NavLink, Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, Navigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import useUser from '../hooks/useUser';
 import AvatarComponent from '../components/AvatarComponent';
@@ -17,7 +17,6 @@ const DashboardPage = () => {
     const { user } = useUser();
 
     const location = useLocation();
-    const navigate = useNavigate();
 
     const userRole = user?.role;
 
@@ -28,10 +27,6 @@ const DashboardPage = () => {
             setActiveSection(location.hash.substring(1));
         }
     }, [location]);
-
-    useEffect(() => {
-        navigate(`#${activeSection}`);
-    }, []);
 
     const handleSectionChange = (section) => {
         setActiveSection(section);
