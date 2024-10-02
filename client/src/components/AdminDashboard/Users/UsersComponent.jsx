@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import ListUserComponent from './ListUserComponent';
 import RegisterAdminUserComponent from './RegisterAdminUserComponent';
-import tabSelected from '../../../hooks/tabSelected';
 import toTopFast from '../../../hooks/toTopFast';
 
 const UsersComponent = () => {
@@ -18,24 +17,29 @@ const UsersComponent = () => {
 
     return (
         <>
-            <div className='manager-tabs' id='tabs2'>
+            <div className='manager-tabs'>
                 <button
-                    className='activeSelectedLink'
                     to='#ListUserComponent'
+                    className={
+                        activeSection === 'ListUserComponent' &&
+                        'activeSelectedLink'
+                    }
                     onClick={(e) => {
                         handleChange('ListUserComponent');
                         toTopFast(e);
-                        tabSelected(e, 'tabs2');
                     }}
                 >
                     Ver Todos
                 </button>
                 <button
                     to='#RegisterAdminUserComponent'
+                    className={
+                        activeSection === 'RegisterAdminUserComponent' &&
+                        'activeSelectedLink'
+                    }
                     onClick={(e) => {
                         handleChange('RegisterAdminUserComponent');
                         toTopFast(e);
-                        tabSelected(e, 'tabs2');
                     }}
                 >
                     Registrar

@@ -10,7 +10,6 @@ import ContractsComponent from '../components/AdminDashboard/Contracts/Contracts
 import ShiftsComponent from '../components/AdminDashboard/Shifts/ShiftsComponent';
 import MyServicesComponent from '../components/EmployeeDashBoard/MyServicesComponent';
 import OrdersComponent from '../components/ClientDashboard/OrdersComponent';
-import tabSelected from '../hooks/tabSelected';
 import toTopFast from '../hooks/toTopFast';
 
 const DashboardPage = () => {
@@ -23,6 +22,7 @@ const DashboardPage = () => {
     const userRole = user?.role;
 
     const [activeSection, setActiveSection] = useState('');
+    const [activeLink, setActiveLink] = useState('ProfileComponent');
 
     useEffect(() => {
         if (location.hash) {
@@ -54,7 +54,7 @@ const DashboardPage = () => {
             to={`#${section}`}
             onClick={(e) => {
                 handleSectionChange(section);
-                tabSelected(e, 'tabs5');
+                setActiveLink(section);
                 toTopFast(e);
             }}
         >
@@ -67,18 +67,38 @@ const DashboardPage = () => {
     return (
         <>
             <AvatarComponent />
-            <section className='manager-tabs' id='tabs5'>
+            <section className='manager-tabs'>
                 {renderNavLink(
                     'ProfileComponent',
                     'Mi Perfil',
-                    'activeSelectedLink'
+                    activeLink === 'ProfileComponent' && 'activeSelectedLink'
                 )}
                 {userRole === 'admin' && (
                     <>
-                        {renderNavLink('UsersComponent', 'Usuarios')}
-                        {renderNavLink('ServicesComponent', 'Servicios')}
-                        {renderNavLink('ContractsComponent', 'Contratos')}
-                        {renderNavLink('ShiftsComponent', 'Turnos')}
+                        {renderNavLink(
+                            'UsersComponent',
+                            'Usuarios',
+                            activeLink === 'UsersComponent' &&
+                                'activeSelectedLink'
+                        )}
+                        {renderNavLink(
+                            'ServicesComponent',
+                            'Servicios',
+                            activeLink === 'ServicesComponent' &&
+                                'activeSelectedLink'
+                        )}
+                        {renderNavLink(
+                            'ContractsComponent',
+                            'Contratos',
+                            activeLink === 'ContractsComponent' &&
+                                'activeSelectedLink'
+                        )}
+                        {renderNavLink(
+                            'ShiftsComponent',
+                            'Turnos',
+                            activeLink === 'ShiftsComponent' &&
+                                'activeSelectedLink'
+                        )}
                     </>
                 )}
                 {userRole === 'client' &&

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import ListServicesComponent from './ListServicesComponent.jsx';
 import RegisterServicesComponent from './RegisterServicesComponent.jsx';
-import tabSelected from '../../../hooks/tabSelected.js';
 import toTopFast from '../../../hooks/toTopFast.js';
 
 const ServicesComponent = () => {
@@ -18,24 +17,29 @@ const ServicesComponent = () => {
 
     return (
         <>
-            <div className='manager-tabs' id='tabs2'>
+            <div className='manager-tabs'>
                 <button
-                    className='activeSelectedLink'
+                    className={
+                        activeSection === 'ListServicesComponent' &&
+                        'activeSelectedLink'
+                    }
                     to='#ListServicesComponent'
                     onClick={(e) => {
                         handleChange('ListServicesComponent');
                         toTopFast(e);
-                        tabSelected(e, 'tabs2');
                     }}
                 >
                     Ver Todos
                 </button>
                 <button
+                    className={
+                        activeSection === 'RegisterServicesComponent' &&
+                        'activeSelectedLink'
+                    }
                     to='#RegisterServicesComponent'
                     onClick={(e) => {
                         handleChange('RegisterServicesComponent');
                         toTopFast(e);
-                        tabSelected(e, 'tabs2');
                     }}
                 >
                     Registrar
