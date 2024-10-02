@@ -73,22 +73,37 @@ const ContractsComponent = () => {
                     <option value='' disabled>
                         Estado:
                     </option>
-                    <option style={{ color: 'orange' }} value='accepted'>
+                    <option
+                        style={{ backgroundColor: 'orange' }}
+                        value='accepted'
+                    >
                         Aceptado
                     </option>
-                    <option style={{ color: 'red' }} value='canceled'>
+                    <option style={{ backgroundColor: 'red' }} value='canceled'>
                         Cancelado
                     </option>
-                    <option style={{ color: 'green' }} value='completed'>
+                    <option
+                        style={{ backgroundColor: 'green' }}
+                        value='completed'
+                    >
                         Completado
                     </option>
-                    <option style={{ color: 'lightgreen' }} value='confirmed'>
+                    <option
+                        style={{ backgroundColor: 'lightgreen' }}
+                        value='confirmed'
+                    >
                         Confirmado
                     </option>
-                    <option style={{ color: 'lightsalmon' }} value='pending'>
+                    <option
+                        style={{ backgroundColor: 'lightsalmon' }}
+                        value='pending'
+                    >
                         Pendiente
                     </option>
-                    <option style={{ color: 'lightcoral' }} value='rejected'>
+                    <option
+                        style={{ backgroundColor: 'lightcoral' }}
+                        value='rejected'
+                    >
                         Rechazado
                     </option>
                 </select>
