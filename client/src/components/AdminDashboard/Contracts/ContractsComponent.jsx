@@ -12,6 +12,12 @@ const ContractsComponent = () => {
     const [data, setData] = useState([]);
     const [status, setStatus] = useState('');
     const [type, setType] = useState('');
+    const [isVisible, setIsVisible] = useState(false);
+
+    const handleHideClick = (e) => {
+        e.preventDefault();
+        setIsVisible(!isVisible);
+    };
 
     const resetFilter = (e) => {
         e.preventDefault();
@@ -73,24 +79,12 @@ const ContractsComponent = () => {
                     <option value='' disabled>
                         Estado:
                     </option>
-                    <option style={{ color: 'orange' }} value='accepted'>
-                        Aceptado
-                    </option>
-                    <option style={{ color: 'red' }} value='canceled'>
-                        Cancelado
-                    </option>
-                    <option style={{ color: 'green' }} value='completed'>
-                        Completado
-                    </option>
-                    <option style={{ color: 'lightgreen' }} value='confirmed'>
-                        Confirmado
-                    </option>
-                    <option style={{ color: 'lightsalmon' }} value='pending'>
-                        Pendiente
-                    </option>
-                    <option style={{ color: 'lightcoral' }} value='rejected'>
-                        Rechazado
-                    </option>
+                    <option value='accepted'>Aceptado</option>
+                    <option value='canceled'>Cancelado</option>
+                    <option value='completed'>Completado</option>
+                    <option value='confirmed'>Confirmado</option>
+                    <option value='pending'>Pendiente</option>
+                    <option value='rejected'>Rechazado</option>
                 </select>
                 <select
                     name='typeOfService'
@@ -112,13 +106,40 @@ const ContractsComponent = () => {
                     })}
                 </select>
                 <button onClick={resetFilter}>Limpiar Filtros</button>
+                <button onClick={handleHideClick}>
+                    {isVisible
+                        ? 'Ocultar paleta de colores'
+                        : 'Mostrar paleta de colores'}
+                </button>
             </form>
-            <div className='calendar'>
-                <CalendarComponent
-                    events={calendarEvents}
-                    onSelectEvent={handleSelectEvent}
-                />
+            <div>
+                {isVisible && (
+                    <div className='manager-tabs colors'>
+                        <span style={{ backgroundColor: 'lightsalmon' }}>
+                            Pendiente
+                        </span>
+                        <span style={{ backgroundColor: 'orange' }}>
+                            Aceptado
+                        </span>
+                        <span style={{ backgroundColor: 'lightgreen' }}>
+                            Confirmado
+                        </span>
+                        <span style={{ backgroundColor: 'green' }}>
+                            Completado
+                        </span>
+                        <span style={{ backgroundColor: 'lightcoral' }}>
+                            Rechazado
+                        </span>
+                        <span style={{ backgroundColor: 'red' }}>
+                            Cancelado
+                        </span>
+                    </div>
+                )}
             </div>
+            <CalendarComponent
+                events={calendarEvents}
+                onSelectEvent={handleSelectEvent}
+            />
         </>
     );
 };

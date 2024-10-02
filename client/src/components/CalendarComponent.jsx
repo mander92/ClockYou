@@ -59,28 +59,29 @@ const CalendarComponent = ({ events, onSelectEvent }) => {
     };
 
     return (
-        <Calendar
-            className='calendar'
-            formats={{
-                dayHeaderFormat: (date) => {
-                    return dayjs(date).format('DD/MM/YYYY');
-                },
-            }}
-            messages={{
-                next: '+',
-                previous: '-',
-                today: 'Hoy',
-                month: 'Mes',
-                week: 'Semana',
-                day: 'Día',
-            }}
-            localizer={localizer}
-            events={events}
-            views={['month', 'week', 'day']}
-            onSelectEvent={onSelectEvent}
-            eventPropGetter={eventStyle}
-            dayPropGetter={dayStyle}
-        />
+        <div className='calendar'>
+            <Calendar
+                formats={{
+                    dayHeaderFormat: (date) => {
+                        return dayjs(date).format('DD/MM/YYYY');
+                    },
+                }}
+                messages={{
+                    next: '+',
+                    previous: '-',
+                    today: 'Hoy',
+                    month: 'Mes',
+                    week: 'Semana',
+                    day: 'Día',
+                }}
+                localizer={localizer}
+                events={events}
+                views={['month', 'week', 'day']}
+                onSelectEvent={onSelectEvent}
+                eventPropGetter={eventStyle}
+                dayPropGetter={dayStyle}
+            />
+        </div>
     );
 };
 
