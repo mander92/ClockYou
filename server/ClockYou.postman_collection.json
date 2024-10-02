@@ -820,8 +820,8 @@
 									"disabled": true
 								},
 								{
-									"key": "order",
-									"value": "asc",
+									"key": "type",
+									"value": null,
 									"disabled": true
 								}
 							]
@@ -1098,7 +1098,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8000/shiftrecords",
+							"raw": "http://localhost:8000/shiftrecords?typeOfService=Clases Particulares&generateExcel=true",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1110,8 +1110,7 @@
 							"query": [
 								{
 									"key": "typeOfService",
-									"value": "Clases Particulares",
-									"disabled": true
+									"value": "Clases Particulares"
 								},
 								{
 									"key": "employeeId",
@@ -1130,8 +1129,7 @@
 								},
 								{
 									"key": "generateExcel",
-									"value": "true",
-									"disabled": true
+									"value": "true"
 								}
 							]
 						}
