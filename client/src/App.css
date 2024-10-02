@@ -277,7 +277,7 @@
     .form-filters {
         margin-top: 1rem;
         display: grid;
-        max-width: 62rem;
+        max-width: 65rem;
         gap: 1rem;
         grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     }
