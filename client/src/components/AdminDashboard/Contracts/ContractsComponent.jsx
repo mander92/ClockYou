@@ -11,16 +11,19 @@ const ContractsComponent = () => {
 
     const [data, setData] = useState([]);
     const [status, setStatus] = useState('');
+    const [type, setType] = useState('');
 
     const resetFilter = (e) => {
         e.preventDefault();
         setStatus('');
+        setType('');
     };
 
     useEffect(() => {
         const getServices = async () => {
             const searchParams = new URLSearchParams({
                 status: status,
+                type: type,
             });
             const searchParamsToString = searchParams.toString();
             try {
@@ -37,7 +40,11 @@ const ContractsComponent = () => {
             }
         };
         getServices();
-    }, [status, authToken]);
+    }, [status, type, authToken]);
+
+    const typeNoRepeated = [...new Set(data.map((item) => item.type))].sort(
+        (a, b) => a.localeCompare(b)
+    );
 
     const calendarEvents = data.map((event) => ({
         title: event.type,
@@ -72,6 +79,25 @@ const ContractsComponent = () => {
                     <option value='confirmed'>Confirmado</option>
                     <option value='pending'>Pendiente</option>
                     <option value='rejected'>Rechazado</option>
+                </select>
+                <select
+                    name='typeOfService'
+                    id='typeOfService'
+                    value={type}
+                    onChange={(e) => {
+                        setType(e.target.value);
+                    }}
+                >
+                    <option value='' disabled>
+                        Tipo de Servicio:
+                    </option>
+                    {typeNoRepeated.map((type) => {
+                        return (
+                            <option key={type} value={type}>
+                                {type}
+                            </option>
+                        );
+                    })}
                 </select>
                 <button onClick={resetFilter}>Limpiar Filtros</button>
             </form>
