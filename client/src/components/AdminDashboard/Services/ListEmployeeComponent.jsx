@@ -44,7 +44,8 @@ const ListEmployeeComponent = ({ serviceId }) => {
         getAllUserList();
     }, [city, job, active, authToken]);
 
-    const resetFilters = () => {
+    const resetFilters = (e) => {
+        e.preventDefault();
         setActive('');
         setCity('');
         setJob('');
@@ -70,8 +71,12 @@ const ListEmployeeComponent = ({ serviceId }) => {
         }
     };
 
-    const citiesNoRepeated = [...new Set(data.map((item) => item.city))].sort();
-    const jobNoRepeated = [...new Set(data.map((item) => item.job))].sort();
+    const citiesNoRepeated = [...new Set(data.map((item) => item.city))].sort(
+        (a, b) => a.localeCompare(b)
+    );
+    const jobNoRepeated = [...new Set(data.map((item) => item.job))].sort(
+        (a, b) => a.localeCompare(b)
+    );
 
     return (
         <>
