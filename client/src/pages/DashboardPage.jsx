@@ -34,6 +34,10 @@ const DashboardPage = () => {
         navigate(`#${activeSection}`);
     }, [activeSection, navigate]);
 
+    const handleSectionChange = (section) => {
+        setActiveSection(section);
+    };
+
     const sectionComponents = {
         ProfileComponent: <ProfileComponent />,
         UsersComponent: userRole === 'admin' && <UsersComponent />,
