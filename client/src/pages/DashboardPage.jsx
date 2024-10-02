@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { NavLink, Navigate, useLocation } from 'react-router-dom';
+import { NavLink, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import useUser from '../hooks/useUser';
 import AvatarComponent from '../components/AvatarComponent';
@@ -18,20 +18,21 @@ const DashboardPage = () => {
     const { user } = useUser();
 
     const userRole = user?.role;
-    const location = useLocation();
 
     const [activeSection, setActiveSection] = useState('');
 
+    const location = useLocation();
+    const navigate = useNavigate();
+
     useEffect(() => {
-        const hash = location.hash.replace('#', '');
-        if (hash) {
-            setActiveSection(hash);
+        if (location.hash) {
+            setActiveSection(location.hash.substring(1));
         }
     }, [location]);
 
-    const handleSectionChange = (section) => {
-        setActiveSection(section);
-    };
+    useEffect(() => {
+        navigate(`#${activeSection}`);
+    }, [activeSection, navigate]);
 
     const sectionComponents = {
         ProfileComponent: <ProfileComponent />,
@@ -48,7 +49,10 @@ const DashboardPage = () => {
     return (
         <>
             <AvatarComponent />
-            <section className='manager-tabs' id='tabs5'>
+            <section
+                className='manager-tabs'
+                id='tabs5'
+            >
                 <NavLink
                     to='#ProfileComponent'
                     onClick={(e) => {
