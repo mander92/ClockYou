@@ -5,7 +5,7 @@ import tabSelected from '../../../hooks/tabSelected';
 import toTopFast from '../../../hooks/toTopFast';
 
 const UsersComponent = () => {
-    const [activeSection, setActiveSection] = useState('');
+    const [activeSection, setActiveSection] = useState('ListUserComponent');
 
     const handleChange = (section) => {
         setActiveSection(section);

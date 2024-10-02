@@ -5,7 +5,7 @@ import tabSelected from '../../../hooks/tabSelected.js';
 import toTopFast from '../../../hooks/toTopFast.js';
 
 const ServicesComponent = () => {
-    const [activeSection, setActiveSection] = useState('');
+    const [activeSection, setActiveSection] = useState('ListServicesComponent');
 
     const handleChange = (section) => {
         setActiveSection(section);

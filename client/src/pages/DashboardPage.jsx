@@ -17,12 +17,12 @@ const DashboardPage = () => {
     const { authToken } = useContext(AuthContext);
     const { user } = useUser();
 
+    const location = useLocation();
+    const navigate = useNavigate();
+
     const userRole = user?.role;
 
     const [activeSection, setActiveSection] = useState('');
-
-    const location = useLocation();
-    const navigate = useNavigate();
 
     useEffect(() => {
         if (location.hash) {
@@ -48,97 +48,47 @@ const DashboardPage = () => {
         MyServicesComponent: userRole === 'employee' && <MyServicesComponent />,
     };
 
+    const renderNavLink = (section, label, extraClass = '') => (
+        <NavLink
+            className={extraClass}
+            to={`#${section}`}
+            onClick={(e) => {
+                handleSectionChange(section);
+                tabSelected(e, 'tabs5');
+                toTopFast(e);
+            }}
+        >
+            {label}
+        </NavLink>
+    );
+
     if (!authToken && !user) return <Navigate to='/' />;
 
     return (
         <>
             <AvatarComponent />
-            <section
-                className='manager-tabs'
-                id='tabs5'
-            >
-                <NavLink
-                    to='#ProfileComponent'
-                    onClick={(e) => {
-                        handleSectionChange('ProfileComponent');
-                        tabSelected(e, 'tabs5');
-                        toTopFast(e);
-                    }}
-                >
-                    Mi Perfil
-                </NavLink>
-
+            <section className='manager-tabs' id='tabs5'>
+                {renderNavLink('ProfileComponent', 'Mi Perfil')}
                 {userRole === 'admin' && (
                     <>
-                        <NavLink
-                            to='#UsersComponent'
-                            onClick={(e) => {
-                                handleSectionChange('UsersComponent');
-                                tabSelected(e, 'tabs5');
-                                toTopFast(e);
-                            }}
-                        >
-                            Usuarios
-                        </NavLink>
-                        <NavLink
-                            to='#ServicesComponent'
-                            onClick={(e) => {
-                                handleSectionChange('ServicesComponent');
-                                tabSelected(e, 'tabs5');
-                                toTopFast(e);
-                            }}
-                        >
-                            Servicios
-                        </NavLink>
-                        <NavLink
-                            to='#ContractsComponent'
-                            onClick={(e) => {
-                                handleSectionChange('ContractsComponent');
-                                tabSelected(e, 'tabs5');
-                                toTopFast(e);
-                            }}
-                        >
-                            Contratos
-                        </NavLink>
-                        <NavLink
-                            to='#ShiftsComponent'
-                            onClick={(e) => {
-                                handleSectionChange('ShiftsComponent');
-                                tabSelected(e, 'tabs5');
-                                toTopFast(e);
-                            }}
-                        >
-                            Turnos
-                        </NavLink>
+                        {renderNavLink('UsersComponent', 'Usuarios')}
+                        {renderNavLink('ServicesComponent', 'Servicios')}
+                        {renderNavLink('ContractsComponent', 'Contratos')}
+                        {renderNavLink('ShiftsComponent', 'Turnos')}
                     </>
                 )}
-
-                {userRole === 'client' && (
-                    <NavLink
-                        className='less-than-4-buttons'
-                        to='#OrdersComponent'
-                        onClick={(e) => {
-                            handleSectionChange('OrdersComponent');
-                            tabSelected(e, 'tabs5');
-                            toTopFast(e);
-                        }}
-                    >
-                        Pedidos
-                    </NavLink>
-                )}
-                {userRole === 'employee' && (
-                    <NavLink
-                        className='less-than-4-buttons'
-                        to='#MyServicesComponent'
-                        onClick={(e) => {
-                            handleSectionChange('MyServicesComponent');
-                            tabSelected(e, 'tabs5');
-                            toTopFast(e);
-                        }}
-                    >
-                        Servicios
-                    </NavLink>
-                )}
+                {userRole === 'client' &&
+                    renderNavLink(
+                        'OrdersComponent',
+                        'Pedidos',
+                        'less-than-4-buttons'
+                    )}
+                {userRole === 'employee' &&
+                    renderNavLink(
+                        'MyServicesComponent',
+                        'Servicios',
+                        'less-than-4-buttons'
+                    )}
             </section>
             {sectionComponents[activeSection]}
         </>
