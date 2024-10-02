@@ -20,6 +20,7 @@ const UsersComponent = () => {
         <>
             <div className='manager-tabs' id='tabs2'>
                 <button
+                    className='activeSelectedLink'
                     to='#ListUserComponent'
                     onClick={(e) => {
                         handleChange('ListUserComponent');

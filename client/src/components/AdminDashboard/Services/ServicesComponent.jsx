@@ -20,6 +20,7 @@ const ServicesComponent = () => {
         <>
             <div className='manager-tabs' id='tabs2'>
                 <button
+                    className='activeSelectedLink'
                     to='#ListServicesComponent'
                     onClick={(e) => {
                         handleChange('ListServicesComponent');
