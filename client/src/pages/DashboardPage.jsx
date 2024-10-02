@@ -57,7 +57,7 @@ const DashboardPage = () => {
                         toTopFast(e);
                     }}
                 >
-                    Perfil
+                    Mi Perfil
                 </NavLink>
 
                 {userRole === 'admin' && (

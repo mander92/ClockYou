@@ -2,9 +2,9 @@ import selectServiceService from '../../services/services/selectServiceService.j
 
 const listAdminServicesController = async (req, res, next) => {
     try {
-        const { status, order } = req.query;
+        const { status } = req.query;
 
-        const data = await selectServiceService(status, order);
+        const data = await selectServiceService(status);
 
         res.send({
             status: 'ok',

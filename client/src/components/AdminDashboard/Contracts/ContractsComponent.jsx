@@ -1,29 +1,26 @@
-import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthContext.jsx';
-import { FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
-import { useEffect, useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { fetchAllServicesServices } from '../../../services/serviceServices.js';
+import { useEffect, useState, useContext } from 'react';
+import CalendarComponent from '../../../components/CalendarComponent.jsx';
 import toast from 'react-hot-toast';
-import Calendars from '../../Calendars.jsx';
 
-const ListContractsComponent = () => {
+const ContractsComponent = () => {
     const { authToken } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const [data, setData] = useState([]);
     const [status, setStatus] = useState('');
-    const [dateTime, setDateTime] = useState('');
 
     const resetFilter = (e) => {
         e.preventDefault();
         setStatus('');
-        setDateTime('');
     };
 
     useEffect(() => {
         const getServices = async () => {
             const searchParams = new URLSearchParams({
                 status: status,
-                order: dateTime,
             });
             const searchParamsToString = searchParams.toString();
             try {
@@ -40,7 +37,20 @@ const ListContractsComponent = () => {
             }
         };
         getServices();
-    }, [status, dateTime, authToken]);
+    }, [status, authToken]);
+
+    const calendarEvents = data.map((event) => ({
+        title: event.type,
+        start: new Date(event.dateTime),
+        end: new Date(event.dateTime),
+        allDay: false,
+        serviceId: event.serviceId,
+        status: event.status,
+    }));
+
+    const handleSelectEvent = (event) => {
+        navigate(`/services/${event.serviceId}`);
+    };
 
     return (
         <>
@@ -63,64 +73,16 @@ const ListContractsComponent = () => {
                     <option value='pending'>Pendiente</option>
                     <option value='rejected'>Rechazado</option>
                 </select>
-                <select
-                    name='precio'
-                    id='precio'
-                    value={dateTime}
-                    onChange={(e) => {
-                        setDateTime(e.target.value);
-                    }}
-                >
-                    <option value='' disabled>
-                        Fecha:
-                    </option>
-                    <option value='ASC'>Ascendente</option>
-                    <option value='DESC'>Descendente</option>
-                </select>
                 <button onClick={resetFilter}>Limpiar Filtros</button>
             </form>
-            <ul className='cards'>
-                {data.map((item) => {
-                    const time = new Date(item.dateTime).toLocaleTimeString(
-                        [],
-                        {
-                            hour: '2-digit',
-                            minute: '2-digit',
-                        }
-                    );
-                    const date = new Date(item.dateTime).toLocaleDateString();
-                    return (
-                        <li key={item.id} className='relative'>
-                            <div className='icon-container'>
-                                {item.status === 'completed' ? (
-                                    <FaCheckCircle className='text-green-500' />
-                                ) : (
-                                    <FaExclamationCircle className='text-yellow-500' />
-                                )}
-                            </div>
-                            <h3>{item.type}</h3>
-                            <p className='font-extrabold'>
-                                El {date} a las {time}
-                            </p>
-                            <p className='grow'>
-                                En {item.address}, {item.city}, {item.postCode},{' '}
-                                {item.province}
-                            </p>
-                            <NavLink
-                                className='mb-4'
-                                to={`/services/${item.serviceId}`}
-                            >
-                                {item.status === 'pending'
-                                    ? 'Asignar Empleado'
-                                    : 'Detalles'}
-                            </NavLink>
-                        </li>
-                    );
-                })}
-            </ul>
-            <Calendars />
+            <div className='calendar'>
+                <CalendarComponent
+                    events={calendarEvents}
+                    onSelectEvent={handleSelectEvent}
+                />
+            </div>
         </>
     );
 };
 
-export default ListContractsComponent;
+export default ContractsComponent;
