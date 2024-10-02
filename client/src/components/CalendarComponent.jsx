@@ -1,6 +1,9 @@
 import { Calendar, dayjsLocalizer } from 'react-big-calendar';
 import dayjs from 'dayjs';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
+import 'dayjs/locale/es';
+
+dayjs.locale('es');
 
 const localizer = dayjsLocalizer(dayjs);
 
@@ -55,9 +58,23 @@ const CalendarComponent = ({ events, onSelectEvent }) => {
 
     return (
         <Calendar
+            formats={{
+                dayHeaderFormat: (date) => {
+                    return dayjs(date).format('DD/MM/YYYY');
+                },
+            }}
+            messages={{
+                next: 'sig',
+                previous: 'ant',
+                today: 'Hoy',
+                month: 'Mes',
+                week: 'Semana',
+                day: 'Día',
+            }}
             className='calendar'
             localizer={localizer}
             events={events}
+            views={['month', 'week', 'day']}
             onSelectEvent={onSelectEvent}
             eventPropGetter={eventStyle}
             dayPropGetter={dayStyle}
