@@ -78,7 +78,7 @@ const RegisterAdminUserComponent = () => {
                     id='job'
                     value={job}
                     onChange={(e) => setJob(e.target.value)}
-                    placeholder='Escribe aquí su trabajo'
+                    placeholder='Escribe aquí tu trabajo'
                     required
                 />
                 <label htmlFor='city'>Ciudad</label>
@@ -105,7 +105,7 @@ const RegisterAdminUserComponent = () => {
                     id='firstName'
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
-                    placeholder='Escribe aquí su nombre'
+                    placeholder='Escribe aquí tu nombre'
                     required
                 />
                 <label htmlFor='lastName'>Apellidos</label>
