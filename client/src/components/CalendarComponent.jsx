@@ -43,7 +43,9 @@ const CalendarComponent = ({ events, onSelectEvent }) => {
         const day = date.getDay();
         let backgroundColor = '';
 
-        if (day === 0 || day === 6) {
+        if (day === 0) {
+            backgroundColor = 'lightcoral';
+        } else if (day === 6) {
             backgroundColor = 'lightgray';
         } else {
             backgroundColor = 'white';
@@ -58,20 +60,20 @@ const CalendarComponent = ({ events, onSelectEvent }) => {
 
     return (
         <Calendar
+            className='calendar'
             formats={{
                 dayHeaderFormat: (date) => {
                     return dayjs(date).format('DD/MM/YYYY');
                 },
             }}
             messages={{
-                next: 'sig',
-                previous: 'ant',
+                next: '+',
+                previous: '-',
                 today: 'Hoy',
                 month: 'Mes',
                 week: 'Semana',
                 day: 'Día',
             }}
-            className='calendar'
             localizer={localizer}
             events={events}
             views={['month', 'week', 'day']}
