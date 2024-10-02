@@ -68,7 +68,11 @@ const DashboardPage = () => {
         <>
             <AvatarComponent />
             <section className='manager-tabs' id='tabs5'>
-                {renderNavLink('ProfileComponent', 'Mi Perfil')}
+                {renderNavLink(
+                    'ProfileComponent',
+                    'Mi Perfil',
+                    'activeSelectedLink'
+                )}
                 {userRole === 'admin' && (
                     <>
                         {renderNavLink('UsersComponent', 'Usuarios')}

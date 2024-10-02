@@ -122,7 +122,7 @@ const Header = () => {
                                 <NavLink
                                     onClick={handleBurguer}
                                     className='linkmainnav'
-                                    to={'/user'}
+                                    to={'/user#ProfileComponent'}
                                 >
                                     Mi Cuenta
                                 </NavLink>
