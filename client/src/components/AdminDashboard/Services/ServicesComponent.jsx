@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import ListServicesComponent from './ListServicesComponent.jsx';
 import RegisterServicesComponent from './RegisterServicesComponent.jsx';
 import toTopFast from '../../../hooks/toTopFast.js';
@@ -6,7 +7,8 @@ import toTopFast from '../../../hooks/toTopFast.js';
 const ServicesComponent = () => {
     const [activeSection, setActiveSection] = useState('ListServicesComponent');
 
-    const handleChange = (section) => {
+    const handleChange = (section, e) => {
+        e.preventDefault();
         setActiveSection(section);
     };
 
@@ -18,32 +20,32 @@ const ServicesComponent = () => {
     return (
         <>
             <div className='manager-tabs'>
-                <button
+                <NavLink
+                    to='#ListServicesComponent'
                     className={
                         activeSection === 'ListServicesComponent' &&
                         'activeSelectedLink'
                     }
-                    to='#ListServicesComponent'
                     onClick={(e) => {
-                        handleChange('ListServicesComponent');
+                        handleChange('ListServicesComponent', e);
                         toTopFast(e);
                     }}
                 >
                     Ver Todos
-                </button>
-                <button
+                </NavLink>
+                <NavLink
+                    to='#RegisterServicesComponent'
                     className={
                         activeSection === 'RegisterServicesComponent' &&
                         'activeSelectedLink'
                     }
-                    to='#RegisterServicesComponent'
                     onClick={(e) => {
-                        handleChange('RegisterServicesComponent');
+                        handleChange('RegisterServicesComponent', e);
                         toTopFast(e);
                     }}
                 >
                     Registrar
-                </button>
+                </NavLink>
             </div>
             {sectionComponents[activeSection]}
         </>
