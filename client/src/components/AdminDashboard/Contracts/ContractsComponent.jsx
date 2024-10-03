@@ -107,9 +107,7 @@ const ContractsComponent = () => {
                 </select>
                 <button onClick={resetFilter}>Limpiar Filtros</button>
                 <button onClick={handleHideClick}>
-                    {isVisible
-                        ? 'Ocultar paleta de colores'
-                        : 'Mostrar paleta de colores'}
+                    {isVisible ? 'Ocultar colores' : 'Mostrar colores'}
                 </button>
             </form>
             <div>
