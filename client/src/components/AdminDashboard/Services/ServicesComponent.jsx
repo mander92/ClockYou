@@ -21,7 +21,6 @@ const ServicesComponent = () => {
         <>
             <div className='manager-tabs'>
                 <NavLink
-                    to='#ListServicesComponent'
                     className={
                         activeSection === 'ListServicesComponent' &&
                         'activeSelectedLink'
@@ -34,7 +33,6 @@ const ServicesComponent = () => {
                     Ver Todos
                 </NavLink>
                 <NavLink
-                    to='#RegisterServicesComponent'
                     className={
                         activeSection === 'RegisterServicesComponent' &&
                         'activeSelectedLink'
