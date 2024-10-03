@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { NavLink, Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, Navigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import useUser from '../hooks/useUser';
 import AvatarComponent from '../components/AvatarComponent';
@@ -17,26 +17,16 @@ const DashboardPage = () => {
     const { user } = useUser();
 
     const location = useLocation();
-    const navigate = useNavigate();
 
     const userRole = user?.role;
 
-    const [activeSection, setActiveSection] = useState('');
-    const [activeLink, setActiveLink] = useState('ProfileComponent');
+    const [activeSection, setActiveSection] = useState('ProfileComponent');
 
     useEffect(() => {
         if (location.hash) {
             setActiveSection(location.hash.substring(1));
         }
     }, [location]);
-
-    useEffect(() => {
-        navigate(`#${activeSection}`);
-    }, [activeSection, navigate]);
-
-    const handleSectionChange = (section) => {
-        setActiveSection(section);
-    };
 
     const sectionComponents = {
         ProfileComponent: <ProfileComponent />,
@@ -53,8 +43,6 @@ const DashboardPage = () => {
             className={extraClass}
             to={`#${section}`}
             onClick={(e) => {
-                handleSectionChange(section);
-                setActiveLink(section);
                 toTopFast(e);
             }}
         >
@@ -71,32 +59,32 @@ const DashboardPage = () => {
                 {renderNavLink(
                     'ProfileComponent',
                     'Mi Perfil',
-                    activeLink === 'ProfileComponent' && 'activeSelectedLink'
+                    activeSection === 'ProfileComponent' && 'activeSelectedLink'
                 )}
                 {userRole === 'admin' && (
                     <>
                         {renderNavLink(
                             'UsersComponent',
                             'Usuarios',
-                            activeLink === 'UsersComponent' &&
+                            activeSection === 'UsersComponent' &&
                                 'activeSelectedLink'
                         )}
                         {renderNavLink(
                             'ServicesComponent',
                             'Servicios',
-                            activeLink === 'ServicesComponent' &&
+                            activeSection === 'ServicesComponent' &&
                                 'activeSelectedLink'
                         )}
                         {renderNavLink(
                             'ContractsComponent',
                             'Contratos',
-                            activeLink === 'ContractsComponent' &&
+                            activeSection === 'ContractsComponent' &&
                                 'activeSelectedLink'
                         )}
                         {renderNavLink(
                             'ShiftsComponent',
                             'Turnos',
-                            activeLink === 'ShiftsComponent' &&
+                            activeSection === 'ShiftsComponent' &&
                                 'activeSelectedLink'
                         )}
                     </>
@@ -105,13 +93,15 @@ const DashboardPage = () => {
                     renderNavLink(
                         'OrdersComponent',
                         'Pedidos',
-                        'less-than-4-buttons'
+                        activeSection === 'OrdersComponent' &&
+                            'activeSelectedLink less-than-4-buttons'
                     )}
                 {userRole === 'employee' &&
                     renderNavLink(
                         'MyServicesComponent',
                         'Servicios',
-                        'less-than-4-buttons'
+                        activeSection === 'MyServicesComponent' &&
+                            'activeSelectedLink less-than-4-buttons'
                     )}
             </section>
             {sectionComponents[activeSection]}

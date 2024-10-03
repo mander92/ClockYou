@@ -239,12 +239,12 @@
         }
 
         & a,
-        button {
+        button,
+        span {
             padding: 0.5rem 1rem;
             color: var(--white-color);
             background-color: var(--cerulean);
             transition: background-color 0.3s linear;
-            border: 1px solid var(--icicle);
             border-radius: 20px;
             min-width: fit-content;
 
@@ -304,7 +304,7 @@
     }
 
     .calendar {
-        height: 500px;
+        height: 700px;
         margin-top: 1rem;
     }
 }

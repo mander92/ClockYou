@@ -1,6 +1,9 @@
 import { Calendar, dayjsLocalizer } from 'react-big-calendar';
 import dayjs from 'dayjs';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
+import 'dayjs/locale/es';
+
+dayjs.locale('es');
 
 const localizer = dayjsLocalizer(dayjs);
 
@@ -40,7 +43,9 @@ const CalendarComponent = ({ events, onSelectEvent }) => {
         const day = date.getDay();
         let backgroundColor = '';
 
-        if (day === 0 || day === 6) {
+        if (day === 0) {
+            backgroundColor = 'lightcoral';
+        } else if (day === 6) {
             backgroundColor = 'lightgray';
         } else {
             backgroundColor = 'white';
@@ -54,14 +59,29 @@ const CalendarComponent = ({ events, onSelectEvent }) => {
     };
 
     return (
-        <Calendar
-            className='calendar'
-            localizer={localizer}
-            events={events}
-            onSelectEvent={onSelectEvent}
-            eventPropGetter={eventStyle}
-            dayPropGetter={dayStyle}
-        />
+        <div className='calendar'>
+            <Calendar
+                formats={{
+                    dayHeaderFormat: (date) => {
+                        return dayjs(date).format('DD/MM/YYYY');
+                    },
+                }}
+                messages={{
+                    next: '+',
+                    previous: '-',
+                    today: 'Hoy',
+                    month: 'Mes',
+                    week: 'Semana',
+                    day: 'Día',
+                }}
+                localizer={localizer}
+                events={events}
+                views={['month', 'week', 'day']}
+                onSelectEvent={onSelectEvent}
+                eventPropGetter={eventStyle}
+                dayPropGetter={dayStyle}
+            />
+        </div>
     );
 };
 
