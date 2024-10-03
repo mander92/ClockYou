@@ -28,10 +28,6 @@ const DashboardPage = () => {
         }
     }, [location]);
 
-    const handleSectionChange = (section) => {
-        setActiveSection(section);
-    };
-
     const sectionComponents = {
         ProfileComponent: <ProfileComponent />,
         UsersComponent: userRole === 'admin' && <UsersComponent />,
@@ -47,8 +43,6 @@ const DashboardPage = () => {
             className={extraClass}
             to={`#${section}`}
             onClick={(e) => {
-                handleSectionChange(section);
-                setActiveSection(section);
                 toTopFast(e);
             }}
         >
