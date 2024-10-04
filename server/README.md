@@ -91,8 +91,8 @@ Clases Particulares, Entrenamientos Personales, Cuidado de Mascotas, Limpiezas A
 | clockIn      | TIMESTAMP     | Empleado registra hora de inicio del servicio      |
 | clockOut     | TIMESTAMP     | Empleado registra hora de fin del servicio         |
 | latitudeIn   | DECIMAL(10,8) | Latitud inicial del servicio                       |
-| longitudeIn  | DECIMAL(11,8) | Longitud final del servicio                        |
-| latitudeOut  | DECIMAL(10,8) | Latitud inicial del servicio                       |
+| longitudeIn  | DECIMAL(11,8) | Longitud inicial del servicio                      |
+| latitudeOut  | DECIMAL(10,8) | Latitud final del servicio                         |
 | longitudeOut | DECIMAL(11,8) | Longitud final del servicio                        |
 | serviceId    | CHAR(36)      | Identificador del servicio contratado              |
 | employeeId   | CHAR(36)      | Identificador del empleado que realiza el servicio |
