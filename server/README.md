@@ -19,7 +19,7 @@ Clases Particulares, Entrenamientos Personales, Cuidado de Mascotas, Limpiezas A
 
 | Campo      | Tipo         | Descripción                            |
 | ---------- | ------------ | -------------------------------------- |
-| id         | CHAR(36)     | Identificador único                    |
+| id         | CHAR(36)     | Identificador único de la dirección    |
 | address    | VARCHAR(255) | Nombre de calle de la dirección        |
 | postCode   | CHAR(5)      | Código postal de la dirección          |
 | city       | VARCHAR(40)  | Cuidad de la dirección                 |
@@ -31,7 +31,7 @@ Clases Particulares, Entrenamientos Personales, Cuidado de Mascotas, Limpiezas A
 
 | Campo               | Tipo         | Descripción                                     |
 | ------------------- | ------------ | ----------------------------------------------- |
-| id                  | CHAR(36)     | Identificador único                             |
+| id                  | CHAR(36)     | Identificador único del usuario                 |
 | email               | VARCHAR(100) | Correo electrónico del usuario                  |
 | firstName           | VARCHAR(25)  | Nombre del usuario                              |
 | lastName            | VARCHAR(50)  | Apellidos del usuario                           |
@@ -51,22 +51,22 @@ Clases Particulares, Entrenamientos Personales, Cuidado de Mascotas, Limpiezas A
 
 ### typeOfServices
 
-| Campo       | Tipo         | Descripción                            |
-| ----------- | ------------ | -------------------------------------- |
-| id          | CHAR(36)     | Identificador único                    |
-| type        | VARCHAR(255) | Tipo de servicio                       |
-| description | VARCHAR(500) | Descripción del servicio ofertado      |
-| city        | VARCHAR(30)  | Cuidad disponible del servicio         |
-| image       | CHAR(40)     | Url de la imágen de tipo de servicio   |
-| createdAt   | TIMESTAMP    | Fecha y hora de creación               |
-| modifiedAt  | TIMESTAMP    | Fecha y hora de la última modificación |
-| deletedAt   | TIMESTAMP    | Fecha y hora del borrado lógico        |
+| Campo       | Tipo         | Descripción                              |
+| ----------- | ------------ | ---------------------------------------- |
+| id          | CHAR(36)     | Identificador único del tipo de servicio |
+| type        | VARCHAR(255) | Tipo de servicio                         |
+| description | VARCHAR(500) | Descripción del servicio ofertado        |
+| city        | VARCHAR(30)  | Cuidad disponible del servicio           |
+| image       | CHAR(40)     | Url de la imágen de tipo de servicio     |
+| createdAt   | TIMESTAMP    | Fecha y hora de creación                 |
+| modifiedAt  | TIMESTAMP    | Fecha y hora de la última modificación   |
+| deletedAt   | TIMESTAMP    | Fecha y hora del borrado lógico          |
 
 ### services
 
 | Campo           | Tipo         | Descripción                                                             |
 | --------------- | ------------ | ----------------------------------------------------------------------- |
-| id              | CHAR(36)     | Identificador único                                                     |
+| id              | CHAR(36)     | Identificador único del servicio                                        |
 | dateTime        | TIMESTAMP    | Fecha y hora de inicio del servicio                                     |
 | hours           | INT UNSIGNED | Horas a contratar por el usuario, valores entre 1 y 8                   |
 | rating          | INT UNSIGNED | Valoración del cliente sobre el servicio realizado, valores entre 1 y 5 |
@@ -85,7 +85,7 @@ Clases Particulares, Entrenamientos Personales, Cuidado de Mascotas, Limpiezas A
 
 | Campo      | Tipo          | Descripción                                        |
 | ---------- | ------------- | -------------------------------------------------- |
-| id         | CHAR(36)      | Identificador único                                |
+| id         | CHAR(36)      | Identificador único del registro horario           |
 | clockIn    | TIMESTAMP     | Empleado registra hora de inicio del servicio      |
 | clockOut   | TIMESTAMP     | Empleado registra hora de fin del servicio         |
 | latitude   | DECIMAL(10,8) | Latitud del servicio                               |
@@ -124,10 +124,10 @@ Clases Particulares, Entrenamientos Personales, Cuidado de Mascotas, Limpiezas A
 
 -   **GET** - `/services` - Admin lista todos los servicios contratados por clientes con filtros de búsqueda.
 -   **GET** - `/services/client` - Cliente lista todos sus servicios contratados con filtros de búsqueda.
--   **GET** - `/services/employee` - Empleado lista todos sus servicios confirmados.
--   **GET** - `/services/:serviceId` - Admin obtiene el detalle de un servicio.
+-   **GET** - `/services/employee` - Empleado lista todos sus servicios con filtros de búsqueda.
+-   **GET** - `/services/:serviceId` - Se obtiene el detalle de un servicio.
 -   **GET** - `/services/validate/:validationCode` - Cliente confirma un servicio.
--   **POST** - `/services/:typeOfServiceId` - El cliente solicita un servicio.
+-   **POST** - `/services/:typeOfServiceId` - Cliente solicita un servicio.
 -   **PATCH** - `/services/:serviceId` - Cliente valora un servicio realizado.
 -   **PUT** - `/services/:serviceId` - Cliente edita un servicio solicitado.
 -   **DELETE** - `/services/:serviceId` - Cliente elimina un servicio solicitado.
