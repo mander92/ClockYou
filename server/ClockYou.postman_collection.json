@@ -966,7 +966,7 @@
 					"response": []
 				},
 				{
-					"name": "list(employee)",
+					"name": "listFilter(employee)",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -977,7 +977,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8000/services/employee",
+							"raw": "http://localhost:8000/services/employee?status&type",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -986,6 +986,16 @@
 							"path": [
 								"services",
 								"employee"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": null
+								},
+								{
+									"key": "type",
+									"value": null
+								}
 							]
 						}
 					},
