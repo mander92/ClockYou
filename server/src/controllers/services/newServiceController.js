@@ -6,7 +6,7 @@ import insertServiceService from '../../services/services/insertServiceService.j
 const newServiceController = async (req, res, next) => {
     try {
         const schema = Joi.object().keys({
-            dateTime: Joi.date().min('now').required(),
+            startDateTime: Joi.date().min('now').required(),
             hours: Joi.number().min(1).max(8).required(),
             comments: Joi.string().max(250).required(),
             address: Joi.string().max(255).required(),
@@ -22,12 +22,13 @@ const newServiceController = async (req, res, next) => {
 
         const { typeOfServiceId } = req.params;
 
-        const { dateTime, hours, comments, address, city, postCode } = req.body;
+        const { startDateTime, hours, comments, address, city, postCode } =
+            req.body;
 
         const data = await insertServiceService(
             typeOfServiceId,
             userId,
-            dateTime,
+            startDateTime,
             hours,
             comments,
             address,

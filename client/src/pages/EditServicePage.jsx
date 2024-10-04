@@ -18,7 +18,7 @@ const EditServicePage = () => {
 
     const [data, setData] = useState([]);
     const [hours, setHours] = useState(0);
-    const [dateTime, setDateTime] = useState('');
+    const [startDateTime, setDateTime] = useState('');
     const [address, setAddress] = useState('');
     const [postCode, setPostCode] = useState('');
     const [city, setCity] = useState('');
@@ -33,7 +33,7 @@ const EditServicePage = () => {
                 );
                 setData(data);
                 setHours(data.hours);
-                setDateTime(data.dateTime);
+                setDateTime(data.startDateTime);
                 setAddress(data.address);
                 setPostCode(data.postCode);
                 setCity(data.city);
@@ -48,7 +48,7 @@ const EditServicePage = () => {
         getService();
     }, [serviceId, authToken]);
 
-    const time = new Date(dateTime).toLocaleTimeString([], {
+    const time = new Date(startDateTime).toLocaleTimeString([], {
         hour: '2-digit',
         minute: '2-digit',
     });
@@ -79,7 +79,7 @@ const EditServicePage = () => {
         e.preventDefault();
 
         try {
-            const formattedDateTime = new Date(dateTime)
+            const formattedDateTime = new Date(startDateTime)
                 .toISOString()
                 .slice(0, 19)
                 .replace('T', ' ');
@@ -139,11 +139,11 @@ const EditServicePage = () => {
                     required
                     type='date'
                     id='date'
-                    value={dateTime.split('T')[0]}
+                    value={startDateTime.split('T')[0]}
                     min={getTomorrowDate()}
                     onChange={(e) =>
                         setDateTime(
-                            e.target.value + 'T' + dateTime.split('T')[1]
+                            e.target.value + 'T' + startDateTime.split('T')[1]
                         )
                     }
                 />
@@ -154,7 +154,7 @@ const EditServicePage = () => {
                     value={time}
                     onChange={(e) =>
                         setDateTime(
-                            dateTime.split('T')[0] + 'T' + e.target.value
+                            startDateTime.split('T')[0] + 'T' + e.target.value
                         )
                     }
                 >

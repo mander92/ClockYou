@@ -3,7 +3,7 @@ const { VITE_API_URL } = import.meta.env;
 export const fetchNewServiceServices = async (
     authToken,
     typeOfServiceId,
-    dateTime,
+    startDateTime,
     hours,
     address,
     postCode,
@@ -17,7 +17,7 @@ export const fetchNewServiceServices = async (
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            dateTime,
+            startDateTime,
             hours,
             address,
             postCode,
@@ -134,7 +134,7 @@ export const fetchEditServiceServices = async (
     address,
     hours,
     city,
-    dateTime,
+    startDateTime,
     postCode,
     authToken
 ) => {
@@ -149,7 +149,7 @@ export const fetchEditServiceServices = async (
             address,
             hours,
             city,
-            dateTime,
+            startDateTime,
             postCode,
         }),
     });

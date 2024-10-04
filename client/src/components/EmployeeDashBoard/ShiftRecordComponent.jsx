@@ -26,8 +26,8 @@ const ShiftRecordComponent = ({
                 navigator.geolocation.getCurrentPosition(
                     (position) =>
                         resolve({
-                            lat: position.coords.latitude,
-                            lng: position.coords.longitude,
+                            lat: position.coords.latitudeIn,
+                            lng: position.coords.longitudeIn,
                         }),
                     (error) => reject(error)
                 );

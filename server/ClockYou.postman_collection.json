@@ -1,1341 +1,1209 @@
 {
-	"info": {
-		"_postman_id": "e015d9cf-b831-48b7-a763-29979c89410b",
-		"name": "ClockYou",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "35978489"
-	},
-	"item": [
-		{
-			"name": "users",
-			"item": [
-				{
-					"name": "register",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"david_miras@icloud.com\",\r\n    \"password\": \"12345678\",\r\n    \"firstName\": \"David\",\r\n    \"lastName\": \"Mirás Bellón\",\r\n    \"dni\": \"12894578A\",\r\n    \"phone\": \"987654321\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8000/users/register",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"users",
-								"register"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "edit",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgxYWQ0NDZjLWFlMzQtNDY3NC1iMmM0LTU5NTUyOWY2ZjA0NCIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjUyOTA5OTYsImV4cCI6MTcyNTg5NTc5Nn0.BLolvNWgxrGylKjucDKIi9OljvlrasfivCrq7bREJI8",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"Pichotes\",\r\n    \"lastName\": \"De los Palotes\",\r\n    \"phone\": \"666202020\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8000/user/350b1f40-06ef-4292-85d4-be7f36523141",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"user",
-								"350b1f40-06ef-4292-85d4-be7f36523141"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "registerEmployee(admin)",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNjNzNjODZkLTlhYmMtNDU3ZS05ZjVkLTQ4MjI1ZjlkZGI0ZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNTU0MzYyMywiZXhwIjoxNzI2MTQ4NDIzfQ.hTSQPbEbptnzpsVMYdzrBE4VqVWjIsqv46PSMNHaFe8",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"role\": \"employee\",\r\n    \"email\": \"employee@clockYou.com\",\r\n    \"password\": \"12345678\",\r\n    \"firstName\": \"Employee\",\r\n    \"lastName\": \"ClockYou\",\r\n    \"dni\": \"22371518A\",\r\n    \"phone\": \"690123587\",\r\n    \"job\": \"Peluquero\",\r\n    \"city\":\"Portugal\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8000/users/admin/register",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"users",
-								"admin",
-								"register"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "registerAdmin(admin)",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNjNzNjODZkLTlhYmMtNDU3ZS05ZjVkLTQ4MjI1ZjlkZGI0ZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNTU0MzYyMywiZXhwIjoxNzI2MTQ4NDIzfQ.hTSQPbEbptnzpsVMYdzrBE4VqVWjIsqv46PSMNHaFe8",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"role\": \"admin\",\r\n    \"email\": \"admin@clockYou.com\",\r\n    \"password\": \"12345678\",\r\n    \"firstName\": \"Admin\",\r\n    \"lastName\": \"ClockYou\",\r\n    \"dni\": \"12371538A\",\r\n    \"phone\": \"690123587\",\r\n    \"job\": \"Admin\",\r\n    \"city\":\"Portugal\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8000/users/admin/register",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"users",
-								"admin",
-								"register"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "loginClient",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"email\": \"david_miras@icloud.com\",\n    \"password\": \"12345678\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8000/users/login",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"users",
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "loginEmployee",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"email\": \"employee@clockYou.com\",\n    \"password\": \"12345678\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8000/users/login",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"users",
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "loginAdmin",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"email\": \"david_miras@hotmail.com\",\n    \"password\": \"12345678\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8000/users/login",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"users",
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "validate(client)",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8000/users/validate/DdBhKTqwCSnxCLXdztz5DSm77EWLqN",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"users",
-								"validate",
-								"DdBhKTqwCSnxCLXdztz5DSm77EWLqN"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "recoverPassword",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"email\": \"david_miras@icloud.com\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8000/users/password/recover",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"users",
-								"password",
-								"recover"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "changePassword",
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"recoverPasswordCode\": \"ke4LEhjl9i\",\n    \"newPassword\": \"12345678\" \n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8000/users/password",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"users",
-								"password"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "editPassword",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgxYWQ0NDZjLWFlMzQtNDY3NC1iMmM0LTU5NTUyOWY2ZjA0NCIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjUyODU3NTYsImV4cCI6MTcyNTg5MDU1Nn0.yKq4ZYAyUujQICYml7dIE_KCa4Q5LU8wOYg8yv5Gkrc",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"actualPassword\": \"12345678\",\n    \"newPassword\": \"12345678\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8000/user/password/81ad446c-ae34-4674-b2c4-595529f6f044",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"user",
-								"password",
-								"81ad446c-ae34-4674-b2c4-595529f6f044"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "listFilter(admin)",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNjNzNjODZkLTlhYmMtNDU3ZS05ZjVkLTQ4MjI1ZjlkZGI0ZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNTU0MzYyMywiZXhwIjoxNzI2MTQ4NDIzfQ.hTSQPbEbptnzpsVMYdzrBE4VqVWjIsqv46PSMNHaFe8",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8000/users",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"users"
-							],
-							"query": [
-								{
-									"key": "city",
-									"value": "portugal",
-									"disabled": true
-								},
-								{
-									"key": "job",
-									"value": "peluquero",
-									"disabled": true
-								},
-								{
-									"key": "active",
-									"value": "1",
-									"disabled": true
-								},
-								{
-									"key": "role",
-									"value": "employee",
-									"disabled": true
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "deleteUser",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdjYmQ1NTBlLTEzMDYtNDQyZS1iZjJmLWM4ZDMyNzQxM2FjNyIsInJvbGUiOiJlbXBsb3llZSIsImlhdCI6MTcyNTI5ODQ5MCwiZXhwIjoxNzI1OTAzMjkwfQ.2MJZuj6cuFB2MnHT2vb8UoJGZxDTWiFfjlVaVzllPdo",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8000/user/7cbd550e-1306-442e-bf2f-c8d327413ac7",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"user",
-								"7cbd550e-1306-442e-bf2f-c8d327413ac7"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "editAvatar",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgxYWQ0NDZjLWFlMzQtNDY3NC1iMmM0LTU5NTUyOWY2ZjA0NCIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjUxMzAyODIsImV4cCI6MTcyNTczNTA4Mn0.XsVlf-0wYs8VfaKy51nPt20KQHJxpFOV9BRaW9GPSnk",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "avatar",
-									"type": "file",
-									"src": "/Users/david_miras/Desktop/IMG_6385.tiff"
-								}
-							]
-						},
-						"url": {
-							"raw": "http://localhost:8000/user/avatar/81ad446c-ae34-4674-b2c4-595529f6f044",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"user",
-								"avatar",
-								"81ad446c-ae34-4674-b2c4-595529f6f044"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "profile",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNjNzNjODZkLTlhYmMtNDU3ZS05ZjVkLTQ4MjI1ZjlkZGI0ZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNTU0MzYyMywiZXhwIjoxNzI2MTQ4NDIzfQ.hTSQPbEbptnzpsVMYdzrBE4VqVWjIsqv46PSMNHaFe8",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8000/user",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"user"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "detailUser(admin)",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNjNzNjODZkLTlhYmMtNDU3ZS05ZjVkLTQ4MjI1ZjlkZGI0ZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNTU0MzYyMywiZXhwIjoxNzI2MTQ4NDIzfQ.hTSQPbEbptnzpsVMYdzrBE4VqVWjIsqv46PSMNHaFe8",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8000/user/admin/6902bafa-3e8b-4448-8ac1-e53539ce4923",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"user",
-								"admin",
-								"6902bafa-3e8b-4448-8ac1-e53539ce4923"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "typeOfServices",
-			"item": [
-				{
-					"name": "new(admin)",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNjNzNjODZkLTlhYmMtNDU3ZS05ZjVkLTQ4MjI1ZjlkZGI0ZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNTQ3Mzg5NSwiZXhwIjoxNzI2MDc4Njk1fQ.N_Kq6KxB290EYx7w4i6ceAWt76uhq9s2QxOZ1RzibKs",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "type",
-									"value": "Peluquería",
-									"type": "text"
-								},
-								{
-									"key": "description",
-									"value": "Corte y retoques de barba",
-									"type": "text"
-								},
-								{
-									"key": "city",
-									"value": "Coruña",
-									"type": "text"
-								},
-								{
-									"key": "price",
-									"value": "20",
-									"type": "text"
-								},
-								{
-									"key": "image",
-									"type": "file",
-									"src": "/Users/david_miras/Downloads/404.png"
-								}
-							]
-						},
-						"url": {
-							"raw": "http://localhost:8000/typeOfServices",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"typeOfServices"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "list(filter)",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8000/typeOfServices/",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"typeOfServices",
-								""
-							],
-							"query": [
-								{
-									"key": "price",
-									"value": "asc",
-									"disabled": true
-								},
-								{
-									"key": "city",
-									"value": "coruña",
-									"disabled": true
-								},
-								{
-									"key": "type",
-									"value": "Masajes",
-									"disabled": true
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "delete(admin)",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNjNzNjODZkLTlhYmMtNDU3ZS05ZjVkLTQ4MjI1ZjlkZGI0ZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNTU0MzYyMywiZXhwIjoxNzI2MTQ4NDIzfQ.hTSQPbEbptnzpsVMYdzrBE4VqVWjIsqv46PSMNHaFe8",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": []
-						},
-						"url": {
-							"raw": "http://localhost:8000/typeOfServices/b780902b-c994-408e-838d-b4c3746842a8",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"typeOfServices",
-								"b780902b-c994-408e-838d-b4c3746842a8"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "detail",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8000/typeOfServices/033f37ce-3ac7-41ae-b7a0-99a559b880f9",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"typeOfServices",
-								"033f37ce-3ac7-41ae-b7a0-99a559b880f9"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "edit(admin)",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIyYTZhY2U5LWQyZTMtNDA2NC04M2JkLWNiMzIzMzcwMjA5OCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNDg5MzYyMSwiZXhwIjoxNzI1NDk4NDIxfQ.DN8H-ZNtwLyo_mOr0afbLuxpT8ADhJ-nWc9k1gdkHHw",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"description\": \"Hacemos todo lo que nos pida el cliente\",\n    \"price\":\"22.80\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8000/typeOfServices/a50449a8-f0c2-4ec0-a596-8d872451b6bb",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"typeOfServices",
-								"a50449a8-f0c2-4ec0-a596-8d872451b6bb"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "editImage(admin)",
-					"request": {
-						"method": "PATCH",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiODdhNWQ2LTgyMjUtNDU2Ny1iYWI0LTg4OThmYTI3NGNiNSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNTAxNzY5MywiZXhwIjoxNzI1NjIyNDkzfQ.5EBgfDxG7n5hBKB2I2Dq4v9BwFm63nNGnBrbvD5k4fE",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "image",
-									"type": "file",
-									"src": "/Users/david_miras/Desktop/clases.jpg"
-								}
-							]
-						},
-						"url": {
-							"raw": "http://localhost:8000/typeOfServices/c002e352-fdbf-4e9e-89fb-6384ef1920bd",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"typeOfServices",
-								"c002e352-fdbf-4e9e-89fb-6384ef1920bd"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "services",
-			"item": [
-				{
-					"name": "new(client)",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFjMTBkYjVkLTQxOTQtNDdjOC1hMGE5LWFiZTA5YWNjNWQ0YiIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjU4OTA0MTQsImV4cCI6MTcyNjQ5NTIxNH0.LqqCPYiNOB9XTIN8YjIVsZ4EyY9hQfecElAlAjmiwGg",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"dateTime\": \"2026-10-05T14:48:00\",\n    \"hours\": \"4\",\n    \"comments\": \"Para estudiante que está cursando 2º de la ESO\",\n    \"address\": \"Avío, 2, 3ªB\",\n    \"city\": \"Santiago de Compostela\",\n    \"postCode\": \"15705\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8000/services/ef6bf110-bebb-4519-b238-95e506fc4bfc",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"services",
-								"ef6bf110-bebb-4519-b238-95e506fc4bfc"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "listFilter(admin)",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNjNzNjODZkLTlhYmMtNDU3ZS05ZjVkLTQ4MjI1ZjlkZGI0ZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNjE3Nzk4NSwiZXhwIjoxNzI2NzgyNzg1fQ.m-1BiUo-bSwxQcN8BvJLICE0q6WUOJ9-3Oo0Tqd6GFA",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8000/services",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"services"
-							],
-							"query": [
-								{
-									"key": "status",
-									"value": "",
-									"disabled": true
-								},
-								{
-									"key": "type",
-									"value": null,
-									"disabled": true
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "detail",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8000/services/6dc567cf-3eba-414f-9283-d6ee7aa9923d",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"services",
-								"6dc567cf-3eba-414f-9283-d6ee7aa9923d"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "delete(client)",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ5ZDZjZDU5LTYyODUtNDk1Ny04MzVkLTI0NzAxM2ZhMzU5NSIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjQ4NzYxODksImV4cCI6MTcyNTQ4MDk4OX0.89KkmubQ7lcRRCITihKVH3t0OXVs_bNaKbDhZec0Bcg",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8000/services/7131ec0c-6b2b-4a84-bbd9-2045ccf296d6",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"services",
-								"7131ec0c-6b2b-4a84-bbd9-2045ccf296d6"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "edit(client)",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{client}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"comments\": \"Probandooooo\",\n    \"dateTime\":\"2024-08-31 14:05:57\",\n    \"hours\":\"8\",\n    \"address\":\"probar\",\n    \"postCode\":\"12345\",\n    \"city\":\"asdsa\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8000/services/507aa08f-2328-4a6c-9473-d7a6c57bdcf9",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"services",
-								"507aa08f-2328-4a6c-9473-d7a6c57bdcf9"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "listFilter(client)",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFjMTBkYjVkLTQxOTQtNDdjOC1hMGE5LWFiZTA5YWNjNWQ0YiIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjU4OTA0MTQsImV4cCI6MTcyNjQ5NTIxNH0.LqqCPYiNOB9XTIN8YjIVsZ4EyY9hQfecElAlAjmiwGg",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8000/services/client/",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"services",
-								"client",
-								""
-							],
-							"query": [
-								{
-									"key": "status",
-									"value": "pending",
-									"disabled": true
-								},
-								{
-									"key": "status",
-									"value": "accepted",
-									"disabled": true
-								},
-								{
-									"key": "status",
-									"value": "confirmed",
-									"disabled": true
-								},
-								{
-									"key": "status",
-									"value": "completed",
-									"disabled": true
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "listFilter(employee)",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{employee}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8000/services/employee?status&type",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"services",
-								"employee"
-							],
-							"query": [
-								{
-									"key": "status",
-									"value": null
-								},
-								{
-									"key": "type",
-									"value": null
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "validate(client)",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8000/services/validate",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"services",
-								"validate"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "rating(client)",
-					"request": {
-						"method": "PATCH",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{client}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"rating\": 3\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8000/services/01dbda7a-aa49-45e6-bce5-0e9892f4ace1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"services",
-								"01dbda7a-aa49-45e6-bce5-0e9892f4ace1"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "shiftRecords",
-			"item": [
-				{
-					"name": "new(admin)",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{admin}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"employeeId\":\"62bb60b6-5b7c-4a84-9683-9b6820e35b38\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8000/shiftrecords/507aa08f-2328-4a6c-9473-d7a6c57bdcf9",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"shiftrecords",
-								"507aa08f-2328-4a6c-9473-d7a6c57bdcf9"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "list(admin)",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNjNzNjODZkLTlhYmMtNDU3ZS05ZjVkLTQ4MjI1ZjlkZGI0ZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNzcwNjExMCwiZXhwIjoxNzI4MzEwOTEwfQ.L1IWfLBHCoA_6cN6E4d2AbWVdC3ecXR4WIZI5lSVgtQ",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8000/shiftrecords?typeOfService=Clases Particulares&generateExcel=true",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"shiftrecords"
-							],
-							"query": [
-								{
-									"key": "typeOfService",
-									"value": "Clases Particulares"
-								},
-								{
-									"key": "employeeId",
-									"value": "8a798161-0e98-4887-9c63-2cc8cf0b7f40",
-									"disabled": true
-								},
-								{
-									"key": "startDate",
-									"value": "2024-09-20 12:00:00",
-									"disabled": true
-								},
-								{
-									"key": "endDate",
-									"value": "2024-09-21 12:00:00",
-									"disabled": true
-								},
-								{
-									"key": "generateExcel",
-									"value": "true"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "edit(Admin)",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{admin}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"clockIn\": \"2024-08-22 21:00\",\n    \"clockOut\": \"2025-08-23 21:40\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8000/shiftrecords/edit/b7b1af7f-62aa-4db1-ad40-ba412c2db4ce",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"shiftrecords",
-								"edit",
-								"b7b1af7f-62aa-4db1-ad40-ba412c2db4ce"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "detail",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8000/shiftrecords/b7b1af7f-62aa-4db1-ad40-ba412c2db4ce",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"shiftrecords",
-								"b7b1af7f-62aa-4db1-ad40-ba412c2db4ce"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "clockIn(employee)",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{employee}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"clockIn\": \"2024-08-22 21:00\",\n    \"location\": \"\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8000/shiftrecords/b7b1af7f-62aa-4db1-ad40-ba412c2db4ce",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"shiftrecords",
-								"b7b1af7f-62aa-4db1-ad40-ba412c2db4ce"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "clockOut(employee)",
-					"request": {
-						"method": "PATCH",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{employee}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"clockOut\": \"2025-08-23 21:40\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8000/shiftrecords/b7b1af7f-62aa-4db1-ad40-ba412c2db4ce",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"shiftrecords",
-								"b7b1af7f-62aa-4db1-ad40-ba412c2db4ce"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "test",
-			"item": [
-				{
-					"name": "notFound",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8000/inventada",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"inventada"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "uploads",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8000/4bf2009b-44ec-47ed-b6c4-493ff62fe54d.jpg",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"4bf2009b-44ec-47ed-b6c4-493ff62fe54d.jpg"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		}
-	],
-	"variable": [
-		{
-			"key": "client",
-			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNkNzA4NzVmLWNhNWMtNDViMy05M2YyLTgxODRkNzhhZjc2NyIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjQxMDgyMjYsImV4cCI6MTcyNDcxMzAyNn0.NCq-C84bWb20gSzjOSaTh8lk6y8-hXwBq_2BwcuLKJU"
-		},
-		{
-			"key": "admin",
-			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ3ODFmZGUxLTA3YWUtNGI3OC04MmUwLTQyMDkwNGRkNjI1MiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNDEwODQ5MCwiZXhwIjoxNzI0NzEzMjkwfQ.FRezvVXAMHmEMts1iKpetrt_n40JIaODDxtEIObpFmU"
-		},
-		{
-			"key": "employee",
-			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM3ZDAzYjJhLWQyNzktNDQ4NC05NDRjLWVjMjlmZDQ1ZDBkZSIsInJvbGUiOiJlbXBsb3llZSIsImlhdCI6MTcyNDEwODYzMCwiZXhwIjoxNzI0NzEzNDMwfQ._LxDEZHZhcE90XaIM4iGzzBnmsV8l-6CWNpuF0ojJgQ"
-		}
-	]
+    "info": {
+        "_postman_id": "e015d9cf-b831-48b7-a763-29979c89410b",
+        "name": "ClockYou",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "_exporter_id": "35978489"
+    },
+    "item": [
+        {
+            "name": "users",
+            "item": [
+                {
+                    "name": "register",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n    \"email\": \"david_miras@icloud.com\",\r\n    \"password\": \"12345678\",\r\n    \"firstName\": \"David\",\r\n    \"lastName\": \"Mirás Bellón\",\r\n    \"dni\": \"12894578A\",\r\n    \"phone\": \"987654321\"\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:8000/users/register",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8000",
+                            "path": ["users", "register"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "edit",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgxYWQ0NDZjLWFlMzQtNDY3NC1iMmM0LTU5NTUyOWY2ZjA0NCIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjUyOTA5OTYsImV4cCI6MTcyNTg5NTc5Nn0.BLolvNWgxrGylKjucDKIi9OljvlrasfivCrq7bREJI8",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n    \"firstName\": \"Pichotes\",\r\n    \"lastName\": \"De los Palotes\",\r\n    \"phone\": \"666202020\"\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:8000/user/350b1f40-06ef-4292-85d4-be7f36523141",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8000",
+                            "path": [
+                                "user",
+                                "350b1f40-06ef-4292-85d4-be7f36523141"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "registerEmployee(admin)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNjNzNjODZkLTlhYmMtNDU3ZS05ZjVkLTQ4MjI1ZjlkZGI0ZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNTU0MzYyMywiZXhwIjoxNzI2MTQ4NDIzfQ.hTSQPbEbptnzpsVMYdzrBE4VqVWjIsqv46PSMNHaFe8",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n    \"role\": \"employee\",\r\n    \"email\": \"employee@clockYou.com\",\r\n    \"password\": \"12345678\",\r\n    \"firstName\": \"Employee\",\r\n    \"lastName\": \"ClockYou\",\r\n    \"dni\": \"22371518A\",\r\n    \"phone\": \"690123587\",\r\n    \"job\": \"Peluquero\",\r\n    \"city\":\"Portugal\"\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:8000/users/admin/register",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8000",
+                            "path": ["users", "admin", "register"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "registerAdmin(admin)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNjNzNjODZkLTlhYmMtNDU3ZS05ZjVkLTQ4MjI1ZjlkZGI0ZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNTU0MzYyMywiZXhwIjoxNzI2MTQ4NDIzfQ.hTSQPbEbptnzpsVMYdzrBE4VqVWjIsqv46PSMNHaFe8",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n    \"role\": \"admin\",\r\n    \"email\": \"admin@clockYou.com\",\r\n    \"password\": \"12345678\",\r\n    \"firstName\": \"Admin\",\r\n    \"lastName\": \"ClockYou\",\r\n    \"dni\": \"12371538A\",\r\n    \"phone\": \"690123587\",\r\n    \"job\": \"Admin\",\r\n    \"city\":\"Portugal\"\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:8000/users/admin/register",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8000",
+                            "path": ["users", "admin", "register"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "loginClient",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"email\": \"david_miras@icloud.com\",\n    \"password\": \"12345678\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:8000/users/login",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8000",
+                            "path": ["users", "login"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "loginEmployee",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"email\": \"employee@clockYou.com\",\n    \"password\": \"12345678\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:8000/users/login",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8000",
+                            "path": ["users", "login"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "loginAdmin",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"email\": \"david_miras@hotmail.com\",\n    \"password\": \"12345678\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:8000/users/login",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8000",
+                            "path": ["users", "login"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "validate(client)",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:8000/users/validate/DdBhKTqwCSnxCLXdztz5DSm77EWLqN",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8000",
+                            "path": [
+                                "users",
+                                "validate",
+                                "DdBhKTqwCSnxCLXdztz5DSm77EWLqN"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "recoverPassword",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"email\": \"david_miras@icloud.com\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:8000/users/password/recover",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8000",
+                            "path": ["users", "password", "recover"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "changePassword",
+                    "request": {
+                        "method": "PATCH",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"recoverPasswordCode\": \"ke4LEhjl9i\",\n    \"newPassword\": \"12345678\" \n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:8000/users/password",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8000",
+                            "path": ["users", "password"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "editPassword",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgxYWQ0NDZjLWFlMzQtNDY3NC1iMmM0LTU5NTUyOWY2ZjA0NCIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjUyODU3NTYsImV4cCI6MTcyNTg5MDU1Nn0.yKq4ZYAyUujQICYml7dIE_KCa4Q5LU8wOYg8yv5Gkrc",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"actualPassword\": \"12345678\",\n    \"newPassword\": \"12345678\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:8000/user/password/81ad446c-ae34-4674-b2c4-595529f6f044",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8000",
+                            "path": [
+                                "user",
+                                "password",
+                                "81ad446c-ae34-4674-b2c4-595529f6f044"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "listFilter(admin)",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNjNzNjODZkLTlhYmMtNDU3ZS05ZjVkLTQ4MjI1ZjlkZGI0ZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNTU0MzYyMywiZXhwIjoxNzI2MTQ4NDIzfQ.hTSQPbEbptnzpsVMYdzrBE4VqVWjIsqv46PSMNHaFe8",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "http://localhost:8000/users",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8000",
+                            "path": ["users"],
+                            "query": [
+                                {
+                                    "key": "city",
+                                    "value": "portugal",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "job",
+                                    "value": "peluquero",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "active",
+                                    "value": "1",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "role",
+                                    "value": "employee",
+                                    "disabled": true
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "deleteUser",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdjYmQ1NTBlLTEzMDYtNDQyZS1iZjJmLWM4ZDMyNzQxM2FjNyIsInJvbGUiOiJlbXBsb3llZSIsImlhdCI6MTcyNTI5ODQ5MCwiZXhwIjoxNzI1OTAzMjkwfQ.2MJZuj6cuFB2MnHT2vb8UoJGZxDTWiFfjlVaVzllPdo",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "http://localhost:8000/user/7cbd550e-1306-442e-bf2f-c8d327413ac7",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8000",
+                            "path": [
+                                "user",
+                                "7cbd550e-1306-442e-bf2f-c8d327413ac7"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "editAvatar",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgxYWQ0NDZjLWFlMzQtNDY3NC1iMmM0LTU5NTUyOWY2ZjA0NCIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjUxMzAyODIsImV4cCI6MTcyNTczNTA4Mn0.XsVlf-0wYs8VfaKy51nPt20KQHJxpFOV9BRaW9GPSnk",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "avatar",
+                                    "type": "file",
+                                    "src": "/Users/david_miras/Desktop/IMG_6385.tiff"
+                                }
+                            ]
+                        },
+                        "url": {
+                            "raw": "http://localhost:8000/user/avatar/81ad446c-ae34-4674-b2c4-595529f6f044",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8000",
+                            "path": [
+                                "user",
+                                "avatar",
+                                "81ad446c-ae34-4674-b2c4-595529f6f044"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "profile",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNjNzNjODZkLTlhYmMtNDU3ZS05ZjVkLTQ4MjI1ZjlkZGI0ZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNTU0MzYyMywiZXhwIjoxNzI2MTQ4NDIzfQ.hTSQPbEbptnzpsVMYdzrBE4VqVWjIsqv46PSMNHaFe8",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "http://localhost:8000/user",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8000",
+                            "path": ["user"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "detailUser(admin)",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNjNzNjODZkLTlhYmMtNDU3ZS05ZjVkLTQ4MjI1ZjlkZGI0ZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNTU0MzYyMywiZXhwIjoxNzI2MTQ4NDIzfQ.hTSQPbEbptnzpsVMYdzrBE4VqVWjIsqv46PSMNHaFe8",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "http://localhost:8000/user/admin/6902bafa-3e8b-4448-8ac1-e53539ce4923",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8000",
+                            "path": [
+                                "user",
+                                "admin",
+                                "6902bafa-3e8b-4448-8ac1-e53539ce4923"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "typeOfServices",
+            "item": [
+                {
+                    "name": "new(admin)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNjNzNjODZkLTlhYmMtNDU3ZS05ZjVkLTQ4MjI1ZjlkZGI0ZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNTQ3Mzg5NSwiZXhwIjoxNzI2MDc4Njk1fQ.N_Kq6KxB290EYx7w4i6ceAWt76uhq9s2QxOZ1RzibKs",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "type",
+                                    "value": "Peluquería",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "description",
+                                    "value": "Corte y retoques de barba",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "city",
+                                    "value": "Coruña",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "price",
+                                    "value": "20",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "image",
+                                    "type": "file",
+                                    "src": "/Users/david_miras/Downloads/404.png"
+                                }
+                            ]
+                        },
+                        "url": {
+                            "raw": "http://localhost:8000/typeOfServices",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8000",
+                            "path": ["typeOfServices"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "list(filter)",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:8000/typeOfServices/",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8000",
+                            "path": ["typeOfServices", ""],
+                            "query": [
+                                {
+                                    "key": "price",
+                                    "value": "asc",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "city",
+                                    "value": "coruña",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "type",
+                                    "value": "Masajes",
+                                    "disabled": true
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "delete(admin)",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNjNzNjODZkLTlhYmMtNDU3ZS05ZjVkLTQ4MjI1ZjlkZGI0ZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNTU0MzYyMywiZXhwIjoxNzI2MTQ4NDIzfQ.hTSQPbEbptnzpsVMYdzrBE4VqVWjIsqv46PSMNHaFe8",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "urlencoded",
+                            "urlencoded": []
+                        },
+                        "url": {
+                            "raw": "http://localhost:8000/typeOfServices/b780902b-c994-408e-838d-b4c3746842a8",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8000",
+                            "path": [
+                                "typeOfServices",
+                                "b780902b-c994-408e-838d-b4c3746842a8"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "detail",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:8000/typeOfServices/033f37ce-3ac7-41ae-b7a0-99a559b880f9",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8000",
+                            "path": [
+                                "typeOfServices",
+                                "033f37ce-3ac7-41ae-b7a0-99a559b880f9"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "edit(admin)",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIyYTZhY2U5LWQyZTMtNDA2NC04M2JkLWNiMzIzMzcwMjA5OCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNDg5MzYyMSwiZXhwIjoxNzI1NDk4NDIxfQ.DN8H-ZNtwLyo_mOr0afbLuxpT8ADhJ-nWc9k1gdkHHw",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"description\": \"Hacemos todo lo que nos pida el cliente\",\n    \"price\":\"22.80\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:8000/typeOfServices/a50449a8-f0c2-4ec0-a596-8d872451b6bb",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8000",
+                            "path": [
+                                "typeOfServices",
+                                "a50449a8-f0c2-4ec0-a596-8d872451b6bb"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "editImage(admin)",
+                    "request": {
+                        "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiODdhNWQ2LTgyMjUtNDU2Ny1iYWI0LTg4OThmYTI3NGNiNSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNTAxNzY5MywiZXhwIjoxNzI1NjIyNDkzfQ.5EBgfDxG7n5hBKB2I2Dq4v9BwFm63nNGnBrbvD5k4fE",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "image",
+                                    "type": "file",
+                                    "src": "/Users/david_miras/Desktop/clases.jpg"
+                                }
+                            ]
+                        },
+                        "url": {
+                            "raw": "http://localhost:8000/typeOfServices/c002e352-fdbf-4e9e-89fb-6384ef1920bd",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8000",
+                            "path": [
+                                "typeOfServices",
+                                "c002e352-fdbf-4e9e-89fb-6384ef1920bd"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "services",
+            "item": [
+                {
+                    "name": "new(client)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFjMTBkYjVkLTQxOTQtNDdjOC1hMGE5LWFiZTA5YWNjNWQ0YiIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjU4OTA0MTQsImV4cCI6MTcyNjQ5NTIxNH0.LqqCPYiNOB9XTIN8YjIVsZ4EyY9hQfecElAlAjmiwGg",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"startDateTime\": \"2026-10-05T14:48:00\",\n    \"hours\": \"4\",\n    \"comments\": \"Para estudiante que está cursando 2º de la ESO\",\n    \"address\": \"Avío, 2, 3ªB\",\n    \"city\": \"Santiago de Compostela\",\n    \"postCode\": \"15705\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:8000/services/ef6bf110-bebb-4519-b238-95e506fc4bfc",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8000",
+                            "path": [
+                                "services",
+                                "ef6bf110-bebb-4519-b238-95e506fc4bfc"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "listFilter(admin)",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNjNzNjODZkLTlhYmMtNDU3ZS05ZjVkLTQ4MjI1ZjlkZGI0ZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNjE3Nzk4NSwiZXhwIjoxNzI2NzgyNzg1fQ.m-1BiUo-bSwxQcN8BvJLICE0q6WUOJ9-3Oo0Tqd6GFA",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "http://localhost:8000/services",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8000",
+                            "path": ["services"],
+                            "query": [
+                                {
+                                    "key": "status",
+                                    "value": "",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "type",
+                                    "value": null,
+                                    "disabled": true
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "detail",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "http://localhost:8000/services/6dc567cf-3eba-414f-9283-d6ee7aa9923d",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8000",
+                            "path": [
+                                "services",
+                                "6dc567cf-3eba-414f-9283-d6ee7aa9923d"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "delete(client)",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ5ZDZjZDU5LTYyODUtNDk1Ny04MzVkLTI0NzAxM2ZhMzU5NSIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjQ4NzYxODksImV4cCI6MTcyNTQ4MDk4OX0.89KkmubQ7lcRRCITihKVH3t0OXVs_bNaKbDhZec0Bcg",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "http://localhost:8000/services/7131ec0c-6b2b-4a84-bbd9-2045ccf296d6",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8000",
+                            "path": [
+                                "services",
+                                "7131ec0c-6b2b-4a84-bbd9-2045ccf296d6"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "edit(client)",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "{{client}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"comments\": \"Probandooooo\",\n    \"startDateTime\":\"2024-08-31 14:05:57\",\n    \"hours\":\"8\",\n    \"address\":\"probar\",\n    \"postCode\":\"12345\",\n    \"city\":\"asdsa\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:8000/services/507aa08f-2328-4a6c-9473-d7a6c57bdcf9",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8000",
+                            "path": [
+                                "services",
+                                "507aa08f-2328-4a6c-9473-d7a6c57bdcf9"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "listFilter(client)",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFjMTBkYjVkLTQxOTQtNDdjOC1hMGE5LWFiZTA5YWNjNWQ0YiIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjU4OTA0MTQsImV4cCI6MTcyNjQ5NTIxNH0.LqqCPYiNOB9XTIN8YjIVsZ4EyY9hQfecElAlAjmiwGg",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "http://localhost:8000/services/client/",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8000",
+                            "path": ["services", "client", ""],
+                            "query": [
+                                {
+                                    "key": "status",
+                                    "value": "pending",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "status",
+                                    "value": "accepted",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "status",
+                                    "value": "confirmed",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "status",
+                                    "value": "completed",
+                                    "disabled": true
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "listFilter(employee)",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "{{employee}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "http://localhost:8000/services/employee?status&type",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8000",
+                            "path": ["services", "employee"],
+                            "query": [
+                                {
+                                    "key": "status",
+                                    "value": null
+                                },
+                                {
+                                    "key": "type",
+                                    "value": null
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "validate(client)",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:8000/services/validate",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8000",
+                            "path": ["services", "validate"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "rating(client)",
+                    "request": {
+                        "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "{{client}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"rating\": 3\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:8000/services/01dbda7a-aa49-45e6-bce5-0e9892f4ace1",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8000",
+                            "path": [
+                                "services",
+                                "01dbda7a-aa49-45e6-bce5-0e9892f4ace1"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "shiftRecords",
+            "item": [
+                {
+                    "name": "new(admin)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "{{admin}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"employeeId\":\"62bb60b6-5b7c-4a84-9683-9b6820e35b38\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:8000/shiftrecords/507aa08f-2328-4a6c-9473-d7a6c57bdcf9",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8000",
+                            "path": [
+                                "shiftrecords",
+                                "507aa08f-2328-4a6c-9473-d7a6c57bdcf9"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "list(admin)",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNjNzNjODZkLTlhYmMtNDU3ZS05ZjVkLTQ4MjI1ZjlkZGI0ZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNzcwNjExMCwiZXhwIjoxNzI4MzEwOTEwfQ.L1IWfLBHCoA_6cN6E4d2AbWVdC3ecXR4WIZI5lSVgtQ",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "http://localhost:8000/shiftrecords?typeOfService=Clases Particulares&generateExcel=true",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8000",
+                            "path": ["shiftrecords"],
+                            "query": [
+                                {
+                                    "key": "typeOfService",
+                                    "value": "Clases Particulares"
+                                },
+                                {
+                                    "key": "employeeId",
+                                    "value": "8a798161-0e98-4887-9c63-2cc8cf0b7f40",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "startDate",
+                                    "value": "2024-09-20 12:00:00",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "endDate",
+                                    "value": "2024-09-21 12:00:00",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "generateExcel",
+                                    "value": "true"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "edit(Admin)",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "{{admin}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"clockIn\": \"2024-08-22 21:00\",\n    \"clockOut\": \"2025-08-23 21:40\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:8000/shiftrecords/edit/b7b1af7f-62aa-4db1-ad40-ba412c2db4ce",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8000",
+                            "path": [
+                                "shiftrecords",
+                                "edit",
+                                "b7b1af7f-62aa-4db1-ad40-ba412c2db4ce"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "detail",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "http://localhost:8000/shiftrecords/b7b1af7f-62aa-4db1-ad40-ba412c2db4ce",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8000",
+                            "path": [
+                                "shiftrecords",
+                                "b7b1af7f-62aa-4db1-ad40-ba412c2db4ce"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "clockIn(employee)",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "{{employee}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"clockIn\": \"2024-08-22 21:00\",\n    \"location\": \"\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:8000/shiftrecords/b7b1af7f-62aa-4db1-ad40-ba412c2db4ce",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8000",
+                            "path": [
+                                "shiftrecords",
+                                "b7b1af7f-62aa-4db1-ad40-ba412c2db4ce"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "clockOut(employee)",
+                    "request": {
+                        "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "{{employee}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"clockOut\": \"2025-08-23 21:40\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:8000/shiftrecords/b7b1af7f-62aa-4db1-ad40-ba412c2db4ce",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8000",
+                            "path": [
+                                "shiftrecords",
+                                "b7b1af7f-62aa-4db1-ad40-ba412c2db4ce"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "test",
+            "item": [
+                {
+                    "name": "notFound",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:8000/inventada",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8000",
+                            "path": ["inventada"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "uploads",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:8000/4bf2009b-44ec-47ed-b6c4-493ff62fe54d.jpg",
+                            "protocol": "http",
+                            "host": ["localhost"],
+                            "port": "8000",
+                            "path": ["4bf2009b-44ec-47ed-b6c4-493ff62fe54d.jpg"]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        }
+    ],
+    "variable": [
+        {
+            "key": "client",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNkNzA4NzVmLWNhNWMtNDViMy05M2YyLTgxODRkNzhhZjc2NyIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3MjQxMDgyMjYsImV4cCI6MTcyNDcxMzAyNn0.NCq-C84bWb20gSzjOSaTh8lk6y8-hXwBq_2BwcuLKJU"
+        },
+        {
+            "key": "admin",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ3ODFmZGUxLTA3YWUtNGI3OC04MmUwLTQyMDkwNGRkNjI1MiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyNDEwODQ5MCwiZXhwIjoxNzI0NzEzMjkwfQ.FRezvVXAMHmEMts1iKpetrt_n40JIaODDxtEIObpFmU"
+        },
+        {
+            "key": "employee",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM3ZDAzYjJhLWQyNzktNDQ4NC05NDRjLWVjMjlmZDQ1ZDBkZSIsInJvbGUiOiJlbXBsb3llZSIsImlhdCI6MTcyNDEwODYzMCwiZXhwIjoxNzI0NzEzNDMwfQ._LxDEZHZhcE90XaIM4iGzzBnmsV8l-6CWNpuF0ojJgQ"
+        }
+    ]
 }

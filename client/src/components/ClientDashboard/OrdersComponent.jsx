@@ -121,14 +121,15 @@ const OrdersComponent = () => {
             </form>
             <ul className='cards'>
                 {data.map((item) => {
-                    const time = new Date(item.dateTime).toLocaleTimeString(
-                        [],
-                        {
-                            hour: '2-digit',
-                            minute: '2-digit',
-                        }
-                    );
-                    const date = new Date(item.dateTime).toLocaleDateString();
+                    const time = new Date(
+                        item.startDateTime
+                    ).toLocaleTimeString([], {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                    });
+                    const date = new Date(
+                        item.startDateTime
+                    ).toLocaleDateString();
                     return (
                         <li key={item.id} className='relative'>
                             <div className='icon-container'>

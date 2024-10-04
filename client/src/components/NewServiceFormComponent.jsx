@@ -32,7 +32,7 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
 
     const valuesTimeInterval = timeIntervals();
 
-    const [dateTime, setDateTime] = useState(() => {
+    const [startDateTime, setDateTime] = useState(() => {
         const tomorrow = getTomorrowDate();
         return `${tomorrow}T${valuesTimeInterval[0]}`;
     });
@@ -54,7 +54,7 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
     const handleNewService = async (e) => {
         e.preventDefault();
         try {
-            const formattedDateTime = new Date(dateTime)
+            const formattedDateTime = new Date(startDateTime)
                 .toISOString()
                 .slice(0, 19)
                 .replace('T', ' ');
@@ -89,11 +89,11 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
                     required
                     type='date'
                     id='date'
-                    value={dateTime.split('T')[0]}
+                    value={startDateTime.split('T')[0]}
                     min={getTomorrowDate()}
                     onChange={(e) =>
                         setDateTime(
-                            e.target.value + 'T' + dateTime.split('T')[1]
+                            e.target.value + 'T' + startDateTime.split('T')[1]
                         )
                     }
                 />
@@ -101,10 +101,10 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
                 <select
                     required
                     id='time'
-                    value={dateTime.split('T')[1]}
+                    value={startDateTime.split('T')[1]}
                     onChange={(e) =>
                         setDateTime(
-                            dateTime.split('T')[0] + 'T' + e.target.value
+                            startDateTime.split('T')[0] + 'T' + e.target.value
                         )
                     }
                 >

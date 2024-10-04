@@ -69,8 +69,8 @@ const MyServicesComponent = () => {
 
     const calendarEvents = data.map((event) => ({
         title: event.type,
-        start: new Date(event.dateTime),
-        end: new Date(event.dateTime),
+        start: new Date(event.startDateTime),
+        end: new Date(event.startDateTime),
         allDay: false,
         serviceId: event.serviceId,
         status: event.status,
@@ -81,8 +81,8 @@ const MyServicesComponent = () => {
     //         navigator.geolocation.getCurrentPosition(
     //             (position) => {
     //                 const location = {
-    //                     lat: position.coords.latitude,
-    //                     lng: position.coords.longitude,
+    //                     lat: position.coords.latitudeIn,
+    //                     lng: position.coords.longitudeIn,
     //                 };
     //                 setInitialLocation(location);
     //                 setSelectedShiftRecordId(shiftRecordId);
@@ -164,9 +164,9 @@ const MyServicesComponent = () => {
                             ? new Date(item.clockOut).toLocaleString()
                             : null;
                         const date = new Date(
-                            item.dateTime
+                            item.startDateTime
                         ).toLocaleDateString();
-                        const time = new Date(item.dateTime).toLocaleTimeString(
+                        const time = new Date(item.startDateTime).toLocaleTimeString(
                             [],
                             {
                                 hour: '2-digit',
