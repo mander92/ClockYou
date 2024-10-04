@@ -106,12 +106,18 @@ export const fetchClientAllServicesServices = async (
     return body.data;
 };
 
-export const fetchEmployeeAllServicesServices = async (authToken) => {
-    const res = await fetch(`${VITE_API_URL}/services/employee`, {
-        headers: {
-            Authorization: authToken,
-        },
-    });
+export const fetchEmployeeAllServicesServices = async (
+    searchParamsToString,
+    authToken
+) => {
+    const res = await fetch(
+        `${VITE_API_URL}/services/employee?${searchParamsToString}`,
+        {
+            headers: {
+                Authorization: authToken,
+            },
+        }
+    );
 
     const body = await res.json();
 
