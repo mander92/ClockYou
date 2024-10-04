@@ -18,6 +18,7 @@ const MyServicesComponent = () => {
     // const [initialLocation, setInitialLocation] = useState(null);
     const [isVisible, setIsVisible] = useState(false);
 
+<<<<<<< HEAD
     const getServices = async () => {
         try {
             const data = await fetchEmployeeAllServicesServices(authToken);
@@ -35,6 +36,17 @@ const MyServicesComponent = () => {
                 id: 'error',
             });
         }
+=======
+    const handleHideClick = (e) => {
+        e.preventDefault();
+        setIsVisible(!isVisible);
+    };
+
+    const resetFilter = (e) => {
+        e.preventDefault();
+        setStatus('');
+        setType('');
+>>>>>>> tmp
     };
 
     const handleHideClick = (e) => {
@@ -77,6 +89,30 @@ const MyServicesComponent = () => {
             type: type,
         });
         const searchParamsToString = searchParams.toString();
+<<<<<<< HEAD
+=======
+        const getServices = async () => {
+            try {
+                const data = await fetchEmployeeAllServicesServices(
+                    searchParamsToString,
+                    authToken
+                );
+                const dataFiltered = data.filter((data) => {
+                    return (
+                        data.status === 'confirmed' ||
+                        data.status === 'completed' ||
+                        data.status === 'accepted'
+                    );
+                });
+                console.log(dataFiltered);
+                setData(dataFiltered);
+            } catch (error) {
+                toast.error(error.message, {
+                    id: 'error',
+                });
+            }
+        };
+>>>>>>> tmp
         getServices();
     }, [status, type]);
 
