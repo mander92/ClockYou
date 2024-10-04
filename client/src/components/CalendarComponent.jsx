@@ -7,7 +7,7 @@ dayjs.locale('es');
 
 const localizer = dayjsLocalizer(dayjs);
 
-const CalendarComponent = ({ events, onSelectEvent }) => {
+const CalendarComponent = ({ events, onSelectEvent, defaultView }) => {
     const eventStyle = (event) => {
         let backgroundColor = '';
         switch (event.status) {
@@ -80,6 +80,7 @@ const CalendarComponent = ({ events, onSelectEvent }) => {
                 onSelectEvent={onSelectEvent}
                 eventPropGetter={eventStyle}
                 dayPropGetter={dayStyle}
+                defaultView={defaultView}
             />
         </div>
     );

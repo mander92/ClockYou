@@ -269,6 +269,7 @@ const MyServicesComponent = () => {
             <CalendarComponent
                 events={calendarEvents}
                 onSelectEvent={handleSelectEvent}
+                defaultView='day'
             />
         </>
     );
