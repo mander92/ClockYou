@@ -36,7 +36,7 @@ const insertShiftRecordService = async (serviceId, employeeId) => {
     const [pedido] = await pool.query(
         `
         SELECT s.status,
-        t.type, t.city AS province, s.validationCode, s.totalPrice, s.dateTime, a.address, a.postCode, a.city, u.email
+        t.type, t.city AS province, s.validationCode, s.totalPrice, s.startDateTime, a.address, a.postCode, a.city, u.email
         FROM addresses a
         INNER JOIN services s
         ON a.id = s.addressId
@@ -49,7 +49,7 @@ const insertShiftRecordService = async (serviceId, employeeId) => {
         [serviceId]
     );
 
-    const localDateTime = new Date(pedido[0].dateTime).toLocaleString();
+    const localDateTime = new Date(pedido[0].startDateTime).toLocaleString();
 
     const emailSubject = `Su Servicio ha sido aceptado`;
 

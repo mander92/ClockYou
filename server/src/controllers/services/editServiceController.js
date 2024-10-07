@@ -5,7 +5,7 @@ import Joi from 'joi';
 const editServiceController = async (req, res, next) => {
     try {
         const schema = Joi.object().keys({
-            dateTime: Joi.date().min('now').required(),
+            startDateTime: Joi.date().min('now').required(),
             hours: Joi.number().min(1).max(8).required(),
             comments: Joi.string().max(250).required(),
             address: Joi.string().max(255).required(),
@@ -19,7 +19,8 @@ const editServiceController = async (req, res, next) => {
 
         const { serviceId } = req.params;
 
-        const { address, postCode, city, comments, dateTime, hours } = req.body;
+        const { address, postCode, city, comments, startDateTime, hours } =
+            req.body;
 
         const data = await updateServiceByIdService(
             serviceId,
@@ -27,7 +28,7 @@ const editServiceController = async (req, res, next) => {
             postCode,
             city,
             comments,
-            dateTime,
+            startDateTime,
             hours
         );
 

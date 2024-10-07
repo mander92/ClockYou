@@ -1,7 +1,7 @@
 import getPool from '../../db/getPool.js';
 import generateErrorUtil from '../../utils/generateErrorUtil.js';
 
-const endShiftRecordService = async (shiftRecordId, dateTime) => {
+const endShiftRecordService = async (shiftRecordId, startDateTime) => {
     const pool = await getPool();
 
     const [serviceId] = await pool.query(
@@ -35,7 +35,7 @@ const endShiftRecordService = async (shiftRecordId, dateTime) => {
         `
         UPDATE shiftRecords SET clockOut = ? WHERE id = ?
         `,
-        [dateTime, shiftRecordId]
+        [startDateTime, shiftRecordId]
     );
 
     await pool.query(

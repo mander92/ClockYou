@@ -13,7 +13,7 @@ const selectShiftRecordsService = async (
 
     let sqlQueryDetails = `
         SELECT 
-        s.id, s.employeeId, u.firstName, u.lastName, s.clockIn, s.clockOut, se.rating, se.status, se.hours, se.dateTime, a.city, a.address, t.type, t.city AS province,
+        s.id, s.employeeId, u.firstName, u.lastName, s.clockIn, s.clockOut, se.rating, se.status, se.hours, se.startDateTime, a.city, a.address, t.type, t.city AS province,
         TIMESTAMPDIFF(HOUR, s.clockIn, s.clockOut) AS hoursWorked,
         MOD(TIMESTAMPDIFF(MINUTE, s.clockIn, s.clockOut), 60) AS minutesWorked
         FROM shiftRecords s 
@@ -41,7 +41,7 @@ const selectShiftRecordsService = async (
     }
 
     if (startDate && endDate) {
-        sqlQueryDetails += ' AND se.dateTime BETWEEN ? AND ?';
+        sqlQueryDetails += ' AND se.startDateTime BETWEEN ? AND ?';
         sqlValues.push(startDate, endDate);
     }
 
@@ -77,7 +77,7 @@ const selectShiftRecordsService = async (
     }
 
     if (startDate && endDate) {
-        sqlQueryTotal += ' AND se.dateTime BETWEEN ? AND ?';
+        sqlQueryTotal += ' AND se.startDateTime BETWEEN ? AND ?';
         sqlValues.push(startDate, endDate);
     }
 

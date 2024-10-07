@@ -154,8 +154,8 @@ const ShiftsComponent = () => {
                     const clockOut = item.clockOut
                         ? new Date(item.clockOut).toLocaleString()
                         : null;
-                    const dateTime = item.clockIn
-                        ? new Date(item.dateTime).toLocaleString()
+                    const startDateTime = item.clockIn
+                        ? new Date(item.startDateTime).toLocaleString()
                         : null;
 
                     return (
@@ -174,9 +174,9 @@ const ShiftsComponent = () => {
                                 En {item.address}, {item.city}
                             </p>
                             <p>Horas: {item.hours}</p>
-                            {dateTime && (
+                            {startDateTime && (
                                 <p className='font-extrabold'>
-                                    Previsto: {dateTime}
+                                    Previsto: {startDateTime}
                                 </p>
                             )}
                             {clockIn && (

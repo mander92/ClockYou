@@ -8,7 +8,7 @@ import sendMailUtils from '../../utils/sendMailUtil.js';
 const insertServiceService = async (
     typeOfServiceId,
     userId,
-    dateTime,
+    startDateTime,
     hours,
     comments,
     address,
@@ -36,9 +36,9 @@ const insertServiceService = async (
 
     const [existService] = await pool.query(
         `
-        SELECT id FROM services WHERE typeOfServicesId = ? AND clientId = ? AND dateTime = ? AND hours = ? AND deletedAt IS NULL
+        SELECT id FROM services WHERE typeOfServicesId = ? AND clientId = ? AND startDateTime = ? AND hours = ? AND deletedAt IS NULL
         `,
-        [typeOfServiceId, userId, dateTime, hours]
+        [typeOfServiceId, userId, startDateTime, hours]
     );
 
     if (existAddress.length && existService.length)
@@ -71,11 +71,11 @@ const insertServiceService = async (
 
     await pool.query(
         `
-        INSERT INTO services(id, dateTime, hours, comments, validationCode, clientId, addressId, typeOfServicesId, totalPrice) VALUES (?,?,?,?,?,?,?,?,?)
+        INSERT INTO services(id, startDateTime, hours, comments, validationCode, clientId, addressId, typeOfServicesId, totalPrice) VALUES (?,?,?,?,?,?,?,?,?)
         `,
         [
             serviceId,
-            dateTime,
+            startDateTime,
             hours,
             comments,
             validationCode,
@@ -89,7 +89,7 @@ const insertServiceService = async (
     const [data] = await pool.query(
         `
         SELECT s.status,
-        t.type, t.city AS province, t.price, s.hours, s.totalPrice, s.dateTime, a.address, a.postCode, a.city, s.comments, u.email, u.firstName, u.lastName, u.phone
+        t.type, t.city AS province, t.price, s.hours, s.totalPrice, s.startDateTime, a.address, a.postCode, a.city, s.comments, u.email, u.firstName, u.lastName, u.phone
         FROM addresses a
         INNER JOIN services s
         ON a.id = s.addressId
@@ -102,7 +102,7 @@ const insertServiceService = async (
         [userId, serviceId]
     );
 
-    const utcDateTime = new Date(data[0].dateTime);
+    const utcDateTime = new Date(data[0].startDateTime);
 
     const localDateTime = new Date(utcDateTime).toLocaleString();
 

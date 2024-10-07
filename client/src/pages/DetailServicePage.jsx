@@ -24,8 +24,8 @@ const DetailServicePage = () => {
                 setData(data);
                 setLocation({
                     currentLocation: {
-                        lat: data.latitude,
-                        lng: data.longitude,
+                        lat: data.latitudeIn,
+                        lng: data.longitudeIn,
                     },
                 });
             } catch (error) {
@@ -35,11 +35,11 @@ const DetailServicePage = () => {
         DetailService();
     }, [serviceId, authToken]);
 
-    const time = new Date(data.dateTime).toLocaleTimeString([], {
+    const time = new Date(data.startDateTime).toLocaleTimeString([], {
         hour: '2-digit',
         minute: '2-digit',
     });
-    const date = new Date(data.dateTime).toLocaleDateString();
+    const date = new Date(data.startDateTime).toLocaleDateString();
 
     const clockIn = new Date(data.clockIn).toLocaleString();
     const clockOut = new Date(data.clockOut).toLocaleString();

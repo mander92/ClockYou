@@ -67,8 +67,10 @@ Clases Particulares, Entrenamientos Personales, Cuidado de Mascotas, Limpiezas A
 | Campo           | Tipo         | Descripción                                                             |
 | --------------- | ------------ | ----------------------------------------------------------------------- |
 | id              | CHAR(36)     | Identificador único del servicio                                        |
-| dateTime        | TIMESTAMP    | Fecha y hora de inicio del servicio                                     |
+| startDateTime   | TIMESTAMP    | Fecha y hora de inicio del servicio                                     |
+| endDateTime     | TIMESTAMP    | Fecha y hora de fin del servicio                                        |
 | hours           | INT UNSIGNED | Horas a contratar por el usuario, valores entre 1 y 8                   |
+| numberOfPeople  | INT UNSIGNED | Número de personas necesarias                                           |
 | rating          | INT UNSIGNED | Valoración del cliente sobre el servicio realizado, valores entre 1 y 5 |
 | totalPrice      | DECIMAL      | Precio total del servicio contratado por el cliente                     |
 | comments        | VARCHAR(500) | Comentarios adicionales del servicio a contratar                        |
@@ -83,18 +85,20 @@ Clases Particulares, Entrenamientos Personales, Cuidado de Mascotas, Limpiezas A
 
 ### shiftRecords
 
-| Campo      | Tipo          | Descripción                                        |
-| ---------- | ------------- | -------------------------------------------------- |
-| id         | CHAR(36)      | Identificador único del registro horario           |
-| clockIn    | TIMESTAMP     | Empleado registra hora de inicio del servicio      |
-| clockOut   | TIMESTAMP     | Empleado registra hora de fin del servicio         |
-| latitude   | DECIMAL(10,8) | Latitud del servicio                               |
-| longitude  | DECIMAL(11,8) | Longitud del servicio                              |
-| serviceId  | CHAR(36)      | Identificador del servicio contratado              |
-| employeeId | CHAR(36)      | Identificador del empleado que realiza el servicio |
-| createdAt  | TIMESTAMP     | Fecha y hora de creación                           |
-| modifiedAt | TIMESTAMP     | Fecha y hora de la última modificación             |
-| deletedAt  | TIMESTAMP     | Fecha y hora del borrado lógico                    |
+| Campo        | Tipo          | Descripción                                        |
+| ------------ | ------------- | -------------------------------------------------- |
+| id           | CHAR(36)      | Identificador único del registro horario           |
+| clockIn      | TIMESTAMP     | Empleado registra hora de inicio del servicio      |
+| clockOut     | TIMESTAMP     | Empleado registra hora de fin del servicio         |
+| latitudeIn   | DECIMAL(10,8) | Latitud inicial del servicio                       |
+| longitudeIn  | DECIMAL(11,8) | Longitud inicial del servicio                      |
+| latitudeOut  | DECIMAL(10,8) | Latitud final del servicio                         |
+| longitudeOut | DECIMAL(11,8) | Longitud final del servicio                        |
+| serviceId    | CHAR(36)      | Identificador del servicio contratado              |
+| employeeId   | CHAR(36)      | Identificador del empleado que realiza el servicio |
+| createdAt    | TIMESTAMP     | Fecha y hora de creación                           |
+| modifiedAt   | TIMESTAMP     | Fecha y hora de la última modificación             |
+| deletedAt    | TIMESTAMP     | Fecha y hora del borrado lógico                    |
 
 ## Endpoints del usuario
 
