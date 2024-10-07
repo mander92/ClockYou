@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import {
     fetchClockInShiftRecordServices,
@@ -6,18 +6,11 @@ import {
 } from '../../services/shiftRecordServices';
 import toast from 'react-hot-toast';
 import MapComponent from '../MapComponent';
-import Modal from 'react-modal';
 
-const ShiftRecordComponent = ({
-    shiftRecordId,
-    onRequestClose,
-    initialLocation,
-    onShiftRecordSuccess,
-}) => {
+const ShiftRecordComponent = ({ shiftRecordId }) => {
     const { authToken } = useContext(AuthContext);
-
     const [location, setLocation] = useState({
-        currentLocation: initialLocation || { lat: '', lng: '' },
+        currentLocation: { lat: '', lng: '' },
     });
 
     const getLocation = () => {
@@ -53,8 +46,6 @@ const ShiftRecordComponent = ({
             toast.success(data.message, {
                 id: 'ok',
             });
-            onRequestClose();
-            onShiftRecordSuccess();
         } catch (error) {
             toast.error(error.message, {
                 id: 'error',
@@ -75,8 +66,6 @@ const ShiftRecordComponent = ({
             toast.success(data.message, {
                 id: 'ok',
             });
-            onRequestClose();
-            onShiftRecordSuccess();
         } catch (error) {
             toast.error(error.message, {
                 id: 'error',
@@ -102,27 +91,4 @@ const ShiftRecordComponent = ({
     );
 };
 
-const ShiftRecordModal = ({
-    isOpen,
-    onRequestClose,
-    shiftRecordId,
-    initialLocation,
-    onShiftRecordSuccess,
-}) => {
-    return (
-        <Modal
-            isOpen={isOpen}
-            onRequestClose={onRequestClose}
-            className='modal-content'
-        >
-            <ShiftRecordComponent
-                shiftRecordId={shiftRecordId}
-                onRequestClose={onRequestClose}
-                initialLocation={initialLocation}
-                onShiftRecordSuccess={onShiftRecordSuccess}
-            />
-        </Modal>
-    );
-};
-
-export default ShiftRecordModal;
+export default ShiftRecordComponent;

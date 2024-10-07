@@ -19,6 +19,7 @@ import EditShiftRecordComponent from './components/AdminDashboard/Shifts/EditShi
 import RatingServiceComponent from './components/ClientDashboard/RatingServiceComponent.jsx';
 import ShiftRecordComponent from './components/EmployeeDashBoard/ShiftRecordComponent.jsx';
 import ScrollTopComponent from './components/ScrollTopComponent.jsx';
+import DetailPageEmployee from './pages/DetailPageEmployee.jsx';
 
 const App = () => {
     return (
@@ -50,6 +51,11 @@ const App = () => {
                     <Route
                         path='/services/:serviceId'
                         element={<DetailServicePage />}
+                    />
+
+                    <Route
+                        path='/services/employee/:serviceId'
+                        element={<DetailPageEmployee />}
                     />
 
                     <Route

@@ -60,7 +60,7 @@ const MyServicesComponent = () => {
     }, [status, type, authToken]);
 
     const handleSelectEvent = (event) => {
-        navigate(`/services/${event.serviceId}`);
+        navigate(`/services/employee/${event.serviceId}`);
     };
 
     const typeNoRepeated = [...new Set(data.map((item) => item.type))].sort(
@@ -75,41 +75,6 @@ const MyServicesComponent = () => {
         serviceId: event.serviceId,
         status: event.status,
     }));
-
-    // const openModal = (shiftRecordId) => {
-    //     if (navigator.geolocation) {
-    //         navigator.geolocation.getCurrentPosition(
-    //             (position) => {
-    //                 const location = {
-    //                     lat: position.coords.latitude,
-    //                     lng: position.coords.longitude,
-    //                 };
-    //                 setInitialLocation(location);
-    //                 setSelectedShiftRecordId(shiftRecordId);
-    //                 setModalIsOpen(true);
-    //             },
-    //             (error) => {
-    //                 console.error('Error obteniendo la ubicación: ', error);
-    //                 setInitialLocation(null);
-    //                 setSelectedShiftRecordId(shiftRecordId);
-    //                 setModalIsOpen(true);
-    //             }
-    //         );
-    //     } else {
-    //         console.error(
-    //             'Geolocalización no es soportada por este navegador.'
-    //         );
-    //         setInitialLocation(null);
-    //         setSelectedShiftRecordId(shiftRecordId);
-    //         setModalIsOpen(true);
-    //     }
-    // };
-
-    // const closeModal = () => {
-    //     setModalIsOpen(false);
-    //     setSelectedShiftRecordId(null);
-    //     setInitialLocation(null);
-    // };
 
     return (
         <>
