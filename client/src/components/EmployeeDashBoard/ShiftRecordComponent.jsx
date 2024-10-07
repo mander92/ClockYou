@@ -13,6 +13,26 @@ const ShiftRecordComponent = ({ shiftRecordId }) => {
         currentLocation: { lat: '', lng: '' },
     });
 
+    useEffect(() => {
+        const getLocationMyCurrentLocation = () => {
+            return new Promise((resolve, reject) => {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(
+                        (position) =>
+                            resolve({
+                                lat: position.coords.latitudeIn,
+                                lng: position.coords.longitudeIn,
+                            }),
+                        (error) => reject(error)
+                    );
+                } else {
+                    reject(new Error('Geolocalización no soportada'));
+                }
+            });
+        };
+        getLocationMyCurrentLocation();
+    });
+
     const getLocation = () => {
         return new Promise((resolve, reject) => {
             if (navigator.geolocation) {
