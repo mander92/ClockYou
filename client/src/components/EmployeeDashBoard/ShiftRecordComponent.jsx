@@ -9,53 +9,28 @@ import MapComponent from '../MapComponent';
 
 const ShiftRecordComponent = ({ shiftRecordId }) => {
     const { authToken } = useContext(AuthContext);
-    const [location, setLocation] = useState({
-        currentLocation: { lat: '', lng: '' },
-    });
+    const [location, setLocation] = useState({});
 
     useEffect(() => {
-        const getLocationMyCurrentLocation = () => {
-            return new Promise((resolve, reject) => {
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(
-                        (position) =>
-                            resolve({
-                                lat: position.coords.latitudeIn,
-                                lng: position.coords.longitudeIn,
-                            }),
-                        (error) => reject(error)
-                    );
-                } else {
-                    reject(new Error('Geolocalización no soportada'));
-                }
-            });
-        };
-        getLocationMyCurrentLocation();
-    });
-
-    const getLocation = () => {
-        return new Promise((resolve, reject) => {
+        const getLocation = async () => {
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    (position) =>
-                        resolve({
-                            lat: position.coords.latitudeIn,
-                            lng: position.coords.longitudeIn,
-                        }),
-                    (error) => reject(error)
-                );
-            } else {
-                reject(new Error('Geolocalización no soportada'));
+                navigator.geolocation.getCurrentPosition((position) => {
+                    return setLocation({
+                        currentLocation: {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude,
+                        },
+                    });
+                });
             }
-        });
-    };
+        };
+        getLocation();
+    }, []);
 
     const getStart = async (e) => {
         e.preventDefault();
         const clockIn = new Date();
         try {
-            const location = await getLocation();
-            setLocation({ currentLocation: location });
             const data = await fetchClockInShiftRecordServices(
                 authToken,
                 clockIn,
@@ -80,6 +55,7 @@ const ShiftRecordComponent = ({ shiftRecordId }) => {
             const data = await fetchClockOutShiftRecordServices(
                 authToken,
                 clockOut,
+                location,
                 shiftRecordId
             );
 

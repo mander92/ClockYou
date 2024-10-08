@@ -4,7 +4,6 @@ import { AuthContext } from '../context/AuthContext';
 import { fetchDetailServiceServices } from '../services/serviceServices.js';
 import ListEmployeeComponent from '../components/AdminDashboard/Services/ListEmployeeComponent.jsx';
 import toast from 'react-hot-toast';
-import MapComponent from '../components/MapComponent.jsx';
 import ShiftRecordComponent from '../components/EmployeeDashBoard/ShiftRecordComponent.jsx';
 
 const DetailPageEmployee = () => {
@@ -76,35 +75,6 @@ const DetailPageEmployee = () => {
                 </fieldset>
             </form>
             <ShiftRecordComponent shiftRecordId={data.id} />
-
-            {data.status === 'pending' && (
-                <ListEmployeeComponent serviceId={serviceId} />
-            )}
-            {data.status === 'completed' && (
-                <form className='form-filters mx-auto'>
-                    <fieldset>
-                        <legend>Empleado</legend>
-                        <p className='mt-2'>
-                            {data.firstNameEmployee} {data.lastNameEmployee}
-                        </p>
-                        <p className='font-extrabold'>Entrada: {clockIn}</p>
-                        <p className='font-extrabold'>Salida: {clockOut}</p>
-                        {(data.hoursWorked || data.minutesWorked !== null) && (
-                            <p>
-                                Total: {data.hoursWorked} Horas{' '}
-                                {data.minutesWorked} Minutos
-                            </p>
-                        )}
-                        {location.currentLocation ? (
-                            <div>
-                                <MapComponent location={location} />
-                            </div>
-                        ) : (
-                            <span>Cargando el mapa</span>
-                        )}
-                    </fieldset>
-                </form>
-            )}
         </section>
     );
 };

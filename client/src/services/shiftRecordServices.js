@@ -77,6 +77,7 @@ export const fetchClockInShiftRecordServices = async (
 export const fetchClockOutShiftRecordServices = async (
     authToken,
     clockOut,
+    location,
     shiftRecordId
 ) => {
     const res = await fetch(`${VITE_API_URL}/shiftrecords/${shiftRecordId}`, {
@@ -86,6 +87,7 @@ export const fetchClockOutShiftRecordServices = async (
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+            location,
             clockOut,
         }),
     });

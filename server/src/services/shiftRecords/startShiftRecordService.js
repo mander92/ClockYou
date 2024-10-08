@@ -7,7 +7,6 @@ const startShiftRecordService = async (
     startDateTime
 ) => {
     const pool = await getPool();
-
     const [verify] = await pool.query(
         `
         SELECT clockIn FROM shiftRecords WHERE id = ?
@@ -22,7 +21,12 @@ const startShiftRecordService = async (
         `
         UPDATE shiftRecords SET clockIn = ?, latitudeIn = ?, longitudeIn = ? WHERE id = ?
         `,
-        [startDateTime, location.lat, location.lng, shiftRecordId]
+        [
+            startDateTime,
+            location.currentLocation.lat,
+            location.currentLocation.lng,
+            shiftRecordId,
+        ]
     );
 };
 
