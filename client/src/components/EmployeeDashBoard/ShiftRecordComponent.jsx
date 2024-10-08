@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import {
     fetchClockInShiftRecordServices,
@@ -7,28 +7,28 @@ import {
 import toast from 'react-hot-toast';
 import MapComponent from '../MapComponent';
 
-const ShiftRecordComponent = ({ shiftRecordId }) => {
+const ShiftRecordComponent = ({ shiftRecordId, saveLocation }) => {
     const { authToken } = useContext(AuthContext);
     const [location, setLocation] = useState({});
+    const [bandera, setBandera] = useState(false);
 
-    useEffect(() => {
-        const getLocation = async () => {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition((position) => {
-                    return setLocation({
-                        currentLocation: {
-                            lat: position.coords.latitude,
-                            lng: position.coords.longitude,
-                        },
-                    });
+    const getActualLocation = async () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                return setLocation({
+                    currentLocation: [
+                        position.coords.latitude,
+                        position.coords.longitude,
+                    ],
                 });
-            }
-        };
-        getLocation();
-    }, []);
+            });
+        }
+    };
 
     const getStart = async (e) => {
         e.preventDefault();
+        await getActualLocation();
+        setBandera(true);
         const clockIn = new Date();
         try {
             const data = await fetchClockInShiftRecordServices(
@@ -50,6 +50,8 @@ const ShiftRecordComponent = ({ shiftRecordId }) => {
 
     const getEnd = async (e) => {
         e.preventDefault();
+        await getActualLocation();
+        setBandera(true);
         const clockOut = new Date();
         try {
             const data = await fetchClockOutShiftRecordServices(
@@ -78,10 +80,11 @@ const ShiftRecordComponent = ({ shiftRecordId }) => {
                 >
                     Registrar Entrada
                 </button>
-                <MapComponent location={location} />
+
                 <button className='mt-2 text-white bg-red-600' onClick={getEnd}>
                     Registrar Salida
                 </button>
+                {bandera ? <MapComponent location={location} /> : ''}
             </fieldset>
         </form>
     );

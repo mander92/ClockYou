@@ -41,8 +41,8 @@ const endShiftRecordService = async (
         `,
         [
             startDateTime,
-            location.currentLocation.lat,
-            location.currentLocation.lng,
+            location.currentLocation[0],
+            location.currentLocation[1],
             shiftRecordId,
         ]
     );

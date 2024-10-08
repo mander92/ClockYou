@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { fetchDetailServiceServices } from '../services/serviceServices.js';
-import ListEmployeeComponent from '../components/AdminDashboard/Services/ListEmployeeComponent.jsx';
+
 import toast from 'react-hot-toast';
 import ShiftRecordComponent from '../components/EmployeeDashBoard/ShiftRecordComponent.jsx';
 
@@ -12,6 +12,7 @@ const DetailPageEmployee = () => {
 
     const [data, setData] = useState([]);
     const [location, setLocation] = useState({});
+    console.log(location);
 
     useEffect(() => {
         const DetailService = async () => {
@@ -23,10 +24,7 @@ const DetailPageEmployee = () => {
 
                 setData(data);
                 setLocation({
-                    currentLocation: {
-                        lat: data.latitude,
-                        lng: data.longitude,
-                    },
+                    currentLocation: [data.latitudeIn, data.longitudeIn],
                 });
             } catch (error) {
                 toast.error(error.message, { id: 'error' });
@@ -74,7 +72,10 @@ const DetailPageEmployee = () => {
                     <p>{data.phone}</p>
                 </fieldset>
             </form>
-            <ShiftRecordComponent shiftRecordId={data.id} />
+            <ShiftRecordComponent
+                saveLocation={location}
+                shiftRecordId={data.id}
+            />
         </section>
     );
 };
