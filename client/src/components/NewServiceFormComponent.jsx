@@ -262,9 +262,9 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
                 </select>
 
                 <p className='text-left text-sm mt-5 instruccion'>
-                    Si terminaste de definir las fechas que necesitabas, haz
-                    click en "Solicitar". Si quieres añadir más fechas para tu
-                    servicio haz click en "Añadir fechas"
+                    Si terminaste de definir las fechas en las que necesitabas
+                    el servico, haz click en "Solicitar". Si quieres añadir más
+                    fechas para tu servicio haz click en "Añadir fechas"
                 </p>
 
                 <button
