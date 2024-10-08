@@ -12,7 +12,6 @@ const DetailPageEmployee = () => {
 
     const [data, setData] = useState([]);
     const [location, setLocation] = useState({});
-    console.log(location);
 
     useEffect(() => {
         const DetailService = async () => {
@@ -72,10 +71,8 @@ const DetailPageEmployee = () => {
                     <p>{data.phone}</p>
                 </fieldset>
             </form>
-            <ShiftRecordComponent
-                saveLocation={location}
-                shiftRecordId={data.id}
-            />
+
+            <ShiftRecordComponent shiftRecordId={data.id} location={location} />
         </section>
     );
 };

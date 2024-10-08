@@ -39,12 +39,7 @@ const endShiftRecordService = async (
         `
         UPDATE shiftRecords SET clockOut = ?, latitudeOut = ?, longitudeOut = ? WHERE id = ?
         `,
-        [
-            startDateTime,
-            location.currentLocation[0],
-            location.currentLocation[1],
-            shiftRecordId,
-        ]
+        [startDateTime, location[0], location[1], shiftRecordId]
     );
 
     await pool.query(

@@ -6,8 +6,8 @@ const startShiftRecordService = async (
     location,
     startDateTime
 ) => {
-    const latitudeIn = location.currentLocation[0];
-    const longitudeIn = location.currentLocation[1];
+    const latitudeIn = location[0];
+    const longitudeIn = location[1];
     const pool = await getPool();
     const [verify] = await pool.query(
         `
