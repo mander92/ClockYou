@@ -71,7 +71,6 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
 
     const handleNewService = async (e) => {
         e.preventDefault();
-        alert('CLICK EN "SOLICITAR"');
         try {
             const formattedDateTime = new Date(startDateTime)
                 .toISOString()
@@ -103,7 +102,6 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
 
     const handleNewDate = async (e) => {
         e.preventDefault();
-        alert('CLICK EN "AÑADIR FECHAS"');
         try {
             const formattedDateTime = new Date(startDateTime)
                 .toISOString()
