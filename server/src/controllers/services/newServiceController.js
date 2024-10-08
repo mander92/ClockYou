@@ -8,6 +8,7 @@ const newServiceController = async (req, res, next) => {
         const schema = Joi.object().keys({
             startDateTime: Joi.date().min('now').required(),
             hours: Joi.number().min(1).max(8).required(),
+            numberOfPeople: Joi.number().min(1).max(8).required(),
             comments: Joi.string().max(250).required(),
             address: Joi.string().max(255).required(),
             city: Joi.string().max(40).required(),
@@ -22,14 +23,22 @@ const newServiceController = async (req, res, next) => {
 
         const { typeOfServiceId } = req.params;
 
-        const { startDateTime, hours, comments, address, city, postCode } =
-            req.body;
+        const {
+            startDateTime,
+            hours,
+            numberOfPeople,
+            comments,
+            address,
+            city,
+            postCode,
+        } = req.body;
 
         const data = await insertServiceService(
             typeOfServiceId,
             userId,
             startDateTime,
             hours,
+            numberOfPeople,
             comments,
             address,
             city,

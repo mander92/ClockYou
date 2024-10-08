@@ -56,13 +56,14 @@ const DashboardPage = () => {
         <>
             <AvatarComponent />
             <section className='manager-tabs'>
-                {renderNavLink(
-                    'ProfileComponent',
-                    'Mi Perfil',
-                    activeSection === 'ProfileComponent' && 'activeSelectedLink'
-                )}
                 {userRole === 'admin' && (
                     <>
+                        {renderNavLink(
+                            'ProfileComponent',
+                            'Mi Perfil',
+                            activeSection === 'ProfileComponent' &&
+                                'activeSelectedLink'
+                        )}
                         {renderNavLink(
                             'UsersComponent',
                             'Usuarios',
@@ -89,20 +90,39 @@ const DashboardPage = () => {
                         )}
                     </>
                 )}
-                {userRole === 'client' &&
-                    renderNavLink(
-                        'OrdersComponent',
-                        'Pedidos',
-                        activeSection === 'OrdersComponent' &&
-                            'activeSelectedLink less-than-4-buttons'
-                    )}
-                {userRole === 'employee' &&
-                    renderNavLink(
-                        'MyServicesComponent',
-                        'Servicios',
-                        activeSection === 'MyServicesComponent' &&
-                            'activeSelectedLink less-than-4-buttons'
-                    )}
+                {userRole === 'client' && (
+                    <>
+                        {renderNavLink(
+                            'ProfileComponent',
+                            'Mi Perfil',
+                            activeSection === 'ProfileComponent' &&
+                                'activeSelectedLink less-than-4-buttons'
+                        )}
+                        {renderNavLink(
+                            'OrdersComponent',
+                            'Pedidos',
+                            activeSection === 'OrdersComponent' &&
+                                'activeSelectedLink less-than-4-buttons'
+                        )}
+                    </>
+                )}
+
+                {userRole === 'employee' && (
+                    <>
+                        {renderNavLink(
+                            'ProfileComponent',
+                            'Mi Perfil',
+                            activeSection === 'ProfileComponent' &&
+                                'activeSelectedLink'
+                        )}
+                        {renderNavLink(
+                            'OrdersComponent',
+                            'Pedidos',
+                            activeSection === 'OrdersComponent' &&
+                                'activeSelectedLink less-than-4-buttons'
+                        )}
+                    </>
+                )}
             </section>
             {sectionComponents[activeSection]}
         </>

@@ -10,6 +10,7 @@ const insertServiceService = async (
     userId,
     startDateTime,
     hours,
+    numberOfPeople,
     comments,
     address,
     city,
@@ -54,7 +55,7 @@ const insertServiceService = async (
         [typeOfServiceId]
     );
 
-    const resultPrice = price[0].price * hours;
+    const resultPrice = price[0].price * hours * numberOfPeople;
 
     const addressId = uuid();
 
@@ -71,12 +72,13 @@ const insertServiceService = async (
 
     await pool.query(
         `
-        INSERT INTO services(id, startDateTime, hours, comments, validationCode, clientId, addressId, typeOfServicesId, totalPrice) VALUES (?,?,?,?,?,?,?,?,?)
+        INSERT INTO services(id, startDateTime, hours, numberOfPeople, comments, validationCode, clientId, addressId, typeOfServicesId, totalPrice) VALUES (?,?,?,?,?,?,?,?,?,?)
         `,
         [
             serviceId,
             startDateTime,
             hours,
+            numberOfPeople,
             comments,
             validationCode,
             userId,

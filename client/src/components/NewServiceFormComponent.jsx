@@ -32,7 +32,7 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
 
     const valuesTimeInterval = timeIntervals();
 
-    const [startDateTime, setDateTime] = useState(() => {
+    const [startDateTime, setStartDateTime] = useState(() => {
         const tomorrow = getTomorrowDate();
         return `${tomorrow}T${valuesTimeInterval[0]}`;
     });
@@ -42,17 +42,35 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
     const [postCode, setPostCode] = useState('');
     const [city, setCity] = useState('');
     const [comments, setComments] = useState('');
+    const [withNavigate, setWithNavigate] = useState(false);
+    const [numberOfPeople, setNumberOfPeople] = useState(1);
 
     const resetInputs = (e) => {
         e.preventDefault();
+        setStartDateTime(() => {
+            const tomorrow = getTomorrowDate();
+            return `${tomorrow}T${valuesTimeInterval[0]}`;
+        });
         setHours(1);
+        setNumberOfPeople(1);
         setAddress('');
         setCity('');
         setComments('');
     };
 
+    const resetInputsDates = (e) => {
+        e.preventDefault();
+        setStartDateTime(() => {
+            const tomorrow = getTomorrowDate();
+            return `${tomorrow}T${valuesTimeInterval[0]}`;
+        });
+        setHours(1);
+        setNumberOfPeople(1);
+    };
+
     const handleNewService = async (e) => {
         e.preventDefault();
+        alert('MIAU');
         try {
             const formattedDateTime = new Date(startDateTime)
                 .toISOString()
@@ -64,15 +82,26 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
                 typeOfServiceId,
                 formattedDateTime,
                 hours,
+                numberOfPeople,
                 address,
                 postCode,
                 city,
                 comments
             );
-            toast.success(data.message, {
-                id: 'ok',
-            });
-            navigate('/user#OrdersComponent');
+
+            if (!withNavigate) {
+                toast.success(
+                    'Día registrado correctamente. Añade nueva fecha',
+                    {
+                        id: 'ok',
+                    }
+                );
+            } else {
+                toast.success(data.message, {
+                    id: 'ok',
+                });
+                navigate('/user#OrdersComponent');
+            }
         } catch (error) {
             toast.error(error.message, {
                 id: 'error',
@@ -81,10 +110,56 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
     };
 
     return (
-        <form className='profile-form' onSubmit={handleNewService}>
+        <form className='profile-form'>
             <fieldset>
                 <legend>Solicítalo</legend>
-                <label htmlFor='date'>Fecha</label>
+                <label htmlFor='address'>Dirección</label>
+                <input
+                    required
+                    type='text'
+                    id='address'
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                    placeholder='Escribe aquí tu dirección'
+                />
+                <label htmlFor='postCode'>Código Postal</label>
+                <input
+                    required
+                    type='number'
+                    id='postCode'
+                    value={postCode}
+                    onChange={(e) => setPostCode(e.target.value)}
+                    placeholder='Escribe aquí tu código postal'
+                    minLength='5'
+                    maxLength='5'
+                />
+                <label htmlFor='city'>Localidad</label>
+                <input
+                    required
+                    type='text'
+                    id='city'
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                    placeholder='Escribe aquí tu localidad'
+                />
+
+                <label htmlFor='comments'>Comentarios</label>
+                <textarea
+                    required
+                    id='comments'
+                    value={comments}
+                    onChange={(e) => setComments(e.target.value)}
+                    placeholder='Añada comentarios adicionales para describir con detalle sus necesidades sobre el servicio solicitado'
+                    minLength='10'
+                    maxLength='250'
+                    rows='5'
+                ></textarea>
+
+                {/* ------- */}
+
+                <label style={{ marginTop: '2rem' }} htmlFor='date'>
+                    Fecha de inicio
+                </label>
                 <input
                     required
                     type='date'
@@ -92,18 +167,18 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
                     value={startDateTime.split('T')[0]}
                     min={getTomorrowDate()}
                     onChange={(e) =>
-                        setDateTime(
+                        setStartDateTime(
                             e.target.value + 'T' + startDateTime.split('T')[1]
                         )
                     }
                 />
-                <label htmlFor='time'>Hora</label>
+                <label htmlFor='time'>Hora de inicio</label>
                 <select
                     required
                     id='time'
                     value={startDateTime.split('T')[1]}
                     onChange={(e) =>
-                        setDateTime(
+                        setStartDateTime(
                             startDateTime.split('T')[0] + 'T' + e.target.value
                         )
                     }
@@ -136,48 +211,43 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
                     <option value='7'>7</option>
                     <option value='8'>8</option>
                 </select>
-                <label htmlFor='address'>Dirección</label>
-                <input
+
+                <label htmlFor='numberOfPeople'>Nº de empleados</label>
+                <select
                     required
-                    type='text'
-                    id='address'
-                    value={address}
-                    onChange={(e) => setAddress(e.target.value)}
-                    placeholder='Escribe aquí tu dirección'
-                />
-                <label htmlFor='postCode'>Código Postal</label>
-                <input
-                    required
-                    type='number'
-                    id='postCode'
-                    value={postCode}
-                    onChange={(e) => setPostCode(e.target.value)}
-                    placeholder='Escribe aquí tu código postal'
-                    minLength='5'
-                    maxLength='5'
-                />
-                <label htmlFor='city'>Localidad</label>
-                <input
-                    required
-                    type='text'
-                    id='city'
-                    value={city}
-                    onChange={(e) => setCity(e.target.value)}
-                    placeholder='Escribe aquí tu localidad'
-                />
-                <label htmlFor='comments'>Comentarios</label>
-                <textarea
-                    required
-                    id='comments'
-                    value={comments}
-                    onChange={(e) => setComments(e.target.value)}
-                    placeholder='Añada comentarios adicionales para describir con detalle sus necesidades sobre el servicio solicitado'
-                    minLength='10'
-                    maxLength='250'
-                    rows='5'
-                ></textarea>
-                <div className='mx-auto'>
-                    <button className='mr-4' type='submit'>
+                    id='numberOfPeople'
+                    value={numberOfPeople}
+                    onChange={(e) => setNumberOfPeople(e.target.value)}
+                >
+                    <option value='' disabled>
+                        Empleados:
+                    </option>
+                    <option value='1'>1</option>
+                    <option value='2'>2</option>
+                    <option value='3'>3</option>
+                    <option value='4'>4</option>
+                    <option value='5'>5</option>
+                    <option value='6'>6</option>
+                    <option value='7'>7</option>
+                    <option value='8'>8</option>
+                </select>
+
+                <button
+                    style={{ marginTop: '.7rem', minWidth: 'content-fit' }}
+                    onClick={handleNewService}
+                >
+                    Haz click para añadir fechas
+                </button>
+
+                <div className='mx-auto' style={{ marginTop: '2rem' }}>
+                    <button
+                        onClick={(e) => {
+                            setWithNavigate(true);
+                            handleNewService;
+                        }}
+                        className='mr-4'
+                        type='submit'
+                    >
                         Solicitar
                     </button>
                     <button onClick={resetInputs}>Limpiar</button>

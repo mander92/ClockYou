@@ -5,6 +5,7 @@ export const fetchNewServiceServices = async (
     typeOfServiceId,
     startDateTime,
     hours,
+    numberOfPeople,
     address,
     postCode,
     city,
@@ -19,6 +20,7 @@ export const fetchNewServiceServices = async (
         body: JSON.stringify({
             startDateTime,
             hours,
+            numberOfPeople,
             address,
             postCode,
             city,
