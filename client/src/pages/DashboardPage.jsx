@@ -113,7 +113,7 @@ const DashboardPage = () => {
                             'ProfileComponent',
                             'Mi Perfil',
                             activeSection === 'ProfileComponent' &&
-                                'activeSelectedLink'
+                                'activeSelectedLink less-than-4-buttons'
                         )}
                         {renderNavLink(
                             'OrdersComponent',
