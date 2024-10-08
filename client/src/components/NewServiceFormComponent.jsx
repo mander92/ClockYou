@@ -42,7 +42,7 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
     const [postCode, setPostCode] = useState('');
     const [city, setCity] = useState('');
     const [comments, setComments] = useState('');
-    const [withNavigate, setWithNavigate] = useState(false);
+    // const [withNavigate, setWithNavigate] = useState(false);
     const [addingNewdate, setAddingNewdate] = useState(false);
     const [numberOfPeople, setNumberOfPeople] = useState(1);
 
@@ -71,7 +71,7 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
 
     const handleNewService = async (e) => {
         e.preventDefault();
-        alert('NO BORRÉIS ESTA ALERTA TODAVÍA de NewServiceForm...');
+        alert('CLICK EN "SOLICITAR"');
         try {
             const formattedDateTime = new Date(startDateTime)
                 .toISOString()
@@ -90,19 +90,41 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
                 comments
             );
 
-            if (!withNavigate) {
-                toast.success(
-                    'Día registrado correctamente. Añade nueva fecha',
-                    {
-                        id: 'ok',
-                    }
-                );
-            } else {
-                toast.success(data.message, {
-                    id: 'ok',
-                });
-                navigate('/user#OrdersComponent');
-            }
+            toast.success(data.message, {
+                id: 'ok',
+            });
+            navigate('/user#OrdersComponent');
+        } catch (error) {
+            toast.error(error.message, {
+                id: 'error',
+            });
+        }
+    };
+
+    const handleNewDate = async (e) => {
+        e.preventDefault();
+        alert('CLICK EN "AÑADIR FECHAS"');
+        try {
+            const formattedDateTime = new Date(startDateTime)
+                .toISOString()
+                .slice(0, 19)
+                .replace('T', ' ');
+
+            const data = await fetchNewServiceServices(
+                authToken,
+                typeOfServiceId,
+                formattedDateTime,
+                hours,
+                numberOfPeople,
+                address,
+                postCode,
+                city,
+                comments
+            );
+
+            toast.success('Día registrado correctamente. Añade nueva fecha', {
+                id: 'ok',
+            });
         } catch (error) {
             toast.error(error.message, {
                 id: 'error',
@@ -251,7 +273,7 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
                     style={{ marginTop: '.7rem', minWidth: 'content-fit' }}
                     onClick={(e) => {
                         setAddingNewdate(true);
-                        handleNewService(e);
+                        handleNewDate(e);
                         resetInputsDates(e);
                     }}
                 >
@@ -260,10 +282,7 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
 
                 <div className='mx-auto mt-4'>
                     <button
-                        onClick={(e) => {
-                            setWithNavigate(true);
-                            handleNewService(e);
-                        }}
+                        onClick={handleNewService}
                         className='mr-4'
                         type='submit'
                     >
