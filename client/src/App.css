@@ -112,8 +112,14 @@
             font-size: 1.5rem;
         }
 
-        & p {
+        & p:not(.instruccion) {
             text-align: center;
+        }
+
+        & .instruccion {
+            font-weight: 500;
+            margin-bottom: 0.1rem;
+            color: cadetblue;
         }
 
         & label,

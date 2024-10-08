@@ -43,6 +43,7 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
     const [city, setCity] = useState('');
     const [comments, setComments] = useState('');
     const [withNavigate, setWithNavigate] = useState(false);
+    const [addingNewdate, setAddingNewdate] = useState(false);
     const [numberOfPeople, setNumberOfPeople] = useState(1);
 
     const resetInputs = (e) => {
@@ -70,7 +71,7 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
 
     const handleNewService = async (e) => {
         e.preventDefault();
-        alert('MIAU');
+        alert('NO BORRÉIS ESTA ALERTA TODAVÍA de NewServiceForm...');
         try {
             const formattedDateTime = new Date(startDateTime)
                 .toISOString()
@@ -113,6 +114,10 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
         <form className='profile-form'>
             <fieldset>
                 <legend>Solicítalo</legend>
+                <p className='text-left text-sm mt-3 instruccion'>
+                    Rellena primero los datos de la dirección postal en la que
+                    se desarrollará el servicio
+                </p>
                 <label htmlFor='address'>Dirección</label>
                 <input
                     required
@@ -157,8 +162,12 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
 
                 {/* ------- */}
 
-                <label style={{ marginTop: '2rem' }} htmlFor='date'>
-                    Fecha de inicio
+                <p className='text-left text-sm mt-8 instruccion'>
+                    A continuación establece las fechas, horas, y nº de
+                    empleados para tu servicio
+                </p>
+                <label htmlFor='date'>
+                    {!addingNewdate ? 'Fecha de inicio' : 'Añade nueva fecha'}
                 </label>
                 <input
                     required
@@ -232,18 +241,28 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
                     <option value='8'>8</option>
                 </select>
 
+                <p className='text-left text-sm mt-5 instruccion'>
+                    Si terminaste de definir las fechas que necesitabas, haz
+                    click en "Solicitar". Si quieres añadir más fechas para tu
+                    servicio haz click en "Añadir fechas"
+                </p>
+
                 <button
                     style={{ marginTop: '.7rem', minWidth: 'content-fit' }}
-                    onClick={handleNewService}
+                    onClick={(e) => {
+                        setAddingNewdate(true);
+                        handleNewService(e);
+                        resetInputsDates(e);
+                    }}
                 >
-                    Haz click para añadir fechas
+                    Añadir fechas
                 </button>
 
-                <div className='mx-auto' style={{ marginTop: '2rem' }}>
+                <div className='mx-auto mt-4'>
                     <button
                         onClick={(e) => {
                             setWithNavigate(true);
-                            handleNewService;
+                            handleNewService(e);
                         }}
                         className='mr-4'
                         type='submit'
