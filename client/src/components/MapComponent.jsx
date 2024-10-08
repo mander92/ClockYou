@@ -7,8 +7,7 @@ const MapComponent = ({ location }) => {
 
     // Verifica que location tenga el formato correcto
     if (!location || !Array.isArray(location) || location.length !== 2) {
-        console.error('Invalid location:', location);
-        return <div>Error: Invalid location</div>;
+        return <div>Localización no disponible</div>;
     }
 
     return (
@@ -18,9 +17,7 @@ const MapComponent = ({ location }) => {
                 url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
             />
             <Marker position={location} icon={IconLocationComponent}>
-                <Popup>
-                    A pretty CSS3 popup. <br /> Easily customizable.
-                </Popup>
+                <Popup>Ubicación</Popup>
             </Marker>
         </MapContainer>
     );

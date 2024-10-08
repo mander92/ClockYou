@@ -88,8 +88,10 @@ const ShiftRecordComponent = ({ shiftRecordId }) => {
                     >
                         Registrar Entrada
                     </button>
-                    {locationClockIn && (
+                    {locationClockIn ? (
                         <MapComponent location={locationClockIn} />
+                    ) : (
+                        ''
                     )}
                 </fieldset>
             </form>
