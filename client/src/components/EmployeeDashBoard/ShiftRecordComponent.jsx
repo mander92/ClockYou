@@ -79,14 +79,14 @@ const ShiftRecordComponent = ({ shiftRecordId }) => {
     };
 
     return (
-        <>
-            <form className='mx-auto form-1024'>
+        <div className='flex justify-evenly flex-wrap'>
+            <form className='mx-auto'>
                 <fieldset>
                     <button
                         className='mt-4 mb-2 text-white bg-green-600'
                         onClick={getStart}
                     >
-                        Registrar Entrada
+                        Entrada
                     </button>
                     {locationClockIn ? (
                         <MapComponent location={locationClockIn} />
@@ -95,20 +95,20 @@ const ShiftRecordComponent = ({ shiftRecordId }) => {
                     )}
                 </fieldset>
             </form>
-            <form className='mx-auto form-1024'>
+            <form className='mx-auto '>
                 <fieldset>
                     <button
                         className='mt-2 text-white bg-red-600'
                         onClick={getEnd}
                     >
-                        Registrar Salida
+                        Salida
                     </button>
                     {locatioClockOut && (
                         <MapComponent location={locatioClockOut} />
                     )}
                 </fieldset>
             </form>
-        </>
+        </div>
     );
 };
 

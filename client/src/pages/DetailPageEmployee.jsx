@@ -43,6 +43,7 @@ const DetailPageEmployee = () => {
 
     return (
         <section>
+            <ShiftRecordComponent shiftRecordId={data.id} location={location} />
             <form className='form-filters mx-auto'>
                 <fieldset>
                     <legend>Solicitud</legend>
@@ -71,8 +72,6 @@ const DetailPageEmployee = () => {
                     <p>{data.phone}</p>
                 </fieldset>
             </form>
-
-            <ShiftRecordComponent shiftRecordId={data.id} location={location} />
         </section>
     );
 };
