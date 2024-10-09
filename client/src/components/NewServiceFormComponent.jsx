@@ -2,7 +2,7 @@ const { VITE_START_RESERVATION_HOUR, VITE_END_RESERVATION_HOUR } = import.meta
     .env;
 import { AuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { fetchNewServiceServices } from '../services/serviceServices';
 import toast from 'react-hot-toast';
 
@@ -42,9 +42,15 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
     const [postCode, setPostCode] = useState('');
     const [city, setCity] = useState('');
     const [comments, setComments] = useState('');
-    // const [withNavigate, setWithNavigate] = useState(false);
+    const [withNavigate, setWithNavigate] = useState(false);
     const [addingNewdate, setAddingNewdate] = useState(false);
     const [numberOfPeople, setNumberOfPeople] = useState(1);
+
+    // useEffect(() => {
+    //     setWithNavigate((prev) => {
+    //         return !prev;
+    //     });
+    // }, [withNavigate]);
 
     const resetInputs = (e) => {
         e.preventDefault();
@@ -54,20 +60,23 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
         });
         setHours(1);
         setNumberOfPeople(1);
-        setAddress('');
-        setCity('');
-        setComments('');
+
+        if (withNavigate) {
+            setAddress('');
+            setCity('');
+            setComments('');
+        }
     };
 
-    const resetInputsDates = (e) => {
-        e.preventDefault();
-        setStartDateTime(() => {
-            const tomorrow = getTomorrowDate();
-            return `${tomorrow}T${valuesTimeInterval[0]}`;
-        });
-        setHours(1);
-        setNumberOfPeople(1);
-    };
+    // const resetInputsDates = (e) => {
+    //     e.preventDefault();
+    //     setStartDateTime(() => {
+    //         const tomorrow = getTomorrowDate();
+    //         return `${tomorrow}T${valuesTimeInterval[0]}`;
+    //     });
+    //     setHours(1);
+    //     setNumberOfPeople(1);
+    // };
 
     const handleNewService = async (e) => {
         e.preventDefault();
@@ -174,7 +183,7 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
                     id='comments'
                     value={comments}
                     onChange={(e) => setComments(e.target.value)}
-                    placeholder='Añade comentarios adicionales para describir con detalle sus necesidades sobre el servicio solicitado'
+                    placeholder='Por favor, describe en detalle tus necesidades para el servicio a solicitar. Máximo 250 caracteres.'
                     minLength='10'
                     maxLength='250'
                     rows='5'
@@ -272,7 +281,7 @@ const NewServiceFormComponent = ({ typeOfServiceId }) => {
                     onClick={(e) => {
                         setAddingNewdate(true);
                         handleNewDate(e);
-                        resetInputsDates(e);
+                        resetInputs(e);
                     }}
                 >
                     Añadir fechas
