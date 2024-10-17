@@ -37,6 +37,47 @@ export const fetchNewServiceServices = async (
     return body;
 };
 
+export const fetchNewContractAdmin = async (
+    authToken,
+    typeOfServiceId,
+    startDateTime,
+    endDateTime,
+    hours,
+    numberOfPeople,
+    comments,
+    address,
+    city,
+    postCode,
+    clientId
+) => {
+    const res = await fetch(`${VITE_API_URL}/services/${typeOfServiceId}`, {
+        method: 'POST',
+        headers: {
+            Authorization: authToken,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            startDateTime,
+            endDateTime,
+            hours,
+            numberOfPeople,
+            comments,
+            address,
+            city,
+            postCode,
+            clientId,
+        }),
+    });
+
+    const body = await res.json();
+
+    if (body.status === 'error') {
+        throw new Error(body.message);
+    }
+
+    return body;
+};
+
 export const fetchAllServicesServices = async (
     searchParamsToString,
     authToken

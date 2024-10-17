@@ -120,7 +120,7 @@ const ListServicesComponent = () => {
                                 className='mb-4'
                                 to={`/typeOfServices/createcontract/${item.id}`}
                             >
-                                Nuevo
+                                Nuevo Contrato
                             </NavLink>
                         </li>
                     );

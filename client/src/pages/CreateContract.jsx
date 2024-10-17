@@ -1,9 +1,13 @@
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import toast from 'react-hot-toast';
 
 import ListUserComponent from '../components/AdminDashboard/Users/ListUserComponent.jsx';
+import { fetchNewContractAdmin } from '../services/serviceServices.js';
+import { AuthContext } from '../context/AuthContext.jsx';
 
 const CreateContract = () => {
+    const { authToken } = useContext(AuthContext);
     const { typeOfServiceId } = useParams();
 
     const [startDateTime, setStartDateTime] = useState('');
@@ -16,15 +20,38 @@ const CreateContract = () => {
     const [postCode, setPostCode] = useState('');
     const [clientId, setClientId] = useState('');
 
-    console.log('FORM DETAILS......................................');
-    console.log(startDateTime);
-    console.log(endDateTime);
-    console.log(clientId);
+    const formatDate = (dateTime) => {
+        if (dateTime) {
+            const formattedDate = dateTime.replace('T', ' ');
+            return formattedDate;
+        }
+        return '';
+    };
 
-    console.log('FORM DETAILS......................................');
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        const formattedStartDateTime = formatDate(startDateTime);
+        const formattedEndDateTime = formatDate(endDateTime);
+        try {
+            const res = await fetchNewContractAdmin(
+                authToken,
+                typeOfServiceId,
+                formattedStartDateTime,
+                formattedEndDateTime,
+                hours,
+                numberOfPeople,
+                comments,
+                address,
+                city,
+                postCode,
+                clientId
+            );
+
+            toast.success(res.message);
+            return;
+        } catch (error) {
+            toast.error(error.message);
+        }
     };
 
     return (

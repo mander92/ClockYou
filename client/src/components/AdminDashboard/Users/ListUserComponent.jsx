@@ -12,7 +12,6 @@ const ListUserComponent = ({ setClientId }) => {
     const [job, setJob] = useState('');
     const [role, setRole] = useState('');
     const [active, setActive] = useState('');
-    const [listOnlyCLient, setListOnlyClient] = useState(false);
 
     const resetFilters = (e) => {
         e.preventDefault();
@@ -158,13 +157,17 @@ const ListUserComponent = ({ setClientId }) => {
                             <p>📞 {item.phone}</p>s<p>🪪 {item.dni}</p>
                             <p>👨‍💻 {item.job}</p>
                             <p className='mb-4'>🏠 {item.city}</p>
-                            <button
-                                onClick={() => {
-                                    handleId(item.id);
-                                }}
-                            >
-                                Asignar
-                            </button>
+                            {setClientId ? (
+                                <button
+                                    onClick={() => {
+                                        handleId(item.id);
+                                    }}
+                                >
+                                    Asignar
+                                </button>
+                            ) : (
+                                ''
+                            )}
                         </li>
                     );
                 })}
