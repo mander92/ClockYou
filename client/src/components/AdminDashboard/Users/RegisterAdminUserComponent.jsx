@@ -70,6 +70,7 @@ const RegisterAdminUserComponent = () => {
                     </option>
                     <option value='admin'>Admin</option>
                     <option value='employee'>Empleado</option>
+                    <option value='client'>Cliente</option>
                 </select>
 
                 <label htmlFor='job'>Trabajo</label>

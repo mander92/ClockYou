@@ -44,7 +44,6 @@ router.get('/services/validate/:validationCode', validateServiceController);
 router.post(
     '/services/:typeOfServiceId',
     authUser,
-    isClient,
     typeOfServiceExists,
     newServiceController
 );
