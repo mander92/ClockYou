@@ -1,6 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 
+import ListUserComponent from '../components/AdminDashboard/Users/ListUserComponent.jsx';
+
 const CreateContract = () => {
     const { typeOfServiceId } = useParams();
 
@@ -14,13 +16,20 @@ const CreateContract = () => {
     const [postCode, setPostCode] = useState('');
     const [clientId, setClientId] = useState('');
 
+    console.log('FORM DETAILS......................................');
+    console.log(startDateTime);
+    console.log(endDateTime);
+    console.log(clientId);
+
+    console.log('FORM DETAILS......................................');
+
     const handleSubmit = (e) => {
         e.preventDefault();
     };
 
     return (
         <>
-            <form className='profile-form' onSubmit={handleSubmit}>
+            <form className='profile-form mx-auto' onSubmit={handleSubmit}>
                 <fieldset>
                     <label htmlFor='startDateTime'>Fecha de inicio</label>
                     <input
@@ -52,7 +61,6 @@ const CreateContract = () => {
                             setHours(e.target.value);
                         }}
                     />
-
                     <label htmlFor='NumberOfPeople'>Número de personas</label>
                     <input
                         type='number'
@@ -65,7 +73,6 @@ const CreateContract = () => {
                             setNumberOfPeople(e.target.value);
                         }}
                     />
-
                     <label htmlFor='comments'>comentarios</label>
                     <input
                         type='text'
@@ -76,7 +83,6 @@ const CreateContract = () => {
                             setComments(e.target.value);
                         }}
                     />
-
                     <label htmlFor='Address'>Dirección</label>
                     <input
                         type='text'
@@ -87,7 +93,6 @@ const CreateContract = () => {
                             setAddress(e.target.value);
                         }}
                     />
-
                     <label htmlFor='city'>city</label>
                     <input
                         type='text'
@@ -98,7 +103,6 @@ const CreateContract = () => {
                             setCity(e.target.value);
                         }}
                     />
-
                     <label htmlFor='PostCode'>Código Postal</label>
                     <input
                         type='number'
@@ -109,7 +113,6 @@ const CreateContract = () => {
                             setPostCode(e.target.value);
                         }}
                     />
-
                     <label htmlFor='Client'>
                         Cliente (Elígelo en el Buscador)
                     </label>
@@ -117,12 +120,13 @@ const CreateContract = () => {
                         type='text'
                         id='Client'
                         name='CLient'
-                        value={clientId ? clientId : ''}
+                        value={clientId}
+                        onChange={setClientId}
                     />
-
                     <button>Enviar</button>
                 </fieldset>
             </form>
+            <ListUserComponent setClientId={setClientId} />
         </>
     );
 };

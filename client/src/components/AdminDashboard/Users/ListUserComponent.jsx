@@ -4,7 +4,7 @@ import { fetchAllUsersServices } from '../../../services/userServices';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../../context/AuthContext';
 
-const ListUserComponent = () => {
+const ListUserComponent = ({ setClientId }) => {
     const { authToken } = useContext(AuthContext);
 
     const [data, setData] = useState([]);
@@ -12,6 +12,7 @@ const ListUserComponent = () => {
     const [job, setJob] = useState('');
     const [role, setRole] = useState('');
     const [active, setActive] = useState('');
+    const [listOnlyCLient, setListOnlyClient] = useState(false);
 
     const resetFilters = (e) => {
         e.preventDefault();
@@ -57,6 +58,10 @@ const ListUserComponent = () => {
             data.map((item) => item.job).filter((job) => job && job.trim())
         ),
     ].sort();
+
+    const handleId = (id) => {
+        setClientId(id);
+    };
 
     return (
         <>
@@ -110,9 +115,13 @@ const ListUserComponent = () => {
                     <option value='' disabled>
                         Tipo:
                     </option>
-                    <option value='admin'>Administrador</option>
+
+                    {!setClientId && (
+                        <option value='admin'>Administrador</option>
+                    )}
+                    {!setClientId && <option value='employee'>Empleado</option>}
+
                     <option value='client'>Cliente</option>
-                    <option value='employee'>Empleado</option>
                 </select>
                 <select
                     name='active'
@@ -146,10 +155,16 @@ const ListUserComponent = () => {
                                 👤 {item.firstName} {item.lastName}
                             </h3>
                             <p>✉️ {item.email}</p>
-                            <p>📞 {item.phone}</p>
-                            <p>🪪 {item.dni}</p>
+                            <p>📞 {item.phone}</p>s<p>🪪 {item.dni}</p>
                             <p>👨‍💻 {item.job}</p>
                             <p className='mb-4'>🏠 {item.city}</p>
+                            <button
+                                onClick={() => {
+                                    handleId(item.id);
+                                }}
+                            >
+                                Asignar
+                            </button>
                         </li>
                     );
                 })}
