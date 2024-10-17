@@ -20,6 +20,7 @@ import RatingServiceComponent from './components/ClientDashboard/RatingServiceCo
 import ShiftRecordComponent from './components/EmployeeDashBoard/ShiftRecordComponent.jsx';
 import ScrollTopComponent from './components/ScrollTopComponent.jsx';
 import DetailPageEmployee from './pages/DetailPageEmployee.jsx';
+import CreateContract from './pages/CreateContract.jsx';
 
 const App = () => {
     return (
@@ -46,6 +47,11 @@ const App = () => {
                     <Route
                         path='/typeOfServices/edit/:typeOfServiceId'
                         element={<EditTypeOfServicePage />}
+                    />
+
+                    <Route
+                        path='/typeOfServices/createcontract/:typeOfServiceId'
+                        element={<CreateContract />}
                     />
 
                     <Route

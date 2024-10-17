@@ -73,7 +73,7 @@ const insertServiceAdmin = async (
     if (endDateTime) {
         await pool.query(
             `
-            INSERT INTO services(id, startDateTime,endDateTime, hours, numberOfPeople, comments, validationCode, clientId, addressId, typeOfServicesId, totalPrice) VALUES (?,?,?,?,?,?,?,?,?,?,?)
+            INSERT INTO services(id, startDateTime, endDateTime, hours, numberOfPeople, comments, validationCode, clientId, addressId, typeOfServicesId, totalPrice) VALUES (?,?,?,?,?,?,?,?,?,?,?)
             `,
             [
                 serviceId,

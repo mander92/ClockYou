@@ -2,7 +2,7 @@ const { VITE_START_RESERVATION_HOUR, VITE_END_RESERVATION_HOUR } = import.meta
     .env;
 import { AuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext } from 'react';
 import { fetchNewServiceServices } from '../services/serviceServices';
 import toast from 'react-hot-toast';
 

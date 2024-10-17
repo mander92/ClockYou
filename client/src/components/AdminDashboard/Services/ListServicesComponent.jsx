@@ -116,6 +116,12 @@ const ListServicesComponent = () => {
                             >
                                 Editar
                             </NavLink>
+                            <NavLink
+                                className='mb-4'
+                                to={`/typeOfServices/createcontract/${item.id}`}
+                            >
+                                Nuevo
+                            </NavLink>
                         </li>
                     );
                 })}
