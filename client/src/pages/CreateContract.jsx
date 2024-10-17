@@ -48,7 +48,6 @@ const CreateContract = () => {
             );
 
             toast.success(res.message);
-            return;
         } catch (error) {
             toast.error(error.message);
         }
