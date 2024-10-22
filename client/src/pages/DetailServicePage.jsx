@@ -117,7 +117,9 @@ const DetailServicePage = () => {
             </form>
             {data.status === 'pending' && (
                 <ListEmployeeComponent
+                    numberOfPeople={data.numberOfPeople}
                     serviceId={serviceId}
+                    employeeData={employeeData}
                     setEmployeeData={setEmployeeData}
                 />
             )}

@@ -6,9 +6,13 @@ import { fetchAllUsersServices } from '../../../services/userServices.js';
 // import { fetchNewShiftRecordServices } from '../../../services/shiftRecordServices.js';
 import toast from 'react-hot-toast';
 
-const ListEmployeeComponent = ({ serviceId, setEmployeeData }) => {
+const ListEmployeeComponent = ({
+    serviceId,
+    numberOfPeople,
+    employeeData,
+    setEmployeeData,
+}) => {
     const { authToken } = useContext(AuthContext);
-
     // const navigate = useNavigate();
 
     const role = 'employee';
@@ -72,7 +76,20 @@ const ListEmployeeComponent = ({ serviceId, setEmployeeData }) => {
     // };
 
     const handleclick = (data) => {
-        setEmployeeData((prev) => [...prev, data]);
+        if (employeeData.length < numberOfPeople) {
+            const employeeExists = employeeData.some(
+                (empleado) => empleado.id === data.id
+            );
+            if (employeeExists) {
+                toast.error('El empleado ya se encuentra asignado');
+            } else {
+                setEmployeeData((prev) => [...prev, data]);
+            }
+        } else {
+            toast.error(
+                'El número máximo de empleados asignado a este servicio ha sido alcanzado'
+            );
+        }
     };
 
     const citiesNoRepeated = [...new Set(data.map((item) => item.city))].sort(
@@ -143,7 +160,7 @@ const ListEmployeeComponent = ({ serviceId, setEmployeeData }) => {
             </form>
             <ul className='cards'>
                 {data.map((item) => {
-                    const employeeId = item.id;
+                    // const employeeId = item.id;
                     return (
                         <li key={item.id}>
                             <img
