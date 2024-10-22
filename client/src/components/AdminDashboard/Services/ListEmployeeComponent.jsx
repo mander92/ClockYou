@@ -1,15 +1,15 @@
 const { VITE_API_URL } = import.meta.env;
 import { AuthContext } from '../../../context/AuthContext.jsx';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
 import { fetchAllUsersServices } from '../../../services/userServices.js';
-import { fetchNewShiftRecordServices } from '../../../services/shiftRecordServices.js';
+// import { fetchNewShiftRecordServices } from '../../../services/shiftRecordServices.js';
 import toast from 'react-hot-toast';
 
-const ListEmployeeComponent = ({ serviceId }) => {
+const ListEmployeeComponent = ({ serviceId, setEmployeeData }) => {
     const { authToken } = useContext(AuthContext);
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const role = 'employee';
 
@@ -51,24 +51,28 @@ const ListEmployeeComponent = ({ serviceId }) => {
         setJob('');
     };
 
-    const handleNewShiftRecord = async (employeeId, serviceId, authToken) => {
-        try {
-            const data = await fetchNewShiftRecordServices(
-                employeeId,
-                serviceId,
-                authToken
-            );
+    // const handleNewShiftRecord = async (employeeId, serviceId, authToken) => {
+    //     try {
+    //         const data = await fetchNewShiftRecordServices(
+    //             employeeId,
+    //             serviceId,
+    //             authToken
+    //         );
 
-            toast.success(data.message, {
-                id: 'ok',
-            });
+    //         toast.success(data.message, {
+    //             id: 'ok',
+    //         });
 
-            navigate('/user#ContractsComponent');
-        } catch (error) {
-            toast.error(error.message, {
-                id: 'error',
-            });
-        }
+    //         navigate('/user#ContractsComponent');
+    //     } catch (error) {
+    //         toast.error(error.message, {
+    //             id: 'error',
+    //         });
+    //     }
+    // };
+
+    const handleclick = (data) => {
+        setEmployeeData((prev) => [...prev, data]);
     };
 
     const citiesNoRepeated = [...new Set(data.map((item) => item.city))].sort(
@@ -160,12 +164,15 @@ const ListEmployeeComponent = ({ serviceId }) => {
                             <p>🏠 {item.city}</p>
 
                             <button
+                                // onClick={() => {
+                                //     handleNewShiftRecord(
+                                //         employeeId,
+                                //         serviceId,
+                                //         authToken
+                                //     );
+                                // }}
                                 onClick={() => {
-                                    handleNewShiftRecord(
-                                        employeeId,
-                                        serviceId,
-                                        authToken
-                                    );
+                                    handleclick(item);
                                 }}
                             >
                                 Asignar Empleado

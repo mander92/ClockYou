@@ -9,7 +9,7 @@ import MapComponent from '../components/MapComponent.jsx';
 const DetailServicePage = () => {
     const { serviceId } = useParams();
     const { authToken } = useContext(AuthContext);
-
+    const [employeeData, setEmployeeData] = useState([]);
     const [data, setData] = useState([]);
     const [location, setLocation] = useState({});
 
@@ -44,6 +44,13 @@ const DetailServicePage = () => {
     const clockIn = new Date(data.clockIn).toLocaleString();
     const clockOut = new Date(data.clockOut).toLocaleString();
 
+    const handleQuita = (id) => {
+        const newAarray = employeeData.filter((employee) => {
+            return employee.id !== id;
+        });
+        setEmployeeData(newAarray);
+    };
+
     return (
         <section>
             <form className='form-filters mx-auto'>
@@ -61,6 +68,7 @@ const DetailServicePage = () => {
                     </p>
                     <p>Horas Contratadas: {data.hours}</p>
                     <p className='font-extrabold'>Total: {data.totalPrice}€</p>
+                    <p>Número de personas solicitadas: {data.numberOfPeople}</p>
                 </fieldset>
             </form>
             <form className='form-filters mx-auto'>
@@ -74,8 +82,44 @@ const DetailServicePage = () => {
                     <p>{data.phone}</p>
                 </fieldset>
             </form>
+            <form className='form-filters mx-auto'>
+                <fieldset>
+                    <legend>Empleados Asignados al Servicio</legend>
+                    <ul className='cards'>
+                        {employeeData.map((employee) => {
+                            return (
+                                <li
+                                    key={employee.id}
+                                    className='border-2 rounded '
+                                >
+                                    <h3>
+                                        👤 {employee.firstName}{' '}
+                                        {employee.lastName}
+                                    </h3>
+                                    <p>✉️ {employee.email}</p>
+                                    <p>📞 {employee.phone}</p>
+                                    <p>🪪 {employee.dni}</p>
+                                    <p>👨‍💻 {employee.job}</p>
+                                    <p>🏠 {employee.city}</p>
+                                    <button
+                                        className='mx-auto'
+                                        onClick={() => {
+                                            handleQuita(employee.id);
+                                        }}
+                                    >
+                                        Quitar empleado
+                                    </button>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </fieldset>
+            </form>
             {data.status === 'pending' && (
-                <ListEmployeeComponent serviceId={serviceId} />
+                <ListEmployeeComponent
+                    serviceId={serviceId}
+                    setEmployeeData={setEmployeeData}
+                />
             )}
             {data.status === 'completed' && (
                 <form className='form-filters mx-auto'>
