@@ -1,9 +1,9 @@
 const { VITE_API_URL } = import.meta.env;
 import { AuthContext } from '../../../context/AuthContext.jsx';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
 import { fetchAllUsersServices } from '../../../services/userServices.js';
-// import { fetchNewShiftRecordServices } from '../../../services/shiftRecordServices.js';
+import { fetchNewShiftRecordServices } from '../../../services/shiftRecordServices.js';
 import toast from 'react-hot-toast';
 
 const ListEmployeeComponent = ({
@@ -13,7 +13,7 @@ const ListEmployeeComponent = ({
     setEmployeeData,
 }) => {
     const { authToken } = useContext(AuthContext);
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const role = 'employee';
 
@@ -84,6 +84,7 @@ const ListEmployeeComponent = ({
                 toast.error('El empleado ya se encuentra asignado');
             } else {
                 setEmployeeData((prev) => [...prev, data]);
+                toast.success('Empleado asignado');
             }
         } else {
             toast.error(
@@ -160,7 +161,7 @@ const ListEmployeeComponent = ({
             </form>
             <ul className='cards'>
                 {data.map((item) => {
-                    // const employeeId = item.id;
+                    const employeeId = item.id;
                     return (
                         <li key={item.id}>
                             <img

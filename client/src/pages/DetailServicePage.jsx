@@ -13,6 +13,8 @@ const DetailServicePage = () => {
     const [data, setData] = useState([]);
     const [location, setLocation] = useState({});
 
+    console.log(employeeData);
+
     useEffect(() => {
         const DetailService = async () => {
             try {
@@ -49,72 +51,84 @@ const DetailServicePage = () => {
             return employee.id !== id;
         });
         setEmployeeData(newAarray);
+        toast.error('Empleado eliminado');
     };
 
     return (
         <section>
-            <form className='form-filters mx-auto'>
-                <fieldset>
-                    <legend>Solicitud</legend>
-                    <p className='mt-2'>{data.type}</p>
-                    <p>{data.comments}</p>
+            <fieldset className='flex flex-wrap'>
+                <form className='form-filters mx-auto'>
+                    <fieldset>
+                        <legend>Solicitud</legend>
+                        <p className='mt-2'>{data.type}</p>
+                        <p>{data.comments}</p>
 
-                    <p className='font-extrabold'>
-                        Solicitado para el {date} a las {time}
-                    </p>
-                    <p className='grow'>
-                        En {data.address}, {data.city}, {data.postCode},{' '}
-                        {data.province}
-                    </p>
-                    <p>Horas Contratadas: {data.hours}</p>
-                    <p className='font-extrabold'>Total: {data.totalPrice}€</p>
-                    <p>Número de personas solicitadas: {data.numberOfPeople}</p>
-                </fieldset>
-            </form>
-            <form className='form-filters mx-auto'>
-                <fieldset>
-                    <legend>Cliente</legend>
-                    <p className='mt-2'>
-                        {data.firstName} {data.lastName}
-                    </p>
-                    <p>{data.email}</p>
-                    <p>{data.dni}</p>
-                    <p>{data.phone}</p>
-                </fieldset>
-            </form>
-            <form className='form-filters mx-auto'>
-                <fieldset>
-                    <legend>Empleados Asignados al Servicio</legend>
-                    <ul className='cards'>
-                        {employeeData.map((employee) => {
-                            return (
-                                <li
-                                    key={employee.id}
-                                    className='border-2 rounded '
-                                >
-                                    <h3>
-                                        👤 {employee.firstName}{' '}
-                                        {employee.lastName}
-                                    </h3>
-                                    <p>✉️ {employee.email}</p>
-                                    <p>📞 {employee.phone}</p>
-                                    <p>🪪 {employee.dni}</p>
-                                    <p>👨‍💻 {employee.job}</p>
-                                    <p>🏠 {employee.city}</p>
-                                    <button
-                                        className='mx-auto'
-                                        onClick={() => {
-                                            handleQuita(employee.id);
-                                        }}
-                                    >
-                                        Quitar empleado
-                                    </button>
-                                </li>
-                            );
-                        })}
-                    </ul>
-                </fieldset>
-            </form>
+                        <p className='font-extrabold'>
+                            Solicitado para el {date} a las {time}
+                        </p>
+                        <p className='grow'>
+                            En {data.address}, {data.city}, {data.postCode},{' '}
+                            {data.province}
+                        </p>
+                        <p>Horas Contratadas: {data.hours}</p>
+                        <p className='font-extrabold'>
+                            Total: {data.totalPrice}€
+                        </p>
+                        <p>
+                            Número de personas solicitadas:{' '}
+                            {data.numberOfPeople}
+                        </p>
+                    </fieldset>
+                </form>
+                <form className='form-filters mx-auto'>
+                    <fieldset>
+                        <legend>Cliente</legend>
+                        <p className='mt-2'>
+                            {data.firstName} {data.lastName}
+                        </p>
+                        <p>{data.email}</p>
+                        <p>{data.dni}</p>
+                        <p>{data.phone}</p>
+                    </fieldset>
+                </form>
+                {employeeData.length >= 1 ? (
+                    <form className='form-filters mx-auto'>
+                        <fieldset>
+                            <legend>Empleados Asignados al Servicio</legend>
+                            <ul className='cards'>
+                                {employeeData.map((employee) => {
+                                    return (
+                                        <li
+                                            key={employee.id}
+                                            className='border-2 rounded '
+                                        >
+                                            <h3>
+                                                👤 {employee.firstName}{' '}
+                                                {employee.lastName}
+                                            </h3>
+                                            <p>✉️ {employee.email}</p>
+                                            <p>📞 {employee.phone}</p>
+                                            <p>🪪 {employee.dni}</p>
+                                            <p>👨‍💻 {employee.job}</p>
+                                            <p>🏠 {employee.city}</p>
+                                            <button
+                                                className='mx-auto'
+                                                onClick={() => {
+                                                    handleQuita(employee.id);
+                                                }}
+                                            >
+                                                Quitar empleado
+                                            </button>
+                                        </li>
+                                    );
+                                })}
+                            </ul>
+                            <button>Guardar</button>
+                        </fieldset>
+                    </form>
+                ) : null}
+            </fieldset>
+
             {data.status === 'pending' && (
                 <ListEmployeeComponent
                     numberOfPeople={data.numberOfPeople}
