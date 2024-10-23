@@ -75,6 +75,20 @@ const ListEmployeeComponent = ({
     //     }
     // };
 
+    const assingEmployee = async (serviceId, employeeId, authToken) => {
+        try {
+            const data = await fetchAssingNewEmployeeSevice(
+                serviceId,
+                employeeId,
+                authToken
+            );
+            toast.success('Empleado asignado');
+            return data;
+        } catch (error) {
+            toast.error('No se ha podido asignar empleado');
+        }
+    };
+
     const handleclick = (data) => {
         if (employeeData.length < numberOfPeople) {
             const employeeExists = employeeData.some(
@@ -84,7 +98,7 @@ const ListEmployeeComponent = ({
                 toast.error('El empleado ya se encuentra asignado');
             } else {
                 setEmployeeData((prev) => [...prev, data]);
-                toast.success('Empleado asignado');
+                assingEmployee(serviceId, data.id, authToken);
             }
         } else {
             toast.error(
