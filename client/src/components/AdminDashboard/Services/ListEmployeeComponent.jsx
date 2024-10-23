@@ -1,10 +1,9 @@
 const { VITE_API_URL } = import.meta.env;
 import { AuthContext } from '../../../context/AuthContext.jsx';
-import { useNavigate } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
 import { fetchAllUsersServices } from '../../../services/userServices.js';
-import { fetchNewShiftRecordServices } from '../../../services/shiftRecordServices.js';
 import toast from 'react-hot-toast';
+import { fetchAssingNewEmployeeSevice } from '../../../services/personAssigned.js'
 
 const ListEmployeeComponent = ({
     serviceId,
@@ -13,7 +12,6 @@ const ListEmployeeComponent = ({
     setEmployeeData,
 }) => {
     const { authToken } = useContext(AuthContext);
-    const navigate = useNavigate();
 
     const role = 'employee';
 
@@ -55,28 +53,9 @@ const ListEmployeeComponent = ({
         setJob('');
     };
 
-    // const handleNewShiftRecord = async (employeeId, serviceId, authToken) => {
-    //     try {
-    //         const data = await fetchNewShiftRecordServices(
-    //             employeeId,
-    //             serviceId,
-    //             authToken
-    //         );
-
-    //         toast.success(data.message, {
-    //             id: 'ok',
-    //         });
-
-    //         navigate('/user#ContractsComponent');
-    //     } catch (error) {
-    //         toast.error(error.message, {
-    //             id: 'error',
-    //         });
-    //     }
-    // };
-
     const assingEmployee = async (serviceId, employeeId, authToken) => {
         try {
+            
             const data = await fetchAssingNewEmployeeSevice(
                 serviceId,
                 employeeId,
@@ -85,7 +64,7 @@ const ListEmployeeComponent = ({
             toast.success('Empleado asignado');
             return data;
         } catch (error) {
-            toast.error('No se ha podido asignar empleado');
+            toast.error(error.message);
         }
     };
 
@@ -175,7 +154,6 @@ const ListEmployeeComponent = ({
             </form>
             <ul className='cards'>
                 {data.map((item) => {
-                    const employeeId = item.id;
                     return (
                         <li key={item.id}>
                             <img
@@ -196,13 +174,6 @@ const ListEmployeeComponent = ({
                             <p>🏠 {item.city}</p>
 
                             <button
-                                // onClick={() => {
-                                //     handleNewShiftRecord(
-                                //         employeeId,
-                                //         serviceId,
-                                //         authToken
-                                //     );
-                                // }}
                                 onClick={() => {
                                     handleclick(item);
                                 }}

@@ -8,8 +8,8 @@ export const fetchAssingNewEmployeeSevice = async (
     const res = await fetch(`${VITE_API_URL}/assign/${serviceId}`, {
         method: 'POST',
         headers: {
-            Authoritatio: authToken,
-            'Content-Type': 'application/json',
+            Authorization: authToken,
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify({
             employeeId,
