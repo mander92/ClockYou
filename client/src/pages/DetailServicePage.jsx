@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { fetchDetailServiceServices } from '../services/serviceServices.js';
+import {fetchDeleteEmployeeService} from '../services/personAssigned.js';
 import ListEmployeeComponent from '../components/AdminDashboard/Services/ListEmployeeComponent.jsx';
 import toast from 'react-hot-toast';
 import MapComponent from '../components/MapComponent.jsx';
@@ -12,8 +13,7 @@ const DetailServicePage = () => {
     const [employeeData, setEmployeeData] = useState([]);
     const [data, setData] = useState([]);
     const [location, setLocation] = useState({});
-
-    console.log(employeeData);
+    
 
     useEffect(() => {
         const DetailService = async () => {
@@ -22,8 +22,8 @@ const DetailServicePage = () => {
                     serviceId,
                     authToken
                 );
-
-                setData(data);
+                setEmployeeData(data)
+                setData(data[0]);
                 setLocation({
                     currentLocation: {
                         lat: data.latitudeIn,
@@ -46,12 +46,21 @@ const DetailServicePage = () => {
     const clockIn = new Date(data.clockIn).toLocaleString();
     const clockOut = new Date(data.clockOut).toLocaleString();
 
-    const handleQuita = (id) => {
-        const newAarray = employeeData.filter((employee) => {
-            return employee.id !== id;
-        });
-        setEmployeeData(newAarray);
-        toast.error('Empleado eliminado');
+    const handleQuita = async (employeeId) => {
+        // const newAarray = employeeData.filter((employee) => {
+        //     return employee.id !== id;
+        // });
+        // setEmployeeData(newAarray);
+        // toast.error('Empleado eliminado');
+        try {
+
+        console.log(employeeId);
+
+         await fetchDeleteEmployeeService(employeeId, serviceId, authToken)
+         
+        } catch (error) {
+            toast.error(error.message)
+        }
     };
 
     return (
@@ -84,11 +93,11 @@ const DetailServicePage = () => {
                     <fieldset>
                         <legend>Cliente</legend>
                         <p className='mt-2'>
-                            {data.firstName} {data.lastName}
+                            {data.clientName} {data.clientLastName}
                         </p>
-                        <p>{data.email}</p>
-                        <p>{data.dni}</p>
-                        <p>{data.phone}</p>
+                        <p>{data.clientEmail}</p>
+                        
+                        <p>{data.clientPhone}</p>
                     </fieldset>
                 </form>
                 {employeeData.length >= 1 ? (
@@ -97,9 +106,10 @@ const DetailServicePage = () => {
                             <legend>Empleados Asignados al Servicio</legend>
                             <ul className='cards'>
                                 {employeeData.map((employee) => {
+                                    console.log(employee)
                                     return (
                                         <li
-                                            key={employee.id}
+                                            key={employee.employeeId}
                                             className='border-2 rounded '
                                         >
                                             <h3>
@@ -111,19 +121,15 @@ const DetailServicePage = () => {
                                             <p>🪪 {employee.dni}</p>
                                             <p>👨‍💻 {employee.job}</p>
                                             <p>🏠 {employee.city}</p>
-                                            <button
-                                                className='mx-auto'
-                                                onClick={() => {
-                                                    handleQuita(employee.id);
-                                                }}
-                                            >
-                                                Quitar empleado
-                                            </button>
+                                            <button className='mx-auto' onClick={(e) => {
+                                                e.preventDefault()
+                                                handleQuita(employee.employeeId)
+                                            }}>Quitar Empleado</button>
                                         </li>
                                     );
                                 })}
                             </ul>
-                            <button>Guardar</button>
+                            
                         </fieldset>
                     </form>
                 ) : null}

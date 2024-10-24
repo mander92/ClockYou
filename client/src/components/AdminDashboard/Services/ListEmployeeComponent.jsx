@@ -69,7 +69,7 @@ const ListEmployeeComponent = ({
     };
 
     const handleclick = (data) => {
-        if (employeeData.length < numberOfPeople) {
+        if (employeeData.length <= numberOfPeople) {
             const employeeExists = employeeData.some(
                 (empleado) => empleado.id === data.id
             );

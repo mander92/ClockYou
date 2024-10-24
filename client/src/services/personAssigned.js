@@ -24,3 +24,26 @@ export const fetchAssingNewEmployeeSevice = async (
 
     return body;
 };
+
+export const fetchDeleteEmployeeService = (employeeId, serviceId, authToken) => {
+
+    const res = fetch(`${VITE_API_URL}/personsassigned/delete`, {
+        method: 'DELETE',
+        headers: {
+            Authorization: authToken,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            employeeId,
+            serviceId
+        })
+    });
+
+    const body = res.json()
+
+    if (body.status === 'error') {
+        throw new Error(body.message)
+    }
+
+    return body;
+}
