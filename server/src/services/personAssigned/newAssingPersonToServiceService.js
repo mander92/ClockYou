@@ -31,12 +31,13 @@ const newAssingPersonToServiceService = async (employeeId, serviceId) => {
     }
 
     const [personAlreadyAssigned] = await pool.query(`
-        SELECT * FROM personsassigned WHERE employeeId = ? AND serviceId = ?
+        SELECT id FROM personsassigned WHERE employeeId = ? AND serviceId = ?
         `, [employeeId, serviceId])
 
 
     if (personAlreadyAssigned.length > 0) {
         generateErrorUtil('La persona ya ha sido asignada al servicio');
+        return
     }
 
     const personAssignedId = uuid();

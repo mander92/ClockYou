@@ -63,6 +63,8 @@ const DetailServicePage = () => {
         }
     };
 
+    console.log(employeeData)
+
     return (
         <section>
             <fieldset className='flex flex-wrap'>
@@ -100,39 +102,52 @@ const DetailServicePage = () => {
                         <p>{data.clientPhone}</p>
                     </fieldset>
                 </form>
-                {employeeData.length >= 1 ? (
-                    <form className='form-filters mx-auto'>
-                        <fieldset>
-                            <legend>Empleados Asignados al Servicio</legend>
-                            <ul className='cards'>
-                                {employeeData.map((employee) => {
-                                    console.log(employee)
+                
+                <form className='form-filters mx-auto'>
+                    <fieldset>
+                        <legend>Empleados Asignados al Servicio</legend>
+                        <ul className='cards'>
+                            {employeeData.length > 0 ? (
+                                employeeData.map((employee) => {
+                                    
+                                    // if (!employee.firstName || !employee.lastName || !employee.email || !employee.phone || !employee.dni || !employee.job || !employee.city) {
+                                    //     return;
+                                    // }
+
                                     return (
                                         <li
                                             key={employee.employeeId}
                                             className='border-2 rounded '
                                         >
                                             <h3>
-                                                👤 {employee.firstName}{' '}
-                                                {employee.lastName}
+                                                👤 {employee.firstName} {employee.lastName}
                                             </h3>
                                             <p>✉️ {employee.email}</p>
                                             <p>📞 {employee.phone}</p>
                                             <p>🪪 {employee.dni}</p>
                                             <p>👨‍💻 {employee.job}</p>
                                             <p>🏠 {employee.city}</p>
-                                            <button className='mx-auto' onClick={(e) => {
-                                                e.preventDefault()
-                                                handleQuita(employee.employeeId)
-                                            }}>Quitar Empleado</button>
+                                            
+                                            <button
+                                                className='mx-auto'
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    handleQuita(employee.employeeId);
+                                                }}
+                                            >
+                                                Quitar Empleado
+                                            </button>
+                                            
                                         </li>
                                     );
-                                })}
-                            </ul>
-                            
-                        </fieldset>
-                    </form>
-                ) : null}
+                                })
+                            ) : (
+                                <p>No hay empleados asignados al servicio.</p>
+                            )}
+                        </ul>
+                    </fieldset>
+                </form>
+                                
             </fieldset>
 
             {data.status === 'pending' && (
