@@ -62,6 +62,38 @@ const newAssingPersonToServiceService = async (employeeId, serviceId) => {
         [employeeId, serviceId]
     );
 
+    const [serviceInfo] = await pool.query(
+        `
+            SELECT pa.pin, s.status,
+            t.type, t.city AS province, s.validationCode, s.totalPrice, s.startDateTime, a.address, a.postCode, a.city, u.email
+            FROM addresses a
+            INNER JOIN services s
+            ON a.id = s.addressId
+            INNER JOIN personsassigned pa 
+            ON s.id = pa.serviceId
+            INNER JOIN users u
+            ON u.id = s.clientId
+            INNER JOIN typeOfServices t
+            ON s.typeOfServicesId = t.id
+            WHERE s.id = ? AND pa.employeeId = ?
+            `,
+        [serviceId, employeeId]
+    );
+
+    const emailSubjectEmployee = `Has sido asignado a un servicio`;
+
+    const localDateTime = new Date(serviceInfo[0].startDateTime).toLocaleString();
+
+    const emailBodyEmployee = `
+        <html>
+            <body>
+                <table bgcolor="#3c3c3c" width="670" border="0" cellspacing="0" cellpadding="0" align="center" style="margin: 0 auto" > <tbody> <tr> <td> <table bgcolor="#3c3c3c" width="670" border="0" cellspacing="0" cellpadding="0" align="left" > <tbody> <tr> <td align="left" style=" padding: 20px 40px; color: #fff; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; " > <p style=" margin: 10px 0 20px; font-size: 35px; font-weight: bold; color: #fff;" > <img src="https://raw.githubusercontent.com/mander92/ClockYou/main/docs/logo-email.png" alt="Logo" style="width: 40px; margin: 0 -3px -10px 0" /> ClockYou </p> <p style="margin: 0 0 15px; font-size: 20px; color: #fff;"> Resumen de su pedido </p> <p style="margin: 0 0 10px; font-size: 16px; color: #fff;"> Tipo De Servicio: ${serviceInfo[0].type} en ${serviceInfo[0].province} </p> <p style="margin: 0 0 10px; font-size: 16px; color: #fff;">El ${localDateTime} en Calle: ${serviceInfo[0].address}, ${serviceInfo[0].postCode}, ${serviceInfo[0].city} </p> <p style="margin: 0 0 10px; font-size: 16px; color: #fff;"> Total: ${serviceInfo[0].totalPrice}€ </p>  <br /> <p style="margin: 50px 0 2px; color: #fff;"> Gracias por confiar en ClockYou. </p style="margin: 50px 0 2px; color: #fff;>Para fichar en el servicio puedes hacerlo con tu clave: ${serviceInfo.pin} (recuerda que es secreta)<p></p> < style="margin: 50px 0 2px; color: #fff;a href=${CLIENT_URL}/clockpage>Ficha aquí</a> <p style="margin: 0 0 10px; color: #fff;">&copy; ClockYou 2024</p> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table>
+            </body>
+        </html>
+    `;
+
+    await sendMailUtils(serviceInfo[0].email, emailSubjectEmployee, emailBodyEmployee);
+
     const [verifyStatus] = await pool.query(`
         SELECT status FROM services WHERE id = ?
         `, [serviceId]);
@@ -101,44 +133,7 @@ const newAssingPersonToServiceService = async (employeeId, serviceId) => {
 
         await sendMailUtils(pedido[0].email, emailSubject, emailBody);
 
-    } else {
-        return null
-    }
-
-    const [serviceInfo] = await pool.query(
-        `
-            SELECT pa.pin, s.status,
-            t.type, t.city AS province, s.validationCode, s.totalPrice, s.startDateTime, a.address, a.postCode, a.city, u.email
-            FROM addresses a
-            INNER JOIN services s
-            ON a.id = s.addressId
-            INNER JOIN personsassigned pa 
-            ON s.id = pa.serviceId
-            INNER JOIN users u
-            ON u.id = s.clientId
-            INNER JOIN typeOfServices t
-            ON s.typeOfServicesId = t.id
-            WHERE s.id = ? AND pa.employeeId = ?
-            `,
-        [serviceId, employeeId]
-    );
-
-    console.log(serviceInfo);
-
-    const emailSubjectEmployee = `Su Servicio ha sido aceptado`;
-
-    const localDateTime = new Date(pedido[0].startDateTime).toLocaleString();
-
-    const emailBodyEmployee = `
-        <html>
-            <body>
-                <table bgcolor="#3c3c3c" width="670" border="0" cellspacing="0" cellpadding="0" align="center" style="margin: 0 auto" > <tbody> <tr> <td> <table bgcolor="#3c3c3c" width="670" border="0" cellspacing="0" cellpadding="0" align="left" > <tbody> <tr> <td align="left" style=" padding: 20px 40px; color: #fff; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; " > <p style=" margin: 10px 0 20px; font-size: 35px; font-weight: bold; color: #fff;" > <img src="https://raw.githubusercontent.com/mander92/ClockYou/main/docs/logo-email.png" alt="Logo" style="width: 40px; margin: 0 -3px -10px 0" /> ClockYou </p> <p style="margin: 0 0 15px; font-size: 20px; color: #fff;"> Resumen de su pedido </p> <p style="margin: 0 0 10px; font-size: 16px; color: #fff;"> Tipo De Servicio: ${serviceInfo[0].type} en ${serviceInfo[0].province} </p> <p style="margin: 0 0 10px; font-size: 16px; color: #fff;">El ${localDateTime} en Calle: ${serviceInfo[0].address}, ${serviceInfo[0].postCode}, ${serviceInfo[0].city} </p> <p style="margin: 0 0 10px; font-size: 16px; color: #fff;"> Total: ${serviceInfo[0].totalPrice}€ </p>  <br /> <p style="margin: 50px 0 2px; color: #fff;"> Gracias por confiar en ClockYou. </p style="margin: 50px 0 2px; color: #fff;>Para fichar en el servicio puedes hacerlo con tu clave: ${serviceInfo.pin} (recuerda que es secreta)<p></p> < style="margin: 50px 0 2px; color: #fff;a href=${CLIENT_URL}/clockpage>Ficha aquí</a> <p style="margin: 0 0 10px; color: #fff;">&copy; ClockYou 2024</p> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table>
-            </body>
-        </html>
-    `;
-
-    await sendMailUtils(serviceInfo.email, emailSubjectEmployee, emailBodyEmployee);
-
+    };
 
     return data;
 };
