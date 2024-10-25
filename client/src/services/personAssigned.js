@@ -25,9 +25,9 @@ export const fetchAssingNewEmployeeSevice = async (
     return body;
 };
 
-export const fetchDeleteEmployeeService = (employeeId, serviceId, authToken) => {
+export const fetchDeleteEmployeeService = async (employeeId, serviceId, authToken) => {
 
-    const res = fetch(`${VITE_API_URL}/personsassigned/delete`, {
+    const res = await fetch(`${VITE_API_URL}/personsassigned/delete`, {
         method: 'DELETE',
         headers: {
             Authorization: authToken,
@@ -39,7 +39,7 @@ export const fetchDeleteEmployeeService = (employeeId, serviceId, authToken) => 
         })
     });
 
-    const body = res.json()
+    const body = await res.json()
 
     if (body.status === 'error') {
         throw new Error(body.message)

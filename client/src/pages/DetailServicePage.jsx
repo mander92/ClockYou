@@ -47,16 +47,14 @@ const DetailServicePage = () => {
     const clockOut = new Date(data.clockOut).toLocaleString();
 
     const handleQuita = async (employeeId) => {
-        // const newAarray = employeeData.filter((employee) => {
-        //     return employee.id !== id;
-        // });
-        // setEmployeeData(newAarray);
-        // toast.error('Empleado eliminado');
         try {
 
-        console.log(employeeId);
-
-         await fetchDeleteEmployeeService(employeeId, serviceId, authToken)
+         await fetchDeleteEmployeeService(employeeId, serviceId, authToken);
+         toast.error('Empleado eliminado del servicio');
+         setTimeout(()=>{
+            window.location.reload()
+         },1500)
+         
          
         } catch (error) {
             toast.error(error.message)
@@ -110,9 +108,9 @@ const DetailServicePage = () => {
                             {employeeData.length > 0 ? (
                                 employeeData.map((employee) => {
                                     
-                                    // if (!employee.firstName || !employee.lastName || !employee.email || !employee.phone || !employee.dni || !employee.job || !employee.city) {
-                                    //     return;
-                                    // }
+                                    if (!employee.employeeId) {
+                                        return;
+                                    }
 
                                     return (
                                         <li

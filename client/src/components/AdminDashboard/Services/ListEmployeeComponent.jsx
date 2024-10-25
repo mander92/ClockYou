@@ -10,6 +10,7 @@ const ListEmployeeComponent = ({
     numberOfPeople,
     employeeData,
     setEmployeeData,
+    setFetchArray
 }) => {
     const { authToken } = useContext(AuthContext);
 
@@ -53,7 +54,7 @@ const ListEmployeeComponent = ({
         setJob('');
     };
 
-    const assingEmployee = async (serviceId, employeeId, authToken) => {
+    const assingEmployee = async (serviceId, employeeId, authToken,) => {
         try {
             
             const data = await fetchAssingNewEmployeeSevice(
@@ -75,9 +76,14 @@ const ListEmployeeComponent = ({
             );
             if (employeeExists) {
                 toast.error('El empleado ya se encuentra asignado');
+                return
             } else {
                 setEmployeeData((prev) => [...prev, data]);
                 assingEmployee(serviceId, data.id, authToken);
+                setTimeout(() => {
+                    window.location.reload()
+                }, 1000);
+                
             }
         } else {
             toast.error(
