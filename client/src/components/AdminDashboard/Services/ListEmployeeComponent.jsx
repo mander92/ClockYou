@@ -10,7 +10,6 @@ const ListEmployeeComponent = ({
     numberOfPeople,
     employeeData,
     setEmployeeData,
-    setFetchArray
 }) => {
     const { authToken } = useContext(AuthContext);
 

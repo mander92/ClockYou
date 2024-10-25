@@ -53,7 +53,7 @@ const ContractsComponent = () => {
     );
 
     const calendarEvents = data.map((event) => ({
-        title: event.type,
+        title: event.name,
         start: new Date(event.startDateTime),
         end: new Date(event.startDateTime),
         allDay: false,

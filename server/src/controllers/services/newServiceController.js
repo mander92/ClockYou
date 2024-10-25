@@ -16,6 +16,7 @@ const newServiceController = async (req, res, next) => {
             city: Joi.string().max(40).required(),
             postCode: Joi.string().length(5).required(),
             clientId: Joi.string(),
+            name: Joi.string()
         });
 
         const validation = schema.validate(req.body);
@@ -37,6 +38,7 @@ const newServiceController = async (req, res, next) => {
                 city,
                 postCode,
                 clientId,
+                name
             } = req.body;
 
             const data = await insertServiceAdmin(
@@ -49,7 +51,8 @@ const newServiceController = async (req, res, next) => {
                 address,
                 city,
                 postCode,
-                clientId
+                clientId,
+                name
             );
             res.send({
                 status: 'ok',

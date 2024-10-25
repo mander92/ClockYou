@@ -48,7 +48,8 @@ export const fetchNewContractAdmin = async (
     address,
     city,
     postCode,
-    clientId
+    clientId,
+    name
 ) => {
     const res = await fetch(`${VITE_API_URL}/services/${typeOfServiceId}`, {
         method: 'POST',
@@ -66,6 +67,7 @@ export const fetchNewContractAdmin = async (
             city,
             postCode,
             clientId,
+            name
         }),
     });
 

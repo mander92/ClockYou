@@ -19,6 +19,7 @@ const CreateContract = () => {
     const [city, setCity] = useState('');
     const [postCode, setPostCode] = useState('');
     const [clientId, setClientId] = useState('');
+    const [name, setName] = useState('');
 
     const formatDate = (dateTime) => {
         if (dateTime) {
@@ -44,7 +45,8 @@ const CreateContract = () => {
                 address,
                 city,
                 postCode,
-                clientId
+                clientId,
+                name
             );
 
             toast.success(res.message);
@@ -57,6 +59,16 @@ const CreateContract = () => {
         <>
             <form className='profile-form mx-auto' onSubmit={handleSubmit}>
                 <fieldset>
+                <label htmlFor='name'>Nombre</label>
+                    <input
+                        type='tex'
+                        id='name'
+                        name='name'
+                        value={name}
+                        onChange={(e) => {
+                            setName(e.target.value);
+                        }}
+                    />
                     <label htmlFor='startDateTime'>Fecha de inicio</label>
                     <input
                         type='datetime-local'

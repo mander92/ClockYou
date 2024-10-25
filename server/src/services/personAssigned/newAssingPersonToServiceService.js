@@ -47,21 +47,7 @@ const newAssingPersonToServiceService = async (employeeId, serviceId) => {
         INSERT INTO personsassigned(id, employeeId, serviceId, pin) VALUES(?,?,?,?)
         `, [personAssignedId, employeeId, serviceId, pin]);
 
-    const [data] = await pool.query(
-        `
-            SELECT pa.pin, s.status,
-            t.type, t.city AS province, t.price, s.hours, s.totalPrice, s.startDateTime, s.comments, u.email, u.firstName, u.lastName, u.phone
-            FROM users u
-            INNER JOIN personsassigned pa
-            ON u.id = pa.employeeId
-            INNER JOIN services s
-            ON s.id = pa.serviceId
-            INNER JOIN typeOfServices t
-            ON s.typeOfServicesId = t.id
-            WHERE u.id = ? AND s.id = ?
-        `,
-        [employeeId, serviceId]
-    );
+
 
     const [serviceInfo] = await pool.query(
         `
@@ -99,7 +85,7 @@ const newAssingPersonToServiceService = async (employeeId, serviceId) => {
         SELECT status FROM services WHERE id = ?
         `, [serviceId]);
 
-    if (verifyStatus === 'pending') {
+    if (verifyStatus[0].status === 'pending') {
         await pool.query(`
             UPDATE services SET status = 'confirmed' WHERE id = ?
             `, [serviceId]);
@@ -127,7 +113,7 @@ const newAssingPersonToServiceService = async (employeeId, serviceId) => {
         const emailBody = `
             <html>
                 <body>
-                    <table bgcolor="#3c3c3c" width="670" border="0" cellspacing="0" cellpadding="0" align="center" style="margin: 0 auto" > <tbody> <tr> <td> <table bgcolor="#3c3c3c" width="670" border="0" cellspacing="0" cellpadding="0" align="left" > <tbody> <tr> <td align="left" style=" padding: 20px 40px; color: #fff; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; " > <p style=" margin: 10px 0 20px; font-size: 35px; font-weight: bold; color: #fff;" > <img src="https://raw.githubusercontent.com/mander92/ClockYou/main/docs/logo-email.png" alt="Logo" style="width: 40px; margin: 0 -3px -10px 0" /> ClockYou </p> <p style="margin: 0 0 15px; font-size: 20px; color: #fff;"> Resumen de su pedido </p> <p style="margin: 0 0 10px; font-size: 16px; color: #fff;"> Tipo De Servicio: ${pedido[0].type} en ${pedido[0].province} </p> <p style="margin: 0 0 10px; font-size: 16px; color: #fff;">El ${localDateTime} en Calle: ${pedido[0].address}, ${pedido[0].postCode}, ${pedido[0].city} </p> <p style="margin: 0 0 10px; font-size: 16px; color: #fff;"> Total: ${pedido[0].totalPrice}€ </p>  <br /> <p style="margin: 50px 0 2px; color: #fff;"> Gracias por trabajar en ClockYou. </p> <p style="margin: 0 0 10px; color: #fff;">&copy; ClockYou 2024</p> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table>
+                    <table bgcolor="#3c3c3c" width="670" border="0" cellspacing="0" cellpadding="0" align="center" style="margin: 0 auto" > <tbody> <tr> <td> <table bgcolor="#3c3c3c" width="670" border="0" cellspacing="0" cellpadding="0" align="left" > <tbody> <tr> <td align="left" style=" padding: 20px 40px; color: #fff; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; " > <p style=" margin: 10px 0 20px; font-size: 35px; font-weight: bold; color: #fff;" > <img src="https://raw.githubusercontent.com/mander92/ClockYou/main/docs/logo-email.png" alt="Logo" style="width: 40px; margin: 0 -3px -10px 0" /> ClockYou </p> <p style="margin: 0 0 15px; font-size: 20px; color: #fff;"> Resumen de su pedido </p> <p style="margin: 0 0 10px; font-size: 16px; color: #fff;"> Tipo De Servicio: ${pedido[0].type} en ${pedido[0].province} </p> <p style="margin: 0 0 10px; font-size: 16px; color: #fff;">El ${localDateTime} en Calle: ${pedido[0].address}, ${pedido[0].postCode}, ${pedido[0].city} </p> <p style="margin: 0 0 10px; font-size: 16px; color: #fff;"> Total: ${pedido[0].totalPrice}€ </p>  <br /> <p style="margin: 50px 0 2px; color: #fff;"> Gracias por confiar en ClockYou. </p> <p style="margin: 0 0 10px; color: #fff;">&copy; ClockYou 2024</p> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table>
                 </body>
             </html>
         `;
@@ -135,6 +121,22 @@ const newAssingPersonToServiceService = async (employeeId, serviceId) => {
         await sendMailUtils(pedido[0].email, emailSubject, emailBody);
 
     };
+
+    const [data] = await pool.query(
+        `
+            SELECT pa.pin, s.status,
+            t.type, t.city AS province, t.price, s.hours, s.totalPrice, s.startDateTime, s.comments, u.email, u.firstName, u.lastName, u.phone
+            FROM users u
+            INNER JOIN personsassigned pa
+            ON u.id = pa.employeeId
+            INNER JOIN services s
+            ON s.id = pa.serviceId
+            INNER JOIN typeOfServices t
+            ON s.typeOfServicesId = t.id
+            WHERE u.id = ? AND s.id = ?
+        `,
+        [employeeId, serviceId]
+    );
 
     return data;
 };

@@ -14,10 +14,6 @@ const assingPersonToServiceController = async (req, res, next) => {
             );
         }
 
-        if (!employeeId || !serviceId) {
-            generateErrorUtil('Faltan datos para realizar esta operación', 402);
-        }
-
         const data = await newAssingPersonToServiceService(
             employeeId,
             serviceId

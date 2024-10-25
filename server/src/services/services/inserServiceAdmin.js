@@ -15,7 +15,8 @@ const insertServiceAdmin = async (
     address,
     city,
     postCode,
-    clientId
+    clientId,
+    name
 ) => {
     const pool = await getPool();
 
@@ -28,25 +29,25 @@ const insertServiceAdmin = async (
 
     if (!verify.length || verify[0].id !== clientId)
         generateErrorUtil('Acceso denegado, el token no coincide', 409);
-    const [existAddress] = await pool.query(
-        `
-        SELECT id FROM addresses WHERE address = ? AND city = ? AND postCode = ?
-        `,
-        [address, city, postCode]
-    );
+    // const [existAddress] = await pool.query(
+    //     `
+    //     SELECT id FROM addresses WHERE address = ? AND city = ? AND postCode = ?
+    //     `,
+    //     [address, city, postCode]
+    // );
 
-    const [existService] = await pool.query(
-        `
-        SELECT id FROM services WHERE typeOfServicesId = ? AND clientId = ? AND startDateTime = ? AND hours = ? AND deletedAt IS NULL
-        `,
-        [typeOfServiceId, clientId, startDateTime, hours]
-    );
+    // const [existService] = await pool.query(
+    //     `
+    //     SELECT id FROM services WHERE typeOfServicesId = ? AND clientId = ? AND startDateTime = ? AND hours = ? AND deletedAt IS NULL
+    //     `,
+    //     [typeOfServiceId, clientId, startDateTime, hours]
+    // );
 
-    if (existAddress.length && existService.length)
-        generateErrorUtil(
-            'Ya has solicitado un servicio con estas características',
-            401
-        );
+    // if (existAddress.length && existService.length)
+    //     generateErrorUtil(
+    //         'Ya has solicitado un servicio con estas características',
+    //         401
+    //     );
 
     const [price] = await pool.query(
         `
@@ -73,7 +74,7 @@ const insertServiceAdmin = async (
     if (endDateTime) {
         await pool.query(
             `
-            INSERT INTO services(id, startDateTime, endDateTime, hours, numberOfPeople, comments, validationCode, clientId, addressId, typeOfServicesId, totalPrice) VALUES (?,?,?,?,?,?,?,?,?,?,?)
+            INSERT INTO services(id, startDateTime, endDateTime, hours, numberOfPeople, comments, validationCode, clientId, addressId, typeOfServicesId, totalPrice, name) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)
             `,
             [
                 serviceId,
@@ -87,13 +88,14 @@ const insertServiceAdmin = async (
                 addressId,
                 typeOfServiceId,
                 resultPrice,
+                name
             ]
         );
     }
 
     const [data] = await pool.query(
         `
-        SELECT s.status,
+        SELECT s.status, s.name,
         t.type, t.city AS province, t.price, s.hours, s.totalPrice, s.startDateTime, a.address, a.postCode, a.city, s.comments, u.email, u.firstName, u.lastName, u.phone
         FROM addresses a
         INNER JOIN services s

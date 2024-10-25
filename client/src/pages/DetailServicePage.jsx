@@ -61,14 +61,13 @@ const DetailServicePage = () => {
         }
     };
 
-    console.log(employeeData)
-
     return (
         <section>
             <fieldset className='flex flex-wrap'>
                 <form className='form-filters mx-auto'>
                     <fieldset>
                         <legend>Solicitud</legend>
+                        <h2>{data.name}</h2>
                         <p className='mt-2'>{data.type}</p>
                         <p>{data.comments}</p>
 
@@ -148,7 +147,7 @@ const DetailServicePage = () => {
                                 
             </fieldset>
 
-            {data.status === 'pending' && (
+            {data.status !== 'completed'&& (
                 <ListEmployeeComponent
                     numberOfPeople={data.numberOfPeople}
                     serviceId={serviceId}
