@@ -14,7 +14,7 @@ const MyServicesComponent = () => {
     const [initialLocation, setInitialLocation] = useState(null);
     const [selectedServiceId, setSelectedServiceId] = useState(null);
     const [selectedEmployeeId, setSelectedEmployeeId] = useState(null);
-    const user = useUser();
+    const { user } = useUser();
 
     const resetFilter = (e) => {
         e.preventDefault();
@@ -93,6 +93,8 @@ const MyServicesComponent = () => {
         setSelectedServiceId(null);
         setSelectedEmployeeId(null);
     };
+
+    console.log(selectedEmployeeId);
 
     return (
         <>

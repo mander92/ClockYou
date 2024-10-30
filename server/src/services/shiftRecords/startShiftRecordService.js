@@ -1,29 +1,30 @@
 import getPool from '../../db/getPool.js';
 import generateErrorUtil from '../../utils/generateErrorUtil.js';
+import { v4 as uuid } from 'uuid';
 
 const startShiftRecordService = async (
-    shiftRecordId,
-    location,
-    startDateTime
+    location, startDateTime, employeeId, serviceId
 ) => {
     const latitudeIn = location[0];
     const longitudeIn = location[1];
     const pool = await getPool();
-    const [verify] = await pool.query(
-        `
-        SELECT clockIn FROM shiftRecords WHERE id = ?
-        `,
-        [shiftRecordId]
-    );
+    // const [verify] = await pool.query(
+    //     `
+    //     SELECT id FROM personsassigned WHERE employeeId = ? AND serviceId = ?
+    //     `,
+    //     [employeeId, serviceId]
+    // );
 
-    if (verify[0].clockIn !== null)
-        generateErrorUtil('Ya has registrado una hora de inicio', 401);
+    // if (verify[0].clockIn !== null)
+    //     generateErrorUtil('No has sido asignado al servicio contacta con administración', 401);
+
+    const id = uuid();
 
     await pool.query(
         `
-        UPDATE shiftRecords SET clockIn = ?, latitudeIn = ?, longitudeIn = ? WHERE id = ?
+         INSERT INTO shiftrecords(id, clockIn, employeeId, serviceId, latitudeIn, longitudeIn) VALUES(?,?,?,?,?,?)
         `,
-        [startDateTime, latitudeIn, longitudeIn, shiftRecordId]
+        [id, startDateTime, employeeId, serviceId, latitudeIn, longitudeIn,]
     );
 };
 

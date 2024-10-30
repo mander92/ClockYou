@@ -49,12 +49,16 @@ export const fetchClockInShiftRecordServices = async (
     authToken,
     clockIn,
     location,
-    shiftRecordId
+    serviceId,
+    employeeId
+
 ) => {
+
+
     const res = await fetch(
-        `${VITE_API_URL}/shiftrecords/clockIn/${shiftRecordId}`,
+        `${VITE_API_URL}/shiftrecords/clockIn`,
         {
-            method: 'PUT',
+            method: 'POST',
             headers: {
                 Authorization: authToken,
                 'Content-Type': 'application/json',
@@ -62,6 +66,8 @@ export const fetchClockInShiftRecordServices = async (
             body: JSON.stringify({
                 location,
                 clockIn,
+                serviceId,
+                employeeId
             }),
         }
     );

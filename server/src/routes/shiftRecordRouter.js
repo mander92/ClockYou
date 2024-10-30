@@ -17,6 +17,13 @@ import {
 
 const router = express.Router();
 
+router.post(
+    '/shiftRecords/clockIn',
+    authUser,
+    isEmployee,
+    startShiftRecordsController
+);
+
 router.get('/shiftRecords', authUser, isAdmin, listShiftRecordsController);
 
 router.get(
@@ -34,13 +41,7 @@ router.post(
     newShiftRecordController
 );
 
-router.put(
-    '/shiftRecords/clockIn/:shiftRecordId',
-    authUser,
-    isEmployee,
-    shiftRecordExists,
-    startShiftRecordsController
-);
+
 
 router.put(
     '/shiftRecords/edit/:shiftRecordId',

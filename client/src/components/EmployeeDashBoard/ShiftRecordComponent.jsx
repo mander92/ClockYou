@@ -8,18 +8,17 @@ import toast from 'react-hot-toast';
 import MapComponent from '../MapComponent';
 import Modal from 'react-modal';
 
-const ShiftRecordComponent = ({ 
-    serviceId, 
-    empployeeId, 
+const ShiftRecordComponent = ({
+    serviceId,
+    employeeId,
     onRequestClose,
-    initialLocation,  
-    onShiftRecordSuccess }) => {
-
+    initialLocation,
+}) => {
     const { authToken } = useContext(AuthContext);
 
     const [locationClockIn, setLocationClockIn] = useState({});
     const [locatioClockOut, setAtucalLocation] = useState({});
-    
+
     const getActualLocation = () => {
         return new Promise((resolve, reject) => {
             navigator.geolocation.getCurrentPosition(
@@ -50,21 +49,20 @@ const ShiftRecordComponent = ({
                 authToken,
                 clockIn,
                 location,
-                serviceId, 
-                empployeeId
+                serviceId,
+                employeeId
             );
 
             toast.success(data.message, {
                 id: 'ok',
             });
-            onRequestClose()
+            onRequestClose();
         } catch (error) {
             toast.error(error.message, {
                 id: 'error',
             });
         }
     };
-
 
     const getEnd = async (e) => {
         e.preventDefault();
@@ -76,22 +74,20 @@ const ShiftRecordComponent = ({
                 authToken,
                 clockOut,
                 location,
-                serviceId, 
+                serviceId,
                 empployeeId
             );
 
             toast.success(data.message, {
                 id: 'ok',
             });
-            onRequestClose()
+            onRequestClose();
         } catch (error) {
             toast.error(error.message, {
                 id: 'error',
             });
         }
     };
-
-
 
     return (
         <div className='flex justify-evenly flex-wrap'>
@@ -105,7 +101,6 @@ const ShiftRecordComponent = ({
                     </button>
                     {initialLocation ? (
                         <MapComponent location={initialLocation} />
-
                     ) : (
                         ''
                     )}
@@ -116,20 +111,17 @@ const ShiftRecordComponent = ({
                         Salida
                     </button>
                 </fieldset>
-
             </form>
-            
         </div>
-
     );
 };
 
 const ShiftRecordModal = ({
-    serviceId, 
-    empployeeId, 
+    serviceId,
+    employeeId,
     onRequestClose,
     initialLocation,
-    isOpen 
+    isOpen,
 }) => {
     return (
         <Modal
@@ -139,14 +131,12 @@ const ShiftRecordModal = ({
         >
             <ShiftRecordComponent
                 serviceId={serviceId}
-                empployeeId={empployeeId}
+                employeeId={employeeId}
                 onRequestClose={onRequestClose}
                 initialLocation={initialLocation}
-                
             />
         </Modal>
     );
 };
 
 export default ShiftRecordModal;
-
