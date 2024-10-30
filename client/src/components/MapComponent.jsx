@@ -3,13 +3,10 @@ import { IconLocationComponent } from './IconLocationComponent.jsx';
 import 'leaflet/dist/leaflet.css';
 
 const MapComponent = ({ location }) => {
-    console.log('Location prop:', location);
-
     // Verifica que location tenga el formato correcto
-    if (!location || !Array.isArray(location) || location.length !== 2) {
+    if (!location) {
         return <div>Localización no disponible</div>;
     }
-
     return (
         <MapContainer center={location} zoom={12} scrollWheelZoom={false}>
             <TileLayer

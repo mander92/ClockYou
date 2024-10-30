@@ -1,22 +1,20 @@
 import { AuthContext } from '../../context/AuthContext.jsx';
 import { useEffect, useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { fetchEmployeeAllServicesServices } from '../../services/serviceServices.js';
+import ShiftRecordModal from './ShiftRecordComponent.jsx';
 import toast from 'react-hot-toast';
-import CalendarComponent from '../CalendarComponent.jsx';
+import useUser from '../../hooks/useUser.js';
 
 const MyServicesComponent = () => {
     const { authToken } = useContext(AuthContext);
-    const navigate = useNavigate();
     const [status, setStatus] = useState('');
     const [type, setType] = useState('');
     const [data, setData] = useState([]);
-    const [isVisible, setIsVisible] = useState(false);
-
-    const handleHideClick = (e) => {
-        e.preventDefault();
-        setIsVisible(!isVisible);
-    };
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [initialLocation, setInitialLocation] = useState(null);
+    const [selectedServiceId, setSelectedServiceId] = useState(null);
+    const [selectedEmployeeId, setSelectedEmployeeId] = useState(null);
+    const user = useUser();
 
     const resetFilter = (e) => {
         e.preventDefault();
@@ -54,22 +52,47 @@ const MyServicesComponent = () => {
         getServices();
     }, [status, type, authToken]);
 
-    const handleSelectEvent = (event) => {
-        navigate(`/services/employee/${event.serviceId}`);
-    };
-
     const typeNoRepeated = [...new Set(data.map((item) => item.type))].sort(
         (a, b) => a.localeCompare(b)
     );
 
-    const calendarEvents = data.map((event) => ({
-        title: event.type,
-        start: new Date(event.startDateTime),
-        end: new Date(event.startDateTime),
-        allDay: false,
-        serviceId: event.serviceId,
-        status: event.status,
-    }));
+    const openModal = (serviceId) => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const location = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude,
+                    };
+                    setInitialLocation(location);
+                    setSelectedServiceId(serviceId);
+                    setSelectedEmployeeId(user.id);
+                    setModalIsOpen(true);
+                },
+                (error) => {
+                    console.error('Error obteniendo la ubicación: ', error);
+                    setInitialLocation(null);
+                    setSelectedServiceId(serviceId);
+                    setSelectedEmployeeId(user.id);
+                    setModalIsOpen(true);
+                }
+            );
+        } else {
+            console.error(
+                'Geolocalización no es soportada por este navegador.'
+            );
+            setInitialLocation(null);
+            setSelectedServiceId(serviceId);
+            setSelectedEmployeeId(user.id);
+            setModalIsOpen(true);
+        }
+    };
+
+    const closeModal = () => {
+        setModalIsOpen(false);
+        setSelectedServiceId(null);
+        setSelectedEmployeeId(null);
+    };
 
     return (
         <>
@@ -109,32 +132,33 @@ const MyServicesComponent = () => {
                     })}
                 </select>
                 <button onClick={resetFilter}>Limpiar Filtros</button>
-                <button onClick={handleHideClick}>
-                    {isVisible ? 'Ocultar colores' : 'Mostrar colores'}
-                </button>
             </form>
-            <div>
-                {isVisible && (
-                    <div className='manager-tabs colors'>
-                        <span style={{ backgroundColor: 'orange' }}>
-                            Aceptado
-                        </span>
-                        <span style={{ backgroundColor: 'lightgreen' }}>
-                            Confirmado
-                        </span>
-                        <span style={{ backgroundColor: 'green' }}>
-                            Completado
-                        </span>
-                    </div>
-                )}
-            </div>
-            <CalendarComponent
-                events={calendarEvents}
-                onSelectEvent={handleSelectEvent}
-                defaultView='day'
+            <ul className='cards'>
+                {data.map((item) => {
+                    return (
+                        <li key={item.id}>
+                            <h3>{item.name}</h3>
+                            <p>{item.type}</p>
+                            <p>{item.address}</p>
+                            <p> {item.phone}</p>
+                            <p> {item.postcode}</p>
+                            <p> {item.province}</p>
+
+                            <button onClick={() => openModal(item.id)}>
+                                fichar
+                            </button>
+                        </li>
+                    );
+                })}
+            </ul>
+            <ShiftRecordModal
+                isOpen={modalIsOpen}
+                onRequestClose={closeModal}
+                initialLocation={initialLocation}
+                serviceId={selectedServiceId}
+                employeeId={selectedEmployeeId}
             />
         </>
     );
 };
-
 export default MyServicesComponent;

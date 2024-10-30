@@ -6,12 +6,20 @@ import {
 } from '../../services/shiftRecordServices';
 import toast from 'react-hot-toast';
 import MapComponent from '../MapComponent';
+import Modal from 'react-modal';
 
-const ShiftRecordComponent = ({ shiftRecordId }) => {
+const ShiftRecordComponent = ({ 
+    serviceId, 
+    empployeeId, 
+    onRequestClose,
+    initialLocation,  
+    onShiftRecordSuccess }) => {
+
     const { authToken } = useContext(AuthContext);
+
     const [locationClockIn, setLocationClockIn] = useState({});
     const [locatioClockOut, setAtucalLocation] = useState({});
-
+    
     const getActualLocation = () => {
         return new Promise((resolve, reject) => {
             navigator.geolocation.getCurrentPosition(
@@ -42,18 +50,21 @@ const ShiftRecordComponent = ({ shiftRecordId }) => {
                 authToken,
                 clockIn,
                 location,
-                shiftRecordId
+                serviceId, 
+                empployeeId
             );
 
             toast.success(data.message, {
                 id: 'ok',
             });
+            onRequestClose()
         } catch (error) {
             toast.error(error.message, {
                 id: 'error',
             });
         }
     };
+
 
     const getEnd = async (e) => {
         e.preventDefault();
@@ -65,18 +76,22 @@ const ShiftRecordComponent = ({ shiftRecordId }) => {
                 authToken,
                 clockOut,
                 location,
-                shiftRecordId
+                serviceId, 
+                empployeeId
             );
 
             toast.success(data.message, {
                 id: 'ok',
             });
+            onRequestClose()
         } catch (error) {
             toast.error(error.message, {
                 id: 'error',
             });
         }
     };
+
+
 
     return (
         <div className='flex justify-evenly flex-wrap'>
@@ -88,28 +103,50 @@ const ShiftRecordComponent = ({ shiftRecordId }) => {
                     >
                         Entrada
                     </button>
-                    {locationClockIn ? (
-                        <MapComponent location={locationClockIn} />
+                    {initialLocation ? (
+                        <MapComponent location={initialLocation} />
+
                     ) : (
                         ''
                     )}
-                </fieldset>
-            </form>
-            <form className='mx-auto '>
-                <fieldset>
                     <button
                         className='mt-2 text-white bg-red-600'
                         onClick={getEnd}
                     >
                         Salida
                     </button>
-                    {locatioClockOut && (
-                        <MapComponent location={locatioClockOut} />
-                    )}
                 </fieldset>
+
             </form>
+            
         </div>
+
     );
 };
 
-export default ShiftRecordComponent;
+const ShiftRecordModal = ({
+    serviceId, 
+    empployeeId, 
+    onRequestClose,
+    initialLocation,
+    isOpen 
+}) => {
+    return (
+        <Modal
+            isOpen={isOpen}
+            onRequestClose={onRequestClose}
+            className='modal-content'
+        >
+            <ShiftRecordComponent
+                serviceId={serviceId}
+                empployeeId={empployeeId}
+                onRequestClose={onRequestClose}
+                initialLocation={initialLocation}
+                
+            />
+        </Modal>
+    );
+};
+
+export default ShiftRecordModal;
+
