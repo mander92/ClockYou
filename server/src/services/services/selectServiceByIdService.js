@@ -9,12 +9,7 @@ const selectServiceByIdService = async (serviceId) => {
                 us.firstName as clientName, 
                 us.lastName AS clientLastName, 
                 us.phone AS clientPhone, 
-                us.email AS clientEmail, 
-                sr.id, 
-                sr.clockIn, 
-                sr.clockOut, 
-                sr.latitudeIn, 
-                sr.longitudeIn, 
+                us.email AS clientEmail,
                 s.status, 
                 t.type, 
                 t.city AS province, 
@@ -33,18 +28,15 @@ const selectServiceByIdService = async (serviceId) => {
                 u.firstName, 
                 u.lastName, 
                 u.phone, 
-                u.dni,
-                TIMESTAMPDIFF(HOUR, sr.clockIn, sr.clockOut) AS hoursWorked,
-                MOD(TIMESTAMPDIFF(MINUTE, sr.clockIn, sr.clockOut), 60) AS minutesWorked
+                u.dni
             FROM services s
             INNER JOIN addresses a ON a.id = s.addressId
-            LEFT JOIN shiftRecords sr ON sr.serviceId = s.id
             LEFT JOIN personsassigned pa ON s.id = pa.serviceId
             LEFT JOIN users u ON u.id = pa.employeeId
-            LEFT JOIN users ue ON sr.employeeId = ue.id
+            LEFT JOIN users ue ON pa.employeeId = ue.id
             INNER JOIN typeOfServices t ON s.typeOfServicesId = t.id
             INNER JOIN users us ON us.id = s.clientId
-            WHERE s.id = ? AND s.deletedAt IS NULL;
+            WHERE s.id = ?
         `,
         [serviceId]
     );

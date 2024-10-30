@@ -3,7 +3,7 @@ import { AuthContext } from '../../../context/AuthContext.jsx';
 import { useState, useEffect, useContext } from 'react';
 import { fetchAllUsersServices } from '../../../services/userServices.js';
 import toast from 'react-hot-toast';
-import { fetchAssingNewEmployeeSevice } from '../../../services/personAssigned.js'
+import { fetchAssingNewEmployeeSevice } from '../../../services/personAssigned.js';
 
 const ListEmployeeComponent = ({
     serviceId,
@@ -53,9 +53,8 @@ const ListEmployeeComponent = ({
         setJob('');
     };
 
-    const assingEmployee = async (serviceId, employeeId, authToken,) => {
+    const assingEmployee = async (serviceId, employeeId, authToken) => {
         try {
-            
             const data = await fetchAssingNewEmployeeSevice(
                 serviceId,
                 employeeId,
@@ -75,14 +74,13 @@ const ListEmployeeComponent = ({
             );
             if (employeeExists) {
                 toast.error('El empleado ya se encuentra asignado');
-                return
+                return;
             } else {
                 setEmployeeData((prev) => [...prev, data]);
                 assingEmployee(serviceId, data.id, authToken);
                 setTimeout(() => {
-                    window.location.reload()
+                    window.location.reload();
                 }, 1000);
-                
             }
         } else {
             toast.error(

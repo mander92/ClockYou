@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { fetchDetailServiceServices } from '../services/serviceServices.js';
-import {fetchDeleteEmployeeService} from '../services/personAssigned.js';
+import { fetchDeleteEmployeeService } from '../services/personAssigned.js';
 import ListEmployeeComponent from '../components/AdminDashboard/Services/ListEmployeeComponent.jsx';
 import toast from 'react-hot-toast';
 import MapComponent from '../components/MapComponent.jsx';
@@ -13,7 +13,6 @@ const DetailServicePage = () => {
     const [employeeData, setEmployeeData] = useState([]);
     const [data, setData] = useState([]);
     const [location, setLocation] = useState({});
-    
 
     useEffect(() => {
         const DetailService = async () => {
@@ -22,7 +21,7 @@ const DetailServicePage = () => {
                     serviceId,
                     authToken
                 );
-                setEmployeeData(data)
+                setEmployeeData(data);
                 setData(data[0]);
                 setLocation({
                     currentLocation: {
@@ -48,18 +47,17 @@ const DetailServicePage = () => {
 
     const handleQuita = async (employeeId) => {
         try {
-
-         await fetchDeleteEmployeeService(employeeId, serviceId, authToken);
-         toast.error('Empleado eliminado del servicio');
-         setTimeout(()=>{
-            window.location.reload()
-         },1500)
-         
-         
+            await fetchDeleteEmployeeService(employeeId, serviceId, authToken);
+            toast.error('Empleado eliminado del servicio');
+            setTimeout(() => {
+                window.location.reload();
+            }, 1500);
         } catch (error) {
-            toast.error(error.message)
+            toast.error(error.message);
         }
     };
+
+    console.log(employeeData);
 
     return (
         <section>
@@ -95,18 +93,17 @@ const DetailServicePage = () => {
                             {data.clientName} {data.clientLastName}
                         </p>
                         <p>{data.clientEmail}</p>
-                        
+
                         <p>{data.clientPhone}</p>
                     </fieldset>
                 </form>
-                
+
                 <form className='form-filters mx-auto'>
                     <fieldset>
                         <legend>Empleados Asignados al Servicio</legend>
                         <ul className='cards'>
                             {employeeData.length > 0 ? (
                                 employeeData.map((employee) => {
-                                    
                                     if (!employee.employeeId) {
                                         return;
                                     }
@@ -117,24 +114,26 @@ const DetailServicePage = () => {
                                             className='border-2 rounded '
                                         >
                                             <h3>
-                                                👤 {employee.firstName} {employee.lastName}
+                                                👤 {employee.firstName}{' '}
+                                                {employee.lastName}
                                             </h3>
                                             <p>✉️ {employee.email}</p>
                                             <p>📞 {employee.phone}</p>
                                             <p>🪪 {employee.dni}</p>
                                             <p>👨‍💻 {employee.job}</p>
                                             <p>🏠 {employee.city}</p>
-                                            
+
                                             <button
                                                 className='mx-auto'
                                                 onClick={(e) => {
                                                     e.preventDefault();
-                                                    handleQuita(employee.employeeId);
+                                                    handleQuita(
+                                                        employee.employeeId
+                                                    );
                                                 }}
                                             >
                                                 Quitar Empleado
                                             </button>
-                                            
                                         </li>
                                     );
                                 })
@@ -144,10 +143,9 @@ const DetailServicePage = () => {
                         </ul>
                     </fieldset>
                 </form>
-                                
             </fieldset>
 
-            {data.status !== 'completed'&& (
+            {data.status !== 'completed' && (
                 <ListEmployeeComponent
                     numberOfPeople={data.numberOfPeople}
                     serviceId={serviceId}

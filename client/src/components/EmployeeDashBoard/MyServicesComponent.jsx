@@ -94,8 +94,6 @@ const MyServicesComponent = () => {
         setSelectedEmployeeId(null);
     };
 
-    console.log(selectedEmployeeId);
-
     return (
         <>
             <form className='mx-auto form-filters'>
