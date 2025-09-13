@@ -14,6 +14,7 @@ const MyServicesComponent = () => {
     const [initialLocation, setInitialLocation] = useState(null);
     const [selectedServiceId, setSelectedServiceId] = useState(null);
     const [selectedEmployeeId, setSelectedEmployeeId] = useState(null);
+    const [typeOfServiceId, settypeOfServiceId] = useState('');
     const { user } = useUser();
 
     const resetFilter = (e) => {
@@ -43,6 +44,7 @@ const MyServicesComponent = () => {
                 });
 
                 setData(dataFiltered);
+                settypeOfServiceId(data[0].typeId);
             } catch (error) {
                 toast.error(error.message, {
                     id: 'error',
@@ -51,6 +53,8 @@ const MyServicesComponent = () => {
         };
         getServices();
     }, [status, type, authToken]);
+
+    console.log(typeOfServiceId);
 
     const typeNoRepeated = [...new Set(data.map((item) => item.type))].sort(
         (a, b) => a.localeCompare(b)
@@ -157,6 +161,7 @@ const MyServicesComponent = () => {
                 initialLocation={initialLocation}
                 serviceId={selectedServiceId}
                 employeeId={selectedEmployeeId}
+                typeOfServiceId={typeOfServiceId}
             />
         </>
     );

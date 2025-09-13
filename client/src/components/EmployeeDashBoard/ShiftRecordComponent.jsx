@@ -13,6 +13,7 @@ const ShiftRecordComponent = ({
     employeeId,
     onRequestClose,
     initialLocation,
+    typeOfServiceId,
 }) => {
     const { authToken } = useContext(AuthContext);
 
@@ -75,7 +76,8 @@ const ShiftRecordComponent = ({
                 clockOut,
                 location,
                 serviceId,
-                empployeeId
+                employeeId,
+                typeOfServiceId
             );
 
             toast.success(data.message, {
@@ -122,6 +124,7 @@ const ShiftRecordModal = ({
     onRequestClose,
     initialLocation,
     isOpen,
+    typeOfServiceId,
 }) => {
     return (
         <Modal
@@ -134,6 +137,7 @@ const ShiftRecordModal = ({
                 employeeId={employeeId}
                 onRequestClose={onRequestClose}
                 initialLocation={initialLocation}
+                typeOfServiceId={typeOfServiceId}
             />
         </Modal>
     );

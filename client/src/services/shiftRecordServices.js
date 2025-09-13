@@ -84,15 +84,19 @@ export const fetchClockOutShiftRecordServices = async (
     authToken,
     clockOut,
     location,
-    shiftRecordId
+    serviceId,
+    employeeId,
+    typeOfServiceId
 ) => {
-    const res = await fetch(`${VITE_API_URL}/shiftrecords/${shiftRecordId}`, {
+    const res = await fetch(`${VITE_API_URL}/shiftrecords/${typeOfServiceId}`, {
         method: 'PATCH',
         headers: {
             Authorization: authToken,
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+            serviceId,
+            employeeId,
             location,
             clockOut,
         }),

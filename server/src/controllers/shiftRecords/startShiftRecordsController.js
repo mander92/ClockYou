@@ -13,11 +13,12 @@ const startShiftRecordsController = async (req, res, next) => {
 
         const startDateTime = new Date(clockIn);
 
-        await startShiftRecordService(location, startDateTime, employeeId, serviceId);
+        const data = await startShiftRecordService(location, startDateTime, employeeId, serviceId);
 
         res.send({
             status: 'ok',
             message: 'Hora de inicio registrada',
+            data: data
         });
     } catch (error) {
         next(error);

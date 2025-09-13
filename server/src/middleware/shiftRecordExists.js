@@ -1,6 +1,4 @@
 import Joi from 'joi';
-
-import getPool from '../db/getPool.js';
 import generateErrorUtil from '../utils/generateErrorUtil.js';
 
 const shiftRecordExists = async (req, res, next) => {
@@ -13,18 +11,20 @@ const shiftRecordExists = async (req, res, next) => {
 
         if (validation.error) generateErrorUtil(validation.error.message, 401);
 
-        const pool = await getPool();
-
         const { shiftRecordId } = req.params;
+
+        if (!shiftRecordId.length) generateErrorUtil('Registro no encontrado', 400);
+
+        /*console.log("aquiiiiiiiiiiii");
+
+        console.log(shiftRecordId);
 
         const [shift] = await pool.query(
             `
             SELECT id FROM shiftRecords WHERE id = ? AND deletedAt IS NULL
             `,
             [shiftRecordId]
-        );
-
-        if (!shift.length) generateErrorUtil('Registro no encontrado', 400);
+        );*/
 
         next();
     } catch (error) {

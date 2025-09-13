@@ -2,28 +2,38 @@ import getPool from '../../db/getPool.js';
 import generateErrorUtil from '../../utils/generateErrorUtil.js';
 
 const endShiftRecordService = async (
-    shiftRecordId,
-    location,
-    startDateTime
+    shiftRecordId, location, startDateTime, serviceId
 ) => {
     const pool = await getPool();
 
-    const [serviceId] = await pool.query(
+    const [servicioId] = await pool.query(
         `
-        SELECT serviceId FROM shiftRecords WHERE id = ?
+        SELECT serviceId FROM shiftRecords WHERE id = ? 
         `,
         [shiftRecordId]
     );
+
+    if (!servicioId) {
+        generateErrorUtil("No hay servicio asignado", 401);
+    };
+
 
     const [clockIn] = await pool.query(
         `
-        SELECT clockIn FROM shiftRecords WHERE id = ?
+          SELECT clockIn 
+            FROM shiftRecords 
+            WHERE id = ? 
+            LIMIT 1
         `,
         [shiftRecordId]
     );
 
-    if (clockIn[0].clockIn === null)
-        generateErrorUtil('No has registrado una hora de inicio', 401);
+    console.log("aquii");
+    console.log(clockIn);
+
+    if (clockIn[0].clockIn === null) {
+        generateErrorUtil("debe ficha la entrada primero", 401);
+    };
 
     const [verify] = await pool.query(
         `

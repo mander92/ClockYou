@@ -82,6 +82,7 @@ const initDb = async () => {
             `
             CREATE TABLE IF NOT EXISTS services (
                 id CHAR(36) PRIMARY KEY NOT NULL,
+                name VARCHAR(30) NOT NULL,
                 startDateTime TIMESTAMP NOT NULL,
                 endDateTime TIMESTAMP,
                 hours INT UNSIGNED NOT NULL CHECK (hours BETWEEN 1 AND 8),

@@ -4,7 +4,7 @@ const selectServiceByEmployeeIdService = async (status, type, employeeId) => {
     const pool = await getPool();
 
     let sqlQuery = `
-        SELECT  s.id, s.name, s.status, u.firstName, u.lastName, u.phone, t.type, t.city AS province, s.comments, s.startDateTime, s.hours, s.status, s.rating, s.totalPrice, a.address, a.city, a.postCode
+        SELECT  pa.id, pa.serviceId, pa.employeeId, s.id, s.name, s.status, u.firstName, u.lastName, u.phone, t.type, t.city AS province, s.comments, s.startDateTime, s.hours, s.status, s.rating, s.totalPrice, a.address, a.city, a.postCode
         FROM personsassigned pa
         INNER JOIN services s
         ON pa.serviceId = s.id
