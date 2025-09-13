@@ -6,6 +6,7 @@ import getPool from './getPool.js';
 import { ADMIN_EMAIL, ADMIN_PASSWORD } from '../../env.js';
 
 const initDb = async () => {
+
     try {
         const pool = await getPool();
 
@@ -13,7 +14,7 @@ const initDb = async () => {
 
         await pool.query(
             `
-            DROP TABLE IF EXISTS shiftRecords, services, typeOfServices, users, addresses
+            DROP TABLE IF EXISTS shiftRecords, services, typeOfServices, users, addresses, personsAssigned
             `
         );
 
@@ -31,6 +32,8 @@ const initDb = async () => {
                 deletedAt TIMESTAMP )
             `
         );
+
+        console.log('Address creada');
 
         await pool.query(
             `
@@ -55,6 +58,9 @@ const initDb = async () => {
             `
         );
 
+        console.log('users creada');
+
+
         await pool.query(
             `
             CREATE TABLE IF NOT EXISTS typeOfServices (
@@ -69,6 +75,8 @@ const initDb = async () => {
                 deletedAt TIMESTAMP )
             `
         );
+
+        console.log('typeOfServices creada');
 
         await pool.query(
             `
@@ -95,6 +103,8 @@ const initDb = async () => {
             `
         );
 
+        console.log('services creada');
+
         await pool.query(
             `
             CREATE TABLE IF NOT EXISTS shiftRecords(
@@ -114,6 +124,22 @@ const initDb = async () => {
                 deletedAt TIMESTAMP )
             `
         );
+
+        console.log('shiftRecord creada');
+
+        await pool.query(
+            `
+            CREATE TABLE IF NOT EXISTS personsAssigned(
+                id CHAR(36) PRIMARY KEY NOT NULL,
+                pin CHAR(8),
+                employeeId CHAR(36) NOT NULL,
+                serviceId CHAR(36) NOT NULL,
+                FOREIGN KEY (employeeId) REFERENCES users(id),
+                FOREIGN KEY (serviceId) REFERENCES services(id))
+            `
+        );
+
+        console.log('personAssinged creada');
 
         const insertTypeOfService = async (
             id,
