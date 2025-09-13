@@ -1,5 +1,6 @@
 import getPool from '../../db/getPool.js';
 import { v4 as uuid } from 'uuid';
+import generateErrorUtil from '../../utils/generateErrorUtil.js';
 
 const startShiftRecordService = async (
     location, startDateTime, employeeId, serviceId
@@ -7,23 +8,18 @@ const startShiftRecordService = async (
     const latitudeIn = location[0];
     const longitudeIn = location[1];
     const pool = await getPool();
+    const id = uuid();
 
     const [verify] = await pool.query(
         `
-        SELECT clockIn FROM shiftrecords WHERE employeeId = ? AND serviceID = ? AND clockOut = NULL
+         SELECT id, clockIn FROM shiftrecords WHERE employeeId = ? AND serviceId = ?
+            
         `, [employeeId, serviceId]
     );
-    // const [verify] = await pool.query(
-    //     `
-    //     SELECT id FROM personsassigned WHERE employeeId = ? AND serviceId = ?
-    //     `,
-    //     [employeeId, serviceId]
-    // );
 
-    if (verify[0].clockIn !== null)
-        generateErrorUtil('No has sido asignado al servicio contacta con administración', 401);
-
-    const id = uuid();
+    if (verify.length > 0) {
+        generateErrorUtil("ya has fichado la entrada")
+    }
 
     await pool.query(
         `
