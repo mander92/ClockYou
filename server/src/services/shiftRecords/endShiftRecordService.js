@@ -2,64 +2,58 @@ import getPool from '../../db/getPool.js';
 import generateErrorUtil from '../../utils/generateErrorUtil.js';
 
 const endShiftRecordService = async (
-    shiftRecordId, location, startDateTime, serviceId
+    employeeId, location, endDateTime, serviceId
 ) => {
     const pool = await getPool();
+    const [latitudeOut, longitudeOut] = location;
 
-    const [servicioId] = await pool.query(
+    // 1) Buscar el turno abierto (clockOut IS NULL)
+    const [rows] = await pool.query(
         `
-        SELECT serviceId FROM shiftRecords WHERE id = ? 
-        `,
-        [shiftRecordId]
+      SELECT id
+      FROM shiftrecords
+      WHERE employeeId = ? AND serviceId = ? AND clockOut IS NULL
+      LIMIT 1
+    `,
+        [employeeId, serviceId]
     );
 
-    if (!servicioId) {
-        generateErrorUtil("No hay servicio asignado", 401);
-    };
+    if (rows.length === 0) {
+        // No hay turno abierto para cerrar
+        generateErrorUtil('Debes fichar la entrada primero', 401);
+        return; // por si generateErrorUtil no hace throw
+    }
 
+    const shiftId = rows[0].id;
 
-    const [clockIn] = await pool.query(
+    // 2) Cerrar el turno. La condición "AND clockOut IS NULL" evita carreras:
+    const [result] = await pool.query(
         `
-          SELECT clockIn 
-            FROM shiftRecords 
-            WHERE id = ? 
-            LIMIT 1
-        `,
-        [shiftRecordId]
+      UPDATE shiftrecords
+      SET clockOut = ?, latitudeOut = ?, longitudeOut = ?
+      WHERE id = ? AND clockOut IS NULL
+    `,
+        [endDateTime, latitudeOut, longitudeOut, shiftId]
     );
 
-    console.log("aquii");
-    console.log(clockIn);
-
-    if (clockIn[0].clockIn === null) {
-        generateErrorUtil("debe ficha la entrada primero", 401);
-    };
-
-    const [verify] = await pool.query(
-        `
-        SELECT clockOut FROM shiftRecords WHERE id = ?
-        `,
-        [shiftRecordId]
-    );
-
-    if (verify[0].clockOut !== null)
+    if (result.affectedRows === 0) {
+        // Si nadie fue actualizado, es que ya estaba cerrado
         generateErrorUtil('Ya has registrado una hora de fin', 401);
+        return;
+    }
 
+    // 3) Marcar el servicio como completado (si aplica a tu lógica de negocio)
     await pool.query(
         `
-        UPDATE shiftRecords SET clockOut = ?, latitudeOut = ?, longitudeOut = ? WHERE id = ?
-        `,
-        [startDateTime, location[0], location[1], shiftRecordId]
-    );
-
-    await pool.query(
-        `
-        UPDATE services SET status = 'completed' WHERE id = ?
-        `,
-        [serviceId[0].serviceId]
+      UPDATE services
+      SET status = 'completed'
+      WHERE id = ?
+    `,
+        [serviceId]
     );
 
     return;
+
 };
 
 export default endShiftRecordService;

@@ -6,6 +6,7 @@ import toast from 'react-hot-toast';
 import useUser from '../../hooks/useUser.js';
 
 const MyServicesComponent = () => {
+    const { user } = useUser();
     const { authToken } = useContext(AuthContext);
     const [status, setStatus] = useState('');
     const [type, setType] = useState('');
@@ -14,8 +15,7 @@ const MyServicesComponent = () => {
     const [initialLocation, setInitialLocation] = useState(null);
     const [selectedServiceId, setSelectedServiceId] = useState(null);
     const [selectedEmployeeId, setSelectedEmployeeId] = useState(null);
-    const [typeOfServiceId, settypeOfServiceId] = useState('');
-    const { user } = useUser();
+    const [selectedShiftRecordId, setSelectedShiftRecordId] = useState(null);
 
     const resetFilter = (e) => {
         e.preventDefault();
@@ -44,7 +44,6 @@ const MyServicesComponent = () => {
                 });
 
                 setData(dataFiltered);
-                settypeOfServiceId(data[0].typeId);
             } catch (error) {
                 toast.error(error.message, {
                     id: 'error',
@@ -54,11 +53,11 @@ const MyServicesComponent = () => {
         getServices();
     }, [status, type, authToken]);
 
-    console.log(typeOfServiceId);
-
     const typeNoRepeated = [...new Set(data.map((item) => item.type))].sort(
         (a, b) => a.localeCompare(b)
     );
+
+    console.log(selectedShiftRecordId);
 
     const openModal = (serviceId) => {
         if (navigator.geolocation) {
@@ -71,6 +70,7 @@ const MyServicesComponent = () => {
                     setInitialLocation(location);
                     setSelectedServiceId(serviceId);
                     setSelectedEmployeeId(user.id);
+                    setSelectedShiftRecordId(data[0].id);
                     setModalIsOpen(true);
                 },
                 (error) => {
@@ -161,7 +161,7 @@ const MyServicesComponent = () => {
                 initialLocation={initialLocation}
                 serviceId={selectedServiceId}
                 employeeId={selectedEmployeeId}
-                typeOfServiceId={typeOfServiceId}
+                shiftRecordId={selectedShiftRecordId}
             />
         </>
     );

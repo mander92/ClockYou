@@ -17,7 +17,6 @@ const startShiftRecordsController = async (req, res, next) => {
 
         res.send({
             status: 'ok',
-            message: 'Hora de inicio registrada',
             data: data
         });
     } catch (error) {
